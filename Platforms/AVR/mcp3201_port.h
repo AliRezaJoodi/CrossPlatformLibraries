@@ -1,5 +1,5 @@
-#ifndef _MCP3201_PORT_INCLUDED
-#define _MCP3201_PORT_INCLUDED
+#ifndef MCP3201_PORT_INCLUDED
+#define MCP3201_PORT_INCLUDED
 
 #ifdef __cplusplus
 extern "C" {

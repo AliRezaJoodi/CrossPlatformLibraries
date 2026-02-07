@@ -1,7 +1,7 @@
 // GitHub Account: GitHub.com/AliRezaJoodi
 
-#ifndef _UTILITY_BIT_INCLUDED
-#define _UTILITY_BIT_INCLUDED  
+#ifndef UTILITY_BIT_INCLUDED
+#define UTILITY_BIT_INCLUDED  
 
 
 #define SET_BIT(ADDRESS, POS)               ((ADDRESS) |= (0x01UL << (POS)))    

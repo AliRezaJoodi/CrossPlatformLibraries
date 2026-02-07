@@ -4,8 +4,8 @@
 // SPI Clock Polarity: Low
 // SPI Data Order: MSB First
 
-#ifndef _MCP3201_INCLUDED
-#define _MCP3201_INCLUDED
+#ifndef MCP3201_INCLUDED
+#define MCP3201_INCLUDED
 
 #ifdef __cplusplus
 extern "C" {

@@ -1,7 +1,14 @@
-// GitHub Account: GitHub.com/AliRezaJoodi
+/*
+ * @brief   Byte utility helpers
+ *          Simple MSB/LSB extraction and composition
+ *          (endianness-independent)
+ *
+ * @author  AliReza Joodi
+ * @see     https://github.com/AliRezaJoodi
+ */
 
-#ifndef _UTILITY_BYTE_INCLUDED
-#define _UTILITY_BYTE_INCLUDED  
+#ifndef UTILITY_BYTE_INCLUDED
+#define UTILITY_BYTE_INCLUDED  
 
 #ifdef __cplusplus
 extern "C" {
