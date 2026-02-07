@@ -1,9 +1,10 @@
 #ifndef _MCP3201_PORT_INCLUDED
 #define _MCP3201_PORT_INCLUDED
 
-
 #include <io.h>
 #include <spi.h>
+
+#include <utility_bit.h>
 
 #define MCP3201_PIN_INPUT       0U
 #define MCP3201_PIN_OUTPUT      1U
