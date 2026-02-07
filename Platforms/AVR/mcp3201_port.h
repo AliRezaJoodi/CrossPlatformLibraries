@@ -1,6 +1,10 @@
 #ifndef _MCP3201_PORT_INCLUDED
 #define _MCP3201_PORT_INCLUDED
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <io.h>
 #include <spi.h>
 
@@ -41,5 +45,8 @@ static inline uint8_t MCP3201_SPI_Transfer(uint8_t data){
     return spi(data);
 }
 
+#ifdef __cplusplus
+}
+#endif
 
 #endif
