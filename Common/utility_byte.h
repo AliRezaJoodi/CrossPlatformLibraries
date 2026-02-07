@@ -10,7 +10,7 @@ extern "C" {
 #include <stdint.h>
 
 static inline uint8_t GetMsb(uint16_t value){
-    return (uint8_t)(value >> 8U);
+    return (uint8_t)((value >> 8U) & 0xFFU);
 }
 
 static inline uint8_t GetLsb(uint16_t value){
@@ -18,7 +18,7 @@ static inline uint8_t GetLsb(uint16_t value){
 }
 
 static inline uint16_t MakeU16(uint8_t msb, uint8_t lsb){
-    return ((uint16_t)msb << 8U ) | lsb;
+    return ((uint16_t)(msb) << 8U) | (uint16_t)(lsb);
 }
 
 #ifdef __cplusplus
