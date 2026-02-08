@@ -7,7 +7,7 @@ This repository contains **libraries only**. Examples and application projects a
 
 ## Folder Structure
 
-### Common
+### Utils
 General-purpose headers and utilities shared across all platforms.  
 Examples:
 - Bit manipulation macros

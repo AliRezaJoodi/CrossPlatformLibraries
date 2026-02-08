@@ -13,7 +13,6 @@ extern "C" {
 
 #include <stdint.h>
 
-#include <mcp3201_hw.h>
 #include <mcp3201_port.h>
 
 void MCP3201_Config(MCP3201_t *mcp);
