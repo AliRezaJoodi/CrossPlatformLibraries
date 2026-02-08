@@ -15,6 +15,8 @@ extern "C" {
 
 #include <stdint.h>
 
+#include <utility_bit.h>
+
 typedef struct {
     volatile uint8_t *ddr;
     volatile uint8_t *port;

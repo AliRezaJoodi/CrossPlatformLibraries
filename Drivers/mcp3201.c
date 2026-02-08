@@ -1,8 +1,6 @@
 // GitHub Account: GitHub.com/AliRezaJoodi
 
-#include "hardware.h"
 #include <mcp3201.h>
-#include <mcp3201_config.h>
 
 #define MCP3201_PIN_INPUT       0U
 #define MCP3201_PIN_OUTPUT      1U

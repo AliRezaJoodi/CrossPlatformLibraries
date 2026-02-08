@@ -1,10 +1,8 @@
 // Platform-specific implementation for CodeVisionAVR
 
-#include <stdint.h>
 #include <io.h>
 #include <spi.h>
 
-#include <utility_bit.h>
 #include <mcp3201_port.h>
 
 //********************************************************
