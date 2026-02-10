@@ -13,6 +13,9 @@ extern "C" {
 
 #include <stdint.h>
 
+#define MCP3201_PIN_INPUT       0U
+#define MCP3201_PIN_OUTPUT      1U
+
 #include <mcp3201_port.h>
 #include <mcp3201_config.h>
 

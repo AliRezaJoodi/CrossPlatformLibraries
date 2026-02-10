@@ -14,6 +14,8 @@ extern "C" {
 #endif
 
 #include <stdint.h>
+#include <io.h>
+#include <spi.h>
 
 #include <utility_bit.h>
 
@@ -35,9 +37,26 @@ typedef struct {
  *                  - 0: configure as input and disable pull-up
  *                  - 1: configure as output and sets the pin high (idle state)
  */
-void MCP3201_CS_ConfigPin(MCP3201_t *mcp, uint8_t mode);
-void MCP3201_CS_WritePin(MCP3201_t *mcp, uint8_t status);
-uint8_t MCP3201_SPI_Transfer(uint8_t data);
+static inline void MCP3201_CS_ConfigPin(MCP3201_t *mcp, uint8_t mode){    
+    WRITE_BIT( *(mcp->cs.ddr), mcp->cs.index, mode );
+    
+    if(mode == MCP3201_PIN_INPUT){ 
+        CLEAR_BIT( *(mcp->cs.port), mcp->cs.index ); // Disable pull-up
+    }
+    else{
+        SET_BIT( *(mcp->cs.port), mcp->cs.index ); // Idle bus
+    }
+}
+
+//********************************************************
+static inline void MCP3201_CS_WritePin(MCP3201_t *mcp, uint8_t status){
+    WRITE_BIT( *(mcp->cs.port), mcp->cs.index, status );
+}
+
+//********************************************************
+static inline uint8_t MCP3201_SPI_Transfer(uint8_t data){
+    return spi(data);
+}
 
 #ifdef __cplusplus
 }

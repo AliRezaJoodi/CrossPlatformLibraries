@@ -2,9 +2,6 @@
 
 #include <mcp3201.h>
 
-#define MCP3201_PIN_INPUT       0U
-#define MCP3201_PIN_OUTPUT      1U
-
 #define MCP3201_RESOLUTION      4096U     //12-Bit
 
 static const float  MCP3201_GAIN = (float)(MCP3201_VREF) / (float)(MCP3201_RESOLUTION);
