@@ -7,8 +7,8 @@
 static const float  MCP3201_GAIN = (float)(MCP3201_VREF) / (float)(MCP3201_RESOLUTION);
 
 //********************************************************
-void MCP3201_Config(MCP3201_t *mcp){
-    MCP3201_CS_ConfigPin(mcp, MCP3201_PIN_OUTPUT); 
+void MCP3201_Init(MCP3201_t *mcp){
+    MCP3201_CS_Init(mcp); 
     MCP3201_CS_WritePin(mcp, 1);    // Idle bus   
 }
 
