@@ -67,19 +67,14 @@ static inline void Clamp_1To5V_ByRef(float* value){
 }
 
 static inline uint16_t Clamp_0To1023(uint16_t value){
-    if (value < 1023) {
-        return (uint16_t)value;
-    }
-    else {
+    if (value > 1023) {
         return 1023;
     }
+    return value;
 }
 
 static inline void Clamp_0To1023_ByRef(uint16_t* value){
-    if ((*value) < 1023) {
-        (*value) = (*value);
-    }
-    else {
+    if ((*value) > 1023) {
         (*value) = 1023;
     }
 }
