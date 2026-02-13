@@ -8,7 +8,7 @@
  */
 
 #ifndef UTILITY_BYTE_INCLUDED
-#define UTILITY_BYTE_INCLUDED  
+#define UTILITY_BYTE_INCLUDED
 
 #ifdef __cplusplus
 extern "C" {

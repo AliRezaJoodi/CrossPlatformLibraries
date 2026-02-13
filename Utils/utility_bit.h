@@ -53,7 +53,6 @@ static inline void write_bit_u32(volatile uint32_t *reg, uint8_t pos, uint8_t va
             ((uint32_t)(val & 1U) << pos);
 }
 
-
 #ifdef __cplusplus
 }
 #endif

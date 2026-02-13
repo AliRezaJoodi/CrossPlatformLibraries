@@ -9,5 +9,6 @@ _Pending
 *.c~
 *.h~
 *.hci
+*.i
 
 
