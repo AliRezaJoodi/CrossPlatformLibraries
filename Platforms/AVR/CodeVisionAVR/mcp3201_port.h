@@ -58,7 +58,7 @@ extern "C" {
 #include <io.h>
 #include <spi.h>
 
-#include <utility_bit.h>
+#include "utility_bit.h"
 
 /**
  * @brief   GPIO representation for a single MCP3201 pin

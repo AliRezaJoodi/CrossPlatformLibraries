@@ -9,7 +9,7 @@ extern "C" {
 
 #include <stdint.h>
 
-#include <average_config.h>
+#include "average_config.h"
 
 typedef struct {
     uint32_t sum;
