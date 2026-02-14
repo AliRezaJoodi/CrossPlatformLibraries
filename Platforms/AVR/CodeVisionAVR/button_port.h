@@ -11,6 +11,8 @@ extern "C" {
 #include <io.h>
 #include <delay.h>
 
+#include "button_config.h"
+
 typedef struct{
     volatile uint8_t    *hw_ddr;
     volatile uint8_t    *hw_pin;
@@ -20,23 +22,7 @@ typedef struct{
     uint8_t             state;
     uint16_t            counter;
 } Button_t;
-/*
-Example in main code:
-Button_t button_incr = {
-    .btn_ddr  = &BUTTON1_DDR,
-    .hw_pin  = &BUTTON1_PIN,
-    .hw_port = &BUTTON1_PORT,
-    .btn_bit  = BUTTON1_BIT,
-    .status   = 0,
-    .counter  = 0
-};
-*/
 
-#define Button_GetPullStatus(btn)     (((btn)->config >> 1) & 0x03)
-
-//static inline uint8_t Button_GetPullStatus(Button_t *btn){
-//    return ((btn->config >> 1) & 0x03);
-//}
 
 static inline void Button_ConfigPin(Button_t *btn){    
     CLEAR_BIT(*btn->hw_ddr, btn->hw_bit);
@@ -57,7 +43,8 @@ static inline uint8_t Button_GetPin(Button_t *btn){
     return GET_BIT(*btn->hw_pin, btn->hw_bit); 
 }
 
-static inline void Button_Delay_ms(uint8_t value){
+static inline void Button_Delay(){
+    delay_ms(BUTTON_SINGLE_CLICK_LAG);
 }
 
 #ifdef __cplusplus

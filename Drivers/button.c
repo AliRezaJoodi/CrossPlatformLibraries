@@ -1,13 +1,6 @@
 // GitHub Account: GitHub.com/AliRezaJoodi
 
-#include <button.h>
-
-#define Button_GetActiveStatus(btn)     ((btn)->config & 0x01)
-
-////*************************************************
-//static inline uint8_t Button_GetActiveStatus(Button_t *btn){
-//    return ((btn->config) & 0x01);
-//}
+#include "button.h"
 
 //*************************************************
 void Button_Config(Button_t *btn){
@@ -26,7 +19,7 @@ void Button_Config(Button_t *btn){
 uint8_t Button_GetSingleClick(Button_t *btn){
     if ( Button_GetPin(btn) != Button_GetActiveStatus(btn) ){
         if(btn->state == 1){
-            delay_ms(BUTTON_SINGLE_CLICK_LAG);
+            Button_Delay();
             if ( Button_GetPin(btn) != Button_GetActiveStatus(btn) ){
                 btn->state = 0;
             } 
@@ -34,7 +27,7 @@ uint8_t Button_GetSingleClick(Button_t *btn){
     }
     else{
         if(btn->state == 0){
-            delay_ms(BUTTON_SINGLE_CLICK_LAG);
+            Button_Delay();
             if ( Button_GetPin(btn) == Button_GetActiveStatus(btn) ){
                 btn->state = 1;
                 return 1;
