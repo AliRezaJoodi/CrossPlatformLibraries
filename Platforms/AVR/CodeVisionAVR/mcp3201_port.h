@@ -14,8 +14,19 @@
  *   - Data Order: MSB First
  *   - SPI Clock: <= 2 MHz (example value)
  *
+ * @warning
+ * Ensure the SPI peripheral is configured before calling any MCP3201 functions.
+ * Using incorrect SPI settings may result in incorrect ADC readings.
+ *
+ * @author  AliReza Joodi
+ * @see     https://github.com/AliRezaJoodi
+ */
+
+/**
+ * @example
  * Example SPI configuration for CodeVision AVR (ATmega32A):
  *
+ * @code
  * void SPI_Config(void) {
  *     // Pin directions
  *     DDRB.4 = 1; PORTB.4 = 0;    // CS (SS)
@@ -38,15 +49,9 @@
  *          | (0<<CPOL) | (0<<CPHA) | (0<<SPR1) | (0<<SPR0);
  *     SPSR = (0<<SPI2X);
  * }
- *
- * @warning
- * Ensure the SPI peripheral is configured before calling any MCP3201 functions.
- * Using incorrect SPI settings may result in incorrect ADC readings.
- *
- * @author  AliReza Joodi
- * @see     https://github.com/AliRezaJoodi
+ * @endcode
  */
- 
+
 #ifndef MCP3201_PORT_INCLUDED
 #define MCP3201_PORT_INCLUDED
 
@@ -71,8 +76,8 @@ extern "C" {
  */
 typedef struct {
     volatile uint8_t *ddr;      /**< Data Direction Register for this pin */
-    volatile uint8_t *port;     /**< PORT register for this pin */     
-    uint8_t           index;    /**< Bit position within DDR/PORT (0..7) */        
+    volatile uint8_t *port;     /**< PORT register for this pin */
+    uint8_t           index;    /**< Bit position within DDR/PORT (0..7) */
 } MCP3201_Pin_t;
 
 /**
@@ -85,27 +90,31 @@ typedef struct {
 } MCP3201_t;
 
 /**
- * @example MCP3201_pin_mapping
+ * @example
+ * Example: defining pin macros
  *
- * CS pin macros definition (required before use):
+ * @code
  * #define MCP3201_CS1_DDR   DDRB
  * #define MCP3201_CS1_PORT  PORTB
  * #define MCP3201_CS1_BIT   4U
+ * @endcode
  *
- * Example of initializing MCP3201 pins using the macros:
+ * Example: initializing a structure
  *
+ * @code
  * MCP3201_t mcp1;
  * mcp1.cs.ddr   = &MCP3201_CS1_DDR;
  * mcp1.cs.port  = &MCP3201_CS1_PORT;
- * mcp1.cs.index = MCP3201_CS1_BIT;
+ * mcp1.cs.index =  MCP3201_CS1_BIT;
+ * @endcode
  */
 
 /**
- * @brief Initialize MCP3201 CS pin (output, idle high) 
+ * @brief Initialize MCP3201 CS pin (output, idle high)
  *
  * @param   mcp     Pointer to the MCP3201 instance
  */
-static inline void MCP3201_CS_Init(MCP3201_t *mcp){    
+static inline void MCP3201_CS_InitPin(MCP3201_t *mcp){
     SET_BIT( *(mcp->cs.ddr), mcp->cs.index );
     SET_BIT( *(mcp->cs.port), mcp->cs.index );
 }
