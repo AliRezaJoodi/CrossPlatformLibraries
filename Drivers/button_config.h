@@ -47,7 +47,7 @@ typedef enum {
 /** @brief Get input mode from button config (bits 1-2). */
 #define Button_GetPullStatus(btn)       (((btn)->config >> 1) & 0x03)
 
-/** @brief Default timing configuration (can be overridden). */
+/** @brief Default configuration (can be overridden). */
 #ifndef BUTTON_CONFIG
 #define BUTTON_CONFIG
     #define BUTTON_SINGLE_CLICK_LAG     30U         /**< Single Click Lag, Value: 0~65535, Unit: ms */   

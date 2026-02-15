@@ -64,7 +64,7 @@ typedef struct{
 
 /**
  * @example
- * Example: defining button pin macros
+ * Example: defining pin macros
  *
  * @code
  * #define BUTTON1_DDR   DDRB
@@ -73,11 +73,10 @@ typedef struct{
  * #define BUTTON1_BIT   0
  * @endcode
  *
- * Example: initializing a button structure
+ * Example: initializing a structure
  *
  * @code
  * Button_t buttonIncr;
- *
  * buttonIncr.hw.ddr   = &BUTTON1_DDR;
  * buttonIncr.hw.port  = &BUTTON1_PORT;
  * buttonIncr.hw.pin   = &BUTTON1_PIN;
