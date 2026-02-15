@@ -1,7 +1,8 @@
 #ifndef AVERAGE_CONFIG_INCLUDED
 #define AVERAGE_CONFIG_INCLUDED
 
-#include "hardware.h"   // Default hardware macros can be overridden by the user
+/** @brief Include user-overridable macros. */
+#include "hardware.h"
 
 #ifndef AVERAGE_CONFIG
 #define AVERAGE_CONFIG    
