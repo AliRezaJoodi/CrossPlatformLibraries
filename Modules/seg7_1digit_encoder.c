@@ -2,7 +2,7 @@
 
 #include <seg7_1digit_encoder.h>
 
-const uint8_t seg7_font_digit[10]={
+static const uint8_t seg7_font_digit[10]={
     0x3FU,      // 0
     0x06U,      // 1
     0x5BU,      // 2
@@ -15,7 +15,7 @@ const uint8_t seg7_font_digit[10]={
     0x6FU       // 9
  };
 
-const uint8_t seg7_font_alpha[11]={
+static const uint8_t seg7_font_alpha[11]={
     0x77U,      // 0,   A
     0x7CU,      // 1,   b
     0x39U,      // 2,   C
