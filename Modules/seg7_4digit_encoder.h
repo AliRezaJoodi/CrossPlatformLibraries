@@ -5,9 +5,9 @@
 
 #include <stdint.h>
 
-#include "seg7_1digit_encoder.h"
+#include "seg7_font.h"
 
-uint8_t Seg7_4Digit_EncodeFloat_2DP(float value, uint8_t *seg);
+void Seg7_4Digit_EncodeFloat_2DP(float value, uint8_t *seg);
 uint8_t Seg7_4Digit_EncodeFloat_1DP(float value, uint8_t *seg);
 void    Seg7_4Digit_ToggleSegments(uint8_t *seg);
 
