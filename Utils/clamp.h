@@ -19,15 +19,6 @@ static inline float Clamp_0To100(float value){
     return value;
 }
 
-static inline void Clamp_0To100_ByRef(float* value){
-    if ((*value) < 0.0f) {
-        (*value) = 0.0f;
-    }
-    else if ((*value) > 100.0f) {
-        (*value) = 100.0f;
-    }
-}
-
 static inline float Clamp_0To5V(float value){
     if (value < 0.0f) {
         return 0.0f;
@@ -36,15 +27,6 @@ static inline float Clamp_0To5V(float value){
         return 5.0f;
     }
     return value;
-}
-
-static inline void Clamp_0To5V_ByRef(float* value){
-    if ((*value) < 0.0f) {
-        (*value) = 0.0f;
-    }
-    else if ((*value) > 5.0f) {
-        (*value) = 5.0f;
-    }
 }
 
 static inline float Clamp_1To5V(float value){
@@ -57,26 +39,11 @@ static inline float Clamp_1To5V(float value){
     return value;
 }
 
-static inline void Clamp_1To5V_ByRef(float* value){
-    if ((*value) < 1.0f) {
-        (*value) = 1.0f;
-    }
-    else if ((*value) > 5.0f) {
-        (*value) = 5.0f;
-    }
-}
-
 static inline uint16_t Clamp_0To1023(uint16_t value){
     if (value > 1023) {
         return 1023;
     }
     return value;
-}
-
-static inline void Clamp_0To1023_ByRef(uint16_t* value){
-    if ((*value) > 1023) {
-        (*value) = 1023;
-    }
 }
 
 #ifdef __cplusplus
