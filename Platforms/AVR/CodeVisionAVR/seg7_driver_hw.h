@@ -6,37 +6,54 @@
 
 #ifndef SEG7_DRIVER_HARDWARE
 #define SEG7_DRIVER_HARDWARE
+
+#if SEG7_DIGITS_COUNT > 0
     #define SEG7_DIGIT0_DDR          DDRB
     #define SEG7_DIGIT0_PORT         PORTB
     #define SEG7_DIGIT0_BIT          0
+#endif
 
+#if SEG7_DIGITS_COUNT > 1
     #define SEG7_DIGIT1_DDR          DDRB
     #define SEG7_DIGIT1_PORT         PORTB
     #define SEG7_DIGIT1_BIT          1
+#endif
 
+#if SEG7_DIGITS_COUNT > 2
     #define SEG7_DIGIT2_DDR          DDRB
     #define SEG7_DIGIT2_PORT         PORTB
     #define SEG7_DIGIT2_BIT          2
+#endif
 
+#if SEG7_DIGITS_COUNT > 3
     #define SEG7_DIGIT3_DDR          DDRB
     #define SEG7_DIGIT3_PORT         PORTB
     #define SEG7_DIGIT3_BIT          3
+#endif
 
+#if SEG7_DIGITS_COUNT > 4
     #define SEG7_DIGIT4_DDR          DDRB
     #define SEG7_DIGIT4_PORT         PORTB
     #define SEG7_DIGIT4_BIT          4
+#endif
 
+#if SEG7_DIGITS_COUNT > 5
     #define SEG7_DIGIT5_DDR          DDRB
     #define SEG7_DIGIT5_PORT         PORTB
     #define SEG7_DIGIT5_BIT          5
+#endif
 
+#if SEG7_DIGITS_COUNT > 6
     #define SEG7_DIGIT6_DDR          DDRB
     #define SEG7_DIGIT6_PORT         PORTB
     #define SEG7_DIGIT6_BIT          6
+#endif
 
+#if SEG7_DIGITS_COUNT > 7
     #define SEG7_DIGIT7_DDR          DDRB
     #define SEG7_DIGIT7_PORT         PORTB
     #define SEG7_DIGIT7_BIT          7
+#endif
 
     #define SEG7_A_DDR               DDRD
     #define SEG7_A_PORT              PORTD

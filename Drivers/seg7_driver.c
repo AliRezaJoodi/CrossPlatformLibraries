@@ -15,7 +15,9 @@ void Seg7_Init(void){
 
 /*********************************/
 void Seg7_SetBuffer(uint8_t *buffer){
-    seg7_buffer = buffer;
+    if (buffer != 0){
+        seg7_buffer = buffer;
+    }
 }
 
 /*********************************/
@@ -25,7 +27,7 @@ void Seg7_Refresh(void){
     Seg7_Digit_EnablePin(seg7_index);
 
     seg7_index++;
-    if (seg7_index > 1){
+    if (seg7_index >= SEG7_DIGITS_COUNT){
         seg7_index = 0;
     }
 }
