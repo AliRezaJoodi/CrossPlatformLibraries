@@ -6,11 +6,11 @@ static uint8_t seg7_index = 0;
 
 /*********************************/
 void Seg7_Init(void){
-    Seg7_Digits_InitAllPins();
-    Seg7_Digits_DisableAllPins();
+    Seg7_InitDigits();
+    Seg7_DisableAllDigits();
 
-    Seg7_Segments_InitAllPins();
-    Seg7_Segments_WriteAllPins(0x00U);
+    Seg7_InitSegments();
+    Seg7_WriteSegments(0x00U);
 }
 
 /*********************************/
@@ -22,9 +22,9 @@ void Seg7_SetBuffer(uint8_t *buffer){
 
 /*********************************/
 void Seg7_Refresh(void){
-    Seg7_Digits_DisableAllPins();
-    Seg7_Segments_WriteAllPins( *(seg7_buffer + seg7_index) );
-    Seg7_Digit_EnablePin(seg7_index);
+    Seg7_DisableAllDigits();
+    Seg7_WriteSegments( *(seg7_buffer + seg7_index) );
+    Seg7_EnableDigit(seg7_index);
 
     seg7_index++;
     if (seg7_index >= SEG7_DIGITS_COUNT){

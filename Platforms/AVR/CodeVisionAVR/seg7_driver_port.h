@@ -10,7 +10,7 @@ extern "C" {
 #include "utility_bit.h"
 #include "seg7_driver_hw.h"
 
-static inline void Seg7_Digits_InitAllPins(void){
+static inline void Seg7_InitDigits(void){
 #if SEG7_DIGITS_COUNT > 0
     SET_BIT(SEG7_DIGIT0_DDR, SEG7_DIGIT0_BIT);
 #endif
@@ -44,7 +44,7 @@ static inline void Seg7_Digits_InitAllPins(void){
 #endif
 }
 
-static inline void Seg7_Digits_DisableAllPins(void){
+static inline void Seg7_DisableAllDigits(void){
 #if SEG7_DIGITS_COUNT > 0
     WRITE_BIT(SEG7_DIGIT0_PORT, SEG7_DIGIT0_BIT, !SEG7_DIGITS_ACTIVATE);
 #endif
@@ -78,7 +78,7 @@ static inline void Seg7_Digits_DisableAllPins(void){
 #endif
 }
 
-static inline void Seg7_Digit_EnablePin(uint8_t index){
+static inline void Seg7_EnableDigit(uint8_t index){
 #if SEG7_DIGITS_COUNT > 0
     if(index == 0){
         WRITE_BIT(SEG7_DIGIT0_PORT, SEG7_DIGIT0_BIT, SEG7_DIGITS_ACTIVATE);
@@ -128,7 +128,7 @@ static inline void Seg7_Digit_EnablePin(uint8_t index){
 #endif
 }
 
-static inline void Seg7_Segments_InitAllPins(void){
+static inline void Seg7_InitSegments(void){
     SET_BIT(SEG7_A_DDR, SEG7_A_BIT);
     //WRITE_BIT(SEG7_A_PORT,  SEG7_A_BIT,  !SEG7_SEGMENTS_ACTIVATE);   // Idle status
 
@@ -154,7 +154,7 @@ static inline void Seg7_Segments_InitAllPins(void){
     //WRITE_BIT(SEG7_DP_PORT, SEG7_DP_BIT, !SEG7_SEGMENTS_ACTIVATE);
 }
 
-static inline void Seg7_Segments_WriteAllPins(uint8_t buf){
+static inline void Seg7_WriteSegments(uint8_t buf){
     if(SEG7_SEGMENTS_ACTIVATE == 0){buf = ~buf;}
 
     WRITE_BIT(SEG7_A_PORT, SEG7_A_BIT, GET_BIT(buf, 0));
