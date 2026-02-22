@@ -4,12 +4,10 @@
 #include "hardware.h"
 
 #ifndef SEG7_DRIVER_CONFIG
-    #define SEG7_DRIVER_CONFIG
-
+#define SEG7_DRIVER_CONFIG
     #define SEG7_DIGITS_COUNT       8
-    //#define SEG7_DISPLAYLAG         5 //Display Lag
-    #define SEG7_ACTIVATE_DIGIT     1
-    #define SEG7_ACTIVATE_SEGMENT   0
+    #define SEG7_DIGITS_ACTIVATE    1
+    #define SEG7_SEGMENTS_ACTIVATE  0
 
     #warning "SEG7_DRIVER_CONFIG is not defined; default configuration will be used."
 #endif
