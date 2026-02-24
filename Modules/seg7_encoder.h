@@ -41,15 +41,38 @@
  * - If the input number is greater than 99, the output digits
  *   are cleared and the function reports overflow.
  *
- * @param number Input value to encode (<= 99).
  * @param seg    Pointer to an array of at least two bytes where
  *               encoded segment patterns will be written.
+ * @param number Input value to encode (<= 99).
  *
  * @return 0 on success, 1 if overflow occurred (number > 99).
  */
-uint8_t Seg7_EncodeNumber_2Digits(uint8_t number, uint8_t *seg);
+uint8_t Seg7_EncodeNumber_2Digits(uint8_t *seg, uint8_t number);
 
-uint8_t Seg7_SetDecimalPoint_2Digits(uint8_t position, uint8_t *seg);
+/**
+ * @brief  Set the decimal point on a specific digit of a 2-digit 7-segment display buffer.
+ * @param  seg      Pointer to the 7-segment display buffer.
+ * @param  position Digit position to set the decimal point (0..1).
+ * @retval uint8_t  Return status:
+ *         - 0U : Success
+ *         - 1U : Invalid position error
+ */
+uint8_t Seg7_SetDecimalPoint_2Digits(uint8_t *seg, uint8_t position);
+
+/**
+ * @brief Reverse the order of a 2-byte 7-segment buffer.
+ *
+ * Digit ordering after execution:
+ * - seg[0] becomes previous seg[1]
+ * - seg[1] becomes previous seg[0]
+ *
+ * This is typically used when display hardware wiring requires
+ * reversed digit ordering (e.g., MSB - LSB alignment adjustment).
+ *
+ * @param seg Pointer to an array of at least two bytes
+ *            representing encoded 7-segment digit patterns.
+ */
+void Seg7_Reverse2Bytes(uint8_t *seg);
 
 /**
  * @brief Encode a 16-bit number into three 7-segment digits.
@@ -66,15 +89,39 @@ uint8_t Seg7_SetDecimalPoint_2Digits(uint8_t position, uint8_t *seg);
  * - If the input number is greater than 999, the output digits
  *   are cleared and the function reports overflow.
  *
- * @param number Input value to encode (<= 999).
  * @param seg    Pointer to an array of at least three bytes where
  *               encoded segment patterns will be written.
+ * @param number Input value to encode (<= 999).
  *
  * @return 0 on success, 1 if overflow occurred (number > 999).
  */
-uint8_t Seg7_EncodeNumber_3Digits(uint16_t number, uint8_t *seg);
+uint8_t Seg7_EncodeNumber_3Digits(uint8_t *seg, uint16_t number);
 
-uint8_t Seg7_SetDecimalPoint_3Digits(uint8_t position, uint8_t *seg);
+/**
+ * @brief  Set the decimal point on a specific digit of a 3-digit 7-segment display buffer.
+ * @param  seg       Pointer to the 7-segment display buffer.
+ * @param  position  Digit position to set the decimal point (0..2).
+ * @retval uint8_t   Return status:
+ *         - 0U : Success
+ *         - 1U : Invalid position error
+ */
+uint8_t Seg7_SetDecimalPoint_3Digits(uint8_t *seg, uint8_t position);
+
+/**
+ * @brief Reverse the order of a 3-byte 7-segment buffer.
+ *
+ * Digit ordering after execution:
+ * - seg[0] becomes previous seg[2]
+ * - seg[1] becomes previous seg[1]
+ * - seg[2] becomes previous seg[0]
+ *
+ * This is typically used when display hardware wiring requires
+ * reversed digit ordering (e.g., MSB - LSB alignment adjustment).
+ *
+ * @param seg Pointer to an array of at least four bytes
+ *            representing encoded 7-segment digit patterns.
+ */
+void Seg7_Reverse3Bytes(uint8_t *seg);
 
 /**
  * @brief Encode a 16-bit number into four 7-segment digits.
@@ -92,15 +139,23 @@ uint8_t Seg7_SetDecimalPoint_3Digits(uint8_t position, uint8_t *seg);
  * - If the input number is greater than 9999, the output digits
  *   are cleared and the function reports overflow.
  *
- * @param number Input value to encode ( <= 9999).
  * @param seg    Pointer to an array of at least four bytes where
  *               encoded segment patterns will be written.
+ * @param number Input value to encode ( <= 9999).
  *
  * @return 0 on success, 1 if overflow occurred (number > 9999).
  */
-uint8_t Seg7_EncodeNumber_4Digits(uint16_t number, uint8_t *seg);
+uint8_t Seg7_EncodeNumber_4Digits(uint8_t *seg, uint16_t number);
 
-uint8_t Seg7_SetDecimalPoint_4Digits(uint8_t position, uint8_t *seg);
+/**
+ * @brief  Set the decimal point on a specific digit of a 4-digit 7-segment display buffer.
+ * @param  seg       Pointer to the 7-segment display buffer.
+ * @param  position  Digit position to set the decimal point (0..3).
+ * @retval uint8_t   Return status:
+ *         - 0U : Success
+ *         - 1U : Invalid position error
+ */
+uint8_t Seg7_SetDecimalPoint_4Digits(uint8_t *seg, uint8_t position);
 
 /**
  * @brief Reverse the order of a 4-byte 7-segment buffer.
@@ -112,7 +167,7 @@ uint8_t Seg7_SetDecimalPoint_4Digits(uint8_t position, uint8_t *seg);
  * - seg[3] becomes previous seg[0]
  *
  * This is typically used when display hardware wiring requires
- * reversed digit ordering (e.g., MSB ? LSB alignment adjustment).
+ * reversed digit ordering (e.g., MSB - LSB alignment adjustment).
  *
  * @param seg Pointer to an array of at least four bytes
  *            representing encoded 7-segment digit patterns.
