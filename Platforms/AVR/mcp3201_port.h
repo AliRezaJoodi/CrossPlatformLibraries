@@ -62,7 +62,6 @@ extern "C" {
 #include <stdint.h>
 
 #include "compiler_port.h"
-#include <spi.h>
 #include "utility_bit.h"
 
 /**
@@ -143,7 +142,17 @@ static inline void MCP3201_CS_WritePin(MCP3201_t *mcp, uint8_t status){
  *          before calling this function.
  */
 static inline uint8_t MCP3201_SPI_Transfer(uint8_t data){
-    return spi(data);
+    uint16_t timeout = 1000U;           /* Software timeout counter */
+
+    SPDR = data;                        /* Start SPI transfer */
+
+    while (!(SPSR & (1U << SPIF))) {    /* Wait for transfer complete */
+        if (--timeout == 0U){           /* Check timeout expiration */
+            return 0xFF;                /* Return error value */
+        }
+    }
+
+    return SPDR;                        /* Return received data */
 }
 
 #ifdef __cplusplus
