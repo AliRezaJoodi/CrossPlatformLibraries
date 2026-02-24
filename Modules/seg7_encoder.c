@@ -4,7 +4,7 @@
 
 // Double Dabble (8-bit to 2 digits)
 /****************************************************/
-uint8_t Seg7_Encode2Digits(uint8_t number, uint8_t *seg){
+uint8_t Seg7_EncodeNumber_2Digits(uint8_t number, uint8_t *seg){
     uint8_t i = 0;
     uint8_t carry = 0;
     uint8_t bcd[2] = {0};
@@ -36,9 +36,19 @@ uint8_t Seg7_Encode2Digits(uint8_t number, uint8_t *seg){
     return 0;
 }
 
+/****************************************************/
+uint8_t Seg7_SetDecimalPoint_2Digits(uint8_t position, uint8_t *seg){
+    if (position >= 2U) {
+        return 1U;   /* Invalid position */
+    }
+
+    *(seg + position) |= 0x80U;
+    return 0U;       /* Success */
+}
+
 // Double Dabble (16-bit to 3 digits)
 /****************************************************/
-uint8_t Seg7_Encode3Digits(uint16_t number, uint8_t *seg){
+uint8_t Seg7_EncodeNumber_3Digits(uint16_t number, uint8_t *seg){
     uint8_t i = 0;
     uint8_t carry = 0;
     uint8_t bcd[3] = {0};
@@ -74,9 +84,19 @@ uint8_t Seg7_Encode3Digits(uint16_t number, uint8_t *seg){
     return 0;
 }
 
+/****************************************************/
+uint8_t Seg7_SetDecimalPoint_3Digits(uint8_t position, uint8_t *seg){
+    if (position >= 3U) {
+        return 1U;   /* Invalid position */
+    }
+
+    *(seg + position) |= 0x80U;
+    return 0U;       /* Success */
+}
+
 // Double Dabble
 /****************************************************/
-uint8_t Seg7_Encode4Digits(uint16_t number, uint8_t *seg){
+uint8_t Seg7_EncodeNumber_4Digits(uint16_t number, uint8_t *seg){
     uint8_t i = 0;
     uint8_t carry = 0;
     uint8_t bcd[4] = {0};
@@ -114,6 +134,16 @@ uint8_t Seg7_Encode4Digits(uint16_t number, uint8_t *seg){
     }
 
     return 0;
+}
+
+/****************************************************/
+uint8_t Seg7_SetDecimalPoint_4Digits(uint8_t position, uint8_t *seg){
+    if (position >= 4U) {
+        return 1U;   /* Invalid position */
+    }
+
+    *(seg + position) |= 0x80U;
+    return 0U;       /* Success */
 }
 
 /* Reverse the order of 4-byte segment array (MSB <-> LSB) */

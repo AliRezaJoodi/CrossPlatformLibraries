@@ -47,7 +47,9 @@
  *
  * @return 0 on success, 1 if overflow occurred (number > 99).
  */
-uint8_t Seg7_Encode2Digits(uint8_t number, uint8_t *seg);
+uint8_t Seg7_EncodeNumber_2Digits(uint8_t number, uint8_t *seg);
+
+uint8_t Seg7_SetDecimalPoint_2Digits(uint8_t position, uint8_t *seg);
 
 /**
  * @brief Encode a 16-bit number into three 7-segment digits.
@@ -70,7 +72,9 @@ uint8_t Seg7_Encode2Digits(uint8_t number, uint8_t *seg);
  *
  * @return 0 on success, 1 if overflow occurred (number > 999).
  */
-uint8_t Seg7_Encode3Digits(uint16_t number, uint8_t *seg);
+uint8_t Seg7_EncodeNumber_3Digits(uint16_t number, uint8_t *seg);
+
+uint8_t Seg7_SetDecimalPoint_3Digits(uint8_t position, uint8_t *seg);
 
 /**
  * @brief Encode a 16-bit number into four 7-segment digits.
@@ -94,7 +98,9 @@ uint8_t Seg7_Encode3Digits(uint16_t number, uint8_t *seg);
  *
  * @return 0 on success, 1 if overflow occurred (number > 9999).
  */
-uint8_t Seg7_Encode4Digits(uint16_t number, uint8_t *seg);
+uint8_t Seg7_EncodeNumber_4Digits(uint16_t number, uint8_t *seg);
+
+uint8_t Seg7_SetDecimalPoint_4Digits(uint8_t position, uint8_t *seg);
 
 /**
  * @brief Reverse the order of a 4-byte 7-segment buffer.
