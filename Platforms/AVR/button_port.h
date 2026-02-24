@@ -23,9 +23,8 @@ extern "C" {
 #endif
 
 #include <stdint.h>
-#include <io.h>
-#include <delay.h>
 
+#include "compiler_detector.h"
 #include "button_config.h"
 
 /**
@@ -52,7 +51,7 @@ typedef struct {
  *      - bit 0: active level
  *      - bits 1-2: input mode
  * See "button_config.h" for enum definitions.
- * 
+ *
  * @see Example section below.
  */
 typedef struct{
@@ -102,9 +101,9 @@ typedef struct{
  *
  * @param btn Pointer to Button_t object.
  */
-static inline void Button_ConfigPin(Button_t *btn){    
+static inline void Button_ConfigPin(Button_t *btn){
     CLEAR_BIT(*btn->hw.ddr, btn->hw.index);
-    
+
     switch( Button_GetPullStatus(btn) ) {
         case BUTTON_MODE_FLOATING:
             CLEAR_BIT(*btn->hw.port, btn->hw.index);
@@ -124,7 +123,7 @@ static inline void Button_ConfigPin(Button_t *btn){
  * @return 0 if logic low, 1 if logic high.
  */
 static inline uint8_t Button_GetPin(Button_t *btn){
-    return GET_BIT(*btn->hw.pin, btn->hw.index); 
+    return GET_BIT(*btn->hw.pin, btn->hw.index);
 }
 
 /**
@@ -134,7 +133,7 @@ static inline uint8_t Button_GetPin(Button_t *btn){
  * a small delay for button debouncing.
  */
 static inline void Button_Delay(){
-    delay_ms(BUTTON_SINGLE_CLICK_LAG);
+    DELAY_MS(BUTTON_SINGLE_CLICK_LAG);
 }
 
 #ifdef __cplusplus
