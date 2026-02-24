@@ -60,9 +60,9 @@ extern "C" {
 #endif
 
 #include <stdint.h>
-#include <io.h>
-#include <spi.h>
 
+#include "compiler_port.h"
+#include <spi.h>
 #include "utility_bit.h"
 
 /**

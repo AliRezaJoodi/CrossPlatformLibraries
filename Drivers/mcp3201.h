@@ -21,8 +21,8 @@ extern "C" {
 
 #include <stdint.h>
 
-#include "mcp3201_port.h"
 #include "mcp3201_config.h"
+#include "mcp3201_port.h"
 
 /**
  * @brief   Initialize the MCP3201 instance
