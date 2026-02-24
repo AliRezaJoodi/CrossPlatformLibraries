@@ -1,8 +1,11 @@
 #ifndef SEG7_DRIVER_HW_INCLUDED
 #define SEG7_DRIVER_HW_INCLUDED
 
-#include <io.h>
+#include "compiler_detector.h"
+
+/** @brief Include user-overridable hardware macros. */
 #include "hardware.h"
+#include "seg7_driver_config.h"
 
 #ifndef SEG7_DRIVER_HARDWARE
 #define SEG7_DRIVER_HARDWARE
