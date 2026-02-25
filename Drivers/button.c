@@ -1,5 +1,6 @@
 // GitHub Account: GitHub.com/AliRezaJoodi
 
+#include "hardware.h"   /* Project-level overrides */
 #include "button.h"
 
 //*************************************************
@@ -26,7 +27,7 @@ uint8_t Button_GetSingleClick(Button_t *btn){
             Button_Delay();
             if ( Button_GetPin(btn) != Button_GetActiveStatus(btn) ){
                 btn->state = 0;
-            } 
+            }
         }
     }
 

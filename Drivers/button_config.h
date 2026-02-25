@@ -17,12 +17,9 @@
 extern "C" {
 #endif
 
-/** @brief Include user-overridable hardware macros. */
-#include "hardware.h"
-
 /**
  * @brief Button active level.
- * 
+ *
  * Defines whether a pressed button reads as logic low or high.
  */
 typedef enum {
@@ -50,10 +47,10 @@ typedef enum {
 /** @brief Default configuration (can be overridden). */
 #ifndef BUTTON_CONFIG
 #define BUTTON_CONFIG
-    #define BUTTON_SINGLE_CLICK_LAG     30U         /**< Single Click Lag, Value: 0~65535, Unit: ms */   
+    #define BUTTON_SINGLE_CLICK_LAG     30U         /**< Single Click Lag, Value: 0~65535, Unit: ms */
     #define BUTTON_AUTO_REPEAT_LAG      500U        /**< Auto Repeat Lag, Value: 0~65535 */
     #define BUTTON_LONG_PRESS_LAG       10000U      /**< Long Press Lag, Value: 0~65535 */
-   
+
     #warning "BUTTON_HARDWARE is not defined; default configuration will be used."
 #endif
 
