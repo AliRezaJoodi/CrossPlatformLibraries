@@ -9,7 +9,7 @@
 #define SEG7_DRIVER_CONFIG_INCLUDED
 
 /** @brief Include user-overridable hardware macros. */
-#include "hardware.h"
+//#include "hardware.h"
 
 #ifndef SEG7_DRIVER_CONFIG
 #define SEG7_DRIVER_CONFIG

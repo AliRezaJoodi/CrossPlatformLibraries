@@ -1,11 +1,9 @@
 
+#include "hardware.h"			    /* Project-level overrides */
 #include "seg7_driver.h"
 
-/* Pointer to external display buffer */
-static uint8_t *seg7_buffer = 0;
-
-/* Current digit index for multiplex scanning */
-static uint8_t seg7_index = 0;
+static uint8_t *seg7_buffer = 0;    /* Pointer to external display buffer */
+static uint8_t seg7_index = 0;      /* Current digit index for multiplex scanning */
 
 /*********************************/
 void Seg7_Init(void){
