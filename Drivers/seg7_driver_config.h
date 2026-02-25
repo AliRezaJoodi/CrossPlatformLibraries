@@ -13,9 +13,9 @@
 
 #ifndef SEG7_DRIVER_CONFIG
 #define SEG7_DRIVER_CONFIG
-    #define SEG7_DIGITS_COUNT       8   /* Number of multiplexed digits */
-    #define SEG7_DIGITS_ACTIVATE    1   /* Digit active level: 1=Active High, 0=Active Low */
-    #define SEG7_SEGMENTS_ACTIVATE  0   /* Segment active level: 1=Active High, 0=Active Low */
+    #define SEG7_DIGITS_COUNT       8   /**< Number of multiplexed digits */
+    #define SEG7_DIGITS_ACTIVATE    1   /**< Digit active level: 1=Active High, 0=Active Low */
+    #define SEG7_SEGMENTS_ACTIVATE  0   /**< Segment active level: 1=Active High, 0=Active Low */
 
     #warning "SEG7_DRIVER_CONFIG is not defined; default configuration will be used."
 #endif
