@@ -1,5 +1,6 @@
 // GitHub Account:  GitHub.com/AliRezaJoodi
 
+#include "hardware.h"   /**< Include user-overridable macros. */
 #include "average.h"
 
 /* ---- Power of two detection ---- */

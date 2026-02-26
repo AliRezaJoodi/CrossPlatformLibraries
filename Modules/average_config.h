@@ -23,9 +23,6 @@
 extern "C" {
 #endif
 
-/** @brief Include user-overridable macros. */
-#include "hardware.h"
-
 #ifndef AVERAGE_CONFIG
 #define AVERAGE_CONFIG
     #define AVERAGE_COUNT     16     // 0 < valid value < 256
