@@ -20,9 +20,6 @@ extern "C" {
 #endif
 
 #include <stdint.h>
-#include <io.h>
-#include <delay.h>
-
 #include "utility_bit.h"
 #include "tm1637_port.h"
 
@@ -48,7 +45,7 @@ extern "C" {
  *
  * @param tm Pointer to TM1637 handle structure.
  */
-void TM1637_Config(TM1637_t *tm);
+void TM1637_Init(TM1637_t *tm);
 
 /**
  * @brief Send a command to the TM1637 device.
@@ -121,20 +118,7 @@ void TM1637_ClearDisplay(TM1637_t *tm);
  *          Bit 1: Length exceeded remaining digits and corrected
  *          Bit 2: Length was zero and corrected to 1
  */
-uint8_t TM1637_Set8Segments(TM1637_t *tm, uint8_t segments[], uint8_t length, uint8_t address);
-
-/**
- * @brief Write segment data for 4 digits starting from the first digit.
- *
- * This is a helper function that writes 4 bytes of segment data to the
- * first four digits (GRID1 to GRID4) using address auto-increment mode.
- *
- * @param tm Pointer to TM1637 handle structure.
- * @param segments Array of 4 bytes representing segment data for digits 1 to 4.
- */
-static inline void TM1637_Set8Segments_4Digits(TM1637_t *tm, uint8_t segments[]){
-    TM1637_Set8Segments(tm, segments, 4, 0);
-}
+uint8_t TM1637_WriteDisplay_AutoIncr(TM1637_t *tm, uint8_t segments[], uint8_t length, uint8_t address);
 
 /**
  * @brief Write a single byte of segment data to a fixed digit address.
@@ -155,7 +139,37 @@ static inline void TM1637_Set8Segments_4Digits(TM1637_t *tm, uint8_t segments[])
  * @return Error flags (bitfield):
  *         Bit 0: Address was out of range and corrected
  */
-uint8_t TM1637_SetFixedAddress(TM1637_t *tm, uint8_t data, uint8_t address);
+uint8_t TM1637_WriteDisplay_Fixed(TM1637_t *tm, uint8_t data, uint8_t address);
+
+/**
+ * @brief Write 2 digits (GRID1–GRID2)
+ *
+ * @param tm TM1637 handle
+ * @param segments Array of 2 segment bytes
+ */
+static inline void TM1637_Write2Digits(TM1637_t *tm, uint8_t segments[]){
+    TM1637_WriteDisplay_AutoIncr(tm, segments, 2, 0);
+}
+
+/**
+ * @brief Write 4 digits (GRID1–GRID4)
+ *
+ * @param tm TM1637 handle
+ * @param segments Array of 4 segment bytes
+ */
+static inline void TM1637_Write4Digits(TM1637_t *tm, uint8_t segments[]){
+    TM1637_WriteDisplay_AutoIncr(tm, segments, 4, 0);
+}
+
+/**
+ * @brief Write 6 digits (GRID1–GRID6)
+ *
+ * @param tm TM1637 handle
+ * @param segments Array of 6 segment bytes
+ */
+static inline void TM1637_Write6Digits(TM1637_t *tm, uint8_t segments[]){
+    TM1637_WriteDisplay_AutoIncr(tm, segments, 6, 0);
+}
 
 #ifdef __cplusplus
 }

@@ -7,6 +7,9 @@ extern "C" {
 
 #include <stdint.h>
 #include "compiler_port.h"
+#include "utility_bit.h"
+
+#define TM1637_DELAY_US(VALUE)          DELAY_US(VALUE)
 
 /**
  * @brief TM1637 GPIO pin descriptor.
@@ -45,6 +48,40 @@ typedef struct {
     TM1637_Pin_t clk;
     TM1637_Pin_t dio;
 } TM1637_t;
+
+/***************************************/
+static inline void TM1637_CLK_WritePin(TM1637_t *tm, uint8_t status){
+    if(status){
+        CLEAR_BIT(*(tm->clk.ddr), tm->clk.index);
+        CLEAR_BIT(*(tm->clk.port), tm->clk.index);
+    }
+    else{
+        SET_BIT(*(tm->clk.ddr), tm->clk.index);
+        CLEAR_BIT(*(tm->clk.port), tm->clk.index);
+    }
+}
+
+/***************************************/
+static inline void TM1637_DIO_SetInput(TM1637_t *tm){
+    CLEAR_BIT(*(tm->dio.ddr), tm->dio.index);
+    CLEAR_BIT(*(tm->dio.port), tm->dio.index);
+}
+
+/***************************************/
+static inline void TM1637_DIO_WritePin(TM1637_t *tm, uint8_t status){
+    if(status){
+        TM1637_DIO_SetInput(tm);
+    }
+    else{
+        SET_BIT(*(tm->dio.ddr), tm->dio.index);
+        CLEAR_BIT(*(tm->dio.port), tm->dio.index);
+    }
+}
+
+/***************************************/
+static inline uint8_t TM1637_DIO_GetPin(TM1637_t *tm){
+    return GET_BIT(*(tm->dio.pin), tm->dio.index);
+}
 
 #ifdef __cplusplus
 }
