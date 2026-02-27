@@ -11,8 +11,6 @@
 #define TM1638_PIN_INPUT            0U
 #define TM1638_PIN_OUTPUT           1U
 
-#define TM1638_DELAY(VALUE)         delay_us(VALUE);
-
 //***************************************
 static inline void TM1638_STB_ConfigPin(TM1638_t *tm, uint8_t mode){
     WRITE_BIT(*(tm->stb.ddr), tm->stb.index, mode);
@@ -78,9 +76,9 @@ void TM1638_WriteByte(uint8_t data){
     for(i = 0; i < 8; i++) {
         TM1638_CLK_WritePin(0);
         TM1638_DIO_WritePin(data & 0x01U);
-        TM1638_DELAY(TM1638_BIT_US);
+        TM1638_DELAY_US(TM1638_BIT_US);
         TM1638_CLK_WritePin(1);
-        TM1638_DELAY(TM1638_BIT_US);
+        TM1638_DELAY_US(TM1638_BIT_US);
         data = data >> 1;
     }
 }
@@ -90,7 +88,7 @@ void TM1638_SendCommand(TM1638_t *tm, uint8_t command){
     TM1638_STB_WritePin(tm, 0);
     TM1638_WriteByte(command);
     TM1638_STB_WritePin(tm, 1);
-    TM1638_DELAY(TM1638_BIT_US);
+    TM1638_DELAY_US(TM1638_BIT_US);
 }
 
 //***************************************
@@ -114,7 +112,7 @@ uint8_t TM1638_SetDisplay(TM1638_t *tm, uint8_t onoff, uint8_t brightness){
     TM1638_STB_WritePin(tm, 0);
     TM1638_WriteByte(command_display);
     TM1638_STB_WritePin(tm, 1);
-    TM1638_DELAY(TM1638_BIT_US);
+    TM1638_DELAY_US(TM1638_BIT_US);
 
     return error;
 }
@@ -129,13 +127,13 @@ void TM1638_ClearDisplay(TM1638_t *tm){
     TM1638_STB_WritePin(tm, 0);
     TM1638_WriteByte(TM1638_COMMAND_DATA_WRITE);
     TM1638_STB_WritePin(tm, 1);
-    TM1638_DELAY(TM1638_BIT_US);
+    TM1638_DELAY_US(TM1638_BIT_US);
 
 	TM1638_STB_WritePin(tm, 0);
 	TM1638_WriteByte(command_address);
 	for(i=0; i<16; ++i){TM1638_WriteByte(0x00);}
 	TM1638_STB_WritePin(tm, 1);
-    TM1638_DELAY(TM1638_BIT_US);
+    TM1638_DELAY_US(TM1638_BIT_US);
 }
 
 //***************************************
@@ -178,7 +176,7 @@ uint8_t TM1638_Set8SegmentsAndLeds(TM1638_t *tm, uint8_t segments[], uint8_t len
     TM1638_STB_WritePin(tm,0);
     TM1638_WriteByte(TM1638_COMMAND_DATA_WRITE);
     TM1638_STB_WritePin(tm,1);
-    TM1638_DELAY(TM1638_BIT_US);
+    TM1638_DELAY_US(TM1638_BIT_US);
 
 	TM1638_STB_WritePin(tm, 0);
 	TM1638_WriteByte(command_address);
@@ -188,7 +186,7 @@ uint8_t TM1638_Set8SegmentsAndLeds(TM1638_t *tm, uint8_t segments[], uint8_t len
     }
 
 	TM1638_STB_WritePin(tm,1);
-    TM1638_DELAY(TM1638_BIT_US);
+    TM1638_DELAY_US(TM1638_BIT_US);
 
     return error;
 }
@@ -207,14 +205,14 @@ uint8_t TM1638_SetFixedAddress(TM1638_t *tm, uint8_t data, uint8_t address){
     TM1638_STB_WritePin(tm, 0);
     TM1638_WriteByte(TM1638_COMMAND_DATA_WRITE);
     TM1638_STB_WritePin(tm, 1);
-    TM1638_DELAY(TM1638_BIT_US);
+    TM1638_DELAY_US(TM1638_BIT_US);
 
 	TM1638_STB_WritePin(tm, 0);
 	TM1638_WriteByte(command_address);
-    TM1638_DELAY(TM1638_BIT_US);
+    TM1638_DELAY_US(TM1638_BIT_US);
 	TM1638_WriteByte(data);
 	TM1638_STB_WritePin(tm, 1);
-    TM1638_DELAY(TM1638_BIT_US)
+    TM1638_DELAY_US(TM1638_BIT_US);
 
     return error;
 };
@@ -246,7 +244,7 @@ uint8_t TM1638_Set8Segments_OverWriteLeds(TM1638_t *tm, uint8_t segments[], uint
     TM1638_STB_WritePin(tm, 0);
     TM1638_WriteByte(TM1638_COMMAND_DATA_WRITE);
     TM1638_STB_WritePin(tm, 1);
-    TM1638_DELAY(TM1638_BIT_US);
+    TM1638_DELAY_US(TM1638_BIT_US);
 
 	TM1638_STB_WritePin(tm, 0);
 	TM1638_WriteByte(command_address);
@@ -257,7 +255,7 @@ uint8_t TM1638_Set8Segments_OverWriteLeds(TM1638_t *tm, uint8_t segments[], uint
     }
 
 	TM1638_STB_WritePin(tm, 1);
-    TM1638_DELAY(TM1638_BIT_US);
+    TM1638_DELAY_US(TM1638_BIT_US);
 
     return error;
 }
@@ -338,13 +336,13 @@ uint8_t TM1638_ReadByte(void){
 
     for(i = 0; i < 8; i++) {
         TM1638_CLK_WritePin(0);
-        TM1638_DELAY(TM1638_BIT_US);
+        TM1638_DELAY_US(TM1638_BIT_US);
         TM1638_CLK_WritePin(1);
 
         buf = TM1638_DIO_GetPin();
         WRITE_BIT(data, i, buf);
 
-        TM1638_DELAY(TM1638_BIT_US);
+        TM1638_DELAY_US(TM1638_BIT_US);
     }
 
     return data;
@@ -357,16 +355,16 @@ void TM1638_Get24Buttons(TM1638_t *tm, uint8_t *key){
     TM1638_STB_WritePin(tm, 0);
     TM1638_WriteByte(TM1638_COMMAND_DATA_READ);
     TM1638_DIO_ConfigPin(TM1638_PIN_INPUT);
-    TM1638_DELAY(TM1638_BIT_US*2);  // Twait
+    TM1638_DELAY_US(TM1638_BIT_US*2);  // Twait
 
     for (i=0; i<4; ++i){
-        TM1638_DELAY(TM1638_BIT_US);
+        TM1638_DELAY_US(TM1638_BIT_US);
 	    *(key + i) = TM1638_ReadByte();
     }
 
-    TM1638_DELAY(TM1638_BIT_US*2);
+    TM1638_DELAY_US(TM1638_BIT_US*2);
     TM1638_STB_WritePin(tm, 1);
-    TM1638_DELAY(TM1638_BIT_US*2);
+    TM1638_DELAY_US(TM1638_BIT_US*2);
     TM1638_DIO_ConfigPin(TM1638_PIN_OUTPUT);
 }
 
@@ -379,17 +377,17 @@ void TM1638_Get8Buttons(TM1638_t *tm, uint8_t *key){
     TM1638_STB_WritePin(tm, 0);
     TM1638_WriteByte(TM1638_COMMAND_DATA_READ);
     TM1638_DIO_ConfigPin(TM1638_PIN_INPUT);
-    TM1638_DELAY(TM1638_BIT_US*2);  // Twait
+    TM1638_DELAY_US(TM1638_BIT_US*2);  // Twait
 
     for (i=0; i<4; ++i){
-        TM1638_DELAY(TM1638_BIT_US);
+        TM1638_DELAY_US(TM1638_BIT_US);
 	    buf = TM1638_ReadByte();
         data = data | (buf<<i);
     }
 
-    TM1638_DELAY(TM1638_BIT_US*2);
+    TM1638_DELAY_US(TM1638_BIT_US*2);
     TM1638_STB_WritePin(tm, 1);
-    TM1638_DELAY(TM1638_BIT_US*2);
+    TM1638_DELAY_US(TM1638_BIT_US*2);
     TM1638_DIO_ConfigPin(TM1638_PIN_OUTPUT);
 
     *key = data;

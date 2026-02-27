@@ -30,6 +30,7 @@ extern "C" {
 #ifndef TM1638_HARDWARE
 #define TM1638_HARDWARE
     #define TM1638_CLK_DDR         DDRC
+    #define TM1638_CLK_PIN         PINC
     #define TM1638_CLK_PORT        PORTC
     #define TM1638_CLK_BIT         7
 
