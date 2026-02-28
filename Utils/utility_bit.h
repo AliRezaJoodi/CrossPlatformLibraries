@@ -1,7 +1,7 @@
 // GitHub Account: GitHub.com/AliRezaJoodi
 
 #ifndef UTILITY_BIT_INCLUDED
-#define UTILITY_BIT_INCLUDED  
+#define UTILITY_BIT_INCLUDED
 
 #ifdef __cplusplus
 extern "C" {
@@ -9,8 +9,8 @@ extern "C" {
 
 #include <stdint.h>
 
-#define SET_BIT(ADDRESS, POS)               ((ADDRESS) |= (0x01UL << (POS))) 
-#define SET_BIT_OVERWRITE(ADDRESS, POS)     ((ADDRESS)  = (0x01UL << (POS)))    
+#define SET_BIT(ADDRESS, POS)               ((ADDRESS) |= (0x01UL << (POS)))
+#define SET_BIT_OVERWRITE(ADDRESS, POS)     ((ADDRESS)  = (0x01UL << (POS)))
 #define CLEAR_BIT(ADDRESS, POS)             ((ADDRESS) &= ~(0x01UL << (POS)))
 #define TOGGLE_BIT(ADDRESS, POS)            ((ADDRESS) ^= (0x01UL << (POS)))
 #define TOGGLE_DATA(ADDRESS)                (~(ADDRESS))
@@ -34,23 +34,32 @@ extern "C" {
 #define GET_8BIT(ADDRESS, POS)              (((ADDRESS) >> (POS)) & 0xFFUL)
 
 
-static inline void write_bit_u8(volatile uint8_t *reg, uint8_t pos, uint8_t val){
-    *reg =  (uint8_t)(
-            (*reg & (uint8_t)~(uint8_t)(1U << pos)) |
-            ((uint8_t)(val & 1U) << pos)
+static inline uint8_t write_bit_u8(volatile uint8_t buf, uint8_t pos, uint8_t status){
+    pos &= 0x07U;
+    status &= 0x01U;
+
+    return  (uint8_t)(
+            (buf & (uint8_t)~(uint8_t)(1U << pos)) |
+            ((uint8_t)(status & 1U) << pos)
             );
 }
 
-static inline void write_bit_u16(volatile uint16_t *reg, uint8_t pos, uint8_t val){
-    *reg =  (uint16_t)(
-            (*reg & (uint16_t)~(uint16_t)(1U << pos)) |
-            ((uint16_t)(val & 1U) << pos)
+static inline uint16_t write_bit_u16(volatile uint16_t buf, uint8_t pos, uint8_t status){
+    pos &= 0x0FU;
+    status &= 0x01U;
+
+    return  (uint16_t)(
+            (buf & (uint16_t)~(uint16_t)(1U << pos)) |
+            ((uint16_t)(status & 1U) << pos)
             );
 }
 
-static inline void write_bit_u32(volatile uint32_t *reg, uint8_t pos, uint8_t val){
-    *reg =  (*reg & ~(1UL << pos)) |
-            ((uint32_t)(val & 1U) << pos);
+static inline uint32_t write_bit_u32(volatile uint32_t buf, uint8_t pos, uint8_t status){
+    pos &= 0x1FU;
+    status &= 0x01U;
+
+    return  (buf & ~(1UL << pos)) |
+            ((uint32_t)(status & 1U) << pos);
 }
 
 #ifdef __cplusplus
@@ -59,5 +68,4 @@ static inline void write_bit_u32(volatile uint32_t *reg, uint8_t pos, uint8_t va
 
 #endif
 
-    
-    
+
