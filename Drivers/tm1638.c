@@ -8,65 +8,6 @@
 #define TM1638_COMMAND_DISPLAY      0x80U  // Display control
 #define TM1638_COMMAND_ADDRESS      0xC0U  // Address command setting
 
-#define TM1638_PIN_INPUT            0U
-#define TM1638_PIN_OUTPUT           1U
-
-//***************************************
-static inline void TM1638_STB_ConfigPin(TM1638_t *tm, uint8_t mode){
-    WRITE_BIT(*(tm->stb.ddr), tm->stb.index, mode);
-
-    if(mode == TM1638_PIN_INPUT){
-        CLEAR_BIT(*(tm->stb.port), tm->stb.index); // Disable pull-up
-    }
-    else{
-        SET_BIT(*(tm->stb.port), tm->stb.index);  // Idle bus
-    }
-}
-
-//***************************************
-void TM1638_STB_WritePin(TM1638_t *tm, uint8_t status){
-    WRITE_BIT( *(tm->stb.port), tm->stb.index, status );
-}
-
-//***************************************
-static inline void TM1638_CLK_ConfigPin(uint8_t mode){
-    WRITE_BIT(TM1638_CLK_DDR, TM1638_CLK_BIT, mode);
-
-    if(mode == TM1638_PIN_INPUT){
-        CLEAR_BIT(TM1638_CLK_PORT, TM1638_CLK_BIT); // Disable pull-up
-    }
-    else{
-        SET_BIT(TM1638_CLK_PORT, TM1638_CLK_BIT); // Idle bus
-    }
-}
-
-//***************************************
-static inline void TM1638_CLK_WritePin(uint8_t status){
-    WRITE_BIT(TM1638_CLK_PORT, TM1638_CLK_BIT, status);
-}
-
-//***************************************
-static inline void TM1638_DIO_ConfigPin(uint8_t mode){
-    WRITE_BIT(TM1638_DIO_DDR, TM1638_DIO_BIT, mode);
-
-    if(mode == TM1638_PIN_INPUT){
-        CLEAR_BIT(TM1638_DIO_PORT, TM1638_DIO_BIT); // Disable pull-up
-    }
-    else{
-        SET_BIT(TM1638_DIO_PORT, TM1638_DIO_BIT); // Idle bus
-    }
-}
-
-//***************************************
-static inline void TM1638_DIO_WritePin(uint8_t status){
-    WRITE_BIT(TM1638_DIO_PORT, TM1638_DIO_BIT, status);
-}
-
-//***************************************
-static inline uint8_t TM1638_DIO_GetPin(void){
-    return GET_BIT(TM1638_DIO_PIN, TM1638_DIO_BIT);
-}
-
 //***************************************
 void TM1638_WriteByte(uint8_t data){
     uint8_t i = 0;
@@ -137,11 +78,11 @@ void TM1638_ClearDisplay(TM1638_t *tm){
 }
 
 //***************************************
-void TM1638_Config(TM1638_t *tm){
-    TM1638_STB_ConfigPin(tm, TM1638_PIN_OUTPUT);
+void TM1638_Init(TM1638_t *tm){
+    TM1638_STB_InitPin(tm);
     TM1638_STB_WritePin(tm, 1); // Idle bus
 
-    TM1638_CLK_ConfigPin(TM1638_PIN_OUTPUT);
+    TM1638_CLK_InitPin();
     TM1638_CLK_WritePin(1); // Idle bus
 
     TM1638_DIO_ConfigPin(TM1638_PIN_OUTPUT);

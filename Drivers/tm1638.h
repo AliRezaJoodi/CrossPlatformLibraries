@@ -23,31 +23,12 @@
 extern "C" {
 #endif
 
+#define TM1638_PIN_INPUT            0U
+#define TM1638_PIN_OUTPUT           1U
+
 #include <stdint.h>
 #include "utility_bit.h"
 #include "tm1638_port.h"
-
-#ifndef TM1638_HARDWARE
-#define TM1638_HARDWARE
-    #define TM1638_CLK_DDR         DDRC
-    #define TM1638_CLK_PIN         PINC
-    #define TM1638_CLK_PORT        PORTC
-    #define TM1638_CLK_BIT         7
-
-    #define TM1638_DIO_DDR         DDRC
-    #define TM1638_DIO_PIN         PINC
-    #define TM1638_DIO_PORT        PORTC
-    #define TM1638_DIO_BIT         6
-
-    #warning "TM1638_HARDWARE is not defined; default configuration will be used."
-#endif
-
-#ifndef TM1638_HARDWARE_EXTRA
-#define TM1638_HARDWARE_EXTRA
-    #define TM1638_STB1_DDR        DDRA
-    #define TM1638_STB1_PORT       PORTA
-    #define TM1638_STB1_BIT        7
-#endif
 
 /**
  * @brief Bit delay time in microseconds.
@@ -61,35 +42,6 @@ extern "C" {
 #ifndef TM1638_BIT_US
 #define TM1638_BIT_US            1
 #endif
-
-/**
- * @brief TM1638 GPIO pin descriptor.
- *
- * This structure describes a GPIO pin used by the TM1638 driver.
- */
-typedef struct {
-    volatile uint8_t *ddr;
-    volatile uint8_t *port;
-    uint8_t           index;
-} TM1638_Pin_t;
-
-/**
- * @brief TM1638 device handle.
- *
- * This structure holds STB pin that required
- * to control one TM1638 device instance.
- *
- * Example usage:
- * @code
- * TM1638_t tm1;
- * tm1.stb.ddr     = &TM1638_STB1_DDR;
- * tm1.stb.port    = &TM1638_STB1_PORT;
- * tm1.stb.index   =  TM1638_STB1_BIT;
- * @endcode
- */
-typedef struct {
-    TM1638_Pin_t stb;
-} TM1638_t;
 
 /**
  * @brief Initialize the TM1638 module.
@@ -106,7 +58,7 @@ typedef struct {
  * @note STB, CLK, and DIO pins are set to high (idle) after configuration.
  * @note Display is turned ON with brightness level 7 after reset.
  */
-void TM1638_Config(TM1638_t *tm);
+void TM1638_Init(TM1638_t *tm);
 
 /**
  * @brief Send a command byte to the TM1638 module.
