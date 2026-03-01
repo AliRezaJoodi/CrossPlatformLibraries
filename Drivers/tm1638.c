@@ -93,7 +93,7 @@ void TM1638_Init(TM1638_t *tm){
 }
 
 //***************************************
-uint8_t TM1638_Set8SegmentsAndLeds(TM1638_t *tm, uint8_t segments[], uint8_t length, uint8_t address){
+uint8_t TM1638_WriteDisplay_AutoIncr(TM1638_t *tm, uint8_t segments[], uint8_t length, uint8_t address){
     uint8_t error = 0;
     uint8_t i=0;
     uint8_t command_address = TM1638_COMMAND_ADDRESS;
@@ -123,7 +123,7 @@ uint8_t TM1638_Set8SegmentsAndLeds(TM1638_t *tm, uint8_t segments[], uint8_t len
 	TM1638_WriteByte(command_address);
 
 	for (i=0; i < length; ++i){
-	  TM1638_WriteByte(segments[i] );
+	    TM1638_WriteByte(segments[i]);
     }
 
 	TM1638_STB_WritePin(tm,1);
@@ -133,7 +133,7 @@ uint8_t TM1638_Set8SegmentsAndLeds(TM1638_t *tm, uint8_t segments[], uint8_t len
 }
 
 //***************************************
-uint8_t TM1638_SetFixedAddress(TM1638_t *tm, uint8_t data, uint8_t address){
+uint8_t TM1638_WriteDisplay_Fixed(TM1638_t *tm, uint8_t data, uint8_t address){
     uint8_t error = 0;
     uint8_t command_address = TM1638_COMMAND_ADDRESS;
 
@@ -141,6 +141,7 @@ uint8_t TM1638_SetFixedAddress(TM1638_t *tm, uint8_t data, uint8_t address){
         address = 15;
         SET_BIT(error, 0);
     }
+
     WRITE_4BIT(command_address, 0, address);
 
     TM1638_STB_WritePin(tm, 0);
@@ -224,7 +225,7 @@ uint8_t TM1638_Set8Segments(TM1638_t *tm, uint8_t segments[], uint8_t length, ui
     address = pos * 2;
 
     for(i=0; i<length; ++i){
-        TM1638_SetFixedAddress(tm, segments[i], address);
+        TM1638_WriteDisplay_Fixed(tm, segments[i], address);
         address = address + 2;
     }
 
@@ -236,7 +237,7 @@ void TM1638_Set8Segments_4Digits_1st(TM1638_t *tm, uint8_t segments[]){
     uint8_t i = 0;
 
     for(i=0; i<4; ++i){
-        TM1638_SetFixedAddress(tm, segments[i], i*2);
+        TM1638_WriteDisplay_Fixed(tm, segments[i], i*2);
     }
 }
 
@@ -245,7 +246,7 @@ void TM1638_Set8Segments_4Digits_2nd(TM1638_t *tm, uint8_t segments[]){
     uint8_t i = 0;
 
     for(i=0; i<4; ++i){
-        TM1638_SetFixedAddress(tm, segments[i], (i+4)*2);
+        TM1638_WriteDisplay_Fixed(tm, segments[i], (i+4)*2);
     }
 }
 
@@ -254,7 +255,7 @@ void TM1638_Set8Leds(TM1638_t *tm, uint8_t data){
     uint8_t i=0;
 
     for(i=0; i<8; ++i){
-        TM1638_SetFixedAddress(tm, GET_BIT(data, i), (i*2)+1);
+        TM1638_WriteDisplay_Fixed(tm, GET_BIT(data, i), (i*2)+1);
     }
 }
 
@@ -263,7 +264,7 @@ void TM1638_Set16Leds(TM1638_t *tm, uint16_t data){
     uint8_t i=0;
 
     for(i=0; i<8; ++i){
-        TM1638_SetFixedAddress(tm, GET_2BIT(data, i*2), (i*2)+1);
+        TM1638_WriteDisplay_Fixed(tm, GET_2BIT(data, i*2), (i*2)+1);
     }
 }
 

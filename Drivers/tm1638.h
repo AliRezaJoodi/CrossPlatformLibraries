@@ -116,7 +116,7 @@ void TM1638_ClearDisplay(TM1638_t *tm);
  * @return Error flags (bitfield):
  *         Bit 0: Address was out of range and corrected.
  */
-uint8_t TM1638_SetFixedAddress(TM1638_t *tm, uint8_t data, uint8_t address);
+uint8_t TM1638_WriteDisplay_Fixed(TM1638_t *tm, uint8_t data, uint8_t address);
 
 /**
  * @brief Write multiple segment data in address increment mode.
@@ -134,7 +134,7 @@ uint8_t TM1638_SetFixedAddress(TM1638_t *tm, uint8_t data, uint8_t address);
  *          Bit 1: Length exceeded remaining addresses and corrected
  *          Bit 2: Length was zero and corrected to 1
  */
-uint8_t TM1638_Set8SegmentsAndLeds(TM1638_t *tm, uint8_t segments[], uint8_t length, uint8_t address);
+uint8_t TM1638_WriteDisplay_AutoIncr(TM1638_t *tm, uint8_t segments[], uint8_t length, uint8_t address);
 
 /**
  * @brief Write segments 1 to 8 and overwrite SEG9 and SEG10 with 0.
