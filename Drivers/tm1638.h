@@ -137,24 +137,6 @@ uint8_t TM1638_WriteDisplayRegister_Fixed(TM1638_t *tm, uint8_t data, uint8_t ad
 uint8_t TM1638_WriteDisplayRegister_AutoIncr(TM1638_t *tm, uint8_t segments[], uint8_t length, uint8_t address);
 
 /**
- * @brief Write segments 1 to 8 and overwrite SEG9 and SEG10 with 0.
- *
- * Sends an array of bytes to the TM1638 starting at the specified position.
- * Each byte represents one digit; SEG9 and SEG10 are always cleared.
- *
- * @param tm Pointer to TM1638 handle structure.
- * @param segments Array of segment data (1 to 8 bytes).
- * @param length Number of digits to write. It must be 1 to 8 and <= (8 - pos).
- * @param pos Starting position on the display (0 to 7).
- *
- * @return Error flags (bitfield):
- *          Bit 0: Starting position was invalid and corrected
- *          Bit 1: Length exceeded remaining digits and corrected
- *          Bit 2: Length was zero and corrected to 1
- */
-uint8_t TM1638_Set8Segments_OverWriteLeds(TM1638_t *tm, uint8_t segments[], uint8_t length, uint8_t pos);
-
-/**
  * @brief Write up to 8 digits to the TM1638 display without altering SEG9 and SEG10.
  *
  * This function writes an array of segment data starting from a specified position (0 to 7).
@@ -200,6 +182,23 @@ void TM1637_Write4Digits_G1G4(TM1638_t *tm, uint8_t segments[]);
 void TM1637_Write4Digits_G5G8(TM1638_t *tm, uint8_t segments[]);
 
 /**
+ * @brief Set the 16 LEDs connected to SEG9 and SEG10.
+ *
+ * Each bit pair in the 16-bit input controls one LED:
+ *   Bit 0: LED at SEG9 and GRID1
+ *   Bit 1: LED at SEG10 and GRID1
+ *   Bit 2: LED at SEG9 and GRID2
+ *   Bit 3: LED at SEG10 and GRID2
+ *   ...
+ *   Bit 14: LED at SEG9 and GRID8
+ *   Bit 15: LED at SEG10 and GRID8
+ *
+ * @param tm Pointer to TM1638 handle structure.
+ * @param data 16-bit value controlling the LEDs on SEG9 and SEG10.
+ */
+void TM1638_SetLeds(TM1638_t *tm, uint16_t data);
+
+/**
  * @brief Set the 8 LEDs.
  *
  * Each bit in the input byte controls one LED:
@@ -234,23 +233,6 @@ void TM1638_Set8Leds_S9S10x4(TM1638_t *tm, uint8_t data);
 void TM1638_Set8Leds_S9x8(TM1638_t *tm, uint8_t data);
 
 /**
- * @brief Set the 16 LEDs connected to SEG9 and SEG10.
- *
- * Each bit pair in the 16-bit input controls one LED:
- *   Bit 0: LED at SEG9 and GRID1
- *   Bit 1: LED at SEG10 and GRID1
- *   Bit 2: LED at SEG9 and GRID2
- *   Bit 3: LED at SEG10 and GRID2
- *   ...
- *   Bit 14: LED at SEG9 and GRID8
- *   Bit 15: LED at SEG10 and GRID8
- *
- * @param tm Pointer to TM1638 handle structure.
- * @param data 16-bit value controlling the LEDs on SEG9 and SEG10.
- */
-void TM1638_SetLeds(TM1638_t *tm, uint16_t data);
-
-/**
  * @brief Scan buttons connected to K1, K2, and K3 lines.
  *
  * Reads the state of all buttons in multi-press mode.
@@ -262,26 +244,15 @@ void TM1638_SetLeds(TM1638_t *tm, uint16_t data);
 void TM1638_GetButtons(TM1638_t *tm, uint8_t *key);
 
 /**
- * @brief Scan buttons connected to K3 lines (1 to 8 buttons).
+ * @brief Get the state of buttons connected to K3 as a single byte.
  *
  * Reads the state of buttons connected to K3 and combines them into a single byte.
  * Each bit of the returned byte represents one button state.
  *
  * @param tm Pointer to TM1638 handle structure.
- * @param key Pointer to a byte where the combined button states will be stored.
- */
-void TM1638_Get8Buttons_K3(TM1638_t *tm, uint8_t *key);
-
-/**
- * @brief Get the state of buttons connected to K3 as a single byte.
- *
- * This function reads buttons on K3 lines (1 to 8) and returns
- * their states combined into a single byte. Each bit represents one button.
- *
- * @param tm Pointer to TM1638 handle structure.
  * @return Byte representing the state of buttons.
  */
-uint8_t TM1638_Return8Buttons(TM1638_t *tm);
+uint8_t TM1638_Get8Buttons_K3(TM1638_t *tm);
 
 #ifdef __cplusplus
 }

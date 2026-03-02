@@ -48,7 +48,8 @@ uint8_t TM1638_SetDisplay(TM1638_t *tm, uint8_t onoff, uint8_t brightness){
     }
 
     WRITE_BIT(command_display, 3, onoff);
-    WRITE_3BIT(command_display, 0, brightness);
+    command_display = ((command_display) & ~(0x07UL)) | ((0x07UL & (brightness)));
+    //WRITE_3BIT(command_display, 0, brightness);
 
     TM1638_STB_WritePin(tm, 0);
     TM1638_WriteByte(command_display);
@@ -158,49 +159,6 @@ uint8_t TM1638_WriteDisplayRegister_Fixed(TM1638_t *tm, uint8_t data, uint8_t ad
 
     return error;
 };
-
-//***************************************
-uint8_t TM1638_Set8Segments_OverWriteLeds(TM1638_t *tm, uint8_t segments[], uint8_t length, uint8_t pos){
-    uint8_t error = 0;
-    uint8_t address = 0;
-    uint8_t i=0;
-    uint8_t command_address = TM1638_COMMAND_ADDRESS;
-
-    if(pos > 7){
-        pos = 7;
-        SET_BIT(error, 0);
-    }
-
-    if(length > (8-pos)){
-        length = 8 - pos;
-        SET_BIT(error, 1);
-    }
-    else if(length == 0){
-        length = 1;
-        SET_BIT(error, 2);
-    }
-
-    address = pos * 2;
-    WRITE_4BIT(command_address, 0, address);
-
-    TM1638_STB_WritePin(tm, 0);
-    TM1638_WriteByte(TM1638_COMMAND_DATA_WRITE);
-    TM1638_STB_WritePin(tm, 1);
-    TM1638_DELAY_US(TM1638_BIT_US);
-
-	TM1638_STB_WritePin(tm, 0);
-	TM1638_WriteByte(command_address);
-
-	for (i=0; i < length; ++i){
-	  TM1638_WriteByte(segments[i] );
-      TM1638_WriteByte(0x00);
-    }
-
-	TM1638_STB_WritePin(tm, 1);
-    TM1638_DELAY_US(TM1638_BIT_US);
-
-    return error;
-}
 
 //***************************************
 uint8_t TM1637_WriteDigits(TM1638_t *tm, uint8_t segments[], uint8_t length, uint8_t pos){
@@ -344,7 +302,7 @@ void TM1638_GetButtons(TM1638_t *tm, uint8_t *key){
 }
 
 //***************************************
-void TM1638_Get8Buttons_K3(TM1638_t *tm, uint8_t *key){
+uint8_t TM1638_Get8Buttons_K3(TM1638_t *tm){
     uint8_t i =0;
     uint8_t data =0;
     uint8_t buf =0;
@@ -365,13 +323,5 @@ void TM1638_Get8Buttons_K3(TM1638_t *tm, uint8_t *key){
     TM1638_DELAY_US(TM1638_BIT_US*2);
     TM1638_DIO_ConfigPin(TM1638_PIN_OUTPUT);
 
-    *key = data;
-}
-
-//***************************************
-uint8_t TM1638_Return8Buttons(TM1638_t *tm){
-    uint8_t data = 0;
-
-    TM1638_Get8Buttons_K3(tm, &data);
     return data;
 }
