@@ -34,7 +34,7 @@ void TM1638_SendCommand(TM1638_t *tm, uint8_t command){
 
 //***************************************
 uint8_t TM1638_SetDisplay(TM1638_t *tm, uint8_t onoff, uint8_t brightness){
-    uint8_t error =0;
+    uint8_t error = 0;
     uint8_t command_display = TM1638_COMMAND_DISPLAY;
 
     if(onoff > 1){
@@ -48,8 +48,7 @@ uint8_t TM1638_SetDisplay(TM1638_t *tm, uint8_t onoff, uint8_t brightness){
     }
 
     WRITE_BIT(command_display, 3, onoff);
-    //command_display = ((command_display) & ~(0x07UL)) | ((0x07UL & (brightness)));
-    WRITE_3BIT(command_display, 0, brightness);
+    command_display = write_3bit_u8(command_display, 0, brightness);
 
     TM1638_STB_WritePin(tm, 0);
     TM1638_WriteByte(command_display);
@@ -61,10 +60,8 @@ uint8_t TM1638_SetDisplay(TM1638_t *tm, uint8_t onoff, uint8_t brightness){
 
 //***************************************
 void TM1638_ClearDisplay(TM1638_t *tm){
-    uint8_t i=0;
-
+    uint8_t i = 0;
     uint8_t command_address = TM1638_COMMAND_ADDRESS;
-    WRITE_4BIT(command_address, 0, 0);
 
     TM1638_STB_WritePin(tm, 0);
     TM1638_WriteByte(TM1638_COMMAND_DATA_WRITE);
@@ -96,7 +93,7 @@ void TM1638_Init(TM1638_t *tm){
 //***************************************
 uint8_t TM1638_WriteDisplayRegister_AutoIncr(TM1638_t *tm, uint8_t segments[], uint8_t length, uint8_t address){
     uint8_t error = 0;
-    uint8_t i=0;
+    uint8_t i = 0;
     uint8_t command_address = TM1638_COMMAND_ADDRESS;
 
     if(address > 15){
@@ -113,7 +110,8 @@ uint8_t TM1638_WriteDisplayRegister_AutoIncr(TM1638_t *tm, uint8_t segments[], u
         SET_BIT(error, 2);
     }
 
-    WRITE_4BIT(command_address, 0, address);
+    //WRITE_4BIT(command_address, 0, address);
+    command_address = write_4bit_u8(command_address, 0, address);
 
     TM1638_STB_WritePin(tm,0);
     TM1638_WriteByte(TM1638_COMMAND_DATA_WRITE);
@@ -143,7 +141,8 @@ uint8_t TM1638_WriteDisplayRegister_Fixed(TM1638_t *tm, uint8_t data, uint8_t ad
         SET_BIT(error, 0);
     }
 
-    WRITE_4BIT(command_address, 0, address);
+    //WRITE_4BIT(command_address, 0, address);
+    command_address = write_4bit_u8(command_address, 0, address);
 
     TM1638_STB_WritePin(tm, 0);
     TM1638_WriteByte(TM1638_COMMAND_DATA_WRITE);
@@ -220,7 +219,7 @@ void TM1637_Write4Digits_G5G8(TM1638_t *tm, uint8_t segments[]){
 
 //***************************************
 void TM1638_Set8Leds_S9S10x4(TM1638_t *tm, uint8_t data){
-    uint8_t i=0;
+    uint8_t i = 0;
 
     for(i=0; i<=3; ++i){
         TM1638_WriteDisplayRegister_Fixed(tm, GET_2BIT(data, i*2), (i*2)+1);
@@ -234,7 +233,7 @@ void TM1638_Set8Leds_S9S10x4(TM1638_t *tm, uint8_t data){
 
 //***************************************
 void TM1638_Set8Leds_S9x8(TM1638_t *tm, uint8_t data){
-    uint8_t i=0;
+    uint8_t i = 0;
 
     for(i=0; i<=7; ++i){
         TM1638_WriteDisplayRegister_Fixed(tm, GET_BIT(data, i), (i*2)+1);
@@ -252,7 +251,7 @@ void TM1638_Set8Leds_S9x8(TM1638_t *tm, uint8_t data){
 
 //***************************************
 void TM1638_SetLeds(TM1638_t *tm, uint16_t data){
-    uint8_t i=0;
+    uint8_t i = 0;
 
     for(i=0; i<=7; ++i){
         TM1638_WriteDisplayRegister_Fixed(tm, GET_2BIT(data, i*2), (i*2)+1);
@@ -276,7 +275,7 @@ uint8_t TM1638_ReadByte(void){
 
     TM1638_DIO_ConfigPin(TM1638_PIN_INPUT);
 
-    for(i = 0; i < 8; i++) {
+    for(i=0; i<8; i++) {
         TM1638_CLK_WritePin(0);
         TM1638_DELAY_US(TM1638_BIT_US);
         TM1638_CLK_WritePin(1);
@@ -292,7 +291,7 @@ uint8_t TM1638_ReadByte(void){
 
 //***************************************
 void TM1638_GetButtons(TM1638_t *tm, uint8_t *key){
-    uint8_t i =0;
+    uint8_t i = 0;
 
     TM1638_STB_WritePin(tm, 0);
     TM1638_WriteByte(TM1638_COMMAND_DATA_READ);
@@ -312,9 +311,9 @@ void TM1638_GetButtons(TM1638_t *tm, uint8_t *key){
 
 //***************************************
 uint8_t TM1638_Get8Buttons_K3(TM1638_t *tm){
-    uint8_t i =0;
-    uint8_t data =0;
-    uint8_t buf =0;
+    uint8_t i = 0;
+    uint8_t data = 0;
+    uint8_t buf = 0;
 
     TM1638_STB_WritePin(tm, 0);
     TM1638_WriteByte(TM1638_COMMAND_DATA_READ);
