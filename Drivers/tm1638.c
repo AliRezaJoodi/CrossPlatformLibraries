@@ -48,8 +48,8 @@ uint8_t TM1638_SetDisplay(TM1638_t *tm, uint8_t onoff, uint8_t brightness){
     }
 
     WRITE_BIT(command_display, 3, onoff);
-    command_display = ((command_display) & ~(0x07UL)) | ((0x07UL & (brightness)));
-    //WRITE_3BIT(command_display, 0, brightness);
+    //command_display = ((command_display) & ~(0x07UL)) | ((0x07UL & (brightness)));
+    WRITE_3BIT(command_display, 0, brightness);
 
     TM1638_STB_WritePin(tm, 0);
     TM1638_WriteByte(command_display);
@@ -239,6 +239,15 @@ void TM1638_Set8Leds_S9x8(TM1638_t *tm, uint8_t data){
     for(i=0; i<=7; ++i){
         TM1638_WriteDisplayRegister_Fixed(tm, GET_BIT(data, i), (i*2)+1);
     }
+
+//    TM1638_WriteDisplayRegister_Fixed(tm, GET_BIT(data, 0), 1);
+//    TM1638_WriteDisplayRegister_Fixed(tm, GET_BIT(data, 1), 3);
+//    TM1638_WriteDisplayRegister_Fixed(tm, GET_BIT(data, 2), 5);
+//    TM1638_WriteDisplayRegister_Fixed(tm, GET_BIT(data, 3), 7);
+//    TM1638_WriteDisplayRegister_Fixed(tm, GET_BIT(data, 4), 9);
+//    TM1638_WriteDisplayRegister_Fixed(tm, GET_BIT(data, 5), 11);
+//    TM1638_WriteDisplayRegister_Fixed(tm, GET_BIT(data, 6), 13);
+//    TM1638_WriteDisplayRegister_Fixed(tm, GET_BIT(data, 7), 15);
 }
 
 //***************************************
