@@ -35,31 +35,36 @@ extern "C" {
 
 
 static inline uint8_t write_bit_u8(volatile uint8_t buf, uint8_t pos, uint8_t status){
-    pos &= 0x07U;
-    status &= 0x01U;
-
     return  (uint8_t)(
-            (buf & (uint8_t)~(uint8_t)(1U << pos)) |
-            ((uint8_t)(status & 1U) << pos)
+            (buf & (uint8_t)~(uint8_t)(0x01U << pos)) |
+            ((uint8_t)(status & 0x01U) << pos)
+            );
+}
+
+static inline uint8_t write_3bit_u8(volatile uint8_t buf, uint8_t pos, uint8_t status){
+    return  (uint8_t)(
+            (buf & (uint8_t)~(uint8_t)(0x07U << pos)) |
+            ((uint8_t)(status & 0x07U) << pos)
+            );
+}
+
+static inline uint8_t write_4bit_u8(volatile uint8_t buf, uint8_t pos, uint8_t status){
+    return  (uint8_t)(
+            (buf & (uint8_t)~(uint8_t)(0x0FU << pos)) |
+            ((uint8_t)(status & 0x0FU) << pos)
             );
 }
 
 static inline uint16_t write_bit_u16(volatile uint16_t buf, uint8_t pos, uint8_t status){
-    pos &= 0x0FU;
-    status &= 0x01U;
-
     return  (uint16_t)(
             (buf & (uint16_t)~(uint16_t)(1U << pos)) |
-            ((uint16_t)(status & 1U) << pos)
+            ((uint16_t)(status & 0x01U) << pos)
             );
 }
 
 static inline uint32_t write_bit_u32(volatile uint32_t buf, uint8_t pos, uint8_t status){
-    pos &= 0x1FU;
-    status &= 0x01U;
-
     return  (buf & ~(1UL << pos)) |
-            ((uint32_t)(status & 1U) << pos);
+            ((uint32_t)(status & 0x01U) << pos);
 }
 
 #ifdef __cplusplus
