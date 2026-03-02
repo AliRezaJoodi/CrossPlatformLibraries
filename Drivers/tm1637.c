@@ -126,7 +126,7 @@ void TM1637_Init(TM1637_t *tm){
 }
 
 /***************************************/
-uint8_t TM1637_WriteDisplay_AutoIncr(TM1637_t *tm, uint8_t segments[], uint8_t length, uint8_t address){
+uint8_t TM1637_WriteDisplayRegister_AutoIncr(TM1637_t *tm, uint8_t segments[], uint8_t length, uint8_t address){
     uint8_t error = 0;
     uint8_t i=0;
     uint8_t command_address = TM1637_COMMAND_ADDRESS;
@@ -162,7 +162,7 @@ uint8_t TM1637_WriteDisplay_AutoIncr(TM1637_t *tm, uint8_t segments[], uint8_t l
 }
 
 /***************************************/
-uint8_t TM1637_WriteDisplay_Fixed(TM1637_t *tm, uint8_t data, uint8_t address){
+uint8_t TM1637_WriteDisplayRegister_Fixed(TM1637_t *tm, uint8_t data, uint8_t address){
     uint8_t error = 0;
     uint8_t command_address = TM1637_COMMAND_ADDRESS;
 
