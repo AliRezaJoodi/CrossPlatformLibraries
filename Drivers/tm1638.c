@@ -93,7 +93,7 @@ void TM1638_Init(TM1638_t *tm){
 }
 
 //***************************************
-uint8_t TM1638_WriteDisplay_AutoIncr(TM1638_t *tm, uint8_t segments[], uint8_t length, uint8_t address){
+uint8_t TM1638_WriteDisplayRegister_AutoIncr(TM1638_t *tm, uint8_t segments[], uint8_t length, uint8_t address){
     uint8_t error = 0;
     uint8_t i=0;
     uint8_t command_address = TM1638_COMMAND_ADDRESS;
@@ -133,7 +133,7 @@ uint8_t TM1638_WriteDisplay_AutoIncr(TM1638_t *tm, uint8_t segments[], uint8_t l
 }
 
 //***************************************
-uint8_t TM1638_WriteDisplay_Fixed(TM1638_t *tm, uint8_t data, uint8_t address){
+uint8_t TM1638_WriteDisplayRegister_Fixed(TM1638_t *tm, uint8_t data, uint8_t address){
     uint8_t error = 0;
     uint8_t command_address = TM1638_COMMAND_ADDRESS;
 
@@ -203,7 +203,7 @@ uint8_t TM1638_Set8Segments_OverWriteLeds(TM1638_t *tm, uint8_t segments[], uint
 }
 
 //***************************************
-uint8_t TM1638_Set8Segments(TM1638_t *tm, uint8_t segments[], uint8_t length, uint8_t pos){
+uint8_t TM1637_WriteDigits(TM1638_t *tm, uint8_t segments[], uint8_t length, uint8_t pos){
     uint8_t error = 0;
     uint8_t address = 0;
     uint8_t i=0;
@@ -225,7 +225,7 @@ uint8_t TM1638_Set8Segments(TM1638_t *tm, uint8_t segments[], uint8_t length, ui
     address = pos * 2;
 
     for(i=0; i<length; ++i){
-        TM1638_WriteDisplay_Fixed(tm, segments[i], address);
+        TM1638_WriteDisplayRegister_Fixed(tm, segments[i], address);
         address = address + 2;
     }
 
@@ -233,39 +233,72 @@ uint8_t TM1638_Set8Segments(TM1638_t *tm, uint8_t segments[], uint8_t length, ui
 }
 
 //***************************************
-void TM1638_Set8Segments_4Digits_1st(TM1638_t *tm, uint8_t segments[]){
+void TM1637_Write4Digits_G1G4(TM1638_t *tm, uint8_t segments[]){
     uint8_t i = 0;
 
     for(i=0; i<4; ++i){
-        TM1638_WriteDisplay_Fixed(tm, segments[i], i*2);
+        TM1638_WriteDisplayRegister_Fixed(tm, segments[i], i*2);
     }
+
+//    TM1638_WriteDisplayRegister_Fixed(tm, segments[0], 0);
+//    TM1638_WriteDisplayRegister_Fixed(tm, segments[1], 2);
+//    TM1638_WriteDisplayRegister_Fixed(tm, segments[2], 4);
+//    TM1638_WriteDisplayRegister_Fixed(tm, segments[3], 6);
 }
 
 //***************************************
-void TM1638_Set8Segments_4Digits_2nd(TM1638_t *tm, uint8_t segments[]){
+void TM1637_Write4Digits_G5G8(TM1638_t *tm, uint8_t segments[]){
     uint8_t i = 0;
 
     for(i=0; i<4; ++i){
-        TM1638_WriteDisplay_Fixed(tm, segments[i], (i+4)*2);
+        TM1638_WriteDisplayRegister_Fixed(tm, segments[i], (i+4)*2);
+    }
+
+//    TM1638_WriteDisplayRegister_Fixed(tm, segments[0], 8);
+//    TM1638_WriteDisplayRegister_Fixed(tm, segments[1], 10);
+//    TM1638_WriteDisplayRegister_Fixed(tm, segments[2], 12);
+//    TM1638_WriteDisplayRegister_Fixed(tm, segments[3], 14);
+}
+
+//***************************************
+void TM1638_Set8Leds_S9S10x4(TM1638_t *tm, uint8_t data){
+    uint8_t i=0;
+
+    for(i=0; i<=3; ++i){
+        TM1638_WriteDisplayRegister_Fixed(tm, GET_2BIT(data, i*2), (i*2)+1);
+    }
+
+//    TM1638_WriteDisplayRegister_Fixed(tm, GET_2BIT(data, 0), 1);
+//    TM1638_WriteDisplayRegister_Fixed(tm, GET_2BIT(data, 2), 3);
+//    TM1638_WriteDisplayRegister_Fixed(tm, GET_2BIT(data, 4), 5);
+//    TM1638_WriteDisplayRegister_Fixed(tm, GET_2BIT(data, 6), 7);
+}
+
+//***************************************
+void TM1638_Set8Leds_S9x8(TM1638_t *tm, uint8_t data){
+    uint8_t i=0;
+
+    for(i=0; i<=7; ++i){
+        TM1638_WriteDisplayRegister_Fixed(tm, GET_BIT(data, i), (i*2)+1);
     }
 }
 
 //***************************************
-void TM1638_Set8Leds(TM1638_t *tm, uint8_t data){
+void TM1638_SetLeds(TM1638_t *tm, uint16_t data){
     uint8_t i=0;
 
-    for(i=0; i<8; ++i){
-        TM1638_WriteDisplay_Fixed(tm, GET_BIT(data, i), (i*2)+1);
+    for(i=0; i<=7; ++i){
+        TM1638_WriteDisplayRegister_Fixed(tm, GET_2BIT(data, i*2), (i*2)+1);
     }
-}
 
-//***************************************
-void TM1638_Set16Leds(TM1638_t *tm, uint16_t data){
-    uint8_t i=0;
-
-    for(i=0; i<8; ++i){
-        TM1638_WriteDisplay_Fixed(tm, GET_2BIT(data, i*2), (i*2)+1);
-    }
+//    TM1638_WriteDisplayRegister_Fixed(tm, GET_2BIT(data, 0), 1);
+//    TM1638_WriteDisplayRegister_Fixed(tm, GET_2BIT(data, 2), 3);
+//    TM1638_WriteDisplayRegister_Fixed(tm, GET_2BIT(data, 4), 5);
+//    TM1638_WriteDisplayRegister_Fixed(tm, GET_2BIT(data, 6), 7);
+//    TM1638_WriteDisplayRegister_Fixed(tm, GET_2BIT(data, 8), 9);
+//    TM1638_WriteDisplayRegister_Fixed(tm, GET_2BIT(data, 10), 11);
+//    TM1638_WriteDisplayRegister_Fixed(tm, GET_2BIT(data, 12), 13);
+//    TM1638_WriteDisplayRegister_Fixed(tm, GET_2BIT(data, 14), 15);
 }
 
 //***************************************
@@ -291,7 +324,7 @@ uint8_t TM1638_ReadByte(void){
 }
 
 //***************************************
-void TM1638_Get24Buttons(TM1638_t *tm, uint8_t *key){
+void TM1638_GetButtons(TM1638_t *tm, uint8_t *key){
     uint8_t i =0;
 
     TM1638_STB_WritePin(tm, 0);
@@ -311,7 +344,7 @@ void TM1638_Get24Buttons(TM1638_t *tm, uint8_t *key){
 }
 
 //***************************************
-void TM1638_Get8Buttons(TM1638_t *tm, uint8_t *key){
+void TM1638_Get8Buttons_K3(TM1638_t *tm, uint8_t *key){
     uint8_t i =0;
     uint8_t data =0;
     uint8_t buf =0;
@@ -339,6 +372,6 @@ void TM1638_Get8Buttons(TM1638_t *tm, uint8_t *key){
 uint8_t TM1638_Return8Buttons(TM1638_t *tm){
     uint8_t data = 0;
 
-    TM1638_Get8Buttons(tm, &data);
+    TM1638_Get8Buttons_K3(tm, &data);
     return data;
 }

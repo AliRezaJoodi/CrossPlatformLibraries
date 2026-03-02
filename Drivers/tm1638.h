@@ -116,7 +116,7 @@ void TM1638_ClearDisplay(TM1638_t *tm);
  * @return Error flags (bitfield):
  *         Bit 0: Address was out of range and corrected.
  */
-uint8_t TM1638_WriteDisplay_Fixed(TM1638_t *tm, uint8_t data, uint8_t address);
+uint8_t TM1638_WriteDisplayRegister_Fixed(TM1638_t *tm, uint8_t data, uint8_t address);
 
 /**
  * @brief Write multiple segment data in address increment mode.
@@ -134,7 +134,7 @@ uint8_t TM1638_WriteDisplay_Fixed(TM1638_t *tm, uint8_t data, uint8_t address);
  *          Bit 1: Length exceeded remaining addresses and corrected
  *          Bit 2: Length was zero and corrected to 1
  */
-uint8_t TM1638_WriteDisplay_AutoIncr(TM1638_t *tm, uint8_t segments[], uint8_t length, uint8_t address);
+uint8_t TM1638_WriteDisplayRegister_AutoIncr(TM1638_t *tm, uint8_t segments[], uint8_t length, uint8_t address);
 
 /**
  * @brief Write segments 1 to 8 and overwrite SEG9 and SEG10 with 0.
@@ -170,7 +170,7 @@ uint8_t TM1638_Set8Segments_OverWriteLeds(TM1638_t *tm, uint8_t segments[], uint
  *         Bit 1: Length exceeded remaining digits and corrected.
  *         Bit 2: Length was zero and corrected to 1.
  */
-uint8_t TM1638_Set8Segments(TM1638_t *tm, uint8_t segments[], uint8_t length, uint8_t pos);
+uint8_t TM1637_WriteDigits(TM1638_t *tm, uint8_t segments[], uint8_t length, uint8_t pos);
 
 /**
  * @brief Set the first 4 digits (Grid 1 to Grid 4) of the TM1637 display.
@@ -184,7 +184,7 @@ uint8_t TM1638_Set8Segments(TM1638_t *tm, uint8_t segments[], uint8_t length, ui
  * @param segments Array of 4 bytes representing segment data for Grid 1 to Grid 4.
  *                Each byte represents the segment states for one digit.
  */
-void TM1638_Set8Segments_4Digits_1st(TM1638_t *tm, uint8_t segments[]);
+void TM1637_Write4Digits_G1G4(TM1638_t *tm, uint8_t segments[]);
 
 /**
  * @brief Set digits 5 to 8 (Grid 5 to Grid 8) of the TM1637 display.
@@ -197,7 +197,25 @@ void TM1638_Set8Segments_4Digits_1st(TM1638_t *tm, uint8_t segments[]);
  * @param tm Pointer to TM1638 handle structure.
  * @param segments Array of 4 bytes representing segment data for Grid 5 to Grid 8.
  */
-void TM1638_Set8Segments_4Digits_2nd(TM1638_t *tm, uint8_t segments[]);
+void TM1637_Write4Digits_G5G8(TM1638_t *tm, uint8_t segments[]);
+
+/**
+ * @brief Set the 8 LEDs.
+ *
+ * Each bit in the input byte controls one LED:
+ *   Bit 0: LED at SEG9/GRID1
+ *   Bit 1: LED at SEG10/GRID1
+ *   Bit 2: LED at SEG9/GRID2
+ *   Bit 3: LED at SEG10/GRID2
+ *   Bit 4: LED at SEG9/GRID3
+ *   Bit 5: LED at SEG10/GRID3
+ *   Bit 6: LED at SEG9/GRID4
+ *   Bit 7: LED at SEG10/GRID4
+ *
+ * @param tm Pointer to TM1638 handle structure.
+ * @param data 8-bit value controlling the LEDs on SEG9.
+ */
+void TM1638_Set8Leds_S9S10x4(TM1638_t *tm, uint8_t data);
 
 /**
  * @brief Set the 8 LEDs connected to SEG9.
@@ -208,12 +226,12 @@ void TM1638_Set8Segments_4Digits_2nd(TM1638_t *tm, uint8_t segments[]);
  *   ...
  *   Bit 7: LED at SEG9/GRID8
  *
- * @note SEG10 LEDs are not affected and will be set to 0.
+ * @note SEG10 LEDs will be set to 0.
  *
  * @param tm Pointer to TM1638 handle structure.
  * @param data 8-bit value controlling the LEDs on SEG9.
  */
-void TM1638_Set8Leds(TM1638_t *tm, uint8_t data);
+void TM1638_Set8Leds_S9x8(TM1638_t *tm, uint8_t data);
 
 /**
  * @brief Set the 16 LEDs connected to SEG9 and SEG10.
@@ -230,7 +248,7 @@ void TM1638_Set8Leds(TM1638_t *tm, uint8_t data);
  * @param tm Pointer to TM1638 handle structure.
  * @param data 16-bit value controlling the LEDs on SEG9 and SEG10.
  */
-void TM1638_Set16Leds(TM1638_t *tm, uint16_t data);
+void TM1638_SetLeds(TM1638_t *tm, uint16_t data);
 
 /**
  * @brief Scan buttons connected to K1, K2, and K3 lines.
@@ -241,7 +259,7 @@ void TM1638_Set16Leds(TM1638_t *tm, uint16_t data);
  * @param tm Pointer to TM1638 handle structure.
  * @param key Pointer to an array of 4 bytes where the button states will be stored.
  */
-void TM1638_Get24Buttons(TM1638_t *tm, uint8_t *key);
+void TM1638_GetButtons(TM1638_t *tm, uint8_t *key);
 
 /**
  * @brief Scan buttons connected to K3 lines (1 to 8 buttons).
@@ -252,7 +270,7 @@ void TM1638_Get24Buttons(TM1638_t *tm, uint8_t *key);
  * @param tm Pointer to TM1638 handle structure.
  * @param key Pointer to a byte where the combined button states will be stored.
  */
-void TM1638_Get8Buttons(TM1638_t *tm, uint8_t *key);
+void TM1638_Get8Buttons_K3(TM1638_t *tm, uint8_t *key);
 
 /**
  * @brief Get the state of buttons connected to K3 as a single byte.
