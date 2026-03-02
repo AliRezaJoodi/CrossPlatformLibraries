@@ -6,7 +6,6 @@ extern "C" {
 #endif
 
 #include <stdint.h>
-//#include "compiler_port.h"
 #include "utility_bit.h"
 #include "tm1638_hw.h"
 
@@ -29,7 +28,16 @@ typedef struct {
  * This structure holds STB pin that required
  * to control one TM1638 device instance.
  *
- * Example usage:
+ * @see Example section below.
+ */
+typedef struct {
+    TM1638_Pin_t stb;
+} TM1638_t;
+
+/**
+ * @example
+ * Example: initializing a structure
+ *
  * @code
  * TM1638_t tm1;
  * tm1.stb.ddr     = &TM1638_STB1_DDR;
@@ -37,9 +45,6 @@ typedef struct {
  * tm1.stb.index   =  TM1638_STB1_BIT;
  * @endcode
  */
-typedef struct {
-    TM1638_Pin_t stb;
-} TM1638_t;
 
 //***************************************
 static inline void TM1638_STB_InitPin(TM1638_t *tm){
