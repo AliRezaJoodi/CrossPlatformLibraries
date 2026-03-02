@@ -90,7 +90,7 @@ uint8_t TM1637_SetDisplay(TM1637_t *tm, uint8_t onoff, uint8_t brightness){
     }
 
     WRITE_BIT(command_display, 3, onoff);
-    WRITE_3BIT(command_display, 0, brightness);
+    command_display = write_3bit_u8(command_display, 0, brightness);
 
     TM1637_Start(tm);
     TM1637_WriteByte(tm, command_display);
@@ -145,7 +145,7 @@ uint8_t TM1637_WriteDisplayRegister_AutoIncr(TM1637_t *tm, uint8_t segments[], u
         SET_BIT(error, 2);
     }
 
-    WRITE_3BIT(command_address, 0, address);
+    command_address = write_3bit_u8(command_address, 0, address);
 
     TM1637_Start(tm);
     TM1637_WriteByte(tm, TM1637_COMMAND_DATA_WRITE);
@@ -171,7 +171,7 @@ uint8_t TM1637_WriteDisplayRegister_Fixed(TM1637_t *tm, uint8_t data, uint8_t ad
         SET_BIT(error, 0);
     }
 
-    WRITE_3BIT(command_address, 0, address);
+    command_address = write_3bit_u8(command_address, 0, address);
 
     TM1637_Start(tm);
     TM1637_WriteByte(tm, command_address);
