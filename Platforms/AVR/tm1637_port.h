@@ -6,8 +6,8 @@ extern "C" {
 #endif
 
 #include <stdint.h>
-#include "compiler_port.h"
 #include "utility_bit.h"
+#include "tm1637_hw.h"
 
 #define TM1637_DELAY_US(VALUE)          DELAY_US(VALUE)
 
@@ -29,25 +29,30 @@ typedef struct {
  * This structure holds all configuration data required
  * to control one TM1637 device instance.
  *
- * Example usage:
- * @code
- * TM1637_t tm1;
- *
- * tm1.clk.ddr  = &DDRC;
- * tm1.clk.port = &PORTC;
- * tm1.clk.pin  = &PINC;
- * tm1.clk.index = 0;
- *
- * tm1.dio.ddr  = &DDRC;
- * tm1.dio.port = &PORTC;
- * tm1.dio.pin  = &PINC;
- * tm1.dio.index = 1;
- * @endcode
+ * @see Example section below.
  */
 typedef struct {
     TM1637_Pin_t clk;
     TM1637_Pin_t dio;
 } TM1637_t;
+
+/**
+ * @example
+ * Example: initializing a structure
+ *
+ * @code
+ * TM1637_t tm1;
+ * tm1.clk.ddr     = &TM1637_TM1_CLK_DDR;
+ * tm1.clk.port    = &TM1637_TM1_CLK_PORT;
+ * tm1.clk.pin     = &TM1637_TM1_CLK_PIN;
+ * tm1.clk.index   =  TM1637_TM1_CLK_BIT;
+
+ * tm1.dio.ddr     = &TM1637_TM1_DIO_DDR;
+ * tm1.dio.port    = &TM1637_TM1_DIO_PORT;
+ * tm1.dio.pin     = &TM1637_TM1_DIO_PIN;
+ * tm1.dio.index   =  TM1637_TM1_DIO_BIT;
+ * @endcode
+ */
 
 /***************************************/
 static inline void TM1637_CLK_WritePin(TM1637_t *tm, uint8_t status){
