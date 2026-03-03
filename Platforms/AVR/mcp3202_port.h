@@ -8,7 +8,7 @@ extern "C" {
 #include <stdint.h>
 #include "compiler_port.h"
 #include "utility_bit.h"
-
+#include "mcp3202_hw.h"
 
 #ifdef __cplusplus
 }

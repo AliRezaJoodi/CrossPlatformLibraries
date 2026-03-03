@@ -1,5 +1,6 @@
 // GitHub Account: GitHub.com/AliRezaJoodi
 
+#include "hardware.h"
 #include "mcp3202.h"
 
 #define _MCP3202_RESOLUTION     4096     //12-Bit
