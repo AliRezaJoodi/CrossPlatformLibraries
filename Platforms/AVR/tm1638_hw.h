@@ -20,9 +20,9 @@
 
 #ifndef TM1638_HARDWARE_EXTRA
 #define TM1638_HARDWARE_EXTRA
-    #define TM1638_STB1_DDR        DDRA
-    #define TM1638_STB1_PORT       PORTA
-    #define TM1638_STB1_BIT        7
+    #define TM1638_STB_DDR      DDRA
+    #define TM1638_STB_PORT     PORTA
+    #define TM1638_STB_BIT      7
 #endif
 
 #endif

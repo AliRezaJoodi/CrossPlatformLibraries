@@ -40,9 +40,9 @@ typedef struct {
  *
  * @code
  * TM1638_t tm1;
- * tm1.stb.ddr     = &TM1638_STB1_DDR;
- * tm1.stb.port    = &TM1638_STB1_PORT;
- * tm1.stb.index   =  TM1638_STB1_BIT;
+ * tm1.stb.ddr     = &TM1638_STB_DDR;
+ * tm1.stb.port    = &TM1638_STB_PORT;
+ * tm1.stb.index   =  TM1638_STB_BIT;
  * @endcode
  */
 
