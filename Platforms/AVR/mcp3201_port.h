@@ -93,9 +93,9 @@ typedef struct {
  *
  * @code
  * MCP3201_t mcp1;
- * mcp1.cs.ddr   = &MCP3201_CS1_DDR;
- * mcp1.cs.port  = &MCP3201_CS1_PORT;
- * mcp1.cs.index =  MCP3201_CS1_BIT;
+ * mcp1.cs.ddr   = &MCP3201_CS_DDR;
+ * mcp1.cs.port  = &MCP3201_CS_PORT;
+ * mcp1.cs.index =  MCP3201_CS_BIT;
  * @endcode
  */
 
