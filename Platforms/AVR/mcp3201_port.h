@@ -60,9 +60,8 @@ extern "C" {
 #endif
 
 #include <stdint.h>
-
-#include "compiler_port.h"
 #include "utility_bit.h"
+#include "mcp3201_hw.h"
 
 /**
  * @brief   GPIO representation for a single MCP3201 pin
@@ -90,14 +89,6 @@ typedef struct {
 
 /**
  * @example
- * Example: defining pin macros
- *
- * @code
- * #define MCP3201_CS1_DDR   DDRB
- * #define MCP3201_CS1_PORT  PORTB
- * #define MCP3201_CS1_BIT   4U
- * @endcode
- *
  * Example: initializing a structure
  *
  * @code
