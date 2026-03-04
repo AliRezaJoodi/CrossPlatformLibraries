@@ -21,10 +21,15 @@ extern "C" {
 #include "utility_bit.h"
 #include "mcp3202_port.h"
 
-#define MCP3202_CH0         0U  /**< CH0(IN+), GND(IN-)*/
-#define MCP3202_CH1         1U  /**< CH1(IN+), GND(IN-)*/
-#define MCP3202_CH0CH1      2U  /**< CH0(IN+), CH1(IN-)*/
-#define MCP3202_CH1CH0      3U  /**< CH1(IN+), CH0(IN-)*/
+/**
+ * @brief Defines MCP3202 Channels.
+ */
+typedef enum {
+    MCP3202_CH0         = 0U,   /**< CH0(IN+), GND(IN-)*/
+    MCP3202_CH1         = 1U,   /**< CH1(IN+), GND(IN-)*/
+    MCP3202_CH0CH1      = 2U,   /**< CH0(IN+), CH1(IN-)*/
+    MCP3202_CH1CH0      = 3U    /**< CH1(IN+), CH0(IN-)*/
+} MCP3202Channels_t;
 
 /**
  * @brief   Initialize the MCP3202 instance
