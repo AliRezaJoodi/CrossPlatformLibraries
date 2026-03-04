@@ -9,6 +9,7 @@ extern "C" {
 
 #include "utility_bit.h"
 #include "seg7_driver_config.h"
+#include "compiler_port.h"
 #include "seg7_driver_hw.h"
 
 /**
