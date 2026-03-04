@@ -18,7 +18,6 @@ extern "C" {
 #endif
 
 #include <stdint.h>
-#include "utility_bit.h"
 #include "mcp3202_port.h"
 
 /**

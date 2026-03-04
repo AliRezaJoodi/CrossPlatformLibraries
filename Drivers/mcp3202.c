@@ -16,16 +16,16 @@ uint16_t MCP3202_GetCounts(MCP3202_t *mcp, uint8_t ch){
 
     switch (ch){
         case MCP3202_CH0:
-            data2 = write_2bit_u8(data2, 6, 0x02U);
+            data2 = 0x80U;
             break;
         case MCP3202_CH1:
-            data2 = write_2bit_u8(data2, 6, 0x03U);
+            data2 = 0xC0U;
             break;
         case MCP3202_CH0CH1:
-            data2 = write_2bit_u8(data2, 6, 0x00U);
+            data2 = 0x00U;
             break;
         case MCP3202_CH1CH0:
-            data2 = write_2bit_u8(data2, 6, 0x01U);
+            data2 = 0x40U;
             break;
         default:
             return 0xFFFF;
