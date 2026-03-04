@@ -41,6 +41,13 @@ static inline uint8_t write_bit_u8(volatile uint8_t buf, uint8_t pos, uint8_t st
             );
 }
 
+static inline uint8_t write_2bit_u8(volatile uint8_t buf, uint8_t pos, uint8_t status){
+    return  (uint8_t)(
+            (buf & (uint8_t)~(uint8_t)(0x03U << pos)) |
+            ((uint8_t)(status & 0x03U) << pos)
+            );
+}
+
 static inline uint8_t write_3bit_u8(volatile uint8_t buf, uint8_t pos, uint8_t status){
     return  (uint8_t)(
             (buf & (uint8_t)~(uint8_t)(0x07U << pos)) |
