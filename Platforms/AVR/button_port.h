@@ -23,9 +23,8 @@ extern "C" {
 #endif
 
 #include <stdint.h>
-
-#include "compiler_port.h"
 #include "button_config.h"
+#include "compiler_port.h"
 
 /**
  * @brief Hardware configuration for a button.
