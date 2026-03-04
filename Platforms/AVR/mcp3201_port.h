@@ -1,5 +1,4 @@
 /**
- * @file    mcp3201_port.h
  * @brief   SPI usage and recommended configuration for MCP3201
  *
  * @note
@@ -61,6 +60,7 @@ extern "C" {
 
 #include <stdint.h>
 #include "utility_bit.h"
+#include "compiler_port.h"
 #include "mcp3201_hw.h"
 
 /**

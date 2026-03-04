@@ -1,9 +1,7 @@
 /**
- * @file    mcp3201.h
  * @brief   MCP3201 12-bit ADC driver
  *
- * This library provides basic functions to interface with the MCP3201 ADC
- * via SPI. It includes reading raw counts and converting to millivolts.
+ * This library provides basic functions to interface with the MCP3201 ADC via SPI.
  *
  * @note
  * SPI must be configured by the user before using this library.
@@ -39,7 +37,7 @@ void MCP3201_Init(MCP3201_t *mcp);
  * from the MCP3201 device.
  *
  * @param   mcp   Pointer to a valid MCP3201_t instance
- * @return  12-bit ADC value as uint16_t (0..4095)
+ * @return  12-bit ADC value as uint16_t (0 to 4095)
  */
 uint16_t MCP3201_GetCounts(MCP3201_t *mcp);
 
