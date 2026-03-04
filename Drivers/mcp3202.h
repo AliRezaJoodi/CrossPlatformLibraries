@@ -16,14 +16,13 @@ extern "C" {
 #include "utility_bit.h"
 #include "mcp3202_port.h"
 
-#define MCP3202_CH0         0U
-#define MCP3202_CH1         1U
-#define MCP3202_CH0CH1      2U
-#define MCP3202_CH1CH0      3U
+#define MCP3202_CH0         0U  /**< CH0(IN+), GND(IN-)*/
+#define MCP3202_CH1         1U  /**< CH1(IN+), GND(IN-)*/
+#define MCP3202_CH0CH1      2U  /**< CH0(IN+), CH1(IN-)*/
+#define MCP3202_CH1CH0      3U  /**< CH1(IN+), CH0(IN-)*/
 
 void MCP3202_Init(MCP3202_t *mcp);
-float MCP3202_GetSingleEndedADC(MCP3202_t *mcp, char ch);
-float MCP3202_GetDifferentialADC(MCP3202_t *mcp, char ch);
+uint16_t MCP3202_GetCounts(MCP3202_t *mcp, uint8_t ch);
 
 #ifdef __cplusplus
 }
