@@ -7,6 +7,7 @@ extern "C" {
 
 #include <stdint.h>
 #include "utility_bit.h"
+#include "compiler_port.h"
 #include "tm1637_hw.h"
 
 #define TM1637_DELAY_US(VALUE)          DELAY_US(VALUE)

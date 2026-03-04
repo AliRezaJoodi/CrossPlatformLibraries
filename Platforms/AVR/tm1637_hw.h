@@ -1,8 +1,6 @@
 #ifndef TM1637_HW_INCLUDED
 #define TM1637_HW_INCLUDED
 
-#include "compiler_port.h"
-
 #ifndef TM1637_HARDWARE_EXTRA
 #define TM1637_HARDWARE_EXTRA
     #define TM1637_CLK_DDR         DDRC
