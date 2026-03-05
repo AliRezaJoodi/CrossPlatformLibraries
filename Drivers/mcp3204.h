@@ -32,7 +32,7 @@ typedef enum {
     MCP3204_CH1CH0      = 5U,   /**< CH1(IN+), CH0(IN-)*/
     MCP3204_CH2CH3      = 6U,   /**< CH2(IN+), CH3(IN-)*/
     MCP3204_CH3CH2      = 7U    /**< CH3(IN+), CH2(IN-)*/
-} MCP3202Channels_t;
+} MCP3204Channels_t;
 
 /**
  * @brief   Initialize the MCP3204 instance

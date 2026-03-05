@@ -61,7 +61,7 @@ extern "C" {
 #include <stdint.h>
 #include "utility_bit.h"
 #include "compiler_port.h"
-#include "MCP3204_hw.h"
+#include "mcp3204_hw.h"
 
 /**
  * @brief   GPIO representation for a single MCP3204 pin
