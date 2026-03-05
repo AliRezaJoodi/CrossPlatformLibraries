@@ -23,8 +23,10 @@ extern "C" {
 #endif
 
 #include <stdint.h>
-#include "button_config.h"
 #include "compiler_port.h"
+#include "button_config.h"
+
+#define BUTTON_DELAY_US(VALUE)          DELAY_US(VALUE)
 
 /**
  * @brief Hardware configuration for a button.
@@ -123,16 +125,6 @@ static inline void Button_ConfigPin(Button_t *btn){
  */
 static inline uint8_t Button_GetPin(Button_t *btn){
     return GET_BIT(*btn->hw.pin, btn->hw.index);
-}
-
-/**
- * @brief Delay for single-click debounce.
- *
- * Uses the configured single-click lag time to create
- * a small delay for button debouncing.
- */
-static inline void Button_Delay(){
-    DELAY_MS(BUTTON_SINGLE_CLICK_LAG);
 }
 
 #ifdef __cplusplus

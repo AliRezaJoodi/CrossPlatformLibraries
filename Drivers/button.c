@@ -15,7 +15,7 @@ void Button_Config(Button_t *btn){
 uint8_t Button_GetSingleClick(Button_t *btn){
     if ( Button_GetPin(btn) == Button_GetActiveStatus(btn) ){
         if(btn->state == 0){
-            Button_Delay();
+            BUTTON_DELAY_US(BUTTON_SINGLE_CLICK_LAG);
             if ( Button_GetPin(btn) == Button_GetActiveStatus(btn) ){
                 btn->state = 1;
                 return 1;
@@ -24,7 +24,7 @@ uint8_t Button_GetSingleClick(Button_t *btn){
     }
     else{
         if(btn->state == 1){
-            Button_Delay();
+            BUTTON_DELAY_US(BUTTON_SINGLE_CLICK_LAG);
             if ( Button_GetPin(btn) != Button_GetActiveStatus(btn) ){
                 btn->state = 0;
             }
