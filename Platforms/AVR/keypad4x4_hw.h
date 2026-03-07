@@ -60,7 +60,7 @@
     #define KEYPAD4X4_N14           183U
     #define KEYPAD4X4_N15           231U
 
-    #warning "KEYPAD4x4_HARDWARE is not defined; default configuration will be used."
+    #warning "KEYPAD4X4_HARDWARE is not defined; default configuration will be used."
 #endif
 
 #endif
