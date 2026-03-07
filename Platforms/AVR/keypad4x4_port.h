@@ -1,5 +1,5 @@
-#ifndef KEYPAD4x4_PORT_INCLUDED
-#define KEYPAD4x4_PORT_INCLUDED
+#ifndef KEYPAD4X4_PORT_INCLUDED
+#define KEYPAD4X4_PORT_INCLUDED
 
 #ifdef __cplusplus
 extern "C" {
