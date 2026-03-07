@@ -3,17 +3,52 @@
 #include "hardware.h"
 #include "keypad4x4.h"
 
+#define KEYPAD4X4_MODE_INPUT   0U
+#define KEYPAD4X4_MODE_OUTPUT  1U
                                    //__0,__1,__2,__3,__4,__5,__6,__7,__8,__9,_10,_11,_12,_13,_14,_15
 //flash unsigned char keypad_data[16]={215,235,219,187,237,221,189,238,222,190,126,125,123,119,183,231};
 //flash unsigned char keypad_data[16]={N00,N01,N02,N03,N04,N05,N06,N07,N08,N09,N10,N11,N12,N13,N14,N15};
 
 //********************************************************
-unsigned char Keypad4x4_GetInitialNumber(void){
-    unsigned char numer;
-    KEYPAD4x4_DDR=0b00001111; KEYPAD4x4_PORT=0b11110000; delay_us(2); numer=KEYPAD4x4_PIN;
-    KEYPAD4x4_DDR=0b11110000; KEYPAD4x4_PORT=0b00001111; delay_us(2); numer=numer|KEYPAD4x4_PIN;
+uint8_t Keypad4x4_GetInitialNumber(void){
+    uint8_t numer = 0;
+
+//    Keypad4x4_ConfigPin(&KEYPAD_R1_DDR, &KEYPAD_R1_PORT, KEYPAD_R1_BIT, KEYPAD4X4_MODE_INPUT);
+
+    Keypad4x4_R1_ConfigPin(KEYPAD4X4_MODE_INPUT);
+    Keypad4x4_R2_ConfigPin(KEYPAD4X4_MODE_INPUT);
+    Keypad4x4_R3_ConfigPin(KEYPAD4X4_MODE_INPUT);
+    Keypad4x4_R4_ConfigPin(KEYPAD4X4_MODE_INPUT);
+    Keypad4x4_C1_ConfigPin(KEYPAD4X4_MODE_OUTPUT);
+    Keypad4x4_C2_ConfigPin(KEYPAD4X4_MODE_OUTPUT);
+    Keypad4x4_C3_ConfigPin(KEYPAD4X4_MODE_OUTPUT);
+    Keypad4x4_C4_ConfigPin(KEYPAD4X4_MODE_OUTPUT);
+
+//    KEYPAD4x4_DDR=0b11110000; KEYPAD4x4_PORT=0b00001111; delay_us(2);
+    numer = KEYPAD4x4_PIN;
+
+    Keypad4x4_R1_ConfigPin(KEYPAD4X4_MODE_OUTPUT);
+    Keypad4x4_R2_ConfigPin(KEYPAD4X4_MODE_OUTPUT);
+    Keypad4x4_R3_ConfigPin(KEYPAD4X4_MODE_OUTPUT);
+    Keypad4x4_R4_ConfigPin(KEYPAD4X4_MODE_OUTPUT);
+    Keypad4x4_C1_ConfigPin(KEYPAD4X4_MODE_INPUT);
+    Keypad4x4_C2_ConfigPin(KEYPAD4X4_MODE_INPUT);
+    Keypad4x4_C3_ConfigPin(KEYPAD4X4_MODE_INPUT);
+    Keypad4x4_C4_ConfigPin(KEYPAD4X4_MODE_INPUT);
+
+    //KEYPAD4x4_DDR=0b00001111; KEYPAD4x4_PORT=0b11110000; delay_us(2);
+    numer=numer|KEYPAD4x4_PIN;
+
     return numer;
 }
+
+////********************************************************
+//unsigned char Keypad4x4_GetInitialNumber_(void){
+//    unsigned char numer;
+//    KEYPAD4x4_DDR=0b00001111; KEYPAD4x4_PORT=0b11110000; delay_us(2); numer=KEYPAD4x4_PIN;
+//    KEYPAD4x4_DDR=0b11110000; KEYPAD4x4_PORT=0b00001111; delay_us(2); numer=numer|KEYPAD4x4_PIN;
+//    return numer;
+//}
 
 //********************************************************
 unsigned char Keypad4x4_ConvertNumber(unsigned char key){
