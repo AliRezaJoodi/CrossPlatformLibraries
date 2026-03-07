@@ -7,13 +7,13 @@
 //#define KEYPAD4X4_MODE_OUTPUT  1U
                                    //__0,__1,__2,__3,__4,__5,__6,__7,__8,__9,_10,_11,_12,_13,_14,_15
 //flash unsigned char keypad_data[16]={215,235,219,187,237,221,189,238,222,190,126,125,123,119,183,231};
-//flash unsigned char keypad_data[16]={N00,N01,N02,N03,N04,N05,N06,N07,N08,N09,N10,N11,N12,N13,N14,N15};
+//flash unsigned char keypad_data[16]={KEYPAD4X4_N00,N01,N02,N03,N04,N05,N06,N07,N08,N09,N10,N11,N12,N13,N14,N15};
 
 ////********************************************************
 //uint8_t Keypad4x4_GetInitialNumber(void){
 //    uint8_t numer = 0;
 //
-////    Keypad4x4_ConfigPin(&KEYPAD_R1_DDR, &KEYPAD_R1_PORT, KEYPAD_R1_BIT, KEYPAD4X4_MODE_INPUT);
+////    Keypad4x4_ConfigPin(&KEYPAD4X4_R1_DDR, &KEYPAD4X4_R1_PORT, KEYPAD4X4_R1_BIT, KEYPAD4X4_MODE_INPUT);
 //
 ////    Keypad4x4_R1_ConfigPin(KEYPAD4X4_MODE_INPUT);
 ////    Keypad4x4_R2_ConfigPin(KEYPAD4X4_MODE_INPUT);
@@ -55,7 +55,7 @@
 ////********************************************************
 //unsigned char Keypad4x4_ConvertNumber(unsigned char key){
 //    switch (key){
-//        case N00:
+//        case KEYPAD4X4_N00:
 //            return 0; break;
 //        case N01:
 //            return 1; break;
@@ -124,40 +124,42 @@ uint8_t Keypad4x4_GetNumber(void){
     numer |= Keypad4x4_GetPins_Mode2();
 
     switch (numer){
-        case N00:
+        case KEYPAD4X4_N00:
             return 0; break;
-        case N01:
+        case KEYPAD4X4_N01:
             return 1; break;
-        case N02:
+        case KEYPAD4X4_N02:
             return 2; break;
-        case N03:
+        case KEYPAD4X4_N03:
             return 3; break;
-        case N04:
+        case KEYPAD4X4_N04:
             return 4; break;
-        case N05:
+        case KEYPAD4X4_N05:
             return 5; break;
-        case N06:
+        case KEYPAD4X4_N06:
             return 6; break;
-        case N07:
+        case KEYPAD4X4_N07:
             return 7; break;
-        case N08:
+        case KEYPAD4X4_N08:
             return 8; break;
-        case N09:
+        case KEYPAD4X4_N09:
             return 9; break;
-        case N10:
+        case KEYPAD4X4_N10:
             return 10; break;
-        case N11:
+        case KEYPAD4X4_N11:
             return 11; break;
-        case N12:
+        case KEYPAD4X4_N12:
             return 12; break;
-        case N13:
+        case KEYPAD4X4_N13:
             return 13; break;
-        case N14:
+        case KEYPAD4X4_N14:
             return 14; break;
-        case N15:
+        case KEYPAD4X4_N15:
             return 15; break;
         default:
             return 16;
     }
+
+    return numer;
 }
 

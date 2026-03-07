@@ -1,8 +1,5 @@
 // GitHub Account:     GitHub.com/AliRezaJoodi
 
-#include <io.h>
-#include <delay.h>
-
 #ifndef KEYPAD4X4_INCLUDED
 #define KEYPAD4X4_INCLUDED
 
@@ -10,8 +7,6 @@
 #include "utility_bit.h"
 #include "keypad4x4_port.h"
 
-//unsigned char Keypad4x4_GetInitialNumber(void);
-//unsigned char Keypad4x4_ConvertNumber(unsigned char key);
-unsigned char Keypad4x4_GetNumber(void);
+uint8_t Keypad4x4_GetNumber(void);
 
 #endif
