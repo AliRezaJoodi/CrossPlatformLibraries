@@ -15,29 +15,31 @@ uint8_t Keypad4x4_GetInitialNumber(void){
 
 //    Keypad4x4_ConfigPin(&KEYPAD_R1_DDR, &KEYPAD_R1_PORT, KEYPAD_R1_BIT, KEYPAD4X4_MODE_INPUT);
 
-    Keypad4x4_R1_ConfigPin(KEYPAD4X4_MODE_INPUT);
-    Keypad4x4_R2_ConfigPin(KEYPAD4X4_MODE_INPUT);
-    Keypad4x4_R3_ConfigPin(KEYPAD4X4_MODE_INPUT);
-    Keypad4x4_R4_ConfigPin(KEYPAD4X4_MODE_INPUT);
-    Keypad4x4_C1_ConfigPin(KEYPAD4X4_MODE_OUTPUT);
-    Keypad4x4_C2_ConfigPin(KEYPAD4X4_MODE_OUTPUT);
-    Keypad4x4_C3_ConfigPin(KEYPAD4X4_MODE_OUTPUT);
-    Keypad4x4_C4_ConfigPin(KEYPAD4X4_MODE_OUTPUT);
+//    Keypad4x4_R1_ConfigPin(KEYPAD4X4_MODE_INPUT);
+//    Keypad4x4_R2_ConfigPin(KEYPAD4X4_MODE_INPUT);
+//    Keypad4x4_R3_ConfigPin(KEYPAD4X4_MODE_INPUT);
+//    Keypad4x4_R4_ConfigPin(KEYPAD4X4_MODE_INPUT);
+//    Keypad4x4_C1_ConfigPin(KEYPAD4X4_MODE_OUTPUT);
+//    Keypad4x4_C2_ConfigPin(KEYPAD4X4_MODE_OUTPUT);
+//    Keypad4x4_C3_ConfigPin(KEYPAD4X4_MODE_OUTPUT);
+//    Keypad4x4_C4_ConfigPin(KEYPAD4X4_MODE_OUTPUT);
 
-//    KEYPAD4x4_DDR=0b11110000; KEYPAD4x4_PORT=0b00001111; delay_us(2);
-    numer = KEYPAD4x4_PIN;
+    Keypad4x4_InitPins_Mode1();
+    numer = Keypad4x4_GetPins_Mode1();
+    //numer = KEYPAD4x4_PIN;
 
-    Keypad4x4_R1_ConfigPin(KEYPAD4X4_MODE_OUTPUT);
-    Keypad4x4_R2_ConfigPin(KEYPAD4X4_MODE_OUTPUT);
-    Keypad4x4_R3_ConfigPin(KEYPAD4X4_MODE_OUTPUT);
-    Keypad4x4_R4_ConfigPin(KEYPAD4X4_MODE_OUTPUT);
-    Keypad4x4_C1_ConfigPin(KEYPAD4X4_MODE_INPUT);
-    Keypad4x4_C2_ConfigPin(KEYPAD4X4_MODE_INPUT);
-    Keypad4x4_C3_ConfigPin(KEYPAD4X4_MODE_INPUT);
-    Keypad4x4_C4_ConfigPin(KEYPAD4X4_MODE_INPUT);
+//    Keypad4x4_R1_ConfigPin(KEYPAD4X4_MODE_OUTPUT);
+//    Keypad4x4_R2_ConfigPin(KEYPAD4X4_MODE_OUTPUT);
+//    Keypad4x4_R3_ConfigPin(KEYPAD4X4_MODE_OUTPUT);
+//    Keypad4x4_R4_ConfigPin(KEYPAD4X4_MODE_OUTPUT);
+//    Keypad4x4_C1_ConfigPin(KEYPAD4X4_MODE_INPUT);
+//    Keypad4x4_C2_ConfigPin(KEYPAD4X4_MODE_INPUT);
+//    Keypad4x4_C3_ConfigPin(KEYPAD4X4_MODE_INPUT);
+//    Keypad4x4_C4_ConfigPin(KEYPAD4X4_MODE_INPUT);
 
-    //KEYPAD4x4_DDR=0b00001111; KEYPAD4x4_PORT=0b11110000; delay_us(2);
-    numer=numer|KEYPAD4x4_PIN;
+    Keypad4x4_InitPins_Mode2();
+    numer |= Keypad4x4_GetPins_Mode2();
+//    numer = numer|KEYPAD4x4_PIN;
 
     return numer;
 }

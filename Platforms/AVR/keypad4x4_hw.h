@@ -1,8 +1,8 @@
 #ifndef KEYPAD4x4_HW_INCLUDED
 #define KEYPAD4x4_HW_INCLUDED
 
-#ifndef KEYPAD4x4_HARDWARE
-#define KEYPAD4x4_HARDWARE
+#ifndef KEYPAD4X4_HARDWARE
+#define KEYPAD4X4_HARDWARE
     #define KEYPAD4x4_DDR       DDRC
     #define KEYPAD4x4_PIN       PINC
     #define KEYPAD4x4_PORT      PORTC
