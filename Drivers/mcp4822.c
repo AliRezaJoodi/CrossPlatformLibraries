@@ -36,8 +36,8 @@ void _MCP4822_WriteCommand(unsigned int data){
     uint8_t lsb = (uint8_t)(data & 0x00FF);
 
     MCP4822_CS_PORT=0;
-    spi(msb);      //Send MSB
-    spi(lsb);      //Send LSB
+    MCP3208_SPI_Transfer(msb);      //Send MSB
+    MCP3208_SPI_Transfer(lsb);      //Send LSB
     MCP4822_CS_PORT=1;
     #asm("nop");            // Minimum Setup Time = 40ns
 
@@ -49,7 +49,7 @@ void _MCP4822_WriteCommand(unsigned int data){
 
 //********************************************************
 void MCP4822_SetOutput(char ch, float volt){
-    unsigned int data=0;
+    unsigned int data = 0;
 
     if(volt<=2.048){
         data=volt*MCP4822_GAIN;

@@ -4,7 +4,6 @@
 // SPI Clock Polarity: Low
 // SPI Data Order: MSB First
 
-#include <spi.h>
 #include <utility.h>
 
 #ifndef MCP4822_INCLUDED
