@@ -1,8 +1,14 @@
-// GitHub Account: GitHub.com/AliRezaJoodi
-// This library use of the SPI interfacing
-// SPI Clock Phase: Cycle Start
-// SPI Clock Polarity: Low
-// SPI Data Order: MSB First
+/**
+ * @brief   MCP4822 12-bit DAC driver
+ *
+ * This library provides basic functions to interface with the MCP4822 DAC via SPI.
+ *
+ * @note
+ * SPI must be configured by the user before using this library.
+ *
+ * @author  AliReza Joodi
+ * @see     https://github.com/AliRezaJoodi
+ */
 
 #ifndef MCP4822_INCLUDED
 #define MCP4822_INCLUDED

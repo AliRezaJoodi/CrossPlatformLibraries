@@ -1,8 +1,3 @@
-// GitHub Account: GitHub.com/AliRezaJoodi
-// This library use of the SPI interfacing
-// SPI Clock Phase: Cycle Start
-// SPI Clock Polarity: Low
-// SPI Data Order: MSB First
 
 #include "hardware.h"       /**< Project-level overrides */
 #include "mcp4822.h"
@@ -48,10 +43,9 @@ void MCP4822_DisableOutput(MCP4822_t *dac, uint8_t ch){
     MCP3208_SPI_Transfer(msb);
     MCP3208_SPI_Transfer(0xFFU);
     MCP4822_CS_WritePin(dac, 1);
-    #asm("nop");            // Minimum Setup Time = 40ns
+    MCP4822_DELAY_US(1);    /**< Minimum Setup Time = 40ns */
 
     MCP4822_LDAC_WritePin(dac, 0);
-    #asm("nop");
-    #asm("nop");           // Minimum Pulse Width = 100ns
+    MCP4822_DELAY_US(1);    /**< Minimum Pulse Width = 100ns */
     MCP4822_LDAC_WritePin(dac, 1);
 }

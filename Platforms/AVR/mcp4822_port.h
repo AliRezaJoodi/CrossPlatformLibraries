@@ -1,3 +1,54 @@
+/**
+ * @brief   SPI usage and recommended configuration for MCP4822
+ *
+ * @note
+ * This library does NOT configure the SPI peripheral automatically.
+ * The user must initialize the SPI interface according to the requirements
+ * of the MCP4822 device.
+ *
+ * Recommended SPI settings for MCP4822:
+ *   - SPI Mode: Master
+ *   - Clock Phase (CPHA): 0 (Cycle Start)
+ *   - Clock Polarity (CPOL): 0 (Low)
+ *   - Data Order: MSB First
+ *   - SPI Clock: <= 2 MHz (example value)
+ *
+ * @warning
+ * Ensure the SPI peripheral is configured before calling any MCP4822 functions.
+ * Using incorrect SPI settings may result in incorrect DAC.
+ *
+ * @author  AliReza Joodi
+ * @see     https://github.com/AliRezaJoodi
+ */
+
+/**
+ * @example
+ * Example SPI configuration for CodeVision AVR (ATmega32A):
+ *
+ * @code
+ * void SPI_Config(void) {
+ *     // Pin directions
+ *     DDRB.5 = 1; PORTB.5 = 0;    // MOSI
+ *     DDRB.6 = 0; PORTB.6 = 0;    // MISO
+ *     DDRB.7 = 1; PORTB.7 = 0;    // SCK
+ *
+ *     // SPI initialization
+ *     // SPCR - SPI Control Register:
+ *     //   SPIE  = 0 -> SPI interrupt disabled
+ *     //   SPE   = 1 -> SPI enabled
+ *     //   DORD  = 0 -> MSB first
+ *     //   MSTR  = 1 -> Master mode
+ *     //   CPOL  = 0 -> Clock idle low
+ *     //   CPHA  = 0 -> Sample on leading edge (Cycle Start)
+ *     //   SPR1, SPR0 = 0 -> Clock rate f_osc/4
+ *     // SPSR - SPI Status Register:
+ *     //   SPI2X = 0 -> No double speed
+ *     SPCR = (0<<SPIE) | (1<<SPE) | (0<<DORD) | (1<<MSTR)
+ *          | (0<<CPOL) | (0<<CPHA) | (0<<SPR1) | (0<<SPR0);
+ *     SPSR = (0<<SPI2X);
+ * }
+ * @endcode
+ */
 
 #ifndef MCP4822_PORT_INCLUDED
 #define MCP4822_PORT_INCLUDED
