@@ -7,6 +7,9 @@
 #include "hardware.h"       /**< Project-level overrides */
 #include "mcp4822.h"
 
+#define MCP4822_ENABLE      1U
+#define MCP4822_DISABLE     0U
+
 /* DACA or DACB Select bit
 1 = Write to DACB
 0 = Write to DACA */
@@ -25,7 +28,7 @@
 #define MCP4822_GAIN    2000    // Gain = Resolution/VREF = 4096/2.048
 
 //********************************************************
-void MCP4822_Config(void){
+void MCP4822_Init(void){
     MCP4822_CS_DDR=1;   MCP4822_CS_PORT=1;
     MCP4822_LDAC_DDR=1; MCP4822_LDAC_PORT=1;
 }
@@ -48,7 +51,28 @@ void _MCP4822_WriteCommand(unsigned int data){
 }
 
 //********************************************************
-void MCP4822_SetOutput(char ch, float volt){
+void MCP4822_SetOutput(uint8_t ch, uint8_t gain, uint16_t data){
+    uint8_t msb =   ((ch & 0x01U) << 7) |
+                    ((gain & 0x01U) << 5) |
+                    (MCP4822_ENABLE << 4) |
+                    ((data >> 8) & 0x0F);
+
+    uint8_t lsb =   (uint8_t)(data & 0x00FF);
+
+    MCP4822_CS_PORT = 0;
+    MCP3208_SPI_Transfer(msb);
+    MCP3208_SPI_Transfer(lsb);
+    MCP4822_CS_PORT = 1;
+    #asm("nop");            // Minimum Setup Time = 40ns
+
+    MCP4822_LDAC_PORT = 0;
+    #asm("nop");
+    #asm("nop");           // Minimum Pulse Width = 100ns
+    MCP4822_LDAC_PORT = 1;
+}
+
+//********************************************************
+void MCP4822_SetOutput_(char ch, float volt){
     unsigned int data = 0;
 
     if(volt<=2.048){
