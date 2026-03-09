@@ -58,6 +58,30 @@ static inline uint8_t Convert_0to3V3_0to255(float voltage) {
     return (uint8_t)(voltage * 77.2727f);
 }
 
+static inline uint16_t Convert_0to4096mV_12BitDAC(float mv) {
+    uint16_t data = mv * 1.0f;
+    if (data > 4095U) {data = 4095U;}
+    return data;
+}
+
+static inline uint16_t Convert_0to4V096_12BitDAC(float voltage) {
+    uint16_t data = voltage * 1000.0f;
+    if (data > 4095U) {data = 4095U;}
+    return data;
+}
+
+static inline uint16_t Convert_0to2048mV_12BitDAC(float mv) {
+    uint16_t data = mv * 2.0f;
+    if (data > 4095U) {data = 4095U;}
+    return data;
+}
+
+static inline uint16_t Convert_0to2V048_12BitDAC(float voltage) {
+    uint16_t data = voltage * 2000.0f;
+    if (data > 4095U) {data = 4095U;}
+    return data;
+}
+
 static inline float Convert_0to4095_0to5V(uint16_t counts){
     return (float)counts * 0.0012210012f;
 }
