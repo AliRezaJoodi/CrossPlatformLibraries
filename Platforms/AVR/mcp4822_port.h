@@ -11,6 +11,8 @@ extern "C" {
 #include "compiler_port.h"
 #include "mcp4822_hw.h"
 
+#define MCP4822_DELAY_US(us) DELAY_US(us)
+
 /**
  * @brief MCP4822 GPIO pin descriptor.
  *

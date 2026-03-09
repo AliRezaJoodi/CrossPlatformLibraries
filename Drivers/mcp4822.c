@@ -32,11 +32,10 @@ void MCP4822_SetOutput(MCP4822_t *dac, uint8_t ch, uint8_t gain, uint16_t value)
     MCP3208_SPI_Transfer(msb);
     MCP3208_SPI_Transfer(lsb);
     MCP4822_CS_WritePin(dac, 1);
-    #asm("nop");            // Minimum Setup Time = 40ns
+    MCP4822_DELAY_US(1);    /**< Minimum Setup Time = 40ns */
 
     MCP4822_LDAC_WritePin(dac, 0);
-    #asm("nop");
-    #asm("nop");           // Minimum Pulse Width = 100ns
+    MCP4822_DELAY_US(1);    /**< Minimum Pulse Width = 100ns */
     MCP4822_LDAC_WritePin(dac, 1);
 }
 

@@ -13,8 +13,8 @@
 #define MCP4822_OUTPUT_A    0U
 #define MCP4822_OUTPUT_B    1U
 
-#define MCP4822_GAIN_1X     1U
-#define MCP4822_GAIN_2X     0U
+#define MCP4822_GAIN_1X     1U  /**< Vout: 0 to 2.048V */
+#define MCP4822_GAIN_2X     0U  /**< Vout: 0 to 4.096V */
 
 void MCP4822_Init(MCP4822_t *dac);
 void MCP4822_SetOutput(MCP4822_t *dac, uint8_t ch, uint8_t gain, uint16_t value);
