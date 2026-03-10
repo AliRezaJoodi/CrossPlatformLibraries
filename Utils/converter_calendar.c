@@ -28,8 +28,14 @@ void ConvertCalendar_GregorianToJalaali(date_t *gc, date_t *jc){
     k *= 2;
     t1 = table_gregorian[k][gc->month - 1];
     t2 = table_gregorian[k+1][gc->month - 1];
-    if(gc->month < 3 || (gc->month == 3 && gc->day <= table_gregorian[k][gc->month-1])){jc->year = gc->year + 78;}
-        else{jc->year = gc->year + 79;}
+
+    if(gc->month < 3 || (gc->month == 3 && gc->day <= table_gregorian[k][gc->month-1])){
+        jc->year = gc->year + 78;
+    }
+    else{
+        jc->year = gc->year + 79;
+    }
+
     jc->year = jc->year % 100;
 
     if(gc->day <= t1){
@@ -46,17 +52,24 @@ void ConvertCalendar_GregorianToJalaali(date_t *gc, date_t *jc){
 void ConvertCalendar_JalaaliToGregorian(date_t *jc, date_t *gc){
     uint8_t k, t1, t2;
 
-    jc->year += 100;
-    k = jc->year % 4;
+    k = (jc->year + 100) % 4;
 
-    if(k == 0){k = 2;}
-    else{k = k + k;}
+    if(k == 0){
+        k = 2;
+    }
+    else{
+        k = k + k;
+    }
 
     t1 = table_jalaali[k-2][jc->month - 1];
     t2 = table_jalaali[k-1][jc->month - 1];
 
-    if(jc->month < 10 || (jc->month == 10 && jc->day <= table_jalaali[k-2][jc->month-1])){gc->year = jc->year - 79;}
-        else{gc->year = jc->year - 78;}
+    if(jc->month < 10 || (jc->month == 10 && jc->day <= table_jalaali[k-2][jc->month-1])){
+        gc->year = (jc->year + 100) - 79;
+    }
+    else{
+        gc->year = (jc->year + 100) - 78;
+    }
 
     gc->year = gc->year % 100;
 
@@ -68,8 +81,6 @@ void ConvertCalendar_JalaaliToGregorian(date_t *jc, date_t *gc){
        gc->day = jc->day - t1;
        gc->month = (jc->month + 2) % 12 + 1;
     }
-
-    jc->year -= 100;
 }
 
 
