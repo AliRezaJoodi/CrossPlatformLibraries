@@ -1,4 +1,4 @@
-#include "converter_calendar.h"
+#include "calendar_converter.h"
 
 flash uint8_t table_jalaali[6][12] = {
     {11, 10, 10,  9,  9,  9,  8,  9,  9, 10, 11,  9},
@@ -19,7 +19,7 @@ flash uint8_t table_gregorian[6][12] = {
 };
 
 //***************************************************************
-void ConvertCalendar_GregorianToJalaali(date_t *gc, date_t *jc){
+void Calendar_ConvertGregorianToJalaali(date_t *gc, date_t *jc){
     uint8_t k,t1,t2;
 
     k = gc->year % 4;
@@ -49,7 +49,7 @@ void ConvertCalendar_GregorianToJalaali(date_t *gc, date_t *jc){
 }
 
 //***************************************************************
-void ConvertCalendar_JalaaliToGregorian(date_t *jc, date_t *gc){
+void Calendar_ConvertJalaaliToGregorian(date_t *jc, date_t *gc){
     uint8_t k, t1, t2;
 
     k = (jc->year + 100) % 4;
