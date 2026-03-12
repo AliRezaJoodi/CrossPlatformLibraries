@@ -84,16 +84,14 @@ static inline uint16_t ADC_Convert_10Bit2V048_mV(uint16_t counts){
 
 static inline uint16_t ADC_Convert_8Bit5V_mV(uint8_t counts) {
     return ((uint32_t)counts * 5000U) >> 8;
-    //return ((uint32_t)counts * 625U) >> 5;
-
 }
 
-static inline float Convert_0to255_0to5V(uint8_t counts) {
-    return (float)counts * 19.53125f;
-}
+//static inline float Convert_0to255_0to5V(uint8_t counts) {
+//    return (float)counts * 19.53125f;
+//}
 
-static inline float Convert_0to255_0to2V56(uint8_t counts) {
-    return (float)counts * 0.010039194f;
+static inline uint16_t ADC_Convert_8Bit2V56_mV(uint8_t counts) {
+    return (uint16_t)counts * 10U;
 }
 
 #ifdef __cplusplus
