@@ -50,13 +50,22 @@ static inline float ADC_Convert_12Bit3V3_mV(uint16_t counts){
     return (float)counts * 0.8056640625f;
 }
 
-static inline uint32_t ADC_Convert_10Bit5V_uV(uint16_t counts){
-    return ((uint32_t)counts * 19531UL) >> 2;
+//static inline uint32_t ADC_Convert_10Bit5V_uV(uint16_t counts){
+//    return ((uint32_t)counts * 19531UL) >> 2;
+//}
+
+static inline uint16_t ADC_Convert_10Bit5V_mV(uint16_t counts){
+//    return (uint16_t)(((uint32_t)counts * 1250U) >> 8);
+    return (counts << 2)
+         + (counts >> 1)
+         + (counts >> 2)
+         + (counts >> 3)
+         + (counts >> 7);
 }
 
-static inline float ADC_Convert_10Bit5V_mV(uint16_t counts){
-    return (float)counts * 4.8828125f;
-}
+//static inline float ADC_Convert_10Bit5V_mV_f32(uint16_t counts){
+//    return (float)counts * 4.8828125f;
+//}
 
 static inline uint16_t ADC_Convert_10Bit4V096_mV(uint16_t counts){
     return counts << 2;
