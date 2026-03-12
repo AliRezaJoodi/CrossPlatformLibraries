@@ -22,28 +22,56 @@ extern "C" {
 
 #include <stdint.h>
 
-static inline float Convert_0to4095_0to5V(uint16_t counts){
-    return (float)counts * 0.0012210012f;
+static inline uint32_t ADC_Convert_12Bit5V_uV(uint16_t counts){
+    return ((uint32_t)counts * 78125UL) >> 6;
 }
 
-static inline float Convert_0to4095_0to5000mV(uint16_t counts){
-    return (float)counts * 1.2210012f;
+static inline float ADC_Convert_12Bit5V_mV(uint16_t counts){
+    return (float)counts * 1.220703125f;
 }
 
-static inline float Convert_0to4095_0to3V3(uint16_t counts){
-    return (float)counts * 0.0008058608f;
+static inline uint16_t ADC_Convert_12Bit4V096_mV(uint16_t counts){
+    return counts * 1U;
 }
 
-static inline float Convert_0to4095_0to3300mV(uint16_t counts){
-    return (float)counts * 0.8058608f;
+static inline uint32_t ADC_Convert_12Bit2V048_uV(uint16_t counts){
+    return (uint32_t)counts * 500U;
 }
 
-static inline float Convert_0to1023_0to5V(uint16_t counts) {
-    return (float)counts * 0.0048875855f;
+static inline float ADC_Convert_12Bit2V048_mV(uint16_t counts){
+    return (float)counts * 0.5f;
 }
 
-static inline float Convert_0to1023_0to2V56(uint16_t counts) {
-    return (float)counts * 0.002502444f;
+static inline uint32_t ADC_Convert_12Bit3V3_uV(uint16_t counts){
+    return ((uint32_t)counts * 825000UL) >> 10;
+}
+
+static inline float ADC_Convert_12Bit3V3_mV(uint16_t counts){
+    return (float)counts * 0.8056640625f;
+}
+
+static inline uint32_t ADC_Convert_10Bit5V_uV(uint16_t counts){
+    return ((uint32_t)counts * 19531UL) >> 2;
+}
+
+static inline float ADC_Convert_10Bit5V_mV(uint16_t counts){
+    return (float)counts * 4.8828125f;
+}
+
+static inline uint16_t ADC_Convert_10Bit4V096_mV(uint16_t counts){
+    return counts << 2;
+}
+
+static inline uint32_t ADC_Convert_10Bit2V56_uV(uint16_t counts){
+    return ((uint32_t)counts * 2500UL);
+}
+
+static inline float ADC_Convert_10Bit2V56_mV(uint16_t counts){
+    return (float)counts * 2.5f;
+}
+
+static inline uint16_t ADC_Convert_10Bit2V048_mV(uint16_t counts){
+    return counts << 1;
 }
 
 static inline float Convert_0to255_0to5V(uint8_t counts) {
