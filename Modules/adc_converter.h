@@ -5,8 +5,8 @@
  * @see     https://github.com/AliRezaJoodi
  */
 
-#ifndef CONVERTER_SCALE_INCLUDED
-#define CONVERTER_SCALE_INCLUDED
+#ifndef ADC_CONVERTER_INCLUDED
+#define ADC_CONVERTER_INCLUDED
 
 #ifdef __cplusplus
 extern "C" {
