@@ -1,14 +1,6 @@
 /*
  * @brief Linear scale conversion utilities for analog values.
  *
- * @warning
- * These functions use floating-point operations (float).
- * On MCUs without a hardware FPU (e.g., most 8-bit AVR devices),
- * floating-point arithmetic is implemented in software and may:
- *  - Consume significantly more CPU cycles
- *  - Increase flash memory usage
- *  - Increase temporary stack usage
- *
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
  */
