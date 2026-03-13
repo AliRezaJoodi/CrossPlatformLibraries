@@ -22,20 +22,20 @@ extern "C" {
 
 #include <stdint.h>
 
-static inline uint32_t ADC_Convert_12Bit5V_uV(uint16_t counts){
-    return ((uint32_t)counts * 78125UL) >> 6;
+static inline uint16_t ADC_Convert_12Bit5V_mV(uint16_t counts){
+    return ((uint32_t)counts * 5000UL) >> 12;
 }
 
-static inline float ADC_Convert_12Bit5V_mV(uint16_t counts){
-    return (float)counts * 1.220703125f;
-}
+//static inline float ADC_Convert_12Bit5V_mV(uint16_t counts){
+//    return (float)counts * 1.220703125f;
+//}
 
 static inline uint16_t ADC_Convert_12Bit4V096_mV(uint16_t counts){
     return counts * 1U;
 }
 
 static inline uint32_t ADC_Convert_12Bit2V048_uV(uint16_t counts){
-    return (uint32_t)counts * 500U;
+    return (uint32_t)counts * 500UL;
 }
 
 static inline float ADC_Convert_12Bit2V048_mV(uint16_t counts){
