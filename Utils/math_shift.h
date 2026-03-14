@@ -34,8 +34,6 @@ extern "C" {
 #define DIV_2(x)       ((x) >> 1)
 #define DIV_4(x)       ((x) >> 2)
 #define DIV_8(x)       ((x) >> 3)
-//#define DIV_10_8U(x)  (((uint16_t)(x) * 0x199AU) >> 12)
-//#define DIV_10_16U(x)  (((uint32_t)(x) * 0x1999999AU) >> 32)
 #define DIV_16(x)      ((x) >> 4)
 #define DIV_32(x)      ((x) >> 5)
 #define DIV_64(x)      ((x) >> 6)
