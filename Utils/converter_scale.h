@@ -34,6 +34,17 @@ static inline float Convert_0to100_0to3V3(float value) {
     return value * 0.033f;
 }
 
+static inline uint16_t DAC_Convert_10Bit_100(float value) {
+    uint16_t data = value * 10.24f;
+    if (data > 1023U) {data = 1023U;}
+    return data;
+}
+
+static inline uint8_t DAC_Convert_8Bit_100(float value) {
+    uint8_t data = value * 2.56f;
+    return data;
+}
+
 #ifdef __cplusplus
 }
 #endif
