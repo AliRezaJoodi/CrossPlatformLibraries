@@ -27,6 +27,7 @@ extern "C" {
 
 #include <stdint.h>
 #include "utility_bit.h"
+#include "button_config.h"
 #include "button_port.h"
 
 /**

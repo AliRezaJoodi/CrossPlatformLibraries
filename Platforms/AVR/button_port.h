@@ -85,15 +85,6 @@ typedef struct{
 
 /**
  * @example
- * Example: defining pin macros
- *
- * @code
- * #define BUTTON1_DDR   DDRB
- * #define BUTTON1_PIN   PINB
- * #define BUTTON1_PORT  PORTB
- * #define BUTTON1_BIT   0
- * @endcode
- *
  * Example: initializing a structure
  *
  * @code
