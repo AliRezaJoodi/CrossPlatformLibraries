@@ -72,7 +72,7 @@ extern "C" {
 typedef struct {
     volatile uint8_t *ddr;
     volatile uint8_t *port;
-    uint8_t           index;
+    const uint8_t    index;
 } MCP4822_Pin_t;
 
 /**
@@ -81,8 +81,8 @@ typedef struct {
  * @see Example section below.
  */
 typedef struct {
-    MCP4822_Pin_t cs;
-    MCP4822_Pin_t ldac;
+    const MCP4822_Pin_t cs;
+    const MCP4822_Pin_t ldac;
 } MCP4822_t;
 
 /**
