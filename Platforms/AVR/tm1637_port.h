@@ -21,7 +21,7 @@ typedef struct {
     volatile uint8_t *ddr;
     volatile uint8_t *port;
     volatile uint8_t *pin;
-    uint8_t           index;
+    const uint8_t           index;
 } TM1637_Pin_t;
 
 /**
@@ -33,8 +33,8 @@ typedef struct {
  * @see Example section below.
  */
 typedef struct {
-    TM1637_Pin_t clk;
-    TM1637_Pin_t dio;
+    const TM1637_Pin_t clk;
+    const TM1637_Pin_t dio;
 } TM1637_t;
 
 /**
