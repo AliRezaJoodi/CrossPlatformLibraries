@@ -24,9 +24,18 @@ extern "C" {
 
 #include <stdint.h>
 #include "compiler_port.h"
-#include "button_config.h"
+#include "button_hw.h"
 
-#define BUTTON_DELAY_US(VALUE)          DELAY_US(VALUE)
+/** @brief Defines whether a pressed button reads as logic low or high. */
+#define BUTTON_ACTIVE_LOW   0U
+#define BUTTON_ACTIVE_HIGH  1U
+
+/** @brief Configures the pull resistor mode for a button pin. */
+#define BUTTON_MODE_FLOATING        (0U << 1)    /**< No pull resistor */
+#define BUTTON_MODE_PULLUP          (1U << 1)    /**< Internal pull-up enabled */
+#define BUTTON_MODE_PULLDOWN        (2U << 1)    /**< Internal pull-down enabled */
+
+#define BUTTON_DELAY_US(VALUE)      DELAY_US(VALUE)
 
 /**
  * @brief Hardware configuration for a button.
