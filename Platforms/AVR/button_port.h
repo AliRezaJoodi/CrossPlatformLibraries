@@ -35,39 +35,52 @@ extern "C" {
  * for a button. It is used inside the Button_t structure.
  */
 typedef struct {
-    volatile uint8_t *ddr;      /**< Data Direction Register */
-    volatile uint8_t *port;     /**< Port register */
-    volatile uint8_t *pin;      /**< Pin register */
-    uint8_t           index;    /**< Pin index number */
+    volatile uint8_t    *ddr;      /**< Data Direction Register */
+    volatile uint8_t    *port;     /**< Port register */
+    volatile uint8_t    *pin;      /**< Pin register */
+    const uint8_t       index;    /**< Pin index number */
 } Button_Pin_t;
 
+/**
+ * @brief Configuration for a button.
+ *
+ * This struct defines the static configuration of a button.
+ * It specifies the **active logic level** and the **internal pull resistor setup**.
+ * These values are constant and set at initialization.
+ */
 typedef struct {
-    const uint8_t pressed;
-    const uint8_t pull;
+    const uint8_t   pressed;  /**< Active level of the button */
+    const uint8_t   pull;     /**< Pull configuration for the button pin */
 } Button_Config_t;
 
 /**
  * @brief Button object structure.
  *
- * This structure contains the hardware configuration (hw),
- * configuration flags, current stable state, and internal
- * counter for timing and debounce.
+ * This structure represents a button and contains all necessary
+ * information for handling its state and configuration.
  *
- * The 'config' field uses bits to set the active level and input mode:
- *      - bit 0: active level
- *      - bits 1-2: input mode
- * See "button_config.h" for enum definitions.
+ * Members:
+ *   btn     : Pin mapping and hardware references for the button.
+ *             Contains DDR, PORT, PIN registers and pin index.
+ *             This is constant and set at initialization.
+ *   config  : Static configuration of the button.
+ *             Specifies the active logic level and pull resistor setup.
+ *             - pressed : defines when the button is considered pressed
+ *                 - BUTTON_ACTIVE_LOW  : pressed when pin is LOW
+ *                 - BUTTON_ACTIVE_HIGH : pressed when pin is HIGH
+ *             - pull    : internal resistor configuration
+ *                 - BUTTON_MODE_FLOATING : no internal resistor
+ *                 - BUTTON_MODE_PULLUP   : enable internal pull-up resistor
+ *                 - BUTTON_MODE_PULLDOWN : enable internal pull-down resistor
  *
- * @see Example section below.
+ *   state   : Current stable state of the button (updated by debounce logic).
+ *   counter : Internal counter used for timing and debouncing.
  */
 typedef struct{
-    Button_Pin_t     btn;         /**< Hardware configuration */
-    Button_Config_t  config;
-//    const uint8_t   level;
-//    const uint8_t   mode;
-//    uint8_t         config;     /**< Button configuration flags */
-    uint8_t         state;      /**< Current stable state */
-    uint16_t        counter;    /**< Internal timing counter */
+    const Button_Pin_t      btn;      /**< Pin mapping and hardware references */
+    const Button_Config_t   config;   /**< Static configuration (active level & pull) */
+    uint8_t                 state;    /**< Current stable state */
+    uint16_t                counter;  /**< Internal timing counter for debounce */
 } Button_t;
 
 /**
@@ -84,14 +97,20 @@ typedef struct{
  * Example: initializing a structure
  *
  * @code
- * Button_t buttonIncr;
- * buttonIncr.hw.ddr   = &BUTTON1_DDR;
- * buttonIncr.hw.port  = &BUTTON1_PORT;
- * buttonIncr.hw.pin   = &BUTTON1_PIN;
- * buttonIncr.hw.index = BUTTON1_BIT;
- * buttonIncr.config   = BUTTON_MODE_FLOATING | BUTTON_ACTIVE_LOW;
- * buttonIncr.state    = 0;
- * buttonIncr.counter  = 0;
+ *    Button_t buttonIncr = {
+ *        .btn = {
+ *            .ddr   = &BUTTON1_DDR,
+ *            .port  = &BUTTON1_PORT,
+ *            .pin   = &BUTTON1_PIN,
+ *            .index = BUTTON1_BIT
+ *        },
+ *        .config = {
+ *            .pressed = BUTTON_ACTIVE_LOW,
+ *            .pull     = BUTTON_MODE_FLOATING
+ *        },
+ *        .state   = 0,
+ *        .counter = 0
+ *    };
  * @endcode
  */
 
@@ -113,7 +132,6 @@ typedef struct{
 static inline void Button_ConfigPin(Button_t *btn){
     CLEAR_BIT(*btn->btn.ddr, btn->btn.index);
 
-//    switch( Button_GetPullStatus(btn) ) {
     switch(btn->config.pull) {
         case BUTTON_MODE_FLOATING:
             CLEAR_BIT(*btn->btn.port, btn->btn.index);

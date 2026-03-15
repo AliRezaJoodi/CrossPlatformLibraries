@@ -17,32 +17,14 @@
 extern "C" {
 #endif
 
-/**
- * @brief Button active level.
- *
- * Defines whether a pressed button reads as logic low or high.
- */
-typedef enum {
-    BUTTON_ACTIVE_LOW   = 0U,
-    BUTTON_ACTIVE_HIGH  = 1U
-} ButtonActiveLevel_t;
+/** @brief Defines whether a pressed button reads as logic low or high. */
+#define BUTTON_ACTIVE_LOW   0U
+#define BUTTON_ACTIVE_HIGH  1U
 
-/**
- * @brief Button input mode.
- *
- * Configures the pull resistor mode for a button pin.
- */
-typedef enum {
-    BUTTON_MODE_FLOATING   = 0U << 1,   /**< No pull resistor */
-    BUTTON_MODE_PULLUP     = 1U << 1,   /**< Internal pull-up enabled */
-    BUTTON_MODE_PULLDOWN   = 2U << 1    /**< Internal pull-down enabled */
-} ButtonInputMode_t;
-
-/** @brief Get active level from button config (bit 0). */
-//#define Button_GetActiveStatus(btn)     ((btn)->config & 0x01)
-
-/** @brief Get input mode from button config (bits 1-2). */
-//#define Button_GetPullStatus(btn)       (((btn)->config >> 1) & 0x03)
+/** @brief Configures the pull resistor mode for a button pin. */
+#define BUTTON_MODE_FLOATING   (0U << 1)    /**< No pull resistor */
+#define BUTTON_MODE_PULLUP     (1U << 1)    /**< Internal pull-up enabled */
+#define BUTTON_MODE_PULLDOWN   (2U << 1)    /**< Internal pull-down enabled */
 
 /** @brief Default configuration (can be overridden). */
 #ifndef BUTTON_CONFIG
@@ -51,7 +33,7 @@ typedef enum {
     #define BUTTON_AUTO_REPEAT_LAG      500U        /**< Auto Repeat Lag, Value: 0~65535 */
     #define BUTTON_LONG_PRESS_LAG       10000U      /**< Long Press Lag, Value: 0~65535 */
 
-    #warning "BUTTON_HARDWARE is not defined; default configuration will be used."
+    #warning "BUTTON_CONFIG is not defined; default configuration will be used."
 #endif
 
 #ifdef __cplusplus
