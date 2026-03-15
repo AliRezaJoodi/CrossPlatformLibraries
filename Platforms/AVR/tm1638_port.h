@@ -20,7 +20,7 @@ extern "C" {
 typedef struct {
     volatile uint8_t *ddr;
     volatile uint8_t *port;
-    const uint8_t           index;
+    const uint8_t    index;
 } TM1638_Pin_t;
 
 /**
