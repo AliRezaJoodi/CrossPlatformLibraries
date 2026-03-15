@@ -20,7 +20,7 @@ extern "C" {
 typedef struct {
     volatile uint8_t *ddr;
     volatile uint8_t *port;
-    uint8_t           index;
+    const uint8_t           index;
 } TM1638_Pin_t;
 
 /**
@@ -32,7 +32,7 @@ typedef struct {
  * @see Example section below.
  */
 typedef struct {
-    TM1638_Pin_t stb;
+    const TM1638_Pin_t stb;
 } TM1638_t;
 
 /**
