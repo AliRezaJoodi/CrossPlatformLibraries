@@ -16,6 +16,15 @@
 extern "C" {
 #endif
 
+/** @brief Defines whether a pressed button reads as logic low or high. */
+#define BUTTON_ACTIVE_LOW   0U
+#define BUTTON_ACTIVE_HIGH  1U
+
+/** @brief Configures the pull resistor mode for a button pin. */
+#define BUTTON_MODE_FLOATING        (0U << 1)    /**< No pull resistor */
+#define BUTTON_MODE_PULLUP          (1U << 1)    /**< Internal pull-up enabled */
+#define BUTTON_MODE_PULLDOWN        (2U << 1)    /**< Internal pull-down enabled */
+
 #include <stdint.h>
 #include "utility_bit.h"
 #include "button_port.h"
