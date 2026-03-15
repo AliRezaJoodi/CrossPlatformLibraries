@@ -39,10 +39,10 @@ typedef enum {
 } ButtonInputMode_t;
 
 /** @brief Get active level from button config (bit 0). */
-#define Button_GetActiveStatus(btn)     ((btn)->config & 0x01)
+//#define Button_GetActiveStatus(btn)     ((btn)->config & 0x01)
 
 /** @brief Get input mode from button config (bits 1-2). */
-#define Button_GetPullStatus(btn)       (((btn)->config >> 1) & 0x03)
+//#define Button_GetPullStatus(btn)       (((btn)->config >> 1) & 0x03)
 
 /** @brief Default configuration (can be overridden). */
 #ifndef BUTTON_CONFIG

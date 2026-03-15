@@ -39,7 +39,12 @@ typedef struct {
     volatile uint8_t *port;     /**< Port register */
     volatile uint8_t *pin;      /**< Pin register */
     uint8_t           index;    /**< Pin index number */
-} Button_HW_t;
+} Button_Pin_t;
+
+typedef struct {
+    const uint8_t pressed;
+    const uint8_t pull;
+} Button_Config_t;
 
 /**
  * @brief Button object structure.
@@ -56,8 +61,11 @@ typedef struct {
  * @see Example section below.
  */
 typedef struct{
-    Button_HW_t     hw;         /**< Hardware configuration */
-    uint8_t         config;     /**< Button configuration flags */
+    Button_Pin_t     btn;         /**< Hardware configuration */
+    Button_Config_t  config;
+//    const uint8_t   level;
+//    const uint8_t   mode;
+//    uint8_t         config;     /**< Button configuration flags */
     uint8_t         state;      /**< Current stable state */
     uint16_t        counter;    /**< Internal timing counter */
 } Button_t;
@@ -103,17 +111,18 @@ typedef struct{
  * @param btn Pointer to Button_t object.
  */
 static inline void Button_ConfigPin(Button_t *btn){
-    CLEAR_BIT(*btn->hw.ddr, btn->hw.index);
+    CLEAR_BIT(*btn->btn.ddr, btn->btn.index);
 
-    switch( Button_GetPullStatus(btn) ) {
+//    switch( Button_GetPullStatus(btn) ) {
+    switch(btn->config.pull) {
         case BUTTON_MODE_FLOATING:
-            CLEAR_BIT(*btn->hw.port, btn->hw.index);
+            CLEAR_BIT(*btn->btn.port, btn->btn.index);
             break;
         case BUTTON_MODE_PULLUP:
-            SET_BIT(*btn->hw.port, btn->hw.index);
+            SET_BIT(*btn->btn.port, btn->btn.index);
             break;
         default:
-            CLEAR_BIT(*btn->hw.port, btn->hw.index);
+            CLEAR_BIT(*btn->btn.port, btn->btn.index);
     }
 }
 
@@ -124,7 +133,7 @@ static inline void Button_ConfigPin(Button_t *btn){
  * @return 0 if logic low, 1 if logic high.
  */
 static inline uint8_t Button_GetPin(Button_t *btn){
-    return GET_BIT(*btn->hw.pin, btn->hw.index);
+    return GET_BIT(*btn->btn.pin, btn->btn.index);
 }
 
 #ifdef __cplusplus

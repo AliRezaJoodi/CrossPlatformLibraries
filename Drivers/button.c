@@ -13,10 +13,12 @@ void Button_Config(Button_t *btn){
 
 //*************************************************
 uint8_t Button_GetSingleClick(Button_t *btn){
-    if ( Button_GetPin(btn) == Button_GetActiveStatus(btn) ){
+//    if ( Button_GetPin(btn) == Button_GetActiveStatus(btn) ){
+    if ( Button_GetPin(btn) == btn->config.pressed ){
         if(btn->state == 0){
             BUTTON_DELAY_US(BUTTON_SINGLE_CLICK_LAG);
-            if ( Button_GetPin(btn) == Button_GetActiveStatus(btn) ){
+            //if ( Button_GetPin(btn) == Button_GetActiveStatus(btn) ){
+            if ( Button_GetPin(btn) == btn->config.pressed ){
                 btn->state = 1;
                 return 1;
             }
@@ -25,7 +27,7 @@ uint8_t Button_GetSingleClick(Button_t *btn){
     else{
         if(btn->state == 1){
             BUTTON_DELAY_US(BUTTON_SINGLE_CLICK_LAG);
-            if ( Button_GetPin(btn) != Button_GetActiveStatus(btn) ){
+            if ( Button_GetPin(btn) != btn->config.pressed ){
                 btn->state = 0;
             }
         }
@@ -36,7 +38,7 @@ uint8_t Button_GetSingleClick(Button_t *btn){
 
 //*************************************************
 uint8_t Button_GetAutoRepeat_NonBlocking(Button_t *btn){
-    if (Button_GetPin(btn) == Button_GetActiveStatus(btn)){
+    if (Button_GetPin(btn) == btn->config.pressed){
         btn->counter++;
 
         if (btn->counter >= BUTTON_AUTO_REPEAT_LAG){
@@ -53,7 +55,7 @@ uint8_t Button_GetAutoRepeat_NonBlocking(Button_t *btn){
 
 //*************************************************
 uint8_t Button_GetLongPress_NonBlocking(Button_t *btn){
-    if (Button_GetPin(btn) == Button_GetActiveStatus(btn)){
+    if (Button_GetPin(btn) == btn->config.pressed){
         if (btn->counter < BUTTON_LONG_PRESS_LAG)
             btn->counter++;
 
