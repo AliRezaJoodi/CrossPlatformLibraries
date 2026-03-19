@@ -42,16 +42,20 @@ typedef struct {
  * Example: initializing a structure
  *
  * @code
- * TM1637_t tm1;
- * tm1.clk.ddr     = &TM1637_CLK_DDR;
- * tm1.clk.port    = &TM1637_CLK_PORT;
- * tm1.clk.pin     = &TM1637_CLK_PIN;
- * tm1.clk.index   =  TM1637_CLK_BIT;
-
- * tm1.dio.ddr     = &TM1637_DIO_DDR;
- * tm1.dio.port    = &TM1637_DIO_PORT;
- * tm1.dio.pin     = &TM1637_DIO_PIN;
- * tm1.dio.index   =  TM1637_DIO_BIT;
+ *    TM1637_t tm1 = {
+ *        .clk = {
+ *            .ddr   = &TM1637_CLK_DDR,
+ *            .port  = &TM1637_CLK_PORT,
+ *            .pin   = &TM1637_CLK_PIN,
+ *            .index =  TM1637_CLK_BIT
+ *        },
+ *        .dio = {
+ *            .ddr   = &TM1637_DIO_DDR,
+ *            .port  = &TM1637_DIO_PORT,
+ *            .pin   = &TM1637_DIO_PIN,
+ *            .index =  TM1637_DIO_BIT
+ *        }
+ *    };
  * @endcode
  */
 
