@@ -10,10 +10,10 @@ CtrlCmd_t Controller_OnOff(uint16_t pv, uint16_t sp, uint16_t hysteresis){
         return CTRL_ONOFF_ERROR;
     }
 
-    if(pv < (sp - half)){
+    if(pv <= (sp - half)){
         return CTRL_ONOFF_LOW;
     }
-    else if(pv > (sp + half)){
+    else if(pv >= (sp + half)){
         return CTRL_ONOFF_HIGH;
     }
 
