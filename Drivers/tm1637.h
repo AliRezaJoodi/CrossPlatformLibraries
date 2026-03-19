@@ -152,7 +152,7 @@ static inline void TM1637_Write2Digits_G1G2(TM1637_t *tm, uint8_t segments[]){
 }
 
 /**
- * @brief Write 3 digits (GRID1–GRID3)
+ * @brief Write 3 digits (GRID1 to GRID3)
  *
  * @param tm TM1637 handle
  * @param segments Array of 3 segment bytes
@@ -162,7 +162,7 @@ static inline void TM1637_Write3Digits_G1G3(TM1637_t *tm, uint8_t segments[]){
 }
 
 /**
- * @brief Write 3 digits (GRID4–GRID6)
+ * @brief Write 3 digits (GRID4 to GRID6)
  *
  * @param tm TM1637 handle
  * @param segments Array of 3 segment bytes
@@ -172,7 +172,7 @@ static inline void TM1637_Write3Digits_G4G6(TM1637_t *tm, uint8_t segments[]){
 }
 
 /**
- * @brief Write 4 digits (GRID1–GRID4)
+ * @brief Write 4 digits (GRID1 to GRID4)
  *
  * @param tm TM1637 handle
  * @param segments Array of 4 segment bytes
@@ -182,7 +182,7 @@ static inline void TM1637_Write4Digits_G1G4(TM1637_t *tm, uint8_t segments[]){
 }
 
 /**
- * @brief Write 6 digits (GRID1–GRID6)
+ * @brief Write 6 digits (GRID1 to GRID6)
  *
  * @param tm TM1637 handle
  * @param segments Array of 6 segment bytes
