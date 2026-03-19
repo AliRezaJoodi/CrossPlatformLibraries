@@ -3,17 +3,19 @@
 #include "controller_onoff.h"
 
 //******************************************
-uint8_t Controller_OnOff(uint16_t pv, uint16_t sp, uint16_t hys){
-    if(sp < hys){
-        return 3;   // error
+CtrlCmd_t Controller_OnOff(uint16_t pv, uint16_t sp, uint16_t hysteresis){
+    uint16_t half = hysteresis >> 1;
+
+    if(sp < half){
+        return CTRL_ONOFF_ERROR;
     }
 
-    if(pv < (sp - hys)){
-        return 1;
+    if(pv < (sp - half)){
+        return CTRL_ONOFF_LOW;
     }
-    else if(pv > (sp + hys)){
-        return 2;
+    else if(pv > (sp + half)){
+        return CTRL_ONOFF_HIGH;
     }
 
-    return 0;
+    return CTRL_ONOFF_NONE;
 }
