@@ -15,7 +15,7 @@ void MCP4822_Init(MCP4822_t *dac){
 }
 
 //********************************************************
-void MCP4822_SetOutput(MCP4822_t *dac, uint8_t ch, uint8_t gain, uint16_t value){
+void MCP4822_SetOutput(MCP4822_t *dac, MCP4822_Channel_t ch, MCP4822_Gain_t gain, uint16_t value){
     uint8_t msb =   ((ch & 0x01U) << 7)     |
                     ((gain & 0x01U) << 5)   |
                     (MCP4822_ENABLE << 4)   |
@@ -35,7 +35,7 @@ void MCP4822_SetOutput(MCP4822_t *dac, uint8_t ch, uint8_t gain, uint16_t value)
 }
 
 //********************************************************
-void MCP4822_DisableOutput(MCP4822_t *dac, uint8_t ch){
+void MCP4822_DisableOutput(MCP4822_t *dac, MCP4822_Channel_t ch){
     uint8_t msb =   ((ch & 0x01U) << 7)     |
                     (MCP4822_DISABLE << 4);
 

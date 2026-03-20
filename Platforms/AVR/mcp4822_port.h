@@ -1,18 +1,6 @@
 /**
  * @brief   SPI usage and recommended configuration for MCP4822
  *
- * @note
- * This library does NOT configure the SPI peripheral automatically.
- * The user must initialize the SPI interface according to the requirements
- * of the MCP4822 device.
- *
- * Recommended SPI settings for MCP4822:
- *   - SPI Mode: Master
- *   - Clock Phase (CPHA): 0 (Cycle Start)
- *   - Clock Polarity (CPOL): 0 (Low)
- *   - Data Order: MSB First
- *   - SPI Clock: <= 2 MHz (example value)
- *
  * @warning
  * Ensure the SPI peripheral is configured before calling any MCP4822 functions.
  * Using incorrect SPI settings may result in incorrect DAC.
@@ -65,9 +53,10 @@ extern "C" {
 #define MCP4822_DELAY_US(us) DELAY_US(us)
 
 /**
- * @brief MCP4822 GPIO pin descriptor.
+ * @brief   MCP4822 GPIO pin descriptor
  *
- * This structure describes a GPIO pin used by the MCP4822 driver.
+ * Describes a GPIO pin used by the MCP4822 driver.
+ * Contains registers and bit index for pin control.
  */
 typedef struct {
     volatile uint8_t *ddr;
@@ -76,9 +65,12 @@ typedef struct {
 } MCP4822_Pin_t;
 
 /**
- * @brief MCP4822 device handle.
+ * @brief   MCP4822 device handle
  *
- * @see Example section below.
+ * Represents a single MCP4822 device with its control pins.
+ * Contains CS and LDAC pin descriptors.
+ *
+ * @see Example section above
  */
 typedef struct {
     const MCP4822_Pin_t cs;
@@ -90,44 +82,73 @@ typedef struct {
  * Example: initializing a structure
  *
  * @code
- * MCP4822_t dac1;
- *
- * dac1.cs.ddr     = &MCP4822_CS_DDR;
- * dac1.cs.port    = &MCP4822_CS_PORT;
- * dac1.cs.index   =  MCP4822_CS_BIT;
- * dac1.ldac.ddr   = &MCP4822_LDAC_DDR;
- * dac1.ldac.port  = &MCP4822_LDAC_PORT;
- * dac1.ldac.index =  MCP4822_LDAC_BIT;
+ *    MCP4822_t dac1 = {
+ *        .cs = {
+ *            .ddr   = &MCP4822_CS_DDR,
+ *            .port  = &MCP4822_CS_PORT,
+ *            .index =  MCP4822_CS_BIT
+ *        },
+ *        .ldac = {
+ *            .ddr   = &MCP4822_LDAC_DDR,
+ *            .port  = &MCP4822_LDAC_PORT,
+ *            .index =  MCP4822_LDAC_BIT
+ *        }
+ *    };
  * @endcode
  */
 
-/***************************************/
+/**
+ * @brief   Initialize MCP4822 CS pin
+ * Sets the CS pin as output and drives it to idle (high) state.
+ *
+ * @param[in] mcp   Pointer to MCP4822 device handle
+ */
 static inline void MCP4822_CS_InitPin(MCP4822_t *mcp){
     SET_BIT(*(mcp->cs.ddr), mcp->cs.index);
     SET_BIT(*(mcp->cs.port), mcp->cs.index);  // Idle bus
 }
 
-/***************************************/
+/**
+ * @brief   Write value to MCP4822 CS pin
+ * Sets the CS pin high or low.
+ *
+ * @param[in] mcp     Pointer to MCP4822 device handle
+ * @param[in] status  Pin state (0 = low, 1 = high)
+ */
 static inline void MCP4822_CS_WritePin(MCP4822_t *mcp, uint8_t status){
     WRITE_BIT( *(mcp->cs.port), mcp->cs.index, status );
 }
 
-/***************************************/
+/**
+ * @brief   Initialize MCP4822 LDAC pin
+ * Sets the LDAC pin as output and drives it to idle (high) state.
+ *
+ * @param[in] mcp   Pointer to MCP4822 device handle
+ */
 static inline void MCP4822_LDAC_InitPin(MCP4822_t *mcp){
     SET_BIT(*(mcp->ldac.ddr), mcp->ldac.index);
     SET_BIT(*(mcp->ldac.port), mcp->ldac.index);  // Idle bus
 }
 
-/***************************************/
+/**
+ * @brief   Write value to MCP4822 LDAC pin
+ * Sets the LDAC pin high or low.
+ *
+ * @param[in] mcp     Pointer to MCP4822 device handle
+ * @param[in] status  Pin state (0 = low, 1 = high)
+ */
 static inline void MCP4822_LDAC_WritePin(MCP4822_t *mcp, uint8_t status){
     WRITE_BIT( *(mcp->ldac.port), mcp->ldac.index, status );
 }
 
 /**
- * @brief   Send a byte via SPI for MCP4822
+ * @brief   Send a single byte via SPI
  *
- * @param   data    Byte to transmit
- * @return  error
+ * Transmits a byte to the MCP4822 over SPI and waits for completion.
+ * Returns 0 on success or 1 if timeout occurs.
+ *
+ * @param[in] data   Byte to transmit
+ * @return          0 on success, 1 on timeout/error
  *
  * @note    The SPI peripheral must be configured and enabled
  *          before calling this function.
