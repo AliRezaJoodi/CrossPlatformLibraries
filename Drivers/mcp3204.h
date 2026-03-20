@@ -44,7 +44,7 @@ typedef enum {
     MCP3204_CH1CH0      = 5U,   /**< CH1(IN+), CH0(IN-)*/
     MCP3204_CH2CH3      = 6U,   /**< CH2(IN+), CH3(IN-)*/
     MCP3204_CH3CH2      = 7U    /**< CH3(IN+), CH2(IN-)*/
-} MCP3204Channels_t;
+} MCP3204_Channel_t;
 
 /**
  * @brief   Initialize the MCP3204 instance
@@ -63,9 +63,10 @@ void MCP3204_Init(MCP3204_t *mcp);
  * from the MCP3204 device.
  *
  * @param   mcp   Pointer to a valid MCP3204_t instance
+ * @param   ch    Input channel selection (single-ended or differential)
  * @return  12-bit ADC value as uint16_t (0 to 4095)
  */
-uint16_t MCP3204_GetCounts(MCP3204_t *mcp, uint8_t ch);
+uint16_t MCP3204_GetCounts(MCP3204_t *mcp, MCP3204_Channel_t ch);
 
 #ifdef __cplusplus
 }

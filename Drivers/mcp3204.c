@@ -10,7 +10,7 @@ void MCP3204_Init(MCP3204_t *mcp){
 }
 
 /********************************************************/
-uint16_t MCP3204_GetCounts(MCP3204_t *mcp, uint8_t ch){
+uint16_t MCP3204_GetCounts(MCP3204_t *mcp, MCP3204_Channel_t ch){
     uint8_t data1 = 0x00U;
     uint8_t data2 = 0x00U;
 
