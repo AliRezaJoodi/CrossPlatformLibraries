@@ -17,7 +17,6 @@
  *
  * @warning
  * Incorrect SPI configuration may lead to invalid ADC readings.
- */
  *
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
@@ -41,7 +40,7 @@ typedef enum {
     MCP3202_CH1         = 1U,   /**< CH1(IN+), GND(IN-)*/
     MCP3202_CH0CH1      = 2U,   /**< CH0(IN+), CH1(IN-)*/
     MCP3202_CH1CH0      = 3U    /**< CH1(IN+), CH0(IN-)*/
-} MCP3202Channels_t;
+} MCP3202_Channel_t;
 
 /**
  * @brief   Initialize the MCP3202 instance
@@ -60,9 +59,10 @@ void MCP3202_Init(MCP3202_t *mcp);
  * from the MCP3202 device.
  *
  * @param   mcp   Pointer to a valid MCP3202_t instance
+ * @param   ch    Input channel selection (single-ended or differential)
  * @return  12-bit ADC value as uint16_t (0 to 4095)
  */
-uint16_t MCP3202_GetCounts(MCP3202_t *mcp, uint8_t ch);
+uint16_t MCP3202_GetCounts(MCP3202_t *mcp, MCP3202_Channel_t ch);
 
 #ifdef __cplusplus
 }
