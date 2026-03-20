@@ -52,7 +52,7 @@ typedef enum {
     MCP3208_CH5CH4      = 13U,  /**< CH5(IN+), CH4(IN-)*/
     MCP3208_CH6CH7      = 14U,  /**< CH6(IN+), CH7(IN-)*/
     MCP3208_CH7CH6      = 15U   /**< CH7(IN+), CH6(IN-)*/
-} MCP3208Channels_t;
+} MCP3208_Channel_t;
 
 /**
  * @brief   Initialize the MCP3208 instance
@@ -70,10 +70,11 @@ void MCP3208_Init(MCP3208_t *mcp);
  * This function performs an SPI transaction to read the 12-bit ADC value
  * from the MCP3208 device.
  *
- * @param   mcp   Pointer to a valid MCP3208_t instance
+ * @param   mcp   Pointer to a valid and initialized MCP3208_t instance
+ * @param   ch    Input channel selection (single-ended or differential)
  * @return  12-bit ADC value as uint16_t (0 to 4095)
  */
-uint16_t MCP3208_GetCounts(MCP3208_t *mcp, uint8_t ch);
+uint16_t MCP3208_GetCounts(MCP3208_t *mcp, MCP3208_Channel_t ch);
 
 #ifdef __cplusplus
 }

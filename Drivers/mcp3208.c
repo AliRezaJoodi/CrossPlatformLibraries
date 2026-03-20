@@ -10,7 +10,7 @@ void MCP3208_Init(MCP3208_t *mcp){
 }
 
 /********************************************************/
-uint16_t MCP3208_GetCounts(MCP3208_t *mcp, uint8_t ch){
+uint16_t MCP3208_GetCounts(MCP3208_t *mcp, MCP3208_Channel_t ch){
     uint8_t data1 = 0x00U;
     uint8_t data2 = 0x00U;
 
