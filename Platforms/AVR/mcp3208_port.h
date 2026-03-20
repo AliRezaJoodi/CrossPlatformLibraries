@@ -1,18 +1,6 @@
 /**
  * @brief   SPI usage and recommended configuration for MCP3208
  *
- * @note
- * This library does NOT configure the SPI peripheral automatically.
- * The user must initialize the SPI interface according to the requirements
- * of the MCP3208 device.
- *
- * Recommended SPI settings for MCP3208:
- *   - SPI Mode: Master
- *   - Clock Phase (CPHA): 0 (Cycle Start)
- *   - Clock Polarity (CPOL): 0 (Low)
- *   - Data Order: MSB First
- *   - SPI Clock: <= 2 MHz (example value)
- *
  * @warning
  * Ensure the SPI peripheral is configured before calling any MCP3208 functions.
  * Using incorrect SPI settings may result in incorrect ADC readings.
