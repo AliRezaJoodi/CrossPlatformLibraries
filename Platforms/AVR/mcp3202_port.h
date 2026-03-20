@@ -92,10 +92,13 @@ typedef struct {
  * Example: initializing a structure
  *
  * @code
- * MCP3202_t mcp1;
- * mcp1.cs.ddr   = &MCP3202_CS_DDR;
- * mcp1.cs.port  = &MCP3202_CS_PORT;
- * mcp1.cs.index =  MCP3202_CS_BIT;
+ *    MCP3202_t mcp1 = {
+ *        .cs = {
+ *            .ddr   = &MCP3202_CS_DDR,
+ *            .port  = &MCP3202_CS_PORT,
+ *            .index = MCP3202_CS_BIT
+ *        }
+ *    };
  * @endcode
  */
 
@@ -148,6 +151,7 @@ static inline uint8_t MCP3202_SPI_Transfer(uint8_t data){
 
 #ifdef __cplusplus
 }
+
 #endif
 
 #endif
