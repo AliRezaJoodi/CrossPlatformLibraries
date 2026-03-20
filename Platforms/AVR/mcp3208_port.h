@@ -92,10 +92,13 @@ typedef struct {
  * Example: initializing a structure
  *
  * @code
- * MCP3208_t mcp1;
- * mcp1.cs.ddr   = &MCP3208_CS_DDR;
- * mcp1.cs.port  = &MCP3208_CS_PORT;
- * mcp1.cs.index =  MCP3208_CS_BIT;
+ *    MCP3208_t mcp1 = {
+ *        .cs = {
+ *            .ddr   = &MCP3208_CS_DDR,
+ *            .port  = &MCP3208_CS_PORT,
+ *            .index = MCP3208_CS_BIT
+ *        }
+ *    };
  * @endcode
  */
 
