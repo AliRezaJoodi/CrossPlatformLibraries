@@ -4,7 +4,20 @@
  * This library provides basic functions to interface with the MCP3202 ADC via SPI.
  *
  * @note
- * SPI must be configured by the user before using this library.
+ * The SPI peripheral is NOT configured by this library.
+ * The user must initialize and configure the SPI interface
+ * according to the MCP3202 device requirements.
+ *
+ * Required SPI configuration for MCP3202:
+ *   - Mode: 0 (CPOL = 0, CPHA = 0)
+ *   - Data Order: MSB first
+ *   - Clock Frequency:
+ *       * up to 1.6 MHz @ Vdd = 5V
+ *       * up to 0.8 MHz @ Vdd = 2.7V
+ *
+ * @warning
+ * Incorrect SPI configuration may lead to invalid ADC readings.
+ */
  *
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
