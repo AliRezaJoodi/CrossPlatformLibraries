@@ -27,21 +27,21 @@ void Buzzer_Refresh(void){
 }
 
 //*******************************************************
-void Buzzer_MakeBeep_UpOrDownSound(void){
+void Buzzer_MakeBeep_UpDown(void){
     Buzzer_WritePin(BUZZER_ACTIVE);
     BUZZER_DELAY_MS(80);
     Buzzer_WritePin(!BUZZER_ACTIVE);
 }
 
 //*******************************************************
-void Buzzer_MakeBeep_SetSound(void){
+void Buzzer_MakeBeep_Set(void){
     Buzzer_WritePin(BUZZER_ACTIVE);
     BUZZER_DELAY_MS(200);
     Buzzer_WritePin(!BUZZER_ACTIVE);
 }
 
 //*******************************************************
-void Buzzer_MakeBeep_ErrorSound(void){
+void Buzzer_MakeBeep_Error(void){
     Buzzer_WritePin(BUZZER_ACTIVE);
     BUZZER_DELAY_MS(500);
     Buzzer_WritePin(!BUZZER_ACTIVE);
