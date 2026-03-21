@@ -3,12 +3,8 @@
 #include "controller_onoff.h"
 
 //******************************************
-Ctrl_OnOff_Cmd_t Controller_OnOff_u16(const Ctrl_OnOff_t *params){
-    uint16_t half = params->hysteresis >> 1;
-
-    if(params->sp < half){
-        return CTRL_ONOFF_ERROR;
-    }
+Ctrl_OnOff_Cmd_t Controller_OnOff(const Ctrl_OnOff_t *params){
+    int32_t half = params->hysteresis >> 1;
 
     if(params->pv <= (params->sp - half)){
         return CTRL_ONOFF_LOW;

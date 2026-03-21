@@ -32,14 +32,26 @@ typedef enum {
     CTRL_ONOFF_NONE = 0,    /**< Value is within hysteresis band (no action) */
     CTRL_ONOFF_LOW,         /**< Value is below lower threshold */
     CTRL_ONOFF_HIGH,        /**< Value is above upper threshold */
-    CTRL_ONOFF_ERROR        /**< Invalid parameters */
 } Ctrl_OnOff_Cmd_t;
 
 typedef struct {
-    uint16_t pv;         /**< Current process value */
-    uint16_t sp;         /**< Setpoint value*/
-    uint16_t hysteresis; /**< Hysteresis range */
+    int32_t pv;         /**< Current process value */
+    int32_t sp;         /**< Setpoint value*/
+    int32_t hysteresis; /**< Hysteresis range */
 } Ctrl_OnOff_t;
+
+/**
+ * @example
+ * Example: initializing a structure
+ *
+ * @code
+ * Ctrl_OnOff_t oven = {
+ *     .pv = 0,
+ *     .sp = 250,
+ *     .hysteresis = 10
+ * };
+ * @endcode
+ */
 
 /**
  * @brief ON/OFF controller with symmetric hysteresis.
@@ -65,13 +77,8 @@ typedef struct {
  *         - CTRL_ONOFF_LOW   : Process value is below lower threshold
  *         - CTRL_ONOFF_HIGH  : Process value is above upper threshold
  *         - CTRL_ONOFF_NONE  : Process value is within hysteresis band
- *         - CTRL_ONOFF_ERROR : Invalid parameters (e.g. sp < hysteresis/2)
- *
- * @note
- * All parameters are unsigned 16-bit values (uint16_t).
- * Ensure that (sp ± hysteresis/2) does not overflow the valid range (0–65535).
  */
-Ctrl_OnOff_Cmd_t Controller_OnOff_u16(const Ctrl_OnOff_t *params);
+Ctrl_OnOff_Cmd_t Controller_OnOff(const Ctrl_OnOff_t *params);
 
 #ifdef __cplusplus
 }
