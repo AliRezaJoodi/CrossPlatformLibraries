@@ -32,20 +32,20 @@ typedef enum {
     CTRL_ONOFF_NONE = 0,    /**< Value is within hysteresis band (no action) */
     CTRL_ONOFF_LOW,         /**< Value is below lower threshold */
     CTRL_ONOFF_HIGH,        /**< Value is above upper threshold */
-} Ctrl_OnOff_Cmd_t;
+} CtrlOnOff_Cmd_t;
 
 typedef struct {
     int32_t pv;         /**< Current process value */
     int32_t sp;         /**< Setpoint value*/
     int32_t hysteresis; /**< Hysteresis range */
-} Ctrl_OnOff_t;
+} CtrlOnOff_In_t;
 
 /**
  * @example
  * Example: initializing a structure
  *
  * @code
- * Ctrl_OnOff_t oven = {
+ * CtrlOnOff_In_t oven = {
  *     .pv = 0,
  *     .sp = 250,
  *     .hysteresis = 10
@@ -78,7 +78,7 @@ typedef struct {
  *         - CTRL_ONOFF_HIGH  : Process value is above upper threshold
  *         - CTRL_ONOFF_NONE  : Process value is within hysteresis band
  */
-Ctrl_OnOff_Cmd_t Controller_OnOff(const Ctrl_OnOff_t *params);
+CtrlOnOff_Cmd_t CtrlOnOff_Update(const CtrlOnOff_In_t *params);
 
 #ifdef __cplusplus
 }
