@@ -33,29 +33,45 @@ typedef enum {
     CTRL_ONOFF_LOW,         /**< Value is below lower threshold */
     CTRL_ONOFF_HIGH,        /**< Value is above upper threshold */
     CTRL_ONOFF_ERROR        /**< Invalid parameters */
-} CtrlCmd_t;
+} Ctrl_OnOff_Cmd_t;
+
+typedef struct {
+    uint16_t pv;         /**< Current process value */
+    uint16_t sp;         /**< Setpoint value*/
+    uint16_t hysteresis; /**< Hysteresis range */
+} Ctrl_OnOff_t;
 
 /**
- * @brief ON/OFF controller with hysteresis.
+ * @brief ON/OFF controller with symmetric hysteresis.
  *
- * Determines the relation of the process value (pv) to the setpoint (sp)
- * using a symmetric hysteresis band.
+ * This function evaluates the relationship between the process value (pv)
+ * and the setpoint (sp) using a symmetric hysteresis band.
  *
- * Thresholds:
+ * The switching thresholds are defined as:
  *   lower = sp - (hysteresis / 2)
  *   upper = sp + (hysteresis / 2)
  *
- * @param pv           Current process value
- * @param sp           Setpoint value
- * @param hysteresis   Total hysteresis band width
+ * Behavior:
+ *   - If pv <= lower : returns CTRL_ONOFF_LOW
+ *   - If pv >= upper : returns CTRL_ONOFF_HIGH
+ *   - Otherwise      : returns CTRL_ONOFF_NONE
+ *
+ * @param[in] params  Pointer to control parameters:
+ *                    - pv         : Current process value
+ *                    - sp         : Setpoint value
+ *                    - hysteresis : Total hysteresis band width
  *
  * @return CtrlCmd_t
- *         - CTRL_ONOFF_LOW   : pv < lower threshold
- *         - CTRL_ONOFF_HIGH  : pv > upper threshold
- *         - CTRL_ONOFF_NONE  : pv within band
- *         - CTRL_ONOFF_ERROR : invalid input parameters
+ *         - CTRL_ONOFF_LOW   : Process value is below lower threshold
+ *         - CTRL_ONOFF_HIGH  : Process value is above upper threshold
+ *         - CTRL_ONOFF_NONE  : Process value is within hysteresis band
+ *         - CTRL_ONOFF_ERROR : Invalid parameters (e.g. sp < hysteresis/2)
+ *
+ * @note
+ * All parameters are unsigned 16-bit values (uint16_t).
+ * Ensure that (sp ± hysteresis/2) does not overflow the valid range (0–65535).
  */
-CtrlCmd_t Controller_OnOff(uint16_t pv, uint16_t sp, uint16_t hysteresis);
+Ctrl_OnOff_Cmd_t Controller_OnOff_u16(const Ctrl_OnOff_t *params);
 
 #ifdef __cplusplus
 }
