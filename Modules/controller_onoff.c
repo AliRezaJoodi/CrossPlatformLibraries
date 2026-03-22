@@ -3,7 +3,7 @@
 #include "controller_onoff.h"
 
 //******************************************
-CtrlOnOff_Cmd_t CtrlOnOff_Update(const CtrlOnOff_In_t *params){
+CtrlOnOff_Cmd_t Ctrl_OnOff_Update(const CtrlOnOff_In_t *params){
     int32_t half = params->hysteresis >> 1;
 
     if(params->pv <= (params->sp - half)){

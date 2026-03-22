@@ -78,7 +78,7 @@ typedef struct {
  *         - CTRL_ONOFF_HIGH  : Process value is above upper threshold
  *         - CTRL_ONOFF_NONE  : Process value is within hysteresis band
  */
-CtrlOnOff_Cmd_t CtrlOnOff_Update(const CtrlOnOff_In_t *params);
+CtrlOnOff_Cmd_t Ctrl_OnOff_Update(const CtrlOnOff_In_t *params);
 
 #ifdef __cplusplus
 }
