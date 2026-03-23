@@ -42,9 +42,9 @@ typedef struct {
     const int32_t ki;
     const int32_t kd;
 
+    const int32_t output_min;
+    const int32_t output_max;
     const PID_Scale_t scale;
-    const int32_t min_i;
-    const int32_t max_i;
     const int32_t dt;
 
     int32_t value_i;
@@ -54,9 +54,8 @@ typedef struct {
     int32_t pv;
 } CtrlPID_t;
 
-int32_t Ctrl_PID_Update2(CtrlPID_t *params);
-
-float Ctrl_PID_Update(float sp, float pv);
+int32_t Ctrl_PID_Update2(CtrlPID_t *p);
+//float Ctrl_PID_Update(float sp, float pv);
 
 #ifdef __cplusplus
 }
