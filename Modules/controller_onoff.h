@@ -35,9 +35,9 @@ typedef enum {
 } CtrlOnOff_Cmd_t;
 
 typedef struct {
-    int32_t pv;         /**< Current process value */
     int32_t sp;         /**< Setpoint value*/
     int32_t hysteresis; /**< Hysteresis range */
+    int32_t pv;         /**< Current process value */
 } CtrlOnOff_In_t;
 
 /**
