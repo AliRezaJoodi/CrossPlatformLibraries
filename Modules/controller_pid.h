@@ -69,7 +69,7 @@ typedef struct {
 
 #define PID_FLOAT_TO_Q(x, scale)    ((int32_t)((x) * (float)(1UL << (scale)) + 0.5f))
 
-int32_t Ctrl_PID_Update2(CtrlPID_t *p);
+int32_t Ctrl_PID_Update(CtrlPID_t *p);
 
 #ifdef __cplusplus
 }
