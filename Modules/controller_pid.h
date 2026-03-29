@@ -130,9 +130,17 @@ typedef struct {
  *
  * @note    Call this function periodically according to the PID loop rate.
  */
-int32_t Ctrl_PID_Update(CtrlPID_t *p);
+int32_t Ctrl_PID_Update(CtrlPID_t *pid);
 
-void Ctrl_PID_Reset(CtrlPID_t *p);
+/**
+ * @brief Reset PID controller runtime state.
+ *
+ * Sets the integral accumulator and last error to zero.
+ * Does NOT modify configuration parameters (kp, ki, kd, etc.).
+ *
+ * @param p Pointer to the PID controller instance
+ */
+void Ctrl_PID_Reset(CtrlPID_t *pid);
 
 #ifdef __cplusplus
 }
