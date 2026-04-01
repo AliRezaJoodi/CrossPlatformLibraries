@@ -1,5 +1,6 @@
 // GitHub Account: GitHub.com/AliRezaJoodi
 
+#include "hardware.h"
 #include "ntc_100k.h"
 
 flash float Table_NTC100K[]={
