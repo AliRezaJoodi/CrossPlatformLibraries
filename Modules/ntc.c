@@ -1,5 +1,6 @@
 // GitHub Account: GitHub.com/AliRezaJoodi
 
+#include "hardware.h"
 #include "ntc.h"
 
 //********************************************************

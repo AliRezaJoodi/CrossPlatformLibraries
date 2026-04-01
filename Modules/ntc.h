@@ -1,10 +1,10 @@
 // GitHub Account: GitHub.com/AliRezaJoodi
 
-#ifndef THERMISTOR_INCLUDED
-#define THERMISTOR_INCLUDED
+#ifndef NTC_INCLUDED
+#define NTC_INCLUDED
 
-#ifndef THERMISTOR_HARDWARE
-#define THERMISTOR_HARDWARE
+#ifndef NTC_HARDWARE
+#define NTC_HARDWARE
     #define VCC     	        5
     #define RESISTOR      	    1500    //ohm
     #define THERMISTOR_CH       0
