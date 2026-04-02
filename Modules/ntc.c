@@ -4,10 +4,17 @@
 #include "ntc.h"
 
 //********************************************************
-float Thermistor_ConvertVoltToOhm_PullUp(float volt){
-    float ohm=0;
-
-    ohm=(VCC-volt)/(volt/RESISTOR);
+float NTC_ConvertMilliVoltToOhm(float mv, uint32_t res){
+    float ohm = 0;
+    ohm = (mv * res) / (VREF_MV - mv);
     return ohm;
 }
+
+////********************************************************
+//float Thermistor_ConvertVoltToOhm_PullUp(float volt){
+//    float ohm=0;
+//
+//    ohm=(VCC-volt)/(volt/RESISTOR);
+//    return ohm;
+//}
 
