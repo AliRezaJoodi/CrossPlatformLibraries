@@ -18,7 +18,9 @@
     #warning "NTC100K_HARDWARE_EXTERA is not defined; default configuration will be used."
 #endif
 
-float NTC100K_ConvertMilliVoltToOhm(float mv, uint32_t res);
+uint32_t NTC100K_ConvertMilliVoltToOhm(uint16_t mv, uint32_t res);
+//float NTC100K_ConvertMilliVoltToOhm_(float mv, uint32_t res);
 float NTC100K_ConvertOhmToTemp(float ohm);
+int16_t NTC100K_ConvertOhmToTemp_(uint32_t ohm);
 
 #endif

@@ -67,13 +67,19 @@ flash float Table_NTC100K[]={
 107.8
 };
 
-
 //********************************************************
-float NTC100K_ConvertMilliVoltToOhm(float mv, uint32_t res){
-    float ohm = 0;
+uint32_t NTC100K_ConvertMilliVoltToOhm(uint16_t mv, uint32_t res){
+    uint32_t ohm = 0;
     ohm = (mv * res) / (VREF_MV - mv);
     return ohm;
 }
+
+////********************************************************
+//float NTC100K_ConvertMilliVoltToOhm_(float mv, uint32_t res){
+//    float ohm = 0;
+//    ohm = (mv * res) / (VREF_MV - mv);
+//    return ohm;
+//}
 
 //******************************************
 //Input:    ohm
@@ -91,3 +97,8 @@ float NTC100K_ConvertOhmToTemp(float ohm){
 
     return temp;
 }
+
+int16_t NTC100K_ConvertOhmToTemp_(uint32_t ohm){
+    return 120;
+}
+
