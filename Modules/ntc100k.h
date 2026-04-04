@@ -21,7 +21,7 @@
 //uint32_t NTC100K_ConvertMilliVoltToOhm(uint16_t mv, uint32_t res);
 //float NTC100K_ConvertMilliVoltToOhm_(float mv, uint32_t res);
 //float NTC100K_ConvertOhmToTemp(float ohm);
-int16_t NTC100K_ConvertOhmToTemp_(uint32_t ohm);
-int16_t NTC100K_ConvertOhmToTemp(uint32_t R);
+//int16_t NTC100K_ConvertOhmToTemp_(uint32_t ohm);
+int16_t NTC100K_ConvertOhmToTemp(uint32_t ohm);
 
 #endif
