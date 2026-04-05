@@ -56,6 +56,10 @@ uint16_t Array_Average_u16(const uint16_t *arr, uint16_t len){
 int16_t Array_Find_u16(const uint16_t *arr, uint16_t len, uint16_t value){
     uint16_t i;
 
+    if (arr == NULL || len == 0){
+        return 0xFFFF;
+    }
+
     for(i = 0; i < len; i++){
         if(arr[i] == value){
             return (int16_t)i;
@@ -70,6 +74,10 @@ void Array_Reverse_u16(uint16_t *arr, uint16_t len){
     uint16_t i;
     uint16_t tmp;
 
+    if (arr == NULL || len < 2){
+        return;
+    }
+
     for(i = 0; i < len / 2; i++){
         tmp = arr[i];
         arr[i] = arr[len - 1 - i];
@@ -80,6 +88,11 @@ void Array_Reverse_u16(uint16_t *arr, uint16_t len){
 //*************************************************************
 void Array_Clear_u16(uint16_t *arr, uint16_t len){
     uint16_t i;
+
+
+    if (arr == NULL || len == 0){
+        return;
+    }
 
     for(i = 0; i < len; i++){
         arr[i] = 0;
