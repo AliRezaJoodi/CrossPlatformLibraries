@@ -1,27 +1,43 @@
-// GitHub Account: GitHub.com/AliRezaJoodi
+/**
+ * @file ntc100k.h
+ * @brief NTC 100K Thermistor Temperature Conversion Library
+ *
+ * @details
+ * Converts thermistor resistance (Ohm) to temperature (°C)
+ *
+ * Temperature Range:
+ * -55°C to +300°C
+ *
+ * Input:
+ * Thermistor resistance in Ohms
+ *
+ * Output:
+ * Temperature in degrees Celsius (int16_t)
+ *
+ * Notes:
+ * - Hardware independent
+ * - ADC to resistance conversion must be done outside this library
+ * - Uses integer arithmetic (no floating point)
+ *
+ * Author: AliReza Joodi
+ * GitHub: https://github.com/AliRezaJoodi
+ */
+
 
 #ifndef NTC100K_INCLUDED
 #define NTC100K_INCLUDED
 
 #include <stdint.h>
 
-//#ifndef NTC100K_HARDWARE
-//#define NTC100K_HARDWARE
-//    #define VREF_MV         5000
-//    #warning "NTC100K_HARDWARE is not defined; default configuration will be used."
-//#endif
-
-//#ifndef NTC100K_HARDWARE_EXTERA
-//#define NTC100K_HARDWARE_EXTERA
-//    #define NTC100K_RESISTOR        100000UL    //ohm
-//    #define NTC100K_CH              0
-//    #warning "NTC100K_HARDWARE_EXTERA is not defined; default configuration will be used."
-//#endif
-
-//uint32_t NTC100K_ConvertMilliVoltToOhm(uint16_t mv, uint32_t res);
-//float NTC100K_ConvertMilliVoltToOhm_(float mv, uint32_t res);
-//float NTC100K_ConvertOhmToTemp(float ohm);
-//int16_t NTC100K_ConvertOhmToTemp_(uint32_t ohm);
+/**
+ * @brief Convert thermistor resistance to temperature
+ *
+ * @param ohm
+ * Thermistor resistance in Ohms
+ *
+ * @return
+ * Temperature in degrees Celsius
+ */
 int16_t NTC100K_ConvertOhmToTemp(uint32_t ohm);
 
 #endif
