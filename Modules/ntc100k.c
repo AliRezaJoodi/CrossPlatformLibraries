@@ -1,9 +1,8 @@
 // GitHub Account: GitHub.com/AliRezaJoodi
 
-#include "hardware.h"
 #include "ntc100k.h"
 
-const uint32_t NTC100K_Table5C[] = {
+const uint32_t ntc100k_table5c[] = {
     10723236UL, // -55°C
     7366689UL,  // -50°C
     5132757UL,  // -45°C
@@ -78,24 +77,24 @@ const uint32_t NTC100K_Table5C[] = {
     108UL       // 300°C
 };
 
-#define NTC100K_TABLE_SIZE (sizeof(NTC100K_Table5C) / sizeof(NTC100K_Table5C[0]))
+#define NTC100K_TABLE_SIZE (sizeof(ntc100k_table5c) / sizeof(ntc100k_table5c[0]))
 
 int16_t NTC100K_ConvertOhmToTemp(uint32_t ohm){
     uint8_t i;
     uint32_t r1, r2;
     int16_t t;
 
-    if(ohm >= NTC100K_Table5C[0]){
+    if(ohm >= ntc100k_table5c[0]){
         return -55;
     }
 
-    if(ohm <= NTC100K_Table5C[NTC100K_TABLE_SIZE-1]){
+    if(ohm <= ntc100k_table5c[NTC100K_TABLE_SIZE-1]){
         return 300;
     }
 
     for(i = 0; i < (NTC100K_TABLE_SIZE - 1); i++){
-        r1 = NTC100K_Table5C[i];
-        r2 = NTC100K_Table5C[i+1];
+        r1 = ntc100k_table5c[i];
+        r2 = ntc100k_table5c[i+1];
 
         if(ohm <= r1 && ohm >= r2){
             t = (int16_t)((i * 5) - 55);
