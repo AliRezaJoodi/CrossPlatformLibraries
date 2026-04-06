@@ -3,6 +3,6 @@
 
 #include <stdint.h>
 
-int16_t NTC100K_ConvertOhmToTemp(uint32_t ohm);
+int16_t NTC10K_ConvertOhmToTemp(uint32_t ohm);
 
 #endif

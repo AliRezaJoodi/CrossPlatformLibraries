@@ -1,3 +1,52 @@
 // GitHub Account: GitHub.com/AliRezaJoodi
 
 #include "ntc10k.h"
+
+const uint32_t ntc10k_table[] ={
+    133500UL, 125672UL, 118350UL, 111498UL, 105084UL,   // -25C to -21C
+    99073UL,  93469UL,  88175UL,  83230UL,  78591UL,    // -20C to -16C
+    74238UL,  70153UL,  66316UL,  62712UL,  59325UL,    // -15C to -11C
+    56142UL,  53148UL,  50331UL,  47680UL,  45184UL,    // -10C to -6C
+    42834UL,  40620UL,  38533UL,  36566UL,  34710UL,    // -5C to -1C
+    32960UL,  31308UL,  29748UL,  28276UL,  26848UL,    // 0C to 4C
+    25570UL,  24327UL,  23153UL,  22040UL,  20989UL,    // 5C to 9C
+    19993UL,  19051UL,  18158UL,  17312UL,  16511UL,    // 10C to 14C
+    15751UL,  15031UL,  14347UL,  13672UL,  13031UL,    // 15C to 19C
+    12490UL,  11944UL,  11416UL,  10916UL,  10440UL,    // 20C to 24C
+    10000UL,  95569UL,  91474UL,  87578UL,  83869UL,    // 25C to 29C
+    80338UL,  76973UL,  73772UL,  70720UL,  67811UL,    // 30C to 34C
+    65030UL,  62370UL,  59871UL,  57465UL,  55163UL,    // 35C to 39C
+    52971UL,  50881UL,  48880UL,  46974UL,  45190UL,    // 40C to 44C
+    43406UL,  41739UL,  40145UL,  38624UL,  37160UL,    // 45C to 49C
+    35880UL,  34431UL,  33152UL,  31929UL,  30756UL,    // 50C to 54C
+    29633UL,  28557UL,  27525UL,  26533UL,  25580UL,    // 55C to 59C
+    24679UL,  23808UL,  22971UL,  22168UL,  21390UL,    // 60C to 64C
+    20658UL,  19948UL,  19266UL,  18610UL,  17980UL,    // 65C to 69C
+    17375UL,  16794UL,  16235UL,  15690UL,  15180UL,    // 70C to 74C
+    14730UL,  14204UL,  13744UL,  13300UL,  12874UL,    // 75C to 79C
+    12463UL,  12065UL,  11686UL,  11319UL,  10965UL,    // 80C to 84C
+    10623UL,  10297UL,  99792UL,  96738UL,  93791UL,    // 85C to 89C
+    90950UL,  88208UL,  85563UL,  83010UL,  80546UL,    // 90C to 94C
+    78167UL,  75870UL,  73652UL,  71509UL,  69440UL,    // 95C to 99C
+    67440UL,  65508UL,  63640UL,  61834UL,  60089UL,    // 100C to 104C
+    58401UL,  56769UL,  55190UL,  53663UL,  52185UL,    // 105C to 109C
+    50755UL,  49371UL,  48032UL,  46735UL,  45479UL,    // 110C to 114C
+    44263UL,  43085UL,  41943UL,  40838UL,  39767UL,    // 115C to 119C
+    38729UL,  37723UL,  36748UL,  35802UL,  34885UL,    // 120C to 124C
+    33997UL                                             // 125C
+};
+
+#define NTC10K_TABLE_SIZE (sizeof(ntc10k_table) / sizeof(ntc10k_table[0]))
+
+//********************************************
+int16_t NTC10K_ConvertOhmToTemp(uint32_t ohm){
+    if(ohm >= ntc10k_table[0]){
+        return -25;
+    }
+
+    if(ohm <= ntc10k_table[NTC10K_TABLE_SIZE - 1]){
+        return 125;
+    }
+
+    return 0;
+}
