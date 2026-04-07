@@ -79,17 +79,18 @@ const uint32_t ntc100k_table5c[] = {
 
 #define NTC100K_TABLE_SIZE (sizeof(ntc100k_table5c) / sizeof(ntc100k_table5c[0]))
 
+//****************************************************
 int16_t NTC100K_ConvertOhmToTemp(uint32_t ohm){
     uint8_t i;
     uint32_t r1, r2;
     int16_t t;
 
     if(ohm >= ntc100k_table5c[0]){
-        return -55;
+        return NTC100K_TEMP_MIN;
     }
 
     if(ohm <= ntc100k_table5c[NTC100K_TABLE_SIZE-1]){
-        return 300;
+        return NTC100K_TEMP_MAX;
     }
 
     for(i = 0; i < (NTC100K_TABLE_SIZE - 1); i++){
@@ -103,5 +104,5 @@ int16_t NTC100K_ConvertOhmToTemp(uint32_t ohm){
         }
     }
 
-    return -100;
+    return NTC100K_ERROR;
 }

@@ -23,11 +23,14 @@
  * GitHub: https://github.com/AliRezaJoodi
  */
 
-
 #ifndef NTC100K_INCLUDED
 #define NTC100K_INCLUDED
 
 #include <stdint.h>
+
+#define NTC100K_TEMP_MIN    -55
+#define NTC100K_TEMP_MAX    300
+#define NTC100K_ERROR       -100
 
 /**
  * @brief Convert thermistor resistance to temperature
