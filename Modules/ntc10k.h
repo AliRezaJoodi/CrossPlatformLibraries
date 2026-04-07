@@ -35,6 +35,10 @@
 
 #include <stdint.h>
 
+#define NTC10K_TEMP_MIN     -25
+#define NTC10K_TEMP_MAX     125
+//#define NTC10K_ERROR        -100
+
 /*
  * Convert thermistor resistance to temperature.
  *

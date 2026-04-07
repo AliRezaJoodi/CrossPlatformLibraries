@@ -37,8 +37,6 @@ const uint32_t ntc10k_table[] ={
 };
 
 #define NTC10K_TABLE_SIZE (sizeof(ntc10k_table) / sizeof(ntc10k_table[0]))
-#define NTC10K_TEMP_MIN     -25
-#define NTC10K_TEMP_MAX     125
 
 static uint16_t ntc_last_index = 75;
 
