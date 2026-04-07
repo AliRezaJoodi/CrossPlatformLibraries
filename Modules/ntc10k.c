@@ -37,35 +37,93 @@ const uint32_t ntc10k_table[] ={
 };
 
 #define NTC10K_TABLE_SIZE (sizeof(ntc10k_table) / sizeof(ntc10k_table[0]))
+#define NTC10K_TEMP_MIN     -25
+#define NTC10K_TEMP_MAX     125
+
+static uint16_t ntc_last_index = 75;
 
 //********************************************
-int16_t NTC10K_ConvertOhmToTemp(uint32_t ohm){
-    uint16_t low = 0;
-    uint16_t high = NTC10K_TABLE_SIZE - 1;
-    uint16_t mid = 0;
+int16_t NTC10K_ConvertOhmToTemp_LastIndex(uint32_t ohm){
+    uint16_t i = ntc_last_index;
 
     if (ohm >= ntc10k_table[0]){
-        return -25;
+        return NTC10K_TEMP_MIN;
     }
 
     if (ohm <= ntc10k_table[NTC10K_TABLE_SIZE - 1]){
-        return 125;
+        return NTC10K_TEMP_MAX;
     }
 
-    while (low <= high){
-        mid = (low + high) >> 1;
-
-        if (ntc10k_table[mid] == ohm){
-            return (int16_t)(mid - 25);
+    if (ohm < ntc10k_table[i]){
+        while (i < (NTC10K_TABLE_SIZE - 1) && ohm < ntc10k_table[i]){
+            i++;
         }
-
-        if (ntc10k_table[mid] > ohm){
-            low = mid + 1;
+    }
+    else{
+        while (i > 0 && ohm > ntc10k_table[i-1]){
+            i--;
         }
-        else{
+    }
+
+    ntc_last_index = i;
+
+    return (int16_t)((i-1) - 25);
+}
+
+//********************************************
+int16_t NTC10K_ConvertOhmToTemp(uint32_t ohm){
+    uint16_t low  = 0;
+    uint16_t high = NTC10K_TABLE_SIZE - 1;
+    uint16_t mid = 0;
+
+    /* Clamp to table limits */
+    if (ohm >= ntc10k_table[0])
+        return -25;
+
+    if (ohm <= ntc10k_table[high])
+        return 125;
+
+    /* Binary search */
+    while (low < high){
+        mid = (low + high + 1) >> 1;
+
+        if (ohm > ntc10k_table[mid])
             high = mid - 1;
-        }
+        else
+            low = mid;
     }
 
     return (int16_t)(low - 25);
 }
+
+//********************************************
+//int16_t NTC10K_ConvertOhmToTemp(uint32_t ohm){
+//    uint16_t low = 0;
+//    uint16_t high = NTC10K_TABLE_SIZE - 1;
+//    uint16_t mid = 0;
+//
+//    if (ohm >= ntc10k_table[0]){
+//        return -25;
+//    }
+//
+//    if (ohm <= ntc10k_table[NTC10K_TABLE_SIZE - 1]){
+//        return 125;
+//    }
+//
+//    while (low <= high){
+//        mid = (low + high) >> 1;
+//
+//        if (ntc10k_table[mid] == ohm){
+//            return (int16_t)(mid - 25);
+//        }
+//
+//        if (ntc10k_table[mid] > ohm){
+//            low = mid + 1;
+//        }
+//        else{
+//            high = mid - 1;
+//        }
+//    }
+//
+//    return (int16_t)(low - 25);
+//}
