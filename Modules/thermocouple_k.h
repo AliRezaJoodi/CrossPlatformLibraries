@@ -1,26 +1,74 @@
-// GitHub Account:  GitHub.com/AliRezaJoodi
+/******************************************************************************
+ * @brief     Type-K Thermocouple Conversion Library
+ *
+ * @details
+ * This module provides conversion functions between temperature (°C)
+ * and thermocouple voltage (µV) for Type-K thermocouples.
+ *
+ * The implementation uses a lookup table with 10°C resolution derived
+ * from NIST ITS-90 thermocouple reference data.
+ *
+ * To achieve high performance on embedded systems, the conversion uses:
+ *  - Integer arithmetic (no floating point operations)
+ *  - Lookup table search
+ *  - Linear interpolation between table entries
+ *
+ * Supported temperature range:
+ *      -270°C  to  +1370°C
+ *
+ * Voltage values in the table are expressed in microvolts (µV).
+ *
+ * This implementation is designed for resource-constrained embedded
+ * systems where floating-point operations may be slow or unavailable.
+ *
+ * Algorithm summary:
+ *
+ *  Temperature to Voltage
+ *      Direct lookup + linear interpolation
+ *
+ *  Voltage to Temperature
+ *      Table search + linear interpolation
+ *
+ * Notes:
+ *  - All calculations use integer math.
+ *  - Lookup table step size is 10°C.
+ *  - Values outside the supported range are clamped to the nearest
+ *    valid table value.
+ *
+ * @author  AliReza Joodi
+ * @see     https://github.com/AliRezaJoodi
+ ******************************************************************************/
 
 #ifndef THERMOCOUPLE_INCLUDED
 #define THERMOCOUPLE_INCLUDED
 
 #include <stdint.h>
 
-#ifndef TC_HARDWARE
-#define TC_HARDWARE
-    #define TC_CH           0
-    #define TC_GAIN         1/90
-#endif
-
-
 #define TC_K_TEMP_MIN     -270
 #define TC_K_TEMP_MAX     1370
-#define TC_K_ERROR        -1000
+#define TC_K_ERROR        1371
 
-int TC_ConvertMilliVoltToTemp(float mv);
-float TC_ConvertTempToMilliVolt(int temp);
+/**
+ * @brief Convert Type-K thermocouple voltage to temperature.
+ *
+ * @param uv
+ * Thermocouple voltage in microvolts (µV).
+ *
+ * @return
+ * Temperature in degrees Celsius.
+ */
+int16_t TC_ConvertMicroVoltToTemp(int32_t uv);
 
-int32_t TC_ConvertMicroVoltToTemp(int32_t uv);
-int32_t TC_ConvertTempToMicroVolt(int32_t uv);
+/**
+ * @brief Convert temperature to Type-K thermocouple voltage.
+ *
+ * @param temp
+ * Temperature in degrees Celsius.
+ *
+ * @return
+ * Thermocouple voltage in microvolts (µV).
+ */
+int32_t TC_ConvertTempToMicroVolt(int16_t temp);
 
 #endif
 
