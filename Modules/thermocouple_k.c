@@ -175,9 +175,10 @@ static const int32_t TC_K_Table10C[]={
 //******************************************
 int16_t TC_ConvertMicroVoltToTemp(int32_t uv){
     int16_t i = 0;
-    int32_t uv0, uv1;
-    int32_t t0;
-    int32_t result;
+    int32_t uv0 = 0;
+    int32_t uv1 = 0;
+    int32_t t0 = 0;
+    int32_t result = 0;
 
     if(uv <= TC_K_Table10C[0]){
         return TC_K_TEMP_MIN;
@@ -204,13 +205,13 @@ int16_t TC_ConvertMicroVoltToTemp(int32_t uv){
 
 //******************************************
 int32_t TC_ConvertTempToMicroVolt(int16_t temp){
-    int16_t index;
-    int16_t t0;
-    int16_t dt;
-    int32_t uv0;
-    int32_t uv1;
-    int32_t duv;
-    int32_t result;
+    int16_t index = 0;
+    int16_t t0 = 0;
+    int16_t dt = 0;
+    int32_t uv0 = 0;
+    int32_t uv1 = 0;
+    int32_t duv = 0;
+    int32_t result = 0;
 
     // Clamp temperature to table limits (-270°C to +1370°C)
     if (temp <= -270){
