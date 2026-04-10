@@ -1,6 +1,6 @@
 #include "calendar_converter.h"
 
-flash uint8_t table_jalaali[6][12] = {
+static const uint8_t table_jalaali[6][12] = {
     {11, 10, 10,  9,  9,  9,  8,  9,  9, 10, 11,  9},
     {20, 20, 21, 21, 22, 22, 22, 22, 21, 21, 20, 19},
     {11, 10, 10,  9,  9,  9,  8,  9,  9, 10, 11, 10},
@@ -9,7 +9,7 @@ flash uint8_t table_jalaali[6][12] = {
     {19, 19, 20, 20, 21, 21, 21, 21, 20, 20, 19, 18}
 };
 
-flash uint8_t table_gregorian[6][12] = {
+static const uint8_t table_gregorian[6][12] = {
     {20, 19, 19, 19, 20, 20, 21, 21, 21, 21, 20, 20},
     {10, 11, 10, 12, 11, 11, 10, 10, 10,  9, 10, 10},
     {19, 18, 20, 20, 21, 21, 22, 22, 22, 22, 21, 21},
@@ -20,7 +20,9 @@ flash uint8_t table_gregorian[6][12] = {
 
 //***************************************************************
 void Calendar_ConvertGregorianToJalaali(date_t *gc, date_t *jc){
-    uint8_t k,t1,t2;
+    uint8_t k = 0;
+    uint8_t t1 = 0;
+    uint8_t t2 = 0;
 
     k = gc->year % 4;
 
@@ -50,7 +52,9 @@ void Calendar_ConvertGregorianToJalaali(date_t *gc, date_t *jc){
 
 //***************************************************************
 void Calendar_ConvertJalaaliToGregorian(date_t *jc, date_t *gc){
-    uint8_t k, t1, t2;
+    uint8_t k = 0;
+    uint8_t t1 = 0;
+    uint8_t t2 = 0;
 
     k = (jc->year + 100) % 4;
 
