@@ -81,9 +81,9 @@ const uint32_t ntc100k_table5c[] = {
 
 //****************************************************
 int16_t NTC100K_ConvertOhmToTemp(uint32_t ohm){
-    uint8_t i;
-    uint32_t r1, r2;
-    int16_t t;
+    uint8_t i = 0;
+    uint32_t r1 = 0, r2 = 0;
+    int16_t t = 0;
 
     if(ohm >= ntc100k_table5c[0]){
         return NTC100K_TEMP_MIN;
