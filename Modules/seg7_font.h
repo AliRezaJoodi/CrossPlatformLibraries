@@ -9,9 +9,13 @@ extern "C" {
 
 #include <stdint.h>
 
-extern const uint8_t seg7_font_digit[10];
-extern const uint8_t seg7_font_alpha[11];
-extern const uint8_t seg7_font_symbol[2];
+#define SEG7_FONT_DIGIT_SIZE    10
+#define SEG7_FONT_ALPHA_SIZE    11
+#define SEG7_FONT_SYMBOL_SIZE   2
+
+extern const uint8_t seg7_font_digit[SEG7_FONT_DIGIT_SIZE];
+extern const uint8_t seg7_font_alpha[SEG7_FONT_ALPHA_SIZE];
+extern const uint8_t seg7_font_symbol[SEG7_FONT_SYMBOL_SIZE];
 
 #ifdef __cplusplus
 }
