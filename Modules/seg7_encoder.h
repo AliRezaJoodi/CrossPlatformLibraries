@@ -27,6 +27,11 @@
 #include "utility_bit.h"
 #include "seg7_font.h"
 
+#define SEG7_ENCODER_OK         0U
+#define SEG7_ENCODER_ERROR      1U
+#define SEG7_ENCODER_INVALID    0x40U   // -
+#define SEG7_ENCODER_DP         0x80U   // .
+
 /**
  * @brief Encode an 8-bit number into two 7-segment digits.
  *

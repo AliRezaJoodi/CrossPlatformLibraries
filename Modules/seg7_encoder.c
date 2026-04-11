@@ -1,6 +1,6 @@
 // GitHub Account: GitHub.com/AliRezaJoodi
 
-#include <seg7_encoder.h>
+#include "seg7_encoder.h"
 
 // Double Dabble (8-bit to 2 digits)
 /****************************************************/
@@ -10,9 +10,9 @@ uint8_t Seg7_EncodeNumber_2Digits(uint8_t *seg, uint8_t number){
     uint8_t bcd[2] = {0};
 
     if (number > 99){
-        *(seg + 0) = 0U;
-        *(seg + 1) = 0U;
-        return 1;
+        seg[0] = SEG7_ENCODER_INVALID;
+        seg[1] = SEG7_ENCODER_INVALID;
+        return SEG7_ENCODER_ERROR;
     }
 
     for (i = 0; i < 8; ++i){
@@ -30,20 +30,20 @@ uint8_t Seg7_EncodeNumber_2Digits(uint8_t *seg, uint8_t number){
 
     /* Convert BCD digits to 7-segment font */
     for (i = 0; i < 2; i++){
-        *(seg + i) = seg7_font_digit[bcd[1 - i] & 0x0F];
+        seg[i] = seg7_font_digit[bcd[1 - i] & 0x0F];
     }
 
-    return 0;
+    return SEG7_ENCODER_OK;
 }
 
 /****************************************************/
 uint8_t Seg7_SetDecimalPoint_2Digits(uint8_t *seg, uint8_t position){
-    if (position >= 2U) {
-        return 1U;   /* Invalid position */
+    if (position > 1U) {
+        return SEG7_ENCODER_ERROR;   /* Invalid position */
     }
 
-    *(seg + position) |= 0x80U;
-    return 0U;       /* Success */
+    seg[position] |= SEG7_ENCODER_DP;
+    return SEG7_ENCODER_OK;       /* Success */
 }
 
 /* Reverse the order of 2-byte segment array (MSB <-> LSB) */
@@ -65,10 +65,10 @@ uint8_t Seg7_EncodeNumber_3Digits(uint8_t *seg, uint16_t number){
     uint8_t bcd[3] = {0};
 
     if (number > 999){
-        *(seg + 0) = 0U;
-        *(seg + 1) = 0U;
-        *(seg + 2) = 0U;
-        return 1;
+        seg[0] = SEG7_ENCODER_INVALID;
+        seg[1] = SEG7_ENCODER_INVALID;
+        seg[2] = SEG7_ENCODER_INVALID;
+        return SEG7_ENCODER_ERROR;
     }
 
     for (i = 0; i < 16; ++i){
@@ -89,20 +89,20 @@ uint8_t Seg7_EncodeNumber_3Digits(uint8_t *seg, uint16_t number){
 
     /* Convert BCD digits to 7-segment font */
     for (i = 0; i < 3; i++){
-        *(seg + i) = seg7_font_digit[bcd[2 - i] & 0x0F];
+        seg[i] = seg7_font_digit[bcd[2 - i] & 0x0F];
     }
 
-    return 0;
+    return SEG7_ENCODER_OK;
 }
 
 /****************************************************/
 uint8_t Seg7_SetDecimalPoint_3Digits(uint8_t *seg, uint8_t position){
-    if (position >= 3U) {
-        return 1U;   /* Invalid position */
+    if (position > 2U) {
+        return SEG7_ENCODER_ERROR;   /* Invalid position */
     }
 
-    *(seg + position) |= 0x80U;
-    return 0U;       /* Success */
+    seg[position] |= SEG7_ENCODER_DP;
+    return SEG7_ENCODER_OK;       /* Success */
 }
 
 /* Reverse the order of 3-byte segment array (MSB <-> LSB) */
@@ -126,11 +126,11 @@ uint8_t Seg7_EncodeNumber_4Digits(uint8_t *seg, uint16_t number){
     uint8_t bcd[4] = {0};
 
     if (number > 9999){
-        *(seg + 0) = 0U;
-        *(seg + 1) = 0U;
-        *(seg + 2) = 0U;
-        *(seg + 3) = 0U;
-        return 1;
+        seg[0] = SEG7_ENCODER_INVALID;
+        seg[1] = SEG7_ENCODER_INVALID;
+        seg[2] = SEG7_ENCODER_INVALID;
+        seg[3] = SEG7_ENCODER_INVALID;
+        return SEG7_ENCODER_ERROR;
     }
 
     for (i = 0; i < 16; ++i){
@@ -154,20 +154,20 @@ uint8_t Seg7_EncodeNumber_4Digits(uint8_t *seg, uint16_t number){
 
     /* Convert BCD digits to 7-segment font */
     for (i = 0; i < 4; i++){
-        *(seg + i) = seg7_font_digit[bcd[3 - i] & 0x0F];
+        seg[i] = seg7_font_digit[bcd[3 - i] & 0x0F];
     }
 
-    return 0;
+    return SEG7_ENCODER_OK;
 }
 
 /****************************************************/
 uint8_t Seg7_SetDecimalPoint_4Digits(uint8_t *seg, uint8_t position){
-    if (position >= 4U) {
-        return 1U;   /* Invalid position */
+    if (position > 3U) {
+        return SEG7_ENCODER_ERROR;   /* Invalid position */
     }
 
-    *(seg + position) |= 0x80U;
-    return 0U;       /* Success */
+    seg[position] |= SEG7_ENCODER_DP;
+    return SEG7_ENCODER_OK;       /* Success */
 }
 
 /* Reverse the order of 4-byte segment array (MSB <-> LSB) */
