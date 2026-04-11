@@ -2,12 +2,14 @@
 
 //*************************************************************
 uint16_t Array_Min_u16(const uint16_t *arr, uint16_t len){
-    uint16_t i;
-    uint16_t min = arr[0];
+    uint16_t i = 0;
+    uint16_t min = 0;
 
     if (arr == NULL || len == 0){
         return 0xFFFF;
     }
+
+    min = arr[0];
 
     for(i = 1; i < len; i++){
         if(arr[i] < min){
@@ -20,12 +22,14 @@ uint16_t Array_Min_u16(const uint16_t *arr, uint16_t len){
 
 //*************************************************************
 uint16_t Array_Max_u16(const uint16_t *arr, uint16_t len){
-    uint16_t i;
-    uint16_t max = arr[0];
+    uint16_t i = 0;
+    uint16_t max = 0;
 
     if (arr == NULL || len == 0){
         return 0xFFFF;
     }
+
+    max = arr[0];
 
     for(i = 1; i < len; i++){
         if(arr[i] > max){
@@ -39,7 +43,7 @@ uint16_t Array_Max_u16(const uint16_t *arr, uint16_t len){
 //*************************************************************
 uint16_t Array_Average_u16(const uint16_t *arr, uint16_t len){
     uint32_t sum = 0;
-    uint16_t i;
+    uint16_t i = 0;
 
     if (arr == NULL || len == 0){
         return 0xFFFF;
@@ -54,7 +58,7 @@ uint16_t Array_Average_u16(const uint16_t *arr, uint16_t len){
 
 //*************************************************************
 int16_t Array_Find_u16(const uint16_t *arr, uint16_t len, uint16_t value){
-    uint16_t i;
+    uint16_t i = 0;
 
     if (arr == NULL || len == 0){
         return 0xFFFF;
@@ -71,8 +75,8 @@ int16_t Array_Find_u16(const uint16_t *arr, uint16_t len, uint16_t value){
 
 //*************************************************************
 void Array_Reverse_u16(uint16_t *arr, uint16_t len){
-    uint16_t i;
-    uint16_t tmp;
+    uint16_t i = 0;
+    uint16_t tmp = 0;
 
     if (arr == NULL || len < 2){
         return;
@@ -87,7 +91,7 @@ void Array_Reverse_u16(uint16_t *arr, uint16_t len){
 
 //*************************************************************
 void Array_Clear_u16(uint16_t *arr, uint16_t len){
-    uint16_t i;
+    uint16_t i = 0;
 
 
     if (arr == NULL || len == 0){
