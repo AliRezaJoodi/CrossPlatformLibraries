@@ -14,51 +14,55 @@ extern "C" {
 
 #include <stdint.h>
 
-static inline uint16_t ADC_Convert_12Bit5V_mV(uint16_t counts){
-    return ((uint32_t)counts * 5000UL) >> 12;
+/* Convert 12-bit ADC counts (Vref=5V) to millivolts */
+static inline uint16_t ADC_ConvertCountToMilliVolt_12Bit5V(uint16_t counts){
+    return (uint16_t)(((uint32_t)counts * 5000UL) >> 12);
 }
 
-static inline uint16_t ADC_Convert_12Bit4V096_mV(uint16_t counts){
-    return counts * 1U;
+/* Convert 12-bit ADC counts (Vref=4.096V) to millivolts */
+static inline uint16_t ADC_ConvertCountToMilliVolt_12Bit4V096(uint16_t counts){
+    return counts;
 }
 
-static inline uint32_t ADC_Convert_12Bit3V3_uV(uint16_t counts){
+/* Convert 12-bit ADC counts (Vref=3.3V) to microvolts */
+static inline uint32_t ADC_ConvertCountToMicroVolt_12Bit3V3(uint16_t counts){
+    //return (uint32_t)(((uint64_t)counts * 3300000UL) >> 12);
     return ((uint32_t)counts * 825000UL) >> 10;
 }
 
-//static inline float ADC_Convert_12Bit3V3_mV(uint16_t counts){
-//    return (float)counts * 0.8056640625f;
-//}
-
-static inline uint32_t ADC_Convert_12Bit2V048_uV(uint16_t counts){
+/* Convert 12-bit ADC counts (Vref=2.048V) to microvolts */
+static inline uint32_t ADC_ConvertCountToMicroVolt_12Bit2V048(uint16_t counts){
     return (uint32_t)counts * 500UL;
 }
 
-//static inline float ADC_Convert_12Bit2V048_mV(uint16_t counts){
-//    return (float)counts * 0.5f;
-//}
-
-static inline uint16_t ADC_Convert_10Bit5V_mV(uint16_t counts){
-    return (uint16_t)(((uint32_t)counts * 1250U) >> 8);
+/* Convert 10-bit ADC counts (Vref=5V) to millivolts */
+static inline uint16_t ADC_ConvertCountToMilliVolt_10Bit5V(uint16_t counts){
+    return (uint16_t)(((uint32_t)counts * 5000U) >> 10);
 }
 
-static inline uint16_t ADC_Convert_10Bit4V096_mV(uint16_t counts){
+/* Convert 10-bit ADC counts (Vref=4.096V) to millivolts */
+static inline uint16_t ADC_ConvertCountToMilliVolt_10Bit4V096(uint16_t counts){
     return counts << 2;
 }
 
-static inline uint16_t ADC_Convert_10Bit2V56_mV(uint16_t counts){
-    return (uint16_t)((counts * 5U) >> 1);
+/* Convert 10-bit ADC counts (Vref=2.56V) to millivolts */
+static inline uint16_t ADC_ConvertCountToMilliVolt_10Bit2V56(uint16_t counts){
+    //return (uint16_t)(((uint32_t)counts * 2560U) >> 10);
+    return (counts * 5U) >> 1;
 }
 
-static inline uint16_t ADC_Convert_10Bit2V048_mV(uint16_t counts){
+/* Convert 10-bit ADC counts (Vref=2.048V) to millivolts */
+static inline uint16_t ADC_ConvertCountToMilliVolt_10Bit2V048(uint16_t counts){
     return counts << 1;
 }
 
-static inline uint16_t ADC_Convert_8Bit5V_mV(uint8_t counts) {
-    return ((uint32_t)counts * 5000U) >> 8;
+/* Convert 8-bit ADC counts (Vref=5V) to millivolts */
+static inline uint16_t ADC_ConvertCountToMilliVolt_8Bit5V(uint8_t counts) {
+    return (uint16_t)(((uint32_t)counts * 5000U) >> 8);
 }
 
-static inline uint16_t ADC_Convert_8Bit2V56_mV(uint8_t counts) {
+/* Convert 8-bit ADC counts (Vref=2.560V) to millivolts */
+static inline uint16_t ADC_ConvertCountToMilliVolt_8Bit2V56(uint8_t counts) {
     return (uint16_t)counts * 10U;
 }
 
