@@ -11,7 +11,7 @@ extern "C" {
 
 #define SEG7_FONT_DIGIT_SIZE    10
 #define SEG7_FONT_ALPHA_SIZE    11
-#define SEG7_FONT_SYMBOL_SIZE   2
+#define SEG7_FONT_SYMBOL_SIZE   3
 
 extern const uint8_t seg7_font_digit[SEG7_FONT_DIGIT_SIZE];
 extern const uint8_t seg7_font_alpha[SEG7_FONT_ALPHA_SIZE];

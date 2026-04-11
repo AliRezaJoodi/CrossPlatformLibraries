@@ -31,6 +31,7 @@ const uint8_t seg7_font_alpha[SEG7_FONT_ALPHA_SIZE]={
 
 const uint8_t seg7_font_symbol[SEG7_FONT_SYMBOL_SIZE] = {
     0x00U,      // 0,   NULL
-    0x40U       // 1,   -
+    0x40U,      // 1,   -
+    0x80U       // .,   dp
 };
 
