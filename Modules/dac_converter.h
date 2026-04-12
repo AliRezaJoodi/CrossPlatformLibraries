@@ -14,102 +14,47 @@ extern "C" {
 
 #include <stdint.h>
 
-static inline uint16_t DAC_Convert_12Bit4V096_mV(uint16_t mv) {
+/* Convert millivolts to 12-bit DAC counts (Vref = 4.096V) */
+static inline uint16_t DAC_ConvertMilliVoltToCount_12Bit4V096(uint16_t mv) {
     if (mv > 4095U) {mv = 4095U;}
     return mv;
 }
 
-//static inline uint16_t Convert_0to4096mV_12BitCount(float mv) {
-//    uint16_t data = mv * 1.0f;
-//    if (data > 4095U) {data = 4095U;}
-//    return data;
-//}
-
-//static inline uint16_t Convert_0to4V096_12BitCount(float voltage) {
-//    uint16_t data = voltage * 1000.0f;
-//    if (data > 4095U) {data = 4095U;}
-//    return data;
-//}
-
-static inline uint16_t DAC_Convert_12Bit2V048_uV(uint32_t uv) {
-    //uint32_t data = uv / 500U;
-    uint32_t data = ((uv >> 2) * 4195U) >> 19;
-    if (data > 4095U) {data = 4095U;}
-    return (uint16_t)data;
+/* Convert microvolts to 12-bit DAC counts (Vref = 2.048V) */
+static inline uint16_t DAC_ConvertMicroVoltToCount_12Bit2V048(uint32_t uv) {
+    uint32_t out = ((uv >> 2) * 4195U) >> 19;
+    if (out > 4095U) {out = 4095U;}
+    return (uint16_t)out;
 }
 
-//static inline uint16_t DAC_Convert_12Bit2V048_mV(float mv) {
-//    uint16_t data = mv * 2.0f;
-//    if (data > 4095U) {data = 4095U;}
-//    return data;
-//}
-
-//static inline uint16_t Convert_0to2V048_12BitCount(float voltage) {
-//    uint16_t data = voltage * 2000.0f;
-//    if (data > 4095U) {data = 4095U;}
-//    return data;
-//}
-
-static inline uint16_t DAC_Convert_10Bit5V_mV(uint16_t mv) {
-    uint32_t data = (uint32_t)mv * 1024U / 5000U;
-    if (data > 1023U) {data = 1023U;}
-    return data;
+/* Convert millivolts to 10-bit DAC counts (Vref = 5V) */
+static inline uint16_t DAC_ConvertMilliVoltToCount_10Bit5V(uint16_t mv) {
+    uint32_t out = ((uint32_t)mv * 13435U) >> 16;
+    if (out > 1023U) {out = 1023U;}
+    return (uint16_t)out;
 }
 
-static inline uint16_t DAC_Convert_10Bit5V_mV_(float mv) {
-    uint16_t data = mv * 0.2048f;
-    if (data > 1023U) {data = 1023U;}
-    return data;
-}
-
-//static inline uint16_t Convert_0to5V_10BitCount(float voltage) {
-//    uint16_t data = voltage * 204.8f;
-//    if (data > 1023U) {data = 1023U;}
-//    return data;
-//}
-
-static inline uint16_t DAC_Convert_10Bit3V3_mV(uint16_t mv) {
+/* Convert millivolts to 10-bit DAC counts (Vref = 3.3V) */
+static inline uint16_t DAC_ConvertMilliVoltToCount_10Bit3V3(uint16_t mv) {
     //uint32_t data = (uint32_t)mv * 1024U / 3300U;
     uint32_t data = ((uint32_t)mv * 1270U) >> 12;
     if (data > 1023U) {data = 1023U;}
     return data;
 }
 
-//static inline uint16_t DAC_Convert_10Bit3V3_mV_(float mv) {
-//    uint16_t data = mv * 0.310303030f;
-//    if (data > 1023U) {data = 1023U;}
-//    return data;
-//}
-
-//static inline uint16_t Convert_0to3V3_10BitCount(float voltage) {
-//    uint16_t data = voltage * 310.303030f;
-//    if (data > 1023U) {data = 1023U;}
-//    return data;
-//}
-
-static inline uint8_t DAC_Convert_8Bit5V_mV(uint16_t mv) {
-//    uint32_t data = (uint32_t)mv * 256U / 5000U;
+/* Convert millivolts to 8-bit DAC counts (Vref = 5V) */
+static inline uint8_t DAC_ConvertMilliVoltToCount_8Bit5V(uint16_t mv) {
     uint32_t data = ((uint32_t)mv * 3354U) >> 16;
     if (data > 255U){data = 255U;}
     return data;
 }
 
-//static inline uint8_t DAC_Convert_8Bit5V_mV_(float voltage) {
-//    uint8_t data = voltage * 0.0512f;
-//    return data;
-//}
-
-static inline uint8_t DAC_Convert_8Bit3V3_mV(uint16_t mv) {
-    //uint32_t data = (uint32_t)mv * 256U / 3300U;
+/* Convert millivolts to 8-bit DAC counts (Vref = 3.3V) */
+static inline uint8_t DAC_ConvertMilliVoltToCount_8Bit3V3(uint16_t mv) {
     uint32_t data = ((uint32_t)mv * 5082U) >> 16;
     if (data > 255U){data = 255U;}
     return data;
 }
-
-//static inline uint8_t DAC_Convert_8Bit3V3_mV_(float voltage) {
-//    uint8_t data = voltage * 0.077575757f;
-//    return data;
-//}
 
 #ifdef __cplusplus
 }
