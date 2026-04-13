@@ -6,10 +6,52 @@ extern "C" {
 #endif
 
 #include <stdint.h>
+#include "utility_bit.h"
 #include "compiler_port.h"
 #include "sht1x_hw.h"
 
+#define SHT1X_DELAY_US(VALUE)          DELAY_US(VALUE)
 #define SHT1X_DELAY_MS(VALUE)          DELAY_MS(VALUE)
+
+typedef struct {
+    volatile uint8_t *ddr;
+    volatile uint8_t *port;
+    volatile uint8_t *pin;
+    const uint8_t    index;
+} SHT1x_Pin_t;
+
+typedef struct {
+    const SHT1x_Pin_t sck;
+    const SHT1x_Pin_t data;
+} SHT1x_t;
+
+//***************************************
+static inline void SHT1x_SCK_InitPin(SHT1x_t *sht){
+    SET_BIT(*(sht->sck.ddr), sht->sck.index);
+    CLEAR_BIT(*(sht->sck.port), sht->sck.index);  // Idle bus
+}
+
+//***************************************
+static inline void SHT1x_SCK_WritePin(SHT1x_t *sht, uint8_t status){
+    WRITE_BIT( *(sht->sck.port), sht->sck.index, status );
+}
+
+//***************************************
+static inline void SHT1x_DATA_SetInput(SHT1x_t *sht){
+    CLEAR_BIT(*(sht->data.ddr), sht->data.index);
+    CLEAR_BIT(*(sht->data.port), sht->data.index);
+}
+
+//***************************************
+static inline void SHT1x_DATA_WritePin(SHT1x_t *sht, uint8_t status){
+    if(status == 1){
+        SHT1x_DATA_SetInput(sht);
+    }
+    else{
+        SET_BIT(*(sht->data.ddr), sht->data.index);
+        CLEAR_BIT(*(sht->data.port), sht->data.index);
+    }
+}
 
 #ifdef __cplusplus
 }

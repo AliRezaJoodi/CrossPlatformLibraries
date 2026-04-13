@@ -1,4 +1,4 @@
-// GitHub Account: GitHub.com/AliRezaJoodi
+// Editing…
 
 #ifndef SHT1X_INCLUDED
 #define SHT1X_INCLUDED
@@ -27,6 +27,8 @@ extern "C" {
 #define MEASURE_TEMP    0b00000011
 #define MEASURE_HUMI    0b00000101
 #define RESET           0b00011110
+
+void SHT1x_Init(SHT1x_t *sht);
 
 void Transmission_Start(void);
 void Connection_Reset_Sequence(void);

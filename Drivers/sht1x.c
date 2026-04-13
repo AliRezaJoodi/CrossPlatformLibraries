@@ -3,14 +3,34 @@
 #include "hardware.h"
 #include "sht1x.h"
 
+//***************************************
+void SHT1x_Init(SHT1x_t *sht){
+    SHT1x_SCK_InitPin(sht);
+    SHT1x_SCK_WritePin(sht, 0);     // Idle bus
+    SHT1x_DATA_WritePin(sht, 1);    // Idle bus
+}
+
+//DATA = 1
+//SCK = 1
+//DATA = 0
+//SCK = 0
+//SCK = 1
+//DATA = 1
+//SCK = 0
+
+static void StartTransmission(SHT1x_t *sht){
+}
+
 //****************************************************
 void Transmission_Start(void){
-    DATA_DDR=1; DATA_PORT =1;
+    //DATA_DDR=1; DATA_PORT = 1;
+    DATA_DDR = 0; DATA_PORT = 0; delay_us(1);
     SCK_DDR=1; SCK_PORT=1; delay_us(1);
-    DATA_PORT=0; delay_us(1);
+    DATA_DDR=1; DATA_PORT=0; delay_us(1);
     SCK_PORT=0; delay_us(1);
     SCK_PORT=1; delay_us(1);
-    DATA_PORT=1; delay_us(1);
+    //DATA_PORT=1; delay_us(1);
+    DATA_DDR = 0; DATA_PORT = 0; delay_us(1);
     SCK_PORT=0; delay_us(1);
 }
 
@@ -24,7 +44,7 @@ void Connection_Reset_Sequence(void){
         SCK_PORT=0; delay_us(1);
     }
     Transmission_Start();
-    delay_ms(100);
+    SHT1X_DELAY_MS(100);
 }
 
 //****************************************************
@@ -74,7 +94,7 @@ unsigned char Read(void){
 void Soft_Reset(){
     Transmission_Start();
     Write(RESET);
-    delay_ms(20);
+    SHT1X_DELAY_MS(20);
 }
 
 //****************************************************
@@ -118,7 +138,7 @@ float Get_Humidity(void){
     so_rh = Full_Communication(MEASURE_HUMI);
     if (so_rh !=0){
         rh_linear= -2.0468+(0.0367*so_rh)+((-1.5955E-6)*so_rh*so_rh);
-        delay_ms(1);
+        SHT1X_DELAY_MS(1);
         temp=Get_Temp();
         rh_true=((temp-25)*(0.01+0.00008*so_rh))+rh_linear;
     }
