@@ -21,7 +21,7 @@ typedef struct {
     volatile uint8_t *ddr;
     volatile uint8_t *port;
     volatile uint8_t *pin;
-    const uint8_t           index;
+    const uint8_t    index;
 } TM1637_Pin_t;
 
 /**
@@ -59,9 +59,9 @@ typedef struct {
  * @endcode
  */
 
-/***************************************/
+//***************************************
 static inline void TM1637_CLK_WritePin(TM1637_t *tm, uint8_t status){
-    if(status){
+    if(status == 1){
         CLEAR_BIT(*(tm->clk.ddr), tm->clk.index);
         CLEAR_BIT(*(tm->clk.port), tm->clk.index);
     }
@@ -71,15 +71,15 @@ static inline void TM1637_CLK_WritePin(TM1637_t *tm, uint8_t status){
     }
 }
 
-/***************************************/
+//***************************************
 static inline void TM1637_DIO_SetInput(TM1637_t *tm){
     CLEAR_BIT(*(tm->dio.ddr), tm->dio.index);
     CLEAR_BIT(*(tm->dio.port), tm->dio.index);
 }
 
-/***************************************/
+//***************************************
 static inline void TM1637_DIO_WritePin(TM1637_t *tm, uint8_t status){
-    if(status){
+    if(status == 1){
         TM1637_DIO_SetInput(tm);
     }
     else{
@@ -88,7 +88,7 @@ static inline void TM1637_DIO_WritePin(TM1637_t *tm, uint8_t status){
     }
 }
 
-/***************************************/
+//***************************************
 static inline uint8_t TM1637_DIO_GetPin(TM1637_t *tm){
     return GET_BIT(*(tm->dio.pin), tm->dio.index);
 }

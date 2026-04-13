@@ -8,7 +8,7 @@
 #define TM1637_COMMAND_ADDRESS      0xC0U   // Address command setting
 #define TM1637_COMMAND_DISPLAY      0x80U   // Display control
 
-/***************************************/
+//***************************************
 void TM1637_Start(TM1637_t *tm){
     TM1637_CLK_WritePin(tm, 1);
     TM1637_DIO_WritePin(tm, 1);
@@ -18,7 +18,7 @@ void TM1637_Start(TM1637_t *tm){
     TM1637_DELAY_US(TM1637_HALF_BIT_US*2);
 }
 
-/***************************************/
+//***************************************
 void TM1637_Stop(TM1637_t *tm){
     TM1637_DIO_WritePin(tm, 0);
     TM1637_CLK_WritePin(tm, 1);
@@ -28,7 +28,7 @@ void TM1637_Stop(TM1637_t *tm){
     TM1637_DELAY_US(TM1637_HALF_BIT_US*2);
 }
 
-/***************************************/
+//***************************************
 uint8_t TM1637_WriteByte(TM1637_t *tm, uint8_t data){
     uint8_t i = 0;
     uint8_t ack = 0;
@@ -67,14 +67,14 @@ uint8_t TM1637_WriteByte(TM1637_t *tm, uint8_t data){
     return ack;
 }
 
-/***************************************/
+//***************************************
 void TM1637_SendCommand(TM1637_t *tm, uint8_t command){
     TM1637_Start(tm);
     TM1637_WriteByte(tm, command);
     TM1637_Stop(tm);
 }
 
-/***************************************/
+//***************************************
 uint8_t TM1637_SetDisplay(TM1637_t *tm, uint8_t onoff, uint8_t brightness){
     uint8_t error =0;
     uint8_t command_display = TM1637_COMMAND_DISPLAY;
@@ -99,7 +99,7 @@ uint8_t TM1637_SetDisplay(TM1637_t *tm, uint8_t onoff, uint8_t brightness){
     return error;
 }
 
-/***************************************/
+//***************************************
 void TM1637_ClearDisplay(TM1637_t *tm){
     uint8_t i=0;
 
@@ -115,7 +115,7 @@ void TM1637_ClearDisplay(TM1637_t *tm){
     TM1637_Stop(tm);
 }
 
-/***************************************/
+//***************************************
 void TM1637_Init(TM1637_t *tm){
     TM1637_CLK_WritePin(tm, 1);
     TM1637_DIO_WritePin(tm, 1);
@@ -125,7 +125,7 @@ void TM1637_Init(TM1637_t *tm){
     TM1637_SetDisplay(tm, 1, 7);
 }
 
-/***************************************/
+//***************************************
 uint8_t TM1637_WriteDisplayRegister_AutoIncr(TM1637_t *tm, uint8_t segments[], uint8_t length, uint8_t address){
     uint8_t error = 0;
     uint8_t i=0;
@@ -161,7 +161,7 @@ uint8_t TM1637_WriteDisplayRegister_AutoIncr(TM1637_t *tm, uint8_t segments[], u
     return error;
 }
 
-/***************************************/
+//***************************************
 uint8_t TM1637_WriteDisplayRegister_Fixed(TM1637_t *tm, uint8_t data, uint8_t address){
     uint8_t error = 0;
     uint8_t command_address = TM1637_COMMAND_ADDRESS;
