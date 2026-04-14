@@ -26,13 +26,14 @@ extern "C" {
 #define RESET           0b00011110
 
 void SHT1x_Init(SHT1x_t *sht);
+void SHT1x_ResetConnection(SHT1x_t *sht);
 
 //void Transmission_Start(void);
-void Connection_Reset_Sequence(SHT1x_t *sht);
+//void Connection_Reset_Sequence(SHT1x_t *sht);
 char Get_Ack(void);
-void Write(unsigned char command);
+//void Write(unsigned char command);
 void Send_Ack(char ack);
-unsigned char Read(void);
+//unsigned char Read(void);
 void Soft_Reset(SHT1x_t *sht);
 //unsigned int Full_Communication(int Reg);
 float Get_Temp(SHT1x_t *sht);

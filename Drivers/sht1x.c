@@ -3,15 +3,9 @@
 #include "hardware.h"
 #include "sht1x.h"
 
-#define SHT1X_SCK_IDLE_BUS      0U
-#define SHT1X_DATA_IDLE_BUS     1U
-
-//***************************************
-void SHT1x_Init(SHT1x_t *sht){
-    SHT1x_SCK_InitPin(sht);
-    SHT1x_SCK_WritePin(sht, SHT1X_SCK_IDLE_BUS);
-    SHT1x_DATA_WritePin(sht, SHT1X_DATA_IDLE_BUS);
-}
+#define SCK_IDLE        0U
+#define SCK_ACTIVE      1U
+#define DATA_IDLE       1U
 
 //DATA = 1
 //SCK = 1
@@ -23,40 +17,97 @@ void SHT1x_Init(SHT1x_t *sht){
 
 //***************************************
 static void StartTransmission(SHT1x_t *sht){
-    SHT1x_DATA_WritePin(sht, 1);    SHT1X_DELAY_MIN();
-    SHT1x_SCK_WritePin(sht, 1);     SHT1X_DELAY_MIN();
-    SHT1x_DATA_WritePin(sht, 0);    SHT1X_DELAY_MIN();
-    SHT1x_SCK_WritePin(sht, 0);     SHT1X_DELAY_MIN();
-    SHT1x_SCK_WritePin(sht, 1);     SHT1X_DELAY_MIN();
-    SHT1x_DATA_WritePin(sht, 1);    SHT1X_DELAY_MIN();
-    SHT1x_SCK_WritePin(sht, 0);     SHT1X_DELAY_MIN();
+    SHT1x_DATA_WritePin(sht, 1);
+    SHT1x_SCK_WritePin(sht, 1);
+    SHT1X_DELAY_MIN();
+
+    SHT1x_DATA_WritePin(sht, 0);
+    SHT1X_DELAY_MIN();
+
+    SHT1x_SCK_WritePin(sht, 0);
+    SHT1X_DELAY_MIN();
+
+    SHT1x_SCK_WritePin(sht, 1);
+    SHT1X_DELAY_MIN();
+
+    SHT1x_DATA_WritePin(sht, 1);
+    SHT1X_DELAY_MIN();
+
+    SHT1x_SCK_WritePin(sht, 0);
+    SHT1X_DELAY_MIN();
 }
 
-////****************************************************
-//void Transmission_Start(void){
-//    //DATA_DDR=1; DATA_PORT = 1;
-//    DATA_DDR = 0; DATA_PORT = 0; delay_us(1);
-//    SCK_DDR=1; SCK_PORT=1; delay_us(1);
-//    DATA_DDR=1; DATA_PORT=0; delay_us(1);
-//    SCK_PORT=0; delay_us(1);
-//    SCK_PORT=1; delay_us(1);
-//    //DATA_PORT=1; delay_us(1);
-//    DATA_DDR = 0; DATA_PORT = 0; delay_us(1);
-//    SCK_PORT=0; delay_us(1);
-//}
+//****************************************************
+void SHT1x_ResetConnection(SHT1x_t *sht){
+    uint8_t i = 0;
+
+    SHT1x_DATA_WritePin(sht, DATA_IDLE);
+    SHT1x_SCK_WritePin(sht, SCK_IDLE);
+    SHT1X_DELAY_MIN();
+
+    for(i = 0; i < 9; i++) {
+        SHT1x_SCK_WritePin(sht, SCK_ACTIVE);
+        SHT1X_DELAY_MIN();
+        SHT1x_SCK_WritePin(sht, SCK_IDLE);
+        SHT1X_DELAY_MIN();
+    }
+
+    StartTransmission(sht);
+}
+
+//***************************************
+void SHT1x_Init(SHT1x_t *sht){
+    SHT1x_SCK_InitPin(sht);
+    SHT1x_SCK_WritePin(sht, SCK_IDLE);
+
+    SHT1x_DATA_SetInput(sht);
+    SHT1x_DATA_WritePin(sht, DATA_IDLE);
+
+    SHT1x_ResetConnection(sht);
+}
 
 //****************************************************
-void Connection_Reset_Sequence(SHT1x_t *sht){
-    unsigned char i;
-    DATA_DDR=1; DATA_PORT=1;
-    SCK_DDR=1; //SCK_PORT=0;
-    for (i=0; i<9; i++){
-        SCK_PORT=1; SHT1X_DELAY_US(1);
-        SCK_PORT=0; SHT1X_DELAY_US(1);
+static void WriteByte(SHT1x_t *sht, uint8_t command){
+    int8_t i = 7;
+
+    SHT1x_SCK_WritePin(sht, SCK_IDLE);
+    SHT1X_DELAY_MIN();
+
+    for(i = 7; i >= 0; --i){
+        SHT1x_DATA_WritePin(sht, GET_BIT(command, i));
+        SHT1X_DELAY_MIN();
+
+        SHT1x_SCK_WritePin(sht, SCK_ACTIVE);
+        SHT1X_DELAY_MIN();
+
+        SHT1x_SCK_WritePin(sht, SCK_IDLE);
+        SHT1X_DELAY_MIN();
     }
-    //Transmission_Start();
-    StartTransmission(sht);
-    SHT1X_DELAY_MS(100);
+}
+
+//****************************************************
+static uint8_t ReadByte(SHT1x_t *sht){
+    uint8_t i = 0;
+    uint8_t value = 0;
+
+    SHT1x_DATA_SetInput(sht);
+    SHT1x_SCK_WritePin(sht, SCK_IDLE);
+    SHT1X_DELAY_MIN();
+
+    for(i = 0; i <= 7; ++i){
+        SHT1x_SCK_WritePin(sht, SCK_ACTIVE);
+        SHT1X_DELAY_MIN();
+
+        value <<= 1;
+        if(SHT1x_DATA_GetPin(sht)){
+            value |= 1;
+        }
+
+        SHT1x_SCK_WritePin(sht, SCK_IDLE);
+        SHT1X_DELAY_MIN();
+    }
+
+    return value;
 }
 
 //****************************************************
@@ -70,36 +121,9 @@ char Get_Ack(void){
 }
 
 //****************************************************
-void Write(unsigned char command){
-    unsigned char i;
-    DATA_DDR = 1; DATA_PORT=0;
-    SCK_PORT=0; delay_us(1);
-
-    for(i = 0b10000000; i > 0; i /= 2){
-        if(i & command){DATA_PORT=1;} else{DATA_PORT=0;}
-        SCK_PORT = 1; SCK_PORT = 0;
-    }
-}
-
-//****************************************************
 void Send_Ack(char ack){
     DATA_DDR = 1; DATA_PORT = ack;
     SCK_PORT = 1; SCK_PORT = 0;
-}
-
-//****************************************************
-unsigned char Read(void){
-    unsigned char i, value = 0;
-    DATA_DDR = 0;
-    SCK_PORT = 0;
-
-    for(i = 0b10000000; i > 0; i /= 2){
-        SCK_PORT = 1;
-        if(DATA_PIN){value = value | i;}
-        SCK_PORT = 0;
-    }
-
-    return value;
 }
 
 //****************************************************
@@ -107,7 +131,7 @@ unsigned char Read(void){
 void Soft_Reset(SHT1x_t *sht){
     //Transmission_Start();
     StartTransmission(sht);
-    Write(RESET);
+    WriteByte(sht, RESET);
     SHT1X_DELAY_MS(20);
 }
 
@@ -120,13 +144,13 @@ unsigned int Full_Communication(SHT1x_t *sht, int Reg){
 
     //Transmission_Start();
     StartTransmission(sht);
-    Write(Reg);
+    WriteByte(sht, Reg);
     error = Get_Ack(); //error=1;
     if(error==0){
         while(DATA_PIN);
-        msb = Read(); Send_Ack(0);
-        lsb = Read(); Send_Ack(0);
-        crc = Read(); Send_Ack(1);  //crc will use for nev version.
+        msb = ReadByte(sht); Send_Ack(0);
+        lsb = ReadByte(sht); Send_Ack(0);
+        crc = ReadByte(sht); Send_Ack(1);  //crc will use for nev version.
         value=(msb*256)+lsb;
     }
 
