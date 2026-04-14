@@ -3,9 +3,13 @@
 #include "hardware.h"
 #include "sht1x.h"
 
-#define SCK_IDLE        0U
-#define SCK_ACTIVE      1U
-#define DATA_IDLE       1U
+#define SCK_IDLE                    0U
+#define SCK_ACTIVE                  1U
+#define DATA_IDLE                   1U
+
+#define CMD_MEASURE_TEMPERATURE     0x03U
+#define CMD_MEASURE_HUMIDITY        0x05U
+#define CMD_SOFT_RESET              0x1EU
 
 //DATA = 1
 //SCK = 1
@@ -55,17 +59,6 @@ void SHT1x_ResetConnection(SHT1x_t *sht){
     StartTransmission(sht);
 }
 
-//***************************************
-void SHT1x_Init(SHT1x_t *sht){
-    SHT1x_SCK_InitPin(sht);
-    SHT1x_SCK_WritePin(sht, SCK_IDLE);
-
-    SHT1x_DATA_SetInput(sht);
-    SHT1x_DATA_WritePin(sht, DATA_IDLE);
-
-    SHT1x_ResetConnection(sht);
-}
-
 //****************************************************
 static void WriteByte(SHT1x_t *sht, uint8_t command){
     int8_t i = 7;
@@ -111,28 +104,50 @@ static uint8_t ReadByte(SHT1x_t *sht){
 }
 
 //****************************************************
-char Get_Ack(void){
-    char ack=1;
-    DATA_DDR = 0;
-    SCK_PORT = 1;
-    ack = DATA_PIN;
-    SCK_PORT = 0;
+static uint8_t GetAck(SHT1x_t *sht){
+    uint8_t ack = 1;
+
+    SHT1x_DATA_SetInput(sht);
+    SHT1X_DELAY_MIN();
+
+    SHT1x_SCK_WritePin(sht, SCK_ACTIVE);
+    SHT1X_DELAY_MIN();
+
+    ack = SHT1x_DATA_GetPin(sht);
+
+    SHT1x_SCK_WritePin(sht, SCK_IDLE);
+    SHT1X_DELAY_MIN();
+
     return ack;
 }
 
 //****************************************************
-void Send_Ack(char ack){
-    DATA_DDR = 1; DATA_PORT = ack;
-    SCK_PORT = 1; SCK_PORT = 0;
+static void SendAck(SHT1x_t *sht, uint8_t ack){
+    SHT1x_DATA_WritePin(sht, ack);
+    SHT1X_DELAY_MIN();
+
+    SHT1x_SCK_WritePin(sht, SCK_ACTIVE);
+    SHT1X_DELAY_MIN();
+    SHT1x_SCK_WritePin(sht, SCK_IDLE);
+    SHT1X_DELAY_MIN();
 }
 
-//****************************************************
-//Soft reset, resets the interface, clears the status register to default values.
-void Soft_Reset(SHT1x_t *sht){
-    //Transmission_Start();
+//***************************************
+void SHT1x_SoftReset(SHT1x_t *sht){
     StartTransmission(sht);
-    WriteByte(sht, RESET);
-    SHT1X_DELAY_MS(20);
+    WriteByte(sht, CMD_SOFT_RESET);
+    SHT1X_DELAY_MS(11+1);
+}
+
+//***************************************
+void SHT1x_Init(SHT1x_t *sht){
+    SHT1x_SCK_InitPin(sht);
+    SHT1x_SCK_WritePin(sht, SCK_IDLE);
+
+    SHT1x_DATA_SetInput(sht);
+    SHT1x_DATA_WritePin(sht, DATA_IDLE);
+
+    SHT1x_SoftReset(sht);
 }
 
 //****************************************************
@@ -145,12 +160,12 @@ unsigned int Full_Communication(SHT1x_t *sht, int Reg){
     //Transmission_Start();
     StartTransmission(sht);
     WriteByte(sht, Reg);
-    error = Get_Ack(); //error=1;
+    error = GetAck(sht); //error=1;
     if(error==0){
         while(DATA_PIN);
-        msb = ReadByte(sht); Send_Ack(0);
-        lsb = ReadByte(sht); Send_Ack(0);
-        crc = ReadByte(sht); Send_Ack(1);  //crc will use for nev version.
+        msb = ReadByte(sht); SendAck(sht, 0);
+        lsb = ReadByte(sht); SendAck(sht, 0);
+        crc = ReadByte(sht); SendAck(sht, 1);  //crc will use for nev version.
         value=(msb*256)+lsb;
     }
 
@@ -162,7 +177,7 @@ float Get_Temp(SHT1x_t *sht){
     unsigned int so_t=0;
     float temp=0;
 
-    so_t = Full_Communication(sht, MEASURE_TEMP);
+    so_t = Full_Communication(sht, CMD_MEASURE_TEMPERATURE);
     if(so_t != 0){
         temp = -40.1 + (0.01*so_t);  //VDD=5V
     }
@@ -175,7 +190,7 @@ float Get_Humidity(SHT1x_t *sht){
     unsigned int  so_rh=0;
     float rh_linear=0, temp=0, rh_true=0;
 
-    so_rh = Full_Communication(sht, MEASURE_HUMI);
+    so_rh = Full_Communication(sht, CMD_MEASURE_HUMIDITY);
     if (so_rh !=0){
         rh_linear= -2.0468+(0.0367*so_rh)+((-1.5955E-6)*so_rh*so_rh);
         SHT1X_DELAY_MS(1);

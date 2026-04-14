@@ -12,7 +12,9 @@ extern "C" {
 
 #define SHT1X_DELAY_US(VALUE)           DELAY_US(VALUE)
 #define SHT1X_DELAY_MS(VALUE)           DELAY_MS(VALUE)
+
 #define SHT1X_DELAY_MIN()               DELAY_US(1)
+//#define SHT1X_DELAY_MIN()               ((void)0)
 
 typedef struct {
     volatile uint8_t *ddr;
