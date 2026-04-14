@@ -3,11 +3,14 @@
 #include "hardware.h"
 #include "sht1x.h"
 
+#define SHT1X_SCK_IDLE_BUS      0U
+#define SHT1X_DATA_IDLE_BUS     1U
+
 //***************************************
 void SHT1x_Init(SHT1x_t *sht){
     SHT1x_SCK_InitPin(sht);
-    SHT1x_SCK_WritePin(sht, 0);     // Idle bus
-    SHT1x_DATA_WritePin(sht, 1);    // Idle bus
+    SHT1x_SCK_WritePin(sht, SHT1X_SCK_IDLE_BUS);
+    SHT1x_DATA_WritePin(sht, SHT1X_DATA_IDLE_BUS);
 }
 
 //DATA = 1
@@ -18,32 +21,41 @@ void SHT1x_Init(SHT1x_t *sht){
 //DATA = 1
 //SCK = 0
 
+//***************************************
 static void StartTransmission(SHT1x_t *sht){
+    SHT1x_DATA_WritePin(sht, 1);    SHT1X_DELAY_MIN();
+    SHT1x_SCK_WritePin(sht, 1);     SHT1X_DELAY_MIN();
+    SHT1x_DATA_WritePin(sht, 0);    SHT1X_DELAY_MIN();
+    SHT1x_SCK_WritePin(sht, 0);     SHT1X_DELAY_MIN();
+    SHT1x_SCK_WritePin(sht, 1);     SHT1X_DELAY_MIN();
+    SHT1x_DATA_WritePin(sht, 1);    SHT1X_DELAY_MIN();
+    SHT1x_SCK_WritePin(sht, 0);     SHT1X_DELAY_MIN();
 }
 
-//****************************************************
-void Transmission_Start(void){
-    //DATA_DDR=1; DATA_PORT = 1;
-    DATA_DDR = 0; DATA_PORT = 0; delay_us(1);
-    SCK_DDR=1; SCK_PORT=1; delay_us(1);
-    DATA_DDR=1; DATA_PORT=0; delay_us(1);
-    SCK_PORT=0; delay_us(1);
-    SCK_PORT=1; delay_us(1);
-    //DATA_PORT=1; delay_us(1);
-    DATA_DDR = 0; DATA_PORT = 0; delay_us(1);
-    SCK_PORT=0; delay_us(1);
-}
+////****************************************************
+//void Transmission_Start(void){
+//    //DATA_DDR=1; DATA_PORT = 1;
+//    DATA_DDR = 0; DATA_PORT = 0; delay_us(1);
+//    SCK_DDR=1; SCK_PORT=1; delay_us(1);
+//    DATA_DDR=1; DATA_PORT=0; delay_us(1);
+//    SCK_PORT=0; delay_us(1);
+//    SCK_PORT=1; delay_us(1);
+//    //DATA_PORT=1; delay_us(1);
+//    DATA_DDR = 0; DATA_PORT = 0; delay_us(1);
+//    SCK_PORT=0; delay_us(1);
+//}
 
 //****************************************************
-void Connection_Reset_Sequence(void){
+void Connection_Reset_Sequence(SHT1x_t *sht){
     unsigned char i;
     DATA_DDR=1; DATA_PORT=1;
     SCK_DDR=1; //SCK_PORT=0;
     for (i=0; i<9; i++){
-        SCK_PORT=1; delay_us(1);
-        SCK_PORT=0; delay_us(1);
+        SCK_PORT=1; SHT1X_DELAY_US(1);
+        SCK_PORT=0; SHT1X_DELAY_US(1);
     }
-    Transmission_Start();
+    //Transmission_Start();
+    StartTransmission(sht);
     SHT1X_DELAY_MS(100);
 }
 
@@ -60,7 +72,8 @@ char Get_Ack(void){
 //****************************************************
 void Write(unsigned char command){
     unsigned char i;
-    DATA_DDR = 1; DATA_PORT=0; SCK_PORT=0; delay_us(1);
+    DATA_DDR = 1; DATA_PORT=0;
+    SCK_PORT=0; delay_us(1);
 
     for(i = 0b10000000; i > 0; i /= 2){
         if(i & command){DATA_PORT=1;} else{DATA_PORT=0;}
@@ -91,21 +104,24 @@ unsigned char Read(void){
 
 //****************************************************
 //Soft reset, resets the interface, clears the status register to default values.
-void Soft_Reset(){
-    Transmission_Start();
+void Soft_Reset(SHT1x_t *sht){
+    //Transmission_Start();
+    StartTransmission(sht);
     Write(RESET);
     SHT1X_DELAY_MS(20);
 }
 
 //****************************************************
 // Read the sensor value. Reg is register to read from
-unsigned int Full_Communication(int Reg){
+unsigned int Full_Communication(SHT1x_t *sht, int Reg){
     char error=1;
     unsigned char msb=0, lsb=0, crc=0;
     unsigned int value=0;
 
-    Transmission_Start();
-    Write(Reg); error = Get_Ack(); //error=1;
+    //Transmission_Start();
+    StartTransmission(sht);
+    Write(Reg);
+    error = Get_Ack(); //error=1;
     if(error==0){
         while(DATA_PIN);
         msb = Read(); Send_Ack(0);
@@ -118,11 +134,11 @@ unsigned int Full_Communication(int Reg){
 }
 
 //****************************************************
-float Get_Temp(void){
+float Get_Temp(SHT1x_t *sht){
     unsigned int so_t=0;
     float temp=0;
 
-    so_t = Full_Communication(MEASURE_TEMP);
+    so_t = Full_Communication(sht, MEASURE_TEMP);
     if(so_t != 0){
         temp = -40.1 + (0.01*so_t);  //VDD=5V
     }
@@ -131,15 +147,15 @@ float Get_Temp(void){
 }
 
 //****************************************************
-float Get_Humidity(void){
+float Get_Humidity(SHT1x_t *sht){
     unsigned int  so_rh=0;
     float rh_linear=0, temp=0, rh_true=0;
 
-    so_rh = Full_Communication(MEASURE_HUMI);
+    so_rh = Full_Communication(sht, MEASURE_HUMI);
     if (so_rh !=0){
         rh_linear= -2.0468+(0.0367*so_rh)+((-1.5955E-6)*so_rh*so_rh);
         SHT1X_DELAY_MS(1);
-        temp=Get_Temp();
+        temp=Get_Temp(sht);
         rh_true=((temp-25)*(0.01+0.00008*so_rh))+rh_linear;
     }
 

@@ -8,9 +8,6 @@ extern "C" {
 #endif
 
 #include <stdint.h>
-#include <io.h>
-#include <delay.h>
-
 #include "sht1x_port.h"
 
 #ifndef SHTXX_HARDWARE
@@ -30,16 +27,16 @@ extern "C" {
 
 void SHT1x_Init(SHT1x_t *sht);
 
-void Transmission_Start(void);
-void Connection_Reset_Sequence(void);
+//void Transmission_Start(void);
+void Connection_Reset_Sequence(SHT1x_t *sht);
 char Get_Ack(void);
 void Write(unsigned char command);
 void Send_Ack(char ack);
 unsigned char Read(void);
-void Soft_Reset();
-unsigned int Full_Communication(int Reg);
-float Get_Temp(void);
-float Get_Humidity(void);
+void Soft_Reset(SHT1x_t *sht);
+//unsigned int Full_Communication(int Reg);
+float Get_Temp(SHT1x_t *sht);
+float Get_Humidity(SHT1x_t *sht);
 
 #ifdef __cplusplus
 }
