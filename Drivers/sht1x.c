@@ -76,6 +76,8 @@ static void WriteByte(SHT1x_t *sht, uint8_t command){
         SHT1x_SCK_WritePin(sht, SCK_IDLE);
         SHT1X_DELAY_MIN();
     }
+
+    ///SHT1x_DATA_SetInput(sht);
 }
 
 //****************************************************
@@ -112,6 +114,7 @@ static uint8_t GetAck(SHT1x_t *sht){
 
     SHT1x_SCK_WritePin(sht, SCK_ACTIVE);
     SHT1X_DELAY_MIN();
+    //SHT1X_DELAY_US(2);
 
     ack = SHT1x_DATA_GetPin(sht);
 
@@ -128,6 +131,7 @@ static void SendAck(SHT1x_t *sht, uint8_t ack){
 
     SHT1x_SCK_WritePin(sht, SCK_ACTIVE);
     SHT1X_DELAY_MIN();
+
     SHT1x_SCK_WritePin(sht, SCK_IDLE);
     SHT1X_DELAY_MIN();
 }
@@ -151,22 +155,27 @@ void SHT1x_Init(SHT1x_t *sht){
 }
 
 //****************************************************
-// Read the sensor value. Reg is register to read from
-unsigned int Full_Communication(SHT1x_t *sht, int Reg){
-    char error=1;
-    unsigned char msb=0, lsb=0, crc=0;
-    unsigned int value=0;
+uint16_t ReadSensorOutput(SHT1x_t *sht, uint8_t command){
+    ///char error = 1;
+    uint8_t ack = 1;
+    uint8_t msb = 0, lsb = 0;
+    uint8_t crc8 = 0;
+    uint16_t value = 0;
 
-    //Transmission_Start();
     StartTransmission(sht);
-    WriteByte(sht, Reg);
-    error = GetAck(sht); //error=1;
-    if(error==0){
+    WriteByte(sht, command);
+
+    ack = GetAck(sht); //ack=1;
+    if (ack != 0) {
+        return SHT1X_ERROR_ACK;
+    }
+
+    if(ack == 0){
         while(DATA_PIN);
         msb = ReadByte(sht); SendAck(sht, 0);
         lsb = ReadByte(sht); SendAck(sht, 0);
-        crc = ReadByte(sht); SendAck(sht, 1);  //crc will use for nev version.
-        value=(msb*256)+lsb;
+        crc8 = ReadByte(sht); SendAck(sht, 1);  //crc will use for nev version.
+        value = (uint16_t)(((uint16_t)msb << 8) | lsb);
     }
 
     return value;
@@ -174,29 +183,58 @@ unsigned int Full_Communication(SHT1x_t *sht, int Reg){
 
 //****************************************************
 float Get_Temp(SHT1x_t *sht){
-    unsigned int so_t=0;
+    uint16_t so_t=0;
     float temp=0;
 
-    so_t = Full_Communication(sht, CMD_MEASURE_TEMPERATURE);
-    if(so_t != 0){
-        temp = -40.1 + (0.01*so_t);  //VDD=5V
+    so_t = ReadSensorOutput(sht, CMD_MEASURE_TEMPERATURE);
+
+    if(so_t == SHT1X_ERROR_ACK){
+        return SHT1X_ERROR_ACK;
     }
 
+    if(so_t != 0){
+        so_t = so_t & 0x3FFF;
+        temp = -40.1 + (0.01*so_t);  //VDD=5V
+    }
     return temp;
 }
 
 //****************************************************
 float Get_Humidity(SHT1x_t *sht){
-    unsigned int  so_rh=0;
+    uint16_t  so_rh=0;
     float rh_linear=0, temp=0, rh_true=0;
 
-    so_rh = Full_Communication(sht, CMD_MEASURE_HUMIDITY);
-    if (so_rh !=0){
-        rh_linear= -2.0468+(0.0367*so_rh)+((-1.5955E-6)*so_rh*so_rh);
-        SHT1X_DELAY_MS(1);
-        temp=Get_Temp(sht);
-        rh_true=((temp-25)*(0.01+0.00008*so_rh))+rh_linear;
+    so_rh = ReadSensorOutput(sht, CMD_MEASURE_HUMIDITY);
+
+    if(so_rh == SHT1X_ERROR_ACK){
+        //return SHT1X_ERROR_ACK;
     }
 
+    if (so_rh !=0){
+        so_rh = so_rh & 0x0FFF;
+        rh_linear= -2.0468+(0.0367*so_rh)+((-1.5955E-6)*so_rh*so_rh);
+        SHT1X_DELAY_MS(1);
+        temp=Get_Temp(sht); // ADD SHT1X_ERROR_ACK
+        rh_true=((temp-25)*(0.01+0.00008*so_rh))+rh_linear;
+    }
     return rh_true;
 }
+
+//****************************************************
+static uint8_t SHT1x_CalculateCRC8(uint8_t crc, uint8_t data){
+    uint8_t i = 0;
+
+    crc ^= data;
+
+    for (i = 0; i < 8; ++i) {
+        if (crc & 0x80){
+            crc = (crc << 1) ^ 0x31;   // Polynomial = 0x31
+        }
+        else{
+            crc <<= 1;
+        }
+    }
+
+    return crc;
+}
+

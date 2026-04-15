@@ -21,6 +21,8 @@ extern "C" {
     #define SCK_PIN     PINC.0
 #endif
 
+#define SHT1X_ERROR_ACK     0xFFFF
+
 void SHT1x_Init(SHT1x_t *sht);
 void SHT1x_ResetConnection(SHT1x_t *sht);
 void SHT1x_SoftReset(SHT1x_t *sht);
