@@ -2,9 +2,9 @@
 
 //************************************************
 static inline uint8_t Reflect8Bit(uint8_t x){
-    x = (x >> 4) | (x << 4);
-    x = ((x & 0xCC) >> 2) | ((x & 0x33) << 2);
-    x = ((x & 0xAA) >> 1) | ((x & 0x55) << 1);
+    x = (uint8_t)((x >> 4) | (x << 4));
+    x = (uint8_t)(((x & 0xCCU) >> 2) | ((x & 0x33U) << 2));
+    x = (uint8_t)(((x & 0xAAU) >> 1) | ((x & 0x55U) << 1));
 
     return x;
 }
