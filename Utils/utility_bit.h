@@ -74,6 +74,14 @@ static inline uint32_t write_bit_u32(volatile uint32_t buf, uint8_t pos, uint8_t
             ((uint32_t)(status & 0x01U) << pos);
 }
 
+static inline uint8_t Reflect_8Bit(uint8_t x){
+    x = (uint8_t)((x >> 4) | (x << 4));
+    x = (uint8_t)(((x & 0xCCU) >> 2) | ((x & 0x33U) << 2));
+    x = (uint8_t)(((x & 0xAAU) >> 1) | ((x & 0x55U) << 1));
+
+    return x;
+}
+
 #ifdef __cplusplus
 }
 #endif
