@@ -28,6 +28,10 @@ static inline uint16_t MakeU16(uint8_t msb, uint8_t lsb){
     return ((uint16_t)(msb) << 8U) | (uint16_t)(lsb);
 }
 
+static inline uint16_t SwapU16(uint16_t x){
+    return (uint16_t)((x >> 8) | (x << 8));
+}
+
 #ifdef __cplusplus
 }
 #endif
