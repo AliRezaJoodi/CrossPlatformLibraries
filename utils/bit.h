@@ -9,10 +9,34 @@ extern "C" {
 
 #include <stdint.h>
 
-#define SET_BIT(ADDRESS, POS)               ((ADDRESS) |= (0x01UL << (POS)))
 #define SET_BIT_OVERWRITE(ADDRESS, POS)     ((ADDRESS)  = (0x01UL << (POS)))
-#define CLEAR_BIT(ADDRESS, POS)             ((ADDRESS) &= ~(0x01UL << (POS)))
-#define TOGGLE_BIT(ADDRESS, POS)            ((ADDRESS) ^= (0x01UL << (POS)))
+
+#define SET_BIT( ADDRESS, POS)              ((ADDRESS) |= (0x01UL << (POS)))
+#define SET_2BIT(ADDRESS, POS)              ((ADDRESS) |= (0x03UL << (POS)))
+#define SET_3BIT(ADDRESS, POS)              ((ADDRESS) |= (0x07UL << (POS)))
+#define SET_4BIT(ADDRESS, POS)              ((ADDRESS) |= (0x0FUL << (POS)))
+#define SET_5BIT(ADDRESS, POS)              ((ADDRESS) |= (0x1FUL << (POS)))
+#define SET_6BIT(ADDRESS, POS)              ((ADDRESS) |= (0x3FUL << (POS)))
+#define SET_7BIT(ADDRESS, POS)              ((ADDRESS) |= (0x7FUL << (POS)))
+#define SET_8BIT(ADDRESS, POS)              ((ADDRESS) |= (0xFFUL << (POS)))
+
+#define CLEAR_BIT( ADDRESS, POS)            ((ADDRESS) &= ~(0x01UL << (POS)))
+#define CLEAR_2BIT(ADDRESS, POS)            ((ADDRESS) &= ~(0x03UL << (POS)))
+#define CLEAR_3BIT(ADDRESS, POS)            ((ADDRESS) &= ~(0x07UL << (POS)))
+#define CLEAR_4BIT(ADDRESS, POS)            ((ADDRESS) &= ~(0x0FUL << (POS)))
+#define CLEAR_5BIT(ADDRESS, POS)            ((ADDRESS) &= ~(0x1FUL << (POS)))
+#define CLEAR_6BIT(ADDRESS, POS)            ((ADDRESS) &= ~(0x3FUL << (POS)))
+#define CLEAR_7BIT(ADDRESS, POS)            ((ADDRESS) &= ~(0x7FUL << (POS)))
+#define CLEAR_8BIT(ADDRESS, POS)            ((ADDRESS) &= ~(0xFFUL << (POS)))
+
+#define TOGGLE_BIT( ADDRESS, POS)           ((ADDRESS) ^= (0x01UL << (POS)))
+#define TOGGLE_2BIT(ADDRESS, POS)           ((ADDRESS) ^= (0x03UL << (POS)))
+#define TOGGLE_3BIT(ADDRESS, POS)           ((ADDRESS) ^= (0x07UL << (POS)))
+#define TOGGLE_4BIT(ADDRESS, POS)           ((ADDRESS) ^= (0x0FUL << (POS)))
+#define TOGGLE_5BIT(ADDRESS, POS)           ((ADDRESS) ^= (0x1FUL << (POS)))
+#define TOGGLE_6BIT(ADDRESS, POS)           ((ADDRESS) ^= (0x3FUL << (POS)))
+#define TOGGLE_7BIT(ADDRESS, POS)           ((ADDRESS) ^= (0x7FUL << (POS)))
+#define TOGGLE_8BIT(ADDRESS, POS)           ((ADDRESS) ^= (0xFFUL << (POS)))
 #define TOGGLE_DATA(ADDRESS)                (~(ADDRESS))
 
 #define WRITE_BIT( ADDRESS, POS, VALUE)     ((ADDRESS) = ((ADDRESS) & ~(0x01UL << (POS))) | ((0x01UL & (VALUE)) << (POS)))
