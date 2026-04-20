@@ -58,7 +58,8 @@ static inline void SHT1x_DATA_WritePin(SHT1x_t *sht, uint8_t status){
 
 //***************************************
 static inline uint8_t SHT1x_DATA_GetPin(SHT1x_t *sht){
-    return GET_BIT(*(sht->data.pin), sht->data.index);
+    //return GET_BIT(*(sht->data.pin), sht->data.index);
+    return (*(sht->data.pin) >> sht->data.index) & 0x01U;
 }
 
 #ifdef __cplusplus
