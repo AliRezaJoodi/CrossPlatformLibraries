@@ -37,7 +37,6 @@ extern "C" {
 #define TOGGLE_6BIT(ADDRESS, POS)           ((ADDRESS) ^= (0x3FUL << (POS)))
 #define TOGGLE_7BIT(ADDRESS, POS)           ((ADDRESS) ^= (0x7FUL << (POS)))
 #define TOGGLE_8BIT(ADDRESS, POS)           ((ADDRESS) ^= (0xFFUL << (POS)))
-#define TOGGLE_DATA(ADDRESS)                (~(ADDRESS))
 
 #define WRITE_BIT( ADDRESS, POS, VALUE)     ((ADDRESS) = ((ADDRESS) & ~(0x01UL << (POS))) | ((0x01UL & (VALUE)) << (POS)))
 #define WRITE_2BIT(ADDRESS, POS, VALUE)     ((ADDRESS) = ((ADDRESS) & ~(0x03UL << (POS))) | ((0x03UL & (VALUE)) << (POS)))
