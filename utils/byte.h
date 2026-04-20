@@ -7,8 +7,8 @@
  * @see     https://github.com/AliRezaJoodi
  */
 
-#ifndef UTILITY_BYTE_INCLUDED
-#define UTILITY_BYTE_INCLUDED
+#ifndef BYTE_INCLUDED
+#define BYTE_INCLUDED
 
 #ifdef __cplusplus
 extern "C" {
