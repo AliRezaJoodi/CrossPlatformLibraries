@@ -33,55 +33,6 @@ extern "C" {
 #define GET_7BIT(ADDRESS, POS)              (((ADDRESS) >> (POS)) & 0x7FUL)
 #define GET_8BIT(ADDRESS, POS)              (((ADDRESS) >> (POS)) & 0xFFUL)
 
-
-static inline uint8_t write_bit_u8(volatile uint8_t buf, uint8_t pos, uint8_t status){
-    return  (uint8_t)(
-            (buf & (uint8_t)~(uint8_t)(0x01U << pos)) |
-            ((uint8_t)(status & 0x01U) << pos)
-            );
-}
-
-static inline uint8_t write_2bit_u8(volatile uint8_t buf, uint8_t pos, uint8_t status){
-    return  (uint8_t)(
-            (buf & (uint8_t)~(uint8_t)(0x03U << pos)) |
-            ((uint8_t)(status & 0x03U) << pos)
-            );
-}
-
-static inline uint8_t write_3bit_u8(volatile uint8_t buf, uint8_t pos, uint8_t status){
-    return  (uint8_t)(
-            (buf & (uint8_t)~(uint8_t)(0x07U << pos)) |
-            ((uint8_t)(status & 0x07U) << pos)
-            );
-}
-
-static inline uint8_t write_4bit_u8(volatile uint8_t buf, uint8_t pos, uint8_t status){
-    return  (uint8_t)(
-            (buf & (uint8_t)~(uint8_t)(0x0FU << pos)) |
-            ((uint8_t)(status & 0x0FU) << pos)
-            );
-}
-
-static inline uint16_t write_bit_u16(volatile uint16_t buf, uint8_t pos, uint8_t status){
-    return  (uint16_t)(
-            (buf & (uint16_t)~(uint16_t)(1U << pos)) |
-            ((uint16_t)(status & 0x01U) << pos)
-            );
-}
-
-static inline uint32_t write_bit_u32(volatile uint32_t buf, uint8_t pos, uint8_t status){
-    return  (buf & ~(1UL << pos)) |
-            ((uint32_t)(status & 0x01U) << pos);
-}
-
-static inline uint8_t Reflect_8Bit(uint8_t x){
-    x = (uint8_t)((x >> 4) | (x << 4));
-    x = (uint8_t)(((x & 0xCCU) >> 2) | ((x & 0x33U) << 2));
-    x = (uint8_t)(((x & 0xAAU) >> 1) | ((x & 0x55U) << 1));
-
-    return x;
-}
-
 #ifdef __cplusplus
 }
 #endif
