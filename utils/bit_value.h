@@ -1,7 +1,7 @@
 // GitHub Account: GitHub.com/AliRezaJoodi
 
-#ifndef UTILITY_BIT_VALUE_INCLUDED
-#define UTILITY_BIT_VALUE_INCLUDED
+#ifndef BIT_VALUE_INCLUDED
+#define BIT_VALUE_INCLUDED
 
 #ifdef __cplusplus
 extern "C" {

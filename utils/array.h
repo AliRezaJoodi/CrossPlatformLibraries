@@ -7,8 +7,8 @@
  * @see     https://github.com/AliRezaJoodi
  */
 
-#ifndef UTILITY_ARRAY_INCLUDED
-#define UTILITY_ARRAY_INCLUDED
+#ifndef ARRAY_INCLUDED
+#define ARRAY_INCLUDED
 
 #ifdef __cplusplus
 extern "C" {

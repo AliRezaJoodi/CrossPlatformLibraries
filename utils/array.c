@@ -1,4 +1,4 @@
-#include "utility_array.h"
+#include "array.h"
 
 //*************************************************************
 uint16_t Array_Min_u16(const uint16_t *arr, uint16_t len){
