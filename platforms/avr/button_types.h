@@ -16,9 +16,9 @@ typedef enum{
 
 /** @brief Configures the pull resistor mode for a button pin. */
 typedef enum{
-    BUTTON_MODE_FLOATING = (0U << 1),   /**< No pull resistor */
-    BUTTON_MODE_PULLUP   = (1U << 1),   /**< No pull resistor */
-    BUTTON_MODE_PULLDOWN = (2U << 1)    /**< Internal pull-down enabled */
+    BUTTON_MODE_FLOATING = (0U << 0),   /**< No pull resistor */
+    BUTTON_MODE_PULLUP   = (1U << 0),   /**< No pull resistor */
+    BUTTON_MODE_PULLDOWN = (2U << 0)    /**< Internal pull-down enabled */
 
 } Button_PullMode_t;
 
@@ -71,7 +71,7 @@ typedef struct {
  *   counter : Internal counter used for timing and debouncing.
  */
 typedef struct{
-    const Button_Pin_t      btn;      /**< Pin mapping and hardware references */
+    const Button_Pin_t      hw;      /**< Pin mapping and hardware references */
     const Button_Config_t   config;   /**< Static configuration (active level & pull) */
     uint8_t                 state;    /**< Current stable state */
     uint16_t                counter;  /**< Internal timing counter for debounce */
@@ -83,7 +83,7 @@ typedef struct{
  *
  * @code
  *    Button_t buttonIncr = {
- *        .btn = {
+ *        .hw = {
  *            .ddr   = &BUTTON_DDR,
  *            .port  = &BUTTON_PORT,
  *            .pin   = &BUTTON_PIN,
