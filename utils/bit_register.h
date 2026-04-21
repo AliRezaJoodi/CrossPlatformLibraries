@@ -14,6 +14,10 @@ static inline void SetBit_Reg8(volatile uint8_t *reg, uint8_t pos){
     *reg = (uint8_t)(*reg | (0x01U << pos));
 }
 
+static inline void SetBit_Reg32(volatile uint32_t *reg, uint32_t pos){
+    *reg = (uint32_t)(*reg | (0x01UL << pos));
+}
+
 static inline void Set2Bit_Reg8(volatile uint8_t *reg, uint8_t pos){
     *reg = (uint8_t)(*reg | (0x03U << pos));
 }
