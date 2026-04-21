@@ -17,6 +17,7 @@ extern "C" {
 #endif
 
 #include <stdint.h>
+
 #include "button_types.h"
 
 /**

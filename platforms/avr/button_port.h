@@ -25,7 +25,8 @@ extern "C" {
 #include <stdint.h>
 
 #include "compiler_port.h"
-#include "utils/bit.h"
+#include "utils/bit_register.h"
+
 #include "button_hw.h"
 #include "button_types.h"
 
@@ -47,17 +48,17 @@ extern "C" {
  * @param btn Pointer to Button_t object.
  */
 static inline void Button_ConfigPin(Button_t *btn){
-    CLEAR_BIT(*btn->hw.ddr, btn->hw.index);
+    ClearBit_Reg8(btn->hw.ddr, btn->hw.index);
 
     switch(btn->config.pull) {
         case BUTTON_MODE_FLOATING:
-            CLEAR_BIT(*btn->hw.port, btn->hw.index);
+            ClearBit_Reg8(btn->hw.port, btn->hw.index);
             break;
         case BUTTON_MODE_PULLUP:
-            SET_BIT(*btn->hw.port, btn->hw.index);
+            SetBit_Reg8(btn->hw.port, btn->hw.index);
             break;
         default:
-            CLEAR_BIT(*btn->hw.port, btn->hw.index);
+            ClearBit_Reg8(btn->hw.port, btn->hw.index);
     }
 }
 
@@ -67,8 +68,8 @@ static inline void Button_ConfigPin(Button_t *btn){
  * @param btn Pointer to Button_t object.
  * @return 0 if logic low, 1 if logic high.
  */
-static inline uint8_t Button_GetPin(Button_t *btn){
-    return GET_BIT(*btn->hw.pin, btn->hw.index);
+static inline uint8_t Button_GetPin(const Button_t *btn){
+    return GetBit_Reg8(btn->hw.pin, btn->hw.index);
 }
 
 #ifdef __cplusplus

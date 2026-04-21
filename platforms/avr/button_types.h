@@ -16,10 +16,9 @@ typedef enum{
 
 /** @brief Configures the pull resistor mode for a button pin. */
 typedef enum{
-    BUTTON_MODE_FLOATING = (0U << 0),   /**< No pull resistor */
-    BUTTON_MODE_PULLUP   = (1U << 0),   /**< No pull resistor */
-    BUTTON_MODE_PULLDOWN = (2U << 0)    /**< Internal pull-down enabled */
-
+    BUTTON_MODE_FLOATING = 0U,   /**< No pull resistor */
+    BUTTON_MODE_PULLUP   = 1U,   /**< No pull resistor */
+    BUTTON_MODE_PULLDOWN = 2U    /**< Internal pull-down enabled */
 } Button_PullMode_t;
 
 /**
@@ -36,11 +35,22 @@ typedef struct {
 } Button_Pin_t;
 
 /**
- * @brief Configuration for a button.
+ * @brief Static configuration of a button.
  *
- * This struct defines the static configuration of a button.
- * It specifies the **active logic level** and the **internal pull resistor setup**.
- * These values are constant and set at initialization.
+ * This structure defines two compile-time configuration parameters:
+ *
+ *   pressed : Selects the active logic level of the button using
+ *             @ref Button_ActiveLevel_t
+ *             - BUTTON_ACTIVE_LOW  : Button is pressed when pin reads LOW
+ *             - BUTTON_ACTIVE_HIGH : Button is pressed when pin reads HIGH
+ *
+ *   pull    : Selects the internal pull resistor configuration using
+ *             @ref Button_PullMode_t
+ *             - BUTTON_MODE_FLOATING : No internal pull resistor
+ *             - BUTTON_MODE_PULLUP   : Internal pull-up enabled
+ *             - BUTTON_MODE_PULLDOWN : Internal pull-down enabled
+ *
+ * All values are constant after initialization.
  */
 typedef struct {
     const Button_ActiveLevel_t  pressed;  /**< Active level of the button */
@@ -48,27 +58,15 @@ typedef struct {
 } Button_Config_t;
 
 /**
- * @brief Button object structure.
+ * @brief Button object.
  *
- * This structure represents a button and contains all necessary
- * information for handling its state and configuration.
+ * This structure holds all information required to handle a button.
  *
  * Members:
- *   btn     : Pin mapping and hardware references for the button.
- *             Contains DDR, PORT, PIN registers and pin index.
- *             This is constant and set at initialization.
- *   config  : Static configuration of the button.
- *             Specifies the active logic level and pull resistor setup.
- *             - pressed : defines when the button is considered pressed
- *                 - BUTTON_ACTIVE_LOW  : pressed when pin is LOW
- *                 - BUTTON_ACTIVE_HIGH : pressed when pin is HIGH
- *             - pull    : internal resistor configuration
- *                 - BUTTON_MODE_FLOATING : no internal resistor
- *                 - BUTTON_MODE_PULLUP   : enable internal pull-up resistor
- *                 - BUTTON_MODE_PULLDOWN : enable internal pull-down resistor
- *
- *   state   : Current stable state of the button (updated by debounce logic).
- *   counter : Internal counter used for timing and debouncing.
+ *   hw      : Hardware mapping (registers and pin index). Set once at init.
+ *   config  : Static configuration (active level and pull resistor).
+ *   state   : Current stable button state after debouncing.
+ *   counter : Internal debounce timing counter.
  */
 typedef struct{
     const Button_Pin_t      hw;      /**< Pin mapping and hardware references */
