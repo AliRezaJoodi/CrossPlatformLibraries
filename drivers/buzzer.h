@@ -24,7 +24,6 @@
 #define BUZZER_INCLUDED
 
 #include <stdint.h>
-#include "buzzer_port.h"
 
 /**
  * @brief   Initialize the buzzer

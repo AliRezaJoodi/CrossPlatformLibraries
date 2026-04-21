@@ -1,7 +1,9 @@
 // GitHub Account:  GitHub.com/AliRezaJoodi
 
 #include "hardware.h"
-#include "buzzer.h"
+
+#include "buzzer_port.h"
+#include "drivers/buzzer.h"
 
 static uint16_t buzzer_count = 0;
 
@@ -19,7 +21,7 @@ void Buzzer_Active(uint16_t value){
 //********************************************************
 void Buzzer_Refresh(void){
     if (buzzer_count > 0) {
-        -- buzzer_count;
+        --buzzer_count;
     }
     else{
         Buzzer_WritePin(!BUZZER_ACTIVE);
