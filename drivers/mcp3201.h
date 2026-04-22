@@ -30,7 +30,7 @@ extern "C" {
 #endif
 
 #include <stdint.h>
-#include "mcp3201_port.h"
+#include "mcp3201_types.h"
 
 /**
  * @brief   Initialize the MCP3201 instance
