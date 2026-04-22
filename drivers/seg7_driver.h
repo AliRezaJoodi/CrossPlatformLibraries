@@ -37,9 +37,6 @@ extern "C" {
 
 #include <stdint.h>
 
-#include "seg7_driver_config.h"
-#include "seg7_driver_port.h"
-
 /**
  * @brief Initialize the 7-segment driver.
  *

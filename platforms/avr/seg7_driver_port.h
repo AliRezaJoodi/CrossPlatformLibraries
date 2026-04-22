@@ -6,10 +6,9 @@ extern "C" {
 #endif
 
 #include <stdint.h>
-
-#include "utility_bit.h"
-#include "seg7_driver_config.h"
 #include "compiler_port.h"
+#include "utils/bit.h"
+#include "utils/bit_register.h"
 #include "seg7_driver_hw.h"
 
 /**
