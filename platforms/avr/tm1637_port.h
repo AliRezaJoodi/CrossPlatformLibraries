@@ -6,91 +6,45 @@ extern "C" {
 #endif
 
 #include <stdint.h>
-#include "utility_bit.h"
 #include "compiler_port.h"
+#include "utils/bit_register.h"
 #include "tm1637_hw.h"
+#include "tm1637_types.h"
 
 #define TM1637_DELAY_US(VALUE)          DELAY_US(VALUE)
 
-/**
- * @brief TM1637 GPIO pin descriptor.
- *
- * This structure describes a GPIO pin used by the TM1637 driver.
- */
-typedef struct {
-    volatile uint8_t *ddr;
-    volatile uint8_t *port;
-    volatile uint8_t *pin;
-    const uint8_t    index;
-} TM1637_Pin_t;
-
-/**
- * @brief TM1637 device handle.
- *
- * This structure holds all configuration data required
- * to control one TM1637 device instance.
- *
- * @see Example section below.
- */
-typedef struct {
-    const TM1637_Pin_t clk;
-    const TM1637_Pin_t dio;
-} TM1637_t;
-
-/**
- * @example
- * Example: initializing a structure
- *
- * @code
- *    TM1637_t tm1 = {
- *        .clk = {
- *            .ddr   = &TM1637_CLK_DDR,
- *            .port  = &TM1637_CLK_PORT,
- *            .pin   = &TM1637_CLK_PIN,
- *            .index =  TM1637_CLK_BIT
- *        },
- *        .dio = {
- *            .ddr   = &TM1637_DIO_DDR,
- *            .port  = &TM1637_DIO_PORT,
- *            .pin   = &TM1637_DIO_PIN,
- *            .index =  TM1637_DIO_BIT
- *        }
- *    };
- * @endcode
- */
-
 //***************************************
-static inline void TM1637_CLK_WritePin(TM1637_t *tm, uint8_t status){
+static inline void TM1637_CLK_Write(TM1637_t *tm, uint8_t status){
     if(status == 1){
-        CLEAR_BIT(*(tm->clk.ddr), tm->clk.index);
-        CLEAR_BIT(*(tm->clk.port), tm->clk.index);
+        ClearBit_Reg8(tm->clk.ddr, tm->clk.index);
+        ClearBit_Reg8(tm->clk.port, tm->clk.index);
     }
     else{
-        SET_BIT(*(tm->clk.ddr), tm->clk.index);
-        CLEAR_BIT(*(tm->clk.port), tm->clk.index);
+        SetBit_Reg8(tm->clk.ddr, tm->clk.index);
+        ClearBit_Reg8(tm->clk.port, tm->clk.index);
     }
 }
 
 //***************************************
 static inline void TM1637_DIO_SetInput(TM1637_t *tm){
-    CLEAR_BIT(*(tm->dio.ddr), tm->dio.index);
-    CLEAR_BIT(*(tm->dio.port), tm->dio.index);
+    ClearBit_Reg8(tm->dio.ddr, tm->dio.index);
+    ClearBit_Reg8(tm->dio.port, tm->dio.index);
 }
 
 //***************************************
-static inline void TM1637_DIO_WritePin(TM1637_t *tm, uint8_t status){
+static inline void TM1637_DIO_Write(TM1637_t *tm, uint8_t status){
     if(status == 1){
         TM1637_DIO_SetInput(tm);
     }
     else{
-        SET_BIT(*(tm->dio.ddr), tm->dio.index);
-        CLEAR_BIT(*(tm->dio.port), tm->dio.index);
+        SetBit_Reg8(tm->dio.ddr, tm->dio.index);
+        ClearBit_Reg8(tm->dio.port, tm->dio.index);
     }
 }
 
 //***************************************
-static inline uint8_t TM1637_DIO_GetPin(TM1637_t *tm){
-    return GET_BIT(*(tm->dio.pin), tm->dio.index);
+static inline uint8_t TM1637_DIO_Read(TM1637_t *tm){
+    return GetBit_Reg8(tm->dio.pin, tm->dio.index);
 }
 
 #ifdef __cplusplus
