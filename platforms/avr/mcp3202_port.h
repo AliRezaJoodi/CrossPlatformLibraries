@@ -57,7 +57,7 @@ extern "C" {
  *
  * @param   mcp     Pointer to the MCP3202 instance
  */
-static inline void MCP3202_CS_InitPin(MCP3202_t *mcp){
+static inline void MCP3202_CS_Init(MCP3202_t *mcp){
     SetBit_Reg8(mcp->cs.ddr, mcp->cs.index);
 }
 
@@ -71,7 +71,7 @@ static inline void MCP3202_CS_InitPin(MCP3202_t *mcp){
  *
  * @note    The CS pin must be initialized with MCP3202_CS_Init() before use.
  */
-static inline void MCP3202_CS_WritePin(MCP3202_t *mcp, uint8_t status){
+static inline void MCP3202_CS_Write(MCP3202_t *mcp, uint8_t status){
     WriteBit_Reg8(mcp->cs.port, mcp->cs.index, status);
 }
 
