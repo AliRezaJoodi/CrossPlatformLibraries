@@ -30,7 +30,7 @@ extern "C" {
 #endif
 
 #include <stdint.h>
-#include "mcp3208_port.h"
+#include "mcp3208_types.h"
 
 /**
  * @brief Defines MCP3208 Channels.

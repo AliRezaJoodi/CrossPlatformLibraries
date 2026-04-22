@@ -1,7 +1,8 @@
 // GitHub Account: GitHub.com/AliRezaJoodi
 
 #include "hardware.h"       /**< Project-level overrides */
-#include "mcp3208.h"
+#include "mcp3208_port.h"
+#include "drivers/mcp3208.h"
 
 /********************************************************/
 void MCP3208_Init(MCP3208_t *mcp){

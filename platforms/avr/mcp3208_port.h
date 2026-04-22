@@ -47,48 +47,10 @@ extern "C" {
 #endif
 
 #include <stdint.h>
-#include "utility_bit.h"
 #include "compiler_port.h"
+#include "utils/bit_register.h"
 #include "mcp3208_hw.h"
-
-/**
- * @brief   GPIO representation for a single MCP3208 pin
- *
- * This struct maps a microcontroller pin for use by the MCP3208 driver.
- * It contains pointers to the DDR and PORT registers, and the bit index
- * of the pin within those registers.
- *
- * @note    All pointers must point to valid registers before use.
- */
-typedef struct {
-    volatile uint8_t *ddr;      /**< Data Direction Register for this pin */
-    volatile uint8_t *port;     /**< PORT register for this pin */
-    const uint8_t     index;    /**< Bit position within DDR/PORT (0..7) */
-} MCP3208_Pin_t;
-
-/**
- * @brief   MCP3208 instance structure
- *
- * Contains all pins used by a single MCP3201 device.
- */
-typedef struct {
-    const MCP3208_Pin_t cs;       /**< Chip Select pin */
-} MCP3208_t;
-
-/**
- * @example
- * Example: initializing a structure
- *
- * @code
- *    MCP3208_t mcp1 = {
- *        .cs = {
- *            .ddr   = &MCP3208_CS_DDR,
- *            .port  = &MCP3208_CS_PORT,
- *            .index = MCP3208_CS_BIT
- *        }
- *    };
- * @endcode
- */
+#include "mcp3208_types.h"
 
 /**
  * @brief Initialize MCP3208 CS pin (output, idle high)
@@ -96,8 +58,7 @@ typedef struct {
  * @param   mcp     Pointer to the MCP3208 instance
  */
 static inline void MCP3208_CS_InitPin(MCP3208_t *mcp){
-    SET_BIT( *(mcp->cs.ddr), mcp->cs.index );
-    SET_BIT( *(mcp->cs.port), mcp->cs.index );
+    SetBit_Reg8(mcp->cs.ddr, mcp->cs.index);
 }
 
 /**
@@ -111,7 +72,7 @@ static inline void MCP3208_CS_InitPin(MCP3208_t *mcp){
  * @note    The CS pin must be initialized with MCP3208_CS_Init() before use.
  */
 static inline void MCP3208_CS_WritePin(MCP3208_t *mcp, uint8_t status){
-    WRITE_BIT( *(mcp->cs.port), mcp->cs.index, status );
+    WriteBit_Reg8(mcp->cs.port, mcp->cs.index, status);
 }
 
 /**
