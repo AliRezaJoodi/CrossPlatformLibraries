@@ -24,7 +24,7 @@
 #define MCP4822_INCLUDED
 
 #include <stdint.h>
-#include "mcp4822_port.h"
+#include "mcp4822_types.h"
 
 typedef enum {
     MCP4822_OUTPUT_A = 0U,

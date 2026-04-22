@@ -46,66 +46,21 @@ extern "C" {
 #endif
 
 #include <stdint.h>
-#include "utility_bit.h"
 #include "compiler_port.h"
+#include "utils/bit_register.h"
 #include "mcp4822_hw.h"
+#include "mcp4822_types.h"
 
 #define MCP4822_DELAY_US(us) DELAY_US(us)
 
 /**
- * @brief   MCP4822 GPIO pin descriptor
- *
- * Describes a GPIO pin used by the MCP4822 driver.
- * Contains registers and bit index for pin control.
- */
-typedef struct {
-    volatile uint8_t *ddr;
-    volatile uint8_t *port;
-    const uint8_t    index;
-} MCP4822_Pin_t;
-
-/**
- * @brief   MCP4822 device handle
- *
- * Represents a single MCP4822 device with its control pins.
- * Contains CS and LDAC pin descriptors.
- *
- * @see Example section above
- */
-typedef struct {
-    const MCP4822_Pin_t cs;
-    const MCP4822_Pin_t ldac;
-} MCP4822_t;
-
-/**
- * @example
- * Example: initializing a structure
- *
- * @code
- *    MCP4822_t dac1 = {
- *        .cs = {
- *            .ddr   = &MCP4822_CS_DDR,
- *            .port  = &MCP4822_CS_PORT,
- *            .index =  MCP4822_CS_BIT
- *        },
- *        .ldac = {
- *            .ddr   = &MCP4822_LDAC_DDR,
- *            .port  = &MCP4822_LDAC_PORT,
- *            .index =  MCP4822_LDAC_BIT
- *        }
- *    };
- * @endcode
- */
-
-/**
  * @brief   Initialize MCP4822 CS pin
- * Sets the CS pin as output and drives it to idle (high) state.
+ * Sets the CS pin as output state.
  *
  * @param[in] mcp   Pointer to MCP4822 device handle
  */
 static inline void MCP4822_CS_InitPin(MCP4822_t *mcp){
-    SET_BIT(*(mcp->cs.ddr), mcp->cs.index);
-    SET_BIT(*(mcp->cs.port), mcp->cs.index);  // Idle bus
+    SetBit_Reg8(mcp->cs.ddr, mcp->cs.index);
 }
 
 /**
@@ -116,18 +71,17 @@ static inline void MCP4822_CS_InitPin(MCP4822_t *mcp){
  * @param[in] status  Pin state (0 = low, 1 = high)
  */
 static inline void MCP4822_CS_WritePin(MCP4822_t *mcp, uint8_t status){
-    WRITE_BIT( *(mcp->cs.port), mcp->cs.index, status );
+    WriteBit_Reg8(mcp->cs.port, mcp->cs.index, status);
 }
 
 /**
  * @brief   Initialize MCP4822 LDAC pin
- * Sets the LDAC pin as output and drives it to idle (high) state.
+ * Sets the LDAC pin as output state.
  *
  * @param[in] mcp   Pointer to MCP4822 device handle
  */
 static inline void MCP4822_LDAC_InitPin(MCP4822_t *mcp){
-    SET_BIT(*(mcp->ldac.ddr), mcp->ldac.index);
-    SET_BIT(*(mcp->ldac.port), mcp->ldac.index);  // Idle bus
+    SetBit_Reg8(mcp->ldac.ddr, mcp->ldac.index);
 }
 
 /**
@@ -138,7 +92,7 @@ static inline void MCP4822_LDAC_InitPin(MCP4822_t *mcp){
  * @param[in] status  Pin state (0 = low, 1 = high)
  */
 static inline void MCP4822_LDAC_WritePin(MCP4822_t *mcp, uint8_t status){
-    WRITE_BIT( *(mcp->ldac.port), mcp->ldac.index, status );
+    WriteBit_Reg8(mcp->ldac.port, mcp->ldac.index, status);
 }
 
 /**
