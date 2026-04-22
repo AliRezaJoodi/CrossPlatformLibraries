@@ -25,7 +25,7 @@ void Seg7_SetBuffer(uint8_t *buffer){
 /*********************************/
 void Seg7_Refresh(void){
     Seg7_DisableAllDigits();
-    Seg7_WriteSegments( *(seg7_buffer + seg7_index) );
+    Seg7_WriteSegments(*(seg7_buffer + seg7_index));
     Seg7_EnableDigit(seg7_index);
 
     seg7_index++;
