@@ -9,8 +9,8 @@
 
 /********************************************************/
 void MCP3208_Init(MCP3208_t *mcp){
-    MCP3208_CS_InitPin(mcp);
-    MCP3208_CS_WritePin(mcp, CS_IDLE);
+    MCP3208_CS_Init(mcp);
+    MCP3208_CS_Write(mcp, CS_IDLE);
 }
 
 /********************************************************/
@@ -87,11 +87,11 @@ uint16_t MCP3208_GetCounts(MCP3208_t *mcp, MCP3208_Channel_t ch){
             return 0xFFFF;
     }
 
-    MCP3208_CS_WritePin(mcp, CS_ACTIVE);
+    MCP3208_CS_Write(mcp, CS_ACTIVE);
     MCP3208_SPI_Transfer(data1);
     data1 = MCP3208_SPI_Transfer(data2);    // Get MSB
     data2 = MCP3208_SPI_Transfer(0xFF);     // Get LSB
-    MCP3208_CS_WritePin(mcp, CS_IDLE);
+    MCP3208_CS_Write(mcp, CS_IDLE);
 
     return ( ((uint16_t)(data1 & 0x0FU) << 8U) | data2 );
 }
