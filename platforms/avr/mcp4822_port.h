@@ -59,7 +59,7 @@ extern "C" {
  *
  * @param[in] mcp   Pointer to MCP4822 device handle
  */
-static inline void MCP4822_CS_InitPin(MCP4822_t *mcp){
+static inline void MCP4822_CS_Init(MCP4822_t *mcp){
     SetBit_Reg8(mcp->cs.ddr, mcp->cs.index);
 }
 
@@ -70,7 +70,7 @@ static inline void MCP4822_CS_InitPin(MCP4822_t *mcp){
  * @param[in] mcp     Pointer to MCP4822 device handle
  * @param[in] status  Pin state (0 = low, 1 = high)
  */
-static inline void MCP4822_CS_WritePin(MCP4822_t *mcp, uint8_t status){
+static inline void MCP4822_CS_Write(MCP4822_t *mcp, uint8_t status){
     WriteBit_Reg8(mcp->cs.port, mcp->cs.index, status);
 }
 
