@@ -19,6 +19,8 @@
 extern "C" {
 #endif
 
+#include <stdint.h>
+
 static inline float LM35_ConvertMilliVoltToTemp(float mv){
     return (mv * 0.1f);
 }
