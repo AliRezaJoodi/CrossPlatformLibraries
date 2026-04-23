@@ -1,4 +1,5 @@
-#include "changed.h"
+#include <stdint.h>
+#include "modules/changed.h"
 
 /********************************************************************************/
 uint8_t Changed_Exact(uint16_t value, uint16_t *previous){
