@@ -1,6 +1,7 @@
 // GitHub Account: GitHub.com/AliRezaJoodi
 
-#include "ntc10k.h"
+#include <stdint.h>
+#include "modules/ntc10k.h"
 
 const uint32_t ntc10k_table[] ={
     133500UL, 125672UL, 118350UL, 111498UL, 105084UL,   // -25^C to -21^C
