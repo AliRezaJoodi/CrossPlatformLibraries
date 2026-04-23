@@ -1,9 +1,7 @@
 // GitHub Account: GitHub.com/AliRezaJoodi
 
 #include <stdint.h>
-
 #include "hardware.h"   /* Project-level overrides */
-
 #include "button_port.h"
 #include "drivers/button_config.h"
 #include "drivers/button.h"
