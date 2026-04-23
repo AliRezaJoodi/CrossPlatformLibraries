@@ -53,8 +53,8 @@ static inline void TM1638_DIO_Write(uint8_t status){
 }
 
 //***************************************
-static inline uint8_t TM1638_DIO_GetPin(void){
-    return Get8Bit_Reg8(&TM1638_DIO_PIN, TM1638_DIO_BIT);
+static inline uint8_t TM1638_DIO_Read(void){
+    return Read8Bit_Reg8(&TM1638_DIO_PIN, TM1638_DIO_BIT);
 }
 
 #ifdef __cplusplus

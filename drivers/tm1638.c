@@ -292,7 +292,7 @@ uint8_t TM1638_ReadByte(void){
         TM1638_DELAY_US(TM1638_BIT_US);
         TM1638_CLK_Write(1);
 
-        buf = TM1638_DIO_GetPin();
+        buf = TM1638_DIO_Read();
         WRITE_BIT(data, i, buf);
 
         TM1638_DELAY_US(TM1638_BIT_US);
