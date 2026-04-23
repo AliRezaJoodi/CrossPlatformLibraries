@@ -23,12 +23,8 @@
 extern "C" {
 #endif
 
-#define TM1638_PIN_INPUT            0U
-#define TM1638_PIN_OUTPUT           1U
-
 #include <stdint.h>
-#include "utility_bit.h"
-#include "tm1638_port.h"
+#include "tm1638_types.h"
 
 /**
  * @brief Bit delay time in microseconds.
