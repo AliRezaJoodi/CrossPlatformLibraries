@@ -44,7 +44,7 @@ static inline void TM1637_DIO_Write(TM1637_t *tm, uint8_t status){
 
 //***************************************
 static inline uint8_t TM1637_DIO_Read(TM1637_t *tm){
-    return GetBit_Reg8(tm->dio.pin, tm->dio.index);
+    return ReadBit_Reg8(tm->dio.pin, tm->dio.index);
 }
 
 #ifdef __cplusplus

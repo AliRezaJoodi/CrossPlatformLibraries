@@ -1,5 +1,6 @@
 // GitHub Account: GitHub.com/AliRezaJoodi
 
+#include <stdint.h>
 #include "hardware.h"
 #include "utils/bit_value.h"
 #include "tm1637_port.h"
