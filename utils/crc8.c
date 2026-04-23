@@ -1,4 +1,6 @@
-#include "crc8.h"
+
+#include <stdint.h>
+#include "utils/crc8.h"
 
 //************************************************
 static inline uint8_t Reflect8Bit(uint8_t x){
