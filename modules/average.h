@@ -19,8 +19,7 @@ extern "C" {
 #endif
 
 #include <stdint.h>
-
-#include "average_config.h"
+#include "modules/average_config.h"
 
 /**
  * @brief Structure for block averaging.
