@@ -1,6 +1,7 @@
 // GitHub Account: GitHub.com/AliRezaJoodi
 
-#include "ntc100k.h"
+#include <stdint.h>
+#include "modules/ntc100k.h"
 
 const uint32_t ntc100k_table5c[] = {
     10723236UL, // -55°C
