@@ -27,8 +27,6 @@ extern "C" {
 #endif
 
 #include <stdint.h>
-#include "utility_bit.h"
-#include "keypad4x4_port.h"
 
 /**
  * @brief Reads the pressed key from the 4x4 keypad.

@@ -6,8 +6,10 @@ extern "C" {
 #endif
 
 #include <stdint.h>
-#include "utility_bit.h"
 #include "compiler_port.h"
+#include "utils/bit.h"
+#include "utils/bit_register.h"
+#include "utils/bit_value.h"
 #include "keypad4x4_hw.h"
 
 static inline void Keypad4x4_InitPins_Mode1(void){
@@ -65,10 +67,10 @@ static inline void Keypad4x4_InitPins_Mode2(void){
 static inline uint8_t Keypad4x4_GetPins_Mode1(void){
     uint8_t number = 0;
 
-    WRITE_BIT(number, 0, GET_BIT(KEYPAD4X4_R1_PIN, KEYPAD4X4_R1_BIT));
-    WRITE_BIT(number, 1, GET_BIT(KEYPAD4X4_R2_PIN, KEYPAD4X4_R2_BIT));
-    WRITE_BIT(number, 2, GET_BIT(KEYPAD4X4_R3_PIN, KEYPAD4X4_R3_BIT));
-    WRITE_BIT(number, 3, GET_BIT(KEYPAD4X4_R4_PIN, KEYPAD4X4_R4_BIT));
+    number = WriteBit_u8(number, 0, GetBit_Reg8(&KEYPAD4X4_R1_PIN, KEYPAD4X4_R1_BIT));
+    number = WriteBit_u8(number, 1, GetBit_Reg8(&KEYPAD4X4_R2_PIN, KEYPAD4X4_R2_BIT));
+    number = WriteBit_u8(number, 2, GetBit_Reg8(&KEYPAD4X4_R3_PIN, KEYPAD4X4_R3_BIT));
+    number = WriteBit_u8(number, 3, GetBit_Reg8(&KEYPAD4X4_R4_PIN, KEYPAD4X4_R4_BIT));
 
     return number;
 }
@@ -76,10 +78,10 @@ static inline uint8_t Keypad4x4_GetPins_Mode1(void){
 static inline uint8_t Keypad4x4_GetPins_Mode2(void){
     uint8_t number = 0;
 
-    WRITE_BIT(number, 4, GET_BIT(KEYPAD4X4_C1_PIN, KEYPAD4X4_C1_BIT));
-    WRITE_BIT(number, 5, GET_BIT(KEYPAD4X4_C2_PIN, KEYPAD4X4_C2_BIT));
-    WRITE_BIT(number, 6, GET_BIT(KEYPAD4X4_C3_PIN, KEYPAD4X4_C3_BIT));
-    WRITE_BIT(number, 7, GET_BIT(KEYPAD4X4_C4_PIN, KEYPAD4X4_C4_BIT));
+    number = WriteBit_u8(number, 4, GetBit_Reg8(&KEYPAD4X4_C1_PIN, KEYPAD4X4_C1_BIT));
+    number = WriteBit_u8(number, 5, GetBit_Reg8(&KEYPAD4X4_C2_PIN, KEYPAD4X4_C2_BIT));
+    number = WriteBit_u8(number, 6, GetBit_Reg8(&KEYPAD4X4_C3_PIN, KEYPAD4X4_C3_BIT));
+    number = WriteBit_u8(number, 7, GetBit_Reg8(&KEYPAD4X4_C4_PIN, KEYPAD4X4_C4_BIT));
 
     return number;
 }
