@@ -67,10 +67,10 @@ static inline void Keypad4x4_InitPins_Mode2(void){
 static inline uint8_t Keypad4x4_GetPins_Mode1(void){
     uint8_t number = 0;
 
-    number = WriteBit_u8(number, 0, GetBit_Reg8(&KEYPAD4X4_R1_PIN, KEYPAD4X4_R1_BIT));
-    number = WriteBit_u8(number, 1, GetBit_Reg8(&KEYPAD4X4_R2_PIN, KEYPAD4X4_R2_BIT));
-    number = WriteBit_u8(number, 2, GetBit_Reg8(&KEYPAD4X4_R3_PIN, KEYPAD4X4_R3_BIT));
-    number = WriteBit_u8(number, 3, GetBit_Reg8(&KEYPAD4X4_R4_PIN, KEYPAD4X4_R4_BIT));
+    number = WriteBit_u8(number, 0, ReadBit_Reg8(&KEYPAD4X4_R1_PIN, KEYPAD4X4_R1_BIT));
+    number = WriteBit_u8(number, 1, ReadBit_Reg8(&KEYPAD4X4_R2_PIN, KEYPAD4X4_R2_BIT));
+    number = WriteBit_u8(number, 2, ReadBit_Reg8(&KEYPAD4X4_R3_PIN, KEYPAD4X4_R3_BIT));
+    number = WriteBit_u8(number, 3, ReadBit_Reg8(&KEYPAD4X4_R4_PIN, KEYPAD4X4_R4_BIT));
 
     return number;
 }
@@ -78,10 +78,10 @@ static inline uint8_t Keypad4x4_GetPins_Mode1(void){
 static inline uint8_t Keypad4x4_GetPins_Mode2(void){
     uint8_t number = 0;
 
-    number = WriteBit_u8(number, 4, GetBit_Reg8(&KEYPAD4X4_C1_PIN, KEYPAD4X4_C1_BIT));
-    number = WriteBit_u8(number, 5, GetBit_Reg8(&KEYPAD4X4_C2_PIN, KEYPAD4X4_C2_BIT));
-    number = WriteBit_u8(number, 6, GetBit_Reg8(&KEYPAD4X4_C3_PIN, KEYPAD4X4_C3_BIT));
-    number = WriteBit_u8(number, 7, GetBit_Reg8(&KEYPAD4X4_C4_PIN, KEYPAD4X4_C4_BIT));
+    number = WriteBit_u8(number, 4, ReadBit_Reg8(&KEYPAD4X4_C1_PIN, KEYPAD4X4_C1_BIT));
+    number = WriteBit_u8(number, 5, ReadBit_Reg8(&KEYPAD4X4_C2_PIN, KEYPAD4X4_C2_BIT));
+    number = WriteBit_u8(number, 6, ReadBit_Reg8(&KEYPAD4X4_C3_PIN, KEYPAD4X4_C3_BIT));
+    number = WriteBit_u8(number, 7, ReadBit_Reg8(&KEYPAD4X4_C4_PIN, KEYPAD4X4_C4_BIT));
 
     return number;
 }
