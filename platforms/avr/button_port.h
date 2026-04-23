@@ -69,7 +69,7 @@ static inline void Button_ConfigPin(Button_t *btn){
  * @return 0 if logic low, 1 if logic high.
  */
 static inline uint8_t Button_GetPin(const Button_t *btn){
-    return GetBit_Reg8(btn->hw.pin, btn->hw.index);
+    return ReadBit_Reg8(btn->hw.pin, btn->hw.index);
 }
 
 #ifdef __cplusplus
