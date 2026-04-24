@@ -1,15 +1,12 @@
 /**
- * @file    keypad4x4.h
  * @brief   4x4 matrix keypad driver.
+ *
+ * Scanning Method: Full Pattern Scanning
  *
  * This module provides a simple interface to read keys from a 4x4 matrix keypad.
  *
  * The returned value represents the key index (0–15). If no key is pressed,
- * a default value (16) is returned.
- *
- * @note
- * The hardware configuration (pin mapping and modes) must be defined in
- * "keypad4x4_hw.h".
+ * a default value (255) is returned.
  *
  * @warning
  * This function does not include debounce handling. External debounce
@@ -33,9 +30,9 @@ extern "C" {
  *
  * @return uint8_t
  *         - 0 to 15 : Key index corresponding to the pressed key
- *         - 16      : No key pressed or invalid state
+ *         - 255     : No key pressed or invalid state
  */
-uint8_t Keypad4x4_GetNumber(void);
+uint8_t Keypad4x4_GetKey(void);
 
 #ifdef __cplusplus
 }

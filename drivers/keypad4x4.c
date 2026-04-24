@@ -27,7 +27,7 @@ static const uint8_t table_ctz4[16] = {
 };
 
 //********************************************************
-uint8_t Keypad4x4_GetNumber(void){
+uint8_t Keypad4x4_GetKey(void){
     uint8_t number = 0xFFU;
     uint8_t rows = 0U, cols = 0U;
 
