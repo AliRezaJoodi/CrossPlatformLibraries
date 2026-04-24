@@ -7,14 +7,8 @@ extern "C" {
 
 #include <stdint.h>
 #include "compiler_port.h"
-#include "utils/bit.h"
 #include "utils/bit_register.h"
-#include "utils/bit_value.h"
 #include "keypad4x4_hw.h"
-
-//static inline void Keypad4x4_R1_SetDirection(uint8_t mode){
-//    WriteBit_Reg8(&KEYPAD4X4_R1_DDR, KEYPAD4X4_R1_BIT, mode);
-//}
 
 /* =========================================================
    Rows
@@ -230,80 +224,6 @@ static inline void Keypad4x4_C4_WriteLow(void){
 static inline void Keypad4x4_C4_WriteHigh(void){
     SetBit_Reg8(&KEYPAD4X4_C4_PORT, KEYPAD4X4_C4_BIT);
 }
-
-//static inline void Keypad4x4_InitPins_Mode1(void){
-//    CLEAR_BIT(KEYPAD4X4_R1_DDR, KEYPAD4X4_R1_BIT);
-//    SET_BIT(KEYPAD4X4_R1_PORT, KEYPAD4X4_R1_BIT);
-
-//    CLEAR_BIT(KEYPAD4X4_R2_DDR, KEYPAD4X4_R2_BIT);
-//    SET_BIT(KEYPAD4X4_R2_PORT, KEYPAD4X4_R2_BIT);
-//
-//    CLEAR_BIT(KEYPAD4X4_R3_DDR, KEYPAD4X4_R3_BIT);
-//    SET_BIT(KEYPAD4X4_R3_PORT, KEYPAD4X4_R3_BIT);
-//
-//    CLEAR_BIT(KEYPAD4X4_R4_DDR, KEYPAD4X4_R4_BIT);
-//    SET_BIT(KEYPAD4X4_R4_PORT, KEYPAD4X4_R4_BIT);
-
-//    SET_BIT(KEYPAD4X4_C1_DDR, KEYPAD4X4_C1_BIT);
-//    CLEAR_BIT(KEYPAD4X4_C1_PORT, KEYPAD4X4_C1_BIT);
-//
-//    SET_BIT(KEYPAD4X4_C2_DDR, KEYPAD4X4_C2_BIT);
-//    CLEAR_BIT(KEYPAD4X4_C2_PORT, KEYPAD4X4_C2_BIT);
-//
-//    SET_BIT(KEYPAD4X4_C3_DDR, KEYPAD4X4_C3_BIT);
-//    CLEAR_BIT(KEYPAD4X4_C3_PORT, KEYPAD4X4_C3_BIT);
-//
-//    SET_BIT(KEYPAD4X4_C4_DDR, KEYPAD4X4_C4_BIT);
-//    CLEAR_BIT(KEYPAD4X4_C4_PORT, KEYPAD4X4_C4_BIT);
-//}
-//
-//static inline void Keypad4x4_InitPins_Mode2(void){
-//    SET_BIT(KEYPAD4X4_R1_DDR, KEYPAD4X4_R1_BIT);
-//    CLEAR_BIT(KEYPAD4X4_R1_PORT, KEYPAD4X4_R1_BIT);
-//
-//    SET_BIT(KEYPAD4X4_R2_DDR, KEYPAD4X4_R2_BIT);
-//    CLEAR_BIT(KEYPAD4X4_R2_PORT, KEYPAD4X4_R2_BIT);
-//
-//    SET_BIT(KEYPAD4X4_R3_DDR, KEYPAD4X4_R3_BIT);
-//    CLEAR_BIT(KEYPAD4X4_R3_PORT, KEYPAD4X4_R3_BIT);
-//
-//    SET_BIT(KEYPAD4X4_R4_DDR, KEYPAD4X4_R4_BIT);
-//    CLEAR_BIT(KEYPAD4X4_R4_PORT, KEYPAD4X4_R4_BIT);
-
-//    CLEAR_BIT(KEYPAD4X4_C1_DDR, KEYPAD4X4_C1_BIT);
-//    SET_BIT(KEYPAD4X4_C1_PORT, KEYPAD4X4_C1_BIT);
-//
-//    CLEAR_BIT(KEYPAD4X4_C2_DDR, KEYPAD4X4_C2_BIT);
-//    SET_BIT(KEYPAD4X4_C2_PORT, KEYPAD4X4_C2_BIT);
-//
-//    CLEAR_BIT(KEYPAD4X4_C3_DDR, KEYPAD4X4_C3_BIT);
-//    SET_BIT(KEYPAD4X4_C3_PORT, KEYPAD4X4_C3_BIT);
-//
-//    CLEAR_BIT(KEYPAD4X4_C4_DDR, KEYPAD4X4_C4_BIT);
-//    SET_BIT(KEYPAD4X4_C4_PORT, KEYPAD4X4_C4_BIT);
-//}
-
-//static inline uint8_t Keypad4x4_GetPins_Mode1(void){
-//    uint8_t number = 0;
-//
-//    number = WriteBit_u8(number, 0, ReadBit_Reg8(&KEYPAD4X4_R1_PIN, KEYPAD4X4_R1_BIT));
-//    number = WriteBit_u8(number, 1, ReadBit_Reg8(&KEYPAD4X4_R2_PIN, KEYPAD4X4_R2_BIT));
-//    number = WriteBit_u8(number, 2, ReadBit_Reg8(&KEYPAD4X4_R3_PIN, KEYPAD4X4_R3_BIT));
-//    number = WriteBit_u8(number, 3, ReadBit_Reg8(&KEYPAD4X4_R4_PIN, KEYPAD4X4_R4_BIT));
-//
-//    return number;
-//}
-
-//static inline uint8_t Keypad4x4_GetPins_Mode2(void){
-//    uint8_t number = 0;
-//
-//    number = WriteBit_u8(number, 4, ReadBit_Reg8(&KEYPAD4X4_C1_PIN, KEYPAD4X4_C1_BIT));
-//    number = WriteBit_u8(number, 5, ReadBit_Reg8(&KEYPAD4X4_C2_PIN, KEYPAD4X4_C2_BIT));
-//    number = WriteBit_u8(number, 6, ReadBit_Reg8(&KEYPAD4X4_C3_PIN, KEYPAD4X4_C3_BIT));
-//    number = WriteBit_u8(number, 7, ReadBit_Reg8(&KEYPAD4X4_C4_PIN, KEYPAD4X4_C4_BIT));
-//
-//    return number;
-//}
 
 #ifdef __cplusplus
 }
