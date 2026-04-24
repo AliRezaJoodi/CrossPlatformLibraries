@@ -5,11 +5,6 @@
 #include "keypad4x4_port.h"
 #include "drivers/keypad4x4.h"
 
-typedef enum{
-    KEYPAD_PIN_INPUT = 0,
-    KEYPAD_PIN_OUTPUT = 1
-} Keypad_PinDirection_t;
-
 #define KEYPAD4X4_NO_INDEX  0xFFU
 
 static const uint8_t table_ctz4[16] = {
