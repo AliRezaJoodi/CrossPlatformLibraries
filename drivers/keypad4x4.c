@@ -6,6 +6,12 @@
 #include "keypad4x4_port.h"
 #include "drivers/keypad4x4.h"
 
+typedef enum{
+    KEYPAD_PIN_INPUT = 0,
+    KEYPAD_PIN_OUTPUT = 1
+} Keypad_PinDirection_t;
+
+
 //********************************************************
 uint8_t Keypad4x4_GetNumber(void){
     uint8_t number = 0U;

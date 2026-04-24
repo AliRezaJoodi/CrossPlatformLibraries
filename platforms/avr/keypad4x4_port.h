@@ -12,6 +12,34 @@ extern "C" {
 #include "utils/bit_value.h"
 #include "keypad4x4_hw.h"
 
+//static inline void Keypad4x4_R1_SetDirection(uint8_t mode){
+//    WriteBit_Reg8(&KEYPAD4X4_R1_DDR, KEYPAD4X4_R1_BIT, mode);
+//}
+
+static inline void Keypad4x4_R1_SetInput(void){
+    ClearBit_Reg8(&KEYPAD4X4_R1_DDR, KEYPAD4X4_R1_BIT);
+}
+
+static inline void Keypad4x4_R1_SetPullUp(void){
+    SetBit_Reg8(&KEYPAD4X4_R1_PORT, KEYPAD4X4_R1_BIT);
+}
+
+static inline uint8_t Keypad4x4_R1_Read(void){
+    return ReadBit_Reg8(&KEYPAD4X4_R1_PIN, KEYPAD4X4_R1_BIT);
+}
+
+static inline void Keypad4x4_R1_SetOutput(void){
+    SetBit_Reg8(&KEYPAD4X4_R1_DDR, KEYPAD4X4_R1_BIT);
+}
+
+static inline void Keypad4x4_R1_WriteLow(void){
+    ClearBit_Reg8(&KEYPAD4X4_R1_PORT, KEYPAD4X4_R1_BIT);
+}
+
+static inline void Keypad4x4_R1_WriteHigh(void){
+    SetBit_Reg8(&KEYPAD4X4_R1_PORT, KEYPAD4X4_R1_BIT);
+}
+
 static inline void Keypad4x4_InitPins_Mode1(void){
     CLEAR_BIT(KEYPAD4X4_R1_DDR, KEYPAD4X4_R1_BIT);
     SET_BIT(KEYPAD4X4_R1_PORT, KEYPAD4X4_R1_BIT);
