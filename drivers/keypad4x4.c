@@ -3,6 +3,7 @@
 #include <stdint.h>
 #include "hardware.h"
 #include "utils/bit.h"
+#include "utils/bit_value.h"
 #include "keypad4x4_port.h"
 #include "drivers/keypad4x4.h"
 
@@ -14,13 +15,70 @@ typedef enum{
 
 //********************************************************
 uint8_t Keypad4x4_GetNumber(void){
-    uint8_t number = 0U;
+    uint8_t number = 0xFFU;
 
-    Keypad4x4_InitPins_Mode1();
-    number = Keypad4x4_GetPins_Mode1();
+    Keypad4x4_R1_SetInput();
+    Keypad4x4_R1_SetPullUp();
 
-    Keypad4x4_InitPins_Mode2();
-    number |= Keypad4x4_GetPins_Mode2();
+    Keypad4x4_R2_SetInput();
+    Keypad4x4_R2_SetPullUp();
+
+    Keypad4x4_R3_SetInput();
+    Keypad4x4_R3_SetPullUp();
+
+    Keypad4x4_R4_SetInput();
+    Keypad4x4_R4_SetPullUp();
+
+    Keypad4x4_C1_SetOutput();
+    Keypad4x4_C1_WriteLow();
+
+    Keypad4x4_C2_SetOutput();
+    Keypad4x4_C2_WriteLow();
+
+    Keypad4x4_C3_SetOutput();
+    Keypad4x4_C3_WriteLow();
+
+    Keypad4x4_C4_SetOutput();
+    Keypad4x4_C4_WriteLow();
+
+    //Keypad4x4_InitPins_Mode1();
+    number = WriteBit_u8(number, 0, Keypad4x4_R1_Read());
+    number = WriteBit_u8(number, 1, Keypad4x4_R2_Read());
+    number = WriteBit_u8(number, 2, Keypad4x4_R3_Read());
+    number = WriteBit_u8(number, 3, Keypad4x4_R4_Read());
+    //number = Keypad4x4_GetPins_Mode1();
+
+    Keypad4x4_R1_SetOutput();
+    Keypad4x4_R1_WriteLow();
+
+    Keypad4x4_R2_SetOutput();
+    Keypad4x4_R2_WriteLow();
+
+    Keypad4x4_R3_SetOutput();
+    Keypad4x4_R3_WriteLow();
+
+    Keypad4x4_R4_SetOutput();
+    Keypad4x4_R4_WriteLow();
+
+    Keypad4x4_C1_SetInput();
+    Keypad4x4_C1_SetPullUp();
+
+    Keypad4x4_C2_SetInput();
+    Keypad4x4_C2_SetPullUp();
+
+    Keypad4x4_C3_SetInput();
+    Keypad4x4_C3_SetPullUp();
+
+    Keypad4x4_C4_SetInput();
+    Keypad4x4_C4_SetPullUp();
+
+    //Keypad4x4_InitPins_Mode2();
+
+    number = WriteBit_u8(number, 4, Keypad4x4_C1_Read());
+    number = WriteBit_u8(number, 5, Keypad4x4_C2_Read());
+    number = WriteBit_u8(number, 6, Keypad4x4_C3_Read());
+    number = WriteBit_u8(number, 7, Keypad4x4_C4_Read());
+    //number |= Keypad4x4_GetPins_Mode2();
 
     switch (number){
         case KEYPAD4X4_N00:
