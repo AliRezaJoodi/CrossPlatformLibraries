@@ -23,37 +23,19 @@ extern "C" {
 #endif
 
 #include <stdint.h>
-
 #include "compiler_port.h"
 #include "utils/bit_register.h"
-
 #include "button_hw.h"
 #include "button_types.h"
 
 #define BUTTON_DELAY_US(VALUE)      DELAY_US(VALUE)
 
-/**
- * @brief Configure button GPIO pin.
- *
- * This function configures the hardware pin of the given button
- * as input and sets the pull resistor mode according to the
- * button configuration.
- *
- * The Data Direction Register (DDR) bit is cleared to select input mode.
- * Then, based on the configured input mode:
- *  - BUTTON_MODE_FLOATING  : pull resistor disabled
- *  - BUTTON_MODE_PULLUP    : internal pull-up enabled
- *  - BUTTON_MODE_PULLDOWN  : handled as floating on MCUs without pull-down support
- *
- * @param btn Pointer to Button_t object.
- */
-static inline void Button_ConfigPin(Button_t *btn){
+static inline void Button_Pin_SetInput(Button_t *btn){
     ClearBit_Reg8(btn->hw.ddr, btn->hw.index);
+}
 
-    switch(btn->config.pull) {
-        case BUTTON_MODE_FLOATING:
-            ClearBit_Reg8(btn->hw.port, btn->hw.index);
-            break;
+static inline void Button_Pin_SetPull(Button_t *btn, Button_PullMode_t mode){
+    switch(mode) {
         case BUTTON_MODE_PULLUP:
             SetBit_Reg8(btn->hw.port, btn->hw.index);
             break;
@@ -62,13 +44,7 @@ static inline void Button_ConfigPin(Button_t *btn){
     }
 }
 
-/**
- * @brief Read current logic level of the button pin.
- *
- * @param btn Pointer to Button_t object.
- * @return 0 if logic low, 1 if logic high.
- */
-static inline uint8_t Button_GetPin(const Button_t *btn){
+static inline uint8_t Button_Pin_Read(const Button_t *btn){
     return ReadBit_Reg8(btn->hw.pin, btn->hw.index);
 }
 

@@ -2,13 +2,14 @@
 
 #include <stdint.h>
 #include "hardware.h"   /* Project-level overrides */
+#include "button_types.h"
 #include "button_port.h"
-#include "drivers/button_config.h"
 #include "drivers/button.h"
 
 //*************************************************
-void Button_Config(Button_t *btn){
-    Button_ConfigPin(btn);
+void Button_Init(Button_t *btn){
+    Button_Pin_SetInput(btn);
+    Button_Pin_SetPull(btn, btn->config.pull);
 
     btn->state = 0;
     btn->counter = 0;
@@ -16,10 +17,10 @@ void Button_Config(Button_t *btn){
 
 //*************************************************
 uint8_t Button_GetSingleClick(Button_t *btn){
-    if ( Button_GetPin(btn) == btn->config.pressed ){
+    if (Button_Pin_Read(btn) == btn->config.pressed){
         if (btn->state == 0){
             BUTTON_DELAY_US(BUTTON_SINGLE_CLICK_LAG);
-            if ( Button_GetPin(btn) == btn->config.pressed ){
+            if (Button_Pin_Read(btn) == btn->config.pressed){
                 btn->state = 1;
                 return 1;
             }
@@ -28,7 +29,7 @@ uint8_t Button_GetSingleClick(Button_t *btn){
     else {
         if(btn->state == 1){
             BUTTON_DELAY_US(BUTTON_SINGLE_CLICK_LAG);
-            if ( Button_GetPin(btn) != btn->config.pressed ){
+            if (Button_Pin_Read(btn) != btn->config.pressed){
                 btn->state = 0;
             }
         }
@@ -39,7 +40,7 @@ uint8_t Button_GetSingleClick(Button_t *btn){
 
 //*************************************************
 uint8_t Button_GetAutoRepeat_NonBlocking(Button_t *btn){
-    if (Button_GetPin(btn) == btn->config.pressed){
+    if (Button_Pin_Read(btn) == btn->config.pressed){
         btn->counter++;
         if (btn->counter >= BUTTON_AUTO_REPEAT_LAG){
             btn->counter = 0;
@@ -55,7 +56,7 @@ uint8_t Button_GetAutoRepeat_NonBlocking(Button_t *btn){
 
 //*************************************************
 uint8_t Button_GetLongPress_NonBlocking(Button_t *btn){
-    if (Button_GetPin(btn) == btn->config.pressed){
+    if (Button_Pin_Read(btn) == btn->config.pressed){
         if (btn->counter < BUTTON_LONG_PRESS_LAG){
             btn->counter++;
         }

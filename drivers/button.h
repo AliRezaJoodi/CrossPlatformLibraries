@@ -3,7 +3,7 @@
  * @brief   Public API for button handling.
  *
  * This API relies on the underlying configuration and hardware
- * layers defined in button_config.h and button_port.h.
+ * layers defined in Button_Init.h and button_port.h.
  *
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
@@ -27,7 +27,7 @@ extern "C" {
  *
  * @param btn Pointer to the Button_t object to initialize.
  */
-void Button_Config(Button_t *btn);
+void Button_Init(Button_t *btn);
 
 /**
  * @brief Check for a single click event on a button.
