@@ -9,7 +9,7 @@
 
 /********************************************************/
 void MCP3204_Init(MCP3204_t *mcp){
-    MCP3204_CS_Init(mcp);
+    MCP3204_CS_SetOutput(mcp);
     MCP3204_CS_Write(mcp, CS_IDLE);
 }
 
