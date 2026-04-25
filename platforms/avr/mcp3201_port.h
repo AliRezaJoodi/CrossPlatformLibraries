@@ -62,7 +62,7 @@ extern "C" {
  *
  * @param   mcp     Pointer to the MCP3201 instance
  */
-static inline void MCP3201_CS_Init(MCP3201_t *mcp){
+static inline void MCP3201_CS_SetOutput(MCP3201_t *mcp){
     SetBit_Reg8(mcp->cs.ddr, mcp->cs.index);
 }
 
@@ -74,7 +74,7 @@ static inline void MCP3201_CS_Init(MCP3201_t *mcp){
  *                  - 0: Pull CS low (select chip)
  *                  - 1: Pull CS high (deselect / idle)
  *
- * @note    The CS pin must be initialized with MCP3201_CS_Init() before use.
+ * @note    The CS pin must be initialized with MCP3201_CS_SetOutput() before use.
  */
 static inline void MCP3201_CS_Write(MCP3201_t *mcp, uint8_t status){
     WriteBit_Reg8(mcp->cs.port, mcp->cs.index, status);
