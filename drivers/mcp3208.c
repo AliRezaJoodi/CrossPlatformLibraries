@@ -9,7 +9,7 @@
 
 /********************************************************/
 void MCP3208_Init(MCP3208_t *mcp){
-    MCP3208_CS_Init(mcp);
+    MCP3208_CS_SetOutput(mcp);
     MCP3208_CS_Write(mcp, CS_IDLE);
 }
 
