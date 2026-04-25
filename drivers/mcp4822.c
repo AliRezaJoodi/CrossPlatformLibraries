@@ -14,11 +14,11 @@
 
 //********************************************************
 void MCP4822_Init(MCP4822_t *dac){
-    MCP4822_CS_Init(dac);
+    MCP4822_CS_SetOutput(dac);
     MCP4822_CS_Write(dac, CS_IDLE);
 
-    MCP4822_LDAC_InitPin(dac);
-    MCP4822_LDAC_WritePin(dac, LDAC_IDLE);
+    MCP4822_LDAC_SetOutput(dac);
+    MCP4822_LDAC_Write(dac, LDAC_IDLE);
 }
 
 //********************************************************
@@ -36,9 +36,9 @@ void MCP4822_SetOutput(MCP4822_t *dac, MCP4822_Channel_t ch, MCP4822_Gain_t gain
     MCP4822_CS_Write(dac, CS_IDLE);
     MCP4822_DELAY_US(1);    /**< Minimum Setup Time = 40ns */
 
-    MCP4822_LDAC_WritePin(dac, LDAC_ACTIVE);
+    MCP4822_LDAC_Write(dac, LDAC_ACTIVE);
     MCP4822_DELAY_US(1);    /**< Minimum Pulse Width = 100ns */
-    MCP4822_LDAC_WritePin(dac, LDAC_IDLE);
+    MCP4822_LDAC_Write(dac, LDAC_IDLE);
 }
 
 //********************************************************
@@ -52,7 +52,7 @@ void MCP4822_DisableOutput(MCP4822_t *dac, MCP4822_Channel_t ch){
     MCP4822_CS_Write(dac, CS_IDLE);
     MCP4822_DELAY_US(1);    /**< Minimum Setup Time = 40ns */
 
-    MCP4822_LDAC_WritePin(dac, LDAC_ACTIVE);
+    MCP4822_LDAC_Write(dac, LDAC_ACTIVE);
     MCP4822_DELAY_US(1);    /**< Minimum Pulse Width = 100ns */
-    MCP4822_LDAC_WritePin(dac, LDAC_IDLE);
+    MCP4822_LDAC_Write(dac, LDAC_IDLE);
 }

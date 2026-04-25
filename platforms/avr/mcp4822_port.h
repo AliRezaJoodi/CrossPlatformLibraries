@@ -59,7 +59,7 @@ extern "C" {
  *
  * @param[in] mcp   Pointer to MCP4822 device handle
  */
-static inline void MCP4822_CS_Init(MCP4822_t *mcp){
+static inline void MCP4822_CS_SetOutput(MCP4822_t *mcp){
     SetBit_Reg8(mcp->cs.ddr, mcp->cs.index);
 }
 
@@ -80,7 +80,7 @@ static inline void MCP4822_CS_Write(MCP4822_t *mcp, uint8_t status){
  *
  * @param[in] mcp   Pointer to MCP4822 device handle
  */
-static inline void MCP4822_LDAC_InitPin(MCP4822_t *mcp){
+static inline void MCP4822_LDAC_SetOutput(MCP4822_t *mcp){
     SetBit_Reg8(mcp->ldac.ddr, mcp->ldac.index);
 }
 
@@ -91,7 +91,7 @@ static inline void MCP4822_LDAC_InitPin(MCP4822_t *mcp){
  * @param[in] mcp     Pointer to MCP4822 device handle
  * @param[in] status  Pin state (0 = low, 1 = high)
  */
-static inline void MCP4822_LDAC_WritePin(MCP4822_t *mcp, uint8_t status){
+static inline void MCP4822_LDAC_Write(MCP4822_t *mcp, uint8_t status){
     WriteBit_Reg8(mcp->ldac.port, mcp->ldac.index, status);
 }
 
