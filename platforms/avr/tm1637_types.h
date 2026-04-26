@@ -16,7 +16,8 @@ typedef struct {
     volatile uint8_t *ddr;
     volatile uint8_t *port;
     volatile uint8_t *pin;
-    const uint8_t    index;
+    //const uint8_t    index;
+    const uint8_t    mask;
 } TM1637_Pin_t;
 
 /**
@@ -42,13 +43,13 @@ typedef struct {
  *            .ddr   = &TM1637_CLK_DDR,
  *            .port  = &TM1637_CLK_PORT,
  *            .pin   = &TM1637_CLK_PIN,
- *            .index =  TM1637_CLK_BIT
+ *            .mask =   TM1637_CLK_MASK
  *        },
  *        .dio = {
  *            .ddr   = &TM1637_DIO_DDR,
  *            .port  = &TM1637_DIO_PORT,
  *            .pin   = &TM1637_DIO_PIN,
- *            .index =  TM1637_DIO_BIT
+ *            .mask =   TM1637_DIO_MASK
  *        }
  *    };
  * @endcode
