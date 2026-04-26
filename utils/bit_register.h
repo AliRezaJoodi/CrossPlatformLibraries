@@ -185,6 +185,11 @@ static inline void Write8Bit_Reg8(volatile uint8_t *reg, uint8_t pos, uint8_t st
 }
 
 //***********************************************************************
+static inline uint8_t ReadBitMask_Reg8(volatile uint8_t *reg, uint8_t mask){
+    return (uint8_t)(((*reg) & mask) != 0U);
+}
+
+//***********************************************************************
 static inline uint8_t ReadBit_Reg8(volatile uint8_t *reg, uint8_t pos){
     return (uint8_t)((*reg >> pos) & 0x01U);
 }
