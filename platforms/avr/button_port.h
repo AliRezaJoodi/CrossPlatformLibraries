@@ -34,14 +34,16 @@ static inline void Button_Pin_SetInput(Button_t *btn){
     ClearBit_Reg8(btn->hw.ddr, btn->hw.index);
 }
 
-static inline void Button_Pin_SetPull(Button_t *btn, Button_PullMode_t mode){
-    switch(mode) {
-        case BUTTON_PULL_UP:
-            SetBit_Reg8(btn->hw.port, btn->hw.index);
-            break;
-        default:
-            ClearBit_Reg8(btn->hw.port, btn->hw.index);
-    }
+static inline void Button_Pin_SetPullNone(Button_t *btn){
+    ClearBit_Reg8(btn->hw.port, btn->hw.index);
+}
+
+static inline void Button_Pin_SetPullUp(Button_t *btn){
+    SetBit_Reg8(btn->hw.port, btn->hw.index);
+}
+
+static inline void Button_Pin_SetPullDown(Button_t *btn){
+    ClearBit_Reg8(btn->hw.port, btn->hw.index);
 }
 
 static inline uint8_t Button_Pin_Read(const Button_t *btn){
