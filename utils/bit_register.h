@@ -10,6 +10,11 @@ extern "C" {
 #include <stdint.h>
 
 //***********************************************************************
+static inline void SetBitMask_Reg8(volatile uint8_t *reg, uint8_t mask){
+    *reg = (uint8_t)(*reg | mask);
+}
+
+//***********************************************************************
 static inline void SetBit_Reg8(volatile uint8_t *reg, uint8_t pos){
     *reg = (uint8_t)(*reg | (0x01U << pos));
 }
@@ -47,6 +52,11 @@ static inline void Set8Bit_Reg8(volatile uint8_t *reg, uint8_t pos){
 }
 
 //***********************************************************************
+static inline void ClearBitMask_Reg8(volatile uint8_t *reg, uint8_t mask){
+    *reg = (uint8_t)(*reg & (~mask));
+}
+
+//***********************************************************************
 static inline void ClearBit_Reg8(volatile uint8_t *reg, uint8_t pos){
     *reg = (uint8_t)(*reg & ~(0x01U << pos));
 }
@@ -77,6 +87,11 @@ static inline void Clear7Bit_Reg8(volatile uint8_t *reg, uint8_t pos){
 
 static inline void Clear8Bit_Reg8(volatile uint8_t *reg, uint8_t pos){
     *reg = (uint8_t)(*reg & ~(0xFFU << pos));
+}
+
+//***********************************************************************
+static inline void ToggleBitMask_Reg8(volatile uint8_t *reg, uint8_t mask){
+    *reg = (uint8_t)(*reg ^ mask);
 }
 
 //***********************************************************************
