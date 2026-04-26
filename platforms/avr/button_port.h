@@ -36,7 +36,7 @@ static inline void Button_Pin_SetInput(Button_t *btn){
 
 static inline void Button_Pin_SetPull(Button_t *btn, Button_PullMode_t mode){
     switch(mode) {
-        case BUTTON_MODE_PULLUP:
+        case BUTTON_PULL_UP:
             SetBit_Reg8(btn->hw.port, btn->hw.index);
             break;
         default:

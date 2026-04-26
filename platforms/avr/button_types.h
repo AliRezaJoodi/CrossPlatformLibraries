@@ -16,9 +16,9 @@ typedef enum{
 
 /** @brief Configures the pull resistor mode for a button pin. */
 typedef enum{
-    BUTTON_MODE_FLOATING = 0U,   /**< No pull resistor */
-    BUTTON_MODE_PULLUP   = 1U,   /**< No pull resistor */
-    BUTTON_MODE_PULLDOWN = 2U    /**< Internal pull-down enabled */
+    BUTTON_PULL_NONE = 0U,   /**< No pull resistor */
+    BUTTON_PULL_UP   = 1U,   /**< No pull resistor */
+    BUTTON_PULL_DOWN = 2U    /**< Internal pull-down enabled */
 } Button_PullMode_t;
 
 /**
@@ -46,9 +46,9 @@ typedef struct {
  *
  *   pull    : Selects the internal pull resistor configuration using
  *             @ref Button_PullMode_t
- *             - BUTTON_MODE_FLOATING : No internal pull resistor
- *             - BUTTON_MODE_PULLUP   : Internal pull-up enabled
- *             - BUTTON_MODE_PULLDOWN : Internal pull-down enabled
+ *             - BUTTON_PULL_NONE : No internal pull resistor
+ *             - BUTTON_PULL_UP   : Internal pull-up enabled
+ *             - BUTTON_PULL_DOWN : Internal pull-down enabled
  *
  * All values are constant after initialization.
  */
@@ -89,7 +89,7 @@ typedef struct{
  *        },
  *        .config = {
  *            .pressed = BUTTON_ACTIVE_LOW,
- *            .pull    = BUTTON_MODE_FLOATING
+ *            .pull    = BUTTON_PULL_NONE
  *        },
  *        .state   = 0,
  *        .counter = 0
