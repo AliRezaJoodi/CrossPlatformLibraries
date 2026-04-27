@@ -14,6 +14,19 @@ extern "C" {
 #define TM1638_DELAY_US(VALUE)          DELAY_US(VALUE)
 
 //***************************************
+static inline void TM1638_STB_SetOutput(TM1638_t *tm){
+    SetBitMask_Reg8(tm->stb.ddr, tm->stb.mask);
+}
+
+static inline void TM1638_STB_WriteLow(TM1638_t *tm){
+    ClearBitMask_Reg8(tm->stb.port, tm->stb.mask);
+}
+
+static inline void TM1638_STB_WriteHigh(TM1638_t *tm){
+    SetBitMask_Reg8(tm->stb.port, tm->stb.mask);
+}
+
+//***************************************
 static inline void TM1638_STB_Init(TM1638_t *tm){
     SetBit_Reg8(tm->stb.ddr, tm->stb.index);
     //SetBit_Reg8(tm->stb.port, tm->stb.index);  // Idle bus
@@ -25,6 +38,19 @@ static inline void TM1638_STB_Write(TM1638_t *tm, uint8_t status){
 }
 
 //***************************************
+static inline void TM1638_CLK_SetOutput(TM1638_t *tm){
+    SetBitMask_Reg8(&TM1638_CLK_DDR, TM1638_CLK_MASK);
+}
+
+static inline void TM1638_CLK_WriteLow(TM1638_t *tm){
+    ClearBitMask_Reg8(&TM1638_CLK_PORT, TM1638_CLK_MASK);
+}
+
+static inline void TM1638_CLK_WriteHigh(TM1638_t *tm){
+    SetBitMask_Reg8(&TM1638_CLK_PORT, TM1638_CLK_MASK);
+}
+
+//***************************************
 static inline void TM1638_CLK_Init(void){
     SetBit_Reg8(&TM1638_CLK_DDR, TM1638_CLK_BIT);
     //SetBit_Reg8(&TM1638_CLK_PORT, TM1638_CLK_BIT); // Idle bus
@@ -33,6 +59,23 @@ static inline void TM1638_CLK_Init(void){
 //***************************************
 static inline void TM1638_CLK_Write(uint8_t status){
     WriteBit_Reg8(&TM1638_CLK_PORT, TM1638_CLK_BIT, status);
+}
+
+//***************************************
+static inline void TM1638_DIO_SetOutput(TM1638_t *tm){
+    SetBitMask_Reg8(&TM1638_DIO_DDR, TM1638_DIO_MASK);
+}
+
+static inline void TM1638_DIO_WriteLow(TM1638_t *tm){
+    ClearBitMask_Reg8(&TM1638_DIO_PORT, TM1638_DIO_MASK);
+}
+
+static inline void TM1638_DIO_WriteHigh(TM1638_t *tm){
+    SetBitMask_Reg8(&TM1638_DIO_PORT, TM1638_DIO_MASK);
+}
+
+static inline void TM1638_DIO_SetInput(TM1638_t *tm){
+    ClearBitMask_Reg8(&TM1638_DIO_DDR, TM1638_DIO_MASK);
 }
 
 //***************************************
