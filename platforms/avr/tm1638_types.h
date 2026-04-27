@@ -7,10 +7,10 @@ extern "C" {
 
 #include <stdint.h>
 
-typedef enum{
-    TM1638_PIN_INPUT = 0U,
-    TM1638_PIN_OUTPUT = 1U
-} TM1638_PinMode_t;
+//typedef enum{
+//    TM1638_PIN_INPUT = 0U,
+//    TM1638_PIN_OUTPUT = 1U
+//} TM1638_PinMode_t;
 
 
 /**
@@ -21,7 +21,7 @@ typedef enum{
 typedef struct {
     volatile uint8_t *ddr;
     volatile uint8_t *port;
-    const uint8_t    index;
+    //const uint8_t    index;
     const uint8_t    mask;
 } TM1638_Pin_t;
 
@@ -46,7 +46,7 @@ typedef struct {
  *        .stb = {
  *            .ddr   = &TM1638_STB_DDR,
  *            .port  = &TM1638_STB_PORT,
- *            .index =  TM1638_STB_BIT
+ *            .mask =  TM1638_STB_MASK
  *        }
  *    };
  * @endcode
