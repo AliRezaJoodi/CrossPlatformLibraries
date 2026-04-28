@@ -31,23 +31,23 @@ extern "C" {
 #define BUTTON_DELAY_US(VALUE)      DELAY_US(VALUE)
 
 static inline void Button_Pin_SetInput(Button_t *btn){
-    ClearBit_Reg8(btn->hw.ddr, btn->hw.index);
+    ClearBitMask_Reg8(btn->hw.ddr, btn->hw.mask);
 }
 
 static inline void Button_Pin_SetPullNone(Button_t *btn){
-    ClearBit_Reg8(btn->hw.port, btn->hw.index);
+    ClearBitMask_Reg8(btn->hw.port, btn->hw.mask);
 }
 
 static inline void Button_Pin_SetPullUp(Button_t *btn){
-    SetBit_Reg8(btn->hw.port, btn->hw.index);
+    SetBitMask_Reg8(btn->hw.port, btn->hw.mask);
 }
 
 static inline void Button_Pin_SetPullDown(Button_t *btn){
-    ClearBit_Reg8(btn->hw.port, btn->hw.index);
+    ClearBitMask_Reg8(btn->hw.port, btn->hw.mask);
 }
 
 static inline uint8_t Button_Pin_Read(const Button_t *btn){
-    return ReadBit_Reg8(btn->hw.pin, btn->hw.index);
+    return ReadBitMask_Reg8(btn->hw.pin, btn->hw.mask);
 }
 
 #ifdef __cplusplus

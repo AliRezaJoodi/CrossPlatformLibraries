@@ -31,7 +31,8 @@ typedef struct {
     volatile uint8_t    *ddr;      /**< Data Direction Register */
     volatile uint8_t    *port;     /**< Port register */
     volatile uint8_t    *pin;      /**< Pin register */
-    const uint8_t       index;    /**< Pin index number */
+    //const uint8_t       index;    /**< Pin index number */
+    const uint8_t       mask;
 } Button_Pin_t;
 
 /**
@@ -85,7 +86,7 @@ typedef struct{
  *            .ddr   = &BUTTON_DDR,
  *            .port  = &BUTTON_PORT,
  *            .pin   = &BUTTON_PIN,
- *            .index = BUTTON_BIT
+ *            .mask  = BUTTON_MASK
  *        },
  *        .config = {
  *            .pressed = BUTTON_ACTIVE_LOW,
