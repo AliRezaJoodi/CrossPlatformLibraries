@@ -14,10 +14,13 @@ extern "C" {
 #include <stdint.h>
 
 uint8_t BitMask_First8(uint8_t mask);
+uint8_t BitMask_Last8(uint8_t mask);
 uint8_t BitMask_Single8(uint8_t mask);
 uint8_t BitMask_PopCount8(uint8_t mask);
 uint8_t BitMask_CTZ4(uint8_t mask);
 uint8_t BitMask_CTZ8(uint8_t mask);
+uint8_t BitMask_CLZ8(uint8_t mask);
+uint8_t BitMask_Reverse8(uint8_t mask);
 
 #ifdef __cplusplus
 }
