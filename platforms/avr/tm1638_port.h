@@ -97,8 +97,12 @@ static inline void TM1638_DIO_SetInput(void){
 
 //***************************************
 static inline uint8_t TM1638_DIO_Read(void){
-    return Read8Bit_Reg8(&TM1638_DIO_PIN, TM1638_DIO_BIT);
+    return ReadBitMask_Reg8(&TM1638_DIO_PIN, TM1638_DIO_MASK);
 }
+
+//static inline uint8_t TM1638_DIO_Read(void){
+//    return Read8Bit_Reg8(&TM1638_DIO_PIN, TM1638_DIO_BIT);
+//}
 
 #ifdef __cplusplus
 }

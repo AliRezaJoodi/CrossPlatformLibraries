@@ -237,18 +237,27 @@ void TM1638_Set8Leds_S9x8(TM1638_t *tm, uint8_t data);
  * @param tm Pointer to TM1638 handle structure.
  * @param key Pointer to an array of 4 bytes where the button states will be stored.
  */
-void TM1638_GetButtons(TM1638_t *tm, uint8_t *key);
+void TM1638_GetKeys(TM1638_t *tm, uint8_t *key);
 
 /**
- * @brief Get the state of buttons connected to K3 as a single byte.
+ * @brief Read the state of keys connected to the K3 line.
  *
- * Reads the state of buttons connected to K3 and combines them into a single byte.
- * Each bit of the returned byte represents one button state.
+ * This function reads the key data returned on the K3 line of the TM1638.
+ * The result is returned as a bitmask where each bit represents one key state.
+ * Bit mapping:
+ *     bit0: Key 1
+ *     bit1: Key 2
+ *     bit2: Key 3
+ *     bit3: Key 4
+ *     bit4: Key 5
+ *     bit5: Key 6
+ *     bit6: Key 7
+ *     bit7: Key 8
  *
  * @param tm Pointer to TM1638 handle structure.
- * @return Byte representing the state of buttons.
+ * @return 8-bit value where each bit indicates the state of a key.
  */
-uint8_t TM1638_Get8Buttons_K3(TM1638_t *tm);
+uint8_t TM1638_GetKeys_K3(TM1638_t *tm);
 
 #ifdef __cplusplus
 }

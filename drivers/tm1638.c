@@ -321,24 +321,25 @@ uint8_t TM1638_ReadByte(void){
     //TM1638_DIO_Config(TM1638_PIN_INPUT);
     TM1638_DIO_SetInput();
 
-    for(i=0; i<8; i++) {
+    for(i=0; i<8; ++i) {
         //TM1638_CLK_Write(0);
         TM1638_CLK_WriteLow();
         TM1638_DELAY_US(TM1638_BIT_US);
         //TM1638_CLK_Write(1);
         TM1638_CLK_WriteHigh();
+        TM1638_DELAY_US(TM1638_BIT_US);
 
         buf = TM1638_DIO_Read();
         WRITE_BIT(data, i, buf);
 
-        TM1638_DELAY_US(TM1638_BIT_US);
+        //TM1638_DELAY_US(TM1638_BIT_US);
     }
 
     return data;
 }
 
 //***************************************
-void TM1638_GetButtons(TM1638_t *tm, uint8_t *key){
+void TM1638_GetKeys(TM1638_t *tm, uint8_t *key){
     uint8_t i = 0;
 
     //TM1638_STB_Write(tm, STB_ACTIVE);
@@ -364,7 +365,7 @@ void TM1638_GetButtons(TM1638_t *tm, uint8_t *key){
 }
 
 //***************************************
-uint8_t TM1638_Get8Buttons_K3(TM1638_t *tm){
+uint8_t TM1638_GetKeys_K3(TM1638_t *tm){
     uint8_t i = 0;
     uint8_t data = 0;
     uint8_t buf = 0;
