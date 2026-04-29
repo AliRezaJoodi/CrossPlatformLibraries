@@ -57,7 +57,7 @@ extern "C" {
  * @param   mcp     Pointer to the MCP3204 instance
  */
 static inline void MCP3204_CS_SetOutput(MCP3204_t *mcp){
-    SetBit_Reg8(mcp->cs.ddr, mcp->cs.index);
+    SetBitMask_Reg8(mcp->cs.ddr, mcp->cs.mask);
 }
 
 /**
@@ -70,8 +70,16 @@ static inline void MCP3204_CS_SetOutput(MCP3204_t *mcp){
  *
  * @note    The CS pin must be initialized with MCP3204_CS_SetOutput() before use.
  */
-static inline void MCP3204_CS_Write(MCP3204_t *mcp, uint8_t status){
-    WriteBit_Reg8(mcp->cs.port, mcp->cs.index, status);
+//static inline void MCP3204_CS_Write(MCP3204_t *mcp, uint8_t status){
+//    WriteBit_Reg8(mcp->cs.port, mcp->cs.index, status);
+//}
+
+static inline void MCP3204_CS_WriteLow(MCP3204_t *mcp){
+    ClearBitMask_Reg8(mcp->cs.port, mcp->cs.mask);
+}
+
+static inline void MCP3204_CS_WriteHigh(MCP3204_t *mcp){
+    SetBitMask_Reg8(mcp->cs.port, mcp->cs.mask);
 }
 
 /**

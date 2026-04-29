@@ -19,7 +19,8 @@ extern "C" {
 typedef struct {
     volatile uint8_t *ddr;      /**< Data Direction Register for this pin */
     volatile uint8_t *port;     /**< PORT register for this pin */
-    const uint8_t     index;    /**< Bit position within DDR/PORT (0..7) */
+    //const uint8_t     index;    /**< Bit position within DDR/PORT (0..7) */
+    const uint8_t     mask;
 } MCP3204_Pin_t;
 
 /**
@@ -40,7 +41,7 @@ typedef struct {
  *        .cs = {
  *            .ddr   = &MCP3204_CS_DDR,
  *            .port  = &MCP3204_CS_PORT,
- *            .index = MCP3204_CS_BIT
+ *            .mask = MCP3204_CS_MASK
  *        }
  *    };
  * @endcode
