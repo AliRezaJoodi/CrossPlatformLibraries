@@ -4,13 +4,14 @@
 #include "mcp3202_port.h"
 #include "drivers/mcp3202.h"
 
-#define CS_IDLE                    1U
-#define CS_ACTIVE                  0U
+//#define CS_IDLE                    1U
+//#define CS_ACTIVE                  0U
 
 /********************************************************/
 void MCP3202_Init(MCP3202_t *mcp){
     MCP3202_CS_SetOutput(mcp);
-    MCP3202_CS_Write(mcp, CS_IDLE);
+    //MCP3202_CS_Write(mcp, CS_IDLE);
+    MCP3202_CS_WriteHigh(mcp);
 }
 
 /********************************************************/
@@ -35,11 +36,13 @@ uint16_t MCP3202_GetCounts(MCP3202_t *mcp, MCP3202_Channel_t ch){
             return 0xFFFF;
     }
 
-    MCP3202_CS_Write(mcp, CS_ACTIVE);
+    //MCP3202_CS_Write(mcp, CS_ACTIVE);
+    MCP3202_CS_WriteLow(mcp);
     MCP3202_SPI_Transfer(data1);
     data1 = MCP3202_SPI_Transfer(data2);    // Get MSB
     data2 = MCP3202_SPI_Transfer(0xFF);     // Get LSB
-    MCP3202_CS_Write(mcp, CS_IDLE);
+    //MCP3202_CS_Write(mcp, CS_IDLE);
+    MCP3202_CS_WriteHigh(mcp);
 
     return ( ((uint16_t)(data1 & 0x0FU) << 8U) | data2 );
 }
