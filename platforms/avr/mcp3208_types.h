@@ -41,7 +41,7 @@ typedef struct {
  *        .cs = {
  *            .ddr   = &MCP3208_CS_DDR,
  *            .port  = &MCP3208_CS_PORT,
- *            .mask = MCP3208_CS_MASK,
+ *            .mask = MCP3208_CS_MASK
  *        }
  *    };
  * @endcode
