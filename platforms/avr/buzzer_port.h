@@ -13,7 +13,8 @@ extern "C" {
 #define BUZZER_DELAY_MS(VALUE)          DELAY_MS(VALUE)
 
 static inline void Buzzer_Pin_SetOutput(void){
-    SetBit_Reg8(&BUZZER_DDR, BUZZER_BIT);
+    //SetBit_Reg8(&BUZZER_DDR, BUZZER_BIT);
+    SetBitMask_Reg8(&BUZZER_DDR, BUZZER_MASK);
 }
 
 static inline void Buzzer_Pin_Write(uint8_t status){

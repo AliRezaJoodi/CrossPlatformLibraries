@@ -11,6 +11,7 @@
     #define BUZZER_DDR          DDRB
     #define BUZZER_PORT         PORTB
     #define BUZZER_BIT          1U
+    #define BUZZER_MASK         (1U << BUZZER_BIT)
 
     #warning "BUZZER_HARDWARE is not defined; default configuration will be used."
 #endif
