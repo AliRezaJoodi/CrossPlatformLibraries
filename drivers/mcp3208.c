@@ -4,13 +4,14 @@
 #include "mcp3208_port.h"
 #include "drivers/mcp3208.h"
 
-#define CS_IDLE             1U
-#define CS_ACTIVE           0U
+//#define CS_IDLE             1U
+//#define CS_ACTIVE           0U
 
 /********************************************************/
 void MCP3208_Init(MCP3208_t *mcp){
     MCP3208_CS_SetOutput(mcp);
-    MCP3208_CS_Write(mcp, CS_IDLE);
+    //MCP3208_CS_Write(mcp, CS_IDLE);
+    MCP3208_CS_WriteHigh(mcp);
 }
 
 /********************************************************/
@@ -87,11 +88,13 @@ uint16_t MCP3208_GetCounts(MCP3208_t *mcp, MCP3208_Channel_t ch){
             return 0xFFFF;
     }
 
-    MCP3208_CS_Write(mcp, CS_ACTIVE);
+    //MCP3208_CS_Write(mcp, CS_ACTIVE);
+    MCP3208_CS_WriteLow(mcp);
     MCP3208_SPI_Transfer(data1);
     data1 = MCP3208_SPI_Transfer(data2);    // Get MSB
     data2 = MCP3208_SPI_Transfer(0xFF);     // Get LSB
-    MCP3208_CS_Write(mcp, CS_IDLE);
+    //MCP3208_CS_Write(mcp, CS_IDLE);
+    MCP3208_CS_WriteHigh(mcp);
 
     return ( ((uint16_t)(data1 & 0x0FU) << 8U) | data2 );
 }
