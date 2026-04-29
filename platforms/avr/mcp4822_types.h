@@ -16,7 +16,8 @@ extern "C" {
 typedef struct {
     volatile uint8_t *ddr;
     volatile uint8_t *port;
-    const uint8_t    index;
+    //const uint8_t    index;
+    const uint8_t    mask;
 } MCP4822_Pin_t;
 
 /**
@@ -41,12 +42,12 @@ typedef struct {
  *        .cs = {
  *            .ddr   = &MCP4822_CS_DDR,
  *            .port  = &MCP4822_CS_PORT,
- *            .index =  MCP4822_CS_BIT
+ *            .mask  =  MCP4822_CS_MASK
  *        },
  *        .ldac = {
  *            .ddr   = &MCP4822_LDAC_DDR,
  *            .port  = &MCP4822_LDAC_PORT,
- *            .index =  MCP4822_LDAC_BIT
+ *            .mask  =  MCP4822_LDAC_MASK
  *        }
  *    };
  * @endcode
