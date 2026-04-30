@@ -71,43 +71,43 @@ static inline void Seg7_Digit_Write(uint8_t index, uint8_t status){
     #endif
 
     #if SEG7_DIGITS_COUNT > 1
-        if(index == 1){
+        else if(index == 1){
             WriteBit_Reg8(&SEG7_DIGIT1_PORT, SEG7_DIGIT1_BIT, status);
         }
     #endif
 
     #if SEG7_DIGITS_COUNT > 2
-        if(index == 2){
+        else if(index == 2){
             WriteBit_Reg8(&SEG7_DIGIT2_PORT, SEG7_DIGIT2_BIT, status);
         }
     #endif
 
     #if SEG7_DIGITS_COUNT > 3
-        if(index == 3){
+        else if(index == 3){
             WriteBit_Reg8(&SEG7_DIGIT3_PORT, SEG7_DIGIT3_BIT, status);
         }
     #endif
 
     #if SEG7_DIGITS_COUNT > 4
-        if(index == 4){
+        else if(index == 4){
             WriteBit_Reg8(&SEG7_DIGIT4_PORT, SEG7_DIGIT4_BIT, status);
         }
     #endif
 
     #if SEG7_DIGITS_COUNT > 5
-        if(index == 5){
+        else if(index == 5){
             WriteBit_Reg8(&SEG7_DIGIT5_PORT, SEG7_DIGIT5_BIT, status);
         }
     #endif
 
     #if SEG7_DIGITS_COUNT > 6
-        if(index == 6){
+        else if(index == 6){
             WriteBit_Reg8(&SEG7_DIGIT6_PORT, SEG7_DIGIT6_BIT, status);
         }
     #endif
 
     #if SEG7_DIGITS_COUNT > 7
-        if(index == 7){
+        else if(index == 7){
             WriteBit_Reg8(&SEG7_DIGIT7_PORT, SEG7_DIGIT7_BIT, status);
         }
     #endif
