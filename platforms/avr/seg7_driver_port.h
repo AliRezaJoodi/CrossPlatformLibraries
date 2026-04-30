@@ -19,35 +19,35 @@ extern "C" {
  */
 static inline void Seg7_Digits_SetOutput(void){
     #if SEG7_DIGITS_COUNT > 0
-        SetBit_Reg8(&SEG7_DIGIT0_DDR, SEG7_DIGIT0_BIT);
+        SetBitMask_Reg8(&SEG7_DIGIT0_DDR, SEG7_DIGIT0_MASK);
     #endif
 
     #if SEG7_DIGITS_COUNT > 1
-        SetBit_Reg8(&SEG7_DIGIT1_DDR, SEG7_DIGIT1_BIT);
+        SetBitMask_Reg8(&SEG7_DIGIT1_DDR, SEG7_DIGIT1_MASK);
     #endif
 
     #if SEG7_DIGITS_COUNT > 2
-        SetBit_Reg8(&SEG7_DIGIT2_DDR, SEG7_DIGIT2_BIT);
+        SetBitMask_Reg8(&SEG7_DIGIT2_DDR, SEG7_DIGIT2_MASK);
     #endif
 
     #if SEG7_DIGITS_COUNT > 3
-        SetBit_Reg8(&SEG7_DIGIT3_DDR, SEG7_DIGIT3_BIT);
+        SetBitMask_Reg8(&SEG7_DIGIT3_DDR, SEG7_DIGIT3_MASK);
     #endif
 
     #if SEG7_DIGITS_COUNT > 4
-        SetBit_Reg8(&SEG7_DIGIT4_DDR, SEG7_DIGIT4_BIT);
+        SetBitMask_Reg8(&SEG7_DIGIT4_DDR, SEG7_DIGIT4_MASK);
     #endif
 
     #if SEG7_DIGITS_COUNT > 5
-        SetBit_Reg8(&SEG7_DIGIT5_DDR, SEG7_DIGIT5_BIT);
+        SetBitMask_Reg8(&SEG7_DIGIT5_DDR, SEG7_DIGIT5_MASK);
     #endif
 
     #if SEG7_DIGITS_COUNT > 6
-        SetBit_Reg8(&SEG7_DIGIT6_DDR, SEG7_DIGIT6_BIT);
+        SetBitMask_Reg8(&SEG7_DIGIT6_DDR, SEG7_DIGIT6_MASK);
     #endif
 
     #if SEG7_DIGITS_COUNT > 7
-        SetBit_Reg8(&SEG7_DIGIT7_DDR, SEG7_DIGIT7_BIT);
+        SetBitMask_Reg8(&SEG7_DIGIT7_DDR, SEG7_DIGIT7_MASK);
     #endif
 }
 
@@ -122,14 +122,14 @@ static inline void Seg7_Digit_Write(uint8_t index, uint8_t status){
  *
  */
 static inline void Seg7_Segments_SetOutput(void){
-    SetBit_Reg8(&SEG7_A_DDR, SEG7_A_BIT);
-    SetBit_Reg8(&SEG7_B_DDR, SEG7_B_BIT);
-    SetBit_Reg8(&SEG7_C_DDR, SEG7_C_BIT);
-    SetBit_Reg8(&SEG7_D_DDR, SEG7_D_BIT);
-    SetBit_Reg8(&SEG7_E_DDR, SEG7_E_BIT);
-    SetBit_Reg8(&SEG7_F_DDR, SEG7_F_BIT);
-    SetBit_Reg8(&SEG7_G_DDR, SEG7_G_BIT);
-    SetBit_Reg8(&SEG7_DP_DDR, SEG7_DP_BIT);
+    SetBitMask_Reg8(&SEG7_A_DDR, SEG7_A_MASK);
+    SetBitMask_Reg8(&SEG7_B_DDR, SEG7_B_MASK);
+    SetBitMask_Reg8(&SEG7_C_DDR, SEG7_C_MASK);
+    SetBitMask_Reg8(&SEG7_D_DDR, SEG7_D_MASK);
+    SetBitMask_Reg8(&SEG7_E_DDR, SEG7_E_MASK);
+    SetBitMask_Reg8(&SEG7_F_DDR, SEG7_F_MASK);
+    SetBitMask_Reg8(&SEG7_G_DDR, SEG7_G_MASK);
+    SetBitMask_Reg8(&SEG7_DP_DDR, SEG7_DP_MASK);
 }
 
 /**
