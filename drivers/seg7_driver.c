@@ -9,7 +9,6 @@ static uint8_t seg7_index = 0;      /* Current digit index for multiplex scannin
 /*********************************/
 void Seg7_Init(void){
     Seg7_Digits_SetOutput();
-
     Seg7_Segments_SetOutput();
     Seg7_Segments_Write(0x00U);
 }
@@ -23,7 +22,13 @@ void Seg7_SetBuffer(uint8_t *buffer){
 
 /*********************************/
 void Seg7_Refresh(void){
-    Seg7_Digit_Write(seg7_index, !SEG7_DIGITS_ACTIVATE);
+    /* Deactivate the selected digit line */
+    //Seg7_Digit_Write(seg7_index, !SEG7_DIGITS_ACTIVATE);
+    #if SEG7_DIGITS_ACTIVATE == 0U
+        Seg7_Digits_WriteHigh(seg7_index);
+    #else
+        Seg7_Digits_WriteLow(seg7_index);
+    #endif
 
     seg7_index++;
     if (seg7_index >= SEG7_DIGITS_COUNT){
@@ -31,5 +36,12 @@ void Seg7_Refresh(void){
     }
 
     Seg7_Segments_Write(*(seg7_buffer + seg7_index));
-    Seg7_Digit_Write(seg7_index, SEG7_DIGITS_ACTIVATE);
+
+    /* Activate the selected digit line */
+    //Seg7_Digit_Write(seg7_index, SEG7_DIGITS_ACTIVATE);
+    #if SEG7_DIGITS_ACTIVATE == 0U
+        Seg7_Digits_WriteLow(seg7_index);
+    #else
+        Seg7_Digits_WriteHigh(seg7_index);
+    #endif
 }
