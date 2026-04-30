@@ -127,6 +127,11 @@ static inline void Toggle8Bit_Reg8(volatile uint8_t *reg, uint8_t pos){
     *reg = (uint8_t)(*reg ^ (0xFFU << pos));
 }
 
+// Note: This branchless bit-mask technique may not work correctly with CodeVisionAVR due to compiler optimization issues.
+//static inline void WriteBitMask_Reg8(volatile uint8_t *reg, uint8_t mask, uint8_t status){
+//    *reg = (uint8_t)((*reg & ~mask) | ((-!!status) & mask));
+//}
+
 //***********************************************************************
 static inline void WriteBit_Reg8(volatile uint8_t *reg, uint8_t pos, uint8_t status){
     *reg = (uint8_t)(
