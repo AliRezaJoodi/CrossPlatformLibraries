@@ -38,7 +38,7 @@ typedef struct {
  * Example: initializing a structure
  *
  * @code
- *    TM1637_t tm1 = {
+ *    static const TM1637_t tm1 = {
  *        .clk = {
  *            .ddr   = &TM1637_CLK_DDR,
  *            .port  = &TM1637_CLK_PORT,
