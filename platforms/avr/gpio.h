@@ -43,8 +43,22 @@ typedef struct {
  */
 
 //*****************************************************************
-static inline void GPIO_SetOutputPinMask(GPIO_t *gpio) {
+static inline void GPIO_ConfigOutputPinMask(const GPIO_t *gpio) {
     *(gpio->ddr) = (uint8_t)(*(gpio->ddr) | gpio->mask);
+}
+
+//*****************************************************************
+static inline void GPIO_ConfigInputPinMask(const GPIO_t *gpio) {
+    *(gpio->ddr) = (uint8_t)(*(gpio->ddr) & (~gpio->mask));
+}
+
+//*****************************************************************
+static inline void GPIO_ConfigPullNonePinMask(const GPIO_t *gpio) {
+    *(gpio->port) = (uint8_t)(*(gpio->port) & (~gpio->mask));
+}
+
+static inline void GPIO_ConfigPullUpPinMask(const GPIO_t *gpio) {
+    *(gpio->port) = (uint8_t)(*(gpio->port) | gpio->mask);
 }
 
 //*****************************************************************
@@ -55,51 +69,40 @@ static inline void GPIO_WritePinMask(const GPIO_t *gpio, uint8_t value){
     );
 }
 
-static inline void GPIO_WritePin(GPIO_t *gpio, uint8_t status) {
+static inline void GPIO_WritePin(const GPIO_t *gpio, uint8_t status) {
     *(gpio->port) = (uint8_t)(
         (*(gpio->port) & ~(0x01U << gpio->index)) |
         ((status & 0x01U) << gpio->index)
     );
 }
 
-static inline void GPIO_WriteHighPinMask(GPIO_t *gpio) {
+//*****************************************************************
+static inline void GPIO_SetPinMask(const GPIO_t *gpio) {
     *(gpio->port) = (uint8_t)(*(gpio->port) | gpio->mask);
 }
 
-static inline void GPIO_WriteHighPin(GPIO_t *gpio){
+static inline void GPIO_SetPin(const GPIO_t *gpio){
     *(gpio->port) = (uint8_t)(*(gpio->port) | (0x01U << gpio->index));
 }
 
-static inline void GPIO_WriteLowPinMask(GPIO_t *gpio) {
+//*****************************************************************
+static inline void GPIO_ClearPinMask(const GPIO_t *gpio) {
     *(gpio->port) = (uint8_t)(*(gpio->port) & ~(gpio->mask));
 }
 
-static inline void GPIO_WriteLowPin(GPIO_t *gpio) {
+static inline void GPIO_ClearPin(const GPIO_t *gpio) {
     *(gpio->port) = (uint8_t)(*(gpio->port) & ~(0x01U << gpio->index));
 }
 
 //*****************************************************************
-static inline void GPIO_TogglePinMask(GPIO_t *gpio) {
+static inline void GPIO_TogglePinMask(const GPIO_t *gpio) {
     *(gpio->port) = (uint8_t)(*(gpio->port) ^ gpio->mask);
 }
 
-static inline void GPIO_TogglePin(GPIO_t *gpio) {
+static inline void GPIO_TogglePin(const GPIO_t *gpio) {
     *(gpio->port) = (uint8_t)(*(gpio->port) ^ (0x01U << gpio->index));
 }
 
-//*****************************************************************
-static inline void GPIO_SetInputPinMask(GPIO_t *gpio) {
-    *(gpio->ddr) = (uint8_t)(*(gpio->ddr) & (~gpio->mask));
-}
-
-//*****************************************************************
-static inline void GPIO_SetPullNonePinMask(GPIO_t *gpio) {
-    *(gpio->port) = (uint8_t)(*(gpio->port) & (~gpio->mask));
-}
-
-static inline void GPIO_SetPullUpPinMask(GPIO_t *gpio) {
-    *(gpio->port) = (uint8_t)(*(gpio->port) | gpio->mask);
-}
 
 //*****************************************************************
 static inline uint8_t GPIO_ReadPinMask_Shifted(const GPIO_t *gpio) {
