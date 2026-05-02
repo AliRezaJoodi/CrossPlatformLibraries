@@ -48,6 +48,13 @@ static inline void GPIO_SetOutputPinMask(GPIO_t *gpio) {
 }
 
 //*****************************************************************
+static inline void GPIO_WritePinMask(const GPIO_t *gpio, uint8_t value){
+    *(gpio->port) = (uint8_t)(
+        (*(gpio->port) & ~(gpio->mask)) |
+        ((value << gpio->index) & gpio->mask)
+    );
+}
+
 static inline void GPIO_WritePin(GPIO_t *gpio, uint8_t status) {
     *(gpio->port) = (uint8_t)(
         (*(gpio->port) & ~(0x01U << gpio->index)) |
