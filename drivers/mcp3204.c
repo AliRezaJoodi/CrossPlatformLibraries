@@ -11,7 +11,7 @@
 void MCP3204_Init(MCP3204_t *mcp){
     MCP3204_CS_ConfigOutput(mcp);
     //MCP3204_CS_Write(mcp, CS_IDLE);
-    MCP3204_CS_Set(mcp);
+    MCP3204_CS_SetIdle(mcp);
 }
 
 /********************************************************/
@@ -57,12 +57,12 @@ uint16_t MCP3204_GetCounts(MCP3204_t *mcp, MCP3204_Channel_t ch){
     }
 
     //MCP3204_CS_Write(mcp, CS_ACTIVE);
-    MCP3204_CS_Clear(mcp);
+    MCP3204_CS_SetActive(mcp);
     MCP3204_SPI_Transfer(data1);
     data1 = MCP3204_SPI_Transfer(data2);    // Get MSB
     data2 = MCP3204_SPI_Transfer(0xFF);     // Get LSB
     //MCP3204_CS_Write(mcp, CS_IDLE);
-    MCP3204_CS_Set(mcp);
+    MCP3204_CS_SetIdle(mcp);
 
     return ( ((uint16_t)(data1 & 0x0FU) << 8U) | data2 );
 }
