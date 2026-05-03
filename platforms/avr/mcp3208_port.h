@@ -75,11 +75,11 @@ static inline void MCP3208_CS_ConfigOutput(const MCP3208_t *mcp){
 //    WriteBit_Reg8(mcp->cs.port, mcp->cs.index, status);
 //}
 
-static inline void MCP3208_CS_Clear(const MCP3208_t *mcp){
+static inline void MCP3208_CS_SetActive (const MCP3208_t *mcp){
     ClearBitMask_Reg8(mcp->cs.port, mcp->cs.mask);
 }
 
-static inline void MCP3208_CS_Set(const MCP3208_t *mcp){
+static inline void MCP3208_CS_SetIdle(const MCP3208_t *mcp){
     SetBitMask_Reg8(mcp->cs.port, mcp->cs.mask);
 }
 
