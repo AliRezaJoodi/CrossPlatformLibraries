@@ -175,7 +175,7 @@ static inline void Seg7_Digits_ConfigOutput(void){
  * @param index  Digit index in the range:
  *               0 to (SEG7_DIGITS_COUNT - 1).
  */
-static inline void Seg7_Digits_Clear(const uint8_t index){
+static inline void Seg7_Digit_Clear(const uint8_t index){
     switch(index){
 
     #if SEG7_DIGITS_COUNT > 0
@@ -237,7 +237,7 @@ static inline void Seg7_Digits_Clear(const uint8_t index){
  * @param index  Digit index in the range:
  *               0 to (SEG7_DIGITS_COUNT - 1).
  */
-static inline void Seg7_Digits_Set(const uint8_t index){
+static inline void Seg7_Digit_Set(const uint8_t index){
     switch(index){
 
     #if SEG7_DIGITS_COUNT > 0

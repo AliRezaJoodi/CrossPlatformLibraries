@@ -25,9 +25,9 @@ void Seg7_Refresh(void){
     /* Deactivate the selected digit line */
     //Seg7_Digit_Write(seg7_index, !SEG7_DIGITS_ACTIVATE);
     #if SEG7_DIGITS_ACTIVATE == 0U
-        Seg7_Digits_Set(seg7_index);
+        Seg7_Digit_Set(seg7_index);
     #else
-        Seg7_Digits_Clear(seg7_index);
+        Seg7_Digit_Clear(seg7_index);
     #endif
 
     seg7_index++;
@@ -40,8 +40,8 @@ void Seg7_Refresh(void){
     /* Activate the selected digit line */
     //Seg7_Digit_Write(seg7_index, SEG7_DIGITS_ACTIVATE);
     #if SEG7_DIGITS_ACTIVATE == 0U
-        Seg7_Digits_Clear(seg7_index);
+        Seg7_Digit_Clear(seg7_index);
     #else
-        Seg7_Digits_Set(seg7_index);
+        Seg7_Digit_Set(seg7_index);
     #endif
 }
