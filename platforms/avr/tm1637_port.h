@@ -18,27 +18,27 @@ extern "C" {
 //                                *(tm->clk.port) &= ~(tm->clk.mask) \
 //                                )
 //
-//#define TM1637_CLK_RELEASE(tm)  ( \
+//#define TM1637_CLK_SetIdle(tm)  ( \
 //                                *(tm->clk.ddr) &= ~(tm->clk.mask); \
 //                                *(tm->clk.port) &= ~(tm->clk.mask) \
 //                                )
 
-static inline void TM1637_CLK_DriveLow(const TM1637_t *tm){
+static inline void TM1637_CLK_SetActive(const TM1637_t *tm){
     SetBitMask_Reg8(tm->clk.ddr,  tm->clk.mask);   /* Configure pin as output */
     ClearBitMask_Reg8(tm->clk.port, tm->clk.mask); /* Drive bus line low */
 }
 
-static inline void TM1637_CLK_Release(const TM1637_t *tm){
+static inline void TM1637_CLK_SetIdle(const TM1637_t *tm){
     ClearBitMask_Reg8(tm->clk.ddr,  tm->clk.mask);  /* Configure pin as input (high-Z) */
     ClearBitMask_Reg8(tm->clk.port, tm->clk.mask);  /* Disable internal pull-up */
 }
 
-//static inline void TM1637_CLK_DriveLow(TM1637_t *tm){
+//static inline void TM1637_CLK_SetActive(TM1637_t *tm){
 //    *(tm->clk.ddr)  |=  tm->clk.mask;     /* Configure pin as output */
 //    *(tm->clk.port) &= ~tm->clk.mask;     /* Drive bus line low */
 //}
 
-//static inline void TM1637_CLK_Release(TM1637_t *tm){
+//static inline void TM1637_CLK_SetIdle(TM1637_t *tm){
 //    *(tm->clk.ddr)  &= ~tm->clk.mask;     /* Configure pin as input (hig-Z) */
 //    *(tm->clk.port) &= ~tm->clk.mask;     /* Disable internal pull-up */
 //}
@@ -55,12 +55,12 @@ static inline void TM1637_CLK_Release(const TM1637_t *tm){
 //    }
 //}
 
-static inline void TM1637_DIO_DriveLow(const TM1637_t *tm){
+static inline void TM1637_DIO_SetActive(const TM1637_t *tm){
     SetBitMask_Reg8(tm->dio.ddr,  tm->dio.mask);   /* Configure pin as output */
     ClearBitMask_Reg8(tm->dio.port, tm->dio.mask); /* Drive bus line low */
 }
 
-static inline void TM1637_DIO_Release(const TM1637_t *tm){
+static inline void TM1637_DIO_SetIdle(const TM1637_t *tm){
     ClearBitMask_Reg8(tm->dio.ddr,  tm->dio.mask);  /* Configure pin as input (high-Z) */
     ClearBitMask_Reg8(tm->dio.port, tm->dio.mask);  /* Disable internal pull-up */
 }

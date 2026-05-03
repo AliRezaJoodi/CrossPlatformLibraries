@@ -20,26 +20,26 @@
 //***************************************
 void TM1637_Start(TM1637_t *tm){
     //TM1637_CLK_Write(tm, CLK_IDLE);
-    TM1637_CLK_Release(tm);
+    TM1637_CLK_SetIdle(tm);
     //TM1637_DIO_Write(tm, DIO_IDLE);
-    TM1637_DIO_Release(tm);
+    TM1637_DIO_SetIdle(tm);
     TM1637_DELAY_US(TM1637_HALF_BIT_US*2);
 
     //TM1637_DIO_Write(tm, DIO_ACTIVE);
-    TM1637_DIO_DriveLow(tm);
+    TM1637_DIO_SetActive(tm);
     TM1637_DELAY_US(TM1637_HALF_BIT_US*2);
 }
 
 //***************************************
 void TM1637_Stop(TM1637_t *tm){
     //TM1637_DIO_Write(tm, DIO_ACTIVE);
-    TM1637_DIO_DriveLow(tm);
+    TM1637_DIO_SetActive(tm);
     //TM1637_CLK_Write(tm, CLK_IDLE);
-    TM1637_CLK_Release(tm);
+    TM1637_CLK_SetIdle(tm);
     TM1637_DELAY_US(TM1637_HALF_BIT_US*2);
 
     //TM1637_DIO_Write(tm, DIO_IDLE);
-    TM1637_DIO_Release(tm);
+    TM1637_DIO_SetIdle(tm);
     TM1637_DELAY_US(TM1637_HALF_BIT_US*2);
 }
 
@@ -50,39 +50,39 @@ uint8_t TM1637_WriteByte(TM1637_t *tm, uint8_t data){
 
     for(i = 0; i < 8; i++) {
         //TM1637_CLK_Write(tm, CLK_ACTIVE);
-        TM1637_CLK_DriveLow(tm);
+        TM1637_CLK_SetActive(tm);
         TM1637_DELAY_US(TM1637_HALF_BIT_US);
 
         if (data & 0x01){
-            TM1637_DIO_Release(tm);
+            TM1637_DIO_SetIdle(tm);
         }
         else{
-            TM1637_DIO_DriveLow(tm);
+            TM1637_DIO_SetActive(tm);
         }
         //TM1637_DIO_Write(tm, data & 0x01);
         TM1637_DELAY_US(TM1637_HALF_BIT_US);
 
         //TM1637_CLK_Write(tm, CLK_IDLE);
-        TM1637_CLK_Release(tm);
+        TM1637_CLK_SetIdle(tm);
         TM1637_DELAY_US(TM1637_HALF_BIT_US*2);
 
         data = data >> 1;
     }
 
     //TM1637_CLK_Write(tm, CLK_ACTIVE);
-    TM1637_CLK_DriveLow(tm);
+    TM1637_CLK_SetActive(tm);
     TM1637_DIO_ConfigInput(tm);
     TM1637_DELAY_US(TM1637_HALF_BIT_US*4);
 
     //TM1637_CLK_Write(tm, CLK_IDLE);
-    TM1637_CLK_Release(tm);
+    TM1637_CLK_SetIdle(tm);
     TM1637_DELAY_US(TM1637_HALF_BIT_US*2);
     ack = TM1637_DIO_Read(tm);
 //    if(ack == 0){
 //        TM1637_DIO_Write(tm, DIO_ACTIVE);       // check this line
 //    }
     //TM1637_CLK_Write(tm, CLK_ACTIVE);
-    TM1637_CLK_DriveLow(tm);
+    TM1637_CLK_SetActive(tm);
     TM1637_DELAY_US(TM1637_HALF_BIT_US*2);
 
     return ack;
@@ -139,9 +139,9 @@ void TM1637_ClearDisplay(TM1637_t *tm){
 //***************************************
 void TM1637_Init(TM1637_t *tm){
     //TM1637_CLK_Write(tm, CLK_IDLE);
-    TM1637_CLK_Release(tm);
+    TM1637_CLK_SetIdle(tm);
     //TM1637_DIO_Write(tm, DIO_IDLE);
-    TM1637_DIO_Release(tm);
+    TM1637_DIO_SetIdle(tm);
     TM1637_DELAY_US(TM1637_HALF_BIT_US*2);
 
     TM1637_ClearDisplay(tm);
