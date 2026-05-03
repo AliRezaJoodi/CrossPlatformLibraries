@@ -11,7 +11,7 @@
 void MCP3201_Init(MCP3201_t *mcp){
     MCP3201_CS_ConfigOutput(mcp);
     //MCP3201_CS_Write(mcp, CS_IDLE);
-    MCP3201_CS_Set(mcp);
+    MCP3201_CS_SetIdle(mcp);
 }
 
 /*********************************************/
@@ -20,11 +20,11 @@ uint16_t MCP3201_GetCounts(MCP3201_t *mcp){
     uint8_t msb = 0, lsb = 0;
 
     //MCP3201_CS_Write(mcp, CS_ACTIVE);
-    MCP3201_CS_Clear(mcp);
+    MCP3201_CS_SetActive(mcp);
     msb = MCP3201_SPI_Transfer(0xFF);
     lsb = MCP3201_SPI_Transfer(0xFF);
     //MCP3201_CS_Write(mcp, CS_IDLE);
-    MCP3201_CS_Set(mcp);
+    MCP3201_CS_SetIdle(mcp);
 
     msb = msb & 0x1FU;
     lsb = lsb & 0xFEU;
