@@ -34,14 +34,14 @@ void TM1638_WriteByte(uint8_t data){
         TM1638_CLK_SetActive();
         //TM1638_DIO_Write(data & 0x01U);
         if ((data & 0x01U) == 1U){
-            TM1638_DIO_SetIdel();
+            TM1638_DIO_SetIdle();
         }
         else{
             TM1638_DIO_SetActive();
         }
         TM1638_DELAY_US(TM1638_BIT_US);
         //TM1638_CLK_Write(CLK_IDLE);
-        TM1638_CLK_SetIdel();
+        TM1638_CLK_SetIdle();
         TM1638_DELAY_US(TM1638_BIT_US);
         data = data >> 1;
     }
@@ -53,7 +53,7 @@ void TM1638_SendCommand(TM1638_t *tm, uint8_t command){
     TM1638_STB_SetActive(tm);
     TM1638_WriteByte(command);
     //TM1638_STB_Write(tm, STB_IDLE);
-    TM1638_STB_SetIdel(tm);
+    TM1638_STB_SetIdle(tm);
     TM1638_DELAY_US(TM1638_BIT_US);
 }
 
@@ -79,7 +79,7 @@ uint8_t TM1638_SetDisplay(TM1638_t *tm, uint8_t onoff, uint8_t brightness){
     TM1638_STB_SetActive(tm);
     TM1638_WriteByte(command_display);
     //TM1638_STB_Write(tm, STB_IDLE);
-    TM1638_STB_SetIdel(tm);
+    TM1638_STB_SetIdle(tm);
     TM1638_DELAY_US(TM1638_BIT_US);
 
     return error;
@@ -94,7 +94,7 @@ void TM1638_ClearDisplay(TM1638_t *tm){
     TM1638_STB_SetActive(tm);
     TM1638_WriteByte(TM1638_COMMAND_DATA_WRITE);
     //TM1638_STB_Write(tm, STB_IDLE);
-    TM1638_STB_SetIdel(tm);
+    TM1638_STB_SetIdle(tm);
     TM1638_DELAY_US(TM1638_BIT_US);
 
 	//TM1638_STB_Write(tm, STB_ACTIVE);
@@ -102,7 +102,7 @@ void TM1638_ClearDisplay(TM1638_t *tm){
 	TM1638_WriteByte(command_address);
 	for(i=0; i<16; ++i){TM1638_WriteByte(0x00);}
 	//TM1638_STB_Write(tm, STB_IDLE);
-    TM1638_STB_SetIdel(tm);
+    TM1638_STB_SetIdle(tm);
     TM1638_DELAY_US(TM1638_BIT_US);
 }
 
@@ -111,17 +111,17 @@ void TM1638_Init(TM1638_t *tm){
     //TM1638_STB_Init(tm);
     TM1638_STB_ConfigOutput(tm);
     //TM1638_STB_Write(tm, STB_IDLE);
-    TM1638_STB_SetIdel(tm);
+    TM1638_STB_SetIdle(tm);
 
     //TM1638_CLK_Init();
     TM1638_CLK_ConfigOutput();
     //TM1638_CLK_Write(CLK_IDLE);
-    TM1638_CLK_SetIdel();
+    TM1638_CLK_SetIdle();
 
     //TM1638_DIO_Config(TM1638_PIN_OUTPUT);
     TM1638_DIO_ConfigOutput();
     //TM1638_DIO_Write(DIO_IDLE);
-    TM1638_DIO_SetIdel();
+    TM1638_DIO_SetIdle();
 
     TM1638_ClearDisplay(tm);
     TM1638_SetDisplay(tm, 1, 7);
@@ -154,7 +154,7 @@ uint8_t TM1638_WriteDisplayRegister_AutoIncr(TM1638_t *tm, uint8_t segments[], u
     TM1638_STB_SetActive(tm);
     TM1638_WriteByte(TM1638_COMMAND_DATA_WRITE);
     //TM1638_STB_Write(tm, STB_IDLE);
-    TM1638_STB_SetIdel(tm);
+    TM1638_STB_SetIdle(tm);
     TM1638_DELAY_US(TM1638_BIT_US);
 
 	//TM1638_STB_Write(tm, STB_ACTIVE);
@@ -166,7 +166,7 @@ uint8_t TM1638_WriteDisplayRegister_AutoIncr(TM1638_t *tm, uint8_t segments[], u
     }
 
 	//TM1638_STB_Write(tm, STB_IDLE);
-    TM1638_STB_SetIdel(tm);
+    TM1638_STB_SetIdle(tm);
     TM1638_DELAY_US(TM1638_BIT_US);
 
     return error;
@@ -189,7 +189,7 @@ uint8_t TM1638_WriteDisplayRegister_Fixed(TM1638_t *tm, uint8_t data, uint8_t ad
     TM1638_STB_SetActive(tm);
     TM1638_WriteByte(TM1638_COMMAND_DATA_WRITE);
     //TM1638_STB_Write(tm, STB_IDLE);
-    TM1638_STB_SetIdel(tm);
+    TM1638_STB_SetIdle(tm);
     TM1638_DELAY_US(TM1638_BIT_US);
 
 	//TM1638_STB_Write(tm, STB_ACTIVE);
@@ -198,7 +198,7 @@ uint8_t TM1638_WriteDisplayRegister_Fixed(TM1638_t *tm, uint8_t data, uint8_t ad
     TM1638_DELAY_US(TM1638_BIT_US);
 	TM1638_WriteByte(data);
 	//TM1638_STB_Write(tm, STB_IDLE);
-    TM1638_STB_SetIdel(tm);
+    TM1638_STB_SetIdle(tm);
     TM1638_DELAY_US(TM1638_BIT_US);
 
     return error;
@@ -326,7 +326,7 @@ uint8_t TM1638_ReadByte(void){
         TM1638_CLK_SetActive();
         TM1638_DELAY_US(TM1638_BIT_US);
         //TM1638_CLK_Write(1);
-        TM1638_CLK_SetIdel();
+        TM1638_CLK_SetIdle();
         TM1638_DELAY_US(TM1638_BIT_US);
 
         buf = TM1638_DIO_Read();
@@ -356,12 +356,12 @@ void TM1638_GetKeys(TM1638_t *tm, uint8_t *key){
 
     TM1638_DELAY_US(TM1638_BIT_US*2);
     //TM1638_STB_Write(tm, STB_IDLE);
-    TM1638_STB_SetIdel(tm);
+    TM1638_STB_SetIdle(tm);
     TM1638_DELAY_US(TM1638_BIT_US*2);
     //TM1638_DIO_Config(TM1638_PIN_OUTPUT);
     TM1638_DIO_ConfigOutput();
     //TM1638_DIO_Write(DIO_IDLE);
-    TM1638_DIO_SetIdel();
+    TM1638_DIO_SetIdle();
 }
 
 //***************************************
@@ -385,12 +385,12 @@ uint8_t TM1638_GetKeys_K3(TM1638_t *tm){
 
     TM1638_DELAY_US(TM1638_BIT_US*2);
     //TM1638_STB_Write(tm, STB_IDLE);
-    TM1638_STB_SetIdel(tm);
+    TM1638_STB_SetIdle(tm);
     TM1638_DELAY_US(TM1638_BIT_US*2);
     //TM1638_DIO_Config(TM1638_PIN_OUTPUT);
     TM1638_DIO_ConfigOutput();
     //TM1638_DIO_Write(DIO_IDLE);
-    TM1638_DIO_SetIdel();
+    TM1638_DIO_SetIdle();
 
     return data;
 }

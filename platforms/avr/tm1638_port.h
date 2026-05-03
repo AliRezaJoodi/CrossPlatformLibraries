@@ -22,7 +22,7 @@ static inline void TM1638_STB_SetActive(const TM1638_t *tm){
     ClearBitMask_Reg8(tm->stb.port, tm->stb.mask);
 }
 
-static inline void TM1638_STB_SetIdel(const TM1638_t *tm){
+static inline void TM1638_STB_SetIdle(const TM1638_t *tm){
     SetBitMask_Reg8(tm->stb.port, tm->stb.mask);
 }
 
@@ -46,7 +46,7 @@ static inline void TM1638_CLK_SetActive(void){
     ClearBitMask_Reg8(&TM1638_CLK_PORT, TM1638_CLK_MASK);
 }
 
-static inline void TM1638_CLK_SetIdel(void){
+static inline void TM1638_CLK_SetIdle(void){
     SetBitMask_Reg8(&TM1638_CLK_PORT, TM1638_CLK_MASK);
 }
 
@@ -70,7 +70,7 @@ static inline void TM1638_DIO_SetActive(void){
     ClearBitMask_Reg8(&TM1638_DIO_PORT, TM1638_DIO_MASK);
 }
 
-static inline void TM1638_DIO_SetIdel(void){
+static inline void TM1638_DIO_SetIdle(void){
     SetBitMask_Reg8(&TM1638_DIO_PORT, TM1638_DIO_MASK);
 }
 
