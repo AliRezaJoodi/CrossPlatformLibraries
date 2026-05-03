@@ -27,14 +27,14 @@
 #include "mcp4822_types.h"
 
 typedef enum {
-    MCP4822_OUTPUT_A = 0U,
-    MCP4822_OUTPUT_B = 1U
+    MCP4822_CH_A = 0U,
+    MCP4822_CH_B = 1U
 } MCP4822_Channel_t;
 
 typedef enum {
-    MCP4822_GAIN_2X = 0U,   /**< Vout: 0 to 4.096V */
-    MCP4822_GAIN_1X = 1U    /**< Vout: 0 to 2.048V */
-} MCP4822_Gain_t;
+    MCP4822_FS_4V096 = 0U,   /**< Full-Scale: 4.096V */
+    MCP4822_FS_2V048 = 1U    /**< Full-Scale: 2.048V */
+} MCP4822_Vout_t;
 
 /**
  * @brief   Initialize MCP4822 control pins
@@ -62,11 +62,11 @@ void MCP4822_Init(MCP4822_t *dac);
  *
  * @param[in] dac    Pointer to MCP4822 device handle
  * @param[in] ch    Output channel:
- *                  - MCP4822_OUTPUT_A
- *                  - MCP4822_OUTPUT_B
+ *                  - MCP4822_CH_A
+ *                  - MCP4822_CH_B
  * @param[in] gain   Output gain selection:
- *                   - MCP4822_GAIN_1X: Vout = 0 to 2.048V
- *                   - MCP4822_GAIN_2X: Vout = 0 to 4.096V
+ *                   - MCP4822_FS_2V048: Vout = 0 to 2.048V
+ *                   - MCP4822_FS_4V096: Vout = 0 to 4.096V
  * @param[in] value  12-bit DAC value (0 to 4095)
  *
  * @note
@@ -80,7 +80,7 @@ void MCP4822_Init(MCP4822_t *dac);
  * Invalid channel or gain values may lead to undefined behavior.
  *
  */
-void MCP4822_SetOutput(MCP4822_t *dac, MCP4822_Channel_t ch, MCP4822_Gain_t gain, uint16_t value);
+void MCP4822_SetOutput(MCP4822_t *dac, MCP4822_Channel_t ch, MCP4822_Vout_t fs, uint16_t count);
 
 /**
  * @brief   Disable DAC output for a selected channel
@@ -91,8 +91,8 @@ void MCP4822_SetOutput(MCP4822_t *dac, MCP4822_Channel_t ch, MCP4822_Gain_t gain
  *
  * @param[in] dac   Pointer to MCP4822 device handle
  * @param[in] ch    Output channel:
- *                  - MCP4822_OUTPUT_A
- *                  - MCP4822_OUTPUT_B
+ *                  - MCP4822_CH_A
+ *                  - MCP4822_CH_B
  *
  * @note
  * This function does not set the output value to zero. Instead, it places the DAC channel in shutdown mode.
@@ -108,12 +108,12 @@ void MCP4822_DisableOutput(MCP4822_t *dac, MCP4822_Channel_t ch);
  *
  * @param[in] dac    Pointer to MCP4822 device handle
  * @param[in] gain   Output gain selection:
- *                   - MCP4822_GAIN_1X
- *                   - MCP4822_GAIN_2X
+ *                   - MCP4822_FS_2V048
+ *                   - MCP4822_FS_4V096
  * @param[in] value  12-bit DAC value (0 to 4095)
  */
-static inline void MCP4822_SetOutputA(MCP4822_t *dac, MCP4822_Gain_t gain, uint16_t value){
-    MCP4822_SetOutput(dac, MCP4822_OUTPUT_A, gain, value);
+static inline void MCP4822_SetOutputA(MCP4822_t *dac, MCP4822_Vout_t fs, uint16_t count){
+    MCP4822_SetOutput(dac, MCP4822_CH_A, fs, count);
 }
 
 /**
@@ -123,8 +123,8 @@ static inline void MCP4822_SetOutputA(MCP4822_t *dac, MCP4822_Gain_t gain, uint1
  * @param[in] dac    Pointer to MCP4822 device handle
  * @param[in] value  12-bit DAC value (0 to 4095)
  */
-static inline void MCP4822_SetOutputA_1xGain(MCP4822_t *dac, uint16_t value){
-    MCP4822_SetOutput(dac, MCP4822_OUTPUT_A, MCP4822_GAIN_1X, value);
+static inline void MCP4822_SetOutputA_1xGain(MCP4822_t *dac, uint16_t count){
+    MCP4822_SetOutput(dac, MCP4822_CH_A, MCP4822_FS_2V048, count);
 }
 
 /**
@@ -134,8 +134,8 @@ static inline void MCP4822_SetOutputA_1xGain(MCP4822_t *dac, uint16_t value){
  * @param[in] dac    Pointer to MCP4822 device handle
  * @param[in] value  12-bit DAC value (0 to 4095)
  */
-static inline void MCP4822_SetOutputA_2xGain(MCP4822_t *dac, uint16_t value){
-    MCP4822_SetOutput(dac, MCP4822_OUTPUT_A, MCP4822_GAIN_2X, value);
+static inline void MCP4822_SetOutputA_2xGain(MCP4822_t *dac, uint16_t count){
+    MCP4822_SetOutput(dac, MCP4822_CH_A, MCP4822_FS_4V096, count);
 }
 
 /**
@@ -144,12 +144,12 @@ static inline void MCP4822_SetOutputA_2xGain(MCP4822_t *dac, uint16_t value){
  *
  * @param[in] dac    Pointer to MCP4822 device handle
  * @param[in] gain   Output gain selection:
- *                   - MCP4822_GAIN_1X
- *                   - MCP4822_GAIN_2X
+ *                   - MCP4822_FS_2V048
+ *                   - MCP4822_FS_4V096
  * @param[in] value  12-bit DAC value (0 to 4095)
  */
-static inline void MCP4822_SetOutputB(MCP4822_t *dac, MCP4822_Gain_t gain, uint16_t value){
-    MCP4822_SetOutput(dac, MCP4822_OUTPUT_B, gain, value);
+static inline void MCP4822_SetOutputB(MCP4822_t *dac, MCP4822_Vout_t fs, uint16_t count){
+    MCP4822_SetOutput(dac, MCP4822_CH_B, fs, count);
 }
 
 /**
@@ -159,8 +159,8 @@ static inline void MCP4822_SetOutputB(MCP4822_t *dac, MCP4822_Gain_t gain, uint1
  * @param[in] dac    Pointer to MCP4822 device handle
  * @param[in] value  12-bit DAC value (0 to 4095)
  */
-static inline void MCP4822_SetOutputB_1xGain(MCP4822_t *dac, uint16_t value){
-    MCP4822_SetOutput(dac, MCP4822_OUTPUT_B, MCP4822_GAIN_1X, value);
+static inline void MCP4822_SetOutputB_1xGain(MCP4822_t *dac, uint16_t count){
+    MCP4822_SetOutput(dac, MCP4822_CH_B, MCP4822_FS_2V048, count);
 }
 
 /**
@@ -170,8 +170,8 @@ static inline void MCP4822_SetOutputB_1xGain(MCP4822_t *dac, uint16_t value){
  * @param[in] dac    Pointer to MCP4822 device handle
  * @param[in] value  12-bit DAC value (0 to 4095)
  */
-static inline void MCP4822_SetOutputB_2xGain(MCP4822_t *dac, uint16_t value){
-    MCP4822_SetOutput(dac, MCP4822_OUTPUT_B, MCP4822_GAIN_2X, value);
+static inline void MCP4822_SetOutputB_2xGain(MCP4822_t *dac, uint16_t count){
+    MCP4822_SetOutput(dac, MCP4822_CH_B, MCP4822_FS_4V096, count);
 }
 
 /**
@@ -181,7 +181,7 @@ static inline void MCP4822_SetOutputB_2xGain(MCP4822_t *dac, uint16_t value){
  * @param[in] dac   Pointer to MCP4822 device handle
  */
 static inline void MCP4822_DisableOutputA(MCP4822_t *dac){
-    MCP4822_DisableOutput(dac, MCP4822_OUTPUT_A);
+    MCP4822_DisableOutput(dac, MCP4822_CH_A);
 }
 
 /**
@@ -191,7 +191,7 @@ static inline void MCP4822_DisableOutputA(MCP4822_t *dac){
  * @param[in] dac   Pointer to MCP4822 device handle
  */
 static inline void MCP4822_DisableOutputB(MCP4822_t *dac){
-    MCP4822_DisableOutput(dac, MCP4822_OUTPUT_B);
+    MCP4822_DisableOutput(dac, MCP4822_CH_B);
 }
 
 #endif

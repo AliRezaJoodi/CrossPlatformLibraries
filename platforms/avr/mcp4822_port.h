@@ -74,11 +74,11 @@ static inline void MCP4822_CS_ConfigOutput(const MCP4822_t *mcp){
 //    WriteBit_Reg8(mcp->cs.port, mcp->cs.index, status);
 //}
 
-static inline void MCP4822_CS_Clear(const MCP4822_t *mcp){
+static inline void MCP4822_CS_SetActive(const MCP4822_t *mcp){
     ClearBitMask_Reg8(mcp->cs.port, mcp->cs.mask);
 }
 
-static inline void MCP4822_CS_Set(const MCP4822_t *mcp){
+static inline void MCP4822_CS_SetIdle(const MCP4822_t *mcp){
     SetBitMask_Reg8(mcp->cs.port, mcp->cs.mask);
 }
 
@@ -103,11 +103,11 @@ static inline void MCP4822_LDAC_ConfigOutput(const MCP4822_t *mcp){
 //    WriteBit_Reg8(mcp->ldac.port, mcp->ldac.index, status);
 //}
 
-static inline void MCP4822_LDAC_Clear(const MCP4822_t *mcp){
+static inline void MCP4822_LDAC_SetActive(const MCP4822_t *mcp){
     ClearBitMask_Reg8(mcp->ldac.port, mcp->ldac.mask);
 }
 
-static inline void MCP4822_LDAC_Set(const MCP4822_t *mcp){
+static inline void MCP4822_LDAC_SetIdle(const MCP4822_t *mcp){
     SetBitMask_Reg8(mcp->ldac.port, mcp->ldac.mask);
 }
 
