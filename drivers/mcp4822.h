@@ -80,7 +80,7 @@ void MCP4822_Init(MCP4822_t *dac);
  * Invalid channel or gain values may lead to undefined behavior.
  *
  */
-void MCP4822_SetOutput(MCP4822_t *dac, MCP4822_Channel_t ch, MCP4822_Vout_t fs, uint16_t count);
+void MCP4822_WriteChannel(MCP4822_t *dac, MCP4822_Channel_t ch, MCP4822_Vout_t fs, uint16_t count);
 
 /**
  * @brief   Disable DAC output for a selected channel
@@ -104,7 +104,7 @@ void MCP4822_ShutdownChannel(MCP4822_t *dac, MCP4822_Channel_t ch);
 
 /**
  * @brief   Set output value for channel A
- * This is a convenience wrapper for MCP4822_SetOutput() that selects channel A automatically.
+ * This is a convenience wrapper for MCP4822_WriteChannel() that selects channel A automatically.
  *
  * @param[in] dac    Pointer to MCP4822 device handle
  * @param[in] gain   Output gain selection:
@@ -113,34 +113,34 @@ void MCP4822_ShutdownChannel(MCP4822_t *dac, MCP4822_Channel_t ch);
  * @param[in] value  12-bit DAC value (0 to 4095)
  */
 static inline void MCP4822_WriteChannelA(MCP4822_t *dac, MCP4822_Vout_t fs, uint16_t count){
-    MCP4822_SetOutput(dac, MCP4822_CH_A, fs, count);
+    MCP4822_WriteChannel(dac, MCP4822_CH_A, fs, count);
 }
 
 /**
  * @brief   Set output value for channel A with 1x gain
- * This is a convenience wrapper for MCP4822_SetOutput() that selects channel A and 1x gain automatically.
+ * This is a convenience wrapper for MCP4822_WriteChannel() that selects channel A and 1x gain automatically.
  *
  * @param[in] dac    Pointer to MCP4822 device handle
  * @param[in] value  12-bit DAC value (0 to 4095)
  */
 static inline void MCP4822_WriteChannelA_2V048(MCP4822_t *dac, uint16_t count){
-    MCP4822_SetOutput(dac, MCP4822_CH_A, MCP4822_FS_2V048, count);
+    MCP4822_WriteChannel(dac, MCP4822_CH_A, MCP4822_FS_2V048, count);
 }
 
 /**
  * @brief   Set output value for channel A with 2x gain
- * This is a convenience wrapper for MCP4822_SetOutput() that selects channel A and 2x gain automatically.
+ * This is a convenience wrapper for MCP4822_WriteChannel() that selects channel A and 2x gain automatically.
  *
  * @param[in] dac    Pointer to MCP4822 device handle
  * @param[in] value  12-bit DAC value (0 to 4095)
  */
 static inline void MCP4822_WriteChannelA_4V096(MCP4822_t *dac, uint16_t count){
-    MCP4822_SetOutput(dac, MCP4822_CH_A, MCP4822_FS_4V096, count);
+    MCP4822_WriteChannel(dac, MCP4822_CH_A, MCP4822_FS_4V096, count);
 }
 
 /**
  * @brief   Set output value for channel B
- * This is a convenience wrapper for MCP4822_SetOutput() that selects channel B automatically.
+ * This is a convenience wrapper for MCP4822_WriteChannel() that selects channel B automatically.
  *
  * @param[in] dac    Pointer to MCP4822 device handle
  * @param[in] gain   Output gain selection:
@@ -149,29 +149,29 @@ static inline void MCP4822_WriteChannelA_4V096(MCP4822_t *dac, uint16_t count){
  * @param[in] value  12-bit DAC value (0 to 4095)
  */
 static inline void MCP4822_WriteChannelB(MCP4822_t *dac, MCP4822_Vout_t fs, uint16_t count){
-    MCP4822_SetOutput(dac, MCP4822_CH_B, fs, count);
+    MCP4822_WriteChannel(dac, MCP4822_CH_B, fs, count);
 }
 
 /**
  * @brief   Set output value for channel B with 1x gain
- * This is a convenience wrapper for MCP4822_SetOutput() that selects channel B and 1x gain automatically.
+ * This is a convenience wrapper for MCP4822_WriteChannel() that selects channel B and 1x gain automatically.
  *
  * @param[in] dac    Pointer to MCP4822 device handle
  * @param[in] value  12-bit DAC value (0 to 4095)
  */
 static inline void MCP4822_WriteChannelB_2V048(MCP4822_t *dac, uint16_t count){
-    MCP4822_SetOutput(dac, MCP4822_CH_B, MCP4822_FS_2V048, count);
+    MCP4822_WriteChannel(dac, MCP4822_CH_B, MCP4822_FS_2V048, count);
 }
 
 /**
  * @brief   Set output value for channel B with 2x gain
- * This is a convenience wrapper for MCP4822_SetOutput() that selects channel B and 2x gain automatically.
+ * This is a convenience wrapper for MCP4822_WriteChannel() that selects channel B and 2x gain automatically.
  *
  * @param[in] dac    Pointer to MCP4822 device handle
  * @param[in] value  12-bit DAC value (0 to 4095)
  */
 static inline void MCP4822_WriteChannelB_4V096(MCP4822_t *dac, uint16_t count){
-    MCP4822_SetOutput(dac, MCP4822_CH_B, MCP4822_FS_4V096, count);
+    MCP4822_WriteChannel(dac, MCP4822_CH_B, MCP4822_FS_4V096, count);
 }
 
 /**
