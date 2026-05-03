@@ -100,7 +100,7 @@ void MCP4822_SetOutput(MCP4822_t *dac, MCP4822_Channel_t ch, MCP4822_Vout_t fs, 
  * @warning
  * Invalid channel values may lead to undefined behavior.
  */
-void MCP4822_DisableOutput(MCP4822_t *dac, MCP4822_Channel_t ch);
+void MCP4822_ShutdownChannel(MCP4822_t *dac, MCP4822_Channel_t ch);
 
 /**
  * @brief   Set output value for channel A
@@ -112,7 +112,7 @@ void MCP4822_DisableOutput(MCP4822_t *dac, MCP4822_Channel_t ch);
  *                   - MCP4822_FS_4V096
  * @param[in] value  12-bit DAC value (0 to 4095)
  */
-static inline void MCP4822_SetOutputA(MCP4822_t *dac, MCP4822_Vout_t fs, uint16_t count){
+static inline void MCP4822_WriteChannelA(MCP4822_t *dac, MCP4822_Vout_t fs, uint16_t count){
     MCP4822_SetOutput(dac, MCP4822_CH_A, fs, count);
 }
 
@@ -123,7 +123,7 @@ static inline void MCP4822_SetOutputA(MCP4822_t *dac, MCP4822_Vout_t fs, uint16_
  * @param[in] dac    Pointer to MCP4822 device handle
  * @param[in] value  12-bit DAC value (0 to 4095)
  */
-static inline void MCP4822_SetOutputA_1xGain(MCP4822_t *dac, uint16_t count){
+static inline void MCP4822_WriteChannelA_2V048(MCP4822_t *dac, uint16_t count){
     MCP4822_SetOutput(dac, MCP4822_CH_A, MCP4822_FS_2V048, count);
 }
 
@@ -134,7 +134,7 @@ static inline void MCP4822_SetOutputA_1xGain(MCP4822_t *dac, uint16_t count){
  * @param[in] dac    Pointer to MCP4822 device handle
  * @param[in] value  12-bit DAC value (0 to 4095)
  */
-static inline void MCP4822_SetOutputA_2xGain(MCP4822_t *dac, uint16_t count){
+static inline void MCP4822_WriteChannelA_4V096(MCP4822_t *dac, uint16_t count){
     MCP4822_SetOutput(dac, MCP4822_CH_A, MCP4822_FS_4V096, count);
 }
 
@@ -148,7 +148,7 @@ static inline void MCP4822_SetOutputA_2xGain(MCP4822_t *dac, uint16_t count){
  *                   - MCP4822_FS_4V096
  * @param[in] value  12-bit DAC value (0 to 4095)
  */
-static inline void MCP4822_SetOutputB(MCP4822_t *dac, MCP4822_Vout_t fs, uint16_t count){
+static inline void MCP4822_WriteChannelB(MCP4822_t *dac, MCP4822_Vout_t fs, uint16_t count){
     MCP4822_SetOutput(dac, MCP4822_CH_B, fs, count);
 }
 
@@ -159,7 +159,7 @@ static inline void MCP4822_SetOutputB(MCP4822_t *dac, MCP4822_Vout_t fs, uint16_
  * @param[in] dac    Pointer to MCP4822 device handle
  * @param[in] value  12-bit DAC value (0 to 4095)
  */
-static inline void MCP4822_SetOutputB_1xGain(MCP4822_t *dac, uint16_t count){
+static inline void MCP4822_WriteChannelB_2V048(MCP4822_t *dac, uint16_t count){
     MCP4822_SetOutput(dac, MCP4822_CH_B, MCP4822_FS_2V048, count);
 }
 
@@ -170,28 +170,28 @@ static inline void MCP4822_SetOutputB_1xGain(MCP4822_t *dac, uint16_t count){
  * @param[in] dac    Pointer to MCP4822 device handle
  * @param[in] value  12-bit DAC value (0 to 4095)
  */
-static inline void MCP4822_SetOutputB_2xGain(MCP4822_t *dac, uint16_t count){
+static inline void MCP4822_WriteChannelB_4V096(MCP4822_t *dac, uint16_t count){
     MCP4822_SetOutput(dac, MCP4822_CH_B, MCP4822_FS_4V096, count);
 }
 
 /**
  * @brief   Disable output for channel A
- * This is a convenience wrapper for MCP4822_DisableOutput() that selects channel A automatically.
+ * This is a convenience wrapper for MCP4822_ShutdownChannel() that selects channel A automatically.
  *
  * @param[in] dac   Pointer to MCP4822 device handle
  */
-static inline void MCP4822_DisableOutputA(MCP4822_t *dac){
-    MCP4822_DisableOutput(dac, MCP4822_CH_A);
+static inline void MCP4822_ShutdownChannelA(MCP4822_t *dac){
+    MCP4822_ShutdownChannel(dac, MCP4822_CH_A);
 }
 
 /**
  * @brief   Disable output for channel B
- * This is a convenience wrapper for MCP4822_DisableOutput() that selects channel B automatically.
+ * This is a convenience wrapper for MCP4822_ShutdownChannel() that selects channel B automatically.
  *
  * @param[in] dac   Pointer to MCP4822 device handle
  */
-static inline void MCP4822_DisableOutputB(MCP4822_t *dac){
-    MCP4822_DisableOutput(dac, MCP4822_CH_B);
+static inline void MCP4822_ShutdownChannelB(MCP4822_t *dac){
+    MCP4822_ShutdownChannel(dac, MCP4822_CH_B);
 }
 
 #endif
