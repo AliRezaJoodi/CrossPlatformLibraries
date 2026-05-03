@@ -17,7 +17,7 @@ extern "C" {
  * Initializes only the digits defined by SEG7_DIGITS_COUNT.
  * Unused digit pins are excluded at compile time.
  */
-static inline void Seg7_Digits_SetOutput(void){
+static inline void Seg7_Digits_ConfigOutput(void){
     #if SEG7_DIGITS_COUNT > 0
         SetBitMask_Reg8(&SEG7_DIGIT0_DDR, SEG7_DIGIT0_MASK);
     #endif
@@ -175,7 +175,7 @@ static inline void Seg7_Digits_SetOutput(void){
  * @param index  Digit index in the range:
  *               0 to (SEG7_DIGITS_COUNT - 1).
  */
-static inline void Seg7_Digits_WriteLow(uint8_t index){
+static inline void Seg7_Digits_Clear(const uint8_t index){
     switch(index){
 
     #if SEG7_DIGITS_COUNT > 0
@@ -237,7 +237,7 @@ static inline void Seg7_Digits_WriteLow(uint8_t index){
  * @param index  Digit index in the range:
  *               0 to (SEG7_DIGITS_COUNT - 1).
  */
-static inline void Seg7_Digits_WriteHigh(uint8_t index){
+static inline void Seg7_Digits_Set(const uint8_t index){
     switch(index){
 
     #if SEG7_DIGITS_COUNT > 0
@@ -302,7 +302,7 @@ static inline void Seg7_Digits_WriteHigh(uint8_t index){
  * each segment individually to drive the display.
  *
  */
-static inline void Seg7_Segments_SetOutput(void){
+static inline void Seg7_Segments_ConfigOutput(void){
     SetBitMask_Reg8(&SEG7_A_DDR, SEG7_A_MASK);
     SetBitMask_Reg8(&SEG7_B_DDR, SEG7_B_MASK);
     SetBitMask_Reg8(&SEG7_C_DDR, SEG7_C_MASK);
