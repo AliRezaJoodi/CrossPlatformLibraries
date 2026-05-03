@@ -56,7 +56,7 @@ extern "C" {
  *
  * @param   mcp     Pointer to the MCP3204 instance
  */
-static inline void MCP3204_CS_SetOutput(MCP3204_t *mcp){
+static inline void MCP3204_CS_ConfigOutput(const MCP3204_t *mcp){
     SetBitMask_Reg8(mcp->cs.ddr, mcp->cs.mask);
 }
 
@@ -68,17 +68,17 @@ static inline void MCP3204_CS_SetOutput(MCP3204_t *mcp){
  *                  - 0: Pull CS low (select chip)
  *                  - 1: Pull CS high (deselect / idle)
  *
- * @note    The CS pin must be initialized with MCP3204_CS_SetOutput() before use.
+ * @note    The CS pin must be initialized with MCP3204_CS_ConfigOutput() before use.
  */
 //static inline void MCP3204_CS_Write(MCP3204_t *mcp, uint8_t status){
 //    WriteBit_Reg8(mcp->cs.port, mcp->cs.index, status);
 //}
 
-static inline void MCP3204_CS_WriteLow(MCP3204_t *mcp){
+static inline void MCP3204_CS_Clear(const MCP3204_t *mcp){
     ClearBitMask_Reg8(mcp->cs.port, mcp->cs.mask);
 }
 
-static inline void MCP3204_CS_WriteHigh(MCP3204_t *mcp){
+static inline void MCP3204_CS_Set(const MCP3204_t *mcp){
     SetBitMask_Reg8(mcp->cs.port, mcp->cs.mask);
 }
 
@@ -91,7 +91,7 @@ static inline void MCP3204_CS_WriteHigh(MCP3204_t *mcp){
  * @note    The SPI peripheral must be configured and enabled
  *          before calling this function.
  */
-static inline uint8_t MCP3204_SPI_Transfer(uint8_t data){
+static inline uint8_t MCP3204_SPI_Transfer(const uint8_t data){
     uint16_t timeout = 1000U;           /* Software timeout counter */
 
     SPDR = data;                        /* Start SPI transfer */
