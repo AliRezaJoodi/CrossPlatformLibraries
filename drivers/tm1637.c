@@ -71,7 +71,7 @@ uint8_t TM1637_WriteByte(TM1637_t *tm, uint8_t data){
 
     //TM1637_CLK_Write(tm, CLK_ACTIVE);
     TM1637_CLK_DriveLow(tm);
-    TM1637_DIO_SetInput(tm);
+    TM1637_DIO_ConfigInput(tm);
     TM1637_DELAY_US(TM1637_HALF_BIT_US*4);
 
     //TM1637_CLK_Write(tm, CLK_IDLE);

@@ -23,12 +23,12 @@ extern "C" {
 //                                *(tm->clk.port) &= ~(tm->clk.mask) \
 //                                )
 
-static inline void TM1637_CLK_DriveLow(TM1637_t *tm){
+static inline void TM1637_CLK_DriveLow(const TM1637_t *tm){
     SetBitMask_Reg8(tm->clk.ddr,  tm->clk.mask);   /* Configure pin as output */
     ClearBitMask_Reg8(tm->clk.port, tm->clk.mask); /* Drive bus line low */
 }
 
-static inline void TM1637_CLK_Release(TM1637_t *tm){
+static inline void TM1637_CLK_Release(const TM1637_t *tm){
     ClearBitMask_Reg8(tm->clk.ddr,  tm->clk.mask);  /* Configure pin as input (high-Z) */
     ClearBitMask_Reg8(tm->clk.port, tm->clk.mask);  /* Disable internal pull-up */
 }
@@ -55,18 +55,18 @@ static inline void TM1637_CLK_Release(TM1637_t *tm){
 //    }
 //}
 
-static inline void TM1637_DIO_DriveLow(TM1637_t *tm){
+static inline void TM1637_DIO_DriveLow(const TM1637_t *tm){
     SetBitMask_Reg8(tm->dio.ddr,  tm->dio.mask);   /* Configure pin as output */
     ClearBitMask_Reg8(tm->dio.port, tm->dio.mask); /* Drive bus line low */
 }
 
-static inline void TM1637_DIO_Release(TM1637_t *tm){
+static inline void TM1637_DIO_Release(const TM1637_t *tm){
     ClearBitMask_Reg8(tm->dio.ddr,  tm->dio.mask);  /* Configure pin as input (high-Z) */
     ClearBitMask_Reg8(tm->dio.port, tm->dio.mask);  /* Disable internal pull-up */
 }
 
 //***************************************
-static inline void TM1637_DIO_SetInput(TM1637_t *tm){
+static inline void TM1637_DIO_ConfigInput(const TM1637_t *tm){
     ClearBitMask_Reg8(tm->dio.ddr,  tm->dio.mask);  /* Configure pin as input (high-Z) */
     ClearBitMask_Reg8(tm->dio.port, tm->dio.mask);  /* Disable internal pull-up */
 }
@@ -74,7 +74,7 @@ static inline void TM1637_DIO_SetInput(TM1637_t *tm){
 //***************************************
 //static inline void TM1637_DIO_Write(TM1637_t *tm, uint8_t status){
 //    if(status == 1){
-//        TM1637_DIO_SetInput(tm);
+//        TM1637_DIO_ConfigInput(tm);
 //    }
 //    else{
 //        SetBit_Reg8(tm->dio.ddr, tm->dio.index);
@@ -87,7 +87,7 @@ static inline void TM1637_DIO_SetInput(TM1637_t *tm){
 //    return ReadBit_Reg8(tm->dio.pin, tm->dio.index);
 //}
 
-static inline uint8_t TM1637_DIO_Read(TM1637_t *tm){
+static inline uint8_t TM1637_DIO_Read(const TM1637_t *tm){
     //return ((*(tm->dio.pin) & tm->dio.mask) != 0U);
     return ReadBitMask_Reg8(tm->dio.pin, tm->dio.mask);
 }
