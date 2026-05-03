@@ -75,11 +75,11 @@ static inline void MCP3202_CS_ConfigOutput(const MCP3202_t *mcp){
 //    WriteBit_Reg8(mcp->cs.port, mcp->cs.index, status);
 //}
 
-static inline void MCP3202_CS_Clear(const MCP3202_t *mcp){
+static inline void MCP3202_CS_SetActive(const MCP3202_t *mcp){
     ClearBitMask_Reg8(mcp->cs.port, mcp->cs.mask);
 }
 
-static inline void MCP3202_CS_Set(const MCP3202_t *mcp){
+static inline void MCP3202_CS_SetIdle(const MCP3202_t *mcp){
     SetBitMask_Reg8(mcp->cs.port, mcp->cs.mask);
 }
 
