@@ -6,7 +6,7 @@
  * configuring and reading buttons, including:
  *  - Button hardware configuration (Button_HW_t)
  *  - Button object (Button_t)
- *  - Pin configuration and debounce delay functions
+ *  - Pin configuration functions
  *
  * Inline functions are provided for fast access in AVR MCUs.
  * The header is portable and can be adapted to other microcontrollers.
@@ -30,19 +30,20 @@ extern "C" {
 
 #define BUTTON_DELAY_US(VALUE)      DELAY_US(VALUE)
 
-static inline void Button_Pin_SetInput(Button_t *btn){
+static inline void Button_Pin_ConfigInput(const Button_t *btn){
     ClearBitMask_Reg8(btn->hw.ddr, btn->hw.mask);
 }
 
-static inline void Button_Pin_SetPullNone(Button_t *btn){
+static inline void Button_Pin_ConfigPullNone(const Button_t *btn){
     ClearBitMask_Reg8(btn->hw.port, btn->hw.mask);
 }
 
-static inline void Button_Pin_SetPullUp(Button_t *btn){
+static inline void Button_Pin_ConfigPullUp(const Button_t *btn){
     SetBitMask_Reg8(btn->hw.port, btn->hw.mask);
 }
 
-static inline void Button_Pin_SetPullDown(Button_t *btn){
+/* Not supported on AVR - same as floating */
+static inline void Button_Pin_ConfigPullDown(const Button_t *btn){
     ClearBitMask_Reg8(btn->hw.port, btn->hw.mask);
 }
 

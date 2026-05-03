@@ -8,20 +8,20 @@
 
 //*************************************************
 void Button_Init(Button_t *btn){
-    Button_Pin_SetInput(btn);
+    Button_Pin_ConfigInput(btn);
 
     switch(btn->config.pull) {
         case BUTTON_PULL_NONE:
-            Button_Pin_SetPullNone(btn);
+            Button_Pin_ConfigPullNone(btn);
             break;
         case BUTTON_PULL_UP:
-            Button_Pin_SetPullUp(btn);
+            Button_Pin_ConfigPullUp(btn);
             break;
         case BUTTON_PULL_DOWN:
-            Button_Pin_SetPullDown(btn);
+            Button_Pin_ConfigPullDown(btn);
             break;
         default:
-            Button_Pin_SetPullNone(btn);
+            Button_Pin_ConfigPullNone(btn);
     }
 
     btn->state = 0;
