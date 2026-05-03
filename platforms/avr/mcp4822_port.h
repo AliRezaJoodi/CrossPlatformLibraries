@@ -59,7 +59,7 @@ extern "C" {
  *
  * @param[in] mcp   Pointer to MCP4822 device handle
  */
-static inline void MCP4822_CS_SetOutput(MCP4822_t *mcp){
+static inline void MCP4822_CS_ConfigOutput(const MCP4822_t *mcp){
     SetBitMask_Reg8(mcp->cs.ddr, mcp->cs.mask);
 }
 
@@ -74,11 +74,11 @@ static inline void MCP4822_CS_SetOutput(MCP4822_t *mcp){
 //    WriteBit_Reg8(mcp->cs.port, mcp->cs.index, status);
 //}
 
-static inline void MCP4822_CS_WriteLow(MCP4822_t *mcp){
+static inline void MCP4822_CS_Clear(const MCP4822_t *mcp){
     ClearBitMask_Reg8(mcp->cs.port, mcp->cs.mask);
 }
 
-static inline void MCP4822_CS_WriteHigh(MCP4822_t *mcp){
+static inline void MCP4822_CS_Set(const MCP4822_t *mcp){
     SetBitMask_Reg8(mcp->cs.port, mcp->cs.mask);
 }
 
@@ -88,7 +88,7 @@ static inline void MCP4822_CS_WriteHigh(MCP4822_t *mcp){
  *
  * @param[in] mcp   Pointer to MCP4822 device handle
  */
-static inline void MCP4822_LDAC_SetOutput(MCP4822_t *mcp){
+static inline void MCP4822_LDAC_ConfigOutput(const MCP4822_t *mcp){
     SetBitMask_Reg8(mcp->ldac.ddr, mcp->ldac.mask);
 }
 
@@ -103,11 +103,11 @@ static inline void MCP4822_LDAC_SetOutput(MCP4822_t *mcp){
 //    WriteBit_Reg8(mcp->ldac.port, mcp->ldac.index, status);
 //}
 
-static inline void MCP4822_LDAC_WriteLow(MCP4822_t *mcp){
+static inline void MCP4822_LDAC_Clear(const MCP4822_t *mcp){
     ClearBitMask_Reg8(mcp->ldac.port, mcp->ldac.mask);
 }
 
-static inline void MCP4822_LDAC_WriteHigh(MCP4822_t *mcp){
+static inline void MCP4822_LDAC_Set(const MCP4822_t *mcp){
     SetBitMask_Reg8(mcp->ldac.port, mcp->ldac.mask);
 }
 
