@@ -9,7 +9,7 @@ static uint16_t buzzer_count = 0;
 
 //********************************************************
 void Buzzer_Init(void){
-    Buzzer_Pin_SetOutput();
+    Buzzer_Pin_ConfigOutput();
     Buzzer_Pin_Write(!BUZZER_ACTIVE);
 }
 
