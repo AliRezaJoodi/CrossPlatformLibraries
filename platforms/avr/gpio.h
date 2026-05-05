@@ -105,7 +105,7 @@ static inline void GPIO_TogglePin(const GPIO_t *gpio) {
 
 
 //*****************************************************************
-static inline uint8_t GPIO_ReadPinMask_Shifted(const GPIO_t *gpio) {
+static inline uint8_t GPIO_ReadPinMask(const GPIO_t *gpio) {
     return (uint8_t)((*(gpio->pin) & gpio->mask) >> gpio->index);
 }
 
@@ -115,6 +115,10 @@ static inline uint8_t GPIO_ReadPinMask_Boolean(const GPIO_t *gpio) {
 
 static inline uint8_t GPIO_ReadPin(const GPIO_t *gpio) {
     return (uint8_t)((*(gpio->pin) >> gpio->index) & 0x01U);
+}
+
+static inline uint8_t GPIO_Read8Pin(const GPIO_t *gpio) {
+    return *(gpio->pin);
 }
 
 #ifdef __cplusplus
