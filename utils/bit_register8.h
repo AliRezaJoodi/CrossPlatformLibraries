@@ -1,7 +1,7 @@
 // GitHub Account: GitHub.com/AliRezaJoodi
 
-#ifndef BIT_REGISTER_INCLUDED
-#define BIT_REGISTER_INCLUDED
+#ifndef BIT_REGISTER8_INCLUDED
+#define BIT_REGISTER8_INCLUDED
 
 #ifdef __cplusplus
 extern "C" {
@@ -17,10 +17,6 @@ static inline void SetBitMask_Reg8(volatile uint8_t *reg, uint8_t mask){
 //***********************************************************************
 static inline void SetBit_Reg8(volatile uint8_t *reg, uint8_t pos){
     *reg = (uint8_t)(*reg | (0x01U << pos));
-}
-
-static inline void SetBit_Reg32(volatile uint32_t *reg, uint32_t pos){
-    *reg = (uint32_t)(*reg | (0x01UL << pos));
 }
 
 static inline void Set2Bit_Reg8(volatile uint8_t *reg, uint8_t pos){
