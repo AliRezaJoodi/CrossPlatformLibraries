@@ -1,13 +1,13 @@
 // GitHub Account: GitHub.com/AliRezaJoodi
 
-#ifndef BIT_INCLUDED
-#define BIT_INCLUDED
+#ifndef BIT_MACRO_INCLUDED
+#define BIT_MACRO_INCLUDED
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-#include <stdint.h>
+//#include <stdint.h>
 
 #define SET_BIT_OVERWRITE(ADDRESS, POS)     ((ADDRESS)  = (0x01UL << (POS)))
 
