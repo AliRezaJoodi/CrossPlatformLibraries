@@ -1,7 +1,7 @@
 // GitHub Account: GitHub.com/AliRezaJoodi
 
-#ifndef BIT_VALUE_INCLUDED
-#define BIT_VALUE_INCLUDED
+#ifndef BIT_VALUE8_INCLUDED
+#define BIT_VALUE8_INCLUDED
 
 #ifdef __cplusplus
 extern "C" {
