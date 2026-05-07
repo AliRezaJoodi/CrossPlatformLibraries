@@ -2,10 +2,7 @@
 
 #include <stdint.h>
 #include "hardware.h"   /**< Project-level overrides */
-//#include "utils/bit.h"
-//#include "utils/bit_value.h"
 #include "utils/bit_value8.h"
-//#include "utils/bit_value16.h"
 #include "tm1638_types.h"
 #include "tm1638_port.h"
 #include "drivers/tm1638.h"
