@@ -147,6 +147,10 @@ static inline uint8_t GetBit_u8(uint8_t value, uint8_t pos){
     return (uint8_t)((value >> pos) & 0x01U);
 }
 
+static inline uint8_t Get2Bit_u8(uint8_t value, uint8_t pos){
+    return (uint8_t)((value >> pos) & 0x03U);
+}
+
 //***********************************************************************
 static inline uint8_t Reflect_u8(uint8_t x){
     x = (uint8_t)((x >> 4) | (x << 4));
