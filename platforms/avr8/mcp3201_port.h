@@ -53,7 +53,7 @@ extern "C" {
 
 #include <stdint.h>
 #include "compiler_port.h"
-#include "utils/bit_register.h"
+#include "utils/bit_register8.h"
 #include "mcp3201_hw.h"
 #include "mcp3201_types.h"
 

@@ -2,7 +2,7 @@
 
 #include <stdint.h>
 #include "hardware.h"
-#include "utils/bit_value.h"
+#include "utils/bit_value8.h"
 #include "tm1637_port.h"
 #include "drivers/tm1637.h"
 

@@ -116,20 +116,6 @@ static inline uint8_t WriteBit_u8(uint8_t value, uint8_t pos, uint8_t status){
             );
 }
 
-static inline uint16_t WriteBit_u16(uint16_t value, uint8_t pos, uint8_t status){
-    return (uint16_t)(
-            (value & ~(1U << pos)) |
-            ((status & 1U) << pos)
-            );
-}
-
-static inline uint32_t WriteBit_u32(uint32_t value, uint8_t pos, uint8_t status){
-    return (uint32_t)(
-            (value & ~(1UL << pos)) |
-            ((status & 1UL) << pos)
-            );
-}
-
 static inline uint8_t Write2Bit_u8(uint8_t value, uint8_t pos, uint8_t status){
     return (uint8_t)(
             (value & ~(0x03U << pos)) |

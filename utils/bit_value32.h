@@ -111,20 +111,6 @@ static inline uint32_t Toggle8Bit_u32(uint32_t value, uint32_t pos){
 //***********************************************************************
 static inline uint32_t WriteBit_u32(uint32_t value, uint32_t pos, uint32_t status){
     return (uint32_t)(
-            (value & ~(0x01UL << pos)) |
-            ((status & 0x01UL) << pos)
-            );
-}
-
-static inline uint16_t WriteBit_u16(uint16_t value, uint32_t pos, uint32_t status){
-    return (uint16_t)(
-            (value & ~(1UL << pos)) |
-            ((status & 1UL) << pos)
-            );
-}
-
-static inline uint32_t WriteBit_u32(uint32_t value, uint32_t pos, uint32_t status){
-    return (uint32_t)(
             (value & ~(1UL << pos)) |
             ((status & 1UL) << pos)
             );

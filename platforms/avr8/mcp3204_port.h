@@ -47,7 +47,7 @@ extern "C" {
 
 #include <stdint.h>
 #include "compiler_port.h"
-#include "utils/bit_register.h"
+#include "utils/bit_register8.h"
 #include "mcp3204_hw.h"
 #include "mcp3204_types.h"
 

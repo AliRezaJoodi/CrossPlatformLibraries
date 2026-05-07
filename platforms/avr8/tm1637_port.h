@@ -7,7 +7,7 @@ extern "C" {
 
 #include <stdint.h>
 #include "compiler_port.h"
-#include "utils/bit_register.h"
+#include "utils/bit_register8.h"
 #include "tm1637_hw.h"
 #include "tm1637_types.h"
 
