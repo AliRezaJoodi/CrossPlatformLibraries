@@ -24,7 +24,7 @@ extern "C" {
 
 #include <stdint.h>
 #include "compiler_port.h"
-#include "utils/bit_register.h"
+#include "utils/bit_register8.h"
 #include "button_hw.h"
 #include "button_types.h"
 
