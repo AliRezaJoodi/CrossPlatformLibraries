@@ -122,9 +122,9 @@ static inline void GPIO_SetPin(const GPIO_t *gpio) {
     *(gpio->port) = (uint8_t)(*(gpio->port) | (0x01U << gpio->index));
 }
 
-static inline void GPIO_SetPort(const GPIO_t *gpio) {
-    *(gpio->port) = 0xFFU;
-}
+//static inline void GPIO_SetPort(const GPIO_t *gpio) {
+//    *(gpio->port) = 0xFFU;
+//}
 
 
 //*****************************************************************
@@ -136,9 +136,9 @@ static inline void GPIO_ClearPin(const GPIO_t *gpio) {
     *(gpio->port) = (uint8_t)(*(gpio->port) & ~(0x01U << gpio->index));
 }
 
-static inline void GPIO_ClearPort(const GPIO_t *gpio) {
-    *(gpio->port) = 0x00U;
-}
+//static inline void GPIO_ClearPort(const GPIO_t *gpio) {
+//    *(gpio->port) = 0x00U;
+//}
 
 //*****************************************************************
 static inline void GPIO_TogglePinMask(const GPIO_t *gpio) {
