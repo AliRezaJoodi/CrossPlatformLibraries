@@ -10,103 +10,115 @@ extern "C" {
 #include <stdint.h>
 
 //***********************************************************************
+static inline uint32_t SetBitMask_u32(uint32_t value, uint32_t mask){
+    return (uint32_t)(value | (mask));
+}
+
 static inline uint32_t SetBit_u32(uint32_t value, uint32_t pos){
     return (uint32_t)(value | (0x01UL << pos));
 }
 
-static inline uint32_t Set2Bit_u32(uint32_t value, uint32_t pos){
-    return (uint32_t)(value | ((0x03UL) << pos));
-}
-
-static inline uint32_t Set3Bit_u32(uint32_t value, uint32_t pos){
-    return (uint32_t)(value | ((0x07UL) << pos));
-}
-
-static inline uint32_t Set4Bit_u32(uint32_t value, uint32_t pos){
-    return (uint32_t)(value | ((0x0FUL) << pos));
-}
-
-static inline uint32_t Set5Bit_u32(uint32_t value, uint32_t pos){
-    return (uint32_t)(value | ((0x1FUL) << pos));
-}
-
-static inline uint32_t Set6Bit_u32(uint32_t value, uint32_t pos){
-    return (uint32_t)(value | ((0x3FUL) << pos));
-}
-
-static inline uint32_t Set7Bit_u32(uint32_t value, uint32_t pos){
-    return (uint32_t)(value | ((0x7FUL) << pos));
-}
-
-static inline uint32_t Set8Bit_u32(uint32_t value, uint32_t pos){
-    return (uint32_t)(value | ((0xFFUL) << pos));
-}
+//static inline uint32_t Set2Bit_u32(uint32_t value, uint32_t pos){
+//    return (uint32_t)(value | ((0x03UL) << pos));
+//}
+//
+//static inline uint32_t Set3Bit_u32(uint32_t value, uint32_t pos){
+//    return (uint32_t)(value | ((0x07UL) << pos));
+//}
+//
+//static inline uint32_t Set4Bit_u32(uint32_t value, uint32_t pos){
+//    return (uint32_t)(value | ((0x0FUL) << pos));
+//}
+//
+//static inline uint32_t Set5Bit_u32(uint32_t value, uint32_t pos){
+//    return (uint32_t)(value | ((0x1FUL) << pos));
+//}
+//
+//static inline uint32_t Set6Bit_u32(uint32_t value, uint32_t pos){
+//    return (uint32_t)(value | ((0x3FUL) << pos));
+//}
+//
+//static inline uint32_t Set7Bit_u32(uint32_t value, uint32_t pos){
+//    return (uint32_t)(value | ((0x7FUL) << pos));
+//}
+//
+//static inline uint32_t Set8Bit_u32(uint32_t value, uint32_t pos){
+//    return (uint32_t)(value | ((0xFFUL) << pos));
+//}
 
 //***********************************************************************
+static inline uint32_t ClearBitMask_u32(uint32_t value, uint32_t mask){
+    return (uint32_t)(value & ~(mask));
+}
+
 static inline uint32_t ClearBit_u32(uint32_t value, uint32_t pos){
     return (uint32_t)(value & ~(0x01UL << pos));
 }
 
-static inline uint32_t Clear2Bit_u32(uint32_t value, uint32_t pos){
-    return (uint32_t)(value & ~((0x03UL) << pos));
-}
-
-static inline uint32_t Clear3Bit_u32(uint32_t value, uint32_t pos){
-    return (uint32_t)(value & ~((0x07UL) << pos));
-}
-
-static inline uint32_t Clear4Bit_u32(uint32_t value, uint32_t pos){
-    return (uint32_t)(value & ~((0x0FUL) << pos));
-}
-
-static inline uint32_t Clear5Bit_u32(uint32_t value, uint32_t pos){
-    return (uint32_t)(value & ~((0x1FUL) << pos));
-}
-
-static inline uint32_t Clear6Bit_u32(uint32_t value, uint32_t pos){
-    return (uint32_t)(value & ~((0x3FUL) << pos));
-}
-
-static inline uint32_t Clear7Bit_u32(uint32_t value, uint32_t pos){
-    return (uint32_t)(value & ~((0x7FUL) << pos));
-}
-
-static inline uint32_t Clear8Bit_u32(uint32_t value, uint32_t pos){
-    return (uint32_t)(value & ~((0xFFUL) << pos));
-}
+//static inline uint32_t Clear2Bit_u32(uint32_t value, uint32_t pos){
+//    return (uint32_t)(value & ~((0x03UL) << pos));
+//}
+//
+//static inline uint32_t Clear3Bit_u32(uint32_t value, uint32_t pos){
+//    return (uint32_t)(value & ~((0x07UL) << pos));
+//}
+//
+//static inline uint32_t Clear4Bit_u32(uint32_t value, uint32_t pos){
+//    return (uint32_t)(value & ~((0x0FUL) << pos));
+//}
+//
+//static inline uint32_t Clear5Bit_u32(uint32_t value, uint32_t pos){
+//    return (uint32_t)(value & ~((0x1FUL) << pos));
+//}
+//
+//static inline uint32_t Clear6Bit_u32(uint32_t value, uint32_t pos){
+//    return (uint32_t)(value & ~((0x3FUL) << pos));
+//}
+//
+//static inline uint32_t Clear7Bit_u32(uint32_t value, uint32_t pos){
+//    return (uint32_t)(value & ~((0x7FUL) << pos));
+//}
+//
+//static inline uint32_t Clear8Bit_u32(uint32_t value, uint32_t pos){
+//    return (uint32_t)(value & ~((0xFFUL) << pos));
+//}
 
 //***********************************************************************
+static inline uint32_t ToggleBitMask_u32(uint32_t value, uint32_t mask){
+    return (uint32_t)(value ^ (mask));
+}
+
 static inline uint32_t ToggleBit_u32(uint32_t value, uint32_t pos){
     return (uint32_t)(value ^ (0x01UL << pos));
 }
 
-static inline uint32_t Toggle2Bit_u32(uint32_t value, uint32_t pos){
-    return (uint32_t)(value ^ ((0x03UL) << pos));
-}
-
-static inline uint32_t Toggle3Bit_u32(uint32_t value, uint32_t pos){
-    return (uint32_t)(value ^ ((0x07UL) << pos));
-}
-
-static inline uint32_t Toggle4Bit_u32(uint32_t value, uint32_t pos){
-    return (uint32_t)(value ^ ((0x0FUL) << pos));
-}
-
-static inline uint32_t Toggle5Bit_u32(uint32_t value, uint32_t pos){
-    return (uint32_t)(value ^ ((0x1FUL) << pos));
-}
-
-static inline uint32_t Toggle6Bit_u32(uint32_t value, uint32_t pos){
-    return (uint32_t)(value ^ ((0x3FUL) << pos));
-}
-
-static inline uint32_t Toggle7Bit_u32(uint32_t value, uint32_t pos){
-    return (uint32_t)(value ^ ((0x7FUL) << pos));
-}
-
-static inline uint32_t Toggle8Bit_u32(uint32_t value, uint32_t pos){
-    return (uint32_t)(value ^ ((0xFFUL) << pos));
-}
+//static inline uint32_t Toggle2Bit_u32(uint32_t value, uint32_t pos){
+//    return (uint32_t)(value ^ ((0x03UL) << pos));
+//}
+//
+//static inline uint32_t Toggle3Bit_u32(uint32_t value, uint32_t pos){
+//    return (uint32_t)(value ^ ((0x07UL) << pos));
+//}
+//
+//static inline uint32_t Toggle4Bit_u32(uint32_t value, uint32_t pos){
+//    return (uint32_t)(value ^ ((0x0FUL) << pos));
+//}
+//
+//static inline uint32_t Toggle5Bit_u32(uint32_t value, uint32_t pos){
+//    return (uint32_t)(value ^ ((0x1FUL) << pos));
+//}
+//
+//static inline uint32_t Toggle6Bit_u32(uint32_t value, uint32_t pos){
+//    return (uint32_t)(value ^ ((0x3FUL) << pos));
+//}
+//
+//static inline uint32_t Toggle7Bit_u32(uint32_t value, uint32_t pos){
+//    return (uint32_t)(value ^ ((0x7FUL) << pos));
+//}
+//
+//static inline uint32_t Toggle8Bit_u32(uint32_t value, uint32_t pos){
+//    return (uint32_t)(value ^ ((0xFFUL) << pos));
+//}
 
 //***********************************************************************
 static inline uint32_t WriteBit_u32(uint32_t value, uint32_t pos, uint32_t status){
