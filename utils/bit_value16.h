@@ -10,103 +10,115 @@ extern "C" {
 #include <stdint.h>
 
 //***********************************************************************
+static inline uint16_t SetBitMask_u16(uint16_t value, uint16_t mask){
+    return (uint16_t)(value | (mask));
+}
+
 static inline uint16_t SetBit_u16(uint16_t value, uint16_t pos){
     return (uint16_t)(value | (0x01U << pos));
 }
 
-static inline uint16_t Set2Bit_u16(uint16_t value, uint16_t pos){
-    return (uint16_t)(value | (0x03U << pos));
-}
-
-static inline uint16_t Set3Bit_u16(uint16_t value, uint16_t pos){
-    return (uint16_t)(value | (0x07U << pos));
-}
-
-static inline uint16_t Set4Bit_u16(uint16_t value, uint16_t pos){
-    return (uint16_t)(value | ((0x0FU) << pos));
-}
-
-static inline uint16_t Set5Bit_u16(uint16_t value, uint16_t pos){
-    return (uint16_t)(value | ((0x1FU) << pos));
-}
-
-static inline uint16_t Set6Bit_u16(uint16_t value, uint16_t pos){
-    return (uint16_t)(value | ((0x3FU) << pos));
-}
-
-static inline uint16_t Set7Bit_u16(uint16_t value, uint16_t pos){
-    return (uint16_t)(value | ((0x7FU) << pos));
-}
-
-static inline uint16_t Set8Bit_u16(uint16_t value, uint16_t pos){
-    return (uint16_t)(value | ((0xFFU) << pos));
-}
+//static inline uint16_t Set2Bit_u16(uint16_t value, uint16_t pos){
+//    return (uint16_t)(value | (0x03U << pos));
+//}
+//
+//static inline uint16_t Set3Bit_u16(uint16_t value, uint16_t pos){
+//    return (uint16_t)(value | (0x07U << pos));
+//}
+//
+//static inline uint16_t Set4Bit_u16(uint16_t value, uint16_t pos){
+//    return (uint16_t)(value | ((0x0FU) << pos));
+//}
+//
+//static inline uint16_t Set5Bit_u16(uint16_t value, uint16_t pos){
+//    return (uint16_t)(value | ((0x1FU) << pos));
+//}
+//
+//static inline uint16_t Set6Bit_u16(uint16_t value, uint16_t pos){
+//    return (uint16_t)(value | ((0x3FU) << pos));
+//}
+//
+//static inline uint16_t Set7Bit_u16(uint16_t value, uint16_t pos){
+//    return (uint16_t)(value | ((0x7FU) << pos));
+//}
+//
+//static inline uint16_t Set8Bit_u16(uint16_t value, uint16_t pos){
+//    return (uint16_t)(value | ((0xFFU) << pos));
+//}
 
 //***********************************************************************
+static inline uint16_t ClearBitMask_u16(uint16_t value, uint16_t mask){
+    return (uint16_t)(value & ~(mask));
+}
+
 static inline uint16_t ClearBit_u16(uint16_t value, uint16_t pos){
     return (uint16_t)(value & ~(0x01U << pos));
 }
 
-static inline uint16_t Clear2Bit_u16(uint16_t value, uint16_t pos){
-    return (uint16_t)(value & ~((0x03U) << pos));
-}
-
-static inline uint16_t Clear3Bit_u16(uint16_t value, uint16_t pos){
-    return (uint16_t)(value & ~(0x07U << pos));
-}
-
-static inline uint16_t Clear4Bit_u16(uint16_t value, uint16_t pos){
-    return (uint16_t)(value & ~((0x0FU) << pos));
-}
-
-static inline uint16_t Clear5Bit_u16(uint16_t value, uint16_t pos){
-    return (uint16_t)(value & ~((0x1FU) << pos));
-}
-
-static inline uint16_t Clear6Bit_u16(uint16_t value, uint16_t pos){
-    return (uint16_t)(value & ~((0x3FU) << pos));
-}
-
-static inline uint16_t Clear7Bit_u16(uint16_t value, uint16_t pos){
-    return (uint16_t)(value & ~((0x7FU) << pos));
-}
-
-static inline uint16_t Clear8Bit_u16(uint16_t value, uint16_t pos){
-    return (uint16_t)(value & ~((0xFFU) << pos));
-}
+//static inline uint16_t Clear2Bit_u16(uint16_t value, uint16_t pos){
+//    return (uint16_t)(value & ~((0x03U) << pos));
+//}
+//
+//static inline uint16_t Clear3Bit_u16(uint16_t value, uint16_t pos){
+//    return (uint16_t)(value & ~(0x07U << pos));
+//}
+//
+//static inline uint16_t Clear4Bit_u16(uint16_t value, uint16_t pos){
+//    return (uint16_t)(value & ~((0x0FU) << pos));
+//}
+//
+//static inline uint16_t Clear5Bit_u16(uint16_t value, uint16_t pos){
+//    return (uint16_t)(value & ~((0x1FU) << pos));
+//}
+//
+//static inline uint16_t Clear6Bit_u16(uint16_t value, uint16_t pos){
+//    return (uint16_t)(value & ~((0x3FU) << pos));
+//}
+//
+//static inline uint16_t Clear7Bit_u16(uint16_t value, uint16_t pos){
+//    return (uint16_t)(value & ~((0x7FU) << pos));
+//}
+//
+//static inline uint16_t Clear8Bit_u16(uint16_t value, uint16_t pos){
+//    return (uint16_t)(value & ~((0xFFU) << pos));
+//}
 
 //***********************************************************************
+static inline uint16_t ToggleBitMask_u16(uint16_t value, uint16_t mask){
+    return (uint16_t)(value ^ (mask));
+}
+
 static inline uint16_t ToggleBit_u16(uint16_t value, uint16_t pos){
     return (uint16_t)(value ^ (0x01U << pos));
 }
 
-static inline uint16_t Toggle2Bit_u16(uint16_t value, uint16_t pos){
-    return (uint16_t)(value ^ ((0x03U) << pos));
-}
-
-static inline uint16_t Toggle3Bit_u16(uint16_t value, uint16_t pos){
-    return (uint16_t)(value ^ (0x07U << pos));
-}
-
-static inline uint16_t Toggle4Bit_u16(uint16_t value, uint16_t pos){
-    return (uint16_t)(value ^ ((0x0FU) << pos));
-}
-
-static inline uint16_t Toggle5Bit_u16(uint16_t value, uint16_t pos){
-    return (uint16_t)(value ^ ((0x1FU) << pos));
-}
-
-static inline uint16_t Toggle6Bit_u16(uint16_t value, uint16_t pos){
-    return (uint16_t)(value ^ ((0x3FU) << pos));
-}
-
-static inline uint16_t Toggle7Bit_u16(uint16_t value, uint16_t pos){
-    return (uint16_t)(value ^ ((0x7FU) << pos));
-}
-
-static inline uint16_t Toggle8Bit_u16(uint16_t value, uint16_t pos){
-    return (uint16_t)(value ^ ((0xFFU) << pos));
-}
+//static inline uint16_t Toggle2Bit_u16(uint16_t value, uint16_t pos){
+//    return (uint16_t)(value ^ ((0x03U) << pos));
+//}
+//
+//static inline uint16_t Toggle3Bit_u16(uint16_t value, uint16_t pos){
+//    return (uint16_t)(value ^ (0x07U << pos));
+//}
+//
+//static inline uint16_t Toggle4Bit_u16(uint16_t value, uint16_t pos){
+//    return (uint16_t)(value ^ ((0x0FU) << pos));
+//}
+//
+//static inline uint16_t Toggle5Bit_u16(uint16_t value, uint16_t pos){
+//    return (uint16_t)(value ^ ((0x1FU) << pos));
+//}
+//
+//static inline uint16_t Toggle6Bit_u16(uint16_t value, uint16_t pos){
+//    return (uint16_t)(value ^ ((0x3FU) << pos));
+//}
+//
+//static inline uint16_t Toggle7Bit_u16(uint16_t value, uint16_t pos){
+//    return (uint16_t)(value ^ ((0x7FU) << pos));
+//}
+//
+//static inline uint16_t Toggle8Bit_u16(uint16_t value, uint16_t pos){
+//    return (uint16_t)(value ^ ((0xFFU) << pos));
+//}
 
 //***********************************************************************
 static inline uint16_t WriteBit_u16(uint16_t value, uint16_t pos, uint16_t status){
