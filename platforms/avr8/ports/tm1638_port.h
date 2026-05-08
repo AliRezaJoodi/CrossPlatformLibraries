@@ -6,7 +6,7 @@ extern "C" {
 #endif
 
 #include <stdint.h>
-#include "utils/bit_register8.h"
+#include "bit_register8.h"
 #include "compiler_port.h"
 #include "tm1638_hw.h"
 #include "tm1638_types.h"

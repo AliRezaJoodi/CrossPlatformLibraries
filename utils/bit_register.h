@@ -9,8 +9,8 @@ extern "C" {
 
 #include <stdint.h>
 
-#include "utils/bit_register8.h"
-#include "utils/bit_register32.h"
+#include "bit_register8.h"
+#include "bit_register32.h"
 
 #ifdef __cplusplus
 }

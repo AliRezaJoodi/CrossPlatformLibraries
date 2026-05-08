@@ -9,9 +9,9 @@ extern "C" {
 
 #include <stdint.h>
 
-#include "utils/bit_value8.h"
-#include "utils/bit_value16.h"
-#include "utils/bit_value32.h"
+#include "bit_value8.h"
+#include "bit_value16.h"
+#include "bit_value32.h"
 
 #ifdef __cplusplus
 }

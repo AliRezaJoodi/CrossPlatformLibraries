@@ -4,7 +4,7 @@
 #include "hardware.h"   /* Project-level overrides */
 #include "button_types.h"
 #include "button_port.h"
-#include "drivers/button.h"
+#include "button.h"
 
 //*************************************************
 void Button_Init(Button_t *btn){

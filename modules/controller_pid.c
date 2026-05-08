@@ -3,7 +3,7 @@
 #include <stdint.h>
 
 #include "hardware.h"
-#include "modules/controller_pid.h"
+#include "controller_pid.h"
 
 // ********************************************
 int32_t Ctrl_PID_Update(CtrlPID_t *pid){

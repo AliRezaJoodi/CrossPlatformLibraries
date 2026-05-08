@@ -1,7 +1,7 @@
 
 #include "hardware.h"       /**< Project-level overrides */
 #include "mcp4822_port.h"
-#include "drivers/mcp4822.h"
+#include "mcp4822.h"
 
 #define MCP4822_ENABLE      1U
 #define MCP4822_DISABLE     0U

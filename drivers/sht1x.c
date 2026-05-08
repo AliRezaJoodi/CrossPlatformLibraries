@@ -1,10 +1,10 @@
 // GitHub Account: GitHub.com/AliRezaJoodi
 
-#include "hardware.h"
-#include "sht1x.h"
-
 #include <stdio.h>
 #include <stdlib.h>
+
+#include "hardware.h"
+#include "sht1x.h"
 
 #define SCK_IDLE                    0U
 #define SCK_ACTIVE                  1U

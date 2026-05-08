@@ -7,7 +7,7 @@ extern "C" {
 
 #include <stdint.h>
 #include "compiler_port.h"
-#include "utils/bit_register.h"
+#include "bit_register8.h"
 #include "buzzer_hw.h"
 
 #define BUZZER_DELAY_MS(VALUE)          DELAY_MS(VALUE)

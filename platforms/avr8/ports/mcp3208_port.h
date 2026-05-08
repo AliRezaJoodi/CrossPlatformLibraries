@@ -1,8 +1,8 @@
 /**
- * @brief   SPI usage and recommended configuration for MCP3204
+ * @brief   SPI usage and recommended configuration for MCP3208
  *
  * @warning
- * Ensure the SPI peripheral is configured before calling any MCP3204 functions.
+ * Ensure the SPI peripheral is configured before calling any MCP3208 functions.
  * Using incorrect SPI settings may result in incorrect ADC readings.
  *
  * @author  AliReza Joodi
@@ -16,6 +16,7 @@
  * @code
  * void SPI_Config(void) {
  *     // Pin directions
+ *     DDRB.4 = 1; PORTB.4 = 0;    // CS (SS)
  *     DDRB.5 = 1; PORTB.5 = 0;    // MOSI
  *     DDRB.6 = 0; PORTB.6 = 0;    // MISO
  *     DDRB.7 = 1; PORTB.7 = 0;    // SCK
@@ -38,8 +39,8 @@
  * @endcode
  */
 
-#ifndef MCP3204_PORT_INCLUDED
-#define MCP3204_PORT_INCLUDED
+#ifndef MCP3208_PORT_INCLUDED
+#define MCP3208_PORT_INCLUDED
 
 #ifdef __cplusplus
 extern "C" {
@@ -47,43 +48,43 @@ extern "C" {
 
 #include <stdint.h>
 #include "compiler_port.h"
-#include "utils/bit_register8.h"
-#include "mcp3204_hw.h"
-#include "mcp3204_types.h"
+#include "bit_register8.h"
+#include "mcp3208_hw.h"
+#include "mcp3208_types.h"
 
 /**
- * @brief Initialize MCP3204 CS pin (output, idle high)
+ * @brief Initialize MCP3208 CS pin (output, idle high)
  *
- * @param   mcp     Pointer to the MCP3204 instance
+ * @param   mcp     Pointer to the MCP3208 instance
  */
-static inline void MCP3204_CS_ConfigOutput(const MCP3204_t *mcp){
+static inline void MCP3208_CS_ConfigOutput(const MCP3208_t *mcp){
     SetBitMask_Reg8(mcp->cs.ddr, mcp->cs.mask);
 }
 
 /**
- * @brief   Set the CS pin level for MCP3204
+ * @brief   Set the CS pin level for MCP3208
  *
- * @param   mcp     Pointer to the MCP3204 instance
+ * @param   mcp     Pointer to the MCP3208 instance
  * @param   status  Logic level to set
  *                  - 0: Pull CS low (select chip)
  *                  - 1: Pull CS high (deselect / idle)
  *
- * @note    The CS pin must be initialized with MCP3204_CS_ConfigOutput() before use.
+ * @note    The CS pin must be initialized with MCP3208_CS_ConfigOutput() before use.
  */
-//static inline void MCP3204_CS_Write(MCP3204_t *mcp, uint8_t status){
+//static inline void MCP3208_CS_Write(MCP3208_t *mcp, uint8_t status){
 //    WriteBit_Reg8(mcp->cs.port, mcp->cs.index, status);
 //}
 
-static inline void MCP3204_CS_SetActive(const MCP3204_t *mcp){
+static inline void MCP3208_CS_SetActive (const MCP3208_t *mcp){
     ClearBitMask_Reg8(mcp->cs.port, mcp->cs.mask);
 }
 
-static inline void MCP3204_CS_SetIdle(const MCP3204_t *mcp){
+static inline void MCP3208_CS_SetIdle(const MCP3208_t *mcp){
     SetBitMask_Reg8(mcp->cs.port, mcp->cs.mask);
 }
 
 /**
- * @brief   Send and receive a byte via SPI for MCP3204
+ * @brief   Send and receive a byte via SPI for MCP3208
  *
  * @param   data    Byte to transmit
  * @return  Received byte from SPI
@@ -91,7 +92,7 @@ static inline void MCP3204_CS_SetIdle(const MCP3204_t *mcp){
  * @note    The SPI peripheral must be configured and enabled
  *          before calling this function.
  */
-static inline uint8_t MCP3204_SPI_Transfer(const uint8_t data){
+static inline uint8_t MCP3208_SPI_Transfer(const uint8_t data){
     uint16_t timeout = 1000U;           /* Software timeout counter */
 
     SPDR = data;                        /* Start SPI transfer */

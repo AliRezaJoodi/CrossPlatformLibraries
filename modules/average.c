@@ -1,7 +1,7 @@
 // GitHub Account:  GitHub.com/AliRezaJoodi
 
 #include "hardware.h"   /**< Include user-overridable macros. */
-#include "modules/average.h"
+#include "average.h"
 
 /* ---- Power of two detection ---- */
 #define IS_POWER_OF_TWO(x)   (((x) != 0) && (((x) & ((x) - 1)) == 0))

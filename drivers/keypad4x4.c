@@ -3,7 +3,7 @@
 #include <stdint.h>
 #include "hardware.h"
 #include "keypad4x4_port.h"
-#include "drivers/keypad4x4.h"
+#include "keypad4x4.h"
 
 #define KEYPAD4X4_NO_INDEX  0xFFU
 

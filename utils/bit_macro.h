@@ -7,8 +7,6 @@
 extern "C" {
 #endif
 
-//#include <stdint.h>
-
 #define SET_BIT_OVERWRITE(ADDRESS, POS)     ((ADDRESS)  = (0x01UL << (POS)))
 
 #define SET_BIT( ADDRESS, POS)              ((ADDRESS) |= (0x01UL << (POS)))

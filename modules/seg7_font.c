@@ -1,7 +1,7 @@
 // GitHub Account: GitHub.com/AliRezaJoodi
 
 #include <stdint.h>
-#include "modules/seg7_font.h"
+#include "seg7_font.h"
 
 const uint8_t seg7_font_digit[SEG7_FONT_DIGIT_SIZE]={
     0x3FU,      // 0

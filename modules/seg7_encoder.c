@@ -1,7 +1,7 @@
 // GitHub Account: GitHub.com/AliRezaJoodi
 
 #include <stdint.h>
-#include "modules/seg7_encoder.h"
+#include "seg7_encoder.h"
 
 // Double Dabble (8-bit to 2 digits)
 /****************************************************/

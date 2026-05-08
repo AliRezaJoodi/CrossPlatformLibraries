@@ -2,7 +2,7 @@
 
 #include "hardware.h"   /**< Project-level overrides */
 #include "mcp3201_port.h"
-#include "drivers/mcp3201.h"
+#include "mcp3201.h"
 
 //#define CS_IDLE                    1U
 //#define CS_ACTIVE                  0U

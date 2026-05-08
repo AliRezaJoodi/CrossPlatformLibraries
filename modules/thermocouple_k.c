@@ -1,7 +1,7 @@
 // GitHub Account:  GitHub.com/AliRezaJoodi
 
 #include <stdint.h>
-#include "modules/thermocouple_k.h"
+#include "thermocouple_k.h"
 
 static const int32_t TC_K_Table10C[]={
     -6458, // -270^C

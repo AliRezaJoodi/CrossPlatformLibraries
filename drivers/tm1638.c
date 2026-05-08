@@ -2,10 +2,10 @@
 
 #include <stdint.h>
 #include "hardware.h"   /**< Project-level overrides */
-#include "utils/bit_value8.h"
+#include "bit_value8.h"
 #include "tm1638_types.h"
 #include "tm1638_port.h"
-#include "drivers/tm1638.h"
+#include "tm1638.h"
 
 #define TM1638_COMMAND_DATA_WRITE   0x40U  // Data command setting: Write data to display register
 #define TM1638_COMMAND_DATA_READ    0x42U  // Data command setting: Read key scan data

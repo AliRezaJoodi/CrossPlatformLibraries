@@ -7,8 +7,8 @@ extern "C" {
 
 #include <stdint.h>
 #include "compiler_port.h"
-#include "utils/bit_register8.h"
-#include "utils/bit_value8.h"
+#include "bit_register8.h"
+#include "bit_value8.h"
 #include "seg7_driver_hw.h"
 
 /**

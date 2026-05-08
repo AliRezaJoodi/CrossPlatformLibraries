@@ -3,7 +3,7 @@
 #include <stdint.h>
 #include "hardware.h"
 #include "buzzer_port.h"
-#include "drivers/buzzer.h"
+#include "buzzer.h"
 
 static uint16_t buzzer_count = 0;
 
