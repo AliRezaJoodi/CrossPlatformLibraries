@@ -13,6 +13,7 @@ extern "C" {
 #include "utils/bit_register8.h"
 #include "utils/bit_register32.h"
 #include "utils/bit_value8.h"
+#include "utils/bit_value16.h"
 #include "utils/bit_value32.h"
 
 #ifdef __cplusplus
