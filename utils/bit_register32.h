@@ -195,15 +195,15 @@ static inline uint32_t ReadBit_Reg32(volatile uint32_t *reg, uint32_t pos){
     return (uint32_t)((*reg >> pos) & 0x01UL);
 }
 
-static inline uint32_t Read2Bit_Reg32(volatile uint32_t *reg, uint32_t pos){
+static inline uint32_t Get2Bit_Reg32(volatile uint32_t *reg, uint32_t pos){
     return (uint32_t)((*reg >> pos) & 0x03UL);
 }
 
-static inline uint32_t Read3Bit_Reg32(volatile uint32_t *reg, uint32_t pos){
+static inline uint32_t Get3Bit_Reg32(volatile uint32_t *reg, uint32_t pos){
     return (uint32_t)((*reg >> pos) & 0x07UL);
 }
 
-static inline uint32_t Read4Bit_Reg32(volatile uint32_t *reg, uint32_t pos){
+static inline uint32_t Get4Bit_Reg32(volatile uint32_t *reg, uint32_t pos){
     return (uint32_t)((*reg >> pos) & 0x0FUL);
 }
 
@@ -211,15 +211,15 @@ static inline uint32_t Get5Bit_Reg32(volatile uint32_t *reg, uint32_t pos){
     return (uint32_t)((*reg >> pos) & 0x1FUL);
 }
 
-static inline uint32_t Read6Bit_Reg32(volatile uint32_t *reg, uint32_t pos){
+static inline uint32_t Get6Bit_Reg32(volatile uint32_t *reg, uint32_t pos){
     return (uint32_t)((*reg >> pos) & 0x3FUL);
 }
 
-static inline uint32_t Read7Bit_Reg32(volatile uint32_t *reg, uint32_t pos){
+static inline uint32_t Get7Bit_Reg32(volatile uint32_t *reg, uint32_t pos){
     return (uint32_t)((*reg >> pos) & 0x7FUL);
 }
 
-static inline uint32_t Read8Bit_Reg32(volatile uint32_t *reg, uint32_t pos){
+static inline uint32_t Get8Bit_Reg32(volatile uint32_t *reg, uint32_t pos){
     return (uint32_t)((*reg >> pos) & 0xFFU);
 }
 

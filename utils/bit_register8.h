@@ -184,23 +184,23 @@ static inline void WritePort_Reg8(volatile uint8_t *reg, uint8_t value){
 }
 
 //***********************************************************************
-static inline uint8_t ReadBitMask_Reg8(volatile uint8_t *reg, uint8_t mask){
+static inline uint8_t GetBitMask_Reg8(volatile uint8_t *reg, uint8_t mask){
     return (uint8_t)((*reg & mask) != 0U);
 }
 
-static inline uint8_t ReadBit_Reg8(volatile uint8_t *reg, uint8_t pos){
+static inline uint8_t GetBit_Reg8(volatile uint8_t *reg, uint8_t pos){
     return (uint8_t)((*reg >> pos) & 0x01U);
 }
 
-static inline uint8_t Read2Bit_Reg8(volatile uint8_t *reg, uint8_t pos){
+static inline uint8_t Get2Bit_Reg8(volatile uint8_t *reg, uint8_t pos){
     return (uint8_t)((*reg >> pos) & 0x03U);
 }
 
-static inline uint8_t Read3Bit_Reg8(volatile uint8_t *reg, uint8_t pos){
+static inline uint8_t Get3Bit_Reg8(volatile uint8_t *reg, uint8_t pos){
     return (uint8_t)((*reg >> pos) & 0x07U);
 }
 
-static inline uint8_t Read4Bit_Reg8(volatile uint8_t *reg, uint8_t pos){
+static inline uint8_t Get4Bit_Reg8(volatile uint8_t *reg, uint8_t pos){
     return (uint8_t)((*reg >> pos) & 0x0FU);
 }
 
@@ -208,11 +208,11 @@ static inline uint8_t Get5Bit_Reg8(volatile uint8_t *reg, uint8_t pos){
     return (uint8_t)((*reg >> pos) & 0x1FU);
 }
 
-static inline uint8_t Read6Bit_Reg8(volatile uint8_t *reg, uint8_t pos){
+static inline uint8_t Get6Bit_Reg8(volatile uint8_t *reg, uint8_t pos){
     return (uint8_t)((*reg >> pos) & 0x3FU);
 }
 
-static inline uint8_t Read7Bit_Reg8(volatile uint8_t *reg, uint8_t pos){
+static inline uint8_t Get7Bit_Reg8(volatile uint8_t *reg, uint8_t pos){
     return (uint8_t)((*reg >> pos) & 0x7FU);
 }
 

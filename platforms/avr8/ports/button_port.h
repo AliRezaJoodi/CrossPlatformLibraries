@@ -48,7 +48,7 @@ static inline void Button_Pin_ConfigPullDown(const Button_t *btn){
 }
 
 static inline uint8_t Button_Pin_Read(const Button_t *btn){
-    return ReadBitMask_Reg8(btn->hw.pin, btn->hw.mask);
+    return GetBitMask_Reg8(btn->hw.pin, btn->hw.mask);
 }
 
 #ifdef __cplusplus
