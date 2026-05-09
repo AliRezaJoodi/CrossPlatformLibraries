@@ -49,6 +49,8 @@ extern "C" {
 #define WRITE_7BIT(ADDRESS, POS, VALUE)     ((ADDRESS) = ((ADDRESS) & ~(0x7FUL << (POS))) | ((0x7FUL & (VALUE)) << (POS)))
 #define WRITE_8BIT(ADDRESS, POS, VALUE)     ((ADDRESS) = ((ADDRESS) & ~(0xFFUL << (POS))) | ((0xFFUL & (VALUE)) << (POS)))
 
+//#define GET_FIELD(ADDRESS, MASK)(          ((ADDRESS) & (MASK)) >> (__builtin_ctz(MASK)))
+
 #define GET_BIT( ADDRESS, POS)              (((ADDRESS) >> (POS)) & 0x01UL)
 #define GET_2BIT(ADDRESS, POS)              (((ADDRESS) >> (POS)) & 0x03UL)
 #define GET_3BIT(ADDRESS, POS)              (((ADDRESS) >> (POS)) & 0x07UL)

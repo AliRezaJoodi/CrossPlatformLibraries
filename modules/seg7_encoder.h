@@ -23,7 +23,7 @@
 #define SEG7_ENCODER_INCLOUDED
 
 #include <stdint.h>
-#include "bit.h"
+//#include "bit.h"
 #include "seg7_font.h"
 
 #define SEG7_ENCODER_OK         0U
