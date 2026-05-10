@@ -1,46 +1,34 @@
 # Cross-Platform Libraries
-A collection of reusable, cross-platform C libraries for embedded systems.
+A collection of reusable, cross-platform C libraries for embedded systems.<br>
 
-This repository is designed to keep **hardware-independent logic**, **device drivers**, and **platform-specific code** cleanly separated, making it easy to reuse libraries across different microcontrollers such as AVR, STM32, ESP32, and others.
+## Folder Overview
+- **utils** — Common helper functions and lightweight utility components.
+- **modules** — Reusable software modules and higher-level building blocks.
+- **drivers** — Generic driver interfaces and hardware abstraction code.
+- **platforms** — Platform-specific implementations and ports.
+  - `avr8` — Classic AVR (8-bit) microcontroller platform support.
+    - `ports` — AVR8-specific porting layer.
+    - `peripherals` — AVR8-specific peripheral interfaces.
 
-This repository contains **libraries only**. Examples and application projects are kept in separate repositories.
+## Include Paths
+Add the required directories to your project's include paths.<br>
+The examples below assume that `CrossPlatformLibraries` is located a few levels above the project directory.<br>
+Adjust the number of `..` levels depending on your workspace layout.<br>
 
-## Folder Structure
+### Common Paths
+The following paths are examples. Adjust the number of `..` levels depending on your workspace layout.<br>
+`..\..\..\CrossPlatformLibraries\utils`<br>
+`..\..\..\CrossPlatformLibraries\modules`<br>
+`..\..\..\CrossPlatformLibraries\drivers`<br>
 
-### Utils
-General-purpose headers and utilities shared across all platforms.  
-Examples:
-- Bit manipulation macros
-- Math helpers
-- Compile-time utilities
-- Common definitions
+## AVR8 Paths
+The following paths are examples. Adjust the number of `..` levels depending on your workspace layout.<br>
+`..\..\..\CrossPlatformLibraries\platforms\avr8\ports`<br>
+`..\..\..\CrossPlatformLibraries\platforms\avr8\peripherals`<br>
 
-Note: These files must be **platform-independent**.
+Notes
+- Keep project paths relative so the repository remains portable.
+- Add only the folders required by each target project.
+- Use platform-specific paths only when the project depends on that platform.
 
-### Drivers
-Device-specific drivers (external ICs, sensors, peripherals).  
-Examples:
-- ADCs, DACs
-- Sensors
-- Communication chips
 
-Note: Drivers contain core logic and rely on platform-specific code provided by `Platforms`.
-
-### Modules
-Pure software modules and algorithms with no hardware dependency.  
-Examples:
-- PID controllers
-- Filters and averaging
-- State machines
-- Protocol logic
-
-Note: Modules are fully reusable across all platforms.
-
-### Platforms
-Platform and MCU-specific implementations.  
-Examples:
-- GPIO, SPI, UART access
-- Pin mapping
-- Timing and low-level hardware control
-
-Note: Each platform provides the required interface for drivers to work on that MCU.
