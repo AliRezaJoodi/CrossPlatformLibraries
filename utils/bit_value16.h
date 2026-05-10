@@ -150,7 +150,7 @@ static inline uint16_t Write4Bit_u16(uint16_t value, uint16_t pos, uint16_t stat
 }
 
 //***********************************************************************
-static inline uint16_t GetBitMask_u16(uint16_t value, uint16_t mask){
+static inline uint16_t IsBitMaskSet_u16(uint16_t value, uint16_t mask){
     return (uint16_t)((value & mask) != 0U);
 }
 
