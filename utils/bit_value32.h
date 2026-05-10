@@ -150,7 +150,7 @@ static inline uint32_t Write4Bit_u32(uint32_t value, uint32_t pos, uint32_t stat
 }
 
 //***********************************************************************
-static inline uint32_t GetBitMask_u32(uint32_t value, uint32_t mask){
+static inline uint32_t IsBitMaskSet_u32(uint32_t value, uint32_t mask){
     return (uint32_t)((value & mask) != 0UL);
 }
 
