@@ -150,7 +150,7 @@ static inline uint8_t Write4Bit_u8(uint8_t value, uint8_t pos, uint8_t status){
 }
 
 //***********************************************************************
-static inline uint8_t GetBitMask_u8(uint8_t value, uint8_t mask){
+static inline uint8_t IsBitMaskSet_u8(uint8_t value, uint8_t mask){
     return (uint8_t)((value & mask) != 0U);
 }
 
