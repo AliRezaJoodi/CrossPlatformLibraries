@@ -183,6 +183,10 @@ static inline void WritePort_Reg8(volatile uint8_t *reg, uint8_t value){
     *reg = value;
 }
 
+//static inline uint8_t GetFieldMask_Reg8(volatile uint8_t *reg, uint8_t mask){
+//    return (uint8_t)((*reg & mask) >> __builtin_ctz(mask));
+//}
+
 //***********************************************************************
 static inline uint8_t GetBitMask_Reg8(volatile uint8_t *reg, uint8_t mask){
     return (uint8_t)((*reg & mask) != 0U);
