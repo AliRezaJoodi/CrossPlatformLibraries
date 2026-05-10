@@ -124,58 +124,80 @@ static inline void TogglePort_Reg8(volatile uint8_t *reg){
 //    *reg = (uint8_t)(*reg ^ (0xFFU << pos));
 //}
 
-// Note: This branchless bit-mask technique may not work correctly with CodeVisionAVR due to compiler optimization issues.
-//static inline void WriteBitMask_Reg8(volatile uint8_t *reg, uint8_t mask, uint8_t status){
-//    *reg = (uint8_t)((*reg & ~mask) | ((-!!status) & mask));
-//}
+/* mask must not be 0 */
+static inline void WriteField_Reg8(volatile uint8_t *reg, uint8_t mask, uint8_t value){
+#if defined(__GNUC__) || defined(__clang__)
+    if (mask == 0U){return;}
+
+    *reg =  (uint8_t)(
+            (*reg & ~mask) |
+            ((value << __builtin_ctz(mask)) & mask)
+            );
+#else
+    uint8_t shift = 0U;
+    uint8_t temp = mask;
+
+    if (mask == 0U){return;}
+
+    while((temp & 0x01U) == 0U){
+        temp >>= 1;
+        ++shift;
+    }
+
+    *reg =  (uint8_t)(
+            (*reg & ~mask) |
+            ((value << shift) & mask)
+            );
+#endif
+}
 
 //***********************************************************************
-static inline void WriteBit_Reg8(volatile uint8_t *reg, uint8_t pos, uint8_t status){
-    *reg = (uint8_t)(
+static inline void WriteBit_Reg8(volatile uint8_t *reg, uint8_t pos, uint8_t value){
+    *reg =  (uint8_t)(
             (*reg & ~(0x01U << pos)) |
-            ((status & 0x01U) << pos)
-           );
+            ((value & 0x01U) << pos)
+            );
 }
 
-static inline void Write2Bit_Reg8(volatile uint8_t *reg, uint8_t pos, uint8_t status){
+static inline void Write2Bit_Reg8(volatile uint8_t *reg, uint8_t pos, uint8_t value){
     *reg = (uint8_t)(
             (*reg & ~(0x03U << pos)) |
-            ((status & 0x03U) << pos)
+            ((value & 0x03U) << pos)
            );
 }
 
-static inline void Write3Bit_Reg8(volatile uint8_t *reg, uint8_t pos, uint8_t status){
+static inline void Write3Bit_Reg8(volatile uint8_t *reg, uint8_t pos, uint8_t value){
     *reg = (uint8_t)(
             (*reg & ~(0x07U << pos)) |
-            ((status & 0x07U) << pos)
+            ((value & 0x07U) << pos)
            );
 }
 
-static inline void Write4Bit_Reg8(volatile uint8_t *reg, uint8_t pos, uint8_t status){
+static inline void Write4Bit_Reg8(volatile uint8_t *reg, uint8_t pos, uint8_t value){
     *reg = (uint8_t)(
             (*reg & ~(0x0FU << pos)) |
-            ((status & 0x0FU) << pos)
+            ((value & 0x0FU) << pos)
            );
 }
 
-static inline void Write5Bit_Reg8(volatile uint8_t *reg, uint8_t pos, uint8_t status){
+static inline void Write5Bit_Reg8(volatile uint8_t *reg, uint8_t pos, uint8_t value){
     *reg = (uint8_t)(
             (*reg & ~(0x1FU << pos)) |
-            ((status & 0x1FU) << pos)
+            ((value & 0x1FU) << pos)
            );
 }
 
-static inline void Write6Bit_Reg8(volatile uint8_t *reg, uint8_t pos, uint8_t status){
+static inline void Write6Bit_Reg8(volatile uint8_t *reg, uint8_t pos, uint8_t value){
     *reg = (uint8_t)(
             (*reg & ~(0x3FU << pos)) |
-            ((status & 0x3FU) << pos)
+            ((value & 0x3FU) << pos)
            );
 }
 
-static inline void Write7Bit_Reg8(volatile uint8_t *reg, uint8_t pos, uint8_t status){
+static inline void Write7Bit_Reg8(volatile uint8_t *reg, uint8_t pos, uint8_t value){
     *reg = (uint8_t)(
             (*reg & ~(0x7FU << pos)) |
-            ((status & 0x7FU) << pos)
+            ((value & 0x7FU) << pos)
            );
 }
 
@@ -183,12 +205,28 @@ static inline void WritePort_Reg8(volatile uint8_t *reg, uint8_t value){
     *reg = value;
 }
 
-//static inline uint8_t GetFieldMask_Reg8(volatile uint8_t *reg, uint8_t mask){
-//    return (uint8_t)((*reg & mask) >> __builtin_ctz(mask));
-//}
+/* mask must not be 0 */
+static inline uint8_t GetField_Reg8(volatile uint8_t *reg, uint8_t mask){
+#if defined(__GNUC__) || defined(__clang__)
+    if(mask == 0U){return 0U;}
+    return (uint8_t)((*reg & mask) >> __builtin_ctz(mask));
+#else
+    uint8_t shift = 0U;
+    uint8_t fieldMask = mask;
+
+    if(mask == 0U){return 0U;}
+
+    while((fieldMask & 1U) == 0U){
+        fieldMask >>= 1;
+        ++shift;
+    }
+
+    return (uint8_t)((*reg & mask) >> shift);
+#endif
+}
 
 //***********************************************************************
-static inline uint8_t GetBitMask_Reg8(volatile uint8_t *reg, uint8_t mask){
+static inline uint8_t IsBitMaskSet_Reg8(volatile uint8_t *reg, uint8_t mask){
     return (uint8_t)((*reg & mask) != 0U);
 }
 
