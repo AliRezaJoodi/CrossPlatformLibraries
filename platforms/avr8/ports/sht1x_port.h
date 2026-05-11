@@ -30,19 +30,19 @@ typedef struct {
 
 //***************************************
 static inline void SHT1x_SCK_InitPin(SHT1x_t *sht){
-    SET_BIT(*(sht->sck.ddr), sht->sck.index);
-    CLEAR_BIT(*(sht->sck.port), sht->sck.index);  // Idle bus
+    BM_SET_BIT(*(sht->sck.ddr), sht->sck.index);
+    BM_CLEAR_BIT(*(sht->sck.port), sht->sck.index);  // Idle bus
 }
 
 //***************************************
 static inline void SHT1x_SCK_WritePin(SHT1x_t *sht, uint8_t status){
-    WRITE_BIT( *(sht->sck.port), sht->sck.index, status );
+    BM_WRITE_BIT( *(sht->sck.port), sht->sck.index, status );
 }
 
 //***************************************
 static inline void SHT1x_DATA_SetInput(SHT1x_t *sht){
-    CLEAR_BIT(*(sht->data.ddr), sht->data.index);
-    CLEAR_BIT(*(sht->data.port), sht->data.index);
+    BM_CLEAR_BIT(*(sht->data.ddr), sht->data.index);
+    BM_CLEAR_BIT(*(sht->data.port), sht->data.index);
 }
 
 //***************************************
@@ -51,14 +51,14 @@ static inline void SHT1x_DATA_WritePin(SHT1x_t *sht, uint8_t status){
         SHT1x_DATA_SetInput(sht);
     }
     else{
-        SET_BIT(*(sht->data.ddr), sht->data.index);
-        CLEAR_BIT(*(sht->data.port), sht->data.index);
+        BM_SET_BIT(*(sht->data.ddr), sht->data.index);
+        BM_CLEAR_BIT(*(sht->data.port), sht->data.index);
     }
 }
 
 //***************************************
 static inline uint8_t SHT1x_DATA_GetPin(SHT1x_t *sht){
-    //return GET_BIT(*(sht->data.pin), sht->data.index);
+    //return BM_GET_BIT(*(sht->data.pin), sht->data.index);
     return (*(sht->data.pin) >> sht->data.index) & 0x01U;
 }
 
