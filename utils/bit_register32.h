@@ -68,49 +68,49 @@ static inline void WriteBit_Reg32(volatile uint32_t *reg, uint32_t pos, uint32_t
            );
 }
 
-static inline void WriteBit2_Reg32(volatile uint32_t *reg, uint32_t pos, uint32_t status){
+static inline void Write2Bit_Reg32(volatile uint32_t *reg, uint32_t pos, uint32_t status){
     *reg = (uint32_t)(
             (*reg & ~(0x03UL << pos)) |
             ((status & 0x03UL) << pos)
            );
 }
 
-static inline void WriteBit3_Reg32(volatile uint32_t *reg, uint32_t pos, uint32_t status){
+static inline void Write3Bit_Reg32(volatile uint32_t *reg, uint32_t pos, uint32_t status){
     *reg = (uint32_t)(
             (*reg & ~(0x07UL << pos)) |
             ((status & 0x07UL) << pos)
            );
 }
 
-static inline void WriteBit4_Reg32(volatile uint32_t *reg, uint32_t pos, uint32_t status){
+static inline void Write4Bit_Reg32(volatile uint32_t *reg, uint32_t pos, uint32_t status){
     *reg = (uint32_t)(
             (*reg & ~(0x0FUL << pos)) |
             ((status & 0x0FUL) << pos)
            );
 }
 
-static inline void WriteBit5_Reg32(volatile uint32_t *reg, uint32_t pos, uint32_t status){
+static inline void Write5Bit_Reg32(volatile uint32_t *reg, uint32_t pos, uint32_t status){
     *reg = (uint32_t)(
             (*reg & ~(0x1FUL << pos)) |
             ((status & 0x1FUL) << pos)
            );
 }
 
-static inline void WriteBit6_Reg32(volatile uint32_t *reg, uint32_t pos, uint32_t status){
+static inline void Write6Bit_Reg32(volatile uint32_t *reg, uint32_t pos, uint32_t status){
     *reg = (uint32_t)(
             (*reg & ~(0x3FUL << pos)) |
             ((status & 0x3FUL) << pos)
            );
 }
 
-static inline void WriteBit7_Reg32(volatile uint32_t *reg, uint32_t pos, uint32_t status){
+static inline void Write7Bit_Reg32(volatile uint32_t *reg, uint32_t pos, uint32_t status){
     *reg = (uint32_t)(
             (*reg & ~(0x7FUL << pos)) |
             ((status & 0x7FUL) << pos)
            );
 }
 
-static inline void WriteBit8_Reg32(volatile uint32_t *reg, uint32_t pos, uint32_t status){
+static inline void Write8Bit_Reg32(volatile uint32_t *reg, uint32_t pos, uint32_t status){
     *reg = (uint32_t)(
             (*reg & ~(0xFFUL << pos)) |
             ((status & 0xFFUL) << pos)
@@ -139,40 +139,40 @@ static inline uint32_t GetField_Reg32(volatile uint32_t *reg, uint32_t mask){
 #endif
 }
 
-static inline uint32_t IsSetBitMask_Reg32(volatile uint32_t *reg, uint32_t mask){
-    return (uint32_t)(((*reg) & mask) != 0UL);
+static inline uint8_t IsSetBitMask_Reg32(volatile uint32_t *reg, uint32_t mask){
+    return (uint8_t)(((*reg) & mask) != 0UL);
 }
 
-static inline uint32_t GetBit_Reg32(volatile uint32_t *reg, uint32_t pos){
-    return (uint32_t)((*reg >> pos) & 0x01UL);
+static inline uint8_t GetBit_Reg32(volatile uint32_t *reg, uint32_t pos){
+    return (uint8_t)((*reg >> pos) & 0x01UL);
 }
 
-static inline uint32_t GetBit2_Reg32(volatile uint32_t *reg, uint32_t pos){
-    return (uint32_t)((*reg >> pos) & 0x03UL);
+static inline uint8_t Get2Bit_Reg32(volatile uint32_t *reg, uint32_t pos){
+    return (uint8_t)((*reg >> pos) & 0x03UL);
 }
 
-static inline uint32_t GetBit3_Reg32(volatile uint32_t *reg, uint32_t pos){
-    return (uint32_t)((*reg >> pos) & 0x07UL);
+static inline uint8_t Get3Bit_Reg32(volatile uint32_t *reg, uint32_t pos){
+    return (uint8_t)((*reg >> pos) & 0x07UL);
 }
 
-static inline uint32_t GetBit4_Reg32(volatile uint32_t *reg, uint32_t pos){
-    return (uint32_t)((*reg >> pos) & 0x0FUL);
+static inline uint8_t Get4Bit_Reg32(volatile uint32_t *reg, uint32_t pos){
+    return (uint8_t)((*reg >> pos) & 0x0FUL);
 }
 
-static inline uint32_t GetBit5_Reg32(volatile uint32_t *reg, uint32_t pos){
-    return (uint32_t)((*reg >> pos) & 0x1FUL);
+static inline uint8_t Get5Bit_Reg32(volatile uint32_t *reg, uint32_t pos){
+    return (uint8_t)((*reg >> pos) & 0x1FUL);
 }
 
-static inline uint32_t GetBit6_Reg32(volatile uint32_t *reg, uint32_t pos){
-    return (uint32_t)((*reg >> pos) & 0x3FUL);
+static inline uint8_t Get6Bit_Reg32(volatile uint32_t *reg, uint32_t pos){
+    return (uint8_t)((*reg >> pos) & 0x3FUL);
 }
 
-static inline uint32_t GetBit7_Reg32(volatile uint32_t *reg, uint32_t pos){
-    return (uint32_t)((*reg >> pos) & 0x7FUL);
+static inline uint8_t Get7Bit_Reg32(volatile uint32_t *reg, uint32_t pos){
+    return (uint8_t)((*reg >> pos) & 0x7FUL);
 }
 
-static inline uint32_t GetBit8_Reg32(volatile uint32_t *reg, uint32_t pos){
-    return (uint32_t)((*reg >> pos) & 0xFFU);
+static inline uint8_t Get8Bit_Reg32(volatile uint32_t *reg, uint32_t pos){
+    return (uint8_t)((*reg >> pos) & 0xFFU);
 }
 
 #ifdef __cplusplus
