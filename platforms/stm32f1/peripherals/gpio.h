@@ -151,6 +151,10 @@ static inline void GPIO_ConfigPull(GPIO_TypeDef *GPIOx, GPIO_Pin_t pin, GPIO_Pul
 	WriteBit_Reg32(&GPIOx->ODR, pin, mode);
 }
 
+static inline void GPIO_WritePinField(GPIO_TypeDef *GPIOx, uint32_t mask, uint32_t value){
+    WriteField_Reg32(&GPIOx->LCKR, mask, value);
+}
+
 static inline void GPIO_WritePin(GPIO_TypeDef *GPIOx, GPIO_Pin_t pin, uint32_t status){
 	WriteBit_Reg32(&GPIOx->ODR, pin, status);
 }
@@ -214,25 +218,82 @@ IDRy:	Port input data (y= 0 .. 15)
 			They contain the input value of the corresponding I/O port.
 */
 
-static inline uint8_t GPIO_GetPin(GPIO_TypeDef *GPIOx, GPIO_Pin_t pin){
+static inline uint32_t GPIO_ReadPinField(GPIO_TypeDef *GPIOx, uint32_t mask){
+    return GetField_Reg32(&GPIOx->LCKR, mask);
+}
+
+static inline uint8_t GPIO_ReadPin(GPIO_TypeDef *GPIOx, GPIO_Pin_t pin){
 	return GetBit_Reg32(&GPIOx->IDR, pin);
 }
 
-static inline uint8_t GPIO_Get2Pin(GPIO_TypeDef *GPIOx, GPIO_Pin_t pin){
+static inline uint8_t GPIO_Read2Pin(GPIO_TypeDef *GPIOx, GPIO_Pin_t pin){
 	return Get2Bit_Reg32(&GPIOx->IDR, pin);
 }
 
-static inline uint8_t GPIO_Get3Pin(GPIO_TypeDef *GPIOx, GPIO_Pin_t pin){
+static inline uint8_t GPIO_Read3Pin(GPIO_TypeDef *GPIOx, GPIO_Pin_t pin){
 	return Get3Bit_Reg32(&GPIOx->IDR, pin);
 }
 
-static inline uint8_t GPIO_Get4Pin(GPIO_TypeDef *GPIOx, GPIO_Pin_t pin){
+static inline uint8_t GPIO_Read4Pin(GPIO_TypeDef *GPIOx, GPIO_Pin_t pin){
 	return Get4Bit_Reg32(&GPIOx->IDR, pin);
 }
 
-static inline uint16_t GPIO_GetPort(GPIO_TypeDef *GPIOx){
+static inline uint16_t GPIO_ReadPort(GPIO_TypeDef *GPIOx){
 	return (uint16_t)((GPIOx->IDR) & 0xFFFFU);
 }
+
+/*
+ * GPIOx_LCKR, Bit 16
+ * LCKK[16]: Lock key
+ * 					This bit can be read anytime. It can only be modified using the Lock Key Writing Sequence.
+ * 					0: Port configuration lock key not active
+ * 					1: Port configuration lock key active. GPIOx_LCKR register is locked until the next reset.
+ * 					
+ * 					LOCK key writing sequence:
+ * 					Write 1
+ * 					Write 0
+ * 					Write 1
+ * 					Read 0
+ * 					Read 1 (this read is optional but confirms that the lock is active)
+ * 					
+ * 					Note: During the LOCK Key Writing sequence, the value of LCK[15:0] must not change.
+ * 					Any error in the lock sequence will abort the lock.
+ * 
+ * GPIOx_LCKR, Bits 15:0
+ * LCKy:	Port x Lock bit y (y= 0 .. 15)
+ * 				These bits are read write but can only be written when the LCKK bit is 0.
+ * 				0: Port configuration not locked.
+ * 				1: Port configuration locked.
+ */
+
+static inline uint8_t GPIO_LockPinMask(GPIO_TypeDef *GPIOx, uint32_t mask){
+	uint32_t lock_value = (1UL << GPIO_LCKR_LCKK_Pos) | (mask & 0xFFFFUL);
+
+	GPIOx->LCKR = lock_value;	/**< Write 1 */
+	GPIOx->LCKR = (mask & 0xFFFFUL);	/**< Write 0 */
+	GPIOx->LCKR = lock_value;	/**< Write 1 */
+
+	(void)GPIOx->LCKR;	/**< Read 0 */
+	
+	return GetBit_Reg32(&GPIOx->LCKR, GPIO_LCKR_LCKK_Pos);
+}
+
+static inline uint8_t GPIO_ReadPinLockStatus(GPIO_TypeDef *GPIOx, GPIO_Pin_t pin){
+    uint32_t lckr = GPIOx->LCKR;
+
+    return (uint8_t)(
+										((lckr >> GPIO_LCKR_LCKK_Pos) & 1U) &&	// LCKK
+										((lckr >> pin) & 1U)       							// LCKy
+										);
+}
+
+//static inline uint8_t GPIO_ReadLockKeyBit(GPIO_TypeDef *GPIOx){
+//	return GetBit_Reg32(&GPIOx->LCKR, GPIO_LCKR_LCKK_Pos);
+//}
+
+//static inline uint8_t GPIO_ReadLockPin(GPIO_TypeDef *GPIOx, GPIO_Pin_t pin){
+//    return (uint8_t)((GPIOx->LCKR >> pin) & 0x01UL);
+//}
 
 #ifdef __cplusplus
 }
