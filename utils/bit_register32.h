@@ -139,9 +139,9 @@ static inline uint32_t GetField_Reg32(volatile uint32_t *reg, uint32_t mask){
 #endif
 }
 
-static inline uint8_t IsSetBitMask_Reg32(volatile uint32_t *reg, uint32_t mask){
-    return (uint8_t)(((*reg) & mask) != 0UL);
-}
+//static inline uint8_t IsSetBitMask_Reg32(volatile uint32_t *reg, uint32_t mask){
+//    return (uint8_t)(((*reg) & mask) != 0UL);
+//}
 
 static inline uint8_t GetBit_Reg32(volatile uint32_t *reg, uint32_t pos){
     return (uint8_t)((*reg >> pos) & 0x01UL);
