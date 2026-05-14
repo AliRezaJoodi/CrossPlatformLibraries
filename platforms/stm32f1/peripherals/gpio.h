@@ -152,7 +152,7 @@ static inline void GPIO_ConfigPull(GPIO_TypeDef *GPIOx, GPIO_Pin_t pin, GPIO_Pul
 }
 
 static inline void GPIO_WritePinField(GPIO_TypeDef *GPIOx, uint32_t mask, uint32_t value){
-  WriteField_Reg32(&GPIOx->ODR, mask, value);
+  WriteBitField_Reg32(&GPIOx->ODR, mask, value);
 }
 
 static inline void GPIO_WritePin(GPIO_TypeDef *GPIOx, GPIO_Pin_t pin, uint32_t status){
@@ -173,6 +173,10 @@ static inline void GPIO_Write4Pin(GPIO_TypeDef *GPIOx, GPIO_Pin_t pin, uint32_t 
 
 static inline void GPIO_WritePort(GPIO_TypeDef *GPIOx, uint32_t value){
 	GPIOx->ODR = (value & 0xFFFFU);
+}
+
+static inline void GPIO_TogglePinMask(GPIO_TypeDef *GPIOx, uint32_t mask){
+	ToggleBitMask_Reg32(&GPIOx->ODR, mask);
 }
 
 static inline void GPIO_TogglePin(GPIO_TypeDef *GPIOx, GPIO_Pin_t pin){
@@ -219,7 +223,7 @@ IDRy:	Port input data (y= 0 .. 15)
 */
 
 static inline uint32_t GPIO_ReadPinField(GPIO_TypeDef *GPIOx, uint32_t mask){
-	return GetField_Reg32(&GPIOx->IDR, mask);
+	return GetBitField_Reg32(&GPIOx->IDR, mask);
 }
 
 static inline uint8_t GPIO_ReadPin(GPIO_TypeDef *GPIOx, GPIO_Pin_t pin){
