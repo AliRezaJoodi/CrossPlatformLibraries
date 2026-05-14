@@ -38,7 +38,7 @@ static inline void ToggleBit_Reg32(volatile uint32_t *reg, uint32_t pos){
 
 //***********************************************************************
 /* mask must not be 0 */
-static inline void WriteField_Reg32(volatile uint32_t *reg, uint32_t mask, uint32_t value){
+static inline void WriteBitField_Reg32(volatile uint32_t *reg, uint32_t mask, uint32_t value){
 #if defined(__GNUC__) || defined(__clang__)
     if (mask == 0U){return;}
 
@@ -119,7 +119,7 @@ static inline void Write8Bit_Reg32(volatile uint32_t *reg, uint32_t pos, uint32_
 
 //***********************************************************************
 /* mask must not be 0 */
-static inline uint32_t GetField_Reg32(volatile uint32_t *reg, uint32_t mask){
+static inline uint32_t GetBitField_Reg32(volatile uint32_t *reg, uint32_t mask){
 #if defined(__GNUC__) || defined(__clang__)
     if(mask == 0U){return 0U;}
 
