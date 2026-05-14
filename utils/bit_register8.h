@@ -125,7 +125,7 @@ static inline void TogglePort_Reg8(volatile uint8_t *reg){
 //}
 
 /* mask must not be 0 */
-static inline void WriteField_Reg8(volatile uint8_t *reg, uint8_t mask, uint8_t value){
+static inline void WriteBitField_Reg8(volatile uint8_t *reg, uint8_t mask, uint8_t value){
 #if defined(__GNUC__) || defined(__clang__)
     if (mask == 0U){return;}
 
@@ -206,7 +206,7 @@ static inline void WritePort_Reg8(volatile uint8_t *reg, uint8_t value){
 }
 
 /* mask must not be 0 */
-static inline uint8_t GetField_Reg8(volatile uint8_t *reg, uint8_t mask){
+static inline uint8_t GetBitField_Reg8(volatile uint8_t *reg, uint8_t mask){
 #if defined(__GNUC__) || defined(__clang__)
     if(mask == 0U){return 0U;}
     return (uint8_t)((*reg & mask) >> __builtin_ctz(mask));
