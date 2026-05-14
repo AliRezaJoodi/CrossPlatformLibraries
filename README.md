@@ -6,9 +6,12 @@ A collection of reusable, cross-platform C libraries for embedded systems.<br>
 - **modules** — Reusable software modules and higher-level building blocks.
 - **drivers** — Generic driver interfaces and hardware abstraction code.
 - **platforms** — Platform-specific implementations and ports.
-  - `avr8` — Classic AVR (8-bit) microcontroller platform support.
-    - `ports` — AVR8-specific porting layer.
-    - `peripherals` — AVR8-specific peripheral interfaces.
+  - `avr8` — Platform support for Classic AVR (8-bit) MCUs.
+    - `peripherals` — Peripheral drivers.
+    - `ports` — Porting layer.
+  - `stm32f1` — Platform support for STM32F1xx MCUs.
+    - `peripherals` — Peripheral drivers.
+    - `ports` — Porting layer.
 
 ## Include Paths
 Add the required directories to your project's include paths.<br>
@@ -21,7 +24,7 @@ The following paths are examples. Adjust the number of `..` levels depending on 
 `..\..\..\CrossPlatformLibraries\modules`<br>
 `..\..\..\CrossPlatformLibraries\drivers`<br>
 
-## AVR8 Paths
+### AVR8 Paths
 The following paths are examples. Adjust the number of `..` levels depending on your workspace layout.<br>
 `..\..\..\CrossPlatformLibraries\platforms\avr8\ports`<br>
 `..\..\..\CrossPlatformLibraries\platforms\avr8\peripherals`<br>
