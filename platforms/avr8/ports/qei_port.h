@@ -7,8 +7,35 @@ extern "C" {
 
 #include <stdint.h>
 #include "compiler_port.h"
+#include "bit_register8.h"
 #include "qei_hw.h"
 #include "qei_types.h"
+
+//*************************************************
+static inline void QEI_A_ConfigInput(const QEI_t *qei){
+    ClearBitMask_Reg8(qei->chA.ddr, qei->chA.mask);
+}
+
+static inline void QEI_A_ConfigPullNone(const QEI_t *qei){
+    ClearBitMask_Reg8(qei->chA.port, qei->chA.mask);
+}
+
+static inline void QEI_A_ConfigPullUp(const QEI_t *qei){
+    SetBitMask_Reg8(qei->chA.port, qei->chA.mask);
+}
+
+//*************************************************
+static inline void QEI_B_ConfigInput(const QEI_t *qei){
+    ClearBitMask_Reg8(qei->chB.ddr, qei->chB.mask);
+}
+
+static inline void QEI_B_ConfigPullNone(const QEI_t *qei){
+    ClearBitMask_Reg8(qei->chB.port, qei->chB.mask);
+}
+
+static inline void QEI_B_ConfigPullUp(const QEI_t *qei){
+    SetBitMask_Reg8(qei->chB.port, qei->chB.mask);
+}
 
 #ifdef __cplusplus
 }

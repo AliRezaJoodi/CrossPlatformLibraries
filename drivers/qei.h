@@ -10,33 +10,33 @@ extern "C" {
 
 #include <stdint.h>
 #include "bit_register8.h"
-#include "qei_hw.h"
+#include "qei_types.h"
+#include "qei_port.h"
 
 static const int8_t qei_table[16] = {
-  0, -1,  1,  0,
-  1,  0,  0,  -1,
- -1,  0,  0,  1,
-  0,  1,  -1, 0
+    0, -1, 1, 0,
+    1, 0, 0, -1,
+    -1, 0, 0, 1,
+    0, 1, -1, 0
 };
 
-int32_t qei_count = 0;
-static uint8_t prev_state = 0;
+void QEI_Init(QEI_t *qei);
 
-static inline void qei_update(void){
-    uint8_t current , index;
+static inline void qei_update(QEI_t *qei){
+    uint8_t phase , index;
 
-    current = (uint8_t)(
+    phase = (uint8_t)(
                 GetBit_Reg8(&QEI_A_PIN, QEI_A_BIT) << 1 |
                 GetBit_Reg8(&QEI_B_PIN, QEI_B_BIT)
                 );
 
     index = (uint8_t)(
-            (prev_state << 2) | current
+            (qei->last << 2) | phase
             );
 
-    qei_count += qei_table[index];
+    qei->count += qei_table[index];
 
-    prev_state = current;
+    qei->last = phase;
 }
 
 #ifdef __cplusplus

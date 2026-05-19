@@ -3,6 +3,13 @@
 
 #ifndef QEI_HARDWARE
 #define QEI_HARDWARE
+    #define QEI_PULL_UP             0U
+
+    #warning "QEI_HARDWARE is not defined; default configuration will be used."
+#endif
+
+#ifndef QEI_HARDWARE_EXTRA
+#define QEI_HARDWARE_EXTRA
     #define QEI_A_DDR               DDRD
     #define QEI_A_PIN               PIND
     #define QEI_A_PORT              PORTD
