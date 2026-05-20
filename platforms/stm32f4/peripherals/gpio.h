@@ -47,7 +47,47 @@ typedef enum{
 	GPIO_PINMASK_15 = (1UL << 15)
 } GPIO_PinMask_t;
 
+/*
+ * GPIO port mode register
+ * GPIOx_MODER, Bits 2y:2y+1
+ * MODEy[1:0]: Port x configuration bits (y = 0..15)
+ *
+ * 						These bits are written by software to configure the I/O direction mode.
+ * 						00: Input (reset state)
+ * 						01: General purpose output mode
+ * 						10: Alternate function mode
+ * 						11: Analog mode
+ */
 
+typedef enum {
+	GPIO_MODE_INPUT			= 0x00U,
+	GPIO_MODE_OUTPUT 		= 0x01U,
+	GPIO_MODE_ALTERNATE	= 0x02U,
+	GPIO_MODE_ANALOG 		= 0x03U
+} GPIO_Direction_t;
+
+static inline void GPIO_ConfigDirection(GPIO_TypeDef *GPIOx, GPIO_Pin_t pin, GPIO_Direction_t mode){
+	Write2Bit_Reg32(&GPIOx->MODER, pin * 2U, mode);
+}
+
+/*
+ * GPIO port output type register
+ * GPIOx_OTYPER, Bits 15:0
+ * OTy[1:0]: Port x configuration bits (y = 0..15)
+ * 
+ * 						These bits are written by software to configure the output type of the I/O port.					
+ * 						0: Output push-pull (reset state)
+ * 						1: Output open-drain
+ */
+
+typedef enum {
+	GPIO_OUTPUT_PUSHPULL   = 0U,	/**< Output push-pull */
+	GPIO_OUTPUT_OPENDRAIN  = 1U, 	/**< Output open-drain */
+} GPIO_OutputType_t;
+
+static inline void GPIO_ConfigOutputType(GPIO_TypeDef *GPIOx, GPIO_Pin_t pin, GPIO_OutputType_t mode){
+	WriteBit_Reg32(&GPIOx->OTYPER, pin, mode);
+}
 
 #ifdef __cplusplus
 }
