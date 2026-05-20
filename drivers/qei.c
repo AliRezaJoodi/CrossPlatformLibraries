@@ -1,7 +1,7 @@
 // GitHub Account: GitHub.com/AliRezaJoodi
 
 #include <stdint.h>
-//#include "hardware.h"   /* Project-level overrides */
+#include "hardware.h"   /* Project-level overrides */
 #include "qei_types.h"
 #include "qei_port.h"
 #include "qei.h"

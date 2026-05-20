@@ -9,7 +9,6 @@ extern "C" {
 #endif
 
 #include <stdint.h>
-#include "bit_register8.h"
 #include "qei_types.h"
 #include "qei_port.h"
 
@@ -22,13 +21,17 @@ static const int8_t qei_table[16] = {
 
 void QEI_Init(QEI_t *qei);
 
-static inline void qei_update(QEI_t *qei){
+static inline void QEI_Update(QEI_t *qei){
     uint8_t phase , index;
 
+    #if (QEI_AB_CLOSED == 0U)
     phase = (uint8_t)(
-                GetBit_Reg8(&QEI_A_PIN, QEI_A_BIT) << 1 |
-                GetBit_Reg8(&QEI_B_PIN, QEI_B_BIT)
-                );
+            QEI_A_Read(qei) << 1 |
+            QEI_B_Read(qei)
+            );
+    #else
+    phase = (uint8_t)(QEI_AB_Read(qei));
+    #endif
 
     index = (uint8_t)(
             (qei->last << 2) | phase
@@ -38,6 +41,28 @@ static inline void qei_update(QEI_t *qei){
 
     qei->last = phase;
 }
+
+static inline int32_t QEI_GetCount(QEI_t *qei){
+    return qei->count;
+}
+
+static inline void QEI_ResetCount(QEI_t *qei){
+    qei->count = 0;
+}
+
+#if (QEI_Z == 1U)
+static inline void QEI_SetIndexFlag(QEI_t *qei){
+    qei->index = 1;
+}
+
+static inline void QEI_ClearIndexFlag(QEI_t *qei){
+    qei->index = 0;
+}
+
+static inline uint8_t QEI_GetIndexFlag(const QEI_t *qei){
+    return qei->index;
+}
+#endif
 
 #ifdef __cplusplus
 }

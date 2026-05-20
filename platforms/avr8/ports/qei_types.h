@@ -7,12 +7,6 @@ extern "C" {
 
 #include <stdint.h>
 
-/** @brief Configures the pull resistor mode for a encoder pin. */
-//typedef enum{
-//    QEI_PULL_NONE = 0U,   /**< No pull resistor */
-//    QEI_PULL_UP   = 1U,   /**< No pull resistor */
-//} QEI_PullMode_t;
-
 typedef struct {
     volatile uint8_t    *ddr;      /**< Data Direction Register */
     volatile uint8_t    *port;     /**< Port register */
@@ -24,9 +18,17 @@ typedef struct {
 typedef struct {
     const QEI_Pin_t     chA;
     const QEI_Pin_t     chB;
-    const uint8_t       config;
+
+    #if (QEI_Z == 1U)
+    const QEI_Pin_t     chZ;
+    #endif
+
     uint32_t            count;
     uint8_t             last;
+
+    #if (QEI_Z == 1U)
+    uint8_t             index;
+    #endif
 } QEI_t;
 
 /**
@@ -34,7 +36,24 @@ typedef struct {
  * Example: initializing a structure
  *
  * @code
-
+ * QEI_t qei = {
+ *     .chA = {
+ *         .ddr   = &QEI_A_DDR,
+ *         .port  = &QEI_A_PORT,
+ *         .pin   = &QEI_A_PIN,
+ *         .index = QEI_A_BIT,
+ *         .mask  = QEI_A_MASK
+ *     },
+ *     .chB = {
+ *         .ddr   = &QEI_B_DDR,
+ *         .port  = &QEI_B_PORT,
+ *         .pin   = &QEI_B_PIN,
+ *         .index = QEI_B_BIT,
+ *         .mask  = QEI_B_MASK
+ *     },
+ *     .count = 0U,
+ *     .last  = 0U
+ * };
  * @endcode
  */
 
