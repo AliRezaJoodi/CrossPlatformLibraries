@@ -216,11 +216,11 @@ static inline void GPIO_ResetPin(GPIO_TypeDef *GPIOx, GPIO_Pin_t pin){
 }
 
 /*
-GPIOx_IDR, Bits 15:0
-IDRy:	Port input data (y= 0 .. 15)
-			These bits are read only and can be accessed in Word mode only.
-			They contain the input value of the corresponding I/O port.
-*/
+ * GPIOx_IDR, Bits 15:0
+ * IDRy:	Port input data (y= 0 .. 15)
+ * 			These bits are read only and can be accessed in Word mode only.
+ * 			They contain the input value of the corresponding I/O port.
+ */
 
 static inline uint32_t GPIO_ReadPinField(GPIO_TypeDef *GPIOx, uint32_t mask){
 	return GetBitField_Reg32(&GPIOx->IDR, mask);
