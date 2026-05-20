@@ -7,7 +7,7 @@ extern "C" {
 
 #include <stdint.h>
 #include <stm32f4xx.h>	
-#include "bit.h"
+#include "bit_register32.h"
 
 typedef enum{
 	GPIO_PIN_0  = 0U,
