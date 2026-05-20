@@ -88,8 +88,7 @@ static inline void TM1637_DIO_ConfigInput(const TM1637_t *tm){
 //}
 
 static inline uint8_t TM1637_DIO_Read(const TM1637_t *tm){
-    //return ((*(tm->dio.pin) & tm->dio.mask) != 0U);
-    return GetBitField_Reg8(tm->dio.pin, tm->dio.mask);
+    return IsBitMaskSet_Reg8(tm->dio.pin, tm->dio.mask);
 }
 
 #ifdef __cplusplus
