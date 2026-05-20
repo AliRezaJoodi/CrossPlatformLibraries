@@ -22,7 +22,7 @@ static inline void Keypad4x4_R1_ConfigPullUp(void){
 }
 
 static inline uint8_t Keypad4x4_R1_Read(void){
-    return ReadBitMask_Reg8(&KEYPAD4X4_R1_PIN, KEYPAD4X4_R1_MASK);
+    return IsBitMaskSet_Reg8(&KEYPAD4X4_R1_PIN, KEYPAD4X4_R1_MASK);
 }
 
 static inline void Keypad4x4_R1_ConfigOutput(void){
@@ -48,7 +48,7 @@ static inline void Keypad4x4_R2_ConfigPullUp(void){
 }
 
 static inline uint8_t Keypad4x4_R2_Read(void){
-    return ReadBitMask_Reg8(&KEYPAD4X4_R2_PIN, KEYPAD4X4_R2_MASK);
+    return IsBitMaskSet_Reg8(&KEYPAD4X4_R2_PIN, KEYPAD4X4_R2_MASK);
 }
 
 static inline void Keypad4x4_R2_ConfigOutput(void){
@@ -74,7 +74,7 @@ static inline void Keypad4x4_R3_ConfigPullUp(void){
 }
 
 static inline uint8_t Keypad4x4_R3_Read(void){
-    return ReadBitMask_Reg8(&KEYPAD4X4_R3_PIN, KEYPAD4X4_R3_MASK);
+    return IsBitMaskSet_Reg8(&KEYPAD4X4_R3_PIN, KEYPAD4X4_R3_MASK);
 }
 
 static inline void Keypad4x4_R3_ConfigOutput(void){
@@ -100,7 +100,7 @@ static inline void Keypad4x4_R4_ConfigPullUp(void){
 }
 
 static inline uint8_t Keypad4x4_R4_Read(void){
-    return ReadBitMask_Reg8(&KEYPAD4X4_R4_PIN, KEYPAD4X4_R4_MASK);
+    return IsBitMaskSet_Reg8(&KEYPAD4X4_R4_PIN, KEYPAD4X4_R4_MASK);
 }
 
 static inline void Keypad4x4_R4_ConfigOutput(void){
@@ -128,7 +128,7 @@ static inline void Keypad4x4_C1_ConfigPullUp(void){
 }
 
 static inline uint8_t Keypad4x4_C1_Read(void){
-    return ReadBitMask_Reg8(&KEYPAD4X4_C1_PIN, KEYPAD4X4_C1_MASK);
+    return IsBitMaskSet_Reg8(&KEYPAD4X4_C1_PIN, KEYPAD4X4_C1_MASK);
 }
 
 static inline void Keypad4x4_C1_ConfigOutput(void){
@@ -154,7 +154,7 @@ static inline void Keypad4x4_C2_ConfigPullUp(void){
 }
 
 static inline uint8_t Keypad4x4_C2_Read(void){
-    return ReadBitMask_Reg8(&KEYPAD4X4_C2_PIN, KEYPAD4X4_C2_MASK);
+    return IsBitMaskSet_Reg8(&KEYPAD4X4_C2_PIN, KEYPAD4X4_C2_MASK);
 }
 
 static inline void Keypad4x4_C2_ConfigOutput(void){
@@ -180,7 +180,7 @@ static inline void Keypad4x4_C3_ConfigPullUp(void){
 }
 
 static inline uint8_t Keypad4x4_C3_Read(void){
-    return ReadBitMask_Reg8(&KEYPAD4X4_C3_PIN, KEYPAD4X4_C3_MASK);
+    return IsBitMaskSet_Reg8(&KEYPAD4X4_C3_PIN, KEYPAD4X4_C3_MASK);
 }
 
 static inline void Keypad4x4_C3_ConfigOutput(void){
@@ -206,7 +206,7 @@ static inline void Keypad4x4_C4_ConfigPullUp(void){
 }
 
 static inline uint8_t Keypad4x4_C4_Read(void){
-    return ReadBitMask_Reg8(&KEYPAD4X4_C4_PIN, KEYPAD4X4_C4_MASK);
+    return IsBitMaskSet_Reg8(&KEYPAD4X4_C4_PIN, KEYPAD4X4_C4_MASK);
 }
 
 static inline void Keypad4x4_C4_ConfigOutput(void){
