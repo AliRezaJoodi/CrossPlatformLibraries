@@ -205,6 +205,7 @@ static inline void WritePort_Reg8(volatile uint8_t *reg, uint8_t value){
     *reg = value;
 }
 
+//***********************************************************************
 /* mask must not be 0 */
 static inline uint8_t GetBitField_Reg8(volatile uint8_t *reg, uint8_t mask){
 #if defined(__GNUC__) || defined(__clang__)
@@ -225,7 +226,6 @@ static inline uint8_t GetBitField_Reg8(volatile uint8_t *reg, uint8_t mask){
 #endif
 }
 
-//***********************************************************************
 static inline uint8_t IsBitMaskSet_Reg8(volatile uint8_t *reg, uint8_t mask){
     return (uint8_t)((*reg & mask) != 0U);
 }
