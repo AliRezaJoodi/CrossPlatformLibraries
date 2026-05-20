@@ -97,7 +97,7 @@ static inline void TM1638_DIO_ConfigInput(void){
 
 //***************************************
 static inline uint8_t TM1638_DIO_Read(void){
-    return GetBitField_Reg8(&TM1638_DIO_PIN, TM1638_DIO_MASK);
+    return IsBitMaskSet_Reg8(&TM1638_DIO_PIN, TM1638_DIO_MASK);
 }
 
 //static inline uint8_t TM1638_DIO_Read(void){
