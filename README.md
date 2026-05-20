@@ -24,6 +24,16 @@ The following paths are examples. Adjust the number of `..` levels depending on 
 `..\..\..\CrossPlatformLibraries\modules`<br>
 `..\..\..\CrossPlatformLibraries\drivers`<br>
 
+### STM32F1xx Paths
+The following paths are examples. Adjust the number of `..` levels depending on your workspace layout.<br>
+`..\..\..\CrossPlatformLibraries\platforms\stm32f1\ports`<br>
+`..\..\..\CrossPlatformLibraries\platforms\stm32f1\peripherals`<br>
+
+### STM32F4xx Paths
+The following paths are examples. Adjust the number of `..` levels depending on your workspace layout.<br>
+`..\..\..\CrossPlatformLibraries\platforms\stm32f4\ports`<br>
+`..\..\..\CrossPlatformLibraries\platforms\stm32f4\peripherals`<br>
+
 ### AVR8 Paths
 The following paths are examples. Adjust the number of `..` levels depending on your workspace layout.<br>
 `..\..\..\CrossPlatformLibraries\platforms\avr8\ports`<br>
