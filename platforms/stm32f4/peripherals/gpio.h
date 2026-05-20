@@ -89,6 +89,50 @@ static inline void GPIO_ConfigOutputType(GPIO_TypeDef *GPIOx, GPIO_Pin_t pin, GP
 	WriteBit_Reg32(&GPIOx->OTYPER, pin, mode);
 }
 
+/*
+ * GPIO port output speed register
+ * GPIOx_OSPEEDR, Bits 2y:2y+1
+ * OSPEEDRy[1:0]: Port x configuration bits (y = 0..15)
+ *
+ * 						These bits are written by software to configure the I/O output speed.
+ * 						00: 2 MHz Low speed
+ * 						01: 25 MHz Medium speed
+ * 						10: 50 MHz Fast speed
+ * 						11: 100 MHz High speed on 30 pF (80 MHz Output max speed on 15 pF)
+ */
+
+typedef enum {
+	GPIO_SPEED_2MHZ		= 0x00U,
+	GPIO_SPEED_25MHZ 	= 0x01U,
+	GPIO_SPEED_50MHZ	= 0x02U,
+	GPIO_SPEED_100MHZ	= 0x03U
+} GPIO_OutputSpeed_t;
+
+static inline void GPIO_ConfigOutputSpeed(GPIO_TypeDef *GPIOx, GPIO_Pin_t pin, GPIO_OutputSpeed_t mode){
+	Write2Bit_Reg32(&GPIOx->OSPEEDR, pin * 2U, mode);
+}
+
+/*
+ * GPIO port pull-up/pull-down register
+ * GPIOx_PUPDR, Bits 2y:2y+1
+ * PUPDRy[1:0]: Port x configuration bits (y = 0..15)
+ * 						These bits are written by software to configure the I/O pull-up or pull-down
+ * 						00: No pull-up, pull-down
+ * 						01: Pull-up
+ * 						10: Pull-down
+ * 						11: Reserved
+ */
+
+typedef enum {
+	GPIO_PULL_NONE = 0x00U,
+	GPIO_PULL_UP   = 0x01U,
+	GPIO_PULL_DOWN = 0x02U
+} GPIO_Pull_t;
+
+static inline void GPIO_ConfigPull(GPIO_TypeDef *GPIOx, GPIO_Pin_t pin, GPIO_Pull_t mode){
+	Write2Bit_Reg32(&GPIOx->PUPDR, pin * 2U, mode);
+}
+
 #ifdef __cplusplus
 }
 #endif
