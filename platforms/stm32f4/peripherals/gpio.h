@@ -133,6 +133,110 @@ static inline void GPIO_ConfigPull(GPIO_TypeDef *GPIOx, GPIO_Pin_t pin, GPIO_Pul
 	Write2Bit_Reg32(&GPIOx->PUPDR, pin * 2U, mode);
 }
 
+/*
+ * GPIO port output data register
+ * GPIOx_ODR, Bits 15:0
+ * ODRy[15:0]: Port output data (y = 0..15)
+ * 						These bits can be read and written by software.
+ */
+
+static inline void GPIO_WritePinField(GPIO_TypeDef *GPIOx, uint32_t mask, uint32_t value){
+  WriteBitField_Reg32(&GPIOx->ODR, mask, value);
+}
+
+static inline void GPIO_WritePin(GPIO_TypeDef *GPIOx, GPIO_Pin_t pin, uint32_t status){
+	WriteBit_Reg32(&GPIOx->ODR, pin, status);
+}
+
+static inline void GPIO_Write2Pin(GPIO_TypeDef *GPIOx, GPIO_Pin_t pin, uint32_t value){
+	Write2Bit_Reg32(&GPIOx->ODR, pin, value);
+}
+
+static inline void GPIO_Write3Pin(GPIO_TypeDef *GPIOx, GPIO_Pin_t pin, uint32_t value){
+	Write3Bit_Reg32(&GPIOx->ODR, pin, value);
+}
+
+static inline void GPIO_Write4Pin(GPIO_TypeDef *GPIOx, GPIO_Pin_t pin, uint32_t value){
+	Write4Bit_Reg32(&GPIOx->ODR, pin, value);
+}
+
+static inline void GPIO_WritePort(GPIO_TypeDef *GPIOx, uint32_t value){
+	GPIOx->ODR = (value & 0xFFFFU);
+}
+
+static inline void GPIO_TogglePinMask(GPIO_TypeDef *GPIOx, uint32_t mask){
+	ToggleBitMask_Reg32(&GPIOx->ODR, mask);
+}
+
+static inline void GPIO_TogglePin(GPIO_TypeDef *GPIOx, GPIO_Pin_t pin){
+	ToggleBit_Reg32(&GPIOx->ODR, pin);
+}
+
+/*
+ * GPIO port bit set/reset register
+ * GPIOx_BSRR, Bits 15:0
+ * Bits 31:16 BRy: Port x reset bit y (y = 0..15)
+ * 			These bits are write-only and can be accessed in word, half-word or byte mode.
+ * 			A read tothese bits returns the value 0x0000.
+ * 			0: No action on the corresponding ODRx bit
+ * 			1: Resets the corresponding ODRx bit
+ * 			Note: If both BSx and BRx are set, BSx has priority.
+ * 
+ * Bits 15:0 BSy: Port x set bit y (y= 0..15)
+ * 			These bits are write-only and can be accessed in word, half-word or byte mode.
+ * 			A read tothese bits returns the value 0x0000.
+ * 			0: No action on the corresponding ODRx bit
+ * 			1: Resets the corresponding ODRx bit
+ */
+
+static inline void GPIO_SetPinMask(GPIO_TypeDef *GPIOx, uint32_t mask){
+	GPIOx->BSRR = (mask & 0xFFFFUL);
+}
+
+static inline void GPIO_SetPin(GPIO_TypeDef *GPIOx, GPIO_Pin_t pin){
+	GPIOx->BSRR = (1UL << pin);
+}
+
+static inline void GPIO_ResetPinMask(GPIO_TypeDef *GPIOx, uint32_t mask){
+	GPIOx->BSRR = (mask << 16U);
+}
+
+static inline void GPIO_ResetPin(GPIO_TypeDef *GPIOx, GPIO_Pin_t pin){
+	GPIOx->BSRR = (1U << (pin + 16U));
+}
+
+/*
+ * GPIO port input data register
+ * GPIOx_IDR, Bits 15:0
+ * IDRy[15:0]: Port input data (y = 0..15)
+ * 			These bits are read-only and can be accessed in word mode only.
+ * 			They contain the input value of the corresponding I/O port.
+ */
+
+static inline uint32_t GPIO_ReadPinField(GPIO_TypeDef *GPIOx, uint32_t mask){
+	return GetBitField_Reg32(&GPIOx->IDR, mask);
+}
+
+static inline uint8_t GPIO_ReadPin(GPIO_TypeDef *GPIOx, GPIO_Pin_t pin){
+	return GetBit_Reg32(&GPIOx->IDR, pin);
+}
+
+static inline uint8_t GPIO_Read2Pin(GPIO_TypeDef *GPIOx, GPIO_Pin_t pin){
+	return Get2Bit_Reg32(&GPIOx->IDR, pin);
+}
+
+static inline uint8_t GPIO_Read3Pin(GPIO_TypeDef *GPIOx, GPIO_Pin_t pin){
+	return Get3Bit_Reg32(&GPIOx->IDR, pin);
+}
+
+static inline uint8_t GPIO_Read4Pin(GPIO_TypeDef *GPIOx, GPIO_Pin_t pin){
+	return Get4Bit_Reg32(&GPIOx->IDR, pin);
+}
+
+static inline uint16_t GPIO_ReadPort(GPIO_TypeDef *GPIOx){
+	return (uint16_t)((GPIOx->IDR) & 0xFFFFU);
+}
+
 #ifdef __cplusplus
 }
 #endif
