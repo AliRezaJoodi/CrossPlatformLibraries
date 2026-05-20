@@ -237,6 +237,42 @@ static inline uint16_t GPIO_ReadPort(GPIO_TypeDef *GPIOx){
 	return (uint16_t)((GPIOx->IDR) & 0xFFFFU);
 }
 
+/**
+ * @brief  Locks the configuration of specified GPIO pins.
+ * @note   This function performs the mandatory lock key write sequence as defined 
+ *         in the Reference Manual. Once a pin is locked, its configuration (MODER, 
+ *         OTYPER, OSPEEDR, PUPDR, AFR) cannot be modified until the next MCU reset.
+ * @param  GPIOx  Pointer to the GPIO peripheral (e.g., GPIOA, GPIOB).
+ * @param  mask   16-bit mask specifying which pins to lock.
+ * @return 1 if the port configuration is locked (LCKK bit set), 0 otherwise.
+ */
+static inline uint8_t GPIO_LockPinMask(GPIO_TypeDef *GPIOx, uint32_t mask){
+	uint32_t lock_value = (1UL << GPIO_LCKR_LCKK_Pos) | (mask & 0xFFFFUL);
+
+	GPIOx->LCKR = lock_value;					/**< Write 1 */
+	GPIOx->LCKR = (mask & 0xFFFFUL);	/**< Write 0 */
+	GPIOx->LCKR = lock_value;					/**< Write 1 */
+
+	(void)GPIOx->LCKR;								/**< Read 0 */
+	
+	return GetBit_Reg32(&GPIOx->LCKR, GPIO_LCKR_LCKK_Pos);
+}
+
+/**
+ * @brief  Checks if a specific GPIO pin configuration is locked.
+ * @param  GPIOx  Pointer to the GPIO peripheral (e.g., GPIOA, GPIOB).
+ * @param  pin    GPIO pin number (e.g., GPIO_PIN_0, GPIO_PIN_1, etc.).
+ * @return 1 if both the Port Lock Key is active AND the specific pin is locked, 0 otherwise.
+ */
+static inline uint8_t GPIO_ReadPinLockStatus(GPIO_TypeDef *GPIOx, GPIO_Pin_t pin){
+	uint32_t lckr = GPIOx->LCKR;
+
+	return (uint8_t)(
+									((lckr >> GPIO_LCKR_LCKK_Pos) & 1U) &&	// LCKK
+									((lckr >> pin) & 1U)       							// LCKy
+									);
+}
+
 #ifdef __cplusplus
 }
 #endif
