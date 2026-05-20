@@ -26,8 +26,8 @@ static inline void QEI_Update(QEI_t *qei){
 
     #if (QEI_AB_CLOSED == 0U)
     phase = (uint8_t)(
-            QEI_A_Read(qei) << 1 |
-            QEI_B_Read(qei)
+            QEI_B_Read(qei) << 1 |
+            QEI_A_Read(qei)
             );
     #else
     phase = (uint8_t)(QEI_AB_Read(qei));
