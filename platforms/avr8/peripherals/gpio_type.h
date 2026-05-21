@@ -52,7 +52,6 @@ typedef struct {
 /**
  * @example
  * Example: initializing a structure
- *
  * @code
  *     static const GPIO_TypeDef GPIOA = {
  *         .pin   = &PINA,

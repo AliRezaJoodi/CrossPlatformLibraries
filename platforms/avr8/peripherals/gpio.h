@@ -9,6 +9,7 @@ extern "C" {
 #include "bit_register8.h"
 #include "gpio_type.h"
 
+//*****************************************************************
 typedef enum {
 	GPIO_MODE_INPUT  = 0U,
 	GPIO_MODE_OUTPUT = 1U
@@ -18,13 +19,12 @@ static inline void GPIO_ConfigDirection(const GPIO_TypeDef *gpio, GPIO_Pin_t pin
     WriteBit_Reg8(gpio->ddr, pin, mode);
 }
 
-
+//*****************************************************************
 typedef enum {
 	GPIO_PULL_NONE = 0U,
 	GPIO_PULL_UP   = 1U
 } GPIO_Pull_t;
 
-//*****************************************************************
 static inline void GPIO_ConfigPull(const GPIO_TypeDef *gpio, GPIO_Pin_t pin, GPIO_Pull_t mode) {
     WriteBit_Reg8(gpio->port, pin, mode);
 }
