@@ -7,7 +7,7 @@ extern "C" {
 
 #include <stdint.h>
 #include <stm32f1xx.h>	
-#include "bit.h"
+#include "bit_register32.h"
 
 typedef enum{
 	GPIO_PIN_0  = 0U,
@@ -159,16 +159,16 @@ static inline void GPIO_WritePin(GPIO_TypeDef *GPIOx, GPIO_Pin_t pin, uint32_t s
 	WriteBit_Reg32(&GPIOx->ODR, pin, status);
 }
 
-static inline void GPIO_Write2Pin(GPIO_TypeDef *GPIOx, GPIO_Pin_t pin, uint32_t value){
-	Write2Bit_Reg32(&GPIOx->ODR, pin, value);
+static inline void GPIO_Write2Pin(GPIO_TypeDef *GPIOx, GPIO_Pin_t pos, uint32_t value){
+	Write2Bit_Reg32(&GPIOx->ODR, pos, value);
 }
 
-static inline void GPIO_Write3Pin(GPIO_TypeDef *GPIOx, GPIO_Pin_t pin, uint32_t value){
-	Write3Bit_Reg32(&GPIOx->ODR, pin, value);
+static inline void GPIO_Write3Pin(GPIO_TypeDef *GPIOx, GPIO_Pin_t pos, uint32_t value){
+	Write3Bit_Reg32(&GPIOx->ODR, pos, value);
 }
 
-static inline void GPIO_Write4Pin(GPIO_TypeDef *GPIOx, GPIO_Pin_t pin, uint32_t value){
-	Write4Bit_Reg32(&GPIOx->ODR, pin, value);
+static inline void GPIO_Write4Pin(GPIO_TypeDef *GPIOx, GPIO_Pin_t pos, uint32_t value){
+	Write4Bit_Reg32(&GPIOx->ODR, pos, value);
 }
 
 static inline void GPIO_WritePort(GPIO_TypeDef *GPIOx, uint32_t value){
@@ -207,11 +207,11 @@ static inline void GPIO_SetPin(GPIO_TypeDef *GPIOx, GPIO_Pin_t pin){
  * 			1: Reset the corresponding ODRx bit
  */
 
-static inline void GPIO_ResetPinMask(GPIO_TypeDef *GPIOx, uint32_t mask){
+static inline void GPIO_ClearPinMask(GPIO_TypeDef *GPIOx, uint32_t mask){
 	GPIOx->BRR = mask;
 }
 
-static inline void GPIO_ResetPin(GPIO_TypeDef *GPIOx, GPIO_Pin_t pin){
+static inline void GPIO_ClearPin(GPIO_TypeDef *GPIOx, GPIO_Pin_t pin){
 	GPIOx->BRR = (1UL << pin);
 }
 
@@ -226,20 +226,20 @@ static inline uint32_t GPIO_ReadPinField(GPIO_TypeDef *GPIOx, uint32_t mask){
 	return GetBitField_Reg32(&GPIOx->IDR, mask);
 }
 
-static inline uint8_t GPIO_ReadPin(GPIO_TypeDef *GPIOx, GPIO_Pin_t pin){
-	return GetBit_Reg32(&GPIOx->IDR, pin);
+static inline uint8_t GPIO_ReadPin(GPIO_TypeDef *GPIOx, GPIO_Pin_t pos){
+	return GetBit_Reg32(&GPIOx->IDR, pos);
 }
 
-static inline uint8_t GPIO_Read2Pin(GPIO_TypeDef *GPIOx, GPIO_Pin_t pin){
-	return Get2Bit_Reg32(&GPIOx->IDR, pin);
+static inline uint8_t GPIO_Read2Pin(GPIO_TypeDef *GPIOx, GPIO_Pin_t pos){
+	return Get2Bit_Reg32(&GPIOx->IDR, pos);
 }
 
-static inline uint8_t GPIO_Read3Pin(GPIO_TypeDef *GPIOx, GPIO_Pin_t pin){
-	return Get3Bit_Reg32(&GPIOx->IDR, pin);
+static inline uint8_t GPIO_Read3Pin(GPIO_TypeDef *GPIOx, GPIO_Pin_t pos){
+	return Get3Bit_Reg32(&GPIOx->IDR, pos);
 }
 
-static inline uint8_t GPIO_Read4Pin(GPIO_TypeDef *GPIOx, GPIO_Pin_t pin){
-	return Get4Bit_Reg32(&GPIOx->IDR, pin);
+static inline uint8_t GPIO_Read4Pin(GPIO_TypeDef *GPIOx, GPIO_Pin_t pos){
+	return Get4Bit_Reg32(&GPIOx->IDR, pos);
 }
 
 static inline uint16_t GPIO_ReadPort(GPIO_TypeDef *GPIOx){
