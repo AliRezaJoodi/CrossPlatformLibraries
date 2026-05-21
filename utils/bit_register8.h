@@ -10,6 +10,87 @@ extern "C" {
 #include <stdint.h>
 
 //***********************************************************************
+/* mask must not be 0 */
+static inline void WriteBitField_Reg8(volatile uint8_t *reg, uint8_t mask, uint8_t value){
+#if defined(__GNUC__) || defined(__clang__)
+    if (mask == 0U){return;}
+
+    *reg =  (uint8_t)(
+            (*reg & ~mask) |
+            ((value << __builtin_ctz(mask)) & mask)
+            );
+#else
+    uint8_t shift = 0U;
+    uint8_t temp = mask;
+
+    if (mask == 0U){return;}
+
+    while((temp & 0x01U) == 0U){
+        temp >>= 1;
+        ++shift;
+    }
+
+    *reg =  (uint8_t)(
+            (*reg & ~mask) |
+            ((value << shift) & mask)
+            );
+#endif
+}
+
+static inline void WriteBit_Reg8(volatile uint8_t *reg, uint8_t pos, uint8_t value){
+    *reg =  (uint8_t)(
+            (*reg & ~(0x01U << pos)) |
+            ((value & 0x01U) << pos)
+            );
+}
+
+static inline void Write2Bit_Reg8(volatile uint8_t *reg, uint8_t pos, uint8_t value){
+    *reg = (uint8_t)(
+            (*reg & ~(0x03U << pos)) |
+            ((value & 0x03U) << pos)
+           );
+}
+
+static inline void Write3Bit_Reg8(volatile uint8_t *reg, uint8_t pos, uint8_t value){
+    *reg = (uint8_t)(
+            (*reg & ~(0x07U << pos)) |
+            ((value & 0x07U) << pos)
+           );
+}
+
+static inline void Write4Bit_Reg8(volatile uint8_t *reg, uint8_t pos, uint8_t value){
+    *reg = (uint8_t)(
+            (*reg & ~(0x0FU << pos)) |
+            ((value & 0x0FU) << pos)
+           );
+}
+
+static inline void Write5Bit_Reg8(volatile uint8_t *reg, uint8_t pos, uint8_t value){
+    *reg = (uint8_t)(
+            (*reg & ~(0x1FU << pos)) |
+            ((value & 0x1FU) << pos)
+           );
+}
+
+static inline void Write6Bit_Reg8(volatile uint8_t *reg, uint8_t pos, uint8_t value){
+    *reg = (uint8_t)(
+            (*reg & ~(0x3FU << pos)) |
+            ((value & 0x3FU) << pos)
+           );
+}
+
+static inline void Write7Bit_Reg8(volatile uint8_t *reg, uint8_t pos, uint8_t value){
+    *reg = (uint8_t)(
+            (*reg & ~(0x7FU << pos)) |
+            ((value & 0x7FU) << pos)
+           );
+}
+
+static inline void WritePort_Reg8(volatile uint8_t *reg, uint8_t value){
+    *reg = value;
+}
+
+//***********************************************************************
 static inline void SetBitMask_Reg8(volatile uint8_t *reg, uint8_t mask){
     *reg = (uint8_t)(*reg | mask);
 }
@@ -123,87 +204,6 @@ static inline void TogglePort_Reg8(volatile uint8_t *reg){
 //static inline void Toggle8Bit_Reg8(volatile uint8_t *reg, uint8_t pos){
 //    *reg = (uint8_t)(*reg ^ (0xFFU << pos));
 //}
-
-/* mask must not be 0 */
-static inline void WriteBitField_Reg8(volatile uint8_t *reg, uint8_t mask, uint8_t value){
-#if defined(__GNUC__) || defined(__clang__)
-    if (mask == 0U){return;}
-
-    *reg =  (uint8_t)(
-            (*reg & ~mask) |
-            ((value << __builtin_ctz(mask)) & mask)
-            );
-#else
-    uint8_t shift = 0U;
-    uint8_t temp = mask;
-
-    if (mask == 0U){return;}
-
-    while((temp & 0x01U) == 0U){
-        temp >>= 1;
-        ++shift;
-    }
-
-    *reg =  (uint8_t)(
-            (*reg & ~mask) |
-            ((value << shift) & mask)
-            );
-#endif
-}
-
-//***********************************************************************
-static inline void WriteBit_Reg8(volatile uint8_t *reg, uint8_t pos, uint8_t value){
-    *reg =  (uint8_t)(
-            (*reg & ~(0x01U << pos)) |
-            ((value & 0x01U) << pos)
-            );
-}
-
-static inline void Write2Bit_Reg8(volatile uint8_t *reg, uint8_t pos, uint8_t value){
-    *reg = (uint8_t)(
-            (*reg & ~(0x03U << pos)) |
-            ((value & 0x03U) << pos)
-           );
-}
-
-static inline void Write3Bit_Reg8(volatile uint8_t *reg, uint8_t pos, uint8_t value){
-    *reg = (uint8_t)(
-            (*reg & ~(0x07U << pos)) |
-            ((value & 0x07U) << pos)
-           );
-}
-
-static inline void Write4Bit_Reg8(volatile uint8_t *reg, uint8_t pos, uint8_t value){
-    *reg = (uint8_t)(
-            (*reg & ~(0x0FU << pos)) |
-            ((value & 0x0FU) << pos)
-           );
-}
-
-static inline void Write5Bit_Reg8(volatile uint8_t *reg, uint8_t pos, uint8_t value){
-    *reg = (uint8_t)(
-            (*reg & ~(0x1FU << pos)) |
-            ((value & 0x1FU) << pos)
-           );
-}
-
-static inline void Write6Bit_Reg8(volatile uint8_t *reg, uint8_t pos, uint8_t value){
-    *reg = (uint8_t)(
-            (*reg & ~(0x3FU << pos)) |
-            ((value & 0x3FU) << pos)
-           );
-}
-
-static inline void Write7Bit_Reg8(volatile uint8_t *reg, uint8_t pos, uint8_t value){
-    *reg = (uint8_t)(
-            (*reg & ~(0x7FU << pos)) |
-            ((value & 0x7FU) << pos)
-           );
-}
-
-static inline void WritePort_Reg8(volatile uint8_t *reg, uint8_t value){
-    *reg = value;
-}
 
 //***********************************************************************
 /* mask must not be 0 */
