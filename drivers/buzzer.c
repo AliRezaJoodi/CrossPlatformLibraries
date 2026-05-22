@@ -5,48 +5,34 @@
 #include "buzzer_port.h"
 #include "buzzer.h"
 
-static uint16_t buzzer_count = 0;
+#if (BUZZER_ACTIVE == 1U)
+    #define Buzzer_TurnOff()    Buzzer_Pin_Clear()
+    #define Buzzer_TurnOn()     Buzzer_Pin_Set()
+#else
+    #define Buzzer_TurnOff()    Buzzer_Pin_Set()
+    #define Buzzer_TurnOn()     Buzzer_Pin_Clear()
+#endif
+
+static uint32_t buzzer_count = 0;
 
 //********************************************************
 void Buzzer_Init(void){
     Buzzer_Pin_ConfigOutput();
-    Buzzer_Pin_Write(!BUZZER_ACTIVE);
+    Buzzer_TurnOff();
 }
 
 //********************************************************
-void Buzzer_Active(uint16_t value){
-    buzzer_count = value;
-    Buzzer_Pin_Write(BUZZER_ACTIVE);
+void Buzzer_Start(uint32_t cycles){
+    buzzer_count = cycles;
+    Buzzer_TurnOn();
 }
 
 //********************************************************
 void Buzzer_Refresh(void){
     if (buzzer_count > 0) {
-        --buzzer_count;
+        -- buzzer_count;
     }
     else{
-        Buzzer_Pin_Write(!BUZZER_ACTIVE);
+        Buzzer_TurnOff();
     }
 }
-
-//*******************************************************
-void Buzzer_MakeBeep_UpDown(void){
-    Buzzer_Pin_Write(BUZZER_ACTIVE);
-    BUZZER_DELAY_MS(80);
-    Buzzer_Pin_Write(!BUZZER_ACTIVE);
-}
-
-//*******************************************************
-void Buzzer_MakeBeep_Set(void){
-    Buzzer_Pin_Write(BUZZER_ACTIVE);
-    BUZZER_DELAY_MS(200);
-    Buzzer_Pin_Write(!BUZZER_ACTIVE);
-}
-
-//*******************************************************
-void Buzzer_MakeBeep_Error(void){
-    Buzzer_Pin_Write(BUZZER_ACTIVE);
-    BUZZER_DELAY_MS(500);
-    Buzzer_Pin_Write(!BUZZER_ACTIVE);
-}
-

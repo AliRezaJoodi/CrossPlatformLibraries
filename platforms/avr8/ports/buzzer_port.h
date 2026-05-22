@@ -10,15 +10,16 @@ extern "C" {
 #include "bit_register8.h"
 #include "buzzer_hw.h"
 
-#define BUZZER_DELAY_MS(VALUE)          DELAY_MS(VALUE)
-
 static inline void Buzzer_Pin_ConfigOutput(void){
-    //SetBit_Reg8(&BUZZER_DDR, BUZZER_BIT);
     SetBitMask_Reg8(&BUZZER_DDR, BUZZER_MASK);
 }
 
-static inline void Buzzer_Pin_Write(const uint8_t status){
-    WriteBit_Reg8(&BUZZER_PORT, BUZZER_BIT, status);
+static inline void Buzzer_Pin_Set(void){
+    SetBitMask_Reg8(&BUZZER_PORT, BUZZER_MASK);
+}
+
+static inline void Buzzer_Pin_Clear(void){
+    ClearBitMask_Reg8(&BUZZER_PORT, BUZZER_MASK);
 }
 
 #ifdef __cplusplus

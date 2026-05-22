@@ -38,20 +38,19 @@
 void Buzzer_Init(void);
 
 /**
- * @brief   Activate the buzzer for a specified duration
+ * @brief   Start the buzzer for a specified duration
  *
  * This function turns the buzzer on and keeps it active for a
- * duration represented by the 'value' parameter. The actual timing
+ * duration represented by the 'cycles' parameter. The actual timing
  * is handled by calling Buzzer_Refresh() periodically.
  *
- * @param[in] value   Duration counter for the buzzer; the exact timing
- *                    depends on how frequently Buzzer_Refresh() is called.
+ * @param[in] cycles The number of refresh cycles the buzzer should remain active.
  *
  * @note
  * Must call Buzzer_Refresh() in the main loop or a timer interrupt
  * to automatically turn off the buzzer after the specified duration.
  */
-void Buzzer_Active(uint16_t value);
+void Buzzer_Start(uint32_t cycles);
 
 /**
  * @brief   Update buzzer timing
@@ -66,46 +65,5 @@ void Buzzer_Active(uint16_t value);
  * active indefinitely or the timing may be incorrect.
  */
 void Buzzer_Refresh(void);
-
-/**
- * @brief   Generate a short "up or down" beep sound
- *
- * This function produces a fixed, blocking beep sound with a
- * short duration (~80 ms). The function will delay execution
- * while the beep is active.
- *
- * @note
- * This is a blocking function; program execution is paused during
- * the beep. Use non-blocking functions like Buzzer_Active() for
- * background beep handling.
- */
-void Buzzer_MakeBeep_UpDown(void);
-
-/**
- * @brief   Generate a "set" beep sound
- *
- * This function produces a fixed, blocking beep sound with a
- * medium duration (~200 ms). The function will delay program
- * execution while the beep is active.
- *
- * @note
- * This is a blocking function; program execution is paused during
- * the beep. Use non-blocking functions like Buzzer_Active() if
- * background beep handling is required.
- */
-void Buzzer_MakeBeep_Set(void);
-
-/**
- * @brief   Generate an "error" beep sound
- *
- * This function produces a fixed, blocking beep sound with a
- * long duration (~500 ms), intended to indicate an error condition.
- * Program execution is paused while the beep is active.
- *
- * @note
- * This is a blocking function. For non-blocking beep handling,
- * consider using Buzzer_Active() with periodic Buzzer_Refresh().
- */
-void Buzzer_MakeBeep_Error(void);
 
 #endif
