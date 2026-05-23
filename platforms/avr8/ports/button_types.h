@@ -72,8 +72,8 @@ typedef struct {
 typedef struct{
     const Button_Pin_t      hw;      /**< Pin mapping and hardware references */
     const Button_Config_t   config;   /**< Static configuration (active level & pull) */
+    uint32_t                last_tick;
     uint8_t                 state;    /**< Current stable state */
-    uint16_t                counter;  /**< Internal timing counter for debounce */
 } Button_t;
 
 /**

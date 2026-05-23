@@ -2,6 +2,12 @@
  * @file    button.h
  * @brief   Public API for button handling.
  *
+ * This library depends on the TimeBase module.
+ * The user must call TimeBase_CountTicks() from a hardware timer interrupt
+ * in the main application, typically with a 1 ms period.
+ *
+ * @note Initialize and use the TimeBase module before calling button APIs.
+ *
  * This API relies on the underlying configuration and hardware
  * layers defined in Button_Init.h and button_port.h.
  *
@@ -30,16 +36,15 @@ extern "C" {
 void Button_Init(Button_t *btn);
 
 /**
- * @brief Check for a single click event on a button.
+ * @brief Detects a single button trigger event.
  *
- * Detects a single click by comparing the button pin state
- * with its active level, using a debounce delay. Returns 1
- * only once per click.
+ * Implements a state-machine based debounce logic to filter noise
+ * and return 1 only after BUTTON_TIME_TRIGGER duration.
  *
- * @param btn Pointer to the Button_t object to read.
- * @return 1 if a single click is detected, 0 otherwise.
+ * @param btn Pointer to the button object.
+ * @return 1 on valid trigger, 0 otherwise.
  */
-uint8_t Button_GetSingleClick(Button_t *btn);
+uint8_t Button_GetTrigger(Button_t *btn);
 
 /**
  * @brief Check for auto-repeat events on a button (non-blocking).
@@ -51,19 +56,7 @@ uint8_t Button_GetSingleClick(Button_t *btn);
  * @param btn Pointer to the Button_t object to read.
  * @return 1 if an auto-repeat event is detected, 0 otherwise.
  */
-uint8_t Button_GetAutoRepeat_NonBlocking(Button_t *btn);
-
-/**
- * @brief Check for a long press event on a button (non-blocking).
- *
- * Detects if a button is held longer than the configured
- * long press lag. Returns 1 once when the long press is detected.
- * The function does not block program execution.
- *
- * @param btn Pointer to the Button_t object to read.
- * @return 1 if a long press is detected, 0 otherwise.
- */
-uint8_t Button_GetLongPress_NonBlocking(Button_t *btn);
+uint8_t Button_GetAutoRepeat(Button_t *btn);
 
 #ifdef __cplusplus
 }
