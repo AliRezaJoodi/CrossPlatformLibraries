@@ -7,7 +7,6 @@
 //#include "compiler_port.h"
 //#endif
 
-
 #if defined(TIMEBASE_REG32_U32) || defined(TIMEBASE_REG8_U32)
     static volatile uint32_t ticks = 0;
 #elif defined(TIMEBASE_REG8_U8)
