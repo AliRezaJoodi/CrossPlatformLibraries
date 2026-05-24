@@ -15,5 +15,5 @@
     #warning "BUZZER_HARDWARE is not defined; default configuration will be used."
 #endif
 
-#endif
+#endif  /* BUZZER_HW_INCLUDED */
 

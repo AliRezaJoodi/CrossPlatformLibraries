@@ -26,4 +26,4 @@ static inline void Buzzer_Pin_Clear(void){
 }
 #endif
 
-#endif
+#endif  /* BUZZER_PORT_INCLUDED */

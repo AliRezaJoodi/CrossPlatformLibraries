@@ -58,4 +58,4 @@ void Buzzer_Start(uint32_t duration);
  */
 void Buzzer_Refresh(void);
 
-#endif
+#endif  /* BUZZER_INCLUDED */
