@@ -40,7 +40,7 @@ uint8_t Button_GetTrigger(Button_t *btn) {
         }
         else if (btn->state == 1) {
             current_tick = TimeBase_GetTicks();
-            if ((current_tick - btn->last_tick) >= BUTTON_TIME_TRIGGER) {
+            if ((uint32_t)(current_tick - btn->last_tick) >= BUTTON_TIME_TRIGGER) {
                 btn->state = 2;
                 return 1;
             }
@@ -64,7 +64,7 @@ uint8_t Button_GetAutoRepeat(Button_t *btn) {
         }
         else if (btn->state == 1) {
             current_tick = TimeBase_GetTicks();
-            if ((current_tick - btn->last_tick) >= BUTTON_TIME_TRIGGER) {
+            if ((uint32_t)(current_tick - btn->last_tick) >= BUTTON_TIME_TRIGGER) {
                 btn->last_tick = current_tick;
                 return 1;
             }

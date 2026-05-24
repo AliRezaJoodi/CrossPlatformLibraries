@@ -92,8 +92,8 @@ typedef struct{
  *            .pressed = BUTTON_ACTIVE_LOW,
  *            .pull    = BUTTON_PULL_NONE
  *        },
- *        .state   = 0,
- *        .counter = 0
+ *        .last_tick   = 0,
+ *        .state = 0
  *    };
  * @endcode
  */
