@@ -1,3 +1,5 @@
+// GitHub Account:  GitHub.com/AliRezaJoodi
+
 #ifndef TIMEBASE_INCLUDED
 #define TIMEBASE_INCLUDED
 
@@ -22,5 +24,5 @@ void TimeBase_CountTicks(void);
 }
 #endif
 
-#endif
+#endif  /* TIMEBASE_INCLUDED */
 
