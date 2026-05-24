@@ -49,14 +49,12 @@ void Buzzer_Start(uint32_t duration);
 /**
  * @brief   Update buzzer timing
  *
- * This function must be called periodically (e.g., in the main loop
- * or a timer interrupt) to handle the non-blocking buzzer timing.
+ * This function must be called in the main loop to handle the non-blocking buzzer timing.
  * It decrements the internal counter set by Buzzer_Active() and
  * automatically turns off the buzzer when the counter reaches zero.
  *
  * @note
- * Without calling this function regularly, the buzzer may remain
- * active indefinitely or the timing may be incorrect.
+ * If this function is not called regularly, the buzzer remain active indefinitely.
  */
 void Buzzer_Refresh(void);
 

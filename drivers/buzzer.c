@@ -1,7 +1,7 @@
 // GitHub Account:  GitHub.com/AliRezaJoodi
 
 #include <stdint.h>
-#include "hardware.h"
+#include "hardware.h"   /* Project-level overrides */
 #include "timebase.h"
 #include "buzzer_port.h"
 #include "buzzer.h"
