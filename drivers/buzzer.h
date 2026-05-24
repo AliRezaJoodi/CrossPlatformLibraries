@@ -1,20 +1,15 @@
 /**
- * @brief   Simple buzzer driver
+ * @file    buzzer.h
+ * @brief   Public API for buzzer handling.
  *
- * This library provides basic control of a digital buzzer using a GPIO pin.
- * It supports both blocking (delay-based) and non-blocking (counter-based)
- * beep generation.
+ * This library depends on the TimeBase module.
+ * The user must call TimeBase_CountTicks() from a hardware timer interrupt
+ * in the main application, typically with a 1 ms period.
  *
- * The non-blocking mode requires periodic calling of Buzzer_Refresh()
- * to handle timing and automatically turn off the buzzer.
+ * @note Initialize and use the TimeBase module before calling buzzer APIs.
  *
- * @note
- * The buzzer control is implemented using a single GPIO output pin.
- * Hardware configuration must be provided via buzzer_port.h.
- *
- * @warning
- * Buzzer_Refresh() must be called periodically (e.g., in main loop or timer)
- * when using Buzzer_Active() to ensure correct timing behavior.
+ * This API relies on the underlying configuration and hardware
+ * layers defined in buzzer_hw.h and buzzer_port.h.
  *
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
@@ -41,16 +36,15 @@ void Buzzer_Init(void);
  * @brief   Start the buzzer for a specified duration
  *
  * This function turns the buzzer on and keeps it active for a
- * duration represented by the 'cycles' parameter. The actual timing
- * is handled by calling Buzzer_Refresh() periodically.
+ * duration represented by the 'duration' parameter.
  *
- * @param[in] cycles The number of refresh cycles the buzzer should remain active.
+ * @param[in] duration The number of refresh cycles the buzzer should remain active.
  *
  * @note
  * Must call Buzzer_Refresh() in the main loop or a timer interrupt
  * to automatically turn off the buzzer after the specified duration.
  */
-void Buzzer_Start(uint32_t cycles);
+void Buzzer_Start(uint32_t duration);
 
 /**
  * @brief   Update buzzer timing

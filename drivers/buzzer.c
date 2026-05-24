@@ -2,6 +2,7 @@
 
 #include <stdint.h>
 #include "hardware.h"
+#include "timebase.h"
 #include "buzzer_port.h"
 #include "buzzer.h"
 
@@ -13,26 +14,34 @@
     #define Buzzer_TurnOn()     Buzzer_Pin_Clear()
 #endif
 
-static uint32_t buzzer_count = 0;
+static uint32_t buzzer_tick_start = 0U;
+static uint32_t buzzer_duration = 0U;
+static uint8_t buzzer_status = 0U;
 
-//********************************************************
 void Buzzer_Init(void){
+    buzzer_tick_start = 0U;
+    buzzer_duration = 0U;
+    buzzer_status = 0U;
+
     Buzzer_Pin_ConfigOutput();
     Buzzer_TurnOff();
 }
 
-//********************************************************
-void Buzzer_Start(uint32_t cycles){
-    buzzer_count = cycles;
+void Buzzer_Start(uint32_t duration){
+    buzzer_tick_start = TimeBase_GetTicks();
+    buzzer_duration = duration;
+    buzzer_status = 1U;
     Buzzer_TurnOn();
 }
 
-//********************************************************
 void Buzzer_Refresh(void){
-    if (buzzer_count > 0) {
-        -- buzzer_count;
+    if (buzzer_status == 0U){
+        return;
     }
-    else{
+
+    if ((uint32_t)(TimeBase_GetTicks() - buzzer_tick_start) >= buzzer_duration){
+        buzzer_duration = 0U;
+        buzzer_status = 0U;
         Buzzer_TurnOff();
     }
 }
