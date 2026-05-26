@@ -1,6 +1,8 @@
 #ifndef BUZZER_HW_INCLUDED
 #define BUZZER_HW_INCLUDED
 
+#include "hardware.h"   /* Project-level overrides */
+
 #ifndef BUZZER_HARDWARE
 #define BUZZER_HARDWARE
     #define BUZZER_ACTIVE       1U

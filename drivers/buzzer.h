@@ -19,6 +19,7 @@
 #define BUZZER_INCLUDED
 
 #include <stdint.h>
+#include "timebase_type.h"
 
 /**
  * @brief   Initialize the buzzer
@@ -44,7 +45,7 @@ void Buzzer_Init(void);
  * Must call Buzzer_Refresh() in the main loop or a timer interrupt
  * to automatically turn off the buzzer after the specified duration.
  */
-void Buzzer_Start(uint32_t duration);
+void Buzzer_Start(timebase_t duration);
 
 /**
  * @brief   Update buzzer timing

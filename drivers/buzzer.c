@@ -1,7 +1,6 @@
 // GitHub Account:  GitHub.com/AliRezaJoodi
 
 #include <stdint.h>
-#include "hardware.h"   /* Project-level overrides */
 #include "timebase.h"
 #include "buzzer_port.h"
 #include "buzzer.h"
@@ -27,7 +26,7 @@ void Buzzer_Init(void){
     Buzzer_TurnOff();
 }
 
-void Buzzer_Start(uint32_t duration){
+void Buzzer_Start(timebase_t duration){
     buzzer_tick_last = TimeBase_GetTicks();
     buzzer_duration = duration;
     buzzer_status = 1U;
