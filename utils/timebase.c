@@ -2,49 +2,35 @@
 
 #include <stdint.h>
 #include "hardware.h"
+#include "timebase_config.h"
+#include "timebase_type.h"
 #include "timebase.h"
 
-#if defined(TIMEBASE_REG8_U32)
+#if defined(TIMEBASE_REG8_U8) || defined(TIMEBASE_REG8_U16) || defined(TIMEBASE_REG8_U32)
     #include "compiler_port.h"
 #endif
 
-#if defined(TIMEBASE_REG32_U32) || defined(TIMEBASE_REG8_U32)
-    static volatile uint32_t ticks = 0;
-
-#elif defined(TIMEBASE_REG8_U8)
-    static volatile uint8_t ticks = 0;
-
-#else
-    #error "None TIMEBASE configurations defined!"
-
-#endif
+static volatile timebase_t ticks = 0;
 
 void TimeBase_CountTicks(void) {
     ticks++;
 }
 
-#if defined(TIMEBASE_REG32_U32)
-    uint32_t TimeBase_GetTicks(void) {
-        return ticks;
-    }
+timebase_t TimeBase_GetTicks(void) {
+    timebase_t buffer;
+	
+    #if defined(TIMEBASE_REG8_U8) || defined(TIMEBASE_REG8_U16) || defined(TIMEBASE_REG8_U32)
+		uint8_t sreg_save;
+        INT_GLOBAL_SAVE(sreg_save);
+        INT_GLOBAL_DISABLE();
+    #endif
 
-#elif defined(TIMEBASE_REG8_U32)
-    uint32_t TimeBase_GetTicks(void) {
-        uint32_t buffer;
+    buffer = ticks;
 
-        INTERRUPTS_SAVE();
-        INTERRUPTS_DISABLE();
-        buffer = ticks;
-        INTERRUPTS_RESTORE();
-        return buffer;
-    }
+    #if defined(TIMEBASE_REG8_U8) || defined(TIMEBASE_REG8_U16) || defined(TIMEBASE_REG8_U32)
+        INT_GLOBAL_RESTORE(sreg_save);
+    #endif
 
-#elif defined(TIMEBASE_REG8_U8)
-    uint8_t TimeBase_GetTicks(void) {
-        return ticks;
-    }
+    return buffer;
+}
 
-#else
-    #error "None TIMEBASE configurations defined!"
-
-#endif
