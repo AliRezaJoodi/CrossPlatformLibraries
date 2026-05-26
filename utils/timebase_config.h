@@ -7,6 +7,8 @@
 extern "C" {
 #endif
 
+#include "hardware.h"
+
 /*
  * Choose ONLY ONE configuration below:
  * - TIMEBASE_REG8_U8    (8-bit registers, 8-bit counter)

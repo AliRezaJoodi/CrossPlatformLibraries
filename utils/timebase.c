@@ -1,7 +1,6 @@
 // GitHub Account:  GitHub.com/AliRezaJoodi
 
 #include <stdint.h>
-#include "hardware.h"
 #include "timebase_config.h"
 #include "timebase_type.h"
 #include "timebase.h"
