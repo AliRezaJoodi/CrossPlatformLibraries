@@ -6,6 +6,7 @@ extern "C" {
 #endif
 
 #include <stdint.h>
+#include "timebase_type.h"
 
 /** @brief Defines whether a pressed button reads as logic low or high. */
 typedef enum{
@@ -72,7 +73,7 @@ typedef struct {
 typedef struct{
     const Button_Pin_t      hw;      /**< Pin mapping and hardware references */
     const Button_Config_t   config;   /**< Static configuration (active level & pull) */
-    uint32_t                last_tick;
+    timebase_t              tick_last;
     uint8_t                 state;    /**< Current stable state */
 } Button_t;
 
