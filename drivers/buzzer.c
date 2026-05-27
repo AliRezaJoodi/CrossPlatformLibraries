@@ -22,7 +22,7 @@ void Buzzer_Init(void){
     buzzer_duration = 0U;
     buzzer_status = 0U;
 
-    Buzzer_Pin_ConfigOutput();
+    Buzzer_Pin_ConfigAsOutput();
     Buzzer_TurnOff();
 }
 
