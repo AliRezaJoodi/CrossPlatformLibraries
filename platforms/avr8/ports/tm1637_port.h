@@ -66,7 +66,7 @@ static inline void TM1637_DIO_SetIdle(const TM1637_t *tm){
 }
 
 //***************************************
-static inline void TM1637_DIO_ConfigInput(const TM1637_t *tm){
+static inline void TM1637_DIO_ConfigAsInput(const TM1637_t *tm){
     ClearBitMask_Reg8(tm->dio.ddr,  tm->dio.mask);  /* Configure pin as input (high-Z) */
     ClearBitMask_Reg8(tm->dio.port, tm->dio.mask);  /* Disable internal pull-up */
 }
@@ -74,7 +74,7 @@ static inline void TM1637_DIO_ConfigInput(const TM1637_t *tm){
 //***************************************
 //static inline void TM1637_DIO_Write(TM1637_t *tm, uint8_t status){
 //    if(status == 1){
-//        TM1637_DIO_ConfigInput(tm);
+//        TM1637_DIO_ConfigAsInput(tm);
 //    }
 //    else{
 //        SetBit_Reg8(tm->dio.ddr, tm->dio.index);
