@@ -1,7 +1,6 @@
 // GitHub Account: GitHub.com/AliRezaJoodi
 
 #include <stdint.h>
-#include "hardware.h"
 #include "bit_value8.h"
 #include "tm1637_port.h"
 #include "tm1637.h"
@@ -71,7 +70,7 @@ uint8_t TM1637_WriteByte(TM1637_t *tm, uint8_t data){
 
     //TM1637_CLK_Write(tm, CLK_ACTIVE);
     TM1637_CLK_SetActive(tm);
-    TM1637_DIO_ConfigInput(tm);
+    TM1637_DIO_ConfigAsInput(tm);
     TM1637_DELAY_US(TM1637_HALF_BIT_US*4);
 
     //TM1637_CLK_Write(tm, CLK_IDLE);
