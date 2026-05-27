@@ -1,5 +1,4 @@
-
-#include "hardware.h"       /**< Project-level overrides */
+#include "mcp4822_types.h"
 #include "mcp4822_port.h"
 #include "mcp4822.h"
 
@@ -14,7 +13,7 @@
 
 //********************************************************
 void MCP4822_Init(MCP4822_t *dac){
-    MCP4822_CS_ConfigOutput(dac);
+    MCP4822_CS_ConfigAsOutput(dac);
     //MCP4822_CS_Write(dac, CS_IDLE);
     MCP4822_CS_SetIdle(dac);
 
