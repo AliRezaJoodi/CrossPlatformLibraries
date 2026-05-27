@@ -59,7 +59,7 @@ extern "C" {
  *
  * @param[in] mcp   Pointer to MCP4822 device handle
  */
-static inline void MCP4822_CS_ConfigOutput(const MCP4822_t *mcp){
+static inline void MCP4822_CS_ConfigAsOutput(const MCP4822_t *mcp){
     SetBitMask_Reg8(mcp->cs.ddr, mcp->cs.mask);
 }
 
@@ -124,7 +124,7 @@ static inline void MCP4822_LDAC_SetIdle(const MCP4822_t *mcp){
  *          before calling this function.
  */
 static inline uint8_t MCP3208_SPI_Transfer(uint8_t data){
-    uint16_t timeout = 1000U;           /* Software timeout counter */
+    uint16_t timeout = MCP4822_TIMEOUT;           /* Software timeout counter */
 
     SPDR = data;                        /* Start SPI transfer */
 

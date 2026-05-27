@@ -1,6 +1,15 @@
 #ifndef MCP4822_HW_INCLUDED
 #define MCP4822_HW_INCLUDED
 
+#include "hardware.h"       /**< Project-level overrides */
+
+#ifndef MCP4822_HARDWARE
+#define MCP4822_HARDWARE
+    #define MCP4822_TIMEOUT         1000U
+
+    #warning "MCP4822_HARDWARE is not defined; default configuration will be used."
+#endif
+
 #ifndef MCP4822_HARDWARE_EXTRA
 #define MCP4822_HARDWARE_EXTRA
     #define MCP4822_CS_DDR          DDRB
