@@ -57,7 +57,7 @@ extern "C" {
  *
  * @param   mcp     Pointer to the MCP3202 instance
  */
-static inline void MCP3202_CS_ConfigOutput(const MCP3202_t *mcp){
+static inline void MCP3202_CS_ConfigAsOutput(const MCP3202_t *mcp){
     SetBitMask_Reg8(mcp->cs.ddr, mcp->cs.mask);
 }
 
@@ -69,7 +69,7 @@ static inline void MCP3202_CS_ConfigOutput(const MCP3202_t *mcp){
  *                  - 0: Pull CS low (select chip)
  *                  - 1: Pull CS high (deselect / idle)
  *
- * @note    The CS pin must be initialized with MCP3202_CS_ConfigOutput() before use.
+ * @note    The CS pin must be initialized with MCP3202_CS_ConfigAsOutput() before use.
  */
 //static inline void MCP3202_CS_Write(MCP3202_t *mcp, uint8_t status){
 //    WriteBit_Reg8(mcp->cs.port, mcp->cs.index, status);
@@ -93,7 +93,7 @@ static inline void MCP3202_CS_SetIdle(const MCP3202_t *mcp){
  *          before calling this function.
  */
 static inline uint8_t MCP3202_SPI_Transfer(uint8_t data){
-    uint16_t timeout = 1000U;           /* Software timeout counter */
+    uint16_t timeout = MCP3202_TIMEOUT;           /* Software timeout counter */
 
     SPDR = data;                        /* Start SPI transfer */
 
