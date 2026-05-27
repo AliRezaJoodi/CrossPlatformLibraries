@@ -8,6 +8,8 @@
 #ifndef BUTTON_HW_INCLUDED
 #define BUTTON_HW_INCLUDED
 
+#include "hardware.h"   /* Project-level overrides */
+
 /** @brief Default configuration (can be overridden). */
 #ifndef BUTTON_HARDWARE
 #define BUTTON_HARDWARE

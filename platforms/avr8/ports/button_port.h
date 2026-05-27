@@ -30,20 +30,20 @@ extern "C" {
 
 #define BUTTON_DELAY_US(VALUE)      DELAY_US(VALUE)
 
-static inline void Button_Pin_ConfigInput(const Button_t *btn){
+static inline void Button_Pin_ConfigAsInput(const Button_t *btn){
     ClearBitMask_Reg8(btn->hw.ddr, btn->hw.mask);
 }
 
-static inline void Button_Pin_ConfigPullNone(const Button_t *btn){
+static inline void Button_Pin_ConfigAsPullNone(const Button_t *btn){
     ClearBitMask_Reg8(btn->hw.port, btn->hw.mask);
 }
 
-static inline void Button_Pin_ConfigPullUp(const Button_t *btn){
+static inline void Button_Pin_ConfigAsPullUp(const Button_t *btn){
     SetBitMask_Reg8(btn->hw.port, btn->hw.mask);
 }
 
 /* Not supported on AVR - same as floating */
-static inline void Button_Pin_ConfigPullDown(const Button_t *btn){
+static inline void Button_Pin_ConfigAsPullDown(const Button_t *btn){
     ClearBitMask_Reg8(btn->hw.port, btn->hw.mask);
 }
 
