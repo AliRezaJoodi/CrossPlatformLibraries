@@ -9,7 +9,7 @@ extern "C" {
 #include "gpio.h"
 #include "buzzer_hw.h"
 
-static inline void Buzzer_Pin_ConfigOutput(void){
+static inline void Buzzer_Pin_ConfigAsOutput(void){
 	GPIO_ConfigDirection(BUZZER_GPIO, BUZZER_PIN, GPIO_MODE_OUTPUT_2MHz);
 	GPIO_ConfigOutputType(BUZZER_GPIO, BUZZER_PIN, GPIO_OUTPUT_GP_PUSHPULL);
 }
