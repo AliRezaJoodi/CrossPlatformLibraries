@@ -1,6 +1,8 @@
 #ifndef TM1638_HW_INCLUDED
 #define TM1638_HW_INCLUDED
 
+#include "hardware.h"   /**< Project-level overrides */
+
 #ifndef TM1638_HARDWARE
 #define TM1638_HARDWARE
     #define TM1638_CLK_DDR          DDRC

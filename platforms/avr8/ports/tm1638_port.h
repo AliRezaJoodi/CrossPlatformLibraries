@@ -14,7 +14,7 @@ extern "C" {
 #define TM1638_DELAY_US(VALUE)          DELAY_US(VALUE)
 
 //***************************************
-static inline void TM1638_STB_ConfigOutput(const TM1638_t *tm){
+static inline void TM1638_STB_ConfigAsOutput(const TM1638_t *tm){
     SetBitMask_Reg8(tm->stb.ddr, tm->stb.mask);
 }
 
@@ -38,7 +38,7 @@ static inline void TM1638_STB_SetIdle(const TM1638_t *tm){
 //}
 
 //***************************************
-static inline void TM1638_CLK_ConfigOutput(void){
+static inline void TM1638_CLK_ConfigAsOutput(void){
     SetBitMask_Reg8(&TM1638_CLK_DDR, TM1638_CLK_MASK);
 }
 
@@ -62,7 +62,7 @@ static inline void TM1638_CLK_SetIdle(void){
 //}
 
 //***************************************
-static inline void TM1638_DIO_ConfigOutput(void){
+static inline void TM1638_DIO_ConfigAsOutput(void){
     SetBitMask_Reg8(&TM1638_DIO_DDR, TM1638_DIO_MASK);
 }
 
@@ -74,7 +74,7 @@ static inline void TM1638_DIO_SetIdle(void){
     SetBitMask_Reg8(&TM1638_DIO_PORT, TM1638_DIO_MASK);
 }
 
-static inline void TM1638_DIO_ConfigInput(void){
+static inline void TM1638_DIO_ConfigAsInput(void){
     ClearBitMask_Reg8(&TM1638_DIO_DDR, TM1638_DIO_MASK);
 }
 
