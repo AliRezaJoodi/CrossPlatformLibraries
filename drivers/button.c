@@ -1,7 +1,6 @@
 // GitHub Account: GitHub.com/AliRezaJoodi
 
 #include <stdint.h>
-#include "hardware.h"   /* Project-level overrides */
 #include "timebase.h"
 #include "button_types.h"
 #include "button_port.h"
@@ -9,20 +8,20 @@
 
 //*************************************************
 void Button_Init(Button_t *btn){
-    Button_Pin_ConfigInput(btn);
+    Button_Pin_ConfigAsInput(btn);
 
     switch(btn->config.pull) {
         case BUTTON_PULL_NONE:
-            Button_Pin_ConfigPullNone(btn);
+            Button_Pin_ConfigAsPullNone(btn);
             break;
         case BUTTON_PULL_UP:
-            Button_Pin_ConfigPullUp(btn);
+            Button_Pin_ConfigAsPullUp(btn);
             break;
         case BUTTON_PULL_DOWN:
-            Button_Pin_ConfigPullDown(btn);
+            Button_Pin_ConfigAsPullDown(btn);
             break;
         default:
-            Button_Pin_ConfigPullNone(btn);
+            Button_Pin_ConfigAsPullNone(btn);
     }
 
     btn->state = 0;
