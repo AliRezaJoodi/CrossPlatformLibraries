@@ -10,7 +10,7 @@ extern "C" {
 #include "bit_register8.h"
 #include "buzzer_hw.h"
 
-static inline void Buzzer_Pin_ConfigOutput(void){
+static inline void Buzzer_Pin_ConfigAsOutput(void){
     SetBitMask_Reg8(&BUZZER_DDR, BUZZER_MASK);
 }
 
