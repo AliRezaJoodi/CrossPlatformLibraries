@@ -1,7 +1,6 @@
 // GitHub Account: GitHub.com/AliRezaJoodi
 
 #include <stdint.h>
-#include "hardware.h"   /**< Project-level overrides */
 #include "bit_value8.h"
 #include "tm1638_types.h"
 #include "tm1638_port.h"
@@ -26,7 +25,7 @@ void TM1638_WriteByte(uint8_t data){
     uint8_t i = 0;
 
     //TM1638_DIO_Config(TM1638_PIN_OUTPUT);
-    TM1638_DIO_ConfigOutput();
+    TM1638_DIO_ConfigAsOutput();
 
     for(i = 0; i < 8; i++) {
         //TM1638_CLK_Write(CLK_ACTIVE);
@@ -108,17 +107,17 @@ void TM1638_ClearDisplay(TM1638_t *tm){
 //***************************************
 void TM1638_Init(TM1638_t *tm){
     //TM1638_STB_Init(tm);
-    TM1638_STB_ConfigOutput(tm);
+    TM1638_STB_ConfigAsOutput(tm);
     //TM1638_STB_Write(tm, STB_IDLE);
     TM1638_STB_SetIdle(tm);
 
     //TM1638_CLK_Init();
-    TM1638_CLK_ConfigOutput();
+    TM1638_CLK_ConfigAsOutput();
     //TM1638_CLK_Write(CLK_IDLE);
     TM1638_CLK_SetIdle();
 
     //TM1638_DIO_Config(TM1638_PIN_OUTPUT);
-    TM1638_DIO_ConfigOutput();
+    TM1638_DIO_ConfigAsOutput();
     //TM1638_DIO_Write(DIO_IDLE);
     TM1638_DIO_SetIdle();
 
@@ -318,7 +317,7 @@ uint8_t TM1638_ReadByte(void){
     uint8_t buf = 0;
 
     //TM1638_DIO_Config(TM1638_PIN_INPUT);
-    TM1638_DIO_ConfigInput();
+    TM1638_DIO_ConfigAsInput();
 
     for(i=0; i<8; ++i) {
         //TM1638_CLK_Write(0);
@@ -345,7 +344,7 @@ void TM1638_GetKeys(TM1638_t *tm, uint8_t *key){
     TM1638_STB_SetActive(tm);
     TM1638_WriteByte(TM1638_COMMAND_DATA_READ);
     //TM1638_DIO_Config(TM1638_PIN_INPUT);
-    TM1638_DIO_ConfigInput();
+    TM1638_DIO_ConfigAsInput();
     TM1638_DELAY_US(TM1638_BIT_US*2);  // Twait
 
     for (i=0; i<4; ++i){
@@ -358,7 +357,7 @@ void TM1638_GetKeys(TM1638_t *tm, uint8_t *key){
     TM1638_STB_SetIdle(tm);
     TM1638_DELAY_US(TM1638_BIT_US*2);
     //TM1638_DIO_Config(TM1638_PIN_OUTPUT);
-    TM1638_DIO_ConfigOutput();
+    TM1638_DIO_ConfigAsOutput();
     //TM1638_DIO_Write(DIO_IDLE);
     TM1638_DIO_SetIdle();
 }
@@ -373,7 +372,7 @@ uint8_t TM1638_GetKeys_K3(TM1638_t *tm){
     TM1638_STB_SetActive(tm);
     TM1638_WriteByte(TM1638_COMMAND_DATA_READ);
     //TM1638_DIO_Config(TM1638_PIN_INPUT);
-    TM1638_DIO_ConfigInput();
+    TM1638_DIO_ConfigAsInput();
     TM1638_DELAY_US(TM1638_BIT_US*2);  // Twait
 
     for (i=0; i<4; ++i){
@@ -387,7 +386,7 @@ uint8_t TM1638_GetKeys_K3(TM1638_t *tm){
     TM1638_STB_SetIdle(tm);
     TM1638_DELAY_US(TM1638_BIT_US*2);
     //TM1638_DIO_Config(TM1638_PIN_OUTPUT);
-    TM1638_DIO_ConfigOutput();
+    TM1638_DIO_ConfigAsOutput();
     //TM1638_DIO_Write(DIO_IDLE);
     TM1638_DIO_SetIdle();
 

@@ -36,7 +36,7 @@ extern "C" {
  * @note Maximum clock frequency is 1MHz
  */
 #ifndef TM1638_BIT_US
-#define TM1638_BIT_US            1
+    #define TM1638_BIT_US            1U
 #endif
 
 /**
