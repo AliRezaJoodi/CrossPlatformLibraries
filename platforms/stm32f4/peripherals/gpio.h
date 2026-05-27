@@ -197,11 +197,11 @@ static inline void GPIO_SetPin(GPIO_TypeDef *GPIOx, GPIO_Pin_t pin){
 	GPIOx->BSRR = (1UL << pin);
 }
 
-static inline void GPIO_ResetPinMask(GPIO_TypeDef *GPIOx, uint32_t mask){
+static inline void GPIO_ClearPinMask(GPIO_TypeDef *GPIOx, uint32_t mask){
 	GPIOx->BSRR = (mask << 16U);
 }
 
-static inline void GPIO_ResetPin(GPIO_TypeDef *GPIOx, GPIO_Pin_t pin){
+static inline void GPIO_ClearPin(GPIO_TypeDef *GPIOx, GPIO_Pin_t pin){
 	GPIOx->BSRR = (1U << (pin + 16U));
 }
 
