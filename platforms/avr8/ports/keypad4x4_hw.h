@@ -1,6 +1,8 @@
 #ifndef KEYPAD4X4_HW_INCLUDED
 #define KEYPAD4X4_HW_INCLUDED
 
+#include "hardware.h"   /* Project-level overrides */
+
 #ifndef KEYPAD4X4_HARDWARE
 #define KEYPAD4X4_HARDWARE
     #define KEYPAD4X4_R1_DDR        DDRC
