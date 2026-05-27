@@ -1,6 +1,5 @@
 // GitHub Account: GitHub.com/AliRezaJoodi
 
-#include "hardware.h"       /**< Project-level overrides */
 #include "mcp3204_port.h"
 #include "mcp3204.h"
 
@@ -9,7 +8,7 @@
 
 /********************************************************/
 void MCP3204_Init(MCP3204_t *mcp){
-    MCP3204_CS_ConfigOutput(mcp);
+    MCP3204_CS_ConfigAsOutput(mcp);
     //MCP3204_CS_Write(mcp, CS_IDLE);
     MCP3204_CS_SetIdle(mcp);
 }
