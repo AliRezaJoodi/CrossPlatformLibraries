@@ -1,5 +1,4 @@
 
-#include "hardware.h"			    /* Project-level overrides */
 #include "seg7_driver_port.h"
 #include "seg7_driver.h"
 
@@ -8,8 +7,8 @@ static uint8_t seg7_index = 0;      /* Current digit index for multiplex scannin
 
 /*********************************/
 void Seg7_Init(void){
-    Seg7_Digits_ConfigOutput();
-    Seg7_Segments_ConfigOutput();
+    Seg7_Digits_ConfigAsOutput();
+    Seg7_Segments_ConfigAsOutput();
     Seg7_Segments_Write(0x00U);
 }
 
