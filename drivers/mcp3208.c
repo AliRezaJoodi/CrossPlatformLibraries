@@ -1,6 +1,5 @@
 // GitHub Account: GitHub.com/AliRezaJoodi
 
-#include "hardware.h"       /**< Project-level overrides */
 #include "mcp3208_port.h"
 #include "mcp3208.h"
 
@@ -9,7 +8,7 @@
 
 /********************************************************/
 void MCP3208_Init(MCP3208_t *mcp){
-    MCP3208_CS_ConfigOutput(mcp);
+    MCP3208_CS_ConfigAsOutput(mcp);
     //MCP3208_CS_Write(mcp, CS_IDLE);
     MCP3208_CS_SetIdle(mcp);
 }
