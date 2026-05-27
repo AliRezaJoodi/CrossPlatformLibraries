@@ -1,7 +1,6 @@
 // GitHub Account: GitHub.com/AliRezaJoodi
 
 #include <stdint.h>
-#include "hardware.h"
 #include "keypad4x4_port.h"
 #include "keypad4x4.h"
 
@@ -31,16 +30,16 @@ uint8_t Keypad4x4_GetKey(void){
     uint8_t number = 0xFFU;
     uint8_t rows = 0U, cols = 0U;
 
-    Keypad4x4_R1_ConfigOutput();
+    Keypad4x4_R1_ConfigAsOutput();
     Keypad4x4_R1_Clear();
 
-    Keypad4x4_R2_ConfigOutput();
+    Keypad4x4_R2_ConfigAsOutput();
     Keypad4x4_R2_Clear();
 
-    Keypad4x4_R3_ConfigOutput();
+    Keypad4x4_R3_ConfigAsOutput();
     Keypad4x4_R3_Clear();
 
-    Keypad4x4_R4_ConfigOutput();
+    Keypad4x4_R4_ConfigAsOutput();
     Keypad4x4_R4_Clear();
 
     cols |= (!Keypad4x4_C1_Read());
@@ -50,28 +49,28 @@ uint8_t Keypad4x4_GetKey(void){
 
     cols = table_ctz4[cols & 0x0F];
 
-    Keypad4x4_R1_ConfigInput();
-    Keypad4x4_R1_ConfigPullUp();
+    Keypad4x4_R1_ConfigAsInput();
+    Keypad4x4_R1_ConfigAsPullUp();
 
-    Keypad4x4_R2_ConfigInput();
-    Keypad4x4_R2_ConfigPullUp();
+    Keypad4x4_R2_ConfigAsInput();
+    Keypad4x4_R2_ConfigAsPullUp();
 
-    Keypad4x4_R3_ConfigInput();
-    Keypad4x4_R3_ConfigPullUp();
+    Keypad4x4_R3_ConfigAsInput();
+    Keypad4x4_R3_ConfigAsPullUp();
 
-    Keypad4x4_R4_ConfigInput();
-    Keypad4x4_R4_ConfigPullUp();
+    Keypad4x4_R4_ConfigAsInput();
+    Keypad4x4_R4_ConfigAsPullUp();
 
-    Keypad4x4_C1_ConfigOutput();
+    Keypad4x4_C1_ConfigAsOutput();
     Keypad4x4_C1_Clear();
 
-    Keypad4x4_C2_ConfigOutput();
+    Keypad4x4_C2_ConfigAsOutput();
     Keypad4x4_C2_Clear();
 
-    Keypad4x4_C3_ConfigOutput();
+    Keypad4x4_C3_ConfigAsOutput();
     Keypad4x4_C3_Clear();
 
-    Keypad4x4_C4_ConfigOutput();
+    Keypad4x4_C4_ConfigAsOutput();
     Keypad4x4_C4_Clear();
 
     rows |= (!Keypad4x4_R1_Read());
@@ -81,17 +80,17 @@ uint8_t Keypad4x4_GetKey(void){
 
     rows = table_ctz4[rows & 0x0F];
 
-    Keypad4x4_C1_ConfigInput();
-    Keypad4x4_C1_ConfigPullUp();
+    Keypad4x4_C1_ConfigAsInput();
+    Keypad4x4_C1_ConfigAsPullUp();
 
-    Keypad4x4_C2_ConfigInput();
-    Keypad4x4_C2_ConfigPullUp();
+    Keypad4x4_C2_ConfigAsInput();
+    Keypad4x4_C2_ConfigAsPullUp();
 
-    Keypad4x4_C3_ConfigInput();
-    Keypad4x4_C3_ConfigPullUp();
+    Keypad4x4_C3_ConfigAsInput();
+    Keypad4x4_C3_ConfigAsPullUp();
 
-    Keypad4x4_C4_ConfigInput();
-    Keypad4x4_C4_ConfigPullUp();
+    Keypad4x4_C4_ConfigAsInput();
+    Keypad4x4_C4_ConfigAsPullUp();
 
     return (cols << 2) | rows;
 }
