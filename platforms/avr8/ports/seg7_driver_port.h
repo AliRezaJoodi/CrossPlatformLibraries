@@ -17,7 +17,7 @@ extern "C" {
  * Initializes only the digits defined by SEG7_DIGITS_COUNT.
  * Unused digit pins are excluded at compile time.
  */
-static inline void Seg7_Digits_ConfigOutput(void){
+static inline void Seg7_Digits_ConfigAsOutput(void){
     #if SEG7_DIGITS_COUNT > 0
         SetBitMask_Reg8(&SEG7_DIGIT0_DDR, SEG7_DIGIT0_MASK);
     #endif
@@ -302,7 +302,7 @@ static inline void Seg7_Digit_Set(const uint8_t index){
  * each segment individually to drive the display.
  *
  */
-static inline void Seg7_Segments_ConfigOutput(void){
+static inline void Seg7_Segments_ConfigAsOutput(void){
     SetBitMask_Reg8(&SEG7_A_DDR, SEG7_A_MASK);
     SetBitMask_Reg8(&SEG7_B_DDR, SEG7_B_MASK);
     SetBitMask_Reg8(&SEG7_C_DDR, SEG7_C_MASK);
@@ -323,18 +323,17 @@ static inline void Seg7_Segments_ConfigOutput(void){
  */
 static inline void Seg7_Segments_Write(uint8_t buf){
     #if (SEG7_SEGMENTS_ACTIVATE == 0U)
-    buf = (uint8_t)~buf;
+        buf = (uint8_t)~buf;
     #endif
 
-
-    WriteBit_Reg8(&SEG7_A_PORT, SEG7_A_BIT, GetBitMask_u8(buf, 0x01));
-    WriteBit_Reg8(&SEG7_B_PORT, SEG7_B_BIT, GetBitMask_u8(buf, 0x02));
-    WriteBit_Reg8(&SEG7_C_PORT, SEG7_C_BIT, GetBitMask_u8(buf, 0x04));
-    WriteBit_Reg8(&SEG7_D_PORT, SEG7_D_BIT, GetBitMask_u8(buf, 0x08));
-    WriteBit_Reg8(&SEG7_E_PORT, SEG7_E_BIT, GetBitMask_u8(buf, 0x10));
-    WriteBit_Reg8(&SEG7_F_PORT, SEG7_F_BIT, GetBitMask_u8(buf, 0x20));
-    WriteBit_Reg8(&SEG7_G_PORT, SEG7_G_BIT, GetBitMask_u8(buf, 0x40));
-    WriteBit_Reg8(&SEG7_DP_PORT, SEG7_DP_BIT, GetBitMask_u8(buf, 0x80));
+    WriteBit_Reg8(&SEG7_A_PORT, SEG7_A_BIT, IsBitMaskSet_u8(buf, 0x01));
+    WriteBit_Reg8(&SEG7_B_PORT, SEG7_B_BIT, IsBitMaskSet_u8(buf, 0x02));
+    WriteBit_Reg8(&SEG7_C_PORT, SEG7_C_BIT, IsBitMaskSet_u8(buf, 0x04));
+    WriteBit_Reg8(&SEG7_D_PORT, SEG7_D_BIT, IsBitMaskSet_u8(buf, 0x08));
+    WriteBit_Reg8(&SEG7_E_PORT, SEG7_E_BIT, IsBitMaskSet_u8(buf, 0x10));
+    WriteBit_Reg8(&SEG7_F_PORT, SEG7_F_BIT, IsBitMaskSet_u8(buf, 0x20));
+    WriteBit_Reg8(&SEG7_G_PORT, SEG7_G_BIT, IsBitMaskSet_u8(buf, 0x40));
+    WriteBit_Reg8(&SEG7_DP_PORT, SEG7_DP_BIT, IsBitMaskSet_u8(buf, 0x80));
 }
 
 #ifdef __cplusplus

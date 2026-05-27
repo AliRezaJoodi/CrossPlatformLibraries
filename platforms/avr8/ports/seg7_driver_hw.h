@@ -1,6 +1,7 @@
 #ifndef SEG7_DRIVER_HW_INCLUDED
 #define SEG7_DRIVER_HW_INCLUDED
 
+#include "hardware.h"			    /* Project-level overrides */
 
 #ifndef SEG7_DRIVER_HARDWARE
 #define SEG7_DRIVER_HARDWARE
