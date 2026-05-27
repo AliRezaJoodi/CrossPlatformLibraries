@@ -52,15 +52,15 @@ static inline void QEI_ResetCount(QEI_t *qei){
 
 #if (QEI_Z == 1U)
 static inline void QEI_SetIndexFlag(QEI_t *qei){
-    qei->index = 1;
+    qei->flag = 1;
 }
 
 static inline void QEI_ClearIndexFlag(QEI_t *qei){
-    qei->index = 0;
+    qei->flag = 0;
 }
 
 static inline uint8_t QEI_GetIndexFlag(const QEI_t *qei){
-    return qei->index;
+    return qei->flag;
 }
 #endif
 
