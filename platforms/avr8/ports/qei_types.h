@@ -6,6 +6,7 @@ extern "C" {
 #endif
 
 #include <stdint.h>
+#include "qei_hw.h"
 
 typedef struct {
     volatile uint8_t    *ddr;      /**< Data Direction Register */
@@ -27,7 +28,7 @@ typedef struct {
     uint8_t             last;
 
     #if (QEI_Z == 1U)
-    uint8_t             index;
+    uint8_t             flag;
     #endif
 } QEI_t;
 

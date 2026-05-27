@@ -1,6 +1,8 @@
 #ifndef QEI_HW_INCLUDED
 #define QEI_HW_INCLUDED
 
+#include "hardware.h"   /* Project-level overrides */
+
 #ifndef QEI_HARDWARE
 #define QEI_HARDWARE
     #define QEI_PULL_UP             0U  /**< Internal pull-up resistor (0: disabled, 1: enabled) */
