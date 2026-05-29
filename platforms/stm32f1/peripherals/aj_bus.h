@@ -1,3 +1,18 @@
+/**
+ * @brief   Bus clock and reset control interface for STM32 peripherals.
+ *
+ * This file provides helper APIs for managing peripheral bus control registers, including:
+ * - RCC->AHBENR
+ * - RCC->APB1ENR
+ * - RCC->APB2ENR
+ * - RCC->AHBRSTR
+ * - RCC->APB1RSTR
+ * - RCC->APB2RSTR
+ *
+ * @author  AliReza Joodi
+ * @see     https://github.com/AliRezaJoodi
+ */
+
 #ifndef AJ_BUS_INCLUDED
 #define AJ_BUS_INCLUDED
 
