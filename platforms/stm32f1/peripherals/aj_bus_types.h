@@ -1,0 +1,194 @@
+#ifndef AJ_BUS_TYPE_INCLUDED
+#define AJ_BUS_TYPE_INCLUDED
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+	
+#include <stdint.h>
+#include <stm32f1xx.h>
+
+typedef enum {
+	AJ_BUS_DISABLE = 0U,
+	AJ_BUS_ENABLE  = 1U
+} AJ_BUS_ClockEnableStatus_t;
+
+typedef enum {
+	AJ_BUS_RELEASE = 0U, 
+	AJ_BUS_ASSERT  = 1U 
+} AJ_BUS_ResetStatus_t;
+
+typedef enum {
+	#if defined(RCC_AHBENR_DMA1EN)
+	AJ_BUS_AHB_DMA1       = RCC_AHBENR_DMA1EN_Pos,
+	#endif
+
+	#if defined(RCC_AHBENR_DMA2EN)
+	AJ_BUS_AHB_DMA2       = RCC_AHBENR_DMA2EN_Pos,
+	#endif
+
+	#if defined(RCC_AHBENR_SRAMEN)
+	AJ_BUS_AHB_SRAM       = RCC_AHBENR_SRAMEN_Pos,
+	#endif
+
+	#if defined(RCC_AHBENR_FLITFEN)
+	AJ_BUS_AHB_FLITF      = RCC_AHBENR_FLITFEN_Pos,
+	#endif
+
+	#if defined(RCC_AHBENR_CRCEN)
+	AJ_BUS_AHB_CRC        = RCC_AHBENR_CRCEN_Pos,
+	#endif
+
+	#if defined(RCC_AHBENR_OTGFSEN)
+	AJ_BUS_AHB_OTGFS      = RCC_AHBENR_OTGFSEN_Pos,
+	#endif
+
+	#if defined(RCC_AHBENR_ETHMACEN)
+	AJ_BUS_AHB_ETHMAC     = RCC_AHBENR_ETHMACEN_Pos,
+	#endif
+
+	#if defined(RCC_AHBENR_ETHMACTXEN)
+	AJ_BUS_AHB_ETHMACTX   = RCC_AHBENR_ETHMACTXEN_Pos,
+	#endif
+
+	#if defined(RCC_AHBENR_ETHMACRXEN)
+	AJ_BUS_AHB_ETHMACRX   = RCC_AHBENR_ETHMACRXEN_Pos
+	#endif
+
+} AJ_BUS_AHB_Periph_t;
+
+typedef enum {
+	#if defined(RCC_APB1ENR_TIM2EN)
+	AJ_BUS_APB1_TIM2   = RCC_APB1ENR_TIM2EN_Pos,
+	#endif
+
+	#if defined(RCC_APB1ENR_TIM3EN)
+	AJ_BUS_APB1_TIM3   = RCC_APB1ENR_TIM3EN_Pos,
+	#endif
+
+	#if defined(RCC_APB1ENR_TIM4EN)
+	AJ_BUS_APB1_TIM4   = RCC_APB1ENR_TIM4EN_Pos,
+	#endif
+
+	#if defined(RCC_APB1ENR_TIM5EN)
+	AJ_BUS_APB1_TIM5   = RCC_APB1ENR_TIM5EN_Pos,
+	#endif
+
+	#if defined(RCC_APB1ENR_TIM6EN)
+	AJ_BUS_APB1_TIM6   = RCC_APB1ENR_TIM6EN_Pos,
+	#endif
+
+	#if defined(RCC_APB1ENR_TIM7EN)
+	AJ_BUS_APB1_TIM7   = RCC_APB1ENR_TIM7EN_Pos,
+	#endif
+
+	#if defined(RCC_APB1ENR_WWDGEN)
+	AJ_BUS_APB1_WWDG   = RCC_APB1ENR_WWDGEN_Pos,
+	#endif
+
+	#if defined(RCC_APB1ENR_SPI2EN)
+	AJ_BUS_APB1_SPI2   = RCC_APB1ENR_SPI2EN_Pos,
+	#endif
+
+	#if defined(RCC_APB1ENR_SPI3EN)
+	AJ_BUS_APB1_SPI3   = RCC_APB1ENR_SPI3EN_Pos,
+	#endif
+
+	#if defined(RCC_APB1ENR_USART2EN)
+	AJ_BUS_APB1_USART2 = RCC_APB1ENR_USART2EN_Pos,
+	#endif
+
+	#if defined(RCC_APB1ENR_USART3EN)
+	AJ_BUS_APB1_USART3 = RCC_APB1ENR_USART3EN_Pos,
+	#endif
+
+	#if defined(RCC_APB1ENR_UART4EN)
+	AJ_BUS_APB1_UART4  = RCC_APB1ENR_UART4EN_Pos,
+	#endif
+
+	#if defined(RCC_APB1ENR_UART5EN)
+	AJ_BUS_APB1_UART5  = RCC_APB1ENR_UART5EN_Pos,
+	#endif
+
+	#if defined(RCC_APB1ENR_I2C1EN)
+	AJ_BUS_APB1_I2C1   = RCC_APB1ENR_I2C1EN_Pos,
+	#endif
+
+	#if defined(RCC_APB1ENR_I2C2EN)
+	AJ_BUS_APB1_I2C2   = RCC_APB1ENR_I2C2EN_Pos,
+	#endif
+
+	#if defined(RCC_APB1ENR_USBEN)
+	AJ_BUS_APB1_USB    = RCC_APB1ENR_USBEN_Pos,
+	#endif
+
+	#if defined(RCC_APB1ENR_CAN1EN)
+	AJ_BUS_APB1_CAN1   = RCC_APB1ENR_CAN1EN_Pos,
+	#endif
+
+	#if defined(RCC_APB1ENR_CAN2EN)
+	AJ_BUS_APB1_CAN2   = RCC_APB1ENR_CAN2EN_Pos,
+	#endif
+
+	#if defined(RCC_APB1ENR_BKPEN)
+	AJ_BUS_APB1_BKP    = RCC_APB1ENR_BKPEN_Pos,
+	#endif
+
+	#if defined(RCC_APB1ENR_PWREN)
+	AJ_BUS_APB1_PWR    = RCC_APB1ENR_PWREN_Pos,
+	#endif
+
+	#if defined(RCC_APB1ENR_DACEN)
+	AJ_BUS_APB1_DAC    = RCC_APB1ENR_DACEN_Pos
+	#endif
+
+} AJ_BUS_APB1_Periph_t;
+
+typedef enum {
+	#if defined(RCC_APB2ENR_AFIOEN)
+	AJ_BUS_APB2_AFIO   = RCC_APB2ENR_AFIOEN_Pos,
+	#endif
+
+	#if defined(RCC_APB2ENR_IOPAEN)
+	AJ_BUS_APB2_GPIOA  = RCC_APB2ENR_IOPAEN_Pos,
+	#endif
+
+	#if defined(RCC_APB2ENR_IOPBEN)
+	AJ_BUS_APB2_GPIOB  = RCC_APB2ENR_IOPBEN_Pos,
+	#endif
+
+	#if defined(RCC_APB2ENR_IOPCEN)
+	AJ_BUS_APB2_GPIOC  = RCC_APB2ENR_IOPCEN_Pos,
+	#endif
+
+	#if defined(RCC_APB2ENR_IOPDEN)
+	AJ_BUS_APB2_GPIOD  = RCC_APB2ENR_IOPDEN_Pos,
+	#endif
+
+	#if defined(RCC_APB2ENR_IOPEEN)
+	AJ_BUS_APB2_GPIOE  = RCC_APB2ENR_IOPEEN_Pos,
+	#endif
+
+	#if defined(RCC_APB2ENR_ADC1EN)
+	AJ_BUS_APB2_ADC1   = RCC_APB2ENR_ADC1EN_Pos,
+	#endif
+
+	#if defined(RCC_APB2ENR_ADC2EN)
+	AJ_BUS_APB2_ADC2   = RCC_APB2ENR_ADC2EN_Pos,
+	#endif
+
+	#if defined(RCC_APB2ENR_TIM1EN)
+	AJ_BUS_APB2_TIM1   = RCC_APB2ENR_TIM1EN_Pos,
+	#endif
+
+	#if defined(RCC_APB2ENR_SPI1EN)
+	AJ_BUS_APB2_SPI1   = RCC_APB2ENR_SPI1EN_Pos,
+	#endif
+
+	#if defined(RCC_APB2ENR_USART1EN)
+	AJ_BUS_APB2_USART1 = RCC_APB2ENR_USART1EN_Pos
+	#endif
+
+} AJ_BUS_APB2_Periph_t;
+
+#endif  /* AJ_BUS_TYPE_INCLUDED */
