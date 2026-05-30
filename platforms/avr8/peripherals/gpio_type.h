@@ -18,41 +18,41 @@ typedef enum {
 } GPIO_Pull_t;
 
 typedef enum{
-    GPIO_PIN_0  = 0U,
-    GPIO_PIN_1  = 1U,
-    GPIO_PIN_2  = 2U,
-    GPIO_PIN_3  = 3U,
-    GPIO_PIN_4  = 4U,
-    GPIO_PIN_5  = 5U,
-    GPIO_PIN_6  = 6U,
-    GPIO_PIN_7  = 7U,
-    GPIO_PIN_8  = 8U,
-    GPIO_PIN_9  = 9U,
-    GPIO_PIN_10 = 10U,
-    GPIO_PIN_11 = 11U,
-    GPIO_PIN_12 = 12U,
-    GPIO_PIN_13 = 13U,
-    GPIO_PIN_14 = 14U,
-    GPIO_PIN_15 = 15U
-} GPIO_Pin_t;
+    GPIO_PIN_0_POS  = 0U,
+    GPIO_PIN_1_POS  = 1U,
+    GPIO_PIN_2_POS  = 2U,
+    GPIO_PIN_3_POS  = 3U,
+    GPIO_PIN_4_POS  = 4U,
+    GPIO_PIN_5_POS  = 5U,
+    GPIO_PIN_6_POS  = 6U,
+    GPIO_PIN_7_POS  = 7U,
+    GPIO_PIN_8_POS  = 8U,
+    GPIO_PIN_9_POS  = 9U,
+    GPIO_PIN_10_POS = 10U,
+    GPIO_PIN_11_POS = 11U,
+    GPIO_PIN_12_POS = 12U,
+    GPIO_PIN_13_POS = 13U,
+    GPIO_PIN_14_POS = 14U,
+    GPIO_PIN_15_POS = 15U
+} GPIO_PinPos_t;
 
 typedef enum{
-    GPIO_PINMASK_0  = (1UL << 0),
-    GPIO_PINMASK_1  = (1UL << 1),
-    GPIO_PINMASK_2  = (1UL << 2),
-    GPIO_PINMASK_3  = (1UL << 3),
-    GPIO_PINMASK_4  = (1UL << 4),
-    GPIO_PINMASK_5  = (1UL << 5),
-    GPIO_PINMASK_6  = (1UL << 6),
-    GPIO_PINMASK_7  = (1UL << 7),
-    GPIO_PINMASK_8  = (1UL << 8),
-    GPIO_PINMASK_9  = (1UL << 9),
-    GPIO_PINMASK_10 = (1UL << 10),
-    GPIO_PINMASK_11 = (1UL << 11),
-    GPIO_PINMASK_12 = (1UL << 12),
-    GPIO_PINMASK_13 = (1UL << 13),
-	GPIO_PINMASK_14 = (1UL << 14),
-	GPIO_PINMASK_15 = (1UL << 15)
+	GPIO_PIN_0_MASK  = (1UL << GPIO_PIN_0_POS),
+	GPIO_PIN_1_MASK  = (1UL << GPIO_PIN_1_POS),
+	GPIO_PIN_2_MASK  = (1UL << GPIO_PIN_2_POS),
+	GPIO_PIN_3_MASK  = (1UL << GPIO_PIN_3_POS),
+	GPIO_PIN_4_MASK  = (1UL << GPIO_PIN_4_POS),
+	GPIO_PIN_5_MASK  = (1UL << GPIO_PIN_5_POS),
+	GPIO_PIN_6_MASK  = (1UL << GPIO_PIN_6_POS),
+	GPIO_PIN_7_MASK  = (1UL << GPIO_PIN_7_POS),
+	GPIO_PIN_8_MASK  = (1UL << GPIO_PIN_8_POS),
+	GPIO_PIN_9_MASK  = (1UL << GPIO_PIN_9_POS),
+	GPIO_PIN_10_MASK = (1UL << GPIO_PIN_10_POS),
+	GPIO_PIN_11_MASK = (1UL << GPIO_PIN_11_POS),
+	GPIO_PIN_12_MASK = (1UL << GPIO_PIN_12_POS),
+	GPIO_PIN_13_MASK = (1UL << GPIO_PIN_13_POS),
+	GPIO_PIN_14_MASK = (1UL << GPIO_PIN_14_POS),
+	GPIO_PIN_15_MASK = (1UL << GPIO_PIN_15_POS)
 } GPIO_PinMask_t;
 
 typedef struct {
