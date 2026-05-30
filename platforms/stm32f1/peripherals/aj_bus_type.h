@@ -4,8 +4,8 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-	
-#include <stdint.h>
+
+
 #include <stm32f1xx.h>
 
 typedef enum {
@@ -190,5 +190,10 @@ typedef enum {
 	#endif
 
 } AJ_BUS_APB2_Periph_t;
+
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif  /* AJ_BUS_TYPE_INCLUDED */

@@ -23,7 +23,7 @@ extern "C" {
 #include <stdint.h>
 #include <stm32f1xx.h>	
 #include "bit_register32.h"
-#include "aj_bus_types.h"
+#include "aj_bus_type.h"
 
 /**
  * @brief  Enable or disable the clock of an AHB peripheral.
