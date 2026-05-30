@@ -1,9 +1,21 @@
+// GitHub Account:  GitHub.com/AliRezaJoodi
+
 #ifndef GPIO_TYPE_INCLUDED
 #define GPIO_TYPE_INCLUDED
 
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+typedef enum {
+    GPIO_DIR_INPUT  = 0U,
+    GPIO_DIR_OUTPUT = 1U
+} GPIO_Direction_t;
+
+typedef enum {
+	GPIO_PULL_NONE = 0U,
+	GPIO_PULL_UP   = 1U
+} GPIO_Pull_t;
 
 typedef enum{
     GPIO_PIN_0  = 0U,
@@ -47,22 +59,10 @@ typedef struct {
     volatile uint8_t    *pin;      /**< Pin register */
     volatile uint8_t    *ddr;      /**< Data Direction Register */
     volatile uint8_t    *port;     /**< Port register */
-} GPIO_TypeDef;
-
-/**
- * @example
- * Example: initializing a structure
- * @code
- *     static const GPIO_TypeDef GPIOA = {
- *         .pin   = &PINA,
- *         .ddr   = &DDRA,
- *         .port  = &PORTA,
- *     };
- * @endcode
- */
+} GPIO_PortReg_t;
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif
+#endif  /* GPIO_TYPE_INCLUDED */
