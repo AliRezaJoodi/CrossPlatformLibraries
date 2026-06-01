@@ -39,26 +39,29 @@ static inline void ToggleBit_Reg32(volatile uint32_t *reg, uint32_t pos){
 //***********************************************************************
 /* mask must not be 0 */
 static inline void WriteBitField_Reg32(volatile uint32_t *reg, uint32_t mask, uint32_t value){
-#if defined(__GNUC__) || defined(__clang__)
-    if (mask == 0U){return;}
+    #if defined(__GNUC__) || defined(__clang__)
+        if (mask == 0U){return;}
 
-    *reg = 	(*reg & ~mask) |
-						((value << __builtin_ctz(mask)) & mask);
-#else
-    uint32_t shift = 0U;
-    uint32_t temp  = mask;
+        *reg =  (uint32_t)(
+                (*reg & ~mask) |
+                ((value << __builtin_ctz(mask)) & mask)
+                );
+    #else
+        uint32_t shift = 0U;
+        uint32_t temp  = mask;
 
-    if (mask == 0U){return;}
+        if (mask == 0U){return;}
 
-    while((temp & 0x01U) == 0U){
-        temp >>= 1U;
-        ++shift;
-    }
+        while((temp & 0x01U) == 0U){
+            temp >>= 1U;
+            ++shift;
+        }
 
-    *reg =
-        (*reg & ~mask) |
-        ((value << shift) & mask);
-#endif
+        *reg =  (uint8_t)(
+                (*reg & ~mask) |
+                ((value << shift) & mask)
+                );
+    #endif
 }
 
 static inline void WriteBit_Reg32(volatile uint32_t *reg, uint32_t pos, uint32_t status){
@@ -120,27 +123,27 @@ static inline void Write8Bit_Reg32(volatile uint32_t *reg, uint32_t pos, uint32_
 //***********************************************************************
 /* mask must not be 0 */
 static inline uint32_t GetBitField_Reg32(volatile uint32_t *reg, uint32_t mask){
-#if defined(__GNUC__) || defined(__clang__)
-    if(mask == 0U){return 0U;}
+    #if defined(__GNUC__) || defined(__clang__)
+        if(mask == 0U){return 0U;}
 
-    return (uint32_t)((*reg & mask) >> __builtin_ctz(mask));
-#else
-    uint32_t shift     = 0U;
-    uint32_t fieldMask = mask;
+        return (uint32_t)((*reg & mask) >> __builtin_ctz(mask));
+    #else
+        uint8_t shift = 0U;
+        uint32_t scan = mask;
 
-    if(mask == 0U){return 0U;}
+        if(mask == 0U){return 0U;}
 
-    while((fieldMask & 1U) == 0U){
-        fieldMask >>= 1U;
-        ++shift;
-    }
+        while((scan & 1U) == 0U){
+            scan >>= 1U;
+            ++shift;
+        }
 
-    return (uint32_t)((*reg & mask) >> shift);
-#endif
+        return (uint32_t)((*reg & mask) >> shift);
+    #endif
 }
 
 static inline uint8_t IsBitMaskSet_Reg32(volatile uint32_t *reg, uint32_t mask){
-    return (uint8_t)(((*reg) & mask) != 0UL);
+    return (uint8_t)(((*reg) & mask) == mask);
 }
 
 static inline uint8_t GetBit_Reg32(volatile uint32_t *reg, uint32_t pos){

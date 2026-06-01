@@ -26,7 +26,7 @@ static inline void WriteBitField_Reg8(volatile uint8_t *reg, uint8_t mask, uint8
     if (mask == 0U){return;}
 
     while((temp & 0x01U) == 0U){
-        temp >>= 1;
+        temp >>= 1U;
         ++shift;
     }
 
