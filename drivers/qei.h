@@ -9,7 +9,7 @@ extern "C" {
 #endif
 
 #include <stdint.h>
-#include "qei_types.h"
+#include "qei_type.h"
 #include "qei_port.h"
 
 static const int8_t qei_table[16] = {

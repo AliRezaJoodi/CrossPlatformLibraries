@@ -1,5 +1,5 @@
-#ifndef MCP3208_TYPES_INCLUDED
-#define MCP3208_TYPES_INCLUDED
+#ifndef MCP3204_TYPE_INCLUDED
+#define MCP3204_TYPE_INCLUDED
 
 #ifdef __cplusplus
 extern "C" {
@@ -8,9 +8,9 @@ extern "C" {
 #include <stdint.h>
 
 /**
- * @brief   GPIO representation for a single MCP3208 pin
+ * @brief   GPIO representation for a single MCP3204 pin
  *
- * This struct maps a microcontroller pin for use by the MCP3208 driver.
+ * This struct maps a microcontroller pin for use by the MCP3204 driver.
  * It contains pointers to the DDR and PORT registers, and the bit index
  * of the pin within those registers.
  *
@@ -21,27 +21,27 @@ typedef struct {
     volatile uint8_t *port;     /**< PORT register for this pin */
     //const uint8_t     index;    /**< Bit position within DDR/PORT (0..7) */
     const uint8_t     mask;
-} MCP3208_Pin_t;
+} MCP3204_Pin_t;
 
 /**
- * @brief   MCP3208 instance structure
+ * @brief   MCP3204 instance structure
  *
  * Contains all pins used by a single MCP3201 device.
  */
 typedef struct {
-    const MCP3208_Pin_t cs;       /**< Chip Select pin */
-} MCP3208_t;
+    const MCP3204_Pin_t cs;       /**< Chip Select pin */
+} MCP3204_t;
 
 /**
  * @example
  * Example: initializing a structure
  *
  * @code
- *    static const MCP3208_t mcp1 = {
+ *    static const MCP3204_t mcp1 = {
  *        .cs = {
- *            .ddr   = &MCP3208_CS_DDR,
- *            .port  = &MCP3208_CS_PORT,
- *            .mask = MCP3208_CS_MASK
+ *            .ddr   = &MCP3204_CS_DDR,
+ *            .port  = &MCP3204_CS_PORT,
+ *            .mask = MCP3204_CS_MASK
  *        }
  *    };
  * @endcode

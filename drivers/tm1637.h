@@ -20,7 +20,7 @@ extern "C" {
 #endif
 
 #include <stdint.h>
-#include "tm1637_types.h"
+#include "tm1637_type.h"
 
 /**
  * @brief Half bit delay time in microseconds.

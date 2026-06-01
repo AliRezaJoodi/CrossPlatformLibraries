@@ -24,7 +24,7 @@
 #define MCP4822_INCLUDED
 
 #include <stdint.h>
-#include "mcp4822_types.h"
+#include "mcp4822_type.h"
 
 typedef enum {
     MCP4822_CH_A = 0U,

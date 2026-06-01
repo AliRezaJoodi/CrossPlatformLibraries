@@ -49,7 +49,7 @@ extern "C" {
 #include "compiler_port.h"
 #include "bit_register8.h"
 #include "mcp3204_hw.h"
-#include "mcp3204_types.h"
+#include "mcp3204_type.h"
 
 /**
  * @brief Initialize MCP3204 CS pin (output, idle high)

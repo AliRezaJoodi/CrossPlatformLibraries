@@ -1,5 +1,5 @@
-#ifndef TM1637_TYPES_INCLUDED
-#define TM1637_TYPES_INCLUDED
+#ifndef TM1637_TYPE_INCLUDED
+#define TM1637_TYPE_INCLUDED
 
 #ifdef __cplusplus
 extern "C" {

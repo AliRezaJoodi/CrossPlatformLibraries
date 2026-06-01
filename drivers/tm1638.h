@@ -24,7 +24,7 @@ extern "C" {
 #endif
 
 #include <stdint.h>
-#include "tm1638_types.h"
+#include "tm1638_type.h"
 
 /**
  * @brief Bit delay time in microseconds.

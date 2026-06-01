@@ -50,7 +50,7 @@ extern "C" {
 #include "compiler_port.h"
 #include "bit_register8.h"
 #include "mcp3208_hw.h"
-#include "mcp3208_types.h"
+#include "mcp3208_type.h"
 
 /**
  * @brief Initialize MCP3208 CS pin (output, idle high)

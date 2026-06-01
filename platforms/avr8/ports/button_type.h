@@ -1,5 +1,5 @@
-#ifndef BUTTON_TYPES_INCLUDED
-#define BUTTON_TYPES_INCLUDED
+#ifndef BUTTON_TYPE_INCLUDED
+#define BUTTON_TYPE_INCLUDED
 
 #ifdef __cplusplus
 extern "C" {

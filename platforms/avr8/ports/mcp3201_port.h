@@ -55,7 +55,7 @@ extern "C" {
 #include "compiler_port.h"
 #include "bit_register8.h"
 #include "mcp3201_hw.h"
-#include "mcp3201_types.h"
+#include "mcp3201_type.h"
 
 /**
  * @brief Initialize MCP3201 CS pin (output)

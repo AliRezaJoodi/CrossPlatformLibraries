@@ -30,7 +30,7 @@ extern "C" {
 #endif
 
 #include <stdint.h>
-#include "mcp3204_types.h"
+#include "mcp3204_type.h"
 
 /**
  * @brief Defines MCP3204 Channels.

@@ -1,5 +1,5 @@
-#ifndef QEI_TYPES_INCLUDED
-#define QEI_TYPES_INCLUDED
+#ifndef QEI_TYPE_INCLUDED
+#define QEI_TYPE_INCLUDED
 
 #ifdef __cplusplus
 extern "C" {

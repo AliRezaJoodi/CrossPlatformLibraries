@@ -26,7 +26,7 @@ extern "C" {
 #include "compiler_port.h"
 #include "bit_register8.h"
 #include "button_hw.h"
-#include "button_types.h"
+#include "button_type.h"
 
 #define BUTTON_DELAY_US(VALUE)      DELAY_US(VALUE)
 

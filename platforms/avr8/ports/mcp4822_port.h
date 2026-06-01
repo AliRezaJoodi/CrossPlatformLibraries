@@ -49,7 +49,7 @@ extern "C" {
 #include "compiler_port.h"
 #include "bit_register.h"
 #include "mcp4822_hw.h"
-#include "mcp4822_types.h"
+#include "mcp4822_type.h"
 
 #define MCP4822_DELAY_US(us) DELAY_US(us)
 

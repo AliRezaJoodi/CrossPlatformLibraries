@@ -50,7 +50,7 @@ extern "C" {
 #include "compiler_port.h"
 #include "bit_register8.h"
 #include "mcp3202_hw.h"
-#include "mcp3202_types.h"
+#include "mcp3202_type.h"
 
 /**
  * @brief Initialize MCP3202 CS pin (output, idle high)

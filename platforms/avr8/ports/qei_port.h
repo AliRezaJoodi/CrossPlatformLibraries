@@ -9,7 +9,7 @@ extern "C" {
 #include "compiler_port.h"
 #include "bit_register8.h"
 #include "qei_hw.h"
-#include "qei_types.h"
+#include "qei_type.h"
 
 //*************************************************
 static inline void QEI_A_ConfigAsInput(const QEI_t *qei){

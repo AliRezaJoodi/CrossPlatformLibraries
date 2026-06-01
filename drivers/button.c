@@ -2,7 +2,7 @@
 
 #include <stdint.h>
 #include "timebase.h"
-#include "button_types.h"
+#include "button_type.h"
 #include "button_port.h"
 #include "button.h"
 

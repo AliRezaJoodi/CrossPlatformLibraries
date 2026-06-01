@@ -1,5 +1,5 @@
-#ifndef MCP3202_TYPES_INCLUDED
-#define MCP3202_TYPES_INCLUDED
+#ifndef MCP3202_TYPE_INCLUDED
+#define MCP3202_TYPE_INCLUDED
 
 #ifdef __cplusplus
 extern "C" {

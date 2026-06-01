@@ -9,7 +9,7 @@ extern "C" {
 #include "compiler_port.h"
 #include "bit_register8.h"
 #include "tm1637_hw.h"
-#include "tm1637_types.h"
+#include "tm1637_type.h"
 
 #define TM1637_DELAY_US(VALUE)          DELAY_US(VALUE)
 

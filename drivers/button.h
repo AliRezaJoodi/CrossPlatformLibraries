@@ -23,7 +23,7 @@ extern "C" {
 #endif
 
 #include <stdint.h>
-#include "button_types.h"
+#include "button_type.h"
 
 /**
  * @brief Initialize a button object.

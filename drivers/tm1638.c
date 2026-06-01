@@ -2,7 +2,7 @@
 
 #include <stdint.h>
 #include "bit_value8.h"
-#include "tm1638_types.h"
+#include "tm1638_type.h"
 #include "tm1638_port.h"
 #include "tm1638.h"
 

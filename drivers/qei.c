@@ -1,7 +1,7 @@
 // GitHub Account: GitHub.com/AliRezaJoodi
 
 #include <stdint.h>
-#include "qei_types.h"
+#include "qei_type.h"
 #include "qei_port.h"
 #include "qei.h"
 

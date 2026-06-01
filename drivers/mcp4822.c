@@ -1,4 +1,4 @@
-#include "mcp4822_types.h"
+#include "mcp4822_type.h"
 #include "mcp4822_port.h"
 #include "mcp4822.h"
 

@@ -1,5 +1,5 @@
-#ifndef MCP4822_TYPES_INCLUDED
-#define MCP4822_TYPES_INCLUDED
+#ifndef MCP4822_TYPE_INCLUDED
+#define MCP4822_TYPE_INCLUDED
 
 #ifdef __cplusplus
 extern "C" {
