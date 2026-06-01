@@ -1,5 +1,9 @@
-// GitHub Account: GitHub.com/AliRezaJoodi
-/* Precondition: mask != 0. No runtime validation is performed. */
+/* Precondition:
+ * - mask must be non-zero
+ *
+ * @author  AliReza Joodi
+ * @see     https://github.com/AliRezaJoodi
+ */
 
 #ifndef AJ_BIT_REG_INCLUDED
 #define AJ_BIT_REG_INCLUDED
@@ -9,14 +13,15 @@ extern "C" {
 #endif
 
 #include <stdint.h>
+#include "aj_ctz.h"
 #include "aj_bit_reg_config.h"
 
 #if defined(AJ_BIT_REG_32BIT)
     typedef uint32_t AJ_BitReg_t;
+#elif defined(AJ_BIT_REG_16BIT)
+    typedef uint16_t AJ_BitReg_t;
 #elif defined(AJ_BIT_REG_8BIT)
     typedef uint8_t AJ_BitReg_t;
-#else
-    #error "One AJ_BIT_REG_CONFIG option must be selected."
 #endif
 
 //***********************************************************************
@@ -51,30 +56,21 @@ static inline void AJ_BitReg_ToggleBit_Position(volatile AJ_BitReg_t *reg, AJ_Bi
  * - mask must be non-zero
  * - mask should describe one contiguous bit-field
  */
-static inline void AJ_BitReg_WriteField_Mask(volatile AJ_BitReg_t *reg, AJ_BitReg_t mask, AJ_BitReg_t value){
-    #if defined(__GNUC__) || defined(__clang__)
-        if (mask == 0U){return;}
+ static inline void AJ_BitReg_WriteField_Mask(volatile AJ_BitReg_t *reg, AJ_BitReg_t mask, AJ_BitReg_t value){
+    uint8_t shift;
 
-        *reg =  (AJ_BitReg_t)(
-                (*reg & ~mask) |
-                ((value << __builtin_ctz(mask)) & mask)
-                );
-    #else
-        uint8_t shift = 0U;
-        AJ_BitReg_t temp  = mask;
-
-        if (mask == 0U){return;}
-
-        while((temp & 0x01U) == 0U){
-            temp >>= 1U;
-            ++shift;
-        }
-
-        *reg =  (AJ_BitReg_t)(
-                (*reg & ~mask) |
-                ((value << shift) & mask)
-                );
+    #if defined(AJ_BIT_REG_32BIT)
+        shift = AJ_CTZ_u32(mask);
+    #elif defined(AJ_BIT_REG_16BIT)
+        shift = AJ_CTZ_u16(mask);
+    #elif defined(AJ_BIT_REG_8BIT)
+        shift = AJ_CTZ_u8(mask);
     #endif
+
+    *reg =  (AJ_BitReg_t)(
+            (*reg & ~mask) |
+            ((value << shift) & mask)
+            );
 }
 
 static inline void AJ_BitReg_WriteBit_Position(volatile AJ_BitReg_t *reg, AJ_BitReg_t pos, AJ_BitReg_t status){
@@ -134,25 +130,22 @@ static inline void AJ_BitReg_Write8Bits_Position(volatile AJ_BitReg_t *reg, AJ_B
 }
 
 //***********************************************************************
-/* mask must not be 0 */
+/* Precondition:
+ * - mask must be non-zero
+ * - mask should describe one contiguous bit-field
+ */
 static inline AJ_BitReg_t AJ_BitReg_GetField_Mask(volatile AJ_BitReg_t *reg, AJ_BitReg_t mask){
-    #if defined(__GNUC__) || defined(__clang__)
-        if(mask == 0U){return 0U;}
+    uint8_t shift;
 
-        return (AJ_BitReg_t)((*reg & mask) >> __builtin_ctz(mask));
-    #else
-        uint8_t shift = 0U;
-        AJ_BitReg_t scan = mask;
-
-        if(mask == 0U){return 0U;}
-
-        while((scan & 1U) == 0U){
-            scan >>= 1U;
-            ++shift;
-        }
-
-        return (AJ_BitReg_t)((*reg & mask) >> shift);
+    #if defined(AJ_BIT_REG_32BIT)
+        shift = AJ_CTZ_u32(mask);
+    #elif defined(AJ_BIT_REG_16BIT)
+        shift = AJ_CTZ_u16(mask);
+    #elif defined(AJ_BIT_REG_8BIT)
+        shift = AJ_CTZ_u8(mask);
     #endif
+
+    return (AJ_BitReg_t)((*reg & mask) >> shift);
 }
 
 /* mask must not be 0 */

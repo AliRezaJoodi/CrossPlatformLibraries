@@ -12,6 +12,7 @@ extern "C" {
 /*
  * Choose ONLY ONE configuration below:
  * - AJ_BIT_REG_8BIT    (8-bit registers)
+ * - AJ_BIT_REG_16BIT    (8-bit registers)
  * - AJ_BIT_REG_32BIT   (32-bit registers)
  */
 #ifndef AJ_BIT_REG_CONFIG
@@ -22,14 +23,10 @@ extern "C" {
 #endif
 
 #if !defined(AJ_BIT_REG_8BIT) && \
+    !defined(AJ_BIT_REG_16BIT) && \
     !defined(AJ_BIT_REG_32BIT)
 
     #error "A valid AJ_BIT_REG_CONFIG option must be selected."
-#endif
-
-#if defined(AJ_BIT_REG_8BIT) && \
-    defined(AJ_BIT_REG_32BIT)
-    #error "Only one configuration option for AJ_BIT_REG_CONFIG may be selected."
 #endif
 
 #ifdef __cplusplus
