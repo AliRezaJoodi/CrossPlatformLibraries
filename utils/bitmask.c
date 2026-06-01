@@ -5,7 +5,7 @@ uint8_t BitMask_CTZ8(uint8_t mask){
     if (mask == 0U)
         return 8U;
 
-#if defined(__GNUC__)
+#if defined(__GNUC__) || defined(__clang__)
     return (uint8_t)__builtin_ctz((uint32_t)mask);
 #else
     uint8_t count = 0U;
