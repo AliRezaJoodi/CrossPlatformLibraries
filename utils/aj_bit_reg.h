@@ -47,7 +47,10 @@ static inline void AJ_BitReg_ToggleBit_Position(volatile AJ_BitReg_t *reg, AJ_Bi
 }
 
 //***********************************************************************
-/* mask must not be 0 */
+/* Precondition:
+ * - mask must be non-zero
+ * - mask should describe one contiguous bit-field
+ */
 static inline void AJ_BitReg_WriteField_Mask(volatile AJ_BitReg_t *reg, AJ_BitReg_t mask, AJ_BitReg_t value){
     #if defined(__GNUC__) || defined(__clang__)
         if (mask == 0U){return;}
@@ -57,7 +60,7 @@ static inline void AJ_BitReg_WriteField_Mask(volatile AJ_BitReg_t *reg, AJ_BitRe
                 ((value << __builtin_ctz(mask)) & mask)
                 );
     #else
-        AJ_BitReg_t shift = 0U;
+        uint8_t shift = 0U;
         AJ_BitReg_t temp  = mask;
 
         if (mask == 0U){return;}
@@ -67,7 +70,7 @@ static inline void AJ_BitReg_WriteField_Mask(volatile AJ_BitReg_t *reg, AJ_BitRe
             ++shift;
         }
 
-        *reg =  (uint8_t)(
+        *reg =  (AJ_BitReg_t)(
                 (*reg & ~mask) |
                 ((value << shift) & mask)
                 );
