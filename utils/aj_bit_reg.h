@@ -48,7 +48,7 @@ static inline void AJ_BitReg_ToggleBit_Position(volatile AJ_BitReg_t *reg, AJ_Bi
 
 //***********************************************************************
 /* mask must not be 0 */
-static inline void AJ_BitReg_WriteField(volatile AJ_BitReg_t *reg, AJ_BitReg_t mask, AJ_BitReg_t value){
+static inline void AJ_BitReg_WriteField_Mask(volatile AJ_BitReg_t *reg, AJ_BitReg_t mask, AJ_BitReg_t value){
     #if defined(__GNUC__) || defined(__clang__)
         if (mask == 0U){return;}
 
@@ -132,7 +132,7 @@ static inline void AJ_BitReg_Write8Bits_Position(volatile AJ_BitReg_t *reg, AJ_B
 
 //***********************************************************************
 /* mask must not be 0 */
-static inline AJ_BitReg_t AJ_BitReg_GetField(volatile AJ_BitReg_t *reg, AJ_BitReg_t mask){
+static inline AJ_BitReg_t AJ_BitReg_GetField_Mask(volatile AJ_BitReg_t *reg, AJ_BitReg_t mask){
     #if defined(__GNUC__) || defined(__clang__)
         if(mask == 0U){return 0U;}
 
