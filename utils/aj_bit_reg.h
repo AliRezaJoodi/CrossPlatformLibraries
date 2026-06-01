@@ -157,6 +157,7 @@ static inline uint8_t AJ_BitReg_AreBitsSet_Mask(volatile AJ_BitReg_t *reg, AJ_Bi
     return (uint8_t)(((*reg) & mask) == mask);
 }
 
+/* mask must not be 0 */
 static inline uint8_t AJ_BitReg_IsAnyBitSet_Mask(volatile AJ_BitReg_t *reg, AJ_BitReg_t mask){
     return (uint8_t)(((*reg) & mask) != 0U);
 }
