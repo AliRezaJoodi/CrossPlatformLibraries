@@ -1,5 +1,27 @@
-/* Precondition:
- * - mask must be non-zero
+/**
+ * @brief Bit manipulation utilities for memory-mapped registers.
+ *
+ * This header provides a set of inline utility functions for performing bitwise
+ * operations on registers of configurable width (8, 16, or 32-bit).
+ *
+ * @section usage_constraints Usage Constraints & Safety
+ *
+ * @subsection mask_reqs Mask-based Operations
+ * - @b Non-zero: All functions utilizing a `mask` parameter require the mask to be non-zero.
+ * - @b Contiguity: For field-based operations (e.g., WriteField), the mask @b must describe
+ *   exactly one contiguous bit-field. Using non-contiguous masks will lead to
+ *   undefined behavior or incorrect bit shifts.
+ *
+ * @subsection pos_reqs Position-based Operations
+ * - The `pos` parameter is 0-indexed and must strictly adhere to the range of the
+ *   configured register width (`AJ_BitReg_t`):
+ *   - 8-bit  register: 0 to 7
+ *   - 16-bit register: 0 to 15
+ *   - 32-bit register: 0 to 31
+ * - Providing a position outside this range will result in undefined behavior or
+ *   invalid memory access logic.
+ *
+ * @note Ensure that `aj_bit_reg_config.h` is configured correctly before using this library.
  *
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
@@ -56,7 +78,7 @@ static inline void AJ_BitReg_ToggleBit_Position(volatile AJ_BitReg_t *reg, AJ_Bi
  * - mask must be non-zero
  * - mask should describe one contiguous bit-field
  */
- static inline void AJ_BitReg_WriteField_Mask(volatile AJ_BitReg_t *reg, AJ_BitReg_t mask, AJ_BitReg_t value){
+ static inline void AJ_BitReg_WriteField_Mask(volatile AJ_BitReg_t *reg, AJ_BitReg_t mask, AJ_BitReg_t field){
     uint8_t shift;
 
     #if defined(AJ_BIT_REG_32BIT)
@@ -69,7 +91,7 @@ static inline void AJ_BitReg_ToggleBit_Position(volatile AJ_BitReg_t *reg, AJ_Bi
 
     *reg =  (AJ_BitReg_t)(
             (*reg & ~mask) |
-            ((value << shift) & mask)
+            ((field << shift) & mask)
             );
 }
 
@@ -80,52 +102,52 @@ static inline void AJ_BitReg_WriteBit_Position(volatile AJ_BitReg_t *reg, AJ_Bit
            );
 }
 
-static inline void AJ_BitReg_Write2Bits_Position(volatile AJ_BitReg_t *reg, AJ_BitReg_t pos, AJ_BitReg_t value){
+static inline void AJ_BitReg_Write2Bits_Position(volatile AJ_BitReg_t *reg, AJ_BitReg_t pos, AJ_BitReg_t field){
     *reg = (AJ_BitReg_t)(
             (*reg & ~(0x03U << pos)) |
-            ((value & 0x03U) << pos)
+            ((field & 0x03U) << pos)
            );
 }
 
-static inline void AJ_BitReg_Write3Bits_Position(volatile AJ_BitReg_t *reg, AJ_BitReg_t pos, AJ_BitReg_t value){
+static inline void AJ_BitReg_Write3Bits_Position(volatile AJ_BitReg_t *reg, AJ_BitReg_t pos, AJ_BitReg_t field){
     *reg = (AJ_BitReg_t)(
             (*reg & ~(0x07U << pos)) |
-            ((value & 0x07U) << pos)
+            ((field & 0x07U) << pos)
            );
 }
 
-static inline void AJ_BitReg_Write4Bits_Position(volatile AJ_BitReg_t *reg, AJ_BitReg_t pos, AJ_BitReg_t value){
+static inline void AJ_BitReg_Write4Bits_Position(volatile AJ_BitReg_t *reg, AJ_BitReg_t pos, AJ_BitReg_t field){
     *reg = (AJ_BitReg_t)(
             (*reg & ~(0x0FU << pos)) |
-            ((value & 0x0FU) << pos)
+            ((field & 0x0FU) << pos)
            );
 }
 
-static inline void AJ_BitReg_Write5Bits_Position(volatile AJ_BitReg_t *reg, AJ_BitReg_t pos, AJ_BitReg_t value){
+static inline void AJ_BitReg_Write5Bits_Position(volatile AJ_BitReg_t *reg, AJ_BitReg_t pos, AJ_BitReg_t field){
     *reg = (AJ_BitReg_t)(
             (*reg & ~(0x1FU << pos)) |
-            ((value & 0x1FU) << pos)
+            ((field & 0x1FU) << pos)
            );
 }
 
-static inline void AJ_BitReg_Write6Bits_Position(volatile AJ_BitReg_t *reg, AJ_BitReg_t pos, AJ_BitReg_t value){
+static inline void AJ_BitReg_Write6Bits_Position(volatile AJ_BitReg_t *reg, AJ_BitReg_t pos, AJ_BitReg_t field){
     *reg = (AJ_BitReg_t)(
             (*reg & ~(0x3FU << pos)) |
-            ((value & 0x3FU) << pos)
+            ((field & 0x3FU) << pos)
            );
 }
 
-static inline void AJ_BitReg_Write7Bits_Position(volatile AJ_BitReg_t *reg, AJ_BitReg_t pos, AJ_BitReg_t value){
+static inline void AJ_BitReg_Write7Bits_Position(volatile AJ_BitReg_t *reg, AJ_BitReg_t pos, AJ_BitReg_t field){
     *reg = (AJ_BitReg_t)(
             (*reg & ~(0x7FU << pos)) |
-            ((value & 0x7FU) << pos)
+            ((field & 0x7FU) << pos)
            );
 }
 
-static inline void AJ_BitReg_Write8Bits_Position(volatile AJ_BitReg_t *reg, AJ_BitReg_t pos, AJ_BitReg_t value){
+static inline void AJ_BitReg_Write8Bits_Position(volatile AJ_BitReg_t *reg, AJ_BitReg_t pos, AJ_BitReg_t field){
     *reg = (AJ_BitReg_t)(
             (*reg & ~(0xFFU << pos)) |
-            ((value & 0xFFU) << pos)
+            ((field & 0xFFU) << pos)
            );
 }
 
