@@ -1,6 +1,5 @@
 /**
- * @file    aj_bit_reverse.h
- * @brief   Bit reversal and reflection utilities.
+ * @brief   Bit reversal utilities.
  *
  * Static inline functions for bit-order manipulation of unsigned integers.
  *
@@ -36,7 +35,7 @@ static inline uint16_t AJ_Bit_Reverse_u16(uint16_t x){
     return x;
 }
 
-static inline uint8_t AJ_Bit_Reflect_u8(uint8_t x){
+static inline uint8_t AJ_Bit_Reverse_u8(uint8_t x){
     x = (uint8_t)((x >> 4) | (x << 4));
     x = (uint8_t)(((x & 0xCCU) >> 2) | ((x & 0x33U) << 2));
     x = (uint8_t)(((x & 0xAAU) >> 1) | ((x & 0x55U) << 1));
