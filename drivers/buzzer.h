@@ -1,15 +1,19 @@
 /**
  * @file    buzzer.h
- * @brief   Public API for buzzer handling.
+ * @brief   Public API for non-blocking buzzer control.
  *
- * This library depends on the TimeBase module.
- * The user must call TimeBase_CountTicks() from a hardware timer interrupt
- * in the main application, typically with a 1 ms period.
+ * This module provides a simple interface to control a buzzer using
+ * the TimeBase module for timing. The buzzer operates in a non-blocking
+ * manner and requires periodic calls to Buzzer_Refresh() from the main loop.
  *
- * @note Initialize and use the TimeBase module before calling buzzer APIs.
+ * The TimeBase module must be configured so that TimeBase_CountTicks()
+ * is called from a hardware timer interrupt (typically every 1 ms).
  *
- * This API relies on the underlying configuration and hardware
- * layers defined in buzzer_hw.h and buzzer_port.h.
+ * @note The TimeBase module must be initialized and running before
+ *       using any buzzer API functions.
+ *
+ * Hardware abstraction for the buzzer is provided by the layers
+ * defined in buzzer_hw.h and buzzer_port.h.
  *
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
@@ -20,6 +24,9 @@
 
 #include <stdint.h>
 #include "timebase_type.h"
+
+void Buzzer_TurnOff(void);
+void Buzzer_TurnOn(void);
 
 /**
  * @brief   Initialize the buzzer
@@ -34,29 +41,36 @@
 void Buzzer_Init(void);
 
 /**
- * @brief   Start the buzzer for a specified duration
+ * @brief   Activate the buzzer for a specified duration.
  *
- * This function turns the buzzer on and keeps it active for a
- * duration represented by the 'duration' parameter.
+ * This function turns the buzzer on and records the start time using the
+ * provided system tick. The buzzer will remain active until the specified
+ * duration has elapsed.
  *
- * @param[in] duration The number of refresh cycles the buzzer should remain active.
+ * @param[in] tick_now   Current system tick value (typically from TimeBase_GetTicks()).
+ * @param[in] duration   Active time of the buzzer in timebase ticks.
  *
  * @note
- * Must call Buzzer_Refresh() in the main loop or a timer interrupt
- * to automatically turn off the buzzer after the specified duration.
+ * Buzzer_Refresh() must be called regularly (e.g., in the main loop)
+ * to monitor the elapsed time and automatically turn the buzzer off
+ * when the specified duration expires.
  */
-void Buzzer_Start(timebase_t duration);
+void Buzzer_Start(timebase_t tick_now, timebase_t duration);
 
 /**
- * @brief   Update buzzer timing
+ * @brief   Refresh the buzzer state.
  *
- * This function must be called in the main loop to handle the non-blocking buzzer timing.
- * It decrements the internal counter set by Buzzer_Active() and
- * automatically turns off the buzzer when the counter reaches zero.
+ * This function manages the buzzer's non-blocking operation. It checks if the
+ * buzzer's active duration has elapsed by comparing the current tick with the
+ * start time. If the duration has passed, it automatically turns off the buzzer.
  *
- * @note
- * If this function is not called regularly, the buzzer remain active indefinitely.
+ * @param   tick_now  The current system tick value (typically obtained via TimeBase_GetTicks()).
+ *                    Passing the tick as an argument avoids redundant calls to the TimeBase
+ *                    get function, optimizing performance in the main loop.
+ *
+ * @note    This function must be called regularly in the main loop to ensure timely
+ *          buzzer deactivation. If not called, the buzzer may remain active indefinitely.
  */
-void Buzzer_Refresh(void);
+void Buzzer_Refresh(timebase_t tick_now);
 
 #endif  /* BUZZER_INCLUDED */
