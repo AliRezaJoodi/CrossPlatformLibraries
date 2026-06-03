@@ -36,27 +36,38 @@ extern "C" {
 void Button_Init(Button_t *btn);
 
 /**
- * @brief Detects a single button trigger event.
+ * @brief Detect a single button trigger event (non-blocking).
  *
- * Implements a state-machine based debounce logic to filter noise
- * and return 1 only after BUTTON_TIME_TRIGGER duration.
+ * Uses a state-machine based debounce mechanism to filter noise
+ * and confirm a valid button press after the BUTTON_TIME_TRIGGER
+ * interval has elapsed.
  *
- * @param btn Pointer to the button object.
- * @return 1 on valid trigger, 0 otherwise.
+ * The current system tick must be provided by the caller, allowing
+ * the button module to remain independent of any specific timebase
+ * implementation.
+ *
+ * @param btn Pointer to the Button_t instance.
+ * @param now Current system tick used for timing comparison.
+ * @return 1 if a valid trigger event is detected, 0 otherwise.
  */
-uint8_t Button_GetTrigger(Button_t *btn);
+uint8_t Button_GetTrigger(Button_t *btn, timebase_t now);
 
 /**
  * @brief Check for auto-repeat events on a button (non-blocking).
  *
- * Detects if a button is being held and triggers an auto-repeat
- * event when the configured auto-repeat lag has elapsed.
- * The function is non-blocking and returns 1 once per repeat interval.
+ * Detects whether the button is held and generates an auto-repeat
+ * event whenever the configured repeat interval has elapsed.
+ * The function is non-blocking and returns 1 once per repeat period
+ * while the button remains pressed.
  *
- * @param btn Pointer to the Button_t object to read.
- * @return 1 if an auto-repeat event is detected, 0 otherwise.
+ * The current system tick must be provided by the caller. This keeps
+ * the button module independent from any specific timebase implementation.
+ *
+ * @param btn Pointer to the Button_t instance.
+ * @param now Current system tick used for timing comparison.
+ * @return 1 if an auto-repeat event is generated, 0 otherwise.
  */
-uint8_t Button_GetAutoRepeat(Button_t *btn);
+uint8_t Button_GetAutoRepeat(Button_t *btn, timebase_t now);
 
 #ifdef __cplusplus
 }

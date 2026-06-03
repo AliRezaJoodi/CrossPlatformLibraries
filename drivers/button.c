@@ -29,14 +29,14 @@ void Button_Init(Button_t *btn){
 }
 
 //*************************************************
-uint8_t Button_GetTrigger(Button_t *btn) {
+uint8_t Button_GetTrigger(Button_t *btn, timebase_t now) {
     if (Button_Pin_Read(btn) == btn->config.pressed) {
         if (btn->state == 0) {
             btn->state = 1;
-            btn->tick_last = TimeBase_GetTicks();
+            btn->tick_last = now;
         }
         else if (btn->state == 1) {
-            if (TimeBase_CheckElapsed(btn->tick_last, BUTTON_TIME_TRIGGER) == 1) {
+            if (TimeBase_HasElapsed(now, btn->tick_last, BUTTON_TIME_TRIGGER)) {
                 btn->state = 2;
                 return 1;
             }
@@ -50,15 +50,15 @@ uint8_t Button_GetTrigger(Button_t *btn) {
 }
 
 //*************************************************
-uint8_t Button_GetAutoRepeat(Button_t *btn) {
+uint8_t Button_GetAutoRepeat(Button_t *btn, timebase_t now) {
     if (Button_Pin_Read(btn) == btn->config.pressed) {
         if (btn->state == 0) {
             btn->state = 1;
-            btn->tick_last = TimeBase_GetTicks();
+            btn->tick_last = now;
         }
         else if (btn->state == 1) {
-            if (TimeBase_CheckElapsed(btn->tick_last, BUTTON_TIME_AUTO_REPEAT) == 1) {
-                btn->tick_last = TimeBase_GetTicks();
+            if (TimeBase_HasElapsed(now, btn->tick_last, BUTTON_TIME_AUTO_REPEAT) == 1) {
+                btn->tick_last = now;
                 return 1;
             }
         }
