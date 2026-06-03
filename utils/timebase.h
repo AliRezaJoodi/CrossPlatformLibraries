@@ -39,13 +39,34 @@ void TimeBase_CountTicks(void);
 timebase_t TimeBase_GetTicks(void);
 
 /**
- * @brief  Checks if a specific duration has elapsed since last_tick.
- * @param  last_tick: The starting point of time.
- * @param  duration: The time interval to check (in ticks).
- * @retval 1 if elapsed, 0 otherwise.
+ * @brief Checks whether a specified duration has elapsed since last_tick.
+ *
+ * @param now_tick   Current tick value.
+ * @param last_tick  Reference tick value.
+ * @param duration   Duration to check, in ticks.
+ *
+ * @return 1 if the specified duration has elapsed, otherwise 0.
+ *
+ * @note This function is safe across unsigned integer overflow.
  */
-static inline uint8_t TimeBase_CheckElapsed(timebase_t last_tick, timebase_t duration) {
-    return (timebase_t)(TimeBase_GetTicks() - last_tick) >= duration;
+static inline uint8_t TimeBase_HasElapsed(timebase_t now_tick, timebase_t last_tick, timebase_t duration) {
+    return (uint8_t)((timebase_t)(now_tick - last_tick) >= duration);
+}
+
+/**
+ * @brief Gets the elapsed ticks between two timebase values.
+ *
+ * @param now_tick   Current tick value.
+ * @param last_tick  Previous/reference tick value.
+ *
+ * @return Elapsed ticks from last_tick to now_tick.
+ *
+ * @note This function is safe across unsigned integer overflow,
+ *       as long as the elapsed time does not exceed the maximum
+ *       representable range of timebase_t.
+ */
+static inline timebase_t TimeBase_GetElapsed(timebase_t now_tick, timebase_t last_tick) {
+    return (timebase_t)(now_tick - last_tick);
 }
 
 #ifdef __cplusplus
