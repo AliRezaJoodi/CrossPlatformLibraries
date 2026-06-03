@@ -181,6 +181,10 @@ static inline uint8_t AJ_BitReg_IsAnyBitSet_Mask(volatile AJ_BitReg_t *reg, AJ_B
 }
 
 static inline uint8_t AJ_BitReg_IsBitSet_Position(volatile AJ_BitReg_t *reg, AJ_BitReg_t pos){
+    return (uint8_t)((((*reg) >> pos) & 0x01U) != 0U);
+}
+
+static inline uint8_t AJ_BitReg_GetBit_Position(volatile AJ_BitReg_t *reg, AJ_BitReg_t pos){
     return (uint8_t)((*reg >> pos) & 0x01U);
 }
 
