@@ -1,3 +1,22 @@
+/**
+ * @brief GPIO utility library for STM32F4xx microcontrollers.
+ *
+ * Provides inline functions for GPIO configuration, read/write operations,
+ * and GPIO lock management.
+ *
+ * @section usage_constraints Usage Constraints
+ * - STM32F1xx only (CRL/CRH GPIO architecture).
+ * - Pin positions are 0-indexed and must be in the range 0..15.
+ * - GPIO masks are interpreted as 16-bit masks.
+ * - Functions operating on bit-fields require the mask to describe exactly
+ *   one contiguous bit-field.
+ * - Additional mask constraints may apply through `aj_bit_reg.h`.
+ * - GPIO peripheral clock must be enabled before use.
+ *
+ * @author  AliReza Joodi
+ * @see     https://github.com/AliRezaJoodi
+ */
+
 #ifndef AJ_GPIO_INCLUDED
 #define AJ_GPIO_INCLUDED
 
@@ -129,6 +148,26 @@ static inline uint8_t AJ_GPIO_LockPins_Mask(GPIO_TypeDef *GPIOx, uint32_t mask){
 	(void)GPIOx->LCKR;								/**< Read 0 */
 	
 	return AJ_BitReg_IsBitSet_Position(&GPIOx->LCKR, GPIO_LCKR_LCKK_Pos);
+}
+
+/**
+ * @brief  Checks whether all GPIO pins specified in the mask are locked.
+ * @note   The function returns true only if:
+ *         - The Port Lock Key (LCKK) bit is set.
+ *         - Every pin selected in the mask has its corresponding LCKy bit set.
+ *         If any selected pin is not locked, the function returns false.
+ * @param  GPIOx  Pointer to the GPIO peripheral (e.g., GPIOA, GPIOB).
+ * @param  mask   16-bit mask specifying the pins to check.
+ * @return 1 if all selected pins are locked, 0 otherwise.
+ */
+static inline uint8_t AJ_GPIO_ArePinsLocked_Mask(GPIO_TypeDef *GPIOx, uint32_t mask){
+	uint32_t lckr = GPIOx->LCKR;
+	mask &= 0xFFFFUL;
+
+	return (uint8_t)(
+									((lckr & GPIO_LCKR_LCKK_Msk) != 0U) &&
+									((lckr & mask) == mask)
+									);
 }
 
 /**
