@@ -1,5 +1,5 @@
-#ifndef AFIO_INCLUDED
-#define AFIO_INCLUDED
+#ifndef AJ_AFIO_INCLUDED
+#define AJ_AFIO_INCLUDED
 
 #ifdef __cplusplus
 extern "C" {
@@ -7,7 +7,7 @@ extern "C" {
 
 #include <stdint.h>
 #include <stm32f1xx.h>	
-#include "bit.h"
+#include "aj_bit_reg.h"
 
 /*
  * AFIO_MAPR, Bits 26:24
@@ -26,18 +26,18 @@ extern "C" {
  */
 
 typedef enum{
-    SWJ_SWD_JTAG_NJTRST = 0x0U,		/**< SW-DP enabled, 	JTAG-DP enabled with NJTRST */
-    SWJ_SWD_JTAG 				= 0x1U, 	/**< SW-DP enabled, 	JTAG-DP enabled without NJTRST */
-    SWJ_SWD           	= 0x2U, 	/**< SW-DP enabled, 	JTAG-DP disabled */
-    SWJ_DISABLED    		= 0x4U   	/**< SW-DP disabled, 	JTAG-DP disabled */
-} SWJ_CFG_t;
+    AJ_SWJ_SWD_JTAG_NJTRST 	= 0x0U,			/**< SW-DP enabled, 	JTAG-DP enabled with NJTRST */
+    AJ_SWJ_SWD_JTAG 				= 0x1U, 		/**< SW-DP enabled, 	JTAG-DP enabled without NJTRST */
+    AJ_SWJ_SWD           		= 0x2U, 		/**< SW-DP enabled, 	JTAG-DP disabled */
+    AJ_SWJ_DISABLED    			= 0x4U   		/**< SW-DP disabled, 	JTAG-DP disabled */
+} AJ_AFIO_SWJ_t;
 
-static inline void AFIO_ConfigSWJ(SWJ_CFG_t mode){
-	Write3Bit_Reg32(&AFIO->MAPR, AFIO_MAPR_SWJ_CFG_Pos, mode);
+static inline void AJ_AFIO_ConfigSWJ(AJ_AFIO_SWJ_t mode){
+	AJ_BitReg_Write3Bits_Position(&AFIO->MAPR, AFIO_MAPR_SWJ_CFG_Pos, mode);
 }
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif
+#endif	/* AJ_AFIO_INCLUDED */
