@@ -1,3 +1,22 @@
+/**
+ * @brief GPIO utility library for STM32F1xx microcontrollers.
+ *
+ * Provides inline functions for GPIO configuration, read/write operations,
+ * and GPIO lock management.
+ *
+ * @section usage_constraints Usage Constraints
+ * - STM32F1xx only (CRL/CRH GPIO architecture).
+ * - Pin positions are 0-indexed and must be in the range 0..15.
+ * - GPIO masks are interpreted as 16-bit masks.
+ * - Functions operating on bit-fields require the mask to describe exactly
+ *   one contiguous bit-field.
+ * - Additional mask constraints may apply through `aj_bit_reg.h`.
+ * - GPIO peripheral clock must be enabled before use.
+ *
+ * @author  AliReza Joodi
+ * @see     https://github.com/AliRezaJoodi
+ */
+ 
 #ifndef AJ_GPIO_INCLUDED
 #define AJ_GPIO_INCLUDED
 
@@ -41,6 +60,7 @@ static inline void AJ_GPIO_ConfigPull(GPIO_TypeDef *GPIOx, AJ_GPIO_PinPos_t pos,
 	AJ_BitReg_WriteBit_Position(&GPIOx->ODR, pos, mode);
 }
 
+//**************************************************************************************
 static inline void AJ_GPIO_SetPins_Mask(GPIO_TypeDef *GPIOx, uint32_t mask){
 	GPIOx->BSRR = mask & 0xFFFFUL;
 }
@@ -49,6 +69,7 @@ static inline void AJ_GPIO_SetPin_Position(GPIO_TypeDef *GPIOx, AJ_GPIO_PinPos_t
 	GPIOx->BSRR = (1UL << pos);
 }
 
+//**************************************************************************************
 static inline void AJ_GPIO_ClearPins_Mask(GPIO_TypeDef *GPIOx, uint32_t mask){
 	GPIOx->BRR = mask;
 }
@@ -57,6 +78,7 @@ static inline void AJ_GPIO_ClearPin_Position(GPIO_TypeDef *GPIOx, AJ_GPIO_PinPos
 	GPIOx->BRR = (1UL << pos);
 }
 
+//**************************************************************************************
 static inline void AJ_GPIO_TogglePins_Mask(GPIO_TypeDef *GPIOx, uint32_t mask){
 	AJ_BitReg_ToggleBits_Mask(&GPIOx->ODR, mask);
 }
@@ -65,6 +87,7 @@ static inline void AJ_GPIO_TogglePin_Position(GPIO_TypeDef *GPIOx, AJ_GPIO_PinPo
 	AJ_BitReg_ToggleBit_Position(&GPIOx->ODR, pos);
 }
 
+//**************************************************************************************
 static inline void AJ_GPIO_WriteField_Mask(GPIO_TypeDef *GPIOx, uint32_t mask, uint32_t field){
   AJ_BitReg_WriteField_Mask(&GPIOx->ODR, mask, field);
 }
@@ -89,6 +112,7 @@ static inline void GPIO_WritePort(GPIO_TypeDef *GPIOx, uint32_t value){
 	GPIOx->ODR = (value & 0xFFFFU);
 }
 
+//**************************************************************************************
 static inline uint32_t AJ_GPIO_ReadField_Mask(GPIO_TypeDef *GPIOx, uint32_t mask){
 	return AJ_BitReg_GetField_Mask(&GPIOx->IDR, mask);
 }
@@ -148,7 +172,6 @@ static inline uint16_t GPIO_ReadPort(GPIO_TypeDef *GPIOx){
  * 				0: Port configuration not locked.
  * 				1: Port configuration locked.
  */
-
 static inline uint8_t GPIO_LockPins_Mask(GPIO_TypeDef *GPIOx, uint32_t mask){
 	uint32_t lock_value = (1UL << GPIO_LCKR_LCKK_Pos) | (mask & 0xFFFFUL);
 
@@ -161,6 +184,32 @@ static inline uint8_t GPIO_LockPins_Mask(GPIO_TypeDef *GPIOx, uint32_t mask){
 	return AJ_BitReg_GetBit_Position(&GPIOx->LCKR, GPIO_LCKR_LCKK_Pos);
 }
 
+/**
+ * @brief  Checks whether all GPIO pins specified in the mask are locked.
+ * @note   The function returns true only if:
+ *         - The Port Lock Key (LCKK) bit is set.
+ *         - Every pin selected in the mask has its corresponding LCKy bit set.
+ *         If any selected pin is not locked, the function returns false.
+ * @param  GPIOx  Pointer to the GPIO peripheral (e.g., GPIOA, GPIOB).
+ * @param  mask   16-bit mask specifying the pins to check.
+ * @return 1 if all selected pins are locked, 0 otherwise.
+ */
+static inline uint8_t AJ_GPIO_ArePinsLocked_Mask(GPIO_TypeDef *GPIOx, uint32_t mask){
+	uint32_t lckr = GPIOx->LCKR;
+	mask &= 0xFFFFUL;
+
+	return (uint8_t)(
+									((lckr & GPIO_LCKR_LCKK_Msk) != 0U) &&
+									((lckr & mask) == mask)
+									);
+}
+
+/**
+ * @brief  Checks if a specific GPIO pin configuration is locked.
+ * @param  GPIOx  Pointer to the GPIO peripheral (e.g., GPIOA, GPIOB).
+ * @param  pin    GPIO pin number (e.g., GPIO_PIN_0, GPIO_PIN_1, etc.).
+ * @return 1 if both the Port Lock Key is active AND the specific pin is locked, 0 otherwise.
+ */
 static inline uint8_t AJ_GPIO_IsPinLocked_Position(GPIO_TypeDef *GPIOx, AJ_GPIO_PinPos_t pos){
 	uint32_t lckr = GPIOx->LCKR;
 
