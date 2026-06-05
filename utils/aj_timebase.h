@@ -1,8 +1,7 @@
 /**
- * @file    timebase.h
  * @brief   System Tick Management Library for Microcontrollers.
  * @details This library provides a non-blocking timing mechanism using a system tick.
- *          The core function @ref TimeBase_CountTicks must be called periodically
+ *          The core function @ref AJ_TimeBase_CountTicks must be called periodically
  *          inside a Timer Interrupt Service Routine (ISR).
  *          It is highly recommended to set the timer period to 1 millisecond.
  *
@@ -10,15 +9,15 @@
  * @see     https://github.com/AliRezaJoodi
  */
 
-#ifndef TIMEBASE_INCLUDED
-#define TIMEBASE_INCLUDED
+#ifndef AJ_TIMEBASE_INCLUDED
+#define AJ_TIMEBASE_INCLUDED
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 #include <stdint.h>
-#include "timebase_type.h"
+#include "aj_timebase_type.h"
 
 /**
  * @brief  Increments the system tick counter.
@@ -26,17 +25,17 @@ extern "C" {
  *          Service Routine (ISR). It handles the time-keeping mechanism of the library.
  * @return None
  */
-void TimeBase_CountTicks(void);
+void AJ_TimeBase_CountTicks(void);
 
 /**
  * @brief  Returns the current system tick count.
  * @details This function provides an atomic read of the system tick counter.
  *          It is safe to call from any context (Main loop or Interrupts).
- * @note   The return type (timebase_t) depends on the configuration in hardware.h
+ * @note   The return type (AJ_timebase_t) depends on the configuration in hardware.h
  *         (8, 16, or 32-bit).
  * @return The current tick value since the system started.
  */
-timebase_t TimeBase_GetTicks(void);
+aj_timebase_t AJ_TimeBase_GetTicks(void);
 
 /**
  * @brief Checks whether a specified duration has elapsed since last_tick.
@@ -49,8 +48,8 @@ timebase_t TimeBase_GetTicks(void);
  *
  * @note This function is safe across unsigned integer overflow.
  */
-static inline uint8_t TimeBase_HasElapsed(timebase_t now_tick, timebase_t last_tick, timebase_t duration) {
-    return (uint8_t)((timebase_t)(now_tick - last_tick) >= duration);
+static inline uint8_t AJ_TimeBase_HasElapsed(aj_timebase_t now_tick, aj_timebase_t last_tick, aj_timebase_t duration) {
+    return (uint8_t)((aj_timebase_t)(now_tick - last_tick) >= duration);
 }
 
 /**
@@ -63,15 +62,15 @@ static inline uint8_t TimeBase_HasElapsed(timebase_t now_tick, timebase_t last_t
  *
  * @note This function is safe across unsigned integer overflow,
  *       as long as the elapsed time does not exceed the maximum
- *       representable range of timebase_t.
+ *       representable range of AJ_timebase_t.
  */
-static inline timebase_t TimeBase_GetElapsed(timebase_t now_tick, timebase_t last_tick) {
-    return (timebase_t)(now_tick - last_tick);
+static inline aj_timebase_t AJ_TimeBase_GetElapsed(aj_timebase_t now_tick, aj_timebase_t last_tick) {
+    return (aj_timebase_t)(now_tick - last_tick);
 }
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif  /* TIMEBASE_INCLUDED */
+#endif  /* AJ_TIMEBASE_INCLUDED */
 
