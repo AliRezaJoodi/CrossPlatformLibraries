@@ -23,7 +23,7 @@ extern "C" {
 #endif
 
 #include <stdint.h>
-#include "compiler_port.h"
+#include "aj_compiler_port.h"
 #include "aj_bit_reg.h"
 #include "button_hw.h"
 #include "button_type.h"

@@ -50,7 +50,7 @@ void Button_Init(Button_t *btn);
  * @param now Current system tick used for timing comparison.
  * @return 1 if a valid trigger event is detected, 0 otherwise.
  */
-uint8_t Button_GetTrigger(Button_t *btn, timebase_t now);
+uint8_t Button_GetTrigger(Button_t *btn, aj_timebase_t now);
 
 /**
  * @brief Check for auto-repeat events on a button (non-blocking).
@@ -67,7 +67,7 @@ uint8_t Button_GetTrigger(Button_t *btn, timebase_t now);
  * @param now Current system tick used for timing comparison.
  * @return 1 if an auto-repeat event is generated, 0 otherwise.
  */
-uint8_t Button_GetAutoRepeat(Button_t *btn, timebase_t now);
+uint8_t Button_GetAutoRepeat(Button_t *btn, aj_timebase_t now);
 
 #ifdef __cplusplus
 }
