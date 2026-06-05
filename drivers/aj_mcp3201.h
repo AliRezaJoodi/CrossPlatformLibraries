@@ -22,15 +22,15 @@
  * @see     https://github.com/AliRezaJoodi
  */
 
-#ifndef MCP3201_INCLUDED
-#define MCP3201_INCLUDED
+#ifndef AJ_MCP3201_INCLUDED
+#define AJ_MCP3201_INCLUDED
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 #include <stdint.h>
-#include "mcp3201_type.h"
+#include "aj_mcp3201_type.h"
 
 /**
  * @brief   Initialize the MCP3201 instance
@@ -40,7 +40,7 @@ extern "C" {
  *
  * @param   mcp   Pointer to a valid MCP3201_t instance
  */
-void MCP3201_Init(MCP3201_t *mcp);
+void AJ_MCP3201_Init(aj_MCP3201_t *mcp);
 
 /**
  * @brief   Read raw ADC counts from MCP3201
@@ -51,7 +51,7 @@ void MCP3201_Init(MCP3201_t *mcp);
  * @param   mcp   Pointer to a valid MCP3201_t instance
  * @return  12-bit ADC value as uint16_t (0 to 4095)
  */
-uint16_t MCP3201_GetCounts(MCP3201_t *mcp);
+uint16_t AJ_MCP3201_GetCounts(aj_MCP3201_t *mcp);
 
 #ifdef __cplusplus
 }
