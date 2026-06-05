@@ -4,29 +4,29 @@
  *
  * This module provides a simple interface to control a buzzer using
  * the TimeBase module for timing. The buzzer operates in a non-blocking
- * manner and requires periodic calls to Buzzer_Refresh() from the main loop.
+ * manner and requires periodic calls to AJ_Buzzer_Refresh() from the main loop.
  *
- * The TimeBase module must be configured so that TimeBase_CountTicks()
+ * The TimeBase module must be configured so that AJ_TimeBase_CountTicks()
  * is called from a hardware timer interrupt (typically every 1 ms).
  *
  * @note The TimeBase module must be initialized and running before
  *       using any buzzer API functions.
  *
  * Hardware abstraction for the buzzer is provided by the layers
- * defined in buzzer_hw.h and buzzer_port.h.
+ * defined in buzzer_hw.h and AJ_BUZZER_PORT.h.
  *
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
  */
 
-#ifndef BUZZER_INCLUDED
-#define BUZZER_INCLUDED
+#ifndef AJ_BUZZER_INCLUDED
+#define AJ_BUZZER_INCLUDED
 
 #include <stdint.h>
-#include "timebase_type.h"
+#include "aj_timebase_type.h"
 
-void Buzzer_TurnOff(void);
-void Buzzer_TurnOn(void);
+void AJ_Buzzer_TurnOff(void);
+void AJ_Buzzer_TurnOn(void);
 
 /**
  * @brief   Initialize the buzzer
@@ -36,9 +36,9 @@ void Buzzer_TurnOn(void);
  *
  * @note
  * Must be called before using any other buzzer functions.
- * Hardware configuration is defined in buzzer_port.h and buzzer_hw.h.
+ * Hardware configuration is defined in AJ_BUZZER_PORT.h and buzzer_hw.h.
  */
-void Buzzer_Init(void);
+void AJ_Buzzer_Init(void);
 
 /**
  * @brief   Activate the buzzer for a specified duration.
@@ -47,15 +47,15 @@ void Buzzer_Init(void);
  * provided system tick. The buzzer will remain active until the specified
  * duration has elapsed.
  *
- * @param[in] tick_now   Current system tick value (typically from TimeBase_GetTicks()).
+ * @param[in] tick_now   Current system tick value (typically from AJ_TimeBase_GetTicks()).
  * @param[in] duration   Active time of the buzzer in timebase ticks.
  *
  * @note
- * Buzzer_Refresh() must be called regularly (e.g., in the main loop)
+ * AJ_Buzzer_Refresh() must be called regularly (e.g., in the main loop)
  * to monitor the elapsed time and automatically turn the buzzer off
  * when the specified duration expires.
  */
-void Buzzer_Start(timebase_t tick_now, timebase_t duration);
+void AJ_Buzzer_Start(aj_timebase_t tick_now, aj_timebase_t duration);
 
 /**
  * @brief   Refresh the buzzer state.
@@ -64,13 +64,13 @@ void Buzzer_Start(timebase_t tick_now, timebase_t duration);
  * buzzer's active duration has elapsed by comparing the current tick with the
  * start time. If the duration has passed, it automatically turns off the buzzer.
  *
- * @param   tick_now  The current system tick value (typically obtained via TimeBase_GetTicks()).
+ * @param   tick_now  The current system tick value (typically obtained via AJ_TimeBase_GetTicks()).
  *                    Passing the tick as an argument avoids redundant calls to the TimeBase
  *                    get function, optimizing performance in the main loop.
  *
  * @note    This function must be called regularly in the main loop to ensure timely
  *          buzzer deactivation. If not called, the buzzer may remain active indefinitely.
  */
-void Buzzer_Refresh(timebase_t tick_now);
+void AJ_Buzzer_Refresh(aj_timebase_t tick_now);
 
-#endif  /* BUZZER_INCLUDED */
+#endif  /* AJ_BUZZER_INCLUDED */
