@@ -16,8 +16,8 @@
  * @see     https://github.com/AliRezaJoodi
  */
 
-#ifndef KEYPAD4X4_INCLUDED
-#define KEYPAD4X4_INCLUDED
+#ifndef AJ_KEYPAD4X4_INCLUDED
+#define AJ_KEYPAD4X4_INCLUDED
 
 #ifdef __cplusplus
 extern "C" {
@@ -32,7 +32,7 @@ extern "C" {
  *         - 0 to 15 : Key index corresponding to the pressed key
  *         - 255     : No key pressed or invalid state
  */
-uint8_t Keypad4x4_GetKey(void);
+uint8_t AJ_Keypad4x4_GetKey(void);
 
 #ifdef __cplusplus
 }
