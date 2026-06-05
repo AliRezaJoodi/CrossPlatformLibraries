@@ -46,8 +46,8 @@ extern "C" {
 #endif
 
 #include <stdint.h>
-#include "compiler_port.h"
-#include "bit_register8.h"
+#include "aj_compiler_port.h"
+#include "aj_bit_reg.h"
 #include "mcp3204_hw.h"
 #include "mcp3204_type.h"
 
@@ -57,7 +57,7 @@ extern "C" {
  * @param   mcp     Pointer to the MCP3204 instance
  */
 static inline void MCP3204_CS_ConfigAsOutput(const MCP3204_t *mcp){
-    SetBitMask_Reg8(mcp->cs.ddr, mcp->cs.mask);
+    AJ_BitReg_SetBits_Mask(mcp->cs.ddr, mcp->cs.mask);
 }
 
 /**
@@ -75,11 +75,11 @@ static inline void MCP3204_CS_ConfigAsOutput(const MCP3204_t *mcp){
 //}
 
 static inline void MCP3204_CS_SetActive(const MCP3204_t *mcp){
-    ClearBitMask_Reg8(mcp->cs.port, mcp->cs.mask);
+    AJ_BitReg_ClearBits_Mask(mcp->cs.port, mcp->cs.mask);
 }
 
 static inline void MCP3204_CS_SetIdle(const MCP3204_t *mcp){
-    SetBitMask_Reg8(mcp->cs.port, mcp->cs.mask);
+    AJ_BitReg_SetBits_Mask(mcp->cs.port, mcp->cs.mask);
 }
 
 /**
