@@ -2,26 +2,26 @@
 
 #include <stdint.h>
 #include "aj_timebase.h"
-#include "button_type.h"
-#include "button_port.h"
-#include "button.h"
+#include "aj_button_type.h"
+#include "aj_button_port.h"
+#include "aj_button.h"
 
 //*************************************************
-void Button_Init(Button_t *btn){
-    Button_Pin_ConfigAsInput(btn);
+void AJ_Button_Init(aj_Button_t *btn){
+    AJ_Button_Pin_ConfigAsInput(btn);
 
     switch(btn->config.pull) {
-        case BUTTON_PULL_NONE:
-            Button_Pin_ConfigAsPullNone(btn);
+        case AJ_BUTTON_PULL_NONE:
+            AJ_Button_Pin_ConfigAsPullNone(btn);
             break;
-        case BUTTON_PULL_UP:
-            Button_Pin_ConfigAsPullUp(btn);
+        case AJ_BUTTON_PULL_UP:
+            AJ_Button_Pin_ConfigAsPullUp(btn);
             break;
-        case BUTTON_PULL_DOWN:
-            Button_Pin_ConfigAsPullDown(btn);
+        case AJ_BUTTON_PULL_DOWN:
+            AJ_Button_Pin_ConfigAsPullDown(btn);
             break;
         default:
-            Button_Pin_ConfigAsPullNone(btn);
+            AJ_Button_Pin_ConfigAsPullNone(btn);
     }
 
     btn->state = 0;
@@ -29,14 +29,14 @@ void Button_Init(Button_t *btn){
 }
 
 //*************************************************
-uint8_t Button_GetTrigger(Button_t *btn, aj_timebase_t now) {
-    if (Button_Pin_Read(btn) == btn->config.pressed) {
+uint8_t AJ_Button_GetTrigger(aj_Button_t *btn, aj_timebase_t now) {
+    if (AJ_Button_Pin_Read(btn) == btn->config.pressed) {
         if (btn->state == 0) {
             btn->state = 1;
             btn->tick_last = now;
         }
         else if (btn->state == 1) {
-            if (AJ_TimeBase_HasElapsed(now, btn->tick_last, BUTTON_TIME_TRIGGER)) {
+            if (AJ_TimeBase_HasElapsed(now, btn->tick_last, AJ_BUTTON_TIME_TRIGGER)) {
                 btn->state = 2;
                 return 1;
             }
@@ -50,14 +50,14 @@ uint8_t Button_GetTrigger(Button_t *btn, aj_timebase_t now) {
 }
 
 //*************************************************
-uint8_t Button_GetAutoRepeat(Button_t *btn, aj_timebase_t now) {
-    if (Button_Pin_Read(btn) == btn->config.pressed) {
+uint8_t AJ_Button_GetAutoRepeat(aj_Button_t *btn, aj_timebase_t now) {
+    if (AJ_Button_Pin_Read(btn) == btn->config.pressed) {
         if (btn->state == 0) {
             btn->state = 1;
             btn->tick_last = now;
         }
         else if (btn->state == 1) {
-            if (AJ_TimeBase_HasElapsed(now, btn->tick_last, BUTTON_TIME_AUTO_REPEAT) == 1) {
+            if (AJ_TimeBase_HasElapsed(now, btn->tick_last, AJ_BUTTON_TIME_AUTO_REPEAT) == 1) {
                 btn->tick_last = now;
                 return 1;
             }

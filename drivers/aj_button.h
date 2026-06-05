@@ -9,21 +9,21 @@
  * @note Initialize and use the TimeBase module before calling button APIs.
  *
  * This API relies on the underlying configuration and hardware
- * layers defined in Button_Init.h and button_port.h.
+ * layers defined in AJ_Button_Init.h and button_port.h.
  *
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
  */
 
-#ifndef BUTTON_INCLUDED
-#define BUTTON_INCLUDED
+#ifndef AJ_BUTTON_INCLUDED
+#define AJ_BUTTON_INCLUDED
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 #include <stdint.h>
-#include "button_type.h"
+#include "aj_button_type.h"
 
 /**
  * @brief Initialize a button object.
@@ -33,13 +33,13 @@ extern "C" {
  *
  * @param btn Pointer to the Button_t object to initialize.
  */
-void Button_Init(Button_t *btn);
+void AJ_Button_Init(aj_Button_t *btn);
 
 /**
  * @brief Detect a single button trigger event (non-blocking).
  *
  * Uses a state-machine based debounce mechanism to filter noise
- * and confirm a valid button press after the BUTTON_TIME_TRIGGER
+ * and confirm a valid button press after the AJ_BUTTON_TIME_TRIGGER
  * interval has elapsed.
  *
  * The current system tick must be provided by the caller, allowing
@@ -50,7 +50,7 @@ void Button_Init(Button_t *btn);
  * @param now Current system tick used for timing comparison.
  * @return 1 if a valid trigger event is detected, 0 otherwise.
  */
-uint8_t Button_GetTrigger(Button_t *btn, aj_timebase_t now);
+uint8_t AJ_Button_GetTrigger(aj_Button_t *btn, aj_timebase_t now);
 
 /**
  * @brief Check for auto-repeat events on a button (non-blocking).
@@ -67,10 +67,10 @@ uint8_t Button_GetTrigger(Button_t *btn, aj_timebase_t now);
  * @param now Current system tick used for timing comparison.
  * @return 1 if an auto-repeat event is generated, 0 otherwise.
  */
-uint8_t Button_GetAutoRepeat(Button_t *btn, aj_timebase_t now);
+uint8_t AJ_Button_GetAutoRepeat(aj_Button_t *btn, aj_timebase_t now);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif
+#endif  /* AJ_BUTTON_INCLUDED */
