@@ -1,11 +1,21 @@
-#ifndef MCP4822_TYPE_INCLUDED
-#define MCP4822_TYPE_INCLUDED
+#ifndef AJ_MCP4822_TYPE_INCLUDED
+#define AJ_MCP4822_TYPE_INCLUDED
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 #include <stdint.h>
+
+typedef enum {
+    AJ_MCP4822_CH_A = 0U,
+    AJ_MCP4822_CH_B = 1U
+} aj_MCP4822_Channel_t;
+
+typedef enum {
+    AJ_MCP4822_FS_4V096 = 0U,   /**< Full-Scale: 4.096V */
+    AJ_MCP4822_FS_2V048 = 1U    /**< Full-Scale: 2.048V */
+} aj_MCP4822_Vout_t;
 
 /**
  * @brief   MCP4822 GPIO pin descriptor
@@ -18,7 +28,7 @@ typedef struct {
     volatile uint8_t *port;
     //const uint8_t    index;
     const uint8_t    mask;
-} MCP4822_Pin_t;
+} aj_MCP4822_Pin_t;
 
 /**
  * @brief   MCP4822 device handle
@@ -29,25 +39,25 @@ typedef struct {
  * @see Example section above
  */
 typedef struct {
-    const MCP4822_Pin_t cs;
-    const MCP4822_Pin_t ldac;
-} MCP4822_t;
+    const aj_MCP4822_Pin_t cs;
+    const aj_MCP4822_Pin_t ldac;
+} aj_MCP4822_t;
 
 /**
  * @example
  * Example: initializing a structure
  *
  * @code
- *    static const MCP4822_t dac1 = {
+ *    static const aj_MCP4822_t dac1 = {
  *        .cs = {
- *            .ddr   = &MCP4822_CS_DDR,
- *            .port  = &MCP4822_CS_PORT,
- *            .mask  =  MCP4822_CS_MASK
+ *            .ddr   = &AJ_MCP4822_CS_DDR,
+ *            .port  = &AJ_MCP4822_CS_PORT,
+ *            .mask  =  AJ_MCP4822_CS_MASK
  *        },
  *        .ldac = {
- *            .ddr   = &MCP4822_LDAC_DDR,
- *            .port  = &MCP4822_LDAC_PORT,
- *            .mask  =  MCP4822_LDAC_MASK
+ *            .ddr   = &AJ_MCP4822_LDAC_DDR,
+ *            .port  = &AJ_MCP4822_LDAC_PORT,
+ *            .mask  =  AJ_MCP4822_LDAC_MASK
  *        }
  *    };
  * @endcode

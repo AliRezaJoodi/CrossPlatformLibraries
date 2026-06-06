@@ -38,20 +38,20 @@
  * @endcode
  */
 
-#ifndef MCP4822_PORT_INCLUDED
-#define MCP4822_PORT_INCLUDED
+#ifndef AJ_MCP4822_PORT_INCLUDED
+#define AJ_MCP4822_PORT_INCLUDED
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 #include <stdint.h>
-#include "compiler_port.h"
-#include "bit_register.h"
-#include "mcp4822_hw.h"
-#include "mcp4822_type.h"
+#include "aj_compiler_port.h"
+#include "aj_bit_reg.h"
+#include "aj_mcp4822_hw.h"
+#include "aj_mcp4822_type.h"
 
-#define MCP4822_DELAY_US(us) DELAY_US(us)
+#define AJ_MCP4822_DELAY_US(us) AJ_DELAY_US(us)
 
 /**
  * @brief   Initialize MCP4822 CS pin
@@ -59,27 +59,28 @@ extern "C" {
  *
  * @param[in] mcp   Pointer to MCP4822 device handle
  */
-static inline void MCP4822_CS_ConfigAsOutput(const MCP4822_t *mcp){
-    SetBitMask_Reg8(mcp->cs.ddr, mcp->cs.mask);
+static inline void AJ_MCP4822_CS_ConfigAsOutput(const aj_MCP4822_t *mcp){
+    AJ_BitReg_SetBits_Mask(mcp->cs.ddr, mcp->cs.mask);
 }
 
 /**
- * @brief   Write value to MCP4822 CS pin
- * Sets the CS pin high or low.
+ * @brief Assert CS (active state).
+ * Drives the CS pin to its active level (low).
  *
- * @param[in] mcp     Pointer to MCP4822 device handle
- * @param[in] status  Pin state (0 = low, 1 = high)
+ * @param[in] mcp  Pointer to MCP4822 device handle
  */
-//static inline void MCP4822_CS_Write(MCP4822_t *mcp, uint8_t status){
-//    WriteBit_Reg8(mcp->cs.port, mcp->cs.index, status);
-//}
-
-static inline void MCP4822_CS_SetActive(const MCP4822_t *mcp){
-    ClearBitMask_Reg8(mcp->cs.port, mcp->cs.mask);
+static inline void AJ_MCP4822_CS_SetActive(const aj_MCP4822_t *mcp){
+    AJ_BitReg_ClearBits_Mask(mcp->cs.port, mcp->cs.mask);
 }
 
-static inline void MCP4822_CS_SetIdle(const MCP4822_t *mcp){
-    SetBitMask_Reg8(mcp->cs.port, mcp->cs.mask);
+/**
+ * @brief Deassert CS (idle state).
+ * Drives the CS pin to its idle level (high).
+ *
+ * @param[in] mcp  Pointer to MCP4822 device handle
+ */
+static inline void AJ_MCP4822_CS_SetIdle(const aj_MCP4822_t *mcp){
+    AJ_BitReg_SetBits_Mask(mcp->cs.port, mcp->cs.mask);
 }
 
 /**
@@ -88,27 +89,29 @@ static inline void MCP4822_CS_SetIdle(const MCP4822_t *mcp){
  *
  * @param[in] mcp   Pointer to MCP4822 device handle
  */
-static inline void MCP4822_LDAC_ConfigOutput(const MCP4822_t *mcp){
-    SetBitMask_Reg8(mcp->ldac.ddr, mcp->ldac.mask);
+static inline void AJ_MCP4822_LDAC_ConfigAsOutput(const aj_MCP4822_t *mcp){
+    AJ_BitReg_SetBits_Mask(mcp->ldac.ddr, mcp->ldac.mask);
 }
 
 /**
- * @brief   Write value to MCP4822 LDAC pin
- * Sets the LDAC pin high or low.
+ * @brief Assert LDAC (active state).
+ * Drives the LDAC pin to its active level (low) to latch DAC input data
+ * to the output register.
  *
- * @param[in] mcp     Pointer to MCP4822 device handle
- * @param[in] status  Pin state (0 = low, 1 = high)
+ * @param[in] mcp  Pointer to MCP4822 device handle
  */
-//static inline void MCP4822_LDAC_Write(MCP4822_t *mcp, uint8_t status){
-//    WriteBit_Reg8(mcp->ldac.port, mcp->ldac.index, status);
-//}
-
-static inline void MCP4822_LDAC_SetActive(const MCP4822_t *mcp){
-    ClearBitMask_Reg8(mcp->ldac.port, mcp->ldac.mask);
+static inline void AJ_MCP4822_LDAC_SetActive(const aj_MCP4822_t *mcp){
+    AJ_BitReg_ClearBits_Mask(mcp->ldac.port, mcp->ldac.mask);
 }
 
-static inline void MCP4822_LDAC_SetIdle(const MCP4822_t *mcp){
-    SetBitMask_Reg8(mcp->ldac.port, mcp->ldac.mask);
+/**
+ * @brief Deassert LDAC (idle state).
+ * Drives the LDAC pin to its idle level (high).
+ *
+ * @param[in] mcp  Pointer to MCP4822 device handle
+ */
+static inline void AJ_MCP4822_LDAC_SetIdle(const aj_MCP4822_t *mcp){
+    AJ_BitReg_SetBits_Mask(mcp->ldac.port, mcp->ldac.mask);
 }
 
 /**
@@ -123,8 +126,8 @@ static inline void MCP4822_LDAC_SetIdle(const MCP4822_t *mcp){
  * @note    The SPI peripheral must be configured and enabled
  *          before calling this function.
  */
-static inline uint8_t MCP3208_SPI_Transfer(uint8_t data){
-    uint16_t timeout = MCP4822_TIMEOUT;           /* Software timeout counter */
+static inline uint8_t AJ_MCP3208_SPI_Transfer(uint8_t data){
+    uint16_t timeout = AJ_MCP4822_TIMEOUT;           /* Software timeout counter */
 
     SPDR = data;                        /* Start SPI transfer */
 
