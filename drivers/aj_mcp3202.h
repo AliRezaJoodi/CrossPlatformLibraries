@@ -22,25 +22,15 @@
  * @see     https://github.com/AliRezaJoodi
  */
 
-#ifndef MCP3202_INCLUDED
-#define MCP3202_INCLUDED
+#ifndef AJ_MCP3202_INCLUDED
+#define AJ_MCP3202_INCLUDED
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 #include <stdint.h>
-#include "mcp3202_type.h"
-
-/**
- * @brief Defines MCP3202 Channels.
- */
-typedef enum {
-    MCP3202_CH0         = 0U,   /**< CH0(IN+), GND(IN-)*/
-    MCP3202_CH1         = 1U,   /**< CH1(IN+), GND(IN-)*/
-    MCP3202_CH0CH1      = 2U,   /**< CH0(IN+), CH1(IN-)*/
-    MCP3202_CH1CH0      = 3U    /**< CH1(IN+), CH0(IN-)*/
-} MCP3202_Channel_t;
+#include "aj_mcp3202_type.h"
 
 /**
  * @brief   Initialize the MCP3202 instance
@@ -50,7 +40,7 @@ typedef enum {
  *
  * @param   mcp   Pointer to a valid MCP3202_t instance
  */
-void MCP3202_Init(MCP3202_t *mcp);
+void AJ_MCP3202_Init(aj_MCP3202_t *mcp);
 
 /**
  * @brief   Read raw ADC counts from MCP3202
@@ -62,7 +52,7 @@ void MCP3202_Init(MCP3202_t *mcp);
  * @param   ch    Input channel selection (single-ended or differential)
  * @return  12-bit ADC value as uint16_t (0 to 4095)
  */
-uint16_t MCP3202_GetCounts(MCP3202_t *mcp, MCP3202_Channel_t ch);
+uint16_t AJ_MCP3202_GetCounts(aj_MCP3202_t *mcp, aj_MCP3202_Channel_t ch);
 
 #ifdef __cplusplus
 }
