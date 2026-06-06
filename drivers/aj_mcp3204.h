@@ -22,29 +22,15 @@
  * @see     https://github.com/AliRezaJoodi
  */
 
-#ifndef MCP3204_INCLUDED
-#define MCP3204_INCLUDED
+#ifndef AJ_MCP3204_INCLUDED
+#define AJ_MCP3204_INCLUDED
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 #include <stdint.h>
-#include "mcp3204_type.h"
-
-/**
- * @brief Defines MCP3204 Channels.
- */
-typedef enum {
-    MCP3204_CH0         = 0U,   /**< CH0(IN+), GND(IN-)*/
-    MCP3204_CH1         = 1U,   /**< CH1(IN+), GND(IN-)*/
-    MCP3204_CH2         = 2U,   /**< CH2(IN+), GND(IN-)*/
-    MCP3204_CH3         = 3U,   /**< CH3(IN+), GND(IN-)*/
-    MCP3204_CH0CH1      = 4U,   /**< CH0(IN+), CH1(IN-)*/
-    MCP3204_CH1CH0      = 5U,   /**< CH1(IN+), CH0(IN-)*/
-    MCP3204_CH2CH3      = 6U,   /**< CH2(IN+), CH3(IN-)*/
-    MCP3204_CH3CH2      = 7U    /**< CH3(IN+), CH2(IN-)*/
-} MCP3204_Channel_t;
+#include "aj_mcp3204_type.h"
 
 /**
  * @brief   Initialize the MCP3204 instance
@@ -54,7 +40,7 @@ typedef enum {
  *
  * @param   mcp   Pointer to a valid MCP3204_t instance
  */
-void MCP3204_Init(MCP3204_t *mcp);
+void AJ_MCP3204_Init(aj_MCP3204_t *mcp);
 
 /**
  * @brief   Read raw ADC counts from MCP3204
@@ -66,7 +52,7 @@ void MCP3204_Init(MCP3204_t *mcp);
  * @param   ch    Input channel selection (single-ended or differential)
  * @return  12-bit ADC value as uint16_t (0 to 4095)
  */
-uint16_t MCP3204_GetCounts(MCP3204_t *mcp, MCP3204_Channel_t ch);
+uint16_t AJ_MCP3204_GetCounts(aj_MCP3204_t *mcp, aj_MCP3204_Channel_t ch);
 
 #ifdef __cplusplus
 }

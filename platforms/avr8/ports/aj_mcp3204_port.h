@@ -38,8 +38,8 @@
  * @endcode
  */
 
-#ifndef MCP3204_PORT_INCLUDED
-#define MCP3204_PORT_INCLUDED
+#ifndef AJ_MCP3204_PORT_INCLUDED
+#define AJ_MCP3204_PORT_INCLUDED
 
 #ifdef __cplusplus
 extern "C" {
@@ -48,15 +48,15 @@ extern "C" {
 #include <stdint.h>
 #include "aj_compiler_port.h"
 #include "aj_bit_reg.h"
-#include "mcp3204_hw.h"
-#include "mcp3204_type.h"
+#include "aj_mcp3204_hw.h"
+#include "aj_mcp3204_type.h"
 
 /**
  * @brief Initialize MCP3204 CS pin (output, idle high)
  *
  * @param   mcp     Pointer to the MCP3204 instance
  */
-static inline void MCP3204_CS_ConfigAsOutput(const MCP3204_t *mcp){
+static inline void AJ_MCP3204_CS_ConfigAsOutput(const aj_MCP3204_t *mcp){
     AJ_BitReg_SetBits_Mask(mcp->cs.ddr, mcp->cs.mask);
 }
 
@@ -68,17 +68,17 @@ static inline void MCP3204_CS_ConfigAsOutput(const MCP3204_t *mcp){
  *                  - 0: Pull CS low (select chip)
  *                  - 1: Pull CS high (deselect / idle)
  *
- * @note    The CS pin must be initialized with MCP3204_CS_ConfigAsOutput() before use.
+ * @note    The CS pin must be initialized with AJ_MCP3204_CS_ConfigAsOutput() before use.
  */
 //static inline void MCP3204_CS_Write(MCP3204_t *mcp, uint8_t status){
 //    WriteBit_Reg8(mcp->cs.port, mcp->cs.index, status);
 //}
 
-static inline void MCP3204_CS_SetActive(const MCP3204_t *mcp){
+static inline void AJ_MCP3204_CS_SetActive(const aj_MCP3204_t *mcp){
     AJ_BitReg_ClearBits_Mask(mcp->cs.port, mcp->cs.mask);
 }
 
-static inline void MCP3204_CS_SetIdle(const MCP3204_t *mcp){
+static inline void AJ_MCP3204_CS_SetIdle(const aj_MCP3204_t *mcp){
     AJ_BitReg_SetBits_Mask(mcp->cs.port, mcp->cs.mask);
 }
 
@@ -91,8 +91,8 @@ static inline void MCP3204_CS_SetIdle(const MCP3204_t *mcp){
  * @note    The SPI peripheral must be configured and enabled
  *          before calling this function.
  */
-static inline uint8_t MCP3204_SPI_Transfer(const uint8_t data){
-    uint16_t timeout = MCP3204_TIMEOUT;           /* Software timeout counter */
+static inline uint8_t AJ_MCP3204_SPI_Transfer(const uint8_t data){
+    uint16_t timeout = AJ_MCP3204_TIMEOUT;           /* Software timeout counter */
 
     SPDR = data;                        /* Start SPI transfer */
 
