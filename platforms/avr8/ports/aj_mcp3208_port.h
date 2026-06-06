@@ -39,8 +39,8 @@
  * @endcode
  */
 
-#ifndef MCP3208_PORT_INCLUDED
-#define MCP3208_PORT_INCLUDED
+#ifndef AJ_MCP3208_PORT_INCLUDED
+#define AJ_MCP3208_PORT_INCLUDED
 
 #ifdef __cplusplus
 extern "C" {
@@ -49,37 +49,31 @@ extern "C" {
 #include <stdint.h>
 #include "aj_compiler_port.h"
 #include "aj_bit_reg.h"
-#include "mcp3208_hw.h"
-#include "mcp3208_type.h"
+#include "aj_mcp3208_hw.h"
+#include "aj_mcp3208_type.h"
 
 /**
  * @brief Initialize MCP3208 CS pin (output, idle high)
  *
  * @param   mcp     Pointer to the MCP3208 instance
  */
-static inline void MCP3208_CS_ConfigAsOutput(const MCP3208_t *mcp){
+static inline void AJ_MCP3208_CS_ConfigAsOutput(const aj_MCP3208_t *mcp){
     AJ_BitReg_SetBits_Mask(mcp->cs.ddr, mcp->cs.mask);
 }
 
 /**
- * @brief   Set the CS pin level for MCP3208
- *
- * @param   mcp     Pointer to the MCP3208 instance
- * @param   status  Logic level to set
- *                  - 0: Pull CS low (select chip)
- *                  - 1: Pull CS high (deselect / idle)
- *
- * @note    The CS pin must be initialized with MCP3208_CS_ConfigAsOutput() before use.
+ * @brief Select the MCP3208 device by driving CS low.
+ * @param mcp Pointer to the MCP3208 instance.
  */
-//static inline void MCP3208_CS_Write(MCP3208_t *mcp, uint8_t status){
-//    WriteBit_Reg8(mcp->cs.port, mcp->cs.index, status);
-//}
-
-static inline void MCP3208_CS_SetActive (const MCP3208_t *mcp){
+static inline void AJ_MCP3208_CS_SetActive (const aj_MCP3208_t *mcp){
     AJ_BitReg_ClearBits_Mask(mcp->cs.port, mcp->cs.mask);
 }
 
-static inline void MCP3208_CS_SetIdle(const MCP3208_t *mcp){
+/**
+ * @brief Deselect the MCP3208 device by driving CS high.
+ * @param mcp Pointer to the MCP3208 instance.
+ */
+static inline void AJ_MCP3208_CS_SetIdle(const aj_MCP3208_t *mcp){
     AJ_BitReg_SetBits_Mask(mcp->cs.port, mcp->cs.mask);
 }
 
@@ -92,8 +86,8 @@ static inline void MCP3208_CS_SetIdle(const MCP3208_t *mcp){
  * @note    The SPI peripheral must be configured and enabled
  *          before calling this function.
  */
-static inline uint8_t MCP3208_SPI_Transfer(const uint8_t data){
-    uint16_t timeout = MCP3208_TIMEOUT;           /* Software timeout counter */
+static inline uint8_t AJ_MCP3208_SPI_Transfer(const uint8_t data){
+    uint16_t timeout = AJ_MCP3208_TIMEOUT;           /* Software timeout counter */
 
     SPDR = data;                        /* Start SPI transfer */
 

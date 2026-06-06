@@ -1,85 +1,82 @@
 // GitHub Account: GitHub.com/AliRezaJoodi
 
-#include "mcp3208_port.h"
-#include "mcp3208.h"
-
-//#define CS_IDLE             1U
-//#define CS_ACTIVE           0U
+#include "aj_mcp3208_type.h"
+#include "aj_mcp3208_port.h"
+#include "aj_mcp3208.h"
 
 /********************************************************/
-void MCP3208_Init(MCP3208_t *mcp){
-    MCP3208_CS_ConfigAsOutput(mcp);
-    //MCP3208_CS_Write(mcp, CS_IDLE);
-    MCP3208_CS_SetIdle(mcp);
+void AJ_MCP3208_Init(aj_MCP3208_t *mcp){
+    AJ_MCP3208_CS_ConfigAsOutput(mcp);
+    AJ_MCP3208_CS_SetIdle(mcp);
 }
 
 /********************************************************/
-uint16_t MCP3208_GetCounts(MCP3208_t *mcp, MCP3208_Channel_t ch){
+uint16_t AJ_MCP3208_GetCounts(aj_MCP3208_t *mcp, aj_MCP3208_Channel_t ch){
     uint8_t data1 = 0x00U;
     uint8_t data2 = 0x00U;
 
     switch (ch){
-        case MCP3208_CH0:
+        case AJ_MCP3208_CH0:
             data1 = 0x06U;
             data2 = 0x00U;
             break;
-        case MCP3208_CH1:
+        case AJ_MCP3208_CH1:
             data1 = 0x06U;
             data2 = 0x40U;
             break;
-        case MCP3208_CH2:
+        case AJ_MCP3208_CH2:
             data1 = 0x06U;
             data2 = 0x80U;
             break;
-        case MCP3208_CH3:
+        case AJ_MCP3208_CH3:
             data1 = 0x06U;
             data2 = 0xC0U;
             break;
-        case MCP3208_CH4:
+        case AJ_MCP3208_CH4:
             data1 = 0x07U;
             data2 = 0x00U;
             break;
-        case MCP3208_CH5:
+        case AJ_MCP3208_CH5:
             data1 = 0x07U;
             data2 = 0x40U;
             break;
-        case MCP3208_CH6:
+        case AJ_MCP3208_CH6:
             data1 = 0x07U;
             data2 = 0x80U;
             break;
-        case MCP3208_CH7:
+        case AJ_MCP3208_CH7:
             data1 = 0x07U;
             data2 = 0xC0U;
             break;
-        case MCP3208_CH0CH1:
+        case AJ_MCP3208_CH0CH1:
             data1 = 0x04U;
             data2 = 0x00U;
             break;
-        case MCP3208_CH1CH0:
+        case AJ_MCP3208_CH1CH0:
             data1 = 0x04U;
             data2 = 0x40U;
             break;
-        case MCP3208_CH2CH3:
+        case AJ_MCP3208_CH2CH3:
             data1 = 0x04U;
             data2 = 0x80U;
             break;
-        case MCP3208_CH3CH2:
+        case AJ_MCP3208_CH3CH2:
             data1 = 0x04U;
             data2 = 0xC0U;
             break;
-        case MCP3208_CH4CH5:
+        case AJ_MCP3208_CH4CH5:
             data1 = 0x05U;
             data2 = 0x00U;
             break;
-        case MCP3208_CH5CH4:
+        case AJ_MCP3208_CH5CH4:
             data1 = 0x05U;
             data2 = 0x40U;
             break;
-        case MCP3208_CH6CH7:
+        case AJ_MCP3208_CH6CH7:
             data1 = 0x05U;
             data2 = 0x80U;
             break;
-        case MCP3208_CH7CH6:
+        case AJ_MCP3208_CH7CH6:
             data1 = 0x05U;
             data2 = 0xC0U;
             break;
@@ -87,13 +84,11 @@ uint16_t MCP3208_GetCounts(MCP3208_t *mcp, MCP3208_Channel_t ch){
             return 0xFFFF;
     }
 
-    //MCP3208_CS_Write(mcp, CS_ACTIVE);
-    MCP3208_CS_SetActive (mcp);
-    MCP3208_SPI_Transfer(data1);
-    data1 = MCP3208_SPI_Transfer(data2);    // Get MSB
-    data2 = MCP3208_SPI_Transfer(0xFF);     // Get LSB
-    //MCP3208_CS_Write(mcp, CS_IDLE);
-    MCP3208_CS_SetIdle(mcp);
+    AJ_MCP3208_CS_SetActive (mcp);
+    AJ_MCP3208_SPI_Transfer(data1);
+    data1 = AJ_MCP3208_SPI_Transfer(data2);    // Get MSB
+    data2 = AJ_MCP3208_SPI_Transfer(0xFF);     // Get LSB
+    AJ_MCP3208_CS_SetIdle(mcp);
 
     return ( ((uint16_t)(data1 & 0x0FU) << 8U) | data2 );
 }
