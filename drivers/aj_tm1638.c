@@ -11,26 +11,14 @@
 #define TM1638_COMMAND_DISPLAY      0x80U  // Display control
 #define TM1638_COMMAND_ADDRESS      0xC0U  // Address command setting
 
-//#define CLK_IDLE            1U
-//#define CLK_ACTIVE          0U
-
-//#define DIO_IDLE            1U
-//#define DIO_ACTIVE          0U
-
-//#define STB_IDLE            1U
-//#define STB_ACTIVE          0U
-
 //***************************************
 void TM1638_WriteByte(uint8_t data){
     uint8_t i = 0;
 
-    //TM1638_DIO_Config(TM1638_PIN_OUTPUT);
     AJ_TM1638_DIO_ConfigAsOutput();
 
     for(i = 0; i < 8; i++) {
-        //TM1638_CLK_Write(CLK_ACTIVE);
         AJ_TM1638_CLK_SetActive();
-        //TM1638_DIO_Write(data & 0x01U);
         if ((data & 0x01U) == 1U){
             AJ_TM1638_DIO_SetIdle();
         }
@@ -38,7 +26,6 @@ void TM1638_WriteByte(uint8_t data){
             AJ_TM1638_DIO_SetActive();
         }
         AJ_TM1638_DELAY_US(AJ_TM1638_BIT_US);
-        //TM1638_CLK_Write(CLK_IDLE);
         AJ_TM1638_CLK_SetIdle();
         AJ_TM1638_DELAY_US(AJ_TM1638_BIT_US);
         data = data >> 1;
@@ -47,10 +34,8 @@ void TM1638_WriteByte(uint8_t data){
 
 //***************************************
 void AJ_TM1638_SendCommand(aj_tm1638_t *tm, uint8_t command){
-    //TM1638_STB_Write(tm, STB_ACTIVE);
     AJ_TM1638_STB_SetActive(tm);
     TM1638_WriteByte(command);
-    //TM1638_STB_Write(tm, STB_IDLE);
     AJ_TM1638_STB_SetIdle(tm);
     AJ_TM1638_DELAY_US(AJ_TM1638_BIT_US);
 }
@@ -73,10 +58,8 @@ uint8_t AJ_TM1638_SetDisplay(aj_tm1638_t *tm, uint8_t onoff, uint8_t brightness)
     command_display = AJ_BitU8_WriteBit_Position(command_display, 3, onoff);
     command_display = AJ_BitU8_WriteBit_Position(command_display, 0, brightness);
 
-    //TM1638_STB_Write(tm, STB_ACTIVE);
     AJ_TM1638_STB_SetActive(tm);
     TM1638_WriteByte(command_display);
-    //TM1638_STB_Write(tm, STB_IDLE);
     AJ_TM1638_STB_SetIdle(tm);
     AJ_TM1638_DELAY_US(AJ_TM1638_BIT_US);
 
@@ -88,37 +71,27 @@ void AJ_TM1638_ClearDisplay(aj_tm1638_t *tm){
     uint8_t i = 0;
     uint8_t command_address = TM1638_COMMAND_ADDRESS;
 
-    //TM1638_STB_Write(tm, STB_ACTIVE);
     AJ_TM1638_STB_SetActive(tm);
     TM1638_WriteByte(TM1638_COMMAND_DATA_WRITE);
-    //TM1638_STB_Write(tm, STB_IDLE);
     AJ_TM1638_STB_SetIdle(tm);
     AJ_TM1638_DELAY_US(AJ_TM1638_BIT_US);
 
-	//TM1638_STB_Write(tm, STB_ACTIVE);
     AJ_TM1638_STB_SetActive(tm);
 	TM1638_WriteByte(command_address);
 	for(i=0; i<16; ++i){TM1638_WriteByte(0x00);}
-	//TM1638_STB_Write(tm, STB_IDLE);
     AJ_TM1638_STB_SetIdle(tm);
     AJ_TM1638_DELAY_US(AJ_TM1638_BIT_US);
 }
 
 //***************************************
 void AJ_TM1638_Init(aj_tm1638_t *tm){
-    //TM1638_STB_Init(tm);
     AJ_TM1638_STB_ConfigAsOutput(tm);
-    //TM1638_STB_Write(tm, STB_IDLE);
     AJ_TM1638_STB_SetIdle(tm);
 
-    //TM1638_CLK_Init();
     AJ_TM1638_CLK_ConfigAsOutput();
-    //TM1638_CLK_Write(CLK_IDLE);
     AJ_TM1638_CLK_SetIdle();
 
-    //TM1638_DIO_Config(TM1638_PIN_OUTPUT);
     AJ_TM1638_DIO_ConfigAsOutput();
-    //TM1638_DIO_Write(DIO_IDLE);
     AJ_TM1638_DIO_SetIdle();
 
     AJ_TM1638_ClearDisplay(tm);
@@ -145,17 +118,13 @@ uint8_t AJ_TM1638_WriteDisplayRegister_AutoIncr(aj_tm1638_t *tm, uint8_t segment
         AJ_BitU8_SetBit_Position(error, 2);
     }
 
-    //WRITE_4BIT(command_address, 0, address);
     command_address = AJ_BitU8_Write4Bits_Position(command_address, 0, address);
 
-    //TM1638_STB_Write(tm, STB_ACTIVE);
     AJ_TM1638_STB_SetActive(tm);
     TM1638_WriteByte(TM1638_COMMAND_DATA_WRITE);
-    //TM1638_STB_Write(tm, STB_IDLE);
     AJ_TM1638_STB_SetIdle(tm);
     AJ_TM1638_DELAY_US(AJ_TM1638_BIT_US);
 
-	//TM1638_STB_Write(tm, STB_ACTIVE);
     AJ_TM1638_STB_SetActive(tm);
 	TM1638_WriteByte(command_address);
 
@@ -163,7 +132,6 @@ uint8_t AJ_TM1638_WriteDisplayRegister_AutoIncr(aj_tm1638_t *tm, uint8_t segment
 	    TM1638_WriteByte(segments[i]);
     }
 
-	//TM1638_STB_Write(tm, STB_IDLE);
     AJ_TM1638_STB_SetIdle(tm);
     AJ_TM1638_DELAY_US(AJ_TM1638_BIT_US);
 
@@ -180,22 +148,17 @@ uint8_t AJ_TM1638_WriteDisplayRegister_Fixed(aj_tm1638_t *tm, uint8_t data, uint
         AJ_BitU8_SetBit_Position(error, 0);
     }
 
-    //WRITE_4BIT(command_address, 0, address);
     command_address = AJ_BitU8_Write4Bits_Position(command_address, 0, address);
 
-    //TM1638_STB_Write(tm, STB_ACTIVE);
     AJ_TM1638_STB_SetActive(tm);
     TM1638_WriteByte(TM1638_COMMAND_DATA_WRITE);
-    //TM1638_STB_Write(tm, STB_IDLE);
     AJ_TM1638_STB_SetIdle(tm);
     AJ_TM1638_DELAY_US(AJ_TM1638_BIT_US);
 
-	//TM1638_STB_Write(tm, STB_ACTIVE);
     AJ_TM1638_STB_SetActive(tm);
 	TM1638_WriteByte(command_address);
     AJ_TM1638_DELAY_US(AJ_TM1638_BIT_US);
 	TM1638_WriteByte(data);
-	//TM1638_STB_Write(tm, STB_IDLE);
     AJ_TM1638_STB_SetIdle(tm);
     AJ_TM1638_DELAY_US(AJ_TM1638_BIT_US);
 
@@ -316,21 +279,16 @@ uint8_t TM1638_ReadByte(void){
     uint8_t data = 0;
     uint8_t buf = 0;
 
-    //TM1638_DIO_Config(TM1638_PIN_INPUT);
     AJ_TM1638_DIO_ConfigAsInput();
 
     for(i=0; i<8; ++i) {
-        //TM1638_CLK_Write(0);
         AJ_TM1638_CLK_SetActive();
         AJ_TM1638_DELAY_US(AJ_TM1638_BIT_US);
-        //TM1638_CLK_Write(1);
         AJ_TM1638_CLK_SetIdle();
         AJ_TM1638_DELAY_US(AJ_TM1638_BIT_US);
 
         buf = AJ_TM1638_DIO_Read();
         AJ_BitU8_WriteBit_Position(data, i, buf);
-
-        //AJ_TM1638_DELAY_US(AJ_TM1638_BIT_US);
     }
 
     return data;
@@ -340,10 +298,8 @@ uint8_t TM1638_ReadByte(void){
 void AJ_TM1638_GetKeys(aj_tm1638_t *tm, uint8_t *key){
     uint8_t i = 0;
 
-    //TM1638_STB_Write(tm, STB_ACTIVE);
     AJ_TM1638_STB_SetActive(tm);
     TM1638_WriteByte(TM1638_COMMAND_DATA_READ);
-    //TM1638_DIO_Config(TM1638_PIN_INPUT);
     AJ_TM1638_DIO_ConfigAsInput();
     AJ_TM1638_DELAY_US(AJ_TM1638_BIT_US*2);  // Twait
 
@@ -353,12 +309,9 @@ void AJ_TM1638_GetKeys(aj_tm1638_t *tm, uint8_t *key){
     }
 
     AJ_TM1638_DELAY_US(AJ_TM1638_BIT_US*2);
-    //TM1638_STB_Write(tm, STB_IDLE);
     AJ_TM1638_STB_SetIdle(tm);
     AJ_TM1638_DELAY_US(AJ_TM1638_BIT_US*2);
-    //TM1638_DIO_Config(TM1638_PIN_OUTPUT);
     AJ_TM1638_DIO_ConfigAsOutput();
-    //TM1638_DIO_Write(DIO_IDLE);
     AJ_TM1638_DIO_SetIdle();
 }
 
@@ -368,10 +321,8 @@ uint8_t AJ_TM1638_GetKeys_K3(aj_tm1638_t *tm){
     uint8_t data = 0;
     uint8_t buf = 0;
 
-    //TM1638_STB_Write(tm, STB_ACTIVE);
     AJ_TM1638_STB_SetActive(tm);
     TM1638_WriteByte(TM1638_COMMAND_DATA_READ);
-    //TM1638_DIO_Config(TM1638_PIN_INPUT);
     AJ_TM1638_DIO_ConfigAsInput();
     AJ_TM1638_DELAY_US(AJ_TM1638_BIT_US*2);  // Twait
 
@@ -382,12 +333,9 @@ uint8_t AJ_TM1638_GetKeys_K3(aj_tm1638_t *tm){
     }
 
     AJ_TM1638_DELAY_US(AJ_TM1638_BIT_US*2);
-    //TM1638_STB_Write(tm, STB_IDLE);
     AJ_TM1638_STB_SetIdle(tm);
     AJ_TM1638_DELAY_US(AJ_TM1638_BIT_US*2);
-    //TM1638_DIO_Config(TM1638_PIN_OUTPUT);
     AJ_TM1638_DIO_ConfigAsOutput();
-    //TM1638_DIO_Write(DIO_IDLE);
     AJ_TM1638_DIO_SetIdle();
 
     return data;

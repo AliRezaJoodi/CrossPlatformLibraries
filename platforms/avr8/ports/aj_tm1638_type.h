@@ -7,12 +7,6 @@ extern "C" {
 
 #include <stdint.h>
 
-//typedef enum{
-//    TM1638_PIN_INPUT = 0U,
-//    TM1638_PIN_OUTPUT = 1U
-//} TM1638_PinMode_t;
-
-
 /**
  * @brief TM1638 GPIO pin descriptor.
  *
