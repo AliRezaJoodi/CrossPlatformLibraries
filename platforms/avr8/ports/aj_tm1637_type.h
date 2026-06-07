@@ -1,5 +1,5 @@
-#ifndef TM1637_TYPE_INCLUDED
-#define TM1637_TYPE_INCLUDED
+#ifndef AJ_TM1637_TYPE_INCLUDED
+#define AJ_TM1637_TYPE_INCLUDED
 
 #ifdef __cplusplus
 extern "C" {
@@ -18,7 +18,7 @@ typedef struct {
     volatile uint8_t *pin;
     //const uint8_t    index;
     const uint8_t    mask;
-} TM1637_Pin_t;
+} aj_tm1637_pin_t;
 
 /**
  * @brief TM1637 device handle.
@@ -29,27 +29,27 @@ typedef struct {
  * @see Example section below.
  */
 typedef struct {
-    const TM1637_Pin_t clk;
-    const TM1637_Pin_t dio;
-} TM1637_t;
+    const aj_tm1637_pin_t clk;
+    const aj_tm1637_pin_t dio;
+} aj_tm1637_t;
 
 /**
  * @example
  * Example: initializing a structure
  *
  * @code
- *    static const TM1637_t tm1 = {
+ *    static const aj_tm1637_t tm1 = {
  *        .clk = {
- *            .ddr   = &TM1637_CLK_DDR,
- *            .port  = &TM1637_CLK_PORT,
- *            .pin   = &TM1637_CLK_PIN,
- *            .mask =   TM1637_CLK_MASK
+ *            .ddr   = &AJ_TM1637_CLK_DDR,
+ *            .port  = &AJ_TM1637_CLK_PORT,
+ *            .pin   = &AJ_TM1637_CLK_PIN,
+ *            .mask =   AJ_TM1637_CLK_MASK
  *        },
  *        .dio = {
- *            .ddr   = &TM1637_DIO_DDR,
- *            .port  = &TM1637_DIO_PORT,
- *            .pin   = &TM1637_DIO_PIN,
- *            .mask =   TM1637_DIO_MASK
+ *            .ddr   = &AJ_TM1637_DIO_DDR,
+ *            .port  = &AJ_TM1637_DIO_PORT,
+ *            .pin   = &AJ_TM1637_DIO_PIN,
+ *            .mask =   AJ_TM1637_DIO_MASK
  *        }
  *    };
  * @endcode

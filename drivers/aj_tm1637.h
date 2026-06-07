@@ -12,27 +12,27 @@
  * @see https://github.com/AliRezaJoodi
  */
 
-#ifndef TM1637_INCLUDED
-#define TM1637_INCLUDED
+#ifndef AJ_TM1637_INCLUDED
+#define AJ_TM1637_INCLUDED
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 #include <stdint.h>
-#include "tm1637_type.h"
+#include "aj_TM1637_type.h"
 
 /**
  * @brief Half bit delay time in microseconds.
  *
  * This value defines the TM1637 clock timing.
- * One full clock period is equal to (TM1637_HALF_BIT_US * 4).
+ * One full clock period is equal to (AJ_TM1637_HALF_BIT_US * 4).
  *
  * @note Typical clock frequency is 450 kHz
  * @note Maximum clock frequency is 500 kHz
  */
-#ifndef TM1637_HALF_BIT_US
-    #define TM1637_HALF_BIT_US     1
+#ifndef AJ_TM1637_HALF_BIT_US
+    #define AJ_TM1637_HALF_BIT_US     1U
 #endif
 
 /**
@@ -44,7 +44,7 @@ extern "C" {
  *
  * @param tm Pointer to TM1637 handle structure.
  */
-void TM1637_Init(TM1637_t *tm);
+void AJ_TM1637_Init(aj_tm1637_t *tm);
 
 /**
  * @brief Send a command to the TM1637 device.
@@ -55,7 +55,7 @@ void TM1637_Init(TM1637_t *tm);
  * @param tm Pointer to TM1637 handle structure.
  * @param command Command byte to be sent.
  */
-void TM1637_SendCommand(TM1637_t *tm, uint8_t command);
+void AJ_TM1637_SendCommand(aj_tm1637_t *tm, uint8_t command);
 
 /**
  * @brief Set the TM1637 display ON/OFF and brightness level.
@@ -83,7 +83,7 @@ void TM1637_SendCommand(TM1637_t *tm, uint8_t command);
  *          Bit 0: The onoff param was invalid and corrected
  *          Bit 1: The brightness param was invalid and corrected
  */
-uint8_t TM1637_SetDisplay(TM1637_t *tm, uint8_t onoff, uint8_t brightness);
+uint8_t AJ_TM1637_SetDisplay(aj_tm1637_t *tm, uint8_t onoff, uint8_t brightness);
 
 /**
  * @brief Clear all digits on the TM1637 display.
@@ -93,7 +93,7 @@ uint8_t TM1637_SetDisplay(TM1637_t *tm, uint8_t onoff, uint8_t brightness);
  *
  * @param tm Pointer to TM1637 handle structure.
  */
-void TM1637_ClearDisplay(TM1637_t *tm);
+void AJ_TM1637_ClearDisplay(aj_tm1637_t *tm);
 
 /**
  * @brief Write multiple segment data to the TM1637 using address auto-increment mode.
@@ -117,7 +117,7 @@ void TM1637_ClearDisplay(TM1637_t *tm);
  *          Bit 1: Length exceeded remaining digits and corrected
  *          Bit 2: Length was zero and corrected to 1
  */
-uint8_t TM1637_WriteDisplayRegister_AutoIncr(TM1637_t *tm, uint8_t segments[], uint8_t length, uint8_t address);
+uint8_t AJ_TM1637_WriteDisplayRegister_AutoIncr(aj_tm1637_t *tm, uint8_t segments[], uint8_t length, uint8_t address);
 
 /**
  * @brief Write a single byte of segment data to a fixed digit address.
@@ -138,7 +138,7 @@ uint8_t TM1637_WriteDisplayRegister_AutoIncr(TM1637_t *tm, uint8_t segments[], u
  * @return Error flags (bitfield):
  *         Bit 0: Address was out of range and corrected
  */
-uint8_t TM1637_WriteDisplayRegister_Fixed(TM1637_t *tm, uint8_t data, uint8_t address);
+uint8_t AJ_TM1637_WriteDisplayRegister_Fixed(aj_tm1637_t *tm, uint8_t data, uint8_t address);
 
 /**
  * @brief Write 2 digits (GRID1–GRID2)
@@ -146,8 +146,8 @@ uint8_t TM1637_WriteDisplayRegister_Fixed(TM1637_t *tm, uint8_t data, uint8_t ad
  * @param tm TM1637 handle
  * @param segments Array of 2 segment bytes
  */
-static inline void TM1637_Write2Digits_G1G2(TM1637_t *tm, uint8_t segments[]){
-    TM1637_WriteDisplayRegister_AutoIncr(tm, segments, 2, 0);
+static inline void AJ_TM1637_Write2Digits_G1G2(aj_tm1637_t *tm, uint8_t segments[]){
+    AJ_TM1637_WriteDisplayRegister_AutoIncr(tm, segments, 2, 0);
 }
 
 /**
@@ -156,8 +156,8 @@ static inline void TM1637_Write2Digits_G1G2(TM1637_t *tm, uint8_t segments[]){
  * @param tm TM1637 handle
  * @param segments Array of 3 segment bytes
  */
-static inline void TM1637_Write3Digits_G1G3(TM1637_t *tm, uint8_t segments[]){
-    TM1637_WriteDisplayRegister_AutoIncr(tm, segments, 3, 0);
+static inline void AJ_TM1637_Write3Digits_G1G3(aj_tm1637_t *tm, uint8_t segments[]){
+    AJ_TM1637_WriteDisplayRegister_AutoIncr(tm, segments, 3, 0);
 }
 
 /**
@@ -166,8 +166,8 @@ static inline void TM1637_Write3Digits_G1G3(TM1637_t *tm, uint8_t segments[]){
  * @param tm TM1637 handle
  * @param segments Array of 3 segment bytes
  */
-static inline void TM1637_Write3Digits_G4G6(TM1637_t *tm, uint8_t segments[]){
-    TM1637_WriteDisplayRegister_AutoIncr(tm, segments, 3, 3);
+static inline void AJ_TM1637_Write3Digits_G4G6(aj_tm1637_t *tm, uint8_t segments[]){
+    AJ_TM1637_WriteDisplayRegister_AutoIncr(tm, segments, 3, 3);
 }
 
 /**
@@ -176,8 +176,8 @@ static inline void TM1637_Write3Digits_G4G6(TM1637_t *tm, uint8_t segments[]){
  * @param tm TM1637 handle
  * @param segments Array of 4 segment bytes
  */
-static inline void TM1637_Write4Digits_G1G4(TM1637_t *tm, uint8_t segments[]){
-    TM1637_WriteDisplayRegister_AutoIncr(tm, segments, 4, 0);
+static inline void AJ_TM1637_Write4Digits_G1G4(aj_tm1637_t *tm, uint8_t segments[]){
+    AJ_TM1637_WriteDisplayRegister_AutoIncr(tm, segments, 4, 0);
 }
 
 /**
@@ -186,8 +186,8 @@ static inline void TM1637_Write4Digits_G1G4(TM1637_t *tm, uint8_t segments[]){
  * @param tm TM1637 handle
  * @param segments Array of 6 segment bytes
  */
-static inline void TM1637_Write6Digits_G1G6(TM1637_t *tm, uint8_t segments[]){
-    TM1637_WriteDisplayRegister_AutoIncr(tm, segments, 6, 0);
+static inline void AJ_TM1637_Write6Digits_G1G6(aj_tm1637_t *tm, uint8_t segments[]){
+    AJ_TM1637_WriteDisplayRegister_AutoIncr(tm, segments, 6, 0);
 }
 
 #ifdef __cplusplus
