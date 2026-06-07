@@ -16,15 +16,15 @@
  * @see https://github.com/AliRezaJoodi
  */
 
-#ifndef TM1638_INCLUDED
-#define TM1638_INCLUDED
+#ifndef AJ_TM1638_INCLUDED
+#define AJ_TM1638_INCLUDED
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 #include <stdint.h>
-#include "tm1638_type.h"
+#include "aj_tm1638_type.h"
 
 /**
  * @brief Bit delay time in microseconds.
@@ -35,8 +35,8 @@ extern "C" {
  * @note Typical clock frequency is 500KHz
  * @note Maximum clock frequency is 1MHz
  */
-#ifndef TM1638_BIT_US
-    #define TM1638_BIT_US            1U
+#ifndef AJ_TM1638_BIT_US
+    #define AJ_TM1638_BIT_US            1U
 #endif
 
 /**
@@ -54,7 +54,7 @@ extern "C" {
  * @note STB, CLK, and DIO pins are set to high (idle) after configuration.
  * @note Display is turned ON with brightness level 7 after reset.
  */
-void TM1638_Init(TM1638_t *tm);
+void AJ_TM1638_Init(aj_tm1638_t *tm);
 
 /**
  * @brief Send a command byte to the TM1638 module.
@@ -62,7 +62,7 @@ void TM1638_Init(TM1638_t *tm);
  * @param tm Pointer to TM1638 handle structure.
  * @param command Command byte to send.
  */
-void TM1638_SendCommand(TM1638_t *tm, uint8_t command);
+void AJ_TM1638_SendCommand(aj_tm1638_t *tm, uint8_t command);
 
 /**
  * @brief Set the TM1638 display ON/OFF and brightness.
@@ -88,7 +88,7 @@ void TM1638_SendCommand(TM1638_t *tm, uint8_t command);
  *          Bit 0: onoff param was invalid and corrected
  *          Bit 1: brightness param was invalid and corrected
  */
-uint8_t TM1638_SetDisplay(TM1638_t *tm, uint8_t onoff, uint8_t brightness);
+uint8_t AJ_TM1638_SetDisplay(aj_tm1638_t *tm, uint8_t onoff, uint8_t brightness);
 
 /**
  * @brief Clear all segments on the TM1638 display.
@@ -98,7 +98,7 @@ uint8_t TM1638_SetDisplay(TM1638_t *tm, uint8_t onoff, uint8_t brightness);
  *
  * @param tm Pointer to TM1638 handle structure.
  */
-void TM1638_ClearDisplay(TM1638_t *tm);
+void AJ_TM1638_ClearDisplay(aj_tm1638_t *tm);
 
 /**
  * @brief Write a single byte of segment data to a fixed digit address.
@@ -112,7 +112,7 @@ void TM1638_ClearDisplay(TM1638_t *tm);
  * @return Error flags (bitfield):
  *         Bit 0: Address was out of range and corrected.
  */
-uint8_t TM1638_WriteDisplayRegister_Fixed(TM1638_t *tm, uint8_t data, uint8_t address);
+uint8_t AJ_TM1638_WriteDisplayRegister_Fixed(aj_tm1638_t *tm, uint8_t data, uint8_t address);
 
 /**
  * @brief Write multiple segment data in address increment mode.
@@ -130,7 +130,7 @@ uint8_t TM1638_WriteDisplayRegister_Fixed(TM1638_t *tm, uint8_t data, uint8_t ad
  *          Bit 1: Length exceeded remaining addresses and corrected
  *          Bit 2: Length was zero and corrected to 1
  */
-uint8_t TM1638_WriteDisplayRegister_AutoIncr(TM1638_t *tm, uint8_t segments[], uint8_t length, uint8_t address);
+uint8_t AJ_TM1638_WriteDisplayRegister_AutoIncr(aj_tm1638_t *tm, uint8_t segments[], uint8_t length, uint8_t address);
 
 /**
  * @brief Write up to 8 digits to the TM1638 display without altering SEG9 and SEG10.
@@ -148,7 +148,7 @@ uint8_t TM1638_WriteDisplayRegister_AutoIncr(TM1638_t *tm, uint8_t segments[], u
  *         Bit 1: Length exceeded remaining digits and corrected.
  *         Bit 2: Length was zero and corrected to 1.
  */
-uint8_t TM1637_WriteDigits(TM1638_t *tm, uint8_t segments[], uint8_t length, uint8_t pos);
+uint8_t AJ_TM1637_WriteDigits(aj_tm1638_t *tm, uint8_t segments[], uint8_t length, uint8_t pos);
 
 /**
  * @brief Set the first 4 digits (Grid 1 to Grid 4) of the TM1637 display.
@@ -162,7 +162,7 @@ uint8_t TM1637_WriteDigits(TM1638_t *tm, uint8_t segments[], uint8_t length, uin
  * @param segments Array of 4 bytes representing segment data for Grid 1 to Grid 4.
  *                Each byte represents the segment states for one digit.
  */
-void TM1637_Write4Digits_G1G4(TM1638_t *tm, uint8_t segments[]);
+void AJ_TM1637_Write4Digits_G1G4(aj_tm1638_t *tm, uint8_t segments[]);
 
 /**
  * @brief Set digits 5 to 8 (Grid 5 to Grid 8) of the TM1637 display.
@@ -175,7 +175,7 @@ void TM1637_Write4Digits_G1G4(TM1638_t *tm, uint8_t segments[]);
  * @param tm Pointer to TM1638 handle structure.
  * @param segments Array of 4 bytes representing segment data for Grid 5 to Grid 8.
  */
-void TM1637_Write4Digits_G5G8(TM1638_t *tm, uint8_t segments[]);
+void AJ_TM1637_Write4Digits_G5G8(aj_tm1638_t *tm, uint8_t segments[]);
 
 /**
  * @brief Set the 16 LEDs connected to SEG9 and SEG10.
@@ -192,7 +192,7 @@ void TM1637_Write4Digits_G5G8(TM1638_t *tm, uint8_t segments[]);
  * @param tm Pointer to TM1638 handle structure.
  * @param data 16-bit value controlling the LEDs on SEG9 and SEG10.
  */
-void TM1638_SetLeds(TM1638_t *tm, uint16_t data);
+void AJ_TM1638_SetLeds(aj_tm1638_t *tm, uint16_t data);
 
 /**
  * @brief Set the 8 LEDs.
@@ -210,7 +210,7 @@ void TM1638_SetLeds(TM1638_t *tm, uint16_t data);
  * @param tm Pointer to TM1638 handle structure.
  * @param data 8-bit value controlling the LEDs on SEG9.
  */
-void TM1638_Set8Leds_S9S10x4(TM1638_t *tm, uint8_t data);
+void AJ_TM1638_Set8Leds_S9S10x4(aj_tm1638_t *tm, uint8_t data);
 
 /**
  * @brief Set the 8 LEDs connected to SEG9.
@@ -226,7 +226,7 @@ void TM1638_Set8Leds_S9S10x4(TM1638_t *tm, uint8_t data);
  * @param tm Pointer to TM1638 handle structure.
  * @param data 8-bit value controlling the LEDs on SEG9.
  */
-void TM1638_Set8Leds_S9x8(TM1638_t *tm, uint8_t data);
+void AJ_TM1638_Set8Leds_S9x8(aj_tm1638_t *tm, uint8_t data);
 
 /**
  * @brief Scan buttons connected to K1, K2, and K3 lines.
@@ -237,7 +237,7 @@ void TM1638_Set8Leds_S9x8(TM1638_t *tm, uint8_t data);
  * @param tm Pointer to TM1638 handle structure.
  * @param key Pointer to an array of 4 bytes where the button states will be stored.
  */
-void TM1638_GetKeys(TM1638_t *tm, uint8_t *key);
+void AJ_TM1638_GetKeys(aj_tm1638_t *tm, uint8_t *key);
 
 /**
  * @brief Read the state of keys connected to the K3 line.
@@ -257,7 +257,7 @@ void TM1638_GetKeys(TM1638_t *tm, uint8_t *key);
  * @param tm Pointer to TM1638 handle structure.
  * @return 8-bit value where each bit indicates the state of a key.
  */
-uint8_t TM1638_GetKeys_K3(TM1638_t *tm);
+uint8_t AJ_TM1638_GetKeys_K3(aj_tm1638_t *tm);
 
 #ifdef __cplusplus
 }
