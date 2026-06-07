@@ -12,10 +12,10 @@
  *   the perception of a continuous display.
  *
  * Usage requirements:
- * - Seg7_Init() must be called before any other function.
- * - Seg7_SetBuffer() must be used to provide a valid
+ * - AJ_Seg7_Init() must be called before any other function.
+ * - AJ_Seg7_SetBuffer() must be used to provide a valid
  *   segment pattern buffer.
- * - Seg7_Refresh() must be called periodically
+ * - AJ_Seg7_Refresh() must be called periodically
  *   (e.g., from a timer interrupt or main loop)
  *   to maintain proper display output.
  *
@@ -28,8 +28,8 @@
  * @see     https://github.com/AliRezaJoodi
  */
 
-#ifndef SEG7_DRIVER_INCLUDED
-#define SEG7_DRIVER_INCLUDED
+#ifndef AJ_SEG7_DRIVER_INCLUDED
+#define AJ_SEG7_DRIVER_INCLUDED
 
 #ifdef __cplusplus
 extern "C" {
@@ -43,7 +43,7 @@ extern "C" {
  * Configures digit and segment pins as output
  * and sets the display to an idle state.
  */
-void Seg7_Init(void);
+void AJ_Seg7_Init(void);
 
 /**
  * @brief Set display buffer pointer.
@@ -53,7 +53,7 @@ void Seg7_Init(void);
  *
  * @param buffer Pointer to segment data array.
  */
-void Seg7_SetBuffer(uint8_t *buffer);
+void AJ_Seg7_SetBuffer(uint8_t *buffer);
 
 /**
  * @brief Refresh one multiplex step.
@@ -62,7 +62,7 @@ void Seg7_SetBuffer(uint8_t *buffer);
  * (e.g., inside a timer interrupt or main loop)
  * to maintain proper multiplexing.
  */
-void Seg7_Refresh(void);
+void AJ_Seg7_Refresh(void);
 
 #ifdef __cplusplus
 }

@@ -29,7 +29,7 @@ extern "C" {
 #include "aj_bit_reg.h"
 #include "aj_gpio_type.h"	
 
-static inline void AJ_GPIO_ConfigDirection(GPIO_TypeDef *GPIOx, AJ_GPIO_PinPos_t pos, AJ_GPIO_Direction_t mode){
+static inline void AJ_GPIO_ConfigDirection(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_t pos, aj_gpio_direction_t mode){
 	if(pos <= 7){
 		AJ_BitReg_Write2Bits_Position(&(GPIOx->CRL), pos * 4, mode);
 	}
@@ -38,7 +38,7 @@ static inline void AJ_GPIO_ConfigDirection(GPIO_TypeDef *GPIOx, AJ_GPIO_PinPos_t
 	}	
 }
 
-static inline void AJ_GPIO_ConfigInputType(GPIO_TypeDef *GPIOx, AJ_GPIO_PinPos_t pos, AJ_GPIO_InputType_t mode){
+static inline void AJ_GPIO_ConfigInputType(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_t pos, aj_gpio_input_t mode){
 	if(pos <= 7){
 		AJ_BitReg_Write2Bits_Position(&(GPIOx->CRL), (pos * 4) + 2, mode);
 	}
@@ -47,7 +47,7 @@ static inline void AJ_GPIO_ConfigInputType(GPIO_TypeDef *GPIOx, AJ_GPIO_PinPos_t
 	}
 }
 
-static inline void AJ_GPIO_ConfigOutputType(GPIO_TypeDef *GPIOx, AJ_GPIO_PinPos_t pos, AJ_GPIO_OutputType_t mode){
+static inline void AJ_GPIO_ConfigOutputType(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_t pos, aj_gpio_output_t mode){
 	if(pos <= 7){
 		AJ_BitReg_Write2Bits_Position(&GPIOx->CRL, (pos*4)+2, mode);
 	}
@@ -56,7 +56,7 @@ static inline void AJ_GPIO_ConfigOutputType(GPIO_TypeDef *GPIOx, AJ_GPIO_PinPos_
 	}
 }
 
-static inline void AJ_GPIO_ConfigPull(GPIO_TypeDef *GPIOx, AJ_GPIO_PinPos_t pos, AJ_GPIO_Pull_t mode){
+static inline void AJ_GPIO_ConfigPull(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_t pos, aj_gpio_pull_t mode){
 	AJ_BitReg_WriteBit_Position(&GPIOx->ODR, pos, mode);
 }
 
@@ -65,7 +65,7 @@ static inline void AJ_GPIO_SetPins_Mask(GPIO_TypeDef *GPIOx, uint32_t mask){
 	GPIOx->BSRR = mask & 0xFFFFUL;
 }
 
-static inline void AJ_GPIO_SetPin_Position(GPIO_TypeDef *GPIOx, AJ_GPIO_PinPos_t pos){
+static inline void AJ_GPIO_SetPin_Position(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_t pos){
 	GPIOx->BSRR = (1UL << pos);
 }
 
@@ -74,7 +74,7 @@ static inline void AJ_GPIO_ClearPins_Mask(GPIO_TypeDef *GPIOx, uint32_t mask){
 	GPIOx->BRR = mask;
 }
 
-static inline void AJ_GPIO_ClearPin_Position(GPIO_TypeDef *GPIOx, AJ_GPIO_PinPos_t pos){
+static inline void AJ_GPIO_ClearPin_Position(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_t pos){
 	GPIOx->BRR = (1UL << pos);
 }
 
@@ -83,7 +83,7 @@ static inline void AJ_GPIO_TogglePins_Mask(GPIO_TypeDef *GPIOx, uint32_t mask){
 	AJ_BitReg_ToggleBits_Mask(&GPIOx->ODR, mask);
 }
 
-static inline void AJ_GPIO_TogglePin_Position(GPIO_TypeDef *GPIOx, AJ_GPIO_PinPos_t pos){
+static inline void AJ_GPIO_TogglePin_Position(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_t pos){
 	AJ_BitReg_ToggleBit_Position(&GPIOx->ODR, pos);
 }
 
@@ -92,19 +92,19 @@ static inline void AJ_GPIO_WriteField_Mask(GPIO_TypeDef *GPIOx, uint32_t mask, u
   AJ_BitReg_WriteField_Mask(&GPIOx->ODR, mask, field);
 }
 
-static inline void AJ_GPIO_WritePin_Position(GPIO_TypeDef *GPIOx, AJ_GPIO_PinPos_t pos, uint32_t status){
+static inline void AJ_GPIO_WritePin_Position(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_t pos, uint32_t status){
 	AJ_BitReg_WriteBit_Position(&GPIOx->ODR, pos, status);
 }
 
-static inline void AJ_GPIO_Write2Pins_Position(GPIO_TypeDef *GPIOx, AJ_GPIO_PinPos_t pos, uint32_t field){
+static inline void AJ_GPIO_Write2Pins_Position(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_t pos, uint32_t field){
 	AJ_BitReg_Write2Bits_Position(&GPIOx->ODR, pos, field);
 }
 
-static inline void AJ_GPIO_Write3Pins_Position(GPIO_TypeDef *GPIOx, AJ_GPIO_PinPos_t pos, uint32_t field){
+static inline void AJ_GPIO_Write3Pins_Position(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_t pos, uint32_t field){
 	AJ_BitReg_Write3Bits_Position(&GPIOx->ODR, pos, field);
 }
 
-static inline void AJ_GPIO_Write4Pins_Position(GPIO_TypeDef *GPIOx, AJ_GPIO_PinPos_t pos, uint32_t field){
+static inline void AJ_GPIO_Write4Pins_Position(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_t pos, uint32_t field){
 	AJ_BitReg_Write4Bits_Position(&GPIOx->ODR, pos, field);
 }
 
@@ -125,23 +125,23 @@ static inline uint32_t AJ_GPIO_IsAnyPinSet_Mask(GPIO_TypeDef *GPIOx, uint32_t ma
 	return AJ_BitReg_IsAnyBitSet_Mask(&GPIOx->IDR, mask);
 }
 
-static inline uint8_t AJ_GPIO_IsPinSet_Position(GPIO_TypeDef *GPIOx, AJ_GPIO_PinPos_t pos){
+static inline uint8_t AJ_GPIO_IsPinSet_Position(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_t pos){
 	return AJ_BitReg_IsBitSet_Position(&GPIOx->IDR, pos);
 }
 
-static inline uint8_t AJ_GPIO_ReadPin_Position(GPIO_TypeDef *GPIOx, AJ_GPIO_PinPos_t pos){
+static inline uint8_t AJ_GPIO_ReadPin_Position(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_t pos){
 	return AJ_BitReg_GetBit_Position(&GPIOx->IDR, pos);
 }
 
-static inline uint8_t AJ_GPIO_Read2Pins_Position(GPIO_TypeDef *GPIOx, AJ_GPIO_PinPos_t pos){
+static inline uint8_t AJ_GPIO_Read2Pins_Position(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_t pos){
 	return AJ_BitReg_Get2Bits_Position(&GPIOx->IDR, pos);
 }
 
-static inline uint8_t AJ_GPIO_Read3Pins_Position(GPIO_TypeDef *GPIOx, AJ_GPIO_PinPos_t pos){
+static inline uint8_t AJ_GPIO_Read3Pins_Position(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_t pos){
 	return AJ_BitReg_Get3Bits_Position(&GPIOx->IDR, pos);
 }
 
-static inline uint8_t AJ_GPIO_Read4Pins_Position(GPIO_TypeDef *GPIOx, AJ_GPIO_PinPos_t pos){
+static inline uint8_t AJ_GPIO_Read4Pins_Position(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_t pos){
 	return AJ_BitReg_Get4Bits_Position(&GPIOx->IDR, pos);
 }
 
@@ -210,7 +210,7 @@ static inline uint8_t AJ_GPIO_ArePinsLocked_Mask(GPIO_TypeDef *GPIOx, uint32_t m
  * @param  pin    GPIO pin number (e.g., GPIO_PIN_0, GPIO_PIN_1, etc.).
  * @return 1 if both the Port Lock Key is active AND the specific pin is locked, 0 otherwise.
  */
-static inline uint8_t AJ_GPIO_IsPinLocked_Position(GPIO_TypeDef *GPIOx, AJ_GPIO_PinPos_t pos){
+static inline uint8_t AJ_GPIO_IsPinLocked_Position(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_t pos){
 	uint32_t lckr = GPIOx->LCKR;
 
 	return (uint8_t)(
@@ -223,7 +223,7 @@ static inline uint8_t AJ_GPIO_IsPinLocked_Position(GPIO_TypeDef *GPIOx, AJ_GPIO_
 //	return GetBit_Reg32(&GPIOx->LCKR, GPIO_LCKR_LCKK_Pos);
 //}
 
-//static inline uint8_t GPIO_ReadLockPin(GPIO_TypeDef *GPIOx, AJ_GPIO_PinPos_t pin){
+//static inline uint8_t GPIO_ReadLockPin(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_t pin){
 //    return (uint8_t)((GPIOx->LCKR >> pin) & 0x01UL);
 //}
 
