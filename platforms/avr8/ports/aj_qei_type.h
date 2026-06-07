@@ -14,14 +14,14 @@ typedef struct {
     volatile uint8_t    *pin;       /**< Pin register */
     const uint8_t       pos;        /**< Pin position */
     const uint8_t       mask;
-} aj_QEI_Pin_t;
+} aj_qei_pin_t;
 
 typedef struct {
-    const aj_QEI_Pin_t     chA;
-    const aj_QEI_Pin_t     chB;
+    const aj_qei_pin_t     chA;
+    const aj_qei_pin_t     chB;
 
     #if (AJ_QEI_Z == 1U)
-    const aj_QEI_Pin_t     chZ;
+    const aj_qei_pin_t     chZ;
     #endif
 
     uint32_t            count;
@@ -30,7 +30,7 @@ typedef struct {
     #if (AJ_QEI_Z == 1U)
     uint8_t             flag;
     #endif
-} aj_QEI_t;
+} aj_qei_t;
 
 /**
  * @example

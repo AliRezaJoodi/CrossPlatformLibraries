@@ -19,9 +19,9 @@ static const int8_t qei_table[16] = {
     0, 1, -1, 0
 };
 
-void AJ_QEI_Init(aj_QEI_t *qei);
+void AJ_QEI_Init(aj_qei_t *qei);
 
-static inline void AJ_QEI_Update(aj_QEI_t *qei){
+static inline void AJ_QEI_Update(aj_qei_t *qei){
     uint8_t phase , index;
 
     #if (AJ_QEI_AB_CLOSED == 0U)
@@ -42,24 +42,24 @@ static inline void AJ_QEI_Update(aj_QEI_t *qei){
     qei->last = phase;
 }
 
-static inline int32_t AJ_QEI_GetCount(aj_QEI_t *qei){
+static inline int32_t AJ_QEI_GetCount(aj_qei_t *qei){
     return qei->count;
 }
 
-static inline void AJ_QEI_ResetCount(aj_QEI_t *qei){
+static inline void AJ_QEI_ResetCount(aj_qei_t *qei){
     qei->count = 0;
 }
 
 #if (AJ_QEI_Z == 1U)
-static inline void AJ_QEI_SetIndexFlag(aj_QEI_t *qei){
+static inline void AJ_QEI_SetIndexFlag(aj_qei_t *qei){
     qei->flag = 1;
 }
 
-static inline void AJ_QEI_ClearIndexFlag(aj_QEI_t *qei){
+static inline void AJ_QEI_ClearIndexFlag(aj_qei_t *qei){
     qei->flag = 0;
 }
 
-static inline uint8_t AJ_QEI_GetIndexFlag(const aj_QEI_t *qei){
+static inline uint8_t AJ_QEI_GetIndexFlag(const aj_qei_t *qei){
     return qei->flag;
 }
 #endif

@@ -6,7 +6,7 @@
 #include "aj_qei.h"
 
 //*************************************************
-void AJ_QEI_Init(aj_QEI_t *qei){
+void AJ_QEI_Init(aj_qei_t *qei){
     AJ_QEI_A_ConfigAsInput(qei);
     AJ_QEI_B_ConfigAsInput(qei);
 
