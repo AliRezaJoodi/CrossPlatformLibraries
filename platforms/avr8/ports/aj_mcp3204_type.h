@@ -19,7 +19,7 @@ typedef enum {
     AJ_MCP3204_CH1CH0      = 5U,   /**< CH1(IN+), CH0(IN-)*/
     AJ_MCP3204_CH2CH3      = 6U,   /**< CH2(IN+), CH3(IN-)*/
     AJ_MCP3204_CH3CH2      = 7U    /**< CH3(IN+), CH2(IN-)*/
-} aj_MCP3204_Channel_t;
+} aj_mcp3204_channel_t;
 
 /**
  * @brief   GPIO representation for a single MCP3204 pin
@@ -35,7 +35,7 @@ typedef struct {
     volatile uint8_t *port;     /**< PORT register for this pin */
     //const uint8_t     index;    /**< Bit position within DDR/PORT (0..7) */
     const uint8_t     mask;
-} aj_MCP3204_Pin_t;
+} aj_mcp3204_pin_t;
 
 /**
  * @brief   MCP3204 instance structure
@@ -43,15 +43,15 @@ typedef struct {
  * Contains all pins used by a single MCP3201 device.
  */
 typedef struct {
-    const aj_MCP3204_Pin_t cs;       /**< Chip Select pin */
-} aj_MCP3204_t;
+    const aj_mcp3204_pin_t cs;       /**< Chip Select pin */
+} aj_mcp3204_t;
 
 /**
  * @example
  * Example: initializing a structure
  *
  * @code
- *    static const aj_MCP3204_t mcp1 = {
+ *    static const aj_mcp3204_t mcp1 = {
  *        .cs = {
  *            .ddr   = &AJ_MCP3204_CS_DDR,
  *            .port  = &AJ_MCP3204_CS_PORT,

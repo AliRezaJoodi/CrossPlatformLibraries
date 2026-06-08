@@ -56,7 +56,7 @@ extern "C" {
  *
  * @param   mcp     Pointer to the MCP3204 instance
  */
-static inline void AJ_MCP3204_CS_ConfigAsOutput(const aj_MCP3204_t *mcp){
+static inline void AJ_MCP3204_CS_ConfigAsOutput(const aj_mcp3204_t *mcp){
     AJ_BitReg_SetBits_Mask(mcp->cs.ddr, mcp->cs.mask);
 }
 
@@ -74,11 +74,11 @@ static inline void AJ_MCP3204_CS_ConfigAsOutput(const aj_MCP3204_t *mcp){
 //    WriteBit_Reg8(mcp->cs.port, mcp->cs.index, status);
 //}
 
-static inline void AJ_MCP3204_CS_SetActive(const aj_MCP3204_t *mcp){
+static inline void AJ_MCP3204_CS_SetActive(const aj_mcp3204_t *mcp){
     AJ_BitReg_ClearBits_Mask(mcp->cs.port, mcp->cs.mask);
 }
 
-static inline void AJ_MCP3204_CS_SetIdle(const aj_MCP3204_t *mcp){
+static inline void AJ_MCP3204_CS_SetIdle(const aj_mcp3204_t *mcp){
     AJ_BitReg_SetBits_Mask(mcp->cs.port, mcp->cs.mask);
 }
 
