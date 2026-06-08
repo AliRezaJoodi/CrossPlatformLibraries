@@ -5,13 +5,13 @@
 #include "aj_mcp3208.h"
 
 /********************************************************/
-void AJ_MCP3208_Init(aj_MCP3208_t *mcp){
+void AJ_MCP3208_Init(aj_mcp3208_t *mcp){
     AJ_MCP3208_CS_ConfigAsOutput(mcp);
     AJ_MCP3208_CS_SetIdle(mcp);
 }
 
 /********************************************************/
-uint16_t AJ_MCP3208_GetCounts(aj_MCP3208_t *mcp, aj_MCP3208_Channel_t ch){
+uint16_t AJ_MCP3208_GetCounts(aj_mcp3208_t *mcp, aj_mcp3208_channel_t ch){
     uint8_t data1 = 0x00U;
     uint8_t data2 = 0x00U;
 

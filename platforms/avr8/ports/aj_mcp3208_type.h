@@ -27,7 +27,7 @@ typedef enum {
     AJ_MCP3208_CH5CH4      = 13U,  /**< CH5(IN+), CH4(IN-)*/
     AJ_MCP3208_CH6CH7      = 14U,  /**< CH6(IN+), CH7(IN-)*/
     AJ_MCP3208_CH7CH6      = 15U   /**< CH7(IN+), CH6(IN-)*/
-} aj_MCP3208_Channel_t;
+} aj_mcp3208_channel_t;
 
 /**
  * @brief   GPIO representation for a single MCP3208 pin
@@ -43,7 +43,7 @@ typedef struct {
     volatile uint8_t *port;     /**< PORT register for this pin */
     //const uint8_t     index;    /**< Bit position within DDR/PORT (0..7) */
     const uint8_t     mask;
-} aj_MCP3208_Pin_t;
+} aj_mcp3208_pin_t;
 
 /**
  * @brief   MCP3208 instance structure
@@ -51,15 +51,15 @@ typedef struct {
  * Contains all pins used by a single MCP3201 device.
  */
 typedef struct {
-    const aj_MCP3208_Pin_t cs;       /**< Chip Select pin */
-} aj_MCP3208_t;
+    const aj_mcp3208_pin_t cs;       /**< Chip Select pin */
+} aj_mcp3208_t;
 
 /**
  * @example
  * Example: initializing a structure
  *
  * @code
- *    static const aj_MCP3208_t mcp1 = {
+ *    static const aj_mcp3208_t mcp1 = {
  *        .cs = {
  *            .ddr   = &AJ_MCP3208_CS_DDR,
  *            .port  = &AJ_MCP3208_CS_PORT,
