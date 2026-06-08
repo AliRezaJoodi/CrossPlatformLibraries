@@ -1,5 +1,5 @@
-#ifndef AJ_BUTTON_TYPE_INCLUDED
-#define AJ_BUTTON_TYPE_INCLUDED
+#ifndef aj_button_tYPE_INCLUDED
+#define aj_button_tYPE_INCLUDED
 
 #ifdef __cplusplus
 extern "C" {
@@ -13,14 +13,14 @@ typedef enum{
     AJ_BUTTON_ACTIVE_LOW  = 0U,
     AJ_BUTTON_ACTIVE_HIGH = 1U
 
-} aj_Button_ActiveLevel_t;
+} aj_button_active_t;
 
 /** @brief Configures the pull resistor mode for a button pin. */
 typedef enum{
     AJ_BUTTON_PULL_NONE = 0U,   /**< No pull resistor */
     AJ_BUTTON_PULL_UP   = 1U,   /**< No pull resistor */
     AJ_BUTTON_PULL_DOWN = 2U    /**< Internal pull-down enabled */
-} aj_Button_PullMode_t;
+} aj_button_pull_t;
 
 /**
  * @brief Hardware configuration for a button.
@@ -34,7 +34,7 @@ typedef struct {
     volatile uint8_t    *pin;      /**< Pin register */
     //const uint8_t       index;    /**< Pin index number */
     const uint8_t       mask;
-} aj_Button_Pin_t;
+} aj_button_pin_t;
 
 /**
  * @brief Static configuration of a button.
@@ -42,12 +42,12 @@ typedef struct {
  * This structure defines two compile-time configuration parameters:
  *
  *   pressed : Selects the active logic level of the button using
- *             @ref aj_Button_ActiveLevel_t
+ *             @ref aj_button_active_t
  *             - AJ_BUTTON_ACTIVE_LOW  : Button is pressed when pin reads LOW
  *             - AJ_BUTTON_ACTIVE_HIGH : Button is pressed when pin reads HIGH
  *
  *   pull    : Selects the internal pull resistor configuration using
- *             @ref aj_Button_PullMode_t
+ *             @ref aj_button_pull_t
  *             - AJ_BUTTON_PULL_NONE : No internal pull resistor
  *             - AJ_BUTTON_PULL_UP   : Internal pull-up enabled
  *             - AJ_BUTTON_PULL_DOWN : Internal pull-down enabled
@@ -55,9 +55,9 @@ typedef struct {
  * All values are constant after initialization.
  */
 typedef struct {
-    const aj_Button_ActiveLevel_t  pressed;  /**< Active level of the button */
-    const aj_Button_PullMode_t     pull;     /**< Pull configuration for the button pin */
-} aj_Button_Config_t;
+    const aj_button_active_t  pressed;  /**< Active level of the button */
+    const aj_button_pull_t     pull;     /**< Pull configuration for the button pin */
+} aj_button_config_t;
 
 /**
  * @brief Button object.
@@ -71,11 +71,11 @@ typedef struct {
  *   counter : Internal debounce timing counter.
  */
 typedef struct{
-    const aj_Button_Pin_t       hw;      /**< Pin mapping and hardware references */
-    const aj_Button_Config_t    config;   /**< Static configuration (active level & pull) */
+    const aj_button_pin_t       hw;      /**< Pin mapping and hardware references */
+    const aj_button_config_t    config;   /**< Static configuration (active level & pull) */
     aj_timebase_t               tick_last;
     uint8_t                     state;    /**< Current stable state */
-} aj_Button_t;
+} aj_button_t;
 
 /**
  * @example
@@ -103,4 +103,4 @@ typedef struct{
 }
 #endif
 
-#endif  /* AJ_BUTTON_TYPE_INCLUDED */
+#endif  /* aj_button_tYPE_INCLUDED */

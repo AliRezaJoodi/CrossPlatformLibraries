@@ -7,7 +7,7 @@
 #include "aj_button.h"
 
 //*************************************************
-void AJ_Button_Init(aj_Button_t *btn){
+void AJ_Button_Init(aj_button_t *btn){
     AJ_Button_Pin_ConfigAsInput(btn);
 
     switch(btn->config.pull) {
@@ -29,7 +29,7 @@ void AJ_Button_Init(aj_Button_t *btn){
 }
 
 //*************************************************
-uint8_t AJ_Button_GetTrigger(aj_Button_t *btn, aj_timebase_t now) {
+uint8_t AJ_Button_GetTrigger(aj_button_t *btn, aj_timebase_t now) {
     if (AJ_Button_Pin_Read(btn) == btn->config.pressed) {
         if (btn->state == 0) {
             btn->state = 1;
@@ -50,7 +50,7 @@ uint8_t AJ_Button_GetTrigger(aj_Button_t *btn, aj_timebase_t now) {
 }
 
 //*************************************************
-uint8_t AJ_Button_GetAutoRepeat(aj_Button_t *btn, aj_timebase_t now) {
+uint8_t AJ_Button_GetAutoRepeat(aj_button_t *btn, aj_timebase_t now) {
     if (AJ_Button_Pin_Read(btn) == btn->config.pressed) {
         if (btn->state == 0) {
             btn->state = 1;

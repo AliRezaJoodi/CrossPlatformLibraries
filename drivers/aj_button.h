@@ -33,13 +33,13 @@ extern "C" {
  *
  * @param btn Pointer to the Button_t object to initialize.
  */
-void AJ_Button_Init(aj_Button_t *btn);
+void AJ_Button_Init(aj_button_t *btn);
 
 /**
  * @brief Detect a single button trigger event (non-blocking).
  *
  * Uses a state-machine based debounce mechanism to filter noise
- * and confirm a valid button press after the AJ_BUTTON_TIME_TRIGGER
+ * and confirm a valid button press after the aj_button_tIME_TRIGGER
  * interval has elapsed.
  *
  * The current system tick must be provided by the caller, allowing
@@ -50,7 +50,7 @@ void AJ_Button_Init(aj_Button_t *btn);
  * @param now Current system tick used for timing comparison.
  * @return 1 if a valid trigger event is detected, 0 otherwise.
  */
-uint8_t AJ_Button_GetTrigger(aj_Button_t *btn, aj_timebase_t now);
+uint8_t AJ_Button_GetTrigger(aj_button_t *btn, aj_timebase_t now);
 
 /**
  * @brief Check for auto-repeat events on a button (non-blocking).
@@ -67,7 +67,7 @@ uint8_t AJ_Button_GetTrigger(aj_Button_t *btn, aj_timebase_t now);
  * @param now Current system tick used for timing comparison.
  * @return 1 if an auto-repeat event is generated, 0 otherwise.
  */
-uint8_t AJ_Button_GetAutoRepeat(aj_Button_t *btn, aj_timebase_t now);
+uint8_t AJ_Button_GetAutoRepeat(aj_button_t *btn, aj_timebase_t now);
 
 #ifdef __cplusplus
 }
