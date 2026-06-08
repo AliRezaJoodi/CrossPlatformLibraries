@@ -11,7 +11,7 @@ extern "C" {
 typedef enum {
 	AJ_BUS_CLOCK_DISABLE = 0U,
 	AJ_BUS_CLOCK_ENABLE  = 1U
-} AJ_BUS_ClockEnableStatus_t;
+} aj_bus_clock_enable_t;
 
 typedef enum {
 	#if defined(RCC_AHBENR_DMA1EN_Msk)
@@ -60,7 +60,7 @@ typedef enum {
 	
 	AJ_BUS_AHB_ALL = 0xFFFFFFFFU
 	
-} AJ_BUS_AHB_PeriphMask_t;
+} aj_bus_ahb_periph_mask_t;
 
 typedef enum {
 	#if defined(RCC_APB1ENR_TIM2EN_Msk)
@@ -165,7 +165,7 @@ typedef enum {
 
 	AJ_BUS_APB1_ALL = 0xFFFFFFFFU
 	
-} AJ_BUS_APB1_PeriphMask_t;
+} aj_bus_apb1_periph_mask_t;
 
 typedef enum {
 	#if defined(RCC_APB2ENR_AFIOEN_Msk)
@@ -254,7 +254,7 @@ typedef enum {
 
 	AJ_BUS_APB2_ALL = 0xFFFFFFFFU
 	
-} AJ_BUS_APB2_PeriphMask_t;
+} aj_bus_apb2_periph_mask_t;
 
 
 #ifdef __cplusplus
