@@ -21,7 +21,7 @@ typedef struct {
     volatile uint8_t *port;     /**< PORT register for this pin */
     //const uint8_t     index;    /**< Bit position within DDR/PORT (0..7) */
     const uint8_t     mask;
-} aj_MCP3201_Pin_t;
+} aj_mcp3201_pin_t;
 
 /**
  * @brief   MCP3201 instance structure
@@ -29,15 +29,15 @@ typedef struct {
  * Contains all pins used by a single MCP3201 device.
  */
 typedef struct {
-    const aj_MCP3201_Pin_t cs;       /**< Chip Select pin */
-} aj_MCP3201_t;
+    const aj_mcp3201_pin_t cs;       /**< Chip Select pin */
+} aj_mcp3201_t;
 
 /**
  * @example
  * Example: initializing a structure
  *
  * @code
- *    static const MCP3201_t mcp1 = {
+ *    static const aj_mcp3201_t mcp1 = {
  *        .cs = {
  *            .ddr   = &AJ_MCP3201_CS_DDR,
  *            .port  = &AJ_MCP3201_CS_PORT,

@@ -62,7 +62,7 @@ extern "C" {
  *
  * @param   mcp     Pointer to the MCP3201 instance
  */
-static inline void AJ_MCP3201_CS_ConfigAsOutput(const aj_MCP3201_t *mcp){
+static inline void AJ_MCP3201_CS_ConfigAsOutput(const aj_mcp3201_t *mcp){
     AJ_BitReg_SetBits_Mask(mcp->cs.ddr, mcp->cs.mask);
 }
 
@@ -70,7 +70,7 @@ static inline void AJ_MCP3201_CS_ConfigAsOutput(const aj_MCP3201_t *mcp){
  * @brief Select the MCP3201 device by driving CS low.
  * @param mcp Pointer to the MCP3201 instance.
  */
-static inline void AJ_MCP3201_CS_SetActive(const aj_MCP3201_t *mcp){
+static inline void AJ_MCP3201_CS_SetActive(const aj_mcp3201_t *mcp){
     AJ_BitReg_ClearBits_Mask(mcp->cs.port, mcp->cs.mask);
 }
 
@@ -78,7 +78,7 @@ static inline void AJ_MCP3201_CS_SetActive(const aj_MCP3201_t *mcp){
  * @brief Deselect the MCP3201 device by driving CS high.
  * @param mcp Pointer to the MCP3201 instance.
  */
-static inline void AJ_MCP3201_CS_SetIdle(const aj_MCP3201_t *mcp){
+static inline void AJ_MCP3201_CS_SetIdle(const aj_mcp3201_t *mcp){
     AJ_BitReg_SetBits_Mask(mcp->cs.port, mcp->cs.mask);
 }
 

@@ -40,7 +40,7 @@ extern "C" {
  *
  * @param   mcp   Pointer to a valid MCP3201_t instance
  */
-void AJ_MCP3201_Init(aj_MCP3201_t *mcp);
+void AJ_MCP3201_Init(aj_mcp3201_t *mcp);
 
 /**
  * @brief   Read raw ADC counts from MCP3201
@@ -51,7 +51,7 @@ void AJ_MCP3201_Init(aj_MCP3201_t *mcp);
  * @param   mcp   Pointer to a valid MCP3201_t instance
  * @return  12-bit ADC value as uint16_t (0 to 4095)
  */
-uint16_t AJ_MCP3201_GetCounts(aj_MCP3201_t *mcp);
+uint16_t AJ_MCP3201_GetCounts(aj_mcp3201_t *mcp);
 
 #ifdef __cplusplus
 }
