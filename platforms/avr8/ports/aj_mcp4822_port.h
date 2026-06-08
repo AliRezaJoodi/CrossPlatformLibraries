@@ -59,7 +59,7 @@ extern "C" {
  *
  * @param[in] mcp   Pointer to MCP4822 device handle
  */
-static inline void AJ_MCP4822_CS_ConfigAsOutput(const aj_MCP4822_t *mcp){
+static inline void AJ_MCP4822_CS_ConfigAsOutput(const aj_mcp4822_t *mcp){
     AJ_BitReg_SetBits_Mask(mcp->cs.ddr, mcp->cs.mask);
 }
 
@@ -69,7 +69,7 @@ static inline void AJ_MCP4822_CS_ConfigAsOutput(const aj_MCP4822_t *mcp){
  *
  * @param[in] mcp  Pointer to MCP4822 device handle
  */
-static inline void AJ_MCP4822_CS_SetActive(const aj_MCP4822_t *mcp){
+static inline void AJ_MCP4822_CS_SetActive(const aj_mcp4822_t *mcp){
     AJ_BitReg_ClearBits_Mask(mcp->cs.port, mcp->cs.mask);
 }
 
@@ -79,7 +79,7 @@ static inline void AJ_MCP4822_CS_SetActive(const aj_MCP4822_t *mcp){
  *
  * @param[in] mcp  Pointer to MCP4822 device handle
  */
-static inline void AJ_MCP4822_CS_SetIdle(const aj_MCP4822_t *mcp){
+static inline void AJ_MCP4822_CS_SetIdle(const aj_mcp4822_t *mcp){
     AJ_BitReg_SetBits_Mask(mcp->cs.port, mcp->cs.mask);
 }
 
@@ -89,7 +89,7 @@ static inline void AJ_MCP4822_CS_SetIdle(const aj_MCP4822_t *mcp){
  *
  * @param[in] mcp   Pointer to MCP4822 device handle
  */
-static inline void AJ_MCP4822_LDAC_ConfigAsOutput(const aj_MCP4822_t *mcp){
+static inline void AJ_MCP4822_LDAC_ConfigAsOutput(const aj_mcp4822_t *mcp){
     AJ_BitReg_SetBits_Mask(mcp->ldac.ddr, mcp->ldac.mask);
 }
 
@@ -100,7 +100,7 @@ static inline void AJ_MCP4822_LDAC_ConfigAsOutput(const aj_MCP4822_t *mcp){
  *
  * @param[in] mcp  Pointer to MCP4822 device handle
  */
-static inline void AJ_MCP4822_LDAC_SetActive(const aj_MCP4822_t *mcp){
+static inline void AJ_MCP4822_LDAC_SetActive(const aj_mcp4822_t *mcp){
     AJ_BitReg_ClearBits_Mask(mcp->ldac.port, mcp->ldac.mask);
 }
 
@@ -110,7 +110,7 @@ static inline void AJ_MCP4822_LDAC_SetActive(const aj_MCP4822_t *mcp){
  *
  * @param[in] mcp  Pointer to MCP4822 device handle
  */
-static inline void AJ_MCP4822_LDAC_SetIdle(const aj_MCP4822_t *mcp){
+static inline void AJ_MCP4822_LDAC_SetIdle(const aj_mcp4822_t *mcp){
     AJ_BitReg_SetBits_Mask(mcp->ldac.port, mcp->ldac.mask);
 }
 

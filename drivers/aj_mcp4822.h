@@ -42,7 +42,7 @@
  * @warning
  * The 'dac' pointer must be properly initialized before calling this function.
  */
-void AJ_MCP4822_Init(aj_MCP4822_t *dac);
+void AJ_MCP4822_Init(aj_mcp4822_t *dac);
 
 /**
  * @brief   Set DAC output value for a selected channel
@@ -70,7 +70,7 @@ void AJ_MCP4822_Init(aj_MCP4822_t *dac);
  * Invalid channel or gain values may lead to undefined behavior.
  *
  */
-void AJ_MCP4822_WriteChannel(aj_MCP4822_t *dac, aj_MCP4822_Channel_t ch, aj_MCP4822_Vout_t fs, uint16_t count);
+void AJ_MCP4822_WriteChannel(aj_mcp4822_t *dac, aj_mcp4822_channel_t ch, aj_mcp4822_scale_t fs, uint16_t count);
 
 /**
  * @brief   Disable DAC output for a selected channel
@@ -90,7 +90,7 @@ void AJ_MCP4822_WriteChannel(aj_MCP4822_t *dac, aj_MCP4822_Channel_t ch, aj_MCP4
  * @warning
  * Invalid channel values may lead to undefined behavior.
  */
-void AJ_MCP4822_ShutdownChannel(aj_MCP4822_t *dac, aj_MCP4822_Channel_t ch);
+void AJ_MCP4822_ShutdownChannel(aj_mcp4822_t *dac, aj_mcp4822_channel_t ch);
 
 /**
  * @brief   Set output value for channel A
@@ -102,7 +102,7 @@ void AJ_MCP4822_ShutdownChannel(aj_MCP4822_t *dac, aj_MCP4822_Channel_t ch);
  *                   - AJ_MCP4822_FS_4V096
  * @param[in] value  12-bit DAC value (0 to 4095)
  */
-static inline void AJ_MCP4822_WriteChannelA(aj_MCP4822_t *dac, aj_MCP4822_Vout_t fs, uint16_t count){
+static inline void AJ_MCP4822_WriteChannelA(aj_mcp4822_t *dac, aj_mcp4822_scale_t fs, uint16_t count){
     AJ_MCP4822_WriteChannel(dac, AJ_MCP4822_CH_A, fs, count);
 }
 
@@ -113,7 +113,7 @@ static inline void AJ_MCP4822_WriteChannelA(aj_MCP4822_t *dac, aj_MCP4822_Vout_t
  * @param[in] dac    Pointer to MCP4822 device handle
  * @param[in] value  12-bit DAC value (0 to 4095)
  */
-static inline void AJ_MCP4822_WriteChannelA_2V048(aj_MCP4822_t *dac, uint16_t count){
+static inline void AJ_MCP4822_WriteChannelA_2V048(aj_mcp4822_t *dac, uint16_t count){
     AJ_MCP4822_WriteChannel(dac, AJ_MCP4822_CH_A, AJ_MCP4822_FS_2V048, count);
 }
 
@@ -124,7 +124,7 @@ static inline void AJ_MCP4822_WriteChannelA_2V048(aj_MCP4822_t *dac, uint16_t co
  * @param[in] dac    Pointer to MCP4822 device handle
  * @param[in] value  12-bit DAC value (0 to 4095)
  */
-static inline void AJ_MCP4822_WriteChannelA_4V096(aj_MCP4822_t *dac, uint16_t count){
+static inline void AJ_MCP4822_WriteChannelA_4V096(aj_mcp4822_t *dac, uint16_t count){
     AJ_MCP4822_WriteChannel(dac, AJ_MCP4822_CH_A, AJ_MCP4822_FS_4V096, count);
 }
 
@@ -138,7 +138,7 @@ static inline void AJ_MCP4822_WriteChannelA_4V096(aj_MCP4822_t *dac, uint16_t co
  *                   - AJ_MCP4822_FS_4V096
  * @param[in] value  12-bit DAC value (0 to 4095)
  */
-static inline void AJ_MCP4822_WriteChannelB(aj_MCP4822_t *dac, aj_MCP4822_Vout_t fs, uint16_t count){
+static inline void AJ_MCP4822_WriteChannelB(aj_mcp4822_t *dac, aj_mcp4822_scale_t fs, uint16_t count){
     AJ_MCP4822_WriteChannel(dac, AJ_MCP4822_CH_B, fs, count);
 }
 
@@ -149,7 +149,7 @@ static inline void AJ_MCP4822_WriteChannelB(aj_MCP4822_t *dac, aj_MCP4822_Vout_t
  * @param[in] dac    Pointer to MCP4822 device handle
  * @param[in] value  12-bit DAC value (0 to 4095)
  */
-static inline void AJ_MCP4822_WriteChannelB_2V048(aj_MCP4822_t *dac, uint16_t count){
+static inline void AJ_MCP4822_WriteChannelB_2V048(aj_mcp4822_t *dac, uint16_t count){
     AJ_MCP4822_WriteChannel(dac, AJ_MCP4822_CH_B, AJ_MCP4822_FS_2V048, count);
 }
 
@@ -160,7 +160,7 @@ static inline void AJ_MCP4822_WriteChannelB_2V048(aj_MCP4822_t *dac, uint16_t co
  * @param[in] dac    Pointer to MCP4822 device handle
  * @param[in] value  12-bit DAC value (0 to 4095)
  */
-static inline void AJ_MCP4822_WriteChannelB_4V096(aj_MCP4822_t *dac, uint16_t count){
+static inline void AJ_MCP4822_WriteChannelB_4V096(aj_mcp4822_t *dac, uint16_t count){
     AJ_MCP4822_WriteChannel(dac, AJ_MCP4822_CH_B, AJ_MCP4822_FS_4V096, count);
 }
 
@@ -170,7 +170,7 @@ static inline void AJ_MCP4822_WriteChannelB_4V096(aj_MCP4822_t *dac, uint16_t co
  *
  * @param[in] dac   Pointer to MCP4822 device handle
  */
-static inline void AJ_MCP4822_ShutdownChannelA(aj_MCP4822_t *dac){
+static inline void AJ_MCP4822_ShutdownChannelA(aj_mcp4822_t *dac){
     AJ_MCP4822_ShutdownChannel(dac, AJ_MCP4822_CH_A);
 }
 
@@ -180,7 +180,7 @@ static inline void AJ_MCP4822_ShutdownChannelA(aj_MCP4822_t *dac){
  *
  * @param[in] dac   Pointer to MCP4822 device handle
  */
-static inline void AJ_MCP4822_ShutdownChannelB(aj_MCP4822_t *dac){
+static inline void AJ_MCP4822_ShutdownChannelB(aj_mcp4822_t *dac){
     AJ_MCP4822_ShutdownChannel(dac, AJ_MCP4822_CH_B);
 }
 

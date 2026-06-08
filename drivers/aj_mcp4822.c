@@ -6,7 +6,7 @@
 #define MCP4822_DISABLE     0U
 
 //********************************************************
-void AJ_MCP4822_Init(aj_MCP4822_t *dac){
+void AJ_MCP4822_Init(aj_mcp4822_t *dac){
     AJ_MCP4822_CS_ConfigAsOutput(dac);
     AJ_MCP4822_CS_SetIdle(dac);
 
@@ -15,7 +15,7 @@ void AJ_MCP4822_Init(aj_MCP4822_t *dac){
 }
 
 //********************************************************
-void AJ_MCP4822_WriteChannel(aj_MCP4822_t *dac, aj_MCP4822_Channel_t ch, aj_MCP4822_Vout_t fs, uint16_t count){
+void AJ_MCP4822_WriteChannel(aj_mcp4822_t *dac, aj_mcp4822_channel_t ch, aj_mcp4822_scale_t fs, uint16_t count){
     uint8_t msb =   ((ch & 0x01U) << 7)     |
                     ((fs & 0x01U) << 5)     |
                     (MCP4822_ENABLE << 4)   |
@@ -35,7 +35,7 @@ void AJ_MCP4822_WriteChannel(aj_MCP4822_t *dac, aj_MCP4822_Channel_t ch, aj_MCP4
 }
 
 //********************************************************
-void AJ_MCP4822_ShutdownChannel(aj_MCP4822_t *dac, aj_MCP4822_Channel_t ch){
+void AJ_MCP4822_ShutdownChannel(aj_mcp4822_t *dac, aj_mcp4822_channel_t ch){
     uint8_t msb =   ((ch & 0x01U) << 7)     |
                     (MCP4822_DISABLE << 4);
 
