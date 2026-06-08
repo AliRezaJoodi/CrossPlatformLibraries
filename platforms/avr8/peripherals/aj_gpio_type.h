@@ -10,12 +10,12 @@ extern "C" {
 typedef enum {
     AJ_GPIO_DIR_INPUT  = 0U,
     AJ_GPIO_DIR_OUTPUT = 1U
-} AJ_GPIO_Direction_t;
+} aj_gpio_direction_t;
 
 typedef enum {
 	AJ_GPIO_PULL_NONE = 0U,
 	AJ_GPIO_PULL_UP   = 1U
-} AJ_GPIO_Pull_t;
+} aj_gpio_pull_t;
 
 typedef enum{
     AJ_GPIO_PIN_0_POS  = 0U,
@@ -26,7 +26,7 @@ typedef enum{
     AJ_GPIO_PIN_5_POS  = 5U,
     AJ_GPIO_PIN_6_POS  = 6U,
     AJ_GPIO_PIN_7_POS  = 7U
-} AJ_GPIO_PinPos_t;
+} aj_gpio_pin_pos_t;
 
 typedef enum{
 	AJ_GPIO_PIN_0_MASK  = (1U << AJ_GPIO_PIN_0_POS),
@@ -37,13 +37,13 @@ typedef enum{
 	AJ_GPIO_PIN_5_MASK  = (1U << AJ_GPIO_PIN_5_POS),
 	AJ_GPIO_PIN_6_MASK  = (1U << AJ_GPIO_PIN_6_POS),
 	AJ_GPIO_PIN_7_MASK  = (1U << AJ_GPIO_PIN_7_POS)
-} AJ_GPIO_PinMask_t;
+} aj_gpio_pin_mask_t;
 
 typedef struct {
     volatile uint8_t    *pin;      /**< Pin register */
     volatile uint8_t    *ddr;      /**< Data Direction Register */
     volatile uint8_t    *port;     /**< Port register */
-} AJ_GPIO_PortReg_t;
+} aj_gpio_reg_t;
 
 #ifdef __cplusplus
 }
