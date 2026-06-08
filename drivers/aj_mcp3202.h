@@ -40,7 +40,7 @@ extern "C" {
  *
  * @param   mcp   Pointer to a valid MCP3202_t instance
  */
-void AJ_MCP3202_Init(aj_MCP3202_t *mcp);
+void AJ_MCP3202_Init(aj_mcp3202_t *mcp);
 
 /**
  * @brief   Read raw ADC counts from MCP3202
@@ -52,7 +52,7 @@ void AJ_MCP3202_Init(aj_MCP3202_t *mcp);
  * @param   ch    Input channel selection (single-ended or differential)
  * @return  12-bit ADC value as uint16_t (0 to 4095)
  */
-uint16_t AJ_MCP3202_GetCounts(aj_MCP3202_t *mcp, aj_MCP3202_Channel_t ch);
+uint16_t AJ_MCP3202_GetCounts(aj_mcp3202_t *mcp, aj_mcp3202_channel_t ch);
 
 #ifdef __cplusplus
 }

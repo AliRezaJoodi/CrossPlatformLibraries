@@ -5,13 +5,13 @@
 #include "aj_mcp3202.h"
 
 /********************************************************/
-void AJ_MCP3202_Init(aj_MCP3202_t *mcp){
+void AJ_MCP3202_Init(aj_mcp3202_t *mcp){
     AJ_MCP3202_CS_ConfigAsOutput(mcp);
     AJ_MCP3202_CS_SetIdle(mcp);
 }
 
 /********************************************************/
-uint16_t AJ_MCP3202_GetCounts(aj_MCP3202_t *mcp, aj_MCP3202_Channel_t ch){
+uint16_t AJ_MCP3202_GetCounts(aj_mcp3202_t *mcp, aj_mcp3202_channel_t ch){
     uint8_t data1 = 0x01U;
     uint8_t data2 = 0x00U;
 
