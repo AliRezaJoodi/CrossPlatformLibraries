@@ -37,7 +37,7 @@ typedef struct {
  * Example: initializing a structure
  *
  * @code
- * aj_QEI_t qei = {
+ * aj_qei_t qei = {
  *     .chA = {
  *         .ddr   = &AJ_QEI_A_DDR,
  *         .port  = &AJ_QEI_A_PORT,
