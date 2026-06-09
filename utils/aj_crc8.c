@@ -1,6 +1,6 @@
 
 #include <stdint.h>
-#include "crc8.h"
+#include "aj_crc8.h"
 
 //************************************************
 static inline uint8_t Reflect8Bit(uint8_t x){
@@ -12,7 +12,7 @@ static inline uint8_t Reflect8Bit(uint8_t x){
 }
 
 //************************************************
-uint8_t CRC8_ATM(uint8_t crc, uint8_t data){
+uint8_t AJ_CRC8_ATM(uint8_t crc, uint8_t data){
     uint8_t i = 0;
 
     crc ^= data;
@@ -30,7 +30,7 @@ uint8_t CRC8_ATM(uint8_t crc, uint8_t data){
 }
 
 //************************************************
-uint8_t CRC8_Maxim(uint8_t crc, uint8_t data){
+uint8_t AJ_CRC8_Maxim(uint8_t crc, uint8_t data){
     uint8_t i = 0;
 
     crc  = Reflect8Bit(crc);
@@ -53,7 +53,7 @@ uint8_t CRC8_Maxim(uint8_t crc, uint8_t data){
 }
 
 //************************************************
-uint8_t CRC8_J1850(uint8_t crc, uint8_t data){
+uint8_t AJ_CRC8_J1850(uint8_t crc, uint8_t data){
     uint8_t i = 0;
 
     crc ^= data;

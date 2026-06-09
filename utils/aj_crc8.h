@@ -5,8 +5,8 @@
  * @see     https://github.com/AliRezaJoodi
  */
 
-#ifndef CRC8_INCLUDED
-#define CRC8_INCLUDED
+#ifndef AJ_CRC8_INCLUDED
+#define AJ_CRC8_INCLUDED
 
 #ifdef __cplusplus
 extern "C" {
@@ -30,9 +30,9 @@ extern "C" {
  * @return  Updated CRC value.
  *
  * @note    Designed for incremental (streaming) CRC calculation:
- *          crc = CRC8_ATM(crc, byte);
+ *          crc = AJ_CRC8_ATM(crc, byte);
  */
-uint8_t CRC8_ATM(uint8_t crc, uint8_t data);
+uint8_t AJ_CRC8_ATM(uint8_t crc, uint8_t data);
 
 /**
  * @brief   Compute CRC-8/MAXIM (Dallas 1-Wire) over one byte.
@@ -51,7 +51,7 @@ uint8_t CRC8_ATM(uint8_t crc, uint8_t data);
  *
  * @note    This is the standard Dallas/Maxim 1-Wire CRC (OWI CRC-8).
  */
-uint8_t CRC8_Maxim(uint8_t crc, uint8_t data);
+uint8_t AJ_CRC8_Maxim(uint8_t crc, uint8_t data);
 
 /**
  * @brief   Compute CRC-8/SAE J1850 over one byte (non-reflected).
@@ -68,9 +68,9 @@ uint8_t CRC8_Maxim(uint8_t crc, uint8_t data);
  *
  * @return  Updated CRC value (XorOut must be applied outside the function).
  *
- * @note    Final CRC is:  final_crc = CRC8_J1850(... ) ^ 0xFF
+ * @note    Final CRC is:  final_crc = AJ_CRC8_J1850(... ) ^ 0xFF
  */
-uint8_t CRC8_J1850(uint8_t crc, uint8_t data);
+uint8_t AJ_CRC8_J1850(uint8_t crc, uint8_t data);
 
 #ifdef __cplusplus
 }
