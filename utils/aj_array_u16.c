@@ -1,7 +1,7 @@
-#include "array.h"
+#include "aj_array_u16.h"
 
 //*************************************************************
-uint16_t Array_Min_u16(const uint16_t *arr, uint16_t len){
+uint16_t AJ_ArrayU16_Min(const uint16_t *arr, uint16_t len){
     uint16_t i = 0;
     uint16_t min = 0;
 
@@ -21,7 +21,7 @@ uint16_t Array_Min_u16(const uint16_t *arr, uint16_t len){
 }
 
 //*************************************************************
-uint16_t Array_Max_u16(const uint16_t *arr, uint16_t len){
+uint16_t AJ_ArrayU16_Max(const uint16_t *arr, uint16_t len){
     uint16_t i = 0;
     uint16_t max = 0;
 
@@ -41,7 +41,7 @@ uint16_t Array_Max_u16(const uint16_t *arr, uint16_t len){
 }
 
 //*************************************************************
-uint16_t Array_Average_u16(const uint16_t *arr, uint16_t len){
+uint16_t AJ_ArrayU16_Average(const uint16_t *arr, uint16_t len){
     uint32_t sum = 0;
     uint16_t i = 0;
 
@@ -57,8 +57,8 @@ uint16_t Array_Average_u16(const uint16_t *arr, uint16_t len){
 }
 
 //*************************************************************
-int16_t Array_Find_u16(const uint16_t *arr, uint16_t len, uint16_t value){
-    uint16_t i = 0;
+uint16_t AJ_ArrayU16_Find(const uint16_t *arr, uint16_t len, uint16_t value){
+    uint16_t i;
 
     if (arr == NULL || len == 0){
         return 0xFFFF;
@@ -66,15 +66,15 @@ int16_t Array_Find_u16(const uint16_t *arr, uint16_t len, uint16_t value){
 
     for(i = 0; i < len; i++){
         if(arr[i] == value){
-            return (int16_t)i;
+            return i;
         }
     }
 
-    return -1;
+    return AJ_ARRAY_U16_ERROR;
 }
 
 //*************************************************************
-void Array_Reverse_u16(uint16_t *arr, uint16_t len){
+void AJ_ArrayU16_Reverse(uint16_t *arr, uint16_t len){
     uint16_t i = 0;
     uint16_t tmp = 0;
 
@@ -90,7 +90,7 @@ void Array_Reverse_u16(uint16_t *arr, uint16_t len){
 }
 
 //*************************************************************
-void Array_Clear_u16(uint16_t *arr, uint16_t len){
+void AJ_ArrayU16_Clear(uint16_t *arr, uint16_t len){
     uint16_t i = 0;
 
 
