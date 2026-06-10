@@ -15,8 +15,8 @@
  * - User must ensure that the input date is valid.
  */
 
-#ifndef CALENDAR_CONVERTER_INCLUDED
-#define CALENDAR_CONVERTER_INCLUDED
+#ifndef AJ_CALENDAR_CONVERTER_INCLUDED
+#define AJ_CALENDAR_CONVERTER_INCLUDED
 
 #ifdef __cplusplus
 extern "C" {
@@ -28,7 +28,7 @@ typedef struct {
     uint8_t year;       /**< Year (00–99) */
     uint8_t month;      /**< Month (1–12) */
     uint8_t day;        /**< Day (1–31) */
-} date_t;
+} aj_date_t;
 
 /**
  * @brief Convert Gregorian date to Jalaali date
@@ -42,7 +42,7 @@ typedef struct {
  * @note
  * Input date must be valid. No validation is performed.
  */
-void Calendar_ConvertGregorianToJalaali(date_t *gc, date_t *jc);
+void AJ_Calendar_ConvertGregorianToJalaali(aj_date_t *gc, aj_date_t *jc);
 
 /**
  * @brief Convert Jalaali date to Gregorian date
@@ -56,7 +56,7 @@ void Calendar_ConvertGregorianToJalaali(date_t *gc, date_t *jc);
  * @note
  * Input date must be valid. No validation is performed.
  */
-void Calendar_ConvertJalaaliToGregorian(date_t *jc, date_t *gc);
+void AJ_Calendar_ConvertJalaaliToGregorian(aj_date_t *jc, aj_date_t *gc);
 
 #ifdef __cplusplus
 }

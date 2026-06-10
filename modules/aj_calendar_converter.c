@@ -1,6 +1,6 @@
 
 #include <stdint.h>
-#include "calendar_converter.h"
+#include "aj_calendar_converter.h"
 
 static const uint8_t table_jalaali[6][12] = {
     {11, 10, 10,  9,  9,  9,  8,  9,  9, 10, 11,  9},
@@ -21,7 +21,7 @@ static const uint8_t table_gregorian[6][12] = {
 };
 
 //***************************************************************
-void Calendar_ConvertGregorianToJalaali(date_t *gc, date_t *jc){
+void AJ_Calendar_ConvertGregorianToJalaali(aj_date_t *gc, aj_date_t *jc){
     uint8_t k = 0;
     uint8_t t1 = 0;
     uint8_t t2 = 0;
@@ -61,7 +61,7 @@ void Calendar_ConvertGregorianToJalaali(date_t *gc, date_t *jc){
 }
 
 //***************************************************************
-void Calendar_ConvertJalaaliToGregorian(date_t *jc, date_t *gc){
+void AJ_Calendar_ConvertJalaaliToGregorian(aj_date_t *jc, aj_date_t *gc){
     uint8_t k = 0;
     uint8_t t1 = 0;
     uint8_t t2 = 0;
