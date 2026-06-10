@@ -20,20 +20,7 @@ extern "C" {
 #endif
 
 #include <stdint.h>
-#include "aj_TM1637_type.h"
-
-/**
- * @brief Half bit delay time in microseconds.
- *
- * This value defines the TM1637 clock timing.
- * One full clock period is equal to (AJ_TM1637_HALF_BIT_US * 4).
- *
- * @note Typical clock frequency is 450 kHz
- * @note Maximum clock frequency is 500 kHz
- */
-#ifndef AJ_TM1637_HALF_BIT_US
-    #define AJ_TM1637_HALF_BIT_US     1U
-#endif
+#include "aj_tm1637_type.h"
 
 /**
  * @brief Initialize the TM1637 device.

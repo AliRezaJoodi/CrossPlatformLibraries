@@ -2,8 +2,20 @@
 
 #include <stdint.h>
 #include "aj_bit_u8.h"
+#include "aj_tm1637_type.h"
 #include "aj_tm1637_port.h"
 #include "aj_tm1637.h"
+
+/**
+ * @brief Half bit delay time in microseconds.
+ *
+ * This value defines the TM1637 clock timing.
+ * One full clock period is equal to (AJ_TM1637_HALF_BIT_US * 4).
+ *
+ * @note Typical clock frequency is 450 kHz
+ * @note Maximum clock frequency is 500 kHz
+ */
+#define AJ_TM1637_HALF_BIT_US       1U
 
 #define TM1637_COMMAND_DATA_WRITE   0x40U   // Data command setting: Write data to display register
 #define TM1637_COMMAND_DATA_READ    0x42U   // Data command setting: Read key scan data
