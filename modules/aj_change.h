@@ -9,14 +9,22 @@
  * @see     https://github.com/AliRezaJoodi
  */
 
-#ifndef CHANGED_INCLUDED
-#define CHANGED_INCLUDED
+#ifndef AJ_CHANGE_INCLUDED
+#define AJ_CHANGE_INCLUDED
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 #include <stdint.h>
+
+#define AJ_CHANGE_NO    0U
+#define AJ_CHANGE_YES   1U
+
+typedef struct{
+    uint16_t previous;
+} aj_change_t;
+
 
 /**
  * @brief Checks if a 16-bit value has changed (exact comparison).
@@ -32,7 +40,7 @@ extern "C" {
  *         - 1 : Value has changed (previous updated)
  *         - 0 : No change detected
  */
-uint8_t Changed_Exact(uint16_t value, uint16_t *previous);
+uint8_t AJ_Change_Exact(aj_change_t *obj, uint16_t value);
 
 /**
  * @brief Checks if a 16-bit value has changed by at least a given threshold.
@@ -48,7 +56,7 @@ uint8_t Changed_Exact(uint16_t value, uint16_t *previous);
  *
  * @return 1 if the difference is >= threshold, 0 otherwise.
  */
-uint8_t Changed_Threshold(uint16_t value, uint16_t *previous, uint16_t threshold);
+uint8_t AJ_Change_Threshold(aj_change_t *obj, uint16_t value, uint16_t threshold);
 
 #ifdef __cplusplus
 }
