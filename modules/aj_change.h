@@ -29,32 +29,35 @@ typedef struct{
 /**
  * @brief Checks if a 16-bit value has changed (exact comparison).
  *
- * Compares the input value with the previously stored value.
- * If the value has changed, the stored value is updated and
+ * Compares the input value with the value stored inside the change
+ * object. If the value has changed, the stored value is updated and
  * the function returns 1. Otherwise, it returns 0.
  *
- * @param value      Current 16-bit value to check.
- * @param previous   Pointer to the previously stored value.
+ * @param obj    Pointer to the change detection object that stores
+ *               the previous value.
+ * @param value  Current 16-bit value to check.
  *
  * @return
- *         - 1 : Value has changed (previous updated)
+ *         - 1 : Value has changed (stored value updated)
  *         - 0 : No change detected
  */
-uint8_t AJ_Change_Exact(aj_change_t *obj, uint16_t value);
+ uint8_t AJ_Change_Exact(aj_change_t *obj, uint16_t value);
 
 /**
  * @brief Checks if a 16-bit value has changed by at least a given threshold.
  *
  * Computes the absolute difference between the input value and the
- * previously stored value. If the difference is greater than or equal
- * to the specified threshold, the stored value is updated and the
- * function returns 1. Otherwise, it returns 0.
+ * value stored inside the change object. If the difference is greater
+ * than or equal to the specified threshold, the stored value is updated
+ * and the function returns 1. Otherwise, it returns 0.
  *
- * @param value      Current 16-bit value.
- * @param previous   Pointer to previously stored value.
- * @param threshold  Minimum required difference to detect a change.
+ * @param obj        Pointer to the change detection object.
+ * @param value      Current 16-bit value to check.
+ * @param threshold  Minimum difference required to detect a change.
  *
- * @return 1 if the difference is >= threshold, 0 otherwise.
+ * @return
+ *         - 1 : Difference >= threshold (stored value updated)
+ *         - 0 : Difference < threshold
  */
 uint8_t AJ_Change_Threshold(aj_change_t *obj, uint16_t value, uint16_t threshold);
 
