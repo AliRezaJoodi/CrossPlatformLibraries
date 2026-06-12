@@ -1,7 +1,7 @@
 // GitHub Account: GitHub.com/AliRezaJoodi
 
 #include <stdint.h>
-#include "ntc10k.h"
+#include "aj_ntc10k.h"
 
 const uint32_t ntc10k_table[] ={
     133500UL, 125672UL, 118350UL, 111498UL, 105084UL,   // -25^C to -21^C
@@ -42,15 +42,15 @@ const uint32_t ntc10k_table[] ={
 static uint16_t ntc_last_index = 75;
 
 //********************************************
-int16_t NTC10K_ConvertOhmToTemp_LastIndex(uint32_t ohm){
+int16_t AJ_NTC10K_ConvertOhmToTemp_LastIndex(uint32_t ohm){
     uint16_t i = ntc_last_index;
 
     if (ohm >= ntc10k_table[0]){
-        return NTC10K_TEMP_MIN;
+        return AJ_NTC10K_TEMP_MIN;
     }
 
     if (ohm <= ntc10k_table[NTC10K_TABLE_SIZE - 1]){
-        return NTC10K_TEMP_MAX;
+        return AJ_NTC10K_TEMP_MAX;
     }
 
     if (ohm < ntc10k_table[i]){
@@ -70,33 +70,36 @@ int16_t NTC10K_ConvertOhmToTemp_LastIndex(uint32_t ohm){
 }
 
 //********************************************
-int16_t NTC10K_ConvertOhmToTemp(uint32_t ohm){
+int16_t AJ_NTC10K_ConvertOhmToTemp(uint32_t ohm){
     uint16_t low  = 0;
     uint16_t high = NTC10K_TABLE_SIZE - 1;
     uint16_t mid = 0;
 
-    /* Clamp to table limits */
-    if (ohm >= ntc10k_table[0])
-        return -25;
+    if (ohm >= ntc10k_table[0]){
+        return AJ_NTC10K_TEMP_MIN;
+    }
 
-    if (ohm <= ntc10k_table[high])
-        return 125;
+    if (ohm <= ntc10k_table[high]){
+        return AJ_NTC10K_TEMP_MAX;
+    }
 
     /* Binary search */
     while (low < high){
         mid = (low + high + 1) >> 1;
 
-        if (ohm > ntc10k_table[mid])
+        if (ohm > ntc10k_table[mid]){
             high = mid - 1;
-        else
+        }
+        else{
             low = mid;
+        }
     }
 
     return (int16_t)(low - 25);
 }
 
 //********************************************
-//int16_t NTC10K_ConvertOhmToTemp(uint32_t ohm){
+//int16_t AJ_NTC10K_ConvertOhmToTemp(uint32_t ohm){
 //    uint16_t low = 0;
 //    uint16_t high = NTC10K_TABLE_SIZE - 1;
 //    uint16_t mid = 0;

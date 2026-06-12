@@ -12,11 +12,11 @@
  *
  * Two conversion algorithms are provided:
  *
- * 1) NTC10K_ConvertOhmToTemp()
+ * 1) AJ_NTC10K_ConvertOhmToTemp()
  *    Uses binary search on the lookup table.
  *    Deterministic execution time.
  *
- * 2) NTC10K_ConvertOhmToTemp_LastIndex()
+ * 2) AJ_NTC10K_ConvertOhmToTemp_LastIndex()
  *    Optimized algorithm using last index tracking.
  *    Faster when temperature changes slowly between samples.
  *
@@ -30,14 +30,14 @@
  * @see     https://github.com/AliRezaJoodi
  */
 
-#ifndef NTC10K_INCLUDED
-#define NTC10K_INCLUDED
+#ifndef AJ_NTC10K_INCLUDED
+#define AJ_NTC10K_INCLUDED
 
 #include <stdint.h>
 
-#define NTC10K_TEMP_MIN     -25
-#define NTC10K_TEMP_MAX     125
-//#define NTC10K_ERROR        -100
+#define AJ_NTC10K_TEMP_MIN     -25
+#define AJ_NTC10K_TEMP_MAX     125
+//#define AJ_NTC10K_ERROR        -100
 
 /*
  * Convert thermistor resistance to temperature.
@@ -56,7 +56,7 @@
  * Return:
  *   Temperature in degrees Celsius (-25°C to +125°C)
  */
-int16_t NTC10K_ConvertOhmToTemp(uint32_t ohm);
+int16_t AJ_NTC10K_ConvertOhmToTemp(uint32_t ohm);
 
 /*
  * Convert thermistor resistance to temperature using last index tracking.
@@ -76,6 +76,6 @@ int16_t NTC10K_ConvertOhmToTemp(uint32_t ohm);
  * Return:
  *   Temperature in degrees Celsius (-25°C to +125°C)
  */
-int16_t NTC10K_ConvertOhmToTemp_LastIndex(uint32_t ohm);
+int16_t AJ_NTC10K_ConvertOhmToTemp_LastIndex(uint32_t ohm);
 
 #endif
