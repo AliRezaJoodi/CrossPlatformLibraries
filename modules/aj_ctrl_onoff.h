@@ -45,7 +45,7 @@ typedef struct {
  * Example: initializing a structure
  *
  * @code
- * CtrlOnOff_In_t oven = {
+ * aj_ctrl_onoff_t oven = {
  *     .pv = 0,
  *     .sp = 250,
  *     .hysteresis = 10
