@@ -9,8 +9,8 @@
  * @see     https://github.com/AliRezaJoodi
  */
 
-#ifndef AJ_CHANGE_INCLUDED
-#define AJ_CHANGE_INCLUDED
+#ifndef AJ_CHANGE_U16_INCLUDED
+#define AJ_CHANGE_U16_INCLUDED
 
 #ifdef __cplusplus
 extern "C" {
@@ -18,12 +18,12 @@ extern "C" {
 
 #include <stdint.h>
 
-#define AJ_CHANGE_NO    0U
-#define AJ_CHANGE_YES   1U
+#define AJ_CHANGE_U16_NO    0U
+#define AJ_CHANGE_U16_YES   1U
 
 typedef struct{
     uint16_t previous;
-} aj_change_t;
+} aj_change_u16_t;
 
 
 /**
@@ -41,7 +41,7 @@ typedef struct{
  *         - 1 : Value has changed (stored value updated)
  *         - 0 : No change detected
  */
- uint8_t AJ_Change_Exact(aj_change_t *obj, uint16_t value);
+ uint8_t AJ_ChangeU16_Exact(aj_change_u16_t *obj, uint16_t value);
 
 /**
  * @brief Checks if a 16-bit value has changed by at least a given threshold.
@@ -59,7 +59,7 @@ typedef struct{
  *         - 1 : Difference >= threshold (stored value updated)
  *         - 0 : Difference < threshold
  */
-uint8_t AJ_Change_Threshold(aj_change_t *obj, uint16_t value, uint16_t threshold);
+uint8_t AJ_ChangeU16_Threshold(aj_change_u16_t *obj, uint16_t value, uint16_t threshold);
 
 #ifdef __cplusplus
 }
