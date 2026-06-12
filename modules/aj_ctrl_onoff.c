@@ -1,18 +1,18 @@
 // GitHub Account:  GitHub.com/AliRezaJoodi
 
 #include <stdint.h>
-#include "controller_onoff.h"
+#include "aj_ctrl_onoff.h"
 
 //******************************************
-CtrlOnOff_Cmd_t Ctrl_OnOff_Update(const CtrlOnOff_In_t *params){
+aj_ctrl_onof_cmd_t AJ_Ctrl_OnOff_Update(const aj_ctrl_onoff_t *params){
     int32_t half = params->hysteresis >> 1;
 
     if(params->pv <= (params->sp - half)){
-        return CTRL_ONOFF_LOW;
+        return AJ_CTRL_ONOFF_LOW;
     }
     else if(params->pv >= (params->sp + half)){
-        return CTRL_ONOFF_HIGH;
+        return AJ_CTRL_ONOFF_HIGH;
     }
 
-    return CTRL_ONOFF_NONE;
+    return AJ_CTRL_ONOFF_NONE;
 }
