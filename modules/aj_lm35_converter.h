@@ -12,8 +12,8 @@
  * @see     https://github.com/AliRezaJoodi
  */
 
-#ifndef LM35_CONVERTER_INCLUDED
-#define LM35_CONVERTER_INCLUDED
+#ifndef AJ_LM35_CONVERTER_INCLUDED
+#define AJ_LM35_CONVERTER_INCLUDED
 
 #ifdef __cplusplus
 extern "C" {
@@ -21,11 +21,11 @@ extern "C" {
 
 #include <stdint.h>
 
-static inline float LM35_ConvertMilliVoltToTemp(float mv){
+static inline float AJ_LM35_ConvertMilliVoltToTemp(float mv){
     return (mv * 0.1f);
 }
 
-static inline float LM35_ConvertVoltToTemp(float voltage){
+static inline float AJ_LM35_ConvertVoltToTemp(float voltage){
     return (voltage * 1000 * 0.1f);
 }
 
