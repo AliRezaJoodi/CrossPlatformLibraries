@@ -3,10 +3,10 @@
 #include <stdint.h>
 
 #include "hardware.h"
-#include "controller_pid.h"
+#include "aj_ctrl_pid.h"
 
 // ********************************************
-int32_t Ctrl_PID_Update(CtrlPID_t *pid){
+int32_t AJ_Ctrl_PID_Update(aj_ctrl_pid_t *pid){
     int32_t error;
     int32_t p_term;
     int32_t i_term, i_max, i_min, buf;
@@ -60,7 +60,7 @@ int32_t Ctrl_PID_Update(CtrlPID_t *pid){
 }
 
 // ********************************************
-void Ctrl_PID_Reset(CtrlPID_t *pid){
+void AJ_Ctrl_PID_Reset(aj_ctrl_pid_t *pid){
     pid->error_last = 0;
     pid->i_sum = 0;
 }

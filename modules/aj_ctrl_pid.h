@@ -10,8 +10,8 @@
  * @see     https://github.com/AliRezaJoodi
  */
 
-#ifndef CONTROLLER_PID_INCLUDED
-#define CONTROLLER_PID_INCLUDED
+#ifndef AJ_CTRL_PID_INCLUDED
+#define AJ_CTRL_PID_INCLUDED
 
 #ifdef __cplusplus
 extern "C" {
@@ -27,7 +27,7 @@ extern "C" {
  * floating-point gains to integer representation:
  *   Fixed-point value = float_value * 2^scale
  *
- * Use in combination with PID_FLOAT_TO_Q macro.
+ * Use in combination with AJ_PID_FLOAT_TO_Q macro.
  */
 typedef enum {
     PID_SCALE_1       = 0,   /**< 2^0 */
@@ -40,7 +40,7 @@ typedef enum {
     PID_SCALE_128     = 7,   /**< 2^7 */
     PID_SCALE_256     = 8,   /**< 2^8 */
     PID_SCALE_512     = 9,   /**< 2^9 */
-    PID_SCALE_1024    = 10,  /**< 2^10 */
+    AJ_PID_SCALE_1024    = 10,  /**< 2^10 */
     PID_SCALE_2048    = 11,  /**< 2^11 */
     PID_SCALE_4096    = 12,  /**< 2^12 */
     PID_SCALE_8192    = 13,  /**< 2^13 */
@@ -68,10 +68,9 @@ typedef enum {
     PID_DT_128MS  = 7,   /**< 2^7 ms */
     PID_DT_256MS  = 8,   /**< 2^8 ms */
     PID_DT_512MS  = 9    /**< 2^9 ms */
-} PID_Dt_t;
+} aj_pid_dt_t;
 
 /**
- * @struct CtrlPID_t
  * @brief PID controller instance (configuration + runtime state)
  *
  * This struct contains both the fixed configuration parameters (const)
@@ -85,25 +84,25 @@ typedef struct {
     const int32_t output_min;
     const int32_t output_max;
     const PID_Scale_t scale;
-    const PID_Dt_t dt;
+    const aj_pid_dt_t dt;
 
     int32_t i_sum;
     int32_t error_last;
 
     int32_t sp;
     int32_t pv;
-} CtrlPID_t;
+} aj_ctrl_pid_t;
 
 /**
- * @brief Default scaling factor used for PID_FLOAT_TO_Q macro
+ * @brief Default scaling factor used for AJ_PID_FLOAT_TO_Q macro
  *
  * Override CONTROLLER_PID_HARDWARE_EXTERA in your project if needed.
  */
-#ifndef CONTROLLER_PID_HARDWARE_EXTERA
-#define CONTROLLER_PID_HARDWARE_EXTERA
-    #define PID_SCALE PID_SCALE_1024
+#ifndef AJ_CTRL_PID_HARDWARE_EXTERA
+#define AJ_CTRL_PID_HARDWARE_EXTERA
+    #define AJ_PID_SCAL AJ_PID_SCALE_1024
 
-    //#warning "CONTROLLER_PID_HARDWARE_EXTERA is not defined; default configuration will be used."
+    //#warning "AJ_CTRL_PID_HARDWARE_EXTERA is not defined; default configuration will be used."
 #endif
 
 /**
@@ -115,7 +114,7 @@ typedef struct {
  *
  * @note  Useful for initializing PID_Config_t constants.
  */
-#define PID_FLOAT_TO_Q(x, scale)    ((int32_t)((x) * (float)(1UL << (scale)) + 0.5f))
+#define AJ_PID_FLOAT_TO_Q(x, scale)    ((int32_t)((x) * (float)(1UL << (scale)) + 0.5f))
 
 /**
  * @brief Update PID controller output.
@@ -130,7 +129,7 @@ typedef struct {
  *
  * @note    Call this function periodically according to the PID loop rate.
  */
-int32_t Ctrl_PID_Update(CtrlPID_t *pid);
+int32_t AJ_Ctrl_PID_Update(aj_ctrl_pid_t *pid);
 
 /**
  * @brief Reset PID controller runtime state.
@@ -140,11 +139,11 @@ int32_t Ctrl_PID_Update(CtrlPID_t *pid);
  *
  * @param p Pointer to the PID controller instance
  */
-void Ctrl_PID_Reset(CtrlPID_t *pid);
+void AJ_Ctrl_PID_Reset(aj_ctrl_pid_t *pid);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif  // CONTROLLER_PID_INCLUDED
+#endif  // AJ_CTRL_PID_INCLUDED
 
