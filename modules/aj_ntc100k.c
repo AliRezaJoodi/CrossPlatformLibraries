@@ -1,9 +1,9 @@
 // GitHub Account: GitHub.com/AliRezaJoodi
 
 #include <stdint.h>
-#include "ntc100k.h"
+#include "aj_ntc100k.h"
 
-const uint32_t ntc100k_table5c[] = {
+static const uint32_t ntc100k_table5c[] = {
     10723236UL, // -55°C
     7366689UL,  // -50°C
     5132757UL,  // -45°C
@@ -81,17 +81,17 @@ const uint32_t ntc100k_table5c[] = {
 #define NTC100K_TABLE_SIZE (sizeof(ntc100k_table5c) / sizeof(ntc100k_table5c[0]))
 
 //****************************************************
-int16_t NTC100K_ConvertOhmToTemp(uint32_t ohm){
+int16_t AJ_NTC100K_ConvertOhmToTemp(uint32_t ohm){
     uint8_t i = 0;
     uint32_t r1 = 0, r2 = 0;
     int16_t t = 0;
 
     if(ohm >= ntc100k_table5c[0]){
-        return NTC100K_TEMP_MIN;
+        return AJ_NTC100K_TEMP_MIN;
     }
 
     if(ohm <= ntc100k_table5c[NTC100K_TABLE_SIZE-1]){
-        return NTC100K_TEMP_MAX;
+        return AJ_NTC100K_TEMP_MAX;
     }
 
     for(i = 0; i < (NTC100K_TABLE_SIZE - 1); i++){
@@ -105,5 +105,5 @@ int16_t NTC100K_ConvertOhmToTemp(uint32_t ohm){
         }
     }
 
-    return NTC100K_ERROR;
+    return AJ_NTC100K_ERROR;
 }

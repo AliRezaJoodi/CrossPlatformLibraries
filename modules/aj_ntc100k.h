@@ -23,14 +23,14 @@
  * GitHub: https://github.com/AliRezaJoodi
  */
 
-#ifndef NTC100K_INCLUDED
-#define NTC100K_INCLUDED
+#ifndef AJ_NTC100K_INCLUDED
+#define AJ_NTC100K_INCLUDED
 
 #include <stdint.h>
 
-#define NTC100K_TEMP_MIN    -55
-#define NTC100K_TEMP_MAX    300
-#define NTC100K_ERROR       -100
+#define AJ_NTC100K_TEMP_MIN    -55
+#define AJ_NTC100K_TEMP_MAX    300
+#define AJ_NTC100K_ERROR       -100
 
 /**
  * @brief Convert thermistor resistance to temperature
@@ -41,6 +41,6 @@
  * @return
  * Temperature in degrees Celsius
  */
-int16_t NTC100K_ConvertOhmToTemp(uint32_t ohm);
+int16_t AJ_NTC100K_ConvertOhmToTemp(uint32_t ohm);
 
 #endif
