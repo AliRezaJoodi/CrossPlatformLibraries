@@ -3,7 +3,7 @@
 #include <stdint.h>
 #include "aj_ntc10k.h"
 
-const uint32_t ntc10k_table[] ={
+static const uint32_t ntc10k_table[] ={
     133500UL, 125672UL, 118350UL, 111498UL, 105084UL,   // -25^C to -21^C
     99073UL,  93469UL,  88175UL,  83230UL,  78591UL,    // -20^C to -16^C
     74238UL,  70153UL,  66316UL,  62712UL,  59325UL,    // -15^C to -11^C
