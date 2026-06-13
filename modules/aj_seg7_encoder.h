@@ -19,17 +19,21 @@
  * @see     https://github.com/AliRezaJoodi
  */
 
-#ifndef SEG7_ENCODER_INCLOUDED
-#define SEG7_ENCODER_INCLOUDED
+#ifndef AJ_SEG7_ENCODER_INCLOUDED
+#define AJ_SEG7_ENCODER_INCLOUDED
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #include <stdint.h>
 //#include "bit.h"
-#include "seg7_font.h"
+#include "aj_seg7_font.h"
 
-#define SEG7_ENCODER_OK         0U
-#define SEG7_ENCODER_ERROR      1U
-#define SEG7_ENCODER_INVALID    0x40U   // -
-#define SEG7_ENCODER_DP         0x80U   // .
+#define AJ_SEG7_ENCODER_OK         0U
+#define AJ_SEG7_ENCODER_ERROR      1U
+#define AJ_SEG7_ENCODER_INVALID    0x40U   // -
+#define AJ_SEG7_ENCODER_DP         0x80U   // .
 
 /**
  * @brief Encode an 8-bit number into two 7-segment digits.
@@ -51,7 +55,7 @@
  *
  * @return 0 on success, 1 if overflow occurred (number > 99).
  */
-uint8_t Seg7_EncodeNumber_2Digits(uint8_t *seg, uint8_t number);
+uint8_t AJ_Seg7_EncodeNumber_2Digits(uint8_t *seg, uint8_t number);
 
 /**
  * @brief  Set the decimal point on a specific digit of a 2-digit 7-segment display buffer.
@@ -61,7 +65,7 @@ uint8_t Seg7_EncodeNumber_2Digits(uint8_t *seg, uint8_t number);
  *         - 0U : Success
  *         - 1U : Invalid position error
  */
-uint8_t Seg7_SetDecimalPoint_2Digits(uint8_t *seg, uint8_t position);
+uint8_t AJ_Seg7_SetDecimalPoint_2Digits(uint8_t *seg, uint8_t position);
 
 /**
  * @brief Reverse the order of a 2-byte 7-segment buffer.
@@ -76,7 +80,7 @@ uint8_t Seg7_SetDecimalPoint_2Digits(uint8_t *seg, uint8_t position);
  * @param seg Pointer to an array of at least two bytes
  *            representing encoded 7-segment digit patterns.
  */
-void Seg7_Reverse2Bytes(uint8_t *seg);
+void AJ_Seg7_Reverse2Bytes(uint8_t *seg);
 
 /**
  * @brief Encode a 16-bit number into three 7-segment digits.
@@ -99,7 +103,7 @@ void Seg7_Reverse2Bytes(uint8_t *seg);
  *
  * @return 0 on success, 1 if overflow occurred (number > 999).
  */
-uint8_t Seg7_EncodeNumber_3Digits(uint8_t *seg, uint16_t number);
+uint8_t AJ_Seg7_EncodeNumber_3Digits(uint8_t *seg, uint16_t number);
 
 /**
  * @brief  Set the decimal point on a specific digit of a 3-digit 7-segment display buffer.
@@ -109,7 +113,7 @@ uint8_t Seg7_EncodeNumber_3Digits(uint8_t *seg, uint16_t number);
  *         - 0U : Success
  *         - 1U : Invalid position error
  */
-uint8_t Seg7_SetDecimalPoint_3Digits(uint8_t *seg, uint8_t position);
+uint8_t AJ_Seg7_SetDecimalPoint_3Digits(uint8_t *seg, uint8_t position);
 
 /**
  * @brief Reverse the order of a 3-byte 7-segment buffer.
@@ -125,7 +129,7 @@ uint8_t Seg7_SetDecimalPoint_3Digits(uint8_t *seg, uint8_t position);
  * @param seg Pointer to an array of at least four bytes
  *            representing encoded 7-segment digit patterns.
  */
-void Seg7_Reverse3Bytes(uint8_t *seg);
+void AJ_Seg7_Reverse3Bytes(uint8_t *seg);
 
 /**
  * @brief Encode a 16-bit number into four 7-segment digits.
@@ -149,7 +153,7 @@ void Seg7_Reverse3Bytes(uint8_t *seg);
  *
  * @return 0 on success, 1 if overflow occurred (number > 9999).
  */
-uint8_t Seg7_EncodeNumber_4Digits(uint8_t *seg, uint16_t number);
+uint8_t AJ_Seg7_EncodeNumber_4Digits(uint8_t *seg, uint16_t number);
 
 /**
  * @brief  Set the decimal point on a specific digit of a 4-digit 7-segment display buffer.
@@ -159,7 +163,7 @@ uint8_t Seg7_EncodeNumber_4Digits(uint8_t *seg, uint16_t number);
  *         - 0U : Success
  *         - 1U : Invalid position error
  */
-uint8_t Seg7_SetDecimalPoint_4Digits(uint8_t *seg, uint8_t position);
+uint8_t AJ_Seg7_SetDecimalPoint_4Digits(uint8_t *seg, uint8_t position);
 
 /**
  * @brief Reverse the order of a 4-byte 7-segment buffer.
@@ -176,6 +180,10 @@ uint8_t Seg7_SetDecimalPoint_4Digits(uint8_t *seg, uint8_t position);
  * @param seg Pointer to an array of at least four bytes
  *            representing encoded 7-segment digit patterns.
  */
-void Seg7_Reverse4Bytes(uint8_t *seg);
+void AJ_Seg7_Reverse4Bytes(uint8_t *seg);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
