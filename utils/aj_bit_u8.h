@@ -127,6 +127,10 @@ static inline uint8_t AJ_BitU8_IsAnyBitSet_Mask(uint8_t value, uint8_t mask){
 }
 
 static inline uint8_t AJ_BitU8_IsBitSet_Position(uint8_t value, uint8_t pos){
+    return (uint8_t)((((value) >> pos) & 0x01U) != 0U);
+}
+
+static inline uint8_t AJ_BitU8_GetBit_Position(uint8_t value, uint8_t pos){
     return (uint8_t)((value >> pos) & 0x01U);
 }
 
