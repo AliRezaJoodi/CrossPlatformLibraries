@@ -1,9 +1,9 @@
 // GitHub Account: GitHub.com/AliRezaJoodi
 
 #include <stdint.h>
-#include "seg7_font.h"
+#include "aj_seg7_font.h"
 
-const uint8_t seg7_font_digit[SEG7_FONT_DIGIT_SIZE]={
+const uint8_t aj_seg7_font_digit[AJ_SEG7_FONT_DIGIT_SIZE]={
     0x3FU,      // 0
     0x06U,      // 1
     0x5BU,      // 2
@@ -16,7 +16,7 @@ const uint8_t seg7_font_digit[SEG7_FONT_DIGIT_SIZE]={
     0x6FU       // 9
  };
 
-const uint8_t seg7_font_alpha[SEG7_FONT_ALPHA_SIZE]={
+const uint8_t aj_seg7_font_alpha[AJ_SEG7_FONT_ALPHA_SIZE]={
     0x77U,      // 0,   A
     0x7CU,      // 1,   b
     0x39U,      // 2,   C
@@ -30,7 +30,7 @@ const uint8_t seg7_font_alpha[SEG7_FONT_ALPHA_SIZE]={
     0x3EU       // 10,  U
 };
 
-const uint8_t seg7_font_symbol[SEG7_FONT_SYMBOL_SIZE] = {
+const uint8_t aj_seg7_font_symbol[AJ_SEG7_FONT_SYMBOL_SIZE] = {
     0x00U,      // 0,   NULL
     0x40U,      // 1,   -
     0x80U       // .,   dp
