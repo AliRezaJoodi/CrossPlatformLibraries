@@ -39,14 +39,14 @@
  * @see     https://github.com/AliRezaJoodi
  ******************************************************************************/
 
-#ifndef THERMOCOUPLE_INCLUDED
-#define THERMOCOUPLE_INCLUDED
+#ifndef AJ_THERMOCOUPLE_K_INCLUDED
+#define AJ_THERMOCOUPLE_K_INCLUDED
 
 #include <stdint.h>
 
-#define TC_K_TEMP_MIN     -270
-#define TC_K_TEMP_MAX     1370
-#define TC_K_ERROR        1371
+#define AJ_TC_K_TEMP_MIN     -270
+#define AJ_TC_K_TEMP_MAX     1370
+#define AJ_TC_K_ERROR        1371
 
 /**
  * @brief Convert Type-K thermocouple voltage to temperature.
@@ -57,7 +57,7 @@
  * @return
  * Temperature in degrees Celsius.
  */
-int16_t TC_ConvertMicroVoltToTemp(int32_t uv);
+int16_t AJ_TC_K_ConvertMicroVoltToTemp(int32_t uv);
 
 /**
  * @brief Convert temperature to Type-K thermocouple voltage.
@@ -68,7 +68,7 @@ int16_t TC_ConvertMicroVoltToTemp(int32_t uv);
  * @return
  * Thermocouple voltage in microvolts (µV).
  */
-int32_t TC_ConvertTempToMicroVolt(int16_t temp);
+int32_t AJ_TC_K_ConvertTempToMicroVolt(int16_t temp);
 
 #endif
 

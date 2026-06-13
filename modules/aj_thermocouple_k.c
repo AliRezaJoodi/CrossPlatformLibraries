@@ -1,7 +1,7 @@
 // GitHub Account:  GitHub.com/AliRezaJoodi
 
 #include <stdint.h>
-#include "thermocouple_k.h"
+#include "aj_thermocouple_k.h"
 
 static const int32_t TC_K_Table10C[]={
     -6458, // -270^C
@@ -174,7 +174,7 @@ static const int32_t TC_K_Table10C[]={
 #define TC_K_TABLE_SIZE (sizeof(TC_K_Table10C) / sizeof(TC_K_Table10C[0]))
 
 //******************************************
-int16_t TC_ConvertMicroVoltToTemp(int32_t uv){
+int16_t AJ_TC_K_ConvertMicroVoltToTemp(int32_t uv){
     int16_t i = 0;
     int32_t uv0 = 0;
     int32_t uv1 = 0;
@@ -182,11 +182,11 @@ int16_t TC_ConvertMicroVoltToTemp(int32_t uv){
     int32_t result = 0;
 
     if(uv <= TC_K_Table10C[0]){
-        return TC_K_TEMP_MIN;
+        return AJ_TC_K_TEMP_MIN;
     }
 
     if(uv >= TC_K_Table10C[TC_K_TABLE_SIZE-1]){
-        return TC_K_TEMP_MAX;
+        return AJ_TC_K_TEMP_MAX;
     }
 
     for(i = 0; i < (TC_K_TABLE_SIZE-1); i++){
@@ -194,18 +194,18 @@ int16_t TC_ConvertMicroVoltToTemp(int32_t uv){
             uv0 = TC_K_Table10C[i];
             uv1 = TC_K_Table10C[i+1];
 
-            t0 = TC_K_TEMP_MIN + ((int32_t)i * 10);
+            t0 = AJ_TC_K_TEMP_MIN + ((int32_t)i * 10);
 
             result = (t0 + (((uv - uv0) * 10) / (uv1 - uv0)));
             return (int16_t)result;
         }
     }
 
-    return TC_K_ERROR;
+    return AJ_TC_K_ERROR;
 }
 
 //******************************************
-int32_t TC_ConvertTempToMicroVolt(int16_t temp){
+int32_t AJ_TC_K_ConvertTempToMicroVolt(int16_t temp){
     int16_t index = 0;
     int16_t t0 = 0;
     int16_t dt = 0;
