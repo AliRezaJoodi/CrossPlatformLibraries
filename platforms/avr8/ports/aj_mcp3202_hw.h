@@ -3,13 +3,6 @@
 
 #include "hardware.h"       /**< Project-level overrides */
 
-#ifndef AJ_MCP3202_HARDWARE
-#define AJ_MCP3202_HARDWARE
-    #define AJ_MCP3202_TIMEOUT         1000U
-
-    #warning "AJ_MCP3202_HARDWARE is not defined; default configuration will be used."
-#endif
-
 #ifndef AJ_MCP3202_HARDWARE_EXTRA
 #define AJ_MCP3202_HARDWARE_EXTRA
     #define AJ_MCP3202_CS_DDR          DDRB

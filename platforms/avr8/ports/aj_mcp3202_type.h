@@ -47,7 +47,7 @@ typedef struct {
  * Example: initializing a structure
  *
  * @code
- *    static const aj_MCP3202_t mcp1 = {
+ *    static const aj_mcp3202_t mcp1 = {
  *        .cs = {
  *            .ddr   = &AJ_MCP3202_CS_DDR,
  *            .port  = &AJ_MCP3202_CS_PORT,
