@@ -11,7 +11,7 @@ void AJ_MCP3208_Init(aj_mcp3208_t *mcp){
 }
 
 /********************************************************/
-uint16_t AJ_MCP3208_GetCounts(aj_mcp3208_t *mcp, aj_mcp3208_channel_t ch){
+uint16_t AJ_MCP3208_GetRaw(aj_mcp3208_t *mcp, aj_mcp3208_channel_t ch){
     uint8_t data1 = 0x00U;
     uint8_t data2 = 0x00U;
 
