@@ -1,5 +1,5 @@
 // GitHub Account: GitHub.com/AliRezaJoodi
-
+#include "aj_mcp3201_type.h"
 #include "aj_mcp3201_port.h"
 #include "aj_mcp3201.h"
 
@@ -10,13 +10,13 @@ void AJ_MCP3201_Init(aj_mcp3201_t *mcp){
 }
 
 /*********************************************/
-uint16_t AJ_MCP3201_GetCounts(aj_mcp3201_t *mcp){
+uint16_t AJ_MCP3201_GetRaw(aj_mcp3201_t *mcp){
     uint16_t value = 0;
     uint8_t msb = 0, lsb = 0;
 
     AJ_MCP3201_CS_SetActive(mcp);
-    msb = AJ_MCP3201_SPI_Transfer(0xFF);
-    lsb = AJ_MCP3201_SPI_Transfer(0xFF);
+    msb = AJ_MCP3201_SPI_Transceive(0xFF);
+    lsb = AJ_MCP3201_SPI_Transceive(0xFF);
     AJ_MCP3201_CS_SetIdle(mcp);
 
     msb = msb & 0x1FU;

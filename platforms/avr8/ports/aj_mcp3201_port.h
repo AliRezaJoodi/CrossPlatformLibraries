@@ -56,6 +56,7 @@ extern "C" {
 #include "aj_bit_reg.h"
 #include "aj_mcp3201_hw.h"
 #include "aj_mcp3201_type.h"
+#include "aj_spi.h"
 
 /**
  * @brief Initialize MCP3201 CS pin (output)
@@ -91,18 +92,8 @@ static inline void AJ_MCP3201_CS_SetIdle(const aj_mcp3201_t *mcp){
  * @note    The SPI peripheral must be configured and enabled
  *          before calling this function.
  */
-static inline uint8_t AJ_MCP3201_SPI_Transfer(const uint8_t data){
-    uint16_t timeout = AJ_MCP3201_TIMEOUT;           /* Software timeout counter */
-
-    SPDR = data;                        /* Start SPI transfer */
-
-    while (!(SPSR & (1U << SPIF))) {    /* Wait for transfer complete */
-        if (--timeout == 0U){           /* Check timeout expiration */
-            return 0xFF;                /* Return error value */
-        }
-    }
-
-    return SPDR;                        /* Return received data */
+static inline uint8_t AJ_MCP3201_SPI_Transceive(const uint8_t data){
+    return AJ_SPI_Transceive(data);     /* Return received data */
 }
 
 #ifdef __cplusplus
