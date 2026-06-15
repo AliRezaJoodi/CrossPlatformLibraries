@@ -50,6 +50,7 @@ extern "C" {
 #include "aj_bit_reg.h"
 #include "aj_mcp4822_hw.h"
 #include "aj_mcp4822_type.h"
+#include "aj_spi.h"
 
 #define AJ_MCP4822_DELAY_US(us) AJ_DELAY_US(us)
 
@@ -121,23 +122,12 @@ static inline void AJ_MCP4822_LDAC_SetIdle(const aj_mcp4822_t *mcp){
  * Returns 0 on success or 1 if timeout occurs.
  *
  * @param[in] data   Byte to transmit
- * @return          0 on success, 1 on timeout/error
  *
  * @note    The SPI peripheral must be configured and enabled
  *          before calling this function.
  */
-static inline uint8_t AJ_MCP3208_SPI_Transfer(uint8_t data){
-    uint16_t timeout = AJ_MCP4822_TIMEOUT;           /* Software timeout counter */
-
-    SPDR = data;                        /* Start SPI transfer */
-
-    while (!(SPSR & (1U << SPIF))) {    /* Wait for transfer complete */
-        if (--timeout == 0U){           /* Check timeout expiration */
-            return 0x01U;                /* Return error value */
-        }
-    }
-
-    return 0x00U;
+static inline void AJ_MCP3208_SPI_Transfer(uint8_t data){
+    AJ_SPI_Transceive(data);
 }
 
 #ifdef __cplusplus
