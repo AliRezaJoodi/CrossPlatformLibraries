@@ -26,6 +26,30 @@ typedef struct {
     #endif
 } aj_mcp42xxx_t;
 
+/**
+ * @example Initializing a structure
+ *
+ * @code
+ *    static const aj_mcp42xxx_t mcp = {
+ *        .cs = {
+ *            .ddr   = &AJ_MCP42XXX_CS_DDR,
+ *            .port  = &AJ_MCP42XXX_CS_PORT,
+ *            .mask = AJ_MCP42XXX_CS_MASK
+ *        },
+ *       .shdn = {
+ *           .ddr   = &AJ_MCP42XXX_SHDN_DDR,
+ *            .port  = &AJ_MCP42XXX_SHDN_PORT,
+ *            .mask = AJ_MCP42XXX_SHDN_MASK
+ *        },
+ *        .rs = {
+ *            .ddr   = &AJ_MCP42XXX_RS_DDR,
+ *            .port  = &AJ_MCP42XXX_RS_PORT,
+ *            .mask = AJ_MCP42XXX_RS_MASK
+ *        }
+ *    };
+ * @endcode
+ */
+
 #ifdef __cplusplus
 }
 #endif

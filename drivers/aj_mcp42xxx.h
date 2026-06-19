@@ -19,10 +19,11 @@
  * AVR projects and hardware configurations.
  *
  * @note
- * This driver does not configure the SPI peripheral. SPI initialization,
- * including clock polarity, clock phase, bit order, clock rate, and master
- * mode configuration, must be performed by the user application before using
- * this driver.
+ * This driver does not configure the SPI peripheral.
+ * SPI must be configured by the user application before using this driver.
+ * The MCP42xxx serial interface supports:
+ * - SPI mode 0 (CPOL = 0, CPHA = 0)
+ * - SPI mode 3 (CPOL = 1, CPHA = 1)
  *
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
