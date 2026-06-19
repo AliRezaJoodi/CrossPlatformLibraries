@@ -10,8 +10,8 @@
     #define AJ_BUZZER_COUNT2       200U
 
     #define AJ_BUZZER_GPIO         GPIOC
-    #define AJ_BUZZER_BIT          13U
-    #define AJ_BUZZER_MASK         (1U << AJ_BUZZER_BIT)
+    #define AJ_BUZZER_POS          13U
+    #define AJ_BUZZER_MASK         (1U << AJ_BUZZER_POS)
 
     #warning "AJ_BUZZER_HARDWARE is not defined; default configuration will be used."
 #endif
