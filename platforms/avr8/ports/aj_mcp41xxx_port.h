@@ -16,8 +16,7 @@ extern "C" {
 
 /**
  * @brief Initialize MCP41xxx CS pin (output)
- *
- * @param   mcp     Pointer to the MCP41xxx instance
+ * @param mcp Pointer to the MCP41xxx instance.
  */
 static inline void AJ_MCP41xxx_CS_ConfigAsOutput(const aj_mcp41xxx_t *mcp){
     AJ_BitReg_SetBits_Mask(mcp->cs.ddr, mcp->cs.mask);

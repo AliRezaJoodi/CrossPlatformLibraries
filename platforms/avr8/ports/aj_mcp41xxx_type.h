@@ -17,6 +17,20 @@ typedef struct {
     const aj_mcp41xxx_pin_t cs;       /**< Chip Select pin */
 } aj_mcp41xxx_t;
 
+/**
+ * @example Initializing a structure
+ *
+ * @code
+ *    static const aj_mcp41xxx_t mcp = {
+ *        .cs = {
+ *            .ddr   = &AJ_MCP41XXX_CS_DDR,
+ *            .port  = &AJ_MCP41XXX_CS_PORT,
+ *            .mask = AJ_MCP41XXX_CS_MASK
+ *        }
+ *    };
+ * @endcode
+ */
+
 #ifdef __cplusplus
 }
 #endif
