@@ -24,6 +24,7 @@
  * The MCP42xxx serial interface supports:
  * - SPI mode 0 (CPOL = 0, CPHA = 0)
  * - SPI mode 3 (CPOL = 1, CPHA = 1)
+ * - Data Order: MSB first
  *
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
