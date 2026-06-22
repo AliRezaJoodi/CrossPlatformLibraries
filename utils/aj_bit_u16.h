@@ -118,12 +118,24 @@ static inline uint16_t AJ_BitU16_GetField_Mask(uint16_t value, uint16_t mask){
     uint8_t shift = AJ_CTZ_u16(mask);
     return (uint16_t)((value & mask) >> shift);
 }
+
 static inline uint8_t AJ_BitU16_AreBitsSet_Mask(uint16_t value, uint16_t mask){
     return (uint8_t)((value & mask) == mask);
 }
 
 static inline uint8_t AJ_BitU16_IsAnyBitSet_Mask(uint16_t value, uint16_t mask){
     return (uint8_t)((value & mask) != 0U);
+}
+
+ /**
+ * @param width  Number of bits in the field.
+ * @note  The following conditions must be satisfied:
+ *        - pos = 0 to 15
+ *        - width = 0 to 15
+ *        - pos + width <= 16
+ */
+static inline uint16_t AJ_BitU16_GetField_Position(uint16_t value, uint8_t pos, uint8_t width){
+    return (uint16_t)((value >> pos) & ((1U << width) - 1U));
 }
 
 static inline uint8_t AJ_BitU16_IsBitSet_Position(uint16_t value, uint8_t pos){
