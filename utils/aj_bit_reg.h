@@ -180,6 +180,18 @@ static inline uint8_t AJ_BitReg_IsAnyBitSet_Mask(volatile AJ_BitReg_t *reg, AJ_B
     return (uint8_t)(((*reg) & mask) != 0U);
 }
 
+/**
+ * @param pos    Start bit position of the field.
+ * @param width  Number of bits in the field.
+ * @note  The following conditions must be satisfied:
+ *        - pos < register width
+ *        - width < register width
+ *        - pos + width <= register width
+ */
+static inline uint8_t AJ_BitReg_GetField_Position(volatile AJ_BitReg_t *reg, AJ_BitReg_t pos, uint8_t width){
+    return (uint8_t)((*reg >> pos) & ((1U << width) - 1U));
+}
+
 static inline uint8_t AJ_BitReg_IsBitSet_Position(volatile AJ_BitReg_t *reg, AJ_BitReg_t pos){
     return (uint8_t)((((*reg) >> pos) & 0x01U) != 0U);
 }
