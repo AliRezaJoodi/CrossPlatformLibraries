@@ -118,12 +118,24 @@ static inline uint32_t AJ_BitU32_GetField_Mask(uint32_t value, uint32_t mask){
     uint8_t shift = AJ_CTZ_u32(mask);
     return (uint32_t)((value & mask) >> shift);
 }
+
 static inline uint8_t AJ_BitU32_AreBitsSet_Mask(uint32_t value, uint32_t mask){
     return (uint8_t)((value & mask) == mask);
 }
 
 static inline uint8_t AJ_BitU32_IsAnyBitSet_Mask(uint32_t value, uint32_t mask){
     return (uint8_t)((value & mask) != 0UL);
+}
+
+ /**
+ * @param width  Number of bits in the field.
+ * @note  The following conditions must be satisfied:
+ *        - pos = 0 to 31
+ *        - width = 0 to 31
+ *        - pos + width <= 32
+ */
+static inline uint32_t AJ_BitU32_GetField_Position(uint32_t value, uint8_t pos, uint8_t width){
+    return (uint32_t)((value >> pos) & ((1UL << width) - 1UL));
 }
 
 static inline uint8_t AJ_BitU32_IsBitSet_Position(uint32_t value, uint8_t pos){
