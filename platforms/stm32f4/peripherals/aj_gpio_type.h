@@ -52,7 +52,7 @@ typedef enum {
 } aj_gpio_direction_t;
 
 typedef enum {
-	AJ_GPIO_OUTPUT_PUSHPULL   = 0U,	/**< Output push-pull (reset state) */
+	AJ_GPIO_OUTPUT_PUSHPULL   = 0U,		/**< Output push-pull (reset state) */
 	AJ_GPIO_OUTPUT_OPENDRAIN  = 1U, 	/**< Output open-drain */
 } aj_gpio_output_mode_t;
 
@@ -61,13 +61,13 @@ typedef enum {
 	AJ_GPIO_SPEED_25MHZ 	= 0x01U,		/* 25 MHz Medium speed */
 	AJ_GPIO_SPEED_50MHZ		= 0x02U,		/* 50 MHz Fast speed */
 	AJ_GPIO_SPEED_100MHZ	= 0x03U			/* 100 MHz High speed on 30 pF (80 MHz Output max speed on 15 pF) */
-} aj_gpio_output_speed_t;
+} aj_gpio_speed_t;
 
 typedef enum {
 	AJ_GPIO_PULL_NONE = 0x00U,		/* No pull-up, pull-down */
 	AJ_GPIO_PULL_UP   = 0x01U,		/* Pull-up */
-	AJ_GPIO_PULL_DOWN = 0x02U		/* Pull-down */
-} aj_gpio_output_pull_t;
+	AJ_GPIO_PULL_DOWN = 0x02U			/* Pull-down */
+} aj_gpio_pull_t;
 
 
 #ifdef __cplusplus
