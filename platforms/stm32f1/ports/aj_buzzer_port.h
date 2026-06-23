@@ -5,7 +5,7 @@
 extern "C" {
 #endif
 
-#include <stdint.h>
+//#include <stdint.h>
 #include "aj_gpio.h"
 #include "aj_buzzer_hw.h"
 
@@ -15,11 +15,11 @@ static inline void AJ_Buzzer_Pin_ConfigAsOutput(void){
 }
 
 static inline void AJ_Buzzer_Pin_Set(void){
-	AJ_GPIO_SetPins_Mask(AJ_BUZZER_GPIO, AJ_BUZZER_MASK);
+	AJ_GPIO_SetPin_Mask(AJ_BUZZER_GPIO, AJ_BUZZER_MASK);
 }
 
 static inline void AJ_Buzzer_Pin_Clear(void){
-	AJ_GPIO_ClearPins_Mask(AJ_BUZZER_GPIO, AJ_BUZZER_MASK);
+	AJ_GPIO_ClearPin_Mask(AJ_BUZZER_GPIO, AJ_BUZZER_MASK);
 }
 
 #ifdef __cplusplus
