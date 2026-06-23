@@ -34,7 +34,7 @@ static inline void AJ_GPIO_ConfigDirection(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_
 	AJ_BitReg_Write2Bit_Position(&GPIOx->MODER, pin * 2U, mode);
 }
 
-static inline void AJ_GPIO_ConfigOutputType(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_t pin, aj_gpio_output_mode_t mode){
+static inline void AJ_GPIO_ConfigOutputType(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_t pin, aj_gpio_output_t mode){
 	AJ_BitReg_WriteBit_Position(&GPIOx->OTYPER, pin, mode);
 }
 

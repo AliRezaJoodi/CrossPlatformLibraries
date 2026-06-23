@@ -54,7 +54,7 @@ typedef enum {
 typedef enum {
 	AJ_GPIO_OUTPUT_PUSHPULL   = 0U,		/**< Output push-pull (reset state) */
 	AJ_GPIO_OUTPUT_OPENDRAIN  = 1U, 	/**< Output open-drain */
-} aj_gpio_output_mode_t;
+} aj_gpio_output_t;
 
 typedef enum {
 	AJ_GPIO_SPEED_2MHZ		= 0x00U,		/* 2 MHz Low speed */
