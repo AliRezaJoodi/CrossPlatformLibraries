@@ -1,3 +1,8 @@
+/**
+ * @author  AliReza Joodi
+ * @see     https://github.com/AliRezaJoodi
+ */
+ 
 #ifndef AJ_BUS_INCLUDED
 #define AJ_BUS_INCLUDED
 
@@ -29,7 +34,7 @@ static inline void AJ_BUS_AHB1_ReleaseReset(aj_bus_ahb1_reset_mask_t periph){
 static inline void AJ_BUS_AHB1_EnableClockInLowPower(aj_bus_ahb1_clock_lp_mask_t periph){
 }
 
-static inline void AJ_BUS_AHB1_DisableClockInLowPower(aj_bus_ahb1_clock_lp_mask_t periph){
+static inline void AJ_BUS_AHB1_DisableClockInLowPower(aj_bus_ahb1_clock_lp_mask_t periphs){
 }
 
 #ifdef __cplusplus
