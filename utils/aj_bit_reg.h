@@ -34,16 +34,20 @@
 extern "C" {
 #endif
 
-#include <stdint.h>
-#include "aj_ctz.h"
-#include "aj_bit_reg_config.h"
 
-#if defined(AJ_BIT_REG_32BIT)
+#include <stdint.h>
+#include "aj_target.h"
+#include "aj_ctz.h"
+
+#if AJ_TARGET_MCU_BITS == 32U
     typedef uint32_t AJ_BitReg_t;
-#elif defined(AJ_BIT_REG_16BIT)
+    #define AJ_BITREG_CTZ(mask)    AJ_CTZ_u32((mask))
+#elif AJ_TARGET_MCU_BITS == 16U
     typedef uint16_t AJ_BitReg_t;
-#elif defined(AJ_BIT_REG_8BIT)
+    #define AJ_BITREG_CTZ(mask)    AJ_CTZ_u16((mask))
+#elif AJ_TARGET_MCU_BITS == 8U
     typedef uint8_t AJ_BitReg_t;
+    #define AJ_BITREG_CTZ(mask)    AJ_CTZ_u8((mask))
 #endif
 
 // Temporary wrapper function.
@@ -99,15 +103,7 @@ static inline void AJ_BitReg_ToggleBit_Position(volatile AJ_BitReg_t *reg, AJ_Bi
  * - mask should describe one contiguous bit-field
  */
  static inline void AJ_BitReg_WriteField_Mask(volatile AJ_BitReg_t *reg, AJ_BitReg_t mask, AJ_BitReg_t value){
-    uint8_t shift;
-
-    #if defined(AJ_BIT_REG_32BIT)
-        shift = AJ_CTZ_u32(mask);
-    #elif defined(AJ_BIT_REG_16BIT)
-        shift = AJ_CTZ_u16(mask);
-    #elif defined(AJ_BIT_REG_8BIT)
-        shift = AJ_CTZ_u8(mask);
-    #endif
+    uint8_t shift = AJ_BITREG_CTZ(mask);
 
     *reg =  (AJ_BitReg_t)(
             (*reg & ~mask) |
@@ -208,15 +204,7 @@ static inline void AJ_BitReg_Write8Bit_Position(volatile AJ_BitReg_t *reg, AJ_Bi
  * - mask should describe one contiguous bit-field
  */
 static inline AJ_BitReg_t AJ_BitReg_GetField_Mask(volatile AJ_BitReg_t *reg, AJ_BitReg_t mask){
-    uint8_t shift;
-
-    #if defined(AJ_BIT_REG_32BIT)
-        shift = AJ_CTZ_u32(mask);
-    #elif defined(AJ_BIT_REG_16BIT)
-        shift = AJ_CTZ_u16(mask);
-    #elif defined(AJ_BIT_REG_8BIT)
-        shift = AJ_CTZ_u8(mask);
-    #endif
+    uint8_t shift = AJ_BITREG_CTZ(mask);
 
     return (AJ_BitReg_t)((*reg & mask) >> shift);
 }
@@ -285,6 +273,7 @@ static inline uint8_t AJ_BitReg_Get7Bit_Position(volatile AJ_BitReg_t *reg, AJ_B
 static inline uint8_t AJ_BitReg_Get8Bit_Position(volatile AJ_BitReg_t *reg, AJ_BitReg_t pos){
     return (uint8_t)((*reg >> pos) & 0xFFU);
 }
+
 
 #ifdef __cplusplus
 }
