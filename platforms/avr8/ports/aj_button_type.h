@@ -81,10 +81,10 @@ typedef struct {
  *   counter : Internal debounce timing counter.
  */
 typedef struct{
-    const aj_button_pin_t       hw;      /**< Pin mapping and hardware references */
-    const aj_button_config_t    config;   /**< Static configuration (active level & pull) */
+    const aj_button_pin_t       hw;         /**< Pin mapping and hardware references */
+    const aj_button_config_t    config;     /**< Static configuration (active level & pull) */
     aj_button_tick_t            tick_last;
-    uint8_t                     state;    /**< Current stable state */
+    uint8_t                     state;      /**< Current stable state */
 } aj_button_t;
 
 /**

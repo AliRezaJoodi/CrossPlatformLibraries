@@ -13,8 +13,8 @@
 /** @brief Default configuration (can be overridden). */
 #ifndef AJ_BUTTON_HARDWARE
 #define AJ_BUTTON_HARDWARE
-    #define AJ_BUTTON_TIME_TRIGGER         30U
-    #define AJ_BUTTON_TIME_AUTO_REPEAT     200U
+    #define AJ_BUTTON_TICK_TRIGGER         30U
+    #define AJ_BUTTON_TICK_AUTO_REPEAT     200U
 
     #warning "AJ_BUTTON_HARDWARE is not defined; default configuration will be used."
 #endif

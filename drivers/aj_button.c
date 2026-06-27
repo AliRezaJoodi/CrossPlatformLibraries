@@ -35,7 +35,7 @@ uint8_t AJ_Button_GetTrigger(aj_button_t *btn, aj_button_tick_t now) {
             btn->tick_last = now;
         }
         else if (btn->state == 1) {
-            if ((aj_button_tick_t)(now - btn->tick_last) >= AJ_BUTTON_TIME_TRIGGER) {
+            if ((aj_button_tick_t)(now - btn->tick_last) >= AJ_BUTTON_TICK_TRIGGER) {
                 btn->state = 2;
                 return 1;
             }
@@ -56,7 +56,7 @@ uint8_t AJ_Button_GetAutoRepeat(aj_button_t *btn, aj_button_tick_t now) {
             btn->tick_last = now;
         }
         else if (btn->state == 1) {
-            if ((aj_button_tick_t)(now - btn->tick_last) >= AJ_BUTTON_TIME_AUTO_REPEAT) {
+            if ((aj_button_tick_t)(now - btn->tick_last) >= AJ_BUTTON_TICK_AUTO_REPEAT) {
                 btn->tick_last = now;
                 return 1;
             }
