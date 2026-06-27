@@ -22,6 +22,7 @@
 extern "C" {
 #endif
 
+
 #include <stdint.h>
 
 #define AJ_CTZ_U8_ERROR     8u
@@ -87,6 +88,7 @@ static inline uint8_t AJ_CTZ_u8(uint8_t mask){
 
     return ctz;
 }
+
 
 #ifdef __cplusplus
 }
