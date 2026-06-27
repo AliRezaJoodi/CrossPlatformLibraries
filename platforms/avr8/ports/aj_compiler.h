@@ -1,7 +1,7 @@
 // GitHub Account:  GitHub.com/AliRezaJoodi
 
-#ifndef AJ_COMPILER_PORT_INCLUDED
-#define AJ_COMPILER_PORT_INCLUDED
+#ifndef AJ_COMPILER_INCLUDED
+#define AJ_COMPILER_INCLUDED
 
 #if defined(__GNUC__)
     #ifndef F_CPU
@@ -51,4 +51,4 @@
 
 #endif
 
-#endif  /* AJ_COMPILER_PORT_INCLUDED */
+#endif  /* AJ_COMPILER_INCLUDED */
