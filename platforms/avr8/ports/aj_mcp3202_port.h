@@ -47,7 +47,7 @@ extern "C" {
 #endif
 
 #include <stdint.h>
-#include "aj_compiler_port.h"
+#include "aj_compiler.h"
 #include "aj_bit_reg.h"
 #include "aj_mcp3202_hw.h"
 #include "aj_mcp3202_type.h"
@@ -59,7 +59,7 @@ extern "C" {
  * @param   mcp     Pointer to the MCP3202 instance
  */
 static inline void AJ_MCP3202_CS_ConfigAsOutput(const aj_mcp3202_t *mcp){
-    AJ_BitReg_SetBits_Mask(mcp->cs.ddr, mcp->cs.mask);
+    AJ_BitReg_SetBit_Mask(mcp->cs.ddr, mcp->cs.mask);
 }
 
 /**
@@ -67,7 +67,7 @@ static inline void AJ_MCP3202_CS_ConfigAsOutput(const aj_mcp3202_t *mcp){
  * @param mcp Pointer to the MCP3202 instance.
  */
 static inline void AJ_MCP3202_CS_SetActive(const aj_mcp3202_t *mcp){
-    AJ_BitReg_ClearBits_Mask(mcp->cs.port, mcp->cs.mask);
+    AJ_BitReg_ClearBit_Mask(mcp->cs.port, mcp->cs.mask);
 }
 
 /**
@@ -75,7 +75,7 @@ static inline void AJ_MCP3202_CS_SetActive(const aj_mcp3202_t *mcp){
  * @param mcp Pointer to the MCP3202 instance.
  */
 static inline void AJ_MCP3202_CS_SetIdle(const aj_mcp3202_t *mcp){
-    AJ_BitReg_SetBits_Mask(mcp->cs.port, mcp->cs.mask);
+    AJ_BitReg_SetBit_Mask(mcp->cs.port, mcp->cs.mask);
 }
 
 /**
