@@ -6,7 +6,7 @@ extern "C" {
 #endif
 
 #include <stdint.h>
-#include "aj_compiler_port.h"
+#include "aj_compiler.h"
 #include "aj_bit_reg.h"
 #include "aj_mcp42xxx_hw.h"
 #include "aj_mcp42xxx_type.h"
@@ -20,7 +20,7 @@ extern "C" {
  * @param mcp Pointer to the MCP42xxx instance.
  */
 static inline void AJ_MCP42xxx_CS_ConfigAsOutput(const aj_mcp42xxx_t *mcp){
-    AJ_BitReg_SetBits_Mask(mcp->cs.ddr, mcp->cs.mask);
+    AJ_BitReg_SetBit_Mask(mcp->cs.ddr, mcp->cs.mask);
 }
 
 /**
@@ -28,7 +28,7 @@ static inline void AJ_MCP42xxx_CS_ConfigAsOutput(const aj_mcp42xxx_t *mcp){
  * @param mcp Pointer to the MCP42xxx instance.
  */
 static inline void AJ_MCP42xxx_CS_SetActive(const aj_mcp42xxx_t *mcp){
-    AJ_BitReg_ClearBits_Mask(mcp->cs.port, mcp->cs.mask);
+    AJ_BitReg_ClearBit_Mask(mcp->cs.port, mcp->cs.mask);
 }
 
 /**
@@ -36,7 +36,7 @@ static inline void AJ_MCP42xxx_CS_SetActive(const aj_mcp42xxx_t *mcp){
  * @param mcp Pointer to the MCP42xxx instance.
  */
 static inline void AJ_MCP42xxx_CS_SetIdle(const aj_mcp42xxx_t *mcp){
-    AJ_BitReg_SetBits_Mask(mcp->cs.port, mcp->cs.mask);
+    AJ_BitReg_SetBit_Mask(mcp->cs.port, mcp->cs.mask);
 }
 
 #if (AJ_MCP42XXX_SUPPORT_PIN_SHDN == 1U)
@@ -46,7 +46,7 @@ static inline void AJ_MCP42xxx_CS_SetIdle(const aj_mcp42xxx_t *mcp){
  * @param mcp Pointer to the MCP42xxx instance.
  */
 static inline void AJ_MCP42xxx_SHDN_ConfigAsOutput(const aj_mcp42xxx_t *mcp){
-    AJ_BitReg_SetBits_Mask(mcp->shdn.ddr, mcp->shdn.mask);
+    AJ_BitReg_SetBit_Mask(mcp->shdn.ddr, mcp->shdn.mask);
 }
 
 /**
@@ -54,7 +54,7 @@ static inline void AJ_MCP42xxx_SHDN_ConfigAsOutput(const aj_mcp42xxx_t *mcp){
  * @param mcp Pointer to the MCP42xxx instance.
  */
 static inline void AJ_MCP42xxx_SHDN_SetActive(const aj_mcp42xxx_t *mcp){
-    AJ_BitReg_ClearBits_Mask(mcp->shdn.port, mcp->shdn.mask);
+    AJ_BitReg_ClearBit_Mask(mcp->shdn.port, mcp->shdn.mask);
 }
 
 /**
@@ -62,7 +62,7 @@ static inline void AJ_MCP42xxx_SHDN_SetActive(const aj_mcp42xxx_t *mcp){
  * @param mcp Pointer to the MCP42xxx instance.
  */
 static inline void AJ_MCP42xxx_SHDN_SetIdle(const aj_mcp42xxx_t *mcp){
-    AJ_BitReg_SetBits_Mask(mcp->shdn.port, mcp->shdn.mask);
+    AJ_BitReg_SetBit_Mask(mcp->shdn.port, mcp->shdn.mask);
 }
 #endif
 
@@ -73,7 +73,7 @@ static inline void AJ_MCP42xxx_SHDN_SetIdle(const aj_mcp42xxx_t *mcp){
  * @param mcp Pointer to the MCP42xxx instance.
  */
 static inline void AJ_MCP42xxx_RS_ConfigAsOutput(const aj_mcp42xxx_t *mcp){
-    AJ_BitReg_SetBits_Mask(mcp->rs.ddr, mcp->rs.mask);
+    AJ_BitReg_SetBit_Mask(mcp->rs.ddr, mcp->rs.mask);
 }
 
 /**
@@ -81,7 +81,7 @@ static inline void AJ_MCP42xxx_RS_ConfigAsOutput(const aj_mcp42xxx_t *mcp){
  * @param mcp Pointer to the MCP42xxx instance.
  */
 static inline void AJ_MCP42xxx_RS_SetActive(const aj_mcp42xxx_t *mcp){
-    AJ_BitReg_ClearBits_Mask(mcp->rs.port, mcp->rs.mask);
+    AJ_BitReg_ClearBit_Mask(mcp->rs.port, mcp->rs.mask);
 }
 
 /**
@@ -89,7 +89,7 @@ static inline void AJ_MCP42xxx_RS_SetActive(const aj_mcp42xxx_t *mcp){
  * @param mcp Pointer to the MCP42xxx instance.
  */
 static inline void AJ_MCP42xxx_RS_SetIdle(const aj_mcp42xxx_t *mcp){
-    AJ_BitReg_SetBits_Mask(mcp->rs.port, mcp->rs.mask);
+    AJ_BitReg_SetBit_Mask(mcp->rs.port, mcp->rs.mask);
 }
 #endif
 
