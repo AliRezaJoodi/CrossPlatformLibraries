@@ -1,12 +1,22 @@
-#ifndef aj_button_tYPE_INCLUDED
-#define aj_button_tYPE_INCLUDED
+#ifndef AJ_BUTTON_TYPE_INCLUDED
+#define AJ_BUTTON_TYPE_INCLUDED
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 #include <stdint.h>
-#include "aj_timebase_type.h"
+#include "aj_target.h"
+
+#if (AJ_TARGET_TICK_BITS == 32U)
+    typedef uint32_t aj_button_tick_t;
+#elif (AJ_TARGET_TICK_BITS == 16U)
+    typedef uint16_t aj_button_tick_t;
+#elif (AJ_TARGET_TICK_BITS == 8U)
+    typedef uint8_t aj_button_tick_t;
+#else
+    typedef uint32_t aj_button_tick_t;
+#endif
 
 /** @brief Defines whether a pressed button reads as logic low or high. */
 typedef enum{
@@ -73,7 +83,7 @@ typedef struct {
 typedef struct{
     const aj_button_pin_t       hw;      /**< Pin mapping and hardware references */
     const aj_button_config_t    config;   /**< Static configuration (active level & pull) */
-    aj_timebase_t               tick_last;
+    aj_button_tick_t            tick_last;
     uint8_t                     state;    /**< Current stable state */
 } aj_button_t;
 
@@ -103,4 +113,4 @@ typedef struct{
 }
 #endif
 
-#endif  /* aj_button_tYPE_INCLUDED */
+#endif  /* AJ_BUTTON_TYPE_INCLUDED */

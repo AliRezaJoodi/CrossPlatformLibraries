@@ -1,7 +1,6 @@
 // GitHub Account: GitHub.com/AliRezaJoodi
 
 #include <stdint.h>
-#include "aj_timebase.h"
 #include "aj_button_type.h"
 #include "aj_button_port.h"
 #include "aj_button.h"
@@ -29,14 +28,14 @@ void AJ_Button_Init(aj_button_t *btn){
 }
 
 //*************************************************
-uint8_t AJ_Button_GetTrigger(aj_button_t *btn, aj_timebase_t now) {
+uint8_t AJ_Button_GetTrigger(aj_button_t *btn, aj_button_tick_t now) {
     if (AJ_Button_Pin_Read(btn) == btn->config.pressed) {
         if (btn->state == 0) {
             btn->state = 1;
             btn->tick_last = now;
         }
         else if (btn->state == 1) {
-            if (AJ_TimeBase_HasElapsed(now, btn->tick_last, AJ_BUTTON_TIME_TRIGGER)) {
+            if ((aj_button_tick_t)(now - btn->tick_last) >= AJ_BUTTON_TIME_TRIGGER) {
                 btn->state = 2;
                 return 1;
             }
@@ -50,14 +49,14 @@ uint8_t AJ_Button_GetTrigger(aj_button_t *btn, aj_timebase_t now) {
 }
 
 //*************************************************
-uint8_t AJ_Button_GetAutoRepeat(aj_button_t *btn, aj_timebase_t now) {
+uint8_t AJ_Button_GetAutoRepeat(aj_button_t *btn, aj_button_tick_t now) {
     if (AJ_Button_Pin_Read(btn) == btn->config.pressed) {
         if (btn->state == 0) {
             btn->state = 1;
             btn->tick_last = now;
         }
         else if (btn->state == 1) {
-            if (AJ_TimeBase_HasElapsed(now, btn->tick_last, AJ_BUTTON_TIME_AUTO_REPEAT) == 1) {
+            if ((aj_button_tick_t)(now - btn->tick_last) >= AJ_BUTTON_TIME_AUTO_REPEAT) {
                 btn->tick_last = now;
                 return 1;
             }

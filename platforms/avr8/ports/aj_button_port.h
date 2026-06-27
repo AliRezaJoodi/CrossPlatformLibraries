@@ -23,7 +23,7 @@ extern "C" {
 #endif
 
 #include <stdint.h>
-#include "aj_compiler_port.h"
+#include "aj_compiler.h"
 #include "aj_bit_reg.h"
 #include "aj_button_hw.h"
 #include "aj_button_type.h"
@@ -31,24 +31,24 @@ extern "C" {
 #define AJ_BUTTON_DELAY_US(VALUE)      AJ_DELAY_US(VALUE)
 
 static inline void AJ_Button_Pin_ConfigAsInput(const aj_button_t *btn){
-    AJ_BitReg_ClearBits_Mask(btn->hw.ddr, btn->hw.mask);
+    AJ_BitReg_ClearBit_Mask(btn->hw.ddr, btn->hw.mask);
 }
 
 static inline void AJ_Button_Pin_ConfigAsPullNone(const aj_button_t *btn){
-    AJ_BitReg_ClearBits_Mask(btn->hw.port, btn->hw.mask);
+    AJ_BitReg_ClearBit_Mask(btn->hw.port, btn->hw.mask);
 }
 
 static inline void AJ_Button_Pin_ConfigAsPullUp(const aj_button_t *btn){
-    AJ_BitReg_SetBits_Mask(btn->hw.port, btn->hw.mask);
+    AJ_BitReg_SetBit_Mask(btn->hw.port, btn->hw.mask);
 }
 
 /* Not supported on AVR - same as floating */
 static inline void AJ_Button_Pin_ConfigAsPullDown(const aj_button_t *btn){
-    AJ_BitReg_ClearBits_Mask(btn->hw.port, btn->hw.mask);
+    AJ_BitReg_ClearBit_Mask(btn->hw.port, btn->hw.mask);
 }
 
 static inline uint8_t AJ_Button_Pin_Read(const aj_button_t *btn){
-    return AJ_BitReg_AreBitsSet_Mask(btn->hw.pin, btn->hw.mask);
+    return AJ_BitReg_IsBitSet_Mask(btn->hw.pin, btn->hw.mask);
 }
 
 #ifdef __cplusplus
