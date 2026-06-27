@@ -12,34 +12,38 @@ A collection of reusable, cross-platform C libraries for embedded systems.<br>
   - `stm32f1` — Platform support for STM32F1xx MCUs.
     - `peripherals` — Peripheral drivers.
     - `ports` — Porting layer.
+  - `stm32f4` — Platform support for STM32F4xx MCUs.
+    - `peripherals` — Peripheral drivers.
+    - `ports` — Porting layer.
 
 ## Include Paths
 Add the required directories to your project's include paths.<br>
 The examples below assume that `CrossPlatformLibraries` is located a few levels above the project directory.<br>
-Adjust the number of `..` levels depending on your workspace layout.<br>
 
 ### Common Paths
-The following paths are examples. Adjust the number of `..` levels depending on your workspace layout.<br>
-`..\..\..\CrossPlatformLibraries\utils`<br>
-`..\..\..\CrossPlatformLibraries\modules`<br>
-`..\..\..\CrossPlatformLibraries\drivers`<br>
+The following paths are examples.
+- `..\..\..\CrossPlatformLibraries\utils`
+- `..\..\..\CrossPlatformLibraries\modules`
+- `..\..\..\CrossPlatformLibraries\drivers`
+- `..\..\..\CrossPlatformLibraries\platforms\common`
 
 ### STM32F1xx Paths
-The following paths are examples. Adjust the number of `..` levels depending on your workspace layout.<br>
-`..\..\..\CrossPlatformLibraries\platforms\stm32f1\ports`<br>
-`..\..\..\CrossPlatformLibraries\platforms\stm32f1\peripherals`<br>
+The following paths are examples.
+- `..\..\..\CrossPlatformLibraries\platforms\stm32f1\ports`
+- `..\..\..\CrossPlatformLibraries\platforms\stm32f1\peripherals`
 
 ### STM32F4xx Paths
-The following paths are examples. Adjust the number of `..` levels depending on your workspace layout.<br>
-`..\..\..\CrossPlatformLibraries\platforms\stm32f4\ports`<br>
-`..\..\..\CrossPlatformLibraries\platforms\stm32f4\peripherals`<br>
+The following paths are examples.
+- `..\..\..\CrossPlatformLibraries\platforms\stm32f4\ports`
+- `..\..\..\CrossPlatformLibraries\platforms\stm32f4\peripherals`
 
 ### AVR8 Paths
-The following paths are examples. Adjust the number of `..` levels depending on your workspace layout.<br>
-`..\..\..\CrossPlatformLibraries\platforms\avr8\ports`<br>
-`..\..\..\CrossPlatformLibraries\platforms\avr8\peripherals`<br>
+The following paths are examples.
+- `..\..\..\CrossPlatformLibraries\platforms\avr8\ports`
+- `..\..\..\CrossPlatformLibraries\platforms\avr8\peripherals`
 
 Notes
+- Adjust the number of `..` levels depending on your workspace layout.
 - Keep project paths relative so the repository remains portable.
 - Add only the folders required by each target project.
 - Use platform-specific paths only when the project depends on that platform.
