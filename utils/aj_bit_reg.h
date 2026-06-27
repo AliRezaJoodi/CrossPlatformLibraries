@@ -50,26 +50,6 @@ extern "C" {
     #define AJ_BITREG_CTZ(mask)    AJ_CTZ_u8((mask))
 #endif
 
-// Temporary wrapper function.
-#define AJ_BitReg_SetBits_Mask              AJ_BitReg_SetBit_Mask
-#define AJ_BitReg_ClearBits_Mask            AJ_BitReg_ClearBit_Mask
-#define AJ_BitReg_ToggleBits_Mask           AJ_BitReg_ToggleBit_Mask
-#define AJ_BitReg_Write2Bits_Position       AJ_BitReg_Write2Bit_Position
-#define AJ_BitReg_Write3Bits_Position       AJ_BitReg_Write3Bit_Position
-#define AJ_BitReg_Write4Bits_Position       AJ_BitReg_Write4Bit_Position
-#define AJ_BitReg_Write5Bits_Position       AJ_BitReg_Write5Bit_Position
-#define AJ_BitReg_Write6Bits_Position       AJ_BitReg_Write6Bit_Position
-#define AJ_BitReg_Write7Bits_Position       AJ_BitReg_Write7Bit_Position
-#define AJ_BitReg_Write8Bits_Position       AJ_BitReg_Write8Bit_Position
-#define AJ_BitReg_AreBitsSet_Mask           AJ_BitReg_IsBitSet_Mask
-#define AJ_BitReg_Get2Bits_Position         AJ_BitReg_Get2Bit_Position
-#define AJ_BitReg_Get3Bits_Position         AJ_BitReg_Get3Bit_Position
-#define AJ_BitReg_Get4Bits_Position         AJ_BitReg_Get4Bit_Position
-#define AJ_BitReg_Get5Bits_Position         AJ_BitReg_Get5Bit_Position
-#define AJ_BitReg_Get6Bits_Position         AJ_BitReg_Get6Bit_Position
-#define AJ_BitReg_Get7Bits_Position         AJ_BitReg_Get7Bit_Position
-#define AJ_BitReg_Get8Bits_Position         AJ_BitReg_Get8Bit_Position
-
 //***********************************************************************
 static inline void AJ_BitReg_SetBit_Mask(volatile AJ_BitReg_t *reg, AJ_BitReg_t mask){
     *reg = (AJ_BitReg_t)(*reg | mask);
