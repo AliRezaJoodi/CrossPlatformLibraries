@@ -41,7 +41,7 @@ extern "C" {
 #include "aj_ctz.h"
 
 //***********************************************************************
-static inline uint32_t AJ_BitU32_SetBits_Mask(uint32_t value, uint32_t mask){
+static inline uint32_t AJ_BitU32_SetBit_Mask(uint32_t value, uint32_t mask){
     return (uint32_t)(value | (mask));
 }
 
@@ -59,7 +59,7 @@ static inline uint32_t AJ_BitU32_ClearBit_Position(uint32_t value, uint8_t pos){
 }
 
 //***********************************************************************
-static inline uint32_t AJ_BitU32_ToggleBits_Mask(uint32_t value, uint32_t mask){
+static inline uint32_t AJ_BitU32_ToggleBit_Mask(uint32_t value, uint32_t mask){
     return (uint32_t)(value ^ (mask));
 }
 
@@ -88,21 +88,21 @@ static inline uint32_t AJ_BitU32_WriteBit_Position(uint32_t value, uint8_t pos, 
             );
 }
 
-static inline uint32_t AJ_BitU32_Write2Bits_Position(uint32_t value, uint8_t pos, uint32_t field){
+static inline uint32_t AJ_BitU32_Write2Bit_Position(uint32_t value, uint8_t pos, uint32_t field){
     return (uint32_t)(
             (value & ~(0x03UL << pos)) |
             ((field & 0x03UL) << pos)
             );
 }
 
-static inline uint32_t AJ_BitU32_Write3Bits_Position(uint32_t value, uint8_t pos, uint32_t field){
+static inline uint32_t AJ_BitU32_Write3Bit_Position(uint32_t value, uint8_t pos, uint32_t field){
     return (uint32_t)(
             (value & ~(0x07UL << pos)) |
             ((field & 0x07UL) << pos)
             );
 }
 
-static inline uint32_t AJ_BitU32_Write4Bits_Position(uint32_t value, uint8_t pos, uint32_t field){
+static inline uint32_t AJ_BitU32_Write4Bit_Position(uint32_t value, uint8_t pos, uint32_t field){
     return (uint32_t)(
             (value & ~(0x0FUL << pos)) |
             ((field & 0x0FUL) << pos)
@@ -119,12 +119,8 @@ static inline uint32_t AJ_BitU32_GetField_Mask(uint32_t value, uint32_t mask){
     return (uint32_t)((value & mask) >> shift);
 }
 
-static inline uint8_t AJ_BitU32_AreBitsSet_Mask(uint32_t value, uint32_t mask){
+static inline uint8_t AJ_BitU32_IsBitSet_Mask(uint32_t value, uint32_t mask){
     return (uint8_t)((value & mask) == mask);
-}
-
-static inline uint8_t AJ_BitU32_IsAnyBitSet_Mask(uint32_t value, uint32_t mask){
-    return (uint8_t)((value & mask) != 0UL);
 }
 
  /**
@@ -142,31 +138,31 @@ static inline uint8_t AJ_BitU32_IsBitSet_Position(uint32_t value, uint8_t pos){
     return (uint8_t)((value >> pos) & 0x01UL);
 }
 
-static inline uint8_t AJ_BitU32_Get2Bits_Position(uint32_t value, uint8_t pos){
+static inline uint8_t AJ_BitU32_Get2Bit_Position(uint32_t value, uint8_t pos){
     return (uint8_t)((value >> pos) & 0x03UL);
 }
 
-static inline uint8_t AJ_BitU32_Get3Bits_Position(uint32_t value, uint8_t pos){
+static inline uint8_t AJ_BitU32_Get3Bit_Position(uint32_t value, uint8_t pos){
     return (uint8_t)((value >> pos) & 0x07UL);
 }
 
-static inline uint8_t AJ_BitU32_Get4Bits_Position(uint32_t value, uint8_t pos){
+static inline uint8_t AJ_BitU32_Get4Bit_Position(uint32_t value, uint8_t pos){
     return (uint8_t)((value >> pos) & 0x0FUL);
 }
 
-static inline uint8_t AJ_BitU32_Get5Bits_Position(uint32_t value, uint8_t pos){
+static inline uint8_t AJ_BitU32_Get5Bit_Position(uint32_t value, uint8_t pos){
     return (uint8_t)((value >> pos) & 0x1FUL);
 }
 
-static inline uint8_t AJ_BitU32_Get6Bits_Position(uint32_t value, uint8_t pos){
+static inline uint8_t AJ_BitU32_Get6Bit_Position(uint32_t value, uint8_t pos){
     return (uint8_t)((value >> pos) & 0x3FUL);
 }
 
-static inline uint8_t AJ_BitU32_Get7Bits_Position(uint32_t value, uint8_t pos){
+static inline uint8_t AJ_BitU32_Get7Bit_Position(uint32_t value, uint8_t pos){
     return (uint8_t)((value >> pos) & 0x7FUL);
 }
 
-static inline uint8_t AJ_BitU32_Get8Bits_Position(uint32_t value, uint8_t pos){
+static inline uint8_t AJ_BitU32_Get8Bit_Position(uint32_t value, uint8_t pos){
     return (uint8_t)((value >> pos) & 0xFFUL);
 }
 
