@@ -6,7 +6,7 @@ extern "C" {
 #endif
 
 #include <stdint.h>
-#include "aj_compiler_port.h"
+#include "aj_compiler.h"
 #include "aj_bit_reg.h"
 #include "aj_max6675_type.h"
 #include "aj_spi.h"
@@ -18,7 +18,7 @@ extern "C" {
  * @param mcp Pointer to the MAX6675 instance.
  */
 static inline void AJ_MAX6675_CS_ConfigAsOutput(const aj_max6675_t *max){
-    AJ_BitReg_SetBits_Mask(max->cs.ddr, max->cs.mask);
+    AJ_BitReg_SetBit_Mask(max->cs.ddr, max->cs.mask);
 }
 
 /**
@@ -26,7 +26,7 @@ static inline void AJ_MAX6675_CS_ConfigAsOutput(const aj_max6675_t *max){
  * @param mcp Pointer to the MAX6675 instance.
  */
 static inline void AJ_MAX6675_CS_SetActive(const aj_max6675_t *max){
-    AJ_BitReg_ClearBits_Mask(max->cs.port, max->cs.mask);
+    AJ_BitReg_ClearBit_Mask(max->cs.port, max->cs.mask);
 }
 
 /**
@@ -34,7 +34,7 @@ static inline void AJ_MAX6675_CS_SetActive(const aj_max6675_t *max){
  * @param mcp Pointer to the MAX6675 instance.
  */
 static inline void AJ_MAX6675_CS_SetIdle(const aj_max6675_t *max){
-    AJ_BitReg_SetBits_Mask(max->cs.port, max->cs.mask);
+    AJ_BitReg_SetBit_Mask(max->cs.port, max->cs.mask);
 }
 
 /**
