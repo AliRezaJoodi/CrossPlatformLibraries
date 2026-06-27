@@ -118,7 +118,7 @@ uint8_t AJ_TM1638_WriteDisplayRegister_AutoIncr(aj_tm1638_t *tm, uint8_t segment
         AJ_BitU8_SetBit_Position(error, 2);
     }
 
-    command_address = AJ_BitU8_Write4Bits_Position(command_address, 0, address);
+    command_address = AJ_BitU8_Write4Bit_Position(command_address, 0, address);
 
     AJ_TM1638_STB_SetActive(tm);
     TM1638_WriteByte(TM1638_COMMAND_DATA_WRITE);
@@ -148,7 +148,7 @@ uint8_t AJ_TM1638_WriteDisplayRegister_Fixed(aj_tm1638_t *tm, uint8_t data, uint
         AJ_BitU8_SetBit_Position(error, 0);
     }
 
-    command_address = AJ_BitU8_Write4Bits_Position(command_address, 0, address);
+    command_address = AJ_BitU8_Write4Bit_Position(command_address, 0, address);
 
     AJ_TM1638_STB_SetActive(tm);
     TM1638_WriteByte(TM1638_COMMAND_DATA_WRITE);
@@ -228,7 +228,7 @@ void AJ_TM1638_Set8Leds_S9S10x4(aj_tm1638_t *tm, uint8_t data){
     uint8_t i = 0;
 
     for(i=0; i<=3; ++i){
-        AJ_TM1638_WriteDisplayRegister_Fixed(tm, AJ_BitU8_Get2Bits_Position(data, i*2), (i*2)+1);
+        AJ_TM1638_WriteDisplayRegister_Fixed(tm, AJ_BitU8_Get2Bit_Position(data, i*2), (i*2)+1);
     }
 
 //    AJ_TM1638_WriteDisplayRegister_Fixed(tm, GET_2BIT(data, 0), 1);
@@ -260,7 +260,7 @@ void AJ_TM1638_SetLeds(aj_tm1638_t *tm, uint16_t data){
     uint8_t i = 0;
 
     for(i=0; i<=7; ++i){
-        AJ_TM1638_WriteDisplayRegister_Fixed(tm, AJ_BitU8_Get2Bits_Position(data, i*2), (i*2)+1);
+        AJ_TM1638_WriteDisplayRegister_Fixed(tm, AJ_BitU8_Get2Bit_Position(data, i*2), (i*2)+1);
     }
 
 //    AJ_TM1638_WriteDisplayRegister_Fixed(tm, GET_2BIT(data, 0), 1);

@@ -7,7 +7,7 @@ extern "C" {
 
 #include <stdint.h>
 #include "aj_bit_reg.h"
-#include "aj_compiler_port.h"
+#include "aj_compiler.h"
 #include "aj_tm1638_hw.h"
 #include "aj_tm1638_type.h"
 
@@ -15,50 +15,50 @@ extern "C" {
 
 //***************************************
 static inline void AJ_TM1638_STB_ConfigAsOutput(const aj_tm1638_t *tm){
-    AJ_BitReg_SetBits_Mask(tm->stb.ddr, tm->stb.mask);
+    AJ_BitReg_SetBit_Mask(tm->stb.ddr, tm->stb.mask);
 }
 
 static inline void AJ_TM1638_STB_SetActive(const aj_tm1638_t *tm){
-    AJ_BitReg_ClearBits_Mask(tm->stb.port, tm->stb.mask);
+    AJ_BitReg_ClearBit_Mask(tm->stb.port, tm->stb.mask);
 }
 
 static inline void AJ_TM1638_STB_SetIdle(const aj_tm1638_t *tm){
-    AJ_BitReg_SetBits_Mask(tm->stb.port, tm->stb.mask);
+    AJ_BitReg_SetBit_Mask(tm->stb.port, tm->stb.mask);
 }
 
 //***************************************
 static inline void AJ_TM1638_CLK_ConfigAsOutput(void){
-    AJ_BitReg_SetBits_Mask(&AJ_TM1638_CLK_DDR, AJ_TM1638_CLK_MASK);
+    AJ_BitReg_SetBit_Mask(&AJ_TM1638_CLK_DDR, AJ_TM1638_CLK_MASK);
 }
 
 static inline void AJ_TM1638_CLK_SetActive(void){
-    AJ_BitReg_ClearBits_Mask(&AJ_TM1638_CLK_PORT, AJ_TM1638_CLK_MASK);
+    AJ_BitReg_ClearBit_Mask(&AJ_TM1638_CLK_PORT, AJ_TM1638_CLK_MASK);
 }
 
 static inline void AJ_TM1638_CLK_SetIdle(void){
-    AJ_BitReg_SetBits_Mask(&AJ_TM1638_CLK_PORT, AJ_TM1638_CLK_MASK);
+    AJ_BitReg_SetBit_Mask(&AJ_TM1638_CLK_PORT, AJ_TM1638_CLK_MASK);
 }
 
 //***************************************
 static inline void AJ_TM1638_DIO_ConfigAsOutput(void){
-    AJ_BitReg_SetBits_Mask(&AJ_TM1638_DIO_DDR, AJ_TM1638_DIO_MASK);
+    AJ_BitReg_SetBit_Mask(&AJ_TM1638_DIO_DDR, AJ_TM1638_DIO_MASK);
 }
 
 static inline void AJ_TM1638_DIO_SetActive(void){
-    AJ_BitReg_ClearBits_Mask(&AJ_TM1638_DIO_PORT, AJ_TM1638_DIO_MASK);
+    AJ_BitReg_ClearBit_Mask(&AJ_TM1638_DIO_PORT, AJ_TM1638_DIO_MASK);
 }
 
 static inline void AJ_TM1638_DIO_SetIdle(void){
-    AJ_BitReg_SetBits_Mask(&AJ_TM1638_DIO_PORT, AJ_TM1638_DIO_MASK);
+    AJ_BitReg_SetBit_Mask(&AJ_TM1638_DIO_PORT, AJ_TM1638_DIO_MASK);
 }
 
 static inline void AJ_TM1638_DIO_ConfigAsInput(void){
-    AJ_BitReg_ClearBits_Mask(&AJ_TM1638_DIO_DDR, AJ_TM1638_DIO_MASK);
+    AJ_BitReg_ClearBit_Mask(&AJ_TM1638_DIO_DDR, AJ_TM1638_DIO_MASK);
 }
 
 //***************************************
 static inline uint8_t AJ_TM1638_DIO_Read(void){
-    return AJ_BitReg_AreBitsSet_Mask(&AJ_TM1638_DIO_PIN, AJ_TM1638_DIO_MASK);
+    return AJ_BitReg_IsBitSet_Mask(&AJ_TM1638_DIO_PIN, AJ_TM1638_DIO_MASK);
 }
 
 #ifdef __cplusplus
