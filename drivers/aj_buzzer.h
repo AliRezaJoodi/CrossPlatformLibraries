@@ -1,19 +1,18 @@
 /**
- * @file    buzzer.h
- * @brief   Public API for non-blocking buzzer control.
+ * @brief Non-blocking buzzer driver.
  *
- * This module provides a simple interface to control a buzzer using
- * the TimeBase module for timing. The buzzer operates in a non-blocking
- * manner and requires periodic calls to AJ_Buzzer_Refresh() from the main loop.
+ * The buzzer module is independent from any specific timebase implementation.
+ * It only requires a monotonically increasing tick value to be provided by
+ * the application.
  *
- * The TimeBase module must be configured so that AJ_TimeBase_CountTicks()
- * is called from a hardware timer interrupt (typically every 1 ms).
+ * The recommended usage is to generate that tick from a hardware timer
+ * interrupt with a period of 1 ms, but any consistent tick source may be used.
  *
- * @note The TimeBase module must be initialized and running before
- *       using any buzzer API functions.
+ * The buzzer is non-blocking and must be refreshed periodically from the main
+ * loop using AJ_Buzzer_Refresh().
  *
- * Hardware abstraction for the buzzer is provided by the layers
- * defined in buzzer_hw.h and AJ_BUZZER_PORT.h.
+ * @note The application must provide the current tick value to
+ *       AJ_Buzzer_Start() and AJ_Buzzer_Refresh().
  *
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
@@ -22,8 +21,13 @@
 #ifndef AJ_BUZZER_INCLUDED
 #define AJ_BUZZER_INCLUDED
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
 #include <stdint.h>
-#include "aj_timebase_type.h"
+#include "aj_buzzer_type.h"
 
 void AJ_Buzzer_TurnOff(void);
 void AJ_Buzzer_TurnOn(void);
@@ -44,33 +48,38 @@ void AJ_Buzzer_Init(void);
  * @brief   Activate the buzzer for a specified duration.
  *
  * This function turns the buzzer on and records the start time using the
- * provided system tick. The buzzer will remain active until the specified
+ * provided tick value. The buzzer remains active until the specified
  * duration has elapsed.
  *
- * @param[in] tick_now   Current system tick value (typically from AJ_TimeBase_GetTicks()).
- * @param[in] duration   Active time of the buzzer in timebase ticks.
+ * @param[in] tick_now   Current tick value provided by the application.
+ * @param[in] duration   Active time of the buzzer in ticks.
  *
  * @note
  * AJ_Buzzer_Refresh() must be called regularly (e.g., in the main loop)
  * to monitor the elapsed time and automatically turn the buzzer off
  * when the specified duration expires.
  */
-void AJ_Buzzer_Start(aj_timebase_t tick_now, aj_timebase_t duration);
+void AJ_Buzzer_Start(aj_buzzer_t tick_now, aj_buzzer_t duration);
 
 /**
  * @brief   Refresh the buzzer state.
  *
- * This function manages the buzzer's non-blocking operation. It checks if the
- * buzzer's active duration has elapsed by comparing the current tick with the
- * start time. If the duration has passed, it automatically turns off the buzzer.
+ * This function manages the buzzer's non-blocking operation. It checks whether
+ * the buzzer's active duration has elapsed by comparing the current tick with
+ * the stored start tick. If the specified duration has passed, the buzzer is
+ * automatically turned off.
  *
- * @param   tick_now  The current system tick value (typically obtained via AJ_TimeBase_GetTicks()).
- *                    Passing the tick as an argument avoids redundant calls to the TimeBase
- *                    get function, optimizing performance in the main loop.
+ * @param[in] tick_now  Current tick value provided by the application.
  *
- * @note    This function must be called regularly in the main loop to ensure timely
- *          buzzer deactivation. If not called, the buzzer may remain active indefinitely.
+ * @note    This function must be called regularly in the main loop to ensure
+ *          timely buzzer deactivation. If it is not called periodically,
+ *          the buzzer may remain active longer than expected.
  */
-void AJ_Buzzer_Refresh(aj_timebase_t tick_now);
+void AJ_Buzzer_Refresh(aj_buzzer_t tick_now);
+
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif  /* AJ_BUZZER_INCLUDED */
