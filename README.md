@@ -22,20 +22,20 @@ The examples below assume that `CrossPlatformLibraries` is located a few levels 
 
 ### Common Paths
 The following paths are examples.
-- `..\..\..\CrossPlatformLibraries\utils`
-- `..\..\..\CrossPlatformLibraries\modules`
-- `..\..\..\CrossPlatformLibraries\drivers`
-- `..\..\..\CrossPlatformLibraries\platforms\common`
+- `..\CrossPlatformLibraries\utils`
+- `..\CrossPlatformLibraries\modules`
+- `..\CrossPlatformLibraries\drivers`
+- `..\CrossPlatformLibraries\platforms\common`
 
 ### STM32F1xx Paths
 The following paths are examples.
-- `..\..\..\CrossPlatformLibraries\platforms\stm32f1\ports`
-- `..\..\..\CrossPlatformLibraries\platforms\stm32f1\peripherals`
+- `..\CrossPlatformLibraries\platforms\stm32f1\ports`
+- `..\CrossPlatformLibraries\platforms\stm32f1\peripherals`
 
 ### STM32F4xx Paths
 The following paths are examples.
-- `..\..\..\CrossPlatformLibraries\platforms\stm32f4\ports`
-- `..\..\..\CrossPlatformLibraries\platforms\stm32f4\peripherals`
+- `..\CrossPlatformLibraries\platforms\stm32f4\ports`
+- `..\CrossPlatformLibraries\platforms\stm32f4\peripherals`
 
 ### AVR8 Paths
 The following paths are examples.
