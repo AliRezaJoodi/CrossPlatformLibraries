@@ -105,7 +105,7 @@ uint8_t AJ_TM1637_SetDisplay(aj_tm1637_t *tm, uint8_t onoff, uint8_t brightness)
     }
 
     command_display = AJ_BitU8_WriteBit_Position(command_display, 3, onoff);
-    command_display = AJ_BitU8_Write3Bits_Position(command_display, 0, brightness);
+    command_display = AJ_BitU8_Write3Bit_Position(command_display, 0, brightness);
 
     TM1637_Start(tm);
     TM1637_WriteByte(tm, command_display);
@@ -160,7 +160,7 @@ uint8_t AJ_TM1637_WriteDisplayRegister_AutoIncr(aj_tm1637_t *tm, uint8_t segment
         AJ_BitU8_SetBit_Position(error, 2);
     }
 
-    command_address = AJ_BitU8_Write3Bits_Position(command_address, 0, address);
+    command_address = AJ_BitU8_Write3Bit_Position(command_address, 0, address);
 
     TM1637_Start(tm);
     TM1637_WriteByte(tm, TM1637_COMMAND_DATA_WRITE);
@@ -186,7 +186,7 @@ uint8_t AJ_TM1637_WriteDisplayRegister_Fixed(aj_tm1637_t *tm, uint8_t data, uint
         AJ_BitU8_SetBit_Position(error, 0);
     }
 
-    command_address = AJ_BitU8_Write3Bits_Position(command_address, 0, address);
+    command_address = AJ_BitU8_Write3Bit_Position(command_address, 0, address);
 
     TM1637_Start(tm);
     TM1637_WriteByte(tm, command_address);
