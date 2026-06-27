@@ -47,11 +47,11 @@ extern "C" {
 #endif
 
 #include <stdint.h>
-#include "aj_compiler_port.h"
+#include "aj_compiler.h"
 #include "aj_bit_reg.h"
+#include "aj_spi.h"
 #include "aj_mcp3208_hw.h"
 #include "aj_mcp3208_type.h"
-#include "aj_spi.h"
 
 /**
  * @brief Initialize MCP3208 CS pin (output, idle high)
@@ -59,7 +59,7 @@ extern "C" {
  * @param   mcp     Pointer to the MCP3208 instance
  */
 static inline void AJ_MCP3208_CS_ConfigAsOutput(const aj_mcp3208_t *mcp){
-    AJ_BitReg_SetBits_Mask(mcp->cs.ddr, mcp->cs.mask);
+    AJ_BitReg_SetBit_Mask(mcp->cs.ddr, mcp->cs.mask);
 }
 
 /**
@@ -67,7 +67,7 @@ static inline void AJ_MCP3208_CS_ConfigAsOutput(const aj_mcp3208_t *mcp){
  * @param mcp Pointer to the MCP3208 instance.
  */
 static inline void AJ_MCP3208_CS_SetActive (const aj_mcp3208_t *mcp){
-    AJ_BitReg_ClearBits_Mask(mcp->cs.port, mcp->cs.mask);
+    AJ_BitReg_ClearBit_Mask(mcp->cs.port, mcp->cs.mask);
 }
 
 /**
@@ -75,7 +75,7 @@ static inline void AJ_MCP3208_CS_SetActive (const aj_mcp3208_t *mcp){
  * @param mcp Pointer to the MCP3208 instance.
  */
 static inline void AJ_MCP3208_CS_SetIdle(const aj_mcp3208_t *mcp){
-    AJ_BitReg_SetBits_Mask(mcp->cs.port, mcp->cs.mask);
+    AJ_BitReg_SetBit_Mask(mcp->cs.port, mcp->cs.mask);
 }
 
 /**
