@@ -46,11 +46,11 @@ extern "C" {
 #endif
 
 #include <stdint.h>
-#include "aj_compiler_port.h"
+#include "aj_compiler.h"
 #include "aj_bit_reg.h"
+#include "aj_spi.h"
 #include "aj_mcp4822_hw.h"
 #include "aj_mcp4822_type.h"
-#include "aj_spi.h"
 
 #define AJ_MCP4822_DELAY_US(us) AJ_DELAY_US(us)
 
@@ -61,7 +61,7 @@ extern "C" {
  * @param[in] mcp   Pointer to MCP4822 device handle
  */
 static inline void AJ_MCP4822_CS_ConfigAsOutput(const aj_mcp4822_t *mcp){
-    AJ_BitReg_SetBits_Mask(mcp->cs.ddr, mcp->cs.mask);
+    AJ_BitReg_SetBit_Mask(mcp->cs.ddr, mcp->cs.mask);
 }
 
 /**
@@ -71,7 +71,7 @@ static inline void AJ_MCP4822_CS_ConfigAsOutput(const aj_mcp4822_t *mcp){
  * @param[in] mcp  Pointer to MCP4822 device handle
  */
 static inline void AJ_MCP4822_CS_SetActive(const aj_mcp4822_t *mcp){
-    AJ_BitReg_ClearBits_Mask(mcp->cs.port, mcp->cs.mask);
+    AJ_BitReg_ClearBit_Mask(mcp->cs.port, mcp->cs.mask);
 }
 
 /**
@@ -81,7 +81,7 @@ static inline void AJ_MCP4822_CS_SetActive(const aj_mcp4822_t *mcp){
  * @param[in] mcp  Pointer to MCP4822 device handle
  */
 static inline void AJ_MCP4822_CS_SetIdle(const aj_mcp4822_t *mcp){
-    AJ_BitReg_SetBits_Mask(mcp->cs.port, mcp->cs.mask);
+    AJ_BitReg_SetBit_Mask(mcp->cs.port, mcp->cs.mask);
 }
 
 /**
@@ -91,7 +91,7 @@ static inline void AJ_MCP4822_CS_SetIdle(const aj_mcp4822_t *mcp){
  * @param[in] mcp   Pointer to MCP4822 device handle
  */
 static inline void AJ_MCP4822_LDAC_ConfigAsOutput(const aj_mcp4822_t *mcp){
-    AJ_BitReg_SetBits_Mask(mcp->ldac.ddr, mcp->ldac.mask);
+    AJ_BitReg_SetBit_Mask(mcp->ldac.ddr, mcp->ldac.mask);
 }
 
 /**
@@ -102,7 +102,7 @@ static inline void AJ_MCP4822_LDAC_ConfigAsOutput(const aj_mcp4822_t *mcp){
  * @param[in] mcp  Pointer to MCP4822 device handle
  */
 static inline void AJ_MCP4822_LDAC_SetActive(const aj_mcp4822_t *mcp){
-    AJ_BitReg_ClearBits_Mask(mcp->ldac.port, mcp->ldac.mask);
+    AJ_BitReg_ClearBit_Mask(mcp->ldac.port, mcp->ldac.mask);
 }
 
 /**
@@ -112,7 +112,7 @@ static inline void AJ_MCP4822_LDAC_SetActive(const aj_mcp4822_t *mcp){
  * @param[in] mcp  Pointer to MCP4822 device handle
  */
 static inline void AJ_MCP4822_LDAC_SetIdle(const aj_mcp4822_t *mcp){
-    AJ_BitReg_SetBits_Mask(mcp->ldac.port, mcp->ldac.mask);
+    AJ_BitReg_SetBit_Mask(mcp->ldac.port, mcp->ldac.mask);
 }
 
 /**
