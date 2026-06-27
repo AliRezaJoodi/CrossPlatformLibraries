@@ -6,7 +6,7 @@ extern "C" {
 #endif
 
 #include <stdint.h>
-#include "aj_compiler_port.h"
+#include "aj_compiler.h"
 #include "aj_bit_reg.h"
 #include "aj_bit_u8.h"
 #include "aj_seg7_driver_hw.h"
@@ -19,35 +19,35 @@ extern "C" {
  */
 static inline void AJ_Seg7_Digits_ConfigAsOutput(void){
     #if AJ_SEG7_DIGITS_COUNT > 0
-        AJ_BitReg_SetBits_Mask(&AJ_SEG7_DIGIT0_DDR, AJ_SEG7_DIGIT0_MASK);
+        AJ_BitReg_SetBit_Mask(&AJ_SEG7_DIGIT0_DDR, AJ_SEG7_DIGIT0_MASK);
     #endif
 
     #if AJ_SEG7_DIGITS_COUNT > 1
-        AJ_BitReg_SetBits_Mask(&AJ_SEG7_DIGIT1_DDR, AJ_SEG7_DIGIT1_MASK);
+        AJ_BitReg_SetBit_Mask(&AJ_SEG7_DIGIT1_DDR, AJ_SEG7_DIGIT1_MASK);
     #endif
 
     #if AJ_SEG7_DIGITS_COUNT > 2
-        AJ_BitReg_SetBits_Mask(&AJ_SEG7_DIGIT2_DDR, AJ_SEG7_DIGIT2_MASK);
+        AJ_BitReg_SetBit_Mask(&AJ_SEG7_DIGIT2_DDR, AJ_SEG7_DIGIT2_MASK);
     #endif
 
     #if AJ_SEG7_DIGITS_COUNT > 3
-        AJ_BitReg_SetBits_Mask(&AJ_SEG7_DIGIT3_DDR, AJ_SEG7_DIGIT3_MASK);
+        AJ_BitReg_SetBit_Mask(&AJ_SEG7_DIGIT3_DDR, AJ_SEG7_DIGIT3_MASK);
     #endif
 
     #if AJ_SEG7_DIGITS_COUNT > 4
-        AJ_BitReg_SetBits_Mask(&AJ_SEG7_DIGIT4_DDR, AJ_SEG7_DIGIT4_MASK);
+        AJ_BitReg_SetBit_Mask(&AJ_SEG7_DIGIT4_DDR, AJ_SEG7_DIGIT4_MASK);
     #endif
 
     #if AJ_SEG7_DIGITS_COUNT > 5
-        AJ_BitReg_SetBits_Mask(&AJ_SEG7_DIGIT5_DDR, AJ_SEG7_DIGIT5_MASK);
+        AJ_BitReg_SetBit_Mask(&AJ_SEG7_DIGIT5_DDR, AJ_SEG7_DIGIT5_MASK);
     #endif
 
     #if AJ_SEG7_DIGITS_COUNT > 6
-        AJ_BitReg_SetBits_Mask(&AJ_SEG7_DIGIT6_DDR, AJ_SEG7_DIGIT6_MASK);
+        AJ_BitReg_SetBit_Mask(&AJ_SEG7_DIGIT6_DDR, AJ_SEG7_DIGIT6_MASK);
     #endif
 
     #if AJ_SEG7_DIGITS_COUNT > 7
-        AJ_BitReg_SetBits_Mask(&AJ_SEG7_DIGIT7_DDR, AJ_SEG7_DIGIT7_MASK);
+        AJ_BitReg_SetBit_Mask(&AJ_SEG7_DIGIT7_DDR, AJ_SEG7_DIGIT7_MASK);
     #endif
 }
 
@@ -180,49 +180,49 @@ static inline void AJ_Seg7_Digit_Clear(const uint8_t index){
 
     #if AJ_SEG7_DIGITS_COUNT > 0
         case 0:
-            AJ_BitReg_ClearBits_Mask(&AJ_SEG7_DIGIT0_PORT, AJ_SEG7_DIGIT0_MASK);
+            AJ_BitReg_ClearBit_Mask(&AJ_SEG7_DIGIT0_PORT, AJ_SEG7_DIGIT0_MASK);
             break;
     #endif
 
     #if AJ_SEG7_DIGITS_COUNT > 1
         case 1:
-            AJ_BitReg_ClearBits_Mask(&AJ_SEG7_DIGIT1_PORT, AJ_SEG7_DIGIT1_MASK);
+            AJ_BitReg_ClearBit_Mask(&AJ_SEG7_DIGIT1_PORT, AJ_SEG7_DIGIT1_MASK);
             break;
     #endif
 
     #if AJ_SEG7_DIGITS_COUNT > 2
         case 2:
-            AJ_BitReg_ClearBits_Mask(&AJ_SEG7_DIGIT2_PORT, AJ_SEG7_DIGIT2_MASK);
+            AJ_BitReg_ClearBit_Mask(&AJ_SEG7_DIGIT2_PORT, AJ_SEG7_DIGIT2_MASK);
             break;
     #endif
 
     #if AJ_SEG7_DIGITS_COUNT > 3
         case 3:
-            AJ_BitReg_ClearBits_Mask(&AJ_SEG7_DIGIT3_PORT, AJ_SEG7_DIGIT3_MASK);
+            AJ_BitReg_ClearBit_Mask(&AJ_SEG7_DIGIT3_PORT, AJ_SEG7_DIGIT3_MASK);
             break;
     #endif
 
     #if AJ_SEG7_DIGITS_COUNT > 4
         case 4:
-            AJ_BitReg_ClearBits_Mask(&AJ_SEG7_DIGIT4_PORT, AJ_SEG7_DIGIT4_MASK);
+            AJ_BitReg_ClearBit_Mask(&AJ_SEG7_DIGIT4_PORT, AJ_SEG7_DIGIT4_MASK);
             break;
     #endif
 
     #if AJ_SEG7_DIGITS_COUNT > 5
         case 5:
-            AJ_BitReg_ClearBits_Mask(&AJ_SEG7_DIGIT5_PORT, AJ_SEG7_DIGIT5_MASK);
+            AJ_BitReg_ClearBit_Mask(&AJ_SEG7_DIGIT5_PORT, AJ_SEG7_DIGIT5_MASK);
             break;
     #endif
 
     #if AJ_SEG7_DIGITS_COUNT > 6
         case 6:
-            AJ_BitReg_ClearBits_Mask(&AJ_SEG7_DIGIT6_PORT, AJ_SEG7_DIGIT6_MASK);
+            AJ_BitReg_ClearBit_Mask(&AJ_SEG7_DIGIT6_PORT, AJ_SEG7_DIGIT6_MASK);
             break;
     #endif
 
     #if AJ_SEG7_DIGITS_COUNT > 7
         case 7:
-            AJ_BitReg_ClearBits_Mask(&AJ_SEG7_DIGIT7_PORT, AJ_SEG7_DIGIT7_MASK);
+            AJ_BitReg_ClearBit_Mask(&AJ_SEG7_DIGIT7_PORT, AJ_SEG7_DIGIT7_MASK);
             break;
     #endif
 
@@ -242,49 +242,49 @@ static inline void AJ_Seg7_Digit_Set(const uint8_t index){
 
     #if AJ_SEG7_DIGITS_COUNT > 0
         case 0:
-            AJ_BitReg_SetBits_Mask(&AJ_SEG7_DIGIT0_PORT, AJ_SEG7_DIGIT0_MASK);
+            AJ_BitReg_SetBit_Mask(&AJ_SEG7_DIGIT0_PORT, AJ_SEG7_DIGIT0_MASK);
             break;
     #endif
 
     #if AJ_SEG7_DIGITS_COUNT > 1
         case 1:
-            AJ_BitReg_SetBits_Mask(&AJ_SEG7_DIGIT1_PORT, AJ_SEG7_DIGIT1_MASK);
+            AJ_BitReg_SetBit_Mask(&AJ_SEG7_DIGIT1_PORT, AJ_SEG7_DIGIT1_MASK);
             break;
     #endif
 
     #if AJ_SEG7_DIGITS_COUNT > 2
         case 2:
-            AJ_BitReg_SetBits_Mask(&AJ_SEG7_DIGIT2_PORT, AJ_SEG7_DIGIT2_MASK);
+            AJ_BitReg_SetBit_Mask(&AJ_SEG7_DIGIT2_PORT, AJ_SEG7_DIGIT2_MASK);
             break;
     #endif
 
     #if AJ_SEG7_DIGITS_COUNT > 3
         case 3:
-            AJ_BitReg_SetBits_Mask(&AJ_SEG7_DIGIT3_PORT, AJ_SEG7_DIGIT3_MASK);
+            AJ_BitReg_SetBit_Mask(&AJ_SEG7_DIGIT3_PORT, AJ_SEG7_DIGIT3_MASK);
             break;
     #endif
 
     #if AJ_SEG7_DIGITS_COUNT > 4
         case 4:
-            AJ_BitReg_SetBits_Mask(&AJ_SEG7_DIGIT4_PORT, AJ_SEG7_DIGIT4_MASK);
+            AJ_BitReg_SetBit_Mask(&AJ_SEG7_DIGIT4_PORT, AJ_SEG7_DIGIT4_MASK);
             break;
     #endif
 
     #if AJ_SEG7_DIGITS_COUNT > 5
         case 5:
-            AJ_BitReg_SetBits_Mask(&AJ_SEG7_DIGIT5_PORT, AJ_SEG7_DIGIT5_MASK);
+            AJ_BitReg_SetBit_Mask(&AJ_SEG7_DIGIT5_PORT, AJ_SEG7_DIGIT5_MASK);
             break;
     #endif
 
     #if AJ_SEG7_DIGITS_COUNT > 6
         case 6:
-            AJ_BitReg_SetBits_Mask(&AJ_SEG7_DIGIT6_PORT, AJ_SEG7_DIGIT6_MASK);
+            AJ_BitReg_SetBit_Mask(&AJ_SEG7_DIGIT6_PORT, AJ_SEG7_DIGIT6_MASK);
             break;
     #endif
 
     #if AJ_SEG7_DIGITS_COUNT > 7
         case 7:
-            AJ_BitReg_SetBits_Mask(&AJ_SEG7_DIGIT7_PORT, AJ_SEG7_DIGIT7_MASK);
+            AJ_BitReg_SetBit_Mask(&AJ_SEG7_DIGIT7_PORT, AJ_SEG7_DIGIT7_MASK);
             break;
     #endif
 
@@ -303,14 +303,14 @@ static inline void AJ_Seg7_Digit_Set(const uint8_t index){
  *
  */
 static inline void AJ_Seg7_Segments_ConfigAsOutput(void){
-    AJ_BitReg_SetBits_Mask(&AJ_SEG7_A_DDR, AJ_SEG7_A_MASK);
-    AJ_BitReg_SetBits_Mask(&AJ_SEG7_B_DDR, AJ_SEG7_B_MASK);
-    AJ_BitReg_SetBits_Mask(&AJ_SEG7_C_DDR, AJ_SEG7_C_MASK);
-    AJ_BitReg_SetBits_Mask(&AJ_SEG7_D_DDR, AJ_SEG7_D_MASK);
-    AJ_BitReg_SetBits_Mask(&AJ_SEG7_E_DDR, AJ_SEG7_E_MASK);
-    AJ_BitReg_SetBits_Mask(&AJ_SEG7_F_DDR, AJ_SEG7_F_MASK);
-    AJ_BitReg_SetBits_Mask(&AJ_SEG7_G_DDR, AJ_SEG7_G_MASK);
-    AJ_BitReg_SetBits_Mask(&AJ_SEG7_DP_DDR, AJ_SEG7_DP_MASK);
+    AJ_BitReg_SetBit_Mask(&AJ_SEG7_A_DDR, AJ_SEG7_A_MASK);
+    AJ_BitReg_SetBit_Mask(&AJ_SEG7_B_DDR, AJ_SEG7_B_MASK);
+    AJ_BitReg_SetBit_Mask(&AJ_SEG7_C_DDR, AJ_SEG7_C_MASK);
+    AJ_BitReg_SetBit_Mask(&AJ_SEG7_D_DDR, AJ_SEG7_D_MASK);
+    AJ_BitReg_SetBit_Mask(&AJ_SEG7_E_DDR, AJ_SEG7_E_MASK);
+    AJ_BitReg_SetBit_Mask(&AJ_SEG7_F_DDR, AJ_SEG7_F_MASK);
+    AJ_BitReg_SetBit_Mask(&AJ_SEG7_G_DDR, AJ_SEG7_G_MASK);
+    AJ_BitReg_SetBit_Mask(&AJ_SEG7_DP_DDR, AJ_SEG7_DP_MASK);
 }
 
 /**
@@ -326,14 +326,14 @@ static inline void AJ_Seg7_Segments_Write(uint8_t buf){
         buf = (uint8_t)~buf;
     #endif
 
-    AJ_BitReg_WriteBit_Position(&AJ_SEG7_A_PORT, AJ_SEG7_A_POS, AJ_BitU8_AreBitsSet_Mask(buf, 0x01));
-    AJ_BitReg_WriteBit_Position(&AJ_SEG7_B_PORT, AJ_SEG7_B_POS, AJ_BitU8_AreBitsSet_Mask(buf, 0x02));
-    AJ_BitReg_WriteBit_Position(&AJ_SEG7_C_PORT, AJ_SEG7_C_POS, AJ_BitU8_AreBitsSet_Mask(buf, 0x04));
-    AJ_BitReg_WriteBit_Position(&AJ_SEG7_D_PORT, AJ_SEG7_D_POS, AJ_BitU8_AreBitsSet_Mask(buf, 0x08));
-    AJ_BitReg_WriteBit_Position(&AJ_SEG7_E_PORT, AJ_SEG7_E_POS, AJ_BitU8_AreBitsSet_Mask(buf, 0x10));
-    AJ_BitReg_WriteBit_Position(&AJ_SEG7_F_PORT, AJ_SEG7_F_POS, AJ_BitU8_AreBitsSet_Mask(buf, 0x20));
-    AJ_BitReg_WriteBit_Position(&AJ_SEG7_G_PORT, AJ_SEG7_G_POS, AJ_BitU8_AreBitsSet_Mask(buf, 0x40));
-    AJ_BitReg_WriteBit_Position(&AJ_SEG7_DP_PORT, AJ_SEG7_DP_POS, AJ_BitU8_AreBitsSet_Mask(buf, 0x80));
+    AJ_BitReg_WriteBit_Position(&AJ_SEG7_A_PORT, AJ_SEG7_A_POS, AJ_BitU8_IsBitSet_Mask(buf, 0x01));
+    AJ_BitReg_WriteBit_Position(&AJ_SEG7_B_PORT, AJ_SEG7_B_POS, AJ_BitU8_IsBitSet_Mask(buf, 0x02));
+    AJ_BitReg_WriteBit_Position(&AJ_SEG7_C_PORT, AJ_SEG7_C_POS, AJ_BitU8_IsBitSet_Mask(buf, 0x04));
+    AJ_BitReg_WriteBit_Position(&AJ_SEG7_D_PORT, AJ_SEG7_D_POS, AJ_BitU8_IsBitSet_Mask(buf, 0x08));
+    AJ_BitReg_WriteBit_Position(&AJ_SEG7_E_PORT, AJ_SEG7_E_POS, AJ_BitU8_IsBitSet_Mask(buf, 0x10));
+    AJ_BitReg_WriteBit_Position(&AJ_SEG7_F_PORT, AJ_SEG7_F_POS, AJ_BitU8_IsBitSet_Mask(buf, 0x20));
+    AJ_BitReg_WriteBit_Position(&AJ_SEG7_G_PORT, AJ_SEG7_G_POS, AJ_BitU8_IsBitSet_Mask(buf, 0x40));
+    AJ_BitReg_WriteBit_Position(&AJ_SEG7_DP_PORT, AJ_SEG7_DP_POS, AJ_BitU8_IsBitSet_Mask(buf, 0x80));
 }
 
 #ifdef __cplusplus
