@@ -7,18 +7,20 @@
 extern "C" {
 #endif
 
-#include <stdint.h>
-#include "aj_timebase_config.h"
 
-#if defined(AJ_TIMEBASE_REG32_U32) || defined(AJ_TIMEBASE_REG8_U32)
+#include <stdint.h>
+#include "aj_target.h"
+
+#if (AJ_TARGET_TICK_BITS == 32U)
     typedef uint32_t aj_timebase_t;
-#elif defined(AJ_TIMEBASE_REG8_U16)
+#elif (AJ_TARGET_TICK_BITS == 16U)
     typedef uint16_t aj_timebase_t;
-#elif defined(AJ_TIMEBASE_REG8_U8)
+#elif (AJ_TARGET_TICK_BITS == 8U)
     typedef uint8_t aj_timebase_t;
 #else
     typedef uint32_t aj_timebase_t;
 #endif
+
 
 #ifdef __cplusplus
 }

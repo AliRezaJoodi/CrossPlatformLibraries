@@ -1,33 +1,37 @@
 // GitHub Account:  GitHub.com/AliRezaJoodi
 
 #include <stdint.h>
-#include "aj_timebase_config.h"
 #include "aj_timebase_type.h"
 #include "aj_timebase.h"
 
-#if defined(AJ_TIMEBASE_REG8_U8) || defined(AJ_TIMEBASE_REG8_U16) || defined(AJ_TIMEBASE_REG8_U32)
-    #include "aj_compiler_port.h"
+#if (AJ_TARGET_MCU_BITS == 8U)
+    #include "aj_compiler.h"
 #endif
 
-static volatile aj_timebase_t ticks = 0;
+///static volatile aj_timebase_t ticks = 0;
+volatile aj_timebase_t timebase_tick = 0;
 
-void AJ_TimeBase_CountTicks(void) {
-    ticks++;
-}
+//void AJ_TimeBase_CountTicks(void) {
+//    timebase_tick++;
+//}
 
 aj_timebase_t AJ_TimeBase_GetTicks(void) {
     aj_timebase_t buffer;
 
-    #if defined(AJ_TIMEBASE_REG8_U8) || defined(AJ_TIMEBASE_REG8_U16) || defined(AJ_TIMEBASE_REG8_U32)
-			uint8_t sreg_save;
-			AJ_INT_GLOBAL_SAVE(sreg_save);
-			AJ_INT_GLOBAL_DISABLE();
+    #if (AJ_TARGET_MCU_BITS == 8U)
+        #if (AJ_TARGET_TICK_BITS == 16U) || (AJ_TARGET_TICK_BITS == 32U)
+            uint8_t sreg_save;
+            AJ_INT_GLOBAL_SAVE(sreg_save);
+            AJ_INT_GLOBAL_DISABLE();
+        #endif
     #endif
 
-    buffer = ticks;
+    buffer = timebase_tick;
 
-    #if defined(AJ_TIMEBASE_REG8_U8) || defined(AJ_TIMEBASE_REG8_U16) || defined(AJ_TIMEBASE_REG8_U32)
+    #if (AJ_TARGET_MCU_BITS == 8U)
+        #if (AJ_TARGET_TICK_BITS == 16U) || (AJ_TARGET_TICK_BITS == 32U)
 			AJ_INT_GLOBAL_RESTORE(sreg_save);
+        #endif
     #endif
 
     return buffer;

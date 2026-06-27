@@ -16,16 +16,21 @@
 extern "C" {
 #endif
 
+
 #include <stdint.h>
 #include "aj_timebase_type.h"
+
+extern volatile aj_timebase_t timebase_tick;
 
 /**
  * @brief  Increments the system tick counter.
  * @details This function should be called periodically inside a Timer Interrupt
  *          Service Routine (ISR). It handles the time-keeping mechanism of the library.
- * @return None
  */
-void AJ_TimeBase_CountTicks(void);
+static inline void AJ_TimeBase_CountTicks(void) {
+    timebase_tick++;
+}
+///void AJ_TimeBase_CountTicks(void);
 
 /**
  * @brief  Returns the current system tick count.
@@ -48,8 +53,8 @@ aj_timebase_t AJ_TimeBase_GetTicks(void);
  *
  * @note This function is safe across unsigned integer overflow.
  */
-static inline uint8_t AJ_TimeBase_HasElapsed(aj_timebase_t now_tick, aj_timebase_t last_tick, aj_timebase_t duration) {
-    return (uint8_t)((aj_timebase_t)(now_tick - last_tick) >= duration);
+static inline uint8_t AJ_TimeBase_HasElapsed(aj_timebase_t tick_now, aj_timebase_t tick_last, aj_timebase_t duration) {
+    return (uint8_t)((aj_timebase_t)(tick_now - tick_last) >= duration);
 }
 
 /**
@@ -64,9 +69,10 @@ static inline uint8_t AJ_TimeBase_HasElapsed(aj_timebase_t now_tick, aj_timebase
  *       as long as the elapsed time does not exceed the maximum
  *       representable range of AJ_timebase_t.
  */
-static inline aj_timebase_t AJ_TimeBase_GetElapsed(aj_timebase_t now_tick, aj_timebase_t last_tick) {
-    return (aj_timebase_t)(now_tick - last_tick);
+static inline aj_timebase_t AJ_TimeBase_GetElapsed(aj_timebase_t tick_now, aj_timebase_t tick_last) {
+    return (aj_timebase_t)(tick_now - tick_last);
 }
+
 
 #ifdef __cplusplus
 }
