@@ -10,7 +10,7 @@ void AJ_MCP3201_Init(aj_mcp3201_t *mcp){
 }
 
 /*********************************************/
-uint16_t AJ_MCP3201_GetRaw(aj_mcp3201_t *mcp){
+uint16_t AJ_MCP3201_ReadRaw(aj_mcp3201_t *mcp){
     uint16_t value = 0;
     uint8_t msb = 0, lsb = 0;
 

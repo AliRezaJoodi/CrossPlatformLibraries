@@ -51,7 +51,7 @@ void AJ_MCP3201_Init(aj_mcp3201_t *mcp);
  * @param   mcp   Pointer to a valid MCP3201_t instance
  * @return  12-bit ADC value as uint16_t (0 to 4095)
  */
-uint16_t AJ_MCP3201_GetRaw(aj_mcp3201_t *mcp);
+uint16_t AJ_MCP3201_ReadRaw(aj_mcp3201_t *mcp);
 
 #ifdef __cplusplus
 }
