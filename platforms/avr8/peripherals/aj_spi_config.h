@@ -12,7 +12,6 @@ extern "C" {
 #ifndef AJ_SPI_CONFIG
 #define AJ_SPI_CONFIG
     #define AJ_SPI_TIMEOUT              1000U   // A value of uint16_t
-    #define AJ_SPI_ERROR                0xFFU   // A value of uint8_t
 
     #warning "AJ_SPI_CONFIG is not defined; default configuration will be used."
 #endif
