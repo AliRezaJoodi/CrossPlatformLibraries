@@ -39,7 +39,7 @@ static inline void AJ_MCP42xxx_CS_SetIdle(const aj_mcp42xxx_t *mcp){
     AJ_BitReg_SetBit_Mask(mcp->cs.port, mcp->cs.mask);
 }
 
-#if (AJ_MCP42XXX_SUPPORT_PIN_SHDN == 1U)
+#if (AJ_MCP42XXX_SHDN_USED == 1U)
 /**
  * @brief Initialize MCP42xxx SHDN pin (output)
  *
@@ -66,7 +66,7 @@ static inline void AJ_MCP42xxx_SHDN_SetIdle(const aj_mcp42xxx_t *mcp){
 }
 #endif
 
-#if (AJ_MCP42XXX_SUPPORT_PIN_RS == 1U)
+#if (AJ_MCP42XXX_RS_USED == 1U)
 /**
  * @brief Initialize MCP42xxx SHDN pin (output)
  *

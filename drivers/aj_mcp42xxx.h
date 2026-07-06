@@ -63,7 +63,7 @@ void AJ_MCP42xxx_ShutdownPot1(aj_mcp42xxx_t *mcp);
 void AJ_MCP42xxx_ShutdownAll(aj_mcp42xxx_t *mcp);
 
 
-#if (AJ_MCP42XXX_SUPPORT_PIN_SHDN == 1U)
+#if (AJ_MCP42XXX_SHDN_USED == 1U)
 /** Forces hardware shutdown using the SHDN pin. */
 void AJ_MCP42xxx_ForceShutdown(aj_mcp42xxx_t *mcp);
 
@@ -71,7 +71,7 @@ void AJ_MCP42xxx_ForceShutdown(aj_mcp42xxx_t *mcp);
 void AJ_MCP42xxx_ReleaseShutdown(aj_mcp42xxx_t *mcp);
 #endif
 
-#if (AJ_MCP42XXX_SUPPORT_PIN_RS == 1U)
+#if (AJ_MCP42XXX_RS_USED == 1U)
 /** Performs a hardware reset using the RS pin. */
 void AJ_MCP42xxx_HardwareReset(aj_mcp42xxx_t *mcp);
 #endif

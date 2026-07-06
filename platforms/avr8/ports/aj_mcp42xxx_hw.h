@@ -17,8 +17,8 @@
  */
 #ifndef AJ_MCP42XXX_HARDWARE
 #define AJ_MCP42XXX_HARDWARE
-    #define AJ_MCP42XXX_SUPPORT_PIN_SHDN    1U      /**< 0: Not used, 1: Used. */
-    #define AJ_MCP42XXX_SUPPORT_PIN_RS      1U      /**< 0: Not used, 1: Used. */
+    #define AJ_MCP42XXX_SHDN_USED       1U      /**< 0: Not used, 1: Used. */
+    #define AJ_MCP42XXX_RS_USED         1U      /**< 0: Not used, 1: Used. */
 
     #warning "AJ_MCP42XXX_HARDWARE is not defined; default configuration will be used."
 #endif
@@ -30,14 +30,14 @@
     #define AJ_MCP42XXX_CS_POS          4U
     #define AJ_MCP42XXX_CS_MASK         (1U << AJ_MCP42XXX_CS_POS)
 
-    #if (AJ_MCP42XXX_SUPPORT_PIN_SHDN == 1U)
+    #if (AJ_MCP42XXX_SHDN_USED == 1U)
         #define AJ_MCP42XXX_SHDN_DDR        DDRB
         #define AJ_MCP42XXX_SHDN_PORT       PORTB
         #define AJ_MCP42XXX_SHDN_POS        3U
         #define AJ_MCP42XXX_SHDN_MASK       (1U << AJ_MCP42XXX_SHDN_POS)
     #endif
 
-    #if (AJ_MCP42XXX_SUPPORT_PIN_RS == 1U)
+    #if (AJ_MCP42XXX_RS_USED == 1U)
         #define AJ_MCP42XXX_RS_DDR          DDRB
         #define AJ_MCP42XXX_RS_PORT         PORTB
         #define AJ_MCP42XXX_RS_POS          2U

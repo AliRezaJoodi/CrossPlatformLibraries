@@ -17,11 +17,11 @@ typedef struct {
 typedef struct {
     const aj_mcp42xxx_pin_t cs;       /**< Chip Select pin */
 
-    #if (AJ_MCP42XXX_SUPPORT_PIN_SHDN == 1U)
+    #if (AJ_MCP42XXX_SHDN_USED == 1U)
     const aj_mcp42xxx_pin_t shdn;
     #endif
 
-    #if (AJ_MCP42XXX_SUPPORT_PIN_RS == 1U)
+    #if (AJ_MCP42XXX_RS_USED == 1U)
     const aj_mcp42xxx_pin_t rs;
     #endif
 } aj_mcp42xxx_t;
