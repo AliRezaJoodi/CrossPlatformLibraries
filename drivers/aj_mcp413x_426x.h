@@ -73,11 +73,6 @@ void AJ_MCP413x_426x_ForceShutdown(aj_mcp413x_426x_t *mcp);
 void AJ_MCP413x_426x_ReleaseShutdown(aj_mcp413x_426x_t *mcp);
 #endif
 
-#if (AJ_MCP413X_426X_WP_USED == 1U)
-/** Performs a hardware reset using the RS pin. */
-void AJ_MCP413x_426x_HardwareReset(aj_mcp413x_426x_t *mcp);
-#endif
-
 #ifdef __cplusplus
 }
 #endif
