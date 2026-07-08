@@ -12,6 +12,7 @@ extern "C" {
 #endif
 
 #include <stdint.h>
+#include "aj_compiler.h"
 #include "aj_spi_config.h"
 
 typedef enum {
