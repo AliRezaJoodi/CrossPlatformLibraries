@@ -57,7 +57,7 @@ void AJ_Button_Init(aj_button_t *btn);
  * @param now Current system tick used for debounce timing.
  * @return 1 if a valid trigger event is detected, 0 otherwise.
  */
-uint8_t AJ_Button_GetTrigger(aj_button_t *btn, aj_button_tick_t now);
+uint8_t AJ_Button_GetTrigger(aj_button_t *btn, aj_button_tick_t tick_now);
 
 /**
  * @brief Detect auto-repeat events while a button is held (non-blocking).
@@ -73,7 +73,7 @@ uint8_t AJ_Button_GetTrigger(aj_button_t *btn, aj_button_tick_t now);
  * @param now Current system tick used for auto-repeat timing.
  * @return 1 if an auto-repeat event is generated, 0 otherwise.
  */
-uint8_t AJ_Button_GetAutoRepeat(aj_button_t *btn, aj_button_tick_t now);
+uint8_t AJ_Button_GetAutoRepeat(aj_button_t *btn, aj_button_tick_t tick_now);
 
 #ifdef __cplusplus
 }

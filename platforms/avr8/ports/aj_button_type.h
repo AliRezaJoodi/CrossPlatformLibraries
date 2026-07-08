@@ -22,7 +22,6 @@ extern "C" {
 typedef enum{
     AJ_BUTTON_ACTIVE_LOW  = 0U,
     AJ_BUTTON_ACTIVE_HIGH = 1U
-
 } aj_button_active_t;
 
 /** @brief Configures the pull resistor mode for a button pin. */
@@ -84,7 +83,7 @@ typedef struct{
     const aj_button_pin_t       hw;         /**< Pin mapping and hardware references */
     const aj_button_config_t    config;     /**< Static configuration (active level & pull) */
     aj_button_tick_t            tick_last;
-    uint8_t                     state;      /**< Current stable state */
+    uint8_t                     status;      /**< Current stable state */
 } aj_button_t;
 
 /**

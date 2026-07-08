@@ -23,47 +23,47 @@ void AJ_Button_Init(aj_button_t *btn){
             AJ_Button_Pin_ConfigAsPullNone(btn);
     }
 
-    btn->state = 0;
+    btn->status = 0;
     btn->tick_last = 0;
 }
 
 //*************************************************
-uint8_t AJ_Button_GetTrigger(aj_button_t *btn, aj_button_tick_t now) {
+uint8_t AJ_Button_GetTrigger(aj_button_t *btn, aj_button_tick_t tick_now) {
     if (AJ_Button_Pin_Read(btn) == btn->config.pressed) {
-        if (btn->state == 0) {
-            btn->state = 1;
-            btn->tick_last = now;
+        if (btn->status == 0) {
+            btn->status = 1;
+            btn->tick_last = tick_now;
         }
-        else if (btn->state == 1) {
-            if ((aj_button_tick_t)(now - btn->tick_last) >= AJ_BUTTON_TICK_TRIGGER) {
-                btn->state = 2;
+        else if (btn->status == 1) {
+            if ((aj_button_tick_t)(tick_now - btn->tick_last) >= AJ_BUTTON_TICK_TRIGGER) {
+                btn->status = 2;
                 return 1;
             }
         }
     }
     else {
-        btn->state = 0;
+        btn->status = 0;
     }
 
     return 0;
 }
 
 //*************************************************
-uint8_t AJ_Button_GetAutoRepeat(aj_button_t *btn, aj_button_tick_t now) {
+uint8_t AJ_Button_GetAutoRepeat(aj_button_t *btn, aj_button_tick_t tick_now) {
     if (AJ_Button_Pin_Read(btn) == btn->config.pressed) {
-        if (btn->state == 0) {
-            btn->state = 1;
-            btn->tick_last = now;
+        if (btn->status == 0) {
+            btn->status = 1;
+            btn->tick_last = tick_now;
         }
-        else if (btn->state == 1) {
-            if ((aj_button_tick_t)(now - btn->tick_last) >= AJ_BUTTON_TICK_AUTO_REPEAT) {
-                btn->tick_last = now;
+        else if (btn->status == 1) {
+            if ((aj_button_tick_t)(tick_now - btn->tick_last) >= AJ_BUTTON_TICK_AUTO_REPEAT) {
+                btn->tick_last = tick_now;
                 return 1;
             }
         }
     }
     else {
-        btn->state = 0;
+        btn->status = 0;
     }
 
     return 0;
