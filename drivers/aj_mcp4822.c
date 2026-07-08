@@ -24,8 +24,8 @@ void AJ_MCP4822_WriteChannel(aj_mcp4822_t *dac, aj_mcp4822_channel_t ch, aj_mcp4
     uint8_t lsb =   (uint8_t)(count & 0x00FF);
 
     AJ_MCP4822_CS_SetActive(dac);
-    AJ_MCP3208_SPI_Transfer(msb);
-    AJ_MCP3208_SPI_Transfer(lsb);
+    AJ_MCP3208_SPI_TxRx(msb);
+    AJ_MCP3208_SPI_TxRx(lsb);
     AJ_MCP4822_CS_SetIdle(dac);
     AJ_MCP4822_DELAY_US(1);    /**< Minimum Setup Time = 40ns */
 
@@ -40,8 +40,8 @@ void AJ_MCP4822_ShutdownChannel(aj_mcp4822_t *dac, aj_mcp4822_channel_t ch){
                     (MCP4822_DISABLE << 4);
 
     AJ_MCP4822_CS_SetActive(dac);
-    AJ_MCP3208_SPI_Transfer(msb);
-    AJ_MCP3208_SPI_Transfer(0xFFU);
+    AJ_MCP3208_SPI_TxRx(msb);
+    AJ_MCP3208_SPI_TxRx(0xFFU);
     AJ_MCP4822_CS_SetIdle(dac);
     AJ_MCP4822_DELAY_US(1);    /**< Minimum Setup Time = 40ns */
 

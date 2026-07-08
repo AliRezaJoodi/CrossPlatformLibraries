@@ -126,8 +126,8 @@ static inline void AJ_MCP4822_LDAC_SetIdle(const aj_mcp4822_t *mcp){
  * @note    The SPI peripheral must be configured and enabled
  *          before calling this function.
  */
-static inline void AJ_MCP3208_SPI_Transfer(uint8_t data){
-    AJ_SPI_Transceive(data);
+static inline void AJ_MCP3208_SPI_TxRx(uint8_t data){
+    AJ_SPI_TxRx(data);
 }
 
 #ifdef __cplusplus
