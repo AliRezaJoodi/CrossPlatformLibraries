@@ -33,9 +33,9 @@ uint16_t AJ_MCP3202_ReadRaw(aj_mcp3202_t *mcp, aj_mcp3202_channel_t ch){
     }
 
     AJ_MCP3202_CS_SetActive(mcp);
-    AJ_MCP3202_SPI_Transceive(data1);
-    data1 = AJ_MCP3202_SPI_Transceive(data2);    // Get MSB
-    data2 = AJ_MCP3202_SPI_Transceive(0xFF);     // Get LSB
+    AJ_MCP3202_SPI_TxRx(data1);
+    data1 = AJ_MCP3202_SPI_TxRx(data2);    // Get MSB
+    data2 = AJ_MCP3202_SPI_TxRx(0xFF);     // Get LSB
     AJ_MCP3202_CS_SetIdle(mcp);
 
     return ( ((uint16_t)(data1 & 0x0FU) << 8U) | data2 );
