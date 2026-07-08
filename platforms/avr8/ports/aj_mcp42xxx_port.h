@@ -101,8 +101,8 @@ static inline void AJ_MCP42xxx_RS_SetIdle(const aj_mcp42xxx_t *mcp){
  * @note    The SPI peripheral must be configured and enabled
  *          before calling this function.
  */
-static inline void AJ_MCP42xxx_SPI_Transfer(const uint8_t data){
-    AJ_SPI_Transceive(data);
+static inline void AJ_MCP42xxx_SPI_TxRx(const uint8_t data){
+    AJ_SPI_TxRx(data);
 }
 
 #ifdef __cplusplus

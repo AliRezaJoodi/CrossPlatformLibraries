@@ -34,8 +34,8 @@ void AJ_MCP42xxx_WritePot0(aj_mcp42xxx_t *mcp, uint8_t count){
     AJ_MCP42xxx_CS_SetActive(mcp);
     AJ_MCP42XXX_DELAY_US(1);
 
-    AJ_MCP42xxx_SPI_Transfer(AJ_MCP42XXX_CMD_WRITE_POT0);
-    AJ_MCP42xxx_SPI_Transfer(count);
+    AJ_MCP42xxx_SPI_TxRx(AJ_MCP42XXX_CMD_WRITE_POT0);
+    AJ_MCP42xxx_SPI_TxRx(count);
 
     AJ_MCP42XXX_DELAY_US(1);
     AJ_MCP42xxx_CS_SetIdle(mcp);
@@ -46,8 +46,8 @@ void AJ_MCP42xxx_WritePot1(aj_mcp42xxx_t *mcp, uint8_t count){
     AJ_MCP42xxx_CS_SetActive(mcp);
     AJ_MCP42XXX_DELAY_US(1);
 
-    AJ_MCP42xxx_SPI_Transfer(AJ_MCP42XXX_CMD_WRITE_POT1);
-    AJ_MCP42xxx_SPI_Transfer(count);
+    AJ_MCP42xxx_SPI_TxRx(AJ_MCP42XXX_CMD_WRITE_POT1);
+    AJ_MCP42xxx_SPI_TxRx(count);
 
     AJ_MCP42XXX_DELAY_US(1);
     AJ_MCP42xxx_CS_SetIdle(mcp);
@@ -58,8 +58,8 @@ void AJ_MCP42xxx_WriteAll(aj_mcp42xxx_t *mcp, uint8_t count){
     AJ_MCP42xxx_CS_SetActive(mcp);
     AJ_MCP42XXX_DELAY_US(1);
 
-    AJ_MCP42xxx_SPI_Transfer(AJ_MCP42XXX_CMD_WRITE_ALL);
-    AJ_MCP42xxx_SPI_Transfer(count);
+    AJ_MCP42xxx_SPI_TxRx(AJ_MCP42XXX_CMD_WRITE_ALL);
+    AJ_MCP42xxx_SPI_TxRx(count);
 
     AJ_MCP42XXX_DELAY_US(1);
     AJ_MCP42xxx_CS_SetIdle(mcp);
@@ -70,8 +70,8 @@ void AJ_MCP42xxx_ShutdownPot0(aj_mcp42xxx_t *mcp){
     AJ_MCP42xxx_CS_SetActive(mcp);
     AJ_MCP42XXX_DELAY_US(1);
 
-    AJ_MCP42xxx_SPI_Transfer(AJ_MCP42XXX_CMD_SHUTDOWN_POT0);
-    AJ_MCP42xxx_SPI_Transfer(0x00U);
+    AJ_MCP42xxx_SPI_TxRx(AJ_MCP42XXX_CMD_SHUTDOWN_POT0);
+    AJ_MCP42xxx_SPI_TxRx(0x00U);
 
     AJ_MCP42XXX_DELAY_US(1);
     AJ_MCP42xxx_CS_SetIdle(mcp);
@@ -82,8 +82,8 @@ void AJ_MCP42xxx_ShutdownPot1(aj_mcp42xxx_t *mcp){
     AJ_MCP42xxx_CS_SetActive(mcp);
     AJ_MCP42XXX_DELAY_US(1);
 
-    AJ_MCP42xxx_SPI_Transfer(AJ_MCP42XXX_CMD_SHUTDOWN_POT1);
-    AJ_MCP42xxx_SPI_Transfer(0x00U);
+    AJ_MCP42xxx_SPI_TxRx(AJ_MCP42XXX_CMD_SHUTDOWN_POT1);
+    AJ_MCP42xxx_SPI_TxRx(0x00U);
 
     AJ_MCP42XXX_DELAY_US(1);
     AJ_MCP42xxx_CS_SetIdle(mcp);
@@ -94,8 +94,8 @@ void AJ_MCP42xxx_ShutdownAll(aj_mcp42xxx_t *mcp){
     AJ_MCP42xxx_CS_SetActive(mcp);
     AJ_MCP42XXX_DELAY_US(1);
 
-    AJ_MCP42xxx_SPI_Transfer(AJ_MCP42XXX_CMD_SHUTDOWN_ALL);
-    AJ_MCP42xxx_SPI_Transfer(0x00U);
+    AJ_MCP42xxx_SPI_TxRx(AJ_MCP42XXX_CMD_SHUTDOWN_ALL);
+    AJ_MCP42xxx_SPI_TxRx(0x00U);
 
     AJ_MCP42XXX_DELAY_US(1);
     AJ_MCP42xxx_CS_SetIdle(mcp);
