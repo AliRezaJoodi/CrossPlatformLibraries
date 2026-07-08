@@ -1,0 +1,105 @@
+/**
+ * @brief   MCP4251 model-specific wrapper over `aj_mcp413x_426x.h`.
+ *
+ * @details
+ * This header provides a thin model-specific alias layer for the generic
+ * MCP413x/426x driver and exposes the MCP4251 API through type aliases,
+ * TCON aliases, and inline wrapper functions.
+ *
+ * This wrapper does not provide a separate implementation unit and does not
+ * replace the generic driver source files. The corresponding MCP413x/426x
+ * source files must be compiled and linked in the project.
+ *
+ * This wrapper also does not define a separate hardware configuration layer.
+ * The default hardware configuration macros are defined in:
+ * - `aj_mcp413x_426x_config.h`
+ *
+ * These macros shall be overridden by the project hardware configuration file:
+ * - `hardware.h`
+ *
+ * If only MCP4251 is used from this device family, the underlying driver
+ * configuration should be set as follows:
+ * - `AJ_MCP413X_426X_BITS`         : `8U`
+ * - `AJ_MCP413X_426X_P1_SUPPORTED` : `1U`
+ * - `AJ_MCP413X_426X_P0A_SUPPORTED`: `1U`
+ * - `AJ_MCP413X_426X_P1A_SUPPORTED`: `1U`
+ * - `AJ_MCP413X_426X_SHDN_USED`    : optional
+ * - `AJ_MCP413X_426X_WP_USED`      : `0U`
+ *
+ * @author  AliReza Joodi
+ * @see     https://github.com/AliRezaJoodi
+ */
+
+#ifndef AJ_MCP4251_INCLUDED
+#define AJ_MCP4251_INCLUDED
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
+#include <stdint.h>
+#include "aj_mcp413x_426x.h"
+
+typedef aj_mcp413x_426x_t aj_mcp4251_t;
+typedef aj_mcp413x_426x_tcon_t aj_mcp4251_tcon_t;
+
+/* Valid symbolic values for aj_mcp4251_tcon_t. */
+#define AJ_MCP4251_TCON_P0B   AJ_MCP413X_426X_TCON_P0B
+#define AJ_MCP4251_TCON_P0W   AJ_MCP413X_426X_TCON_P0W
+#define AJ_MCP4251_TCON_P0A   AJ_MCP413X_426X_TCON_P0A
+#define AJ_MCP4251_TCON_P0HW  AJ_MCP413X_426X_TCON_P0HW
+#define AJ_MCP4251_TCON_P1B   AJ_MCP413X_426X_TCON_P1B
+#define AJ_MCP4251_TCON_P1W   AJ_MCP413X_426X_TCON_P1W
+#define AJ_MCP4251_TCON_P1A   AJ_MCP413X_426X_TCON_P1A
+#define AJ_MCP4251_TCON_P1HW  AJ_MCP413X_426X_TCON_P1HW
+#define AJ_MCP4251_TCON_ALL   AJ_MCP413X_426X_TCON_ALL
+
+/* Initializes the MCP4251 device interface. */
+static inline void AJ_MCP4251_Init(const aj_mcp4251_t *dev){
+    AJ_MCP413x_426x_Init(dev);
+}
+
+/* Writes a new wiper value to potentiometer 0. */
+static inline void AJ_MCP4251_WritePot0(const aj_mcp4251_t *dev, uint8_t value){
+    AJ_MCP413x_426x_WritePot0(dev, value);
+}
+
+/* Writes a new wiper value to potentiometer 1. */
+static inline void AJ_MCP4251_WritePot1(const aj_mcp4251_t *dev, uint8_t value){
+    AJ_MCP413x_426x_WritePot1(dev, value);
+}
+
+/* Enables the selected terminal-control connections. */
+static inline void AJ_MCP4251_EnableTerminalControl(const aj_mcp4251_t *dev, aj_mcp4251_tcon_t mask){
+    AJ_MCP413x_426x_EnableTerminalControl(dev, mask);
+}
+
+/* Returns non-zero if the selected terminal-control connections are enabled. */
+static inline uint8_t AJ_MCP4251_IsTerminalControlEnabled(const aj_mcp4251_t *dev, aj_mcp4251_tcon_t mask){
+    return AJ_MCP413x_426x_IsTerminalControlEnabled(dev, mask);
+}
+
+/* Disables the selected terminal-control connections. */
+static inline void AJ_MCP4251_DisableTerminalControl(const aj_mcp4251_t *dev, aj_mcp4251_tcon_t mask){
+    AJ_MCP413x_426x_DisableTerminalControl(dev, mask);
+}
+
+#if (AJ_MCP413X_426X_SHDN_USED == 1U)
+/* Forces the device into hardware shutdown mode. */
+static inline void AJ_MCP4251_ForceShutdown(const aj_mcp4251_t *dev){
+    AJ_MCP413x_426x_ForceShutdown(dev);
+}
+
+/* Releases the device from hardware shutdown mode. */
+static inline void AJ_MCP4251_ReleaseShutdown(const aj_mcp4251_t *dev){
+    AJ_MCP413x_426x_ReleaseShutdown(dev);
+}
+#endif
+
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif
