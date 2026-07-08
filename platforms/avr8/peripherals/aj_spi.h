@@ -52,19 +52,19 @@ static inline uint8_t AJ_SPI_TxRx(const uint8_t data){
  *
  * @param data Byte to transmit.
  */
-static inline void AJ_SPI_Tx(const uint8_t data){
-    uint16_t timeout = AJ_SPI_TIMEOUT;  /* Software timeout counter */
-    aj_spi_state = AJ_SPI_OK;
-
-    SPDR = data;                        /* Start SPI transfer */
-
-    while (!(SPSR & (1U << SPIF))) {    /* Wait for transfer complete */
-        if (--timeout == 0U){           /* Check timeout expiration */
-            aj_spi_state = AJ_SPI_ERROR;
-            return;
-        }
-    }
-}
+//static inline void AJ_SPI_Tx(const uint8_t data){
+//    uint16_t timeout = AJ_SPI_TIMEOUT;  /* Software timeout counter */
+//    aj_spi_state = AJ_SPI_OK;
+//
+//    SPDR = data;                        /* Start SPI transfer */
+//
+//    while (!(SPSR & (1U << SPIF))) {    /* Wait for transfer complete */
+//        if (--timeout == 0U){           /* Check timeout expiration */
+//            aj_spi_state = AJ_SPI_ERROR;
+//            return;
+//        }
+//    }
+//}
 
 /**
  * @brief Receive one byte over SPI.
@@ -72,21 +72,21 @@ static inline void AJ_SPI_Tx(const uint8_t data){
  * @return Received byte.
  * @note A dummy byte (0x00) is transmitted to generate the SPI clock.
  */
-static inline uint8_t AJ_SPI_Rx(void){
-    uint16_t timeout = AJ_SPI_TIMEOUT;  /* Software timeout counter */
-    aj_spi_state = AJ_SPI_OK;
-
-    SPDR = 0U;                          /* Send dummy byte */
-
-    while (!(SPSR & (1U << SPIF))) {    /* Wait for transfer complete */
-        if (--timeout == 0U){           /* Check timeout expiration */
-            aj_spi_state = AJ_SPI_ERROR;
-            return 0U;
-        }
-    }
-
-    return SPDR;                        /* Return received data */
-}
+//static inline uint8_t AJ_SPI_Rx(void){
+//    uint16_t timeout = AJ_SPI_TIMEOUT;  /* Software timeout counter */
+//    aj_spi_state = AJ_SPI_OK;
+//
+//    SPDR = 0U;                          /* Send dummy byte */
+//
+//    while (!(SPSR & (1U << SPIF))) {    /* Wait for transfer complete */
+//        if (--timeout == 0U){           /* Check timeout expiration */
+//            aj_spi_state = AJ_SPI_ERROR;
+//            return 0U;
+//        }
+//    }
+//
+//    return SPDR;                        /* Return received data */
+//}
 
 
 #ifdef __cplusplus
