@@ -15,8 +15,8 @@ uint16_t AJ_MCP3201_ReadRaw(aj_mcp3201_t *mcp){
     uint8_t msb = 0, lsb = 0;
 
     AJ_MCP3201_CS_SetActive(mcp);
-    msb = AJ_MCP3201_SPI_Transceive(0xFF);
-    lsb = AJ_MCP3201_SPI_Transceive(0xFF);
+    msb = AJ_MCP3201_SPI_TxRx(0xFF);
+    lsb = AJ_MCP3201_SPI_TxRx(0xFF);
     AJ_MCP3201_CS_SetIdle(mcp);
 
     msb = msb & 0x1FU;

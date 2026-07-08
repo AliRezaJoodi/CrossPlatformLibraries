@@ -92,8 +92,8 @@ static inline void AJ_MCP3201_CS_SetIdle(const aj_mcp3201_t *mcp){
  * @note    The SPI peripheral must be configured and enabled
  *          before calling this function.
  */
-static inline uint8_t AJ_MCP3201_SPI_Transceive(const uint8_t data){
-    return AJ_SPI_Transceive(data);     /* Return received data */
+static inline uint8_t AJ_MCP3201_SPI_TxRx(const uint8_t data){
+    return AJ_SPI_TxRx(data);     /* Return received data */
 }
 
 #ifdef __cplusplus
