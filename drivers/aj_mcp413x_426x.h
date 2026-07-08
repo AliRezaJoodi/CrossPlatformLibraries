@@ -1,30 +1,23 @@
 /**
- * @brief   Driver interface for Microchip MCP42xxx dual digital potentiometers.
+ * @brief   Public interface for Microchip MCP413x/423x/425x/426x digital potentiometers.
  *
  * @details
- * This file provides the public API for controlling Microchip MCP42xxx
- * digital potentiometers through an SPI interface.
+ * This header declares the public API for controlling Microchip
+ * MCP413x, MCP423x, MCP425x, and MCP426x digital potentiometers
+ * over an SPI interface.
  *
- * The driver supports writing independent wiper values to Potentiometer 0
- * and Potentiometer 1, writing both potentiometers simultaneously, and
- * executing software shutdown commands through SPI.
- *
- * Optional hardware control functions are also provided when enabled in the
- * hardware configuration layer:
- * - SHDN pin control for forcing and releasing hardware shutdown.
- * - RS pin control for performing a hardware reset.
- *
- * The low-level SPI transfer and GPIO handling are abstracted in
- * `aj_mcp42xxx_hw.h`, allowing the driver to remain portable across different
- * AVR projects and hardware configurations.
+ * The driver supports basic wiper control, terminal connection control
+ * through the TCON register, and optional hardware pin features such as
+ * shutdown and write protection when available in the hardware layer.
  *
  * @note
  * This driver does not configure the SPI peripheral.
- * SPI must be configured by the user application before using this driver.
- * The MCP42xxx serial interface supports:
+ * The application must configure SPI before using this driver.
+ *
+ * Supported serial interface requirements:
  * - SPI mode 0 (CPOL = 0, CPHA = 0)
  * - SPI mode 3 (CPOL = 1, CPHA = 1)
- * - Data Order: MSB first
+ * - Data order: MSB first
  *
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
@@ -38,39 +31,43 @@ extern "C" {
 #endif
 
 #include <stdint.h>
-#include "aj_mcp413x_426x_hw.h"
+#include "aj_mcp413x_426x_config.h"
 #include "aj_mcp413x_426x_type.h"
 
-/** Initializes the MCP42xxx driver and related control pins. */
-void AJ_MCP413x_426x_Init(aj_mcp413x_426x_t *mcp);
+/** Initializes the device and optional control pins. */
+void AJ_MCP413x_426x_Init(const aj_mcp413x_426x_t *mcp);
 
 /** Writes a wiper value to potentiometer 0. */
-void AJ_MCP413x_426x_WritePot0(aj_mcp413x_426x_t *mcp, uint8_t count);
+void AJ_MCP413x_426x_WritePot0(const aj_mcp413x_426x_t *mcp, uint8_t count);
 
+#if (AJ_MCP413X_426X_P1_SUPPORTED == 1U)
 /** Writes a wiper value to potentiometer 1. */
-void AJ_MCP413x_426x_WritePot1(aj_mcp413x_426x_t *mcp, uint8_t count);
+void AJ_MCP413x_426x_WritePot1(const aj_mcp413x_426x_t *mcp, uint8_t count);
+#endif
 
-//uint8_t AJ_MCP413x_426x_ReadTerminalControl(aj_mcp413x_426x_t *mcp);
-void AJ_MCP413x_426x_EnableTerminalControl(aj_mcp413x_426x_t *mcp, aj_mcp413x_426x_tcon_t mask);
-uint8_t AJ_MCP413x_426x_IsTerminalControlEnabled(aj_mcp413x_426x_t *mcp, aj_mcp413x_426x_tcon_t mask);
-void AJ_MCP413x_426x_DisableTerminalControl(aj_mcp413x_426x_t *mcp, aj_mcp413x_426x_tcon_t mask);
+/** Enables the selected terminal connection bits in the TCON register. */
+void AJ_MCP413x_426x_EnableTerminalControl(const aj_mcp413x_426x_t *mcp, aj_mcp413x_426x_tcon_t mask);
 
-///** Executes software shutdown for potentiometer 0. */
-//void AJ_MCP413x_426x_ShutdownPot0(aj_mcp413x_426x_t *mcp);
-//
-///** Executes software shutdown for potentiometer 1. */
-//void AJ_MCP413x_426x_ShutdownPot1(aj_mcp413x_426x_t *mcp);
-//
-///** Executes software shutdown for both potentiometers. */
-//void AJ_MCP413x_426x_ShutdownAll(aj_mcp413x_426x_t *mcp);
+/** Returns nonzero if the selected terminal connection bits are enabled. */
+uint8_t AJ_MCP413x_426x_IsTerminalControlEnabled(const aj_mcp413x_426x_t *mcp, aj_mcp413x_426x_tcon_t mask);
 
+/** Disables the selected terminal connection bits in the TCON register. */
+void AJ_MCP413x_426x_DisableTerminalControl(const aj_mcp413x_426x_t *mcp, aj_mcp413x_426x_tcon_t mask);
 
 #if (AJ_MCP413X_426X_SHDN_USED == 1U)
-/** Forces hardware shutdown using the SHDN pin. */
-void AJ_MCP413x_426x_ForceShutdown(aj_mcp413x_426x_t *mcp);
+/** Forces hardware shutdown through the SHDN pin. */
+void AJ_MCP413x_426x_ForceShutdown(const aj_mcp413x_426x_t *mcp);
 
-/** Releases hardware shutdown using the SHDN pin. */
-void AJ_MCP413x_426x_ReleaseShutdown(aj_mcp413x_426x_t *mcp);
+/** Releases hardware shutdown through the SHDN pin. */
+void AJ_MCP413x_426x_ReleaseShutdown(const aj_mcp413x_426x_t *mcp);
+#endif
+
+#if (AJ_MCP413X_426X_WP_USED == 1U)
+/** Enables hardware write protection through the WP pin. */
+void AJ_MCP413x_426x_EnableWriteProtect(const aj_mcp413x_426x_t *mcp);
+
+/** Disables hardware write protection through the WP pin. */
+void AJ_MCP413x_426x_DisableWriteProtect(const aj_mcp413x_426x_t *mcp);
 #endif
 
 #ifdef __cplusplus
