@@ -1,23 +1,44 @@
 /**
- * @brief   Public interface for Microchip MCP413x/423x/425x/426x digital potentiometers.
+ * @brief   Public interface for Microchip digital potentiometers.
+ * * Supported Devices in the Family:
+ * - `MCP4131 / MCP4132`
+ * - `MCP4141 / MCP4142`
+ * - `MCP4151 / MCP4152`
+ * - `MCP4161 / MCP4162`
+ * - `MCP4231 / MCP4232`
+ * - `MCP4241 / MCP4242`
+ * - `MCP4251 / MCP4252`
+ * - `MCP4261 / MCP4262`
  *
- * @details
- * This header declares the public API for controlling Microchip
- * MCP413x, MCP423x, MCP425x, and MCP426x digital potentiometers
- * over an SPI interface.
- *
- * The driver supports basic wiper control, terminal connection control
- * through the TCON register, and optional hardware pin features such as
- * shutdown and write protection when available in the hardware layer.
- *
- * @note
- * This driver does not configure the SPI peripheral.
- * The application must configure SPI before using this driver.
- *
- * Supported serial interface requirements:
- * - SPI mode 0 (CPOL = 0, CPHA = 0)
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 1: SPI Configuration
+ * -----------------------------------------------------------------------------
+ * This library does not configure the microcontroller's SPI peripheral.
+ * The application must initialize and enable SPI before using this driver.
+ * The SPI interface must meet these parameters:
+ * - SPI mode 0 (CPOL = 0, CPHA = 0) or
  * - SPI mode 3 (CPOL = 1, CPHA = 1)
  * - Data order: MSB first
+ *
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 2: Compilation & Linkage
+ * -----------------------------------------------------------------------------
+ * The following source files must be compiled and linked in the project:
+ * - `aj_mcp413x_426x.c`
+ * - `aj_spi.c`
+ *
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 3: Configuration Override
+ * -----------------------------------------------------------------------------
+ * The default driver macros are declared in the following headers:
+ * - `aj_target.h`
+ * - `aj_spi_config.h`
+ * - `aj_mcp413x_426x_config.h`
+ * - `aj_mcp413x_426x_config_platform.h`
+ *
+ * To customize these configurations, override them inside the central project
+ * hardware configuration file:
+ * - `hardware.h`
  *
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
@@ -32,6 +53,7 @@ extern "C" {
 
 #include <stdint.h>
 #include "aj_mcp413x_426x_config.h"
+#include "aj_mcp413x_426x_config_platform.h"
 #include "aj_mcp413x_426x_type.h"
 
 /** Initializes the device and optional control pins. */

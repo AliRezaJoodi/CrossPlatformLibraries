@@ -9,7 +9,6 @@ extern "C" {
 #include "aj_compiler.h"
 #include "aj_bit_reg.h"
 #include "aj_mcp413x_426x_config.h"
-#include "aj_mcp413x_426x_config_platform.h"
 #include "aj_mcp413x_426x_type.h"
 #include "aj_spi.h"
 
