@@ -9,7 +9,7 @@
 void AJ_Button_Init(aj_button_t *btn){
     AJ_Button_Pin_ConfigAsInput(btn);
 
-    switch(btn->config.pull) {
+    switch(btn->pull) {
         case AJ_BUTTON_PULL_NONE:
             AJ_Button_Pin_ConfigAsPullNone(btn);
             break;
@@ -29,7 +29,7 @@ void AJ_Button_Init(aj_button_t *btn){
 
 //*************************************************
 uint8_t AJ_Button_GetTrigger(aj_button_t *btn, aj_button_tick_t tick_now) {
-    if (AJ_Button_Pin_Read(btn) == btn->config.pressed) {
+    if (AJ_Button_Pin_Read(btn) == btn->pressed) {
         if (btn->status == 0) {
             btn->status = 1;
             btn->tick_last = tick_now;
@@ -50,7 +50,7 @@ uint8_t AJ_Button_GetTrigger(aj_button_t *btn, aj_button_tick_t tick_now) {
 
 //*************************************************
 uint8_t AJ_Button_GetAutoRepeat(aj_button_t *btn, aj_button_tick_t tick_now) {
-    if (AJ_Button_Pin_Read(btn) == btn->config.pressed) {
+    if (AJ_Button_Pin_Read(btn) == btn->pressed) {
         if (btn->status == 0) {
             btn->status = 1;
             btn->tick_last = tick_now;
