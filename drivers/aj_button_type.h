@@ -5,8 +5,10 @@
 extern "C" {
 #endif
 
+
 #include <stdint.h>
 #include "aj_target.h"
+#include "aj_button_type_platform.h"
 
 #if (AJ_TARGET_TICK_BITS == 32U)
     typedef uint32_t aj_button_tick_t;
@@ -31,19 +33,6 @@ typedef enum{
     AJ_BUTTON_PULL_DOWN = 2U    /**< Internal pull-down enabled */
 } aj_button_pull_t;
 
-/**
- * @brief Hardware configuration for a button.
- *
- * This structure holds the hardware registers and pin index
- * for a button. It is used inside the Button_t structure.
- */
-typedef struct {
-    volatile uint8_t    *ddr;      /**< Data Direction Register */
-    volatile uint8_t    *port;     /**< Port register */
-    volatile uint8_t    *pin;      /**< Pin register */
-    const uint8_t       mask;
-} aj_button_pin_t;
-
 typedef struct{
     const aj_button_pin_t       hw;         /**< Pin mapping and hardware references */
     const aj_button_active_t    pressed;  /**< Active level of the button */
@@ -54,25 +43,24 @@ typedef struct{
 
 /**
  * @example
- * Example: initializing a structure
+ * Example: initializing a structure for AVR8
  *
  * @code
- *    Button_t buttonIncr = {
- *        .hw = {
- *            .ddr   = &AJ_BUTTON_DDR,
- *            .port  = &AJ_BUTTON_PORT,
- *            .pin   = &AJ_BUTTON_PIN,
- *            .mask  = AJ_BUTTON_MASK
- *        },
- *        .config = {
- *            .pressed = AJ_AJ_BUTTON_ACTIVE_LOW,
- *            .pull    = AJ_BUTTON_PULL_NONE
- *        },
- *        .last_tick   = 0,
- *        .state = 0
- *    };
+ *     aj_button_t buttonIncr = {
+ *         .hw = {
+ *             .ddr   = &AJ_BUTTON_DDR,
+ *             .port  = &AJ_BUTTON_PORT,
+ *             .pin   = &AJ_BUTTON_PIN,
+ *             .mask  = AJ_BUTTON_MASK
+ *         },
+ *         .pressed = AJ_BUTTON_ACTIVE_LOW,
+ *         .pull    = AJ_BUTTON_PULL_NONE,
+ *         .tick_last = 0,
+ *         .status   = 0
+ *     };
  * @endcode
  */
+
 
 #ifdef __cplusplus
 }

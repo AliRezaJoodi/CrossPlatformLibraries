@@ -15,8 +15,23 @@
  * button module only uses the provided tick value for debounce and
  * auto-repeat timing.
  *
- * This API relies on the target and hardware abstraction layers defined in
- * `aj_target.h`, `aj_button_type.h`, and the related button port mappings.
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 1: Compilation & Linkage
+ * -----------------------------------------------------------------------------
+ * The following source files must be compiled and linked in the project:
+ * - `aj_button.c`
+ *
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 2: Configuration Override
+ * -----------------------------------------------------------------------------
+ * The default driver macros are declared in the following headers:
+ * - `aj_target.h`
+ * - `aj_button_config.h`
+ * - `aj_button_config_platform.h`
+ *
+ * To customize these configurations, override them inside the central project
+ * hardware configuration file:
+ * - `hardware.h`
  *
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
@@ -29,7 +44,9 @@
 extern "C" {
 #endif
 
+
 #include <stdint.h>
+#include "aj_button_config_platform.h"
 #include "aj_button_type.h"
 
 /**
@@ -74,6 +91,7 @@ uint8_t AJ_Button_GetTrigger(aj_button_t *btn, aj_button_tick_t tick_now);
  * @return 1 if an auto-repeat event is generated, 0 otherwise.
  */
 uint8_t AJ_Button_GetAutoRepeat(aj_button_t *btn, aj_button_tick_t tick_now);
+
 
 #ifdef __cplusplus
 }

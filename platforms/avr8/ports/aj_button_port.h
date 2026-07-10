@@ -25,7 +25,8 @@ extern "C" {
 #include <stdint.h>
 #include "aj_compiler.h"
 #include "aj_bit_reg.h"
-#include "aj_button_hw.h"
+#include "aj_button_config.h"
+#include "aj_button_config_platform.h"
 #include "aj_button_type.h"
 
 #define AJ_BUTTON_DELAY_US(VALUE)      AJ_DELAY_US(VALUE)

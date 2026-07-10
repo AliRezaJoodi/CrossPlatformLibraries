@@ -1,6 +1,7 @@
 // GitHub Account: GitHub.com/AliRezaJoodi
 
 #include <stdint.h>
+#include "aj_button_config.h"
 #include "aj_button_type.h"
 #include "aj_button_port.h"
 #include "aj_button.h"
