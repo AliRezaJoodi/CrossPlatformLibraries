@@ -21,7 +21,15 @@
  * - Providing a position outside this range will result in undefined behavior or
  *   invalid memory access logic.
  *
- * @note Ensure that `aj_bit_reg_config.h` is configured correctly before using this library.
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT: Configuration Override
+ * -----------------------------------------------------------------------------
+ * The default macros are declared in the following headers:
+ * - `aj_target.h`
+ *
+ * To customize these configurations, override them inside the central project
+ * hardware configuration file:
+ * - `hardware.h`
  *
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
