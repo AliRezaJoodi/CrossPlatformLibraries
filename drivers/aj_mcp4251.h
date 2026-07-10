@@ -1,30 +1,18 @@
 /**
- * @brief   MCP4251 model-specific wrapper over `aj_mcp413x_426x.h`.
+ * @brief   MCP4251 model-specific wrapper for `aj_mcp413x_426x.h`.
  *
  * @details
- * This header provides a thin model-specific alias layer for the generic
- * MCP413x/426x driver and exposes the MCP4251 API through type aliases,
- * TCON aliases, and inline wrapper functions.
+ * For driver requirements, usage notes, and the generic API description,
+ * refer to `aj_mcp413x_426x.h`.
  *
- * This wrapper does not provide a separate implementation unit and does not
- * replace the generic driver source files. The corresponding MCP413x/426x
- * source files must be compiled and linked in the project.
- *
- * This wrapper also does not define a separate hardware configuration layer.
- * The default hardware configuration macros are defined in:
- * - `aj_mcp413x_426x_config.h`
- *
- * These macros shall be overridden by the project hardware configuration file:
- * - `hardware.h`
- *
- * If only MCP4251 is used from this device family, the underlying driver
- * configuration should be set as follows:
- * - `AJ_MCP413X_426X_BITS`         : `8U`
- * - `AJ_MCP413X_426X_P1_SUPPORTED` : `1U`
- * - `AJ_MCP413X_426X_P0A_SUPPORTED`: `1U`
- * - `AJ_MCP413X_426X_P1A_SUPPORTED`: `1U`
- * - `AJ_MCP413X_426X_SHDN_USED`    : optional
- * - `AJ_MCP413X_426X_WP_USED`      : `0U`
+ * If only `MCP4251` is used from this device family, the configuration macros
+ * from `aj_mcp413x_426x_config.h` should be overridden as follows:
+ * - `AJ_MCP413X_426X_BITS`          : `8U`
+ * - `AJ_MCP413X_426X_P1_SUPPORTED`  : `1U`
+ * - `AJ_MCP413X_426X_P0A_SUPPORTED` : `1U`
+ * - `AJ_MCP413X_426X_P1A_SUPPORTED` : `1U`
+ * - `AJ_MCP413X_426X_SHDN_USED`     : optional
+ * - `AJ_MCP413X_426X_WP_USED`       : `0U`
  *
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
