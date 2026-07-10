@@ -6,7 +6,7 @@ extern "C" {
 #endif
 
 #include <stdint.h>
-#include <stm32f1xx.h>	
+#include <stm32f1xx.h>
 #include "aj_bit_reg.h"
 
 typedef enum{
