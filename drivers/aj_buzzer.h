@@ -14,6 +14,24 @@
  * @note The application must provide the current tick value to
  *       AJ_Buzzer_Start() and AJ_Buzzer_Refresh().
  *
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 1: Compilation & Linkage
+ * -----------------------------------------------------------------------------
+ * The following source files must be compiled and linked in the project:
+ * - `aj_buzzer.c`
+ *
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 2: Configuration Override
+ * -----------------------------------------------------------------------------
+ * The default driver macros are declared in the following headers:
+ * - `aj_target.h`
+ * - `aj_buzzer_config.h`
+ * - `aj_buzzer_config_platform.h`
+ *
+ * To customize these configurations, override them inside the central project
+ * hardware configuration file:
+ * - `hardware.h`
+ *
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
  */
@@ -27,6 +45,7 @@ extern "C" {
 
 
 #include <stdint.h>
+#include "aj_buzzer_config.h"
 #include "aj_buzzer_type.h"
 
 void AJ_Buzzer_TurnOff(void);

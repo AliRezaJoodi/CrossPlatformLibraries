@@ -5,10 +5,11 @@
 extern "C" {
 #endif
 
+
 #include <stdint.h>
 #include "aj_compiler.h"
 #include "aj_bit_reg.h"
-#include "aj_buzzer_hw.h"
+#include "aj_buzzer_config_platform.h"
 
 static inline void AJ_Buzzer_Pin_ConfigAsOutput(void){
     AJ_BitReg_SetBit_Mask(&AJ_BUZZER_DDR, AJ_BUZZER_MASK);
@@ -21,6 +22,7 @@ static inline void AJ_Buzzer_Pin_Set(void){
 static inline void AJ_Buzzer_Pin_Clear(void){
     AJ_BitReg_ClearBit_Mask(&AJ_BUZZER_PORT, AJ_BUZZER_MASK);
 }
+
 
 #ifdef __cplusplus
 }

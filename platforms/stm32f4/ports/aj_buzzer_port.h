@@ -7,7 +7,7 @@ extern "C" {
 
 #include <stdint.h>
 #include "aj_gpio.h"
-#include "aj_buzzer_hw.h"
+#include "aj_buzzer_config_platform.h"
 
 static inline void AJ_Buzzer_Pin_ConfigAsOutput(void){
 	AJ_GPIO_ConfigDirection(AJ_BUZZER_GPIO, AJ_BUZZER_POS, AJ_GPIO_MODE_OUTPUT);
