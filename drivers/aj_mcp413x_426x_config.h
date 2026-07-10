@@ -20,7 +20,7 @@
 #endif
 
 /******************************************************************************/
-/* Hardware configuration validation and normalization                        */
+/* Compile-time configuration validation and normalization                    */
 /******************************************************************************/
 #if ((AJ_MCP413X_426X_BITS != 7U) && (AJ_MCP413X_426X_BITS != 8U))
     #error "AJ_MCP413X_426X_BITS must be 7U or 8U."
