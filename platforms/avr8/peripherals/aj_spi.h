@@ -1,5 +1,21 @@
 /**
  *
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 1: Compilation & Linkage
+ * -----------------------------------------------------------------------------
+ * The following source files must be compiled and linked in the project:
+ * - `aj_spi.c`
+ *
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 2: Configuration Override
+ * -----------------------------------------------------------------------------
+ * The default driver macros are declared in the following headers:
+ * - `aj_spi_config.h`
+ *
+ * To customize these configurations, override them inside the central project
+ * hardware configuration file:
+ * - `hardware.h`
+ *
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
  */
