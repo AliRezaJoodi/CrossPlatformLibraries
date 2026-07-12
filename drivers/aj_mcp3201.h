@@ -8,12 +8,34 @@
  * The user must initialize and configure the SPI interface
  * according to the MCP3201 device requirements.
  *
- * Required SPI configuration for MCP3201:
- *   - Mode: 0 (CPOL = 0, CPHA = 0)
- *   - Data Order: MSB first
- *   - Clock Frequency:
- *       * up to 1.6 MHz @ Vdd = 5V
- *       * up to 0.8 MHz @ Vdd = 2.7V
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 1: SPI Configuration
+ * -----------------------------------------------------------------------------
+ * This library does not configure the microcontroller's SPI peripheral.
+ * The application must initialize and enable SPI before using this driver.
+ * The SPI interface must meet these parameters:
+ * - SPI mode 0 (CPOL = 0, CPHA = 0) or
+ * - SPI mode 3 (CPOL = 1, CPHA = 1)
+ * - Data order: MSB first
+ *
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 2: Compilation & Linkage
+ * -----------------------------------------------------------------------------
+ * The following source files must be compiled and linked in the project:
+ * - `aj_spi.c`
+ * - `aj_mcp3201.c`
+ *
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 3: Configuration Override
+ * -----------------------------------------------------------------------------
+ * The default driver macros are declared in the following headers:
+ * - `aj_target.h`
+ * - `aj_spi_config.h`
+ * - `aj_mcp3201_config_platform.h`
+ *
+ * To customize these configurations, override them inside the central project
+ * hardware configuration file:
+ * - `hardware.h`
  *
  * @warning
  * Incorrect SPI configuration may lead to invalid DAC output.
@@ -29,7 +51,9 @@
 extern "C" {
 #endif
 
+
 #include <stdint.h>
+#include "aj_mcp3201_config_platform.h"     /**< refer to main.c*/
 #include "aj_mcp3201_type.h"
 
 /**
@@ -52,6 +76,7 @@ void AJ_MCP3201_Init(aj_mcp3201_t *mcp);
  * @return  12-bit ADC value as uint16_t (0 to 4095)
  */
 uint16_t AJ_MCP3201_ReadRaw(aj_mcp3201_t *mcp);
+
 
 #ifdef __cplusplus
 }
