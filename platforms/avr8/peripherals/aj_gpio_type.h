@@ -36,7 +36,8 @@ typedef enum{
 	AJ_GPIO_PIN_4_MASK  = (1U << AJ_GPIO_PIN_4_POS),
 	AJ_GPIO_PIN_5_MASK  = (1U << AJ_GPIO_PIN_5_POS),
 	AJ_GPIO_PIN_6_MASK  = (1U << AJ_GPIO_PIN_6_POS),
-	AJ_GPIO_PIN_7_MASK  = (1U << AJ_GPIO_PIN_7_POS)
+	AJ_GPIO_PIN_7_MASK  = (1U << AJ_GPIO_PIN_7_POS),
+    AJ_GPIO_PIN_ALL_MASK  = 0xFF
 } aj_gpio_pin_mask_t;
 
 typedef struct {
