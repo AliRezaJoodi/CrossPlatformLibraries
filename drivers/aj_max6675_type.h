@@ -6,19 +6,14 @@ extern "C" {
 #endif
 
 #include <stdint.h>
-
-typedef struct {
-    volatile uint8_t *ddr;      /**< Data Direction Register for this pin */
-    volatile uint8_t *port;     /**< PORT register for this pin */
-    const uint8_t     mask;
-} aj_max6675_pin_t;
+#include "aj_max6675_type_platform.h"
 
 typedef struct {
     const aj_max6675_pin_t cs;       /**< Chip Select pin */
 } aj_max6675_t;
 
 /**
- * @example Initializing a structure
+ * @example Initializing a structure for AVR8
  *
  * @code
  *    static const aj_max6675_t max = {

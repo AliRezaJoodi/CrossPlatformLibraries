@@ -5,11 +5,12 @@
 extern "C" {
 #endif
 
+
 #include <stdint.h>
 #include "aj_compiler.h"
 #include "aj_bit_reg.h"
-#include "aj_max6675_type.h"
 #include "aj_spi.h"
+#include "aj_max6675_type.h"
 
 #define AJ_MAX6675_DELAY_US(us)    AJ_DELAY_US(us)
 
@@ -47,8 +48,9 @@ static inline void AJ_MAX6675_CS_SetIdle(const aj_max6675_t *max){
  *          before calling this function.
  */
 static inline uint8_t AJ_MAX6675_SPI_Receive(void){
-    return AJ_SPI_Transceive(0x00U);     /* Return received data */
+    return AJ_SPI_TxRx(0x00U);
 }
+
 
 #ifdef __cplusplus
 }

@@ -21,12 +21,29 @@
  *      the raw value returned by the driver will be:
  *          Raw = 100 / 0.25 = 400
  *
- * @note
- * This driver does not configure the SPI peripheral.
- * The user application must configure SPI before using this driver.
- * The MAX6675 serial interface must be configured with:
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 1: SPI Configuration
+ * -----------------------------------------------------------------------------
+ * This library does not configure the microcontroller's SPI peripheral.
+ * The application must initialize and enable SPI before using this driver.
+ * The SPI interface must meet these parameters:
  * - SPI mode 1 (CPOL = 0, CPHA = 1)
  * - Data order: MSB first
+ *
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 2: Compilation & Linkage
+ * -----------------------------------------------------------------------------
+ * The following source files must be compiled and linked in the project:
+ * - `aj_spi.c`
+ * - `aj_max6675.c`
+ *
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 3: Configuration Override
+ * -----------------------------------------------------------------------------
+ * The default driver macros are declared in the following headers:
+ * - `aj_target.h`
+ * - `aj_spi_config.h`
+ * - `aj_max6675_config_platform.h`
  *
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
@@ -40,7 +57,7 @@ extern "C" {
 #endif
 
 #include <stdint.h>
-#include "aj_max6675_hw.h"      /**< refer to main.c*/
+#include "aj_max6675_config_platform.h"      /**< refer to main.c*/
 #include "aj_max6675_type.h"
 
 /** Initializes the MAX6675 driver and related control pins. */
@@ -61,4 +78,4 @@ uint16_t AJ_MAX6675_ReadRaw(aj_max6675_t *max);
 }
 #endif
 
-#endif
+#endif      /* AJ_MAX6675_INCLUDED */
