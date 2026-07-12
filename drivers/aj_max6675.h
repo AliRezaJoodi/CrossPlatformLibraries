@@ -45,6 +45,10 @@
  * - `aj_spi_config.h`
  * - `aj_max6675_config_platform.h`
  *
+ * To customize these configurations, override them inside the central project
+ * hardware configuration file:
+ * - `hardware.h`
+ *
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
  */
