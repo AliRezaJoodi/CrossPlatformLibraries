@@ -12,6 +12,19 @@
  * This function does not include debounce handling. External debounce
  * (software or hardware) is recommended for stable operation.
  *
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 1: Compilation & Linkage
+ * -----------------------------------------------------------------------------
+ * The following source files must be compiled and linked in the project:
+ * - `aj_keypad4x4.c`
+ *
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 2: Configuration Override
+ * -----------------------------------------------------------------------------
+ * The default driver macros are declared in the following headers:
+ * - `aj_target.h`
+ * - `aj_keypad4x4_config_platform.h`
+ *
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
  */
