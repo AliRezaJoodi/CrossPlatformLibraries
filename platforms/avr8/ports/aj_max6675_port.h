@@ -47,7 +47,7 @@ static inline void AJ_MAX6675_CS_SetIdle(const aj_max6675_t *max){
  * @note    The SPI peripheral must be configured and enabled
  *          before calling this function.
  */
-static inline uint8_t AJ_MAX6675_SPI_Receive(void){
+static inline uint8_t AJ_MAX6675_SPI_Rx(void){
     return AJ_SPI_TxRx(0x00U);
 }
 
