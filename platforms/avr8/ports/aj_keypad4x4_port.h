@@ -8,10 +8,11 @@ extern "C" {
 #include <stdint.h>
 #include "aj_compiler.h"
 #include "aj_bit_reg.h"
-#include "aj_keypad4x4_hw.h"
+#include "aj_keypad4x4_config_platform.h"
 
-/* Rows ----------------------------------------------------- */
-
+/******************************************************************************/
+/* Rows                                                                       */
+/******************************************************************************/
 /* R1 */
 static inline void AJ_Keypad4x4_R1_ConfigAsInput(void){
     AJ_BitReg_ClearBit_Mask(&AJ_KEYPAD4X4_R1_DDR, AJ_KEYPAD4X4_R1_MASK);
@@ -116,8 +117,9 @@ static inline void AJ_Keypad4x4_R4_Set(void){
 }
 
 
-/* Columns ----------------------------------------------------- */
-
+/******************************************************************************/
+/* Columns                                                                    */
+/******************************************************************************/
 /* C1 */
 static inline void AJ_Keypad4x4_C1_ConfigAsInput(void){
     AJ_BitReg_ClearBit_Mask(&AJ_KEYPAD4X4_C1_DDR, AJ_KEYPAD4X4_C1_MASK);

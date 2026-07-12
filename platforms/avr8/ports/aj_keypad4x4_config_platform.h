@@ -1,10 +1,10 @@
-#ifndef AJ_KEYPAD4X4_HW_INCLUDED
-#define AJ_KEYPAD4X4_HW_INCLUDED
+#ifndef AJ_KEYPAD4X4_CONFIG_PLATFORM_INCLUDED
+#define AJ_KEYPAD4X4_CONFIG_PLATFORM_INCLUDED
 
 #include "hardware.h"   /* Project-level overrides */
 
-#ifndef AJ_KEYPAD4X4_HARDWARE
-#define AJ_KEYPAD4X4_HARDWARE
+#ifndef AJ_KEYPAD4X4_CONFIG_PLATFORM
+#define AJ_KEYPAD4X4_CONFIG_PLATFORM
     #define AJ_KEYPAD4X4_R1_DDR        DDRC
     #define AJ_KEYPAD4X4_R1_PIN        PINC
     #define AJ_KEYPAD4X4_R1_PORT       PORTC
@@ -53,7 +53,7 @@
     #define AJ_KEYPAD4X4_C4_POS        7U
     #define AJ_KEYPAD4X4_C4_MASK       (1U << AJ_KEYPAD4X4_C4_POS)
 
-    #warning "AJ_KEYPAD4X4_HARDWARE is not defined; default configuration will be used."
+    #warning "AJ_KEYPAD4X4_CONFIG_PLATFORM is not defined; default configuration will be used."
 #endif
 
-#endif
+#endif      /* AJ_KEYPAD4X4_CONFIG_PLATFORM_INCLUDED */
