@@ -1,6 +1,9 @@
 /*
  * @brief       Quadrature Encoder Interface (QEI) driver
  *
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 1: Interrupts Configuration
+ * -----------------------------------------------------------------------------
  * Usage:
  * - Configure encoder channels A, B and Z as input pins.
  * - Enable interrupt on ANY CHANGE for channels A, B and Z.
@@ -8,6 +11,24 @@
  * Interrupt handlers:
  * - Call AJ_QEI_Update() inside channel A and channel B interrupt handlers.
  * - Call AJ_QEI_SetIndexFlag() inside channel Z interrupt handler.
+ *
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 2: Compilation & Linkage
+ * -----------------------------------------------------------------------------
+ * The following source files must be compiled and linked in the project:
+ * - `aj_qei.c`
+ *
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 3: Configuration Override
+ * -----------------------------------------------------------------------------
+ * The default driver macros are declared in the following headers:
+ * - `aj_target.h`
+ * - `aj_qei_config.h`
+ * - `aj_qei_config_platform.h`
+ *
+ * To customize these configurations, override them inside the central project
+ * hardware configuration file:
+ * - `hardware.h`
  *
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
@@ -20,7 +41,9 @@
 extern "C" {
 #endif
 
+
 #include <stdint.h>
+#include "aj_qei_config_platform.h"     /**< refer to main.c*/
 #include "aj_qei_type.h"
 #include "aj_qei_port.h"
 
@@ -98,7 +121,7 @@ static inline void AJ_QEI_ResetCount(aj_qei_t *qei){
     qei->count = 0;
 }
 
-#if (AJ_QEI_Z == 1U)
+#if (AJ_QEI_Z_USED == 1U)
 /**
  * @brief Set the encoder index flag.
  *
@@ -135,8 +158,8 @@ static inline uint8_t AJ_QEI_GetIndexFlag(const aj_qei_t *qei){
 static inline void AJ_QEI_ClearIndexFlag(aj_qei_t *qei){
     qei->flag = 0;
 }
-
 #endif
+
 
 #ifdef __cplusplus
 }

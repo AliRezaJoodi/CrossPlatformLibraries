@@ -8,7 +8,7 @@ extern "C" {
 #include <stdint.h>
 #include "aj_compiler.h"
 #include "aj_bit_reg.h"
-#include "aj_qei_hw.h"
+#include "aj_qei_config.h"
 #include "aj_qei_type.h"
 
 //*************************************************
@@ -51,6 +51,22 @@ static inline void AJ_QEI_B_ConfigAsPullUp(const aj_qei_t *qei){
         return AJ_BitReg_Get2Bits_Position(qei->chA.pin, qei->chA.pos);
     }
 #endif
+
+//*************************************************
+#if (AJ_QEI_Z_USED == 0U)
+static inline void AJ_QEI_Z_ConfigAsInput(const aj_qei_t *qei){
+    AJ_BitReg_ClearBit_Mask(qei->chZ.ddr, qei->chZ.mask);
+}
+
+static inline void AJ_QEI_Z_ConfigAsPullNone(const aj_qei_t *qei){
+    AJ_BitReg_ClearBit_Mask(qei->chZ.port, qei->chZ.mask);
+}
+
+static inline void AJ_QEI_Z_ConfigAsPullUp(const aj_qei_t *qei){
+    AJ_BitReg_SetBit_Mask(qei->chZ.port, qei->chZ.mask);
+}
+#endif
+
 
 #ifdef __cplusplus
 }

@@ -5,36 +5,30 @@
 extern "C" {
 #endif
 
-#include <stdint.h>
-#include "aj_qei_hw.h"
 
-typedef struct {
-    volatile uint8_t    *ddr;       /**< Data Direction Register */
-    volatile uint8_t    *port;      /**< Port register */
-    volatile uint8_t    *pin;       /**< Pin register */
-    const uint8_t       pos;        /**< Pin position */
-    const uint8_t       mask;
-} aj_qei_pin_t;
+#include <stdint.h>
+#include "aj_qei_config.h"
+#include "aj_qei_type_platform.h"
 
 typedef struct {
     const aj_qei_pin_t     chA;
     const aj_qei_pin_t     chB;
 
-    #if (AJ_QEI_Z == 1U)
+    #if (AJ_QEI_Z_USED == 1U)
     const aj_qei_pin_t     chZ;
     #endif
 
     uint32_t            count;
     uint8_t             last;
 
-    #if (AJ_QEI_Z == 1U)
+    #if (AJ_QEI_Z_USED == 1U)
     uint8_t             flag;
     #endif
 } aj_qei_t;
 
 /**
  * @example
- * Example: initializing a structure
+ * Example: initializing a structure for AVR8
  *
  * @code
  * aj_qei_t qei = {
@@ -57,6 +51,7 @@ typedef struct {
  * };
  * @endcode
  */
+
 
 #ifdef __cplusplus
 }
