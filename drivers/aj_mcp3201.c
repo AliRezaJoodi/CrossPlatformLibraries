@@ -20,10 +20,8 @@ uint16_t AJ_MCP3201_ReadRaw(aj_mcp3201_t *mcp){
     lsb = AJ_MCP3201_SPI_TxRx(0xFF);
     AJ_MCP3201_CS_SetIdle(mcp);
 
-    msb = msb & 0x1FU;
-    lsb = lsb & 0xFEU;
-    value = ((uint16_t)msb << 8U) | lsb;
-    value = value >> 1U;
+    value = ((uint16_t)(msb & 0x1FU) << 7U) |
+            ((uint16_t)lsb >> 1U);
 
     return value;
 }
