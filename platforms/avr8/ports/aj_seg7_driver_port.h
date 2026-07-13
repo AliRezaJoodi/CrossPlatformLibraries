@@ -5,11 +5,13 @@
 extern "C" {
 #endif
 
+
 #include <stdint.h>
 #include "aj_compiler.h"
 #include "aj_bit_reg.h"
 #include "aj_bit_u8.h"
-#include "aj_seg7_driver_hw.h"
+#include "aj_seg7_driver_config.h"
+#include "aj_seg7_driver_config_platform.h"
 
 /**
  * @brief Configure digit control pins as output.
@@ -335,6 +337,7 @@ static inline void AJ_Seg7_Segments_Write(uint8_t buf){
     AJ_BitReg_WriteBit_Position(&AJ_SEG7_G_PORT, AJ_SEG7_G_POS, AJ_BitU8_IsBitSet_Mask(buf, 0x40));
     AJ_BitReg_WriteBit_Position(&AJ_SEG7_DP_PORT, AJ_SEG7_DP_POS, AJ_BitU8_IsBitSet_Mask(buf, 0x80));
 }
+
 
 #ifdef __cplusplus
 }

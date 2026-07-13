@@ -1,4 +1,5 @@
 
+#include "aj_seg7_driver_config.h"
 #include "aj_seg7_driver_port.h"
 #include "aj_seg7_driver.h"
 
