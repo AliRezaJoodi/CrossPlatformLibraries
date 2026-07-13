@@ -6,6 +6,7 @@ extern "C" {
 #endif
 
 #include <stdint.h>
+#include "aj_mcp3202_type_platform.h"
 
 /**
  * @brief Defines MCP3202 Channels.
@@ -18,22 +19,6 @@ typedef enum {
 } aj_mcp3202_channel_t;
 
 /**
- * @brief   GPIO representation for a single MCP3202 pin
- *
- * This struct maps a microcontroller pin for use by the MCP3202 driver.
- * It contains pointers to the DDR and PORT registers, and the bit index
- * of the pin within those registers.
- *
- * @note    All pointers must point to valid registers before use.
- */
-typedef struct {
-    volatile uint8_t *ddr;      /**< Data Direction Register for this pin */
-    volatile uint8_t *port;     /**< PORT register for this pin */
-    //const uint8_t     index;    /**< Bit position within DDR/PORT (0..7) */
-    const uint8_t     mask;
-} aj_mcp3202_pin_t;
-
-/**
  * @brief   MCP3202 instance structure
  *
  * Contains all pins used by a single MCP3201 device.
@@ -44,7 +29,7 @@ typedef struct {
 
 /**
  * @example
- * Example: initializing a structure
+ * Example: initializing a structure for AVR8
  *
  * @code
  *    static const aj_mcp3202_t mcp1 = {

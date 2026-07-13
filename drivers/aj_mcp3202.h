@@ -3,20 +3,34 @@
  *
  * This library provides basic functions to interface with the MCP3202 ADC via SPI.
  *
- * @note
- * The SPI peripheral is NOT configured by this library.
- * The user must initialize and configure the SPI interface
- * according to the MCP3202 device requirements.
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 1: SPI Configuration
+ * -----------------------------------------------------------------------------
+ * This library does not configure the microcontroller's SPI peripheral.
+ * The application must initialize and enable SPI before using this driver.
+ * The SPI interface must meet these parameters:
+ * - SPI mode 0 (CPOL = 0, CPHA = 0) or
+ * - SPI mode 3 (CPOL = 1, CPHA = 1)
+ * - Data order: MSB first
  *
- * Required SPI configuration for MCP3202:
- *   - Mode: 0 (CPOL = 0, CPHA = 0)
- *   - Data Order: MSB first
- *   - Clock Frequency:
- *       * up to 1.6 MHz @ Vdd = 5V
- *       * up to 0.8 MHz @ Vdd = 2.7V
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 2: Compilation & Linkage
+ * -----------------------------------------------------------------------------
+ * The following source files must be compiled and linked in the project:
+ * - `aj_spi.c`
+ * - `aj_mcp3202.c`
  *
- * @warning
- * Incorrect SPI configuration may lead to invalid ADC readings.
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 3: Configuration Override
+ * -----------------------------------------------------------------------------
+ * The default driver macros are declared in the following headers:
+ * - `aj_target.h`
+ * - `aj_spi_config.h`
+ * - `aj_mcp3202_config_platform.h`
+ *
+ * To customize these configurations, override them inside the central project
+ * hardware configuration file:
+ * - `hardware.h`
  *
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
@@ -30,6 +44,7 @@ extern "C" {
 #endif
 
 #include <stdint.h>
+#include "aj_mcp3202_config_platform.h"     /**< refer to main.c*/
 #include "aj_mcp3202_type.h"
 
 /**

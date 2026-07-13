@@ -1,43 +1,4 @@
-/**
- * @brief   SPI usage and recommended configuration for MCP3202
- *
- * @warning
- * Ensure the SPI peripheral is configured before calling any MCP3202 functions.
- * Using incorrect SPI settings may result in incorrect ADC readings.
- *
- * @author  AliReza Joodi
- * @see     https://github.com/AliRezaJoodi
- */
-
-/**
- * @example
- * Example SPI configuration for CodeVision AVR (ATmega32A):
- *
- * @code
- * void SPI_Config(void) {
- *     // Pin directions
- *     DDRB.4 = 1; PORTB.4 = 0;    // CS (SS)
- *     DDRB.5 = 1; PORTB.5 = 0;    // MOSI
- *     DDRB.6 = 0; PORTB.6 = 0;    // MISO
- *     DDRB.7 = 1; PORTB.7 = 0;    // SCK
- *
- *     // SPI initialization
- *     // SPCR - SPI Control Register:
- *     //   SPIE  = 0 -> SPI interrupt disabled
- *     //   SPE   = 1 -> SPI enabled
- *     //   DORD  = 0 -> MSB first
- *     //   MSTR  = 1 -> Master mode
- *     //   CPOL  = 0 -> Clock idle low
- *     //   CPHA  = 0 -> Sample on leading edge (Cycle Start)
- *     //   SPR1, SPR0 = 0 -> Clock rate f_osc/4
- *     // SPSR - SPI Status Register:
- *     //   SPI2X = 0 -> No double speed
- *     SPCR = (0<<SPIE) | (1<<SPE) | (0<<DORD) | (1<<MSTR)
- *          | (0<<CPOL) | (0<<CPHA) | (0<<SPR1) | (0<<SPR0);
- *     SPSR = (0<<SPI2X);
- * }
- * @endcode
- */
+// GitHub Account: GitHub.com/AliRezaJoodi
 
 #ifndef AJ_MCP3202_PORT_INCLUDED
 #define AJ_MCP3202_PORT_INCLUDED
@@ -46,12 +7,12 @@
 extern "C" {
 #endif
 
+
 #include <stdint.h>
 #include "aj_compiler.h"
 #include "aj_bit_reg.h"
-#include "aj_mcp3202_hw.h"
-#include "aj_mcp3202_type.h"
 #include "aj_spi.h"
+#include "aj_mcp3202_type.h"
 
 /**
  * @brief Initialize MCP3202 CS pin (output, idle high)
@@ -88,8 +49,9 @@ static inline void AJ_MCP3202_CS_SetIdle(const aj_mcp3202_t *mcp){
  *          before calling this function.
  */
 static inline uint8_t AJ_MCP3202_SPI_TxRx(uint8_t data){
-    return AJ_SPI_TxRx(data);     /* Return received data */
+    return AJ_SPI_TxRx(data);
 }
+
 
 #ifdef __cplusplus
 }
