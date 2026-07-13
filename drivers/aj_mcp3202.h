@@ -43,6 +43,7 @@
 extern "C" {
 #endif
 
+
 #include <stdint.h>
 #include "aj_mcp3202_config_platform.h"     /**< refer to main.c*/
 #include "aj_mcp3202_type.h"
@@ -73,6 +74,7 @@ uint16_t AJ_MCP3202_ReadRaw_Ch0(aj_mcp3202_t *mcp);
 uint16_t AJ_MCP3202_ReadRaw_Ch1(aj_mcp3202_t *mcp);
 uint16_t AJ_MCP3202_ReadRaw_Ch0Ch1(aj_mcp3202_t *mcp);
 uint16_t AJ_MCP3202_ReadRaw_Ch1Ch0(aj_mcp3202_t *mcp);
+
 
 #ifdef __cplusplus
 }

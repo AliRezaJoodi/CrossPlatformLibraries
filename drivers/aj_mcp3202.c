@@ -4,7 +4,7 @@
 #include "aj_mcp3202_port.h"
 #include "aj_mcp3202.h"
 
-#define MCP3202_CMD_START    0x01U
+#define MCP3202_CMD_START       0x01U
 #define MCP3202_CMD_CH0         ((1U << 7U) | (0U << 6U))
 #define MCP3202_CMD_CH1         ((1U << 7U) | (1U << 6U))
 #define MCP3202_CMD_CH0CH1      ((0U << 7U) | (0U << 6U))
