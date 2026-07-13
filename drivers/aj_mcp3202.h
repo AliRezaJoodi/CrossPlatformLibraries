@@ -69,6 +69,11 @@ void AJ_MCP3202_Init(aj_mcp3202_t *mcp);
  */
 uint16_t AJ_MCP3202_ReadRaw(aj_mcp3202_t *mcp, aj_mcp3202_channel_t ch);
 
+uint16_t AJ_MCP3202_ReadRaw_Ch0(aj_mcp3202_t *mcp);
+uint16_t AJ_MCP3202_ReadRaw_Ch1(aj_mcp3202_t *mcp);
+uint16_t AJ_MCP3202_ReadRaw_Ch0Ch1(aj_mcp3202_t *mcp);
+uint16_t AJ_MCP3202_ReadRaw_Ch1Ch0(aj_mcp3202_t *mcp);
+
 #ifdef __cplusplus
 }
 #endif
