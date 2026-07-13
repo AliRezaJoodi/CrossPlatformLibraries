@@ -10,6 +10,10 @@
  * - `MCP4251 / MCP4252`
  * - `MCP4261 / MCP4262`
  *
+ * Note:
+ * Do not test this device with an ohmmeter.
+ * Test it as a voltage divider: A = VDD, B = GND, measure W.
+ *
  * -----------------------------------------------------------------------------
  * REQUIREMENT 1: SPI Configuration
  * -----------------------------------------------------------------------------
