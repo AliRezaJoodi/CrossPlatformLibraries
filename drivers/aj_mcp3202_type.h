@@ -8,6 +8,9 @@ extern "C" {
 #include <stdint.h>
 #include "aj_mcp3202_type_platform.h"
 
+//#define AJ_MCP3202_SGL_DIFF_POS         7U
+//#define AJ_MCP3202_ODD_SIGN_POS         6U
+
 /**
  * @brief Defines MCP3202 Channels.
  */
