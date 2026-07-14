@@ -5,10 +5,10 @@
 extern "C" {
 #endif
 
+
 #include <stdint.h>
 #include "aj_compiler.h"
 #include "aj_bit_reg.h"
-#include "aj_tm1637_hw.h"
 #include "aj_tm1637_type.h"
 
 #define AJ_TM1637_DELAY_US(VALUE)          AJ_DELAY_US(VALUE)
@@ -42,6 +42,7 @@ static inline void AJ_TM1637_DIO_ConfigAsInput(const aj_tm1637_t *tm){
 static inline uint8_t AJ_TM1637_DIO_Read(const aj_tm1637_t *tm){
     return AJ_BitReg_IsBitSet_Mask(tm->dio.pin, tm->dio.mask);
 }
+
 
 #ifdef __cplusplus
 }

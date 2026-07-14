@@ -8,6 +8,23 @@
  * TM1637 uses a proprietary 2-wire protocol and is not I2C compatible.
  * Do not share TM1637 CLK/DIO lines with I2C SDA/SCL buses
  *
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 1: Compilation & Linkage
+ * -----------------------------------------------------------------------------
+ * The following source files must be compiled and linked in the project:
+ * - `aj_tm1637.c`
+ *
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 2: Configuration Override
+ * -----------------------------------------------------------------------------
+ * The default driver macros are declared in the following headers:
+ * - `aj_target.h`
+ * - `aj_tm1637_config_platform.h`
+ *
+ * To customize these configurations, override them inside the central project
+ * hardware configuration file:
+ * - `hardware.h`
+ *
  * @author AliReza Joodi
  * @see https://github.com/AliRezaJoodi
  */
@@ -19,7 +36,9 @@
 extern "C" {
 #endif
 
+
 #include <stdint.h>
+#include "aj_tm1637_config_platform.h"      /**< refer to main.c*/
 #include "aj_tm1637_type.h"
 
 /**
@@ -176,6 +195,7 @@ static inline void AJ_TM1637_Write4Digits_G1G4(aj_tm1637_t *tm, uint8_t segments
 static inline void AJ_TM1637_Write6Digits_G1G6(aj_tm1637_t *tm, uint8_t segments[]){
     AJ_TM1637_WriteDisplayRegister_AutoIncr(tm, segments, 6, 0);
 }
+
 
 #ifdef __cplusplus
 }
