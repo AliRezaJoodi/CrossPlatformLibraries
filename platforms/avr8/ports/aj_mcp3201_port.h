@@ -14,6 +14,8 @@ extern "C" {
 #include "aj_spi.h"
 #include "aj_mcp3201_type.h"
 
+#define AJ_MCP3201_DELAY_US(us)    AJ_DELAY_US(us)
+
 /**
  * @brief Initialize MCP3201 CS pin (output)
  * @param   mcp     Pointer to the MCP3201 instance
