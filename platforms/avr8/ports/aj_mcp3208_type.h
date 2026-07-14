@@ -41,7 +41,6 @@ typedef enum {
 typedef struct {
     volatile uint8_t *ddr;      /**< Data Direction Register for this pin */
     volatile uint8_t *port;     /**< PORT register for this pin */
-    //const uint8_t     index;    /**< Bit position within DDR/PORT (0..7) */
     const uint8_t     mask;
 } aj_mcp3208_pin_t;
 
