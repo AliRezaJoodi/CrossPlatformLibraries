@@ -5,10 +5,11 @@
 extern "C" {
 #endif
 
+
 #include <stdint.h>
 #include "aj_bit_reg.h"
 #include "aj_compiler.h"
-#include "aj_tm1638_hw.h"
+#include "aj_tm1638_config_platform.h"
 #include "aj_tm1638_type.h"
 
 #define AJ_TM1638_DELAY_US(VALUE)          AJ_DELAY_US(VALUE)
@@ -56,10 +57,10 @@ static inline void AJ_TM1638_DIO_ConfigAsInput(void){
     AJ_BitReg_ClearBit_Mask(&AJ_TM1638_DIO_DDR, AJ_TM1638_DIO_MASK);
 }
 
-//***************************************
 static inline uint8_t AJ_TM1638_DIO_Read(void){
     return AJ_BitReg_IsBitSet_Mask(&AJ_TM1638_DIO_PIN, AJ_TM1638_DIO_MASK);
 }
+
 
 #ifdef __cplusplus
 }

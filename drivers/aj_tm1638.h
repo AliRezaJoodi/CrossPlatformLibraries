@@ -12,6 +12,23 @@
  * - Buttons 9 to 16 are connected to K2 and K3.
  * - Buttons 17 to 24 are connected to K1, K2, and K3.
  *
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 1: Compilation & Linkage
+ * -----------------------------------------------------------------------------
+ * The following source files must be compiled and linked in the project:
+ * - `aj_tm1638.c`
+ *
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 2: Configuration Override
+ * -----------------------------------------------------------------------------
+ * The default driver macros are declared in the following headers:
+ * - `aj_target.h`
+ * - `aj_tm1638_config_platform.h`
+ *
+ * To customize these configurations, override them inside the central project
+ * hardware configuration file:
+ * - `hardware.h`
+ *
  * @author AliReza Joodi
  * @see https://github.com/AliRezaJoodi
  */
@@ -23,7 +40,9 @@
 extern "C" {
 #endif
 
+
 #include <stdint.h>
+#include "aj_tm1638_config_platform.h"        /**< refer to main.c*/
 #include "aj_tm1638_type.h"
 
 /**
@@ -258,6 +277,7 @@ void AJ_TM1638_GetKeys(aj_tm1638_t *tm, uint8_t *key);
  * @return 8-bit value where each bit indicates the state of a key.
  */
 uint8_t AJ_TM1638_GetKeys_K3(aj_tm1638_t *tm);
+
 
 #ifdef __cplusplus
 }

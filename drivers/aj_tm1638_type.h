@@ -5,19 +5,9 @@
 extern "C" {
 #endif
 
-#include <stdint.h>
 
-/**
- * @brief TM1638 GPIO pin descriptor.
- *
- * This structure describes a GPIO pin used by the TM1638 driver.
- */
-typedef struct {
-    volatile uint8_t *ddr;
-    volatile uint8_t *port;
-    //const uint8_t    index;
-    const uint8_t    mask;
-} aj_tm1638_pin_t;
+#include <stdint.h>
+#include "aj_tm1638_type_platform.h"
 
 /**
  * @brief TM1638 device handle.
@@ -33,7 +23,7 @@ typedef struct {
 
 /**
  * @example
- * Example: initializing a structure
+ * Example: initializing a structure for AVR8
  *
  * @code
  *    static const aj_tm1638_t tm1 = {
@@ -45,6 +35,7 @@ typedef struct {
  *    };
  * @endcode
  */
+
 
 #ifdef __cplusplus
 }
