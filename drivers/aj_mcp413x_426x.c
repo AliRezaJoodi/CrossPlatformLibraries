@@ -36,7 +36,7 @@ void AJ_MCP413x_426x_Init(const aj_mcp413x_426x_t *mcp){
 }
 
 //*************************************************************
-void AJ_MCP413x_426x_WritePot0(const aj_mcp413x_426x_t *mcp, uint8_t count){
+void AJ_MCP413x_426x_WriteCount_Pot0(const aj_mcp413x_426x_t *mcp, uint8_t count){
     #if (AJ_MCP413X_426X_BITS == 7U)
     if(count > 127U){
         count = 127U;
@@ -54,7 +54,7 @@ void AJ_MCP413x_426x_WritePot0(const aj_mcp413x_426x_t *mcp, uint8_t count){
 }
 
 #if (AJ_MCP413X_426X_P1_SUPPORTED == 1U)
-void AJ_MCP413x_426x_WritePot1(const aj_mcp413x_426x_t *mcp, uint8_t count){
+void AJ_MCP413x_426x_WriteCount_Pot1(const aj_mcp413x_426x_t *mcp, uint8_t count){
     #if (AJ_MCP413X_426X_BITS == 7U)
     if(count > 127U){
         count = 127U;

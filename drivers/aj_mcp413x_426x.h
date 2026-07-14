@@ -64,11 +64,11 @@ extern "C" {
 void AJ_MCP413x_426x_Init(const aj_mcp413x_426x_t *mcp);
 
 /** Writes a wiper value to potentiometer 0. */
-void AJ_MCP413x_426x_WritePot0(const aj_mcp413x_426x_t *mcp, uint8_t count);
+void AJ_MCP413x_426x_WriteCount_Pot0(const aj_mcp413x_426x_t *mcp, uint8_t count);
 
 #if (AJ_MCP413X_426X_P1_SUPPORTED == 1U)
 /** Writes a wiper value to potentiometer 1. */
-void AJ_MCP413x_426x_WritePot1(const aj_mcp413x_426x_t *mcp, uint8_t count);
+void AJ_MCP413x_426x_WriteCount_Pot1(const aj_mcp413x_426x_t *mcp, uint8_t count);
 #endif
 
 /** Enables the selected terminal connection bits in the TCON register. */

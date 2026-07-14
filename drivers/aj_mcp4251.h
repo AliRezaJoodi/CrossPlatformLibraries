@@ -49,13 +49,13 @@ static inline void AJ_MCP4251_Init(const aj_mcp4251_t *dev){
 }
 
 /* Writes a new wiper value to potentiometer 0. */
-static inline void AJ_MCP4251_WritePot0(const aj_mcp4251_t *dev, uint8_t value){
-    AJ_MCP413x_426x_WritePot0(dev, value);
+static inline void AJ_MCP4251_WriteCount_Pot0(const aj_mcp4251_t *dev, uint8_t value){
+    AJ_MCP413x_426x_WriteCount_Pot0(dev, value);
 }
 
 /* Writes a new wiper value to potentiometer 1. */
-static inline void AJ_MCP4251_WritePot1(const aj_mcp4251_t *dev, uint8_t value){
-    AJ_MCP413x_426x_WritePot1(dev, value);
+static inline void AJ_MCP4251_WriteCount_Pot1(const aj_mcp4251_t *dev, uint8_t value){
+    AJ_MCP413x_426x_WriteCount_Pot1(dev, value);
 }
 
 /* Enables the selected terminal-control connections. */
