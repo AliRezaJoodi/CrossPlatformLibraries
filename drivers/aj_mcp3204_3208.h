@@ -30,7 +30,7 @@ extern "C" {
 #endif
 
 #include <stdint.h>
-#include "aj_mcp3208_type.h"
+#include "aj_mcp3204_3208_type.h"
 
 /**
  * @brief   Initialize the MCP3208 instance

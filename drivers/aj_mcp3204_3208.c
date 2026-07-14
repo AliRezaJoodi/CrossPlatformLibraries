@@ -1,8 +1,8 @@
 // GitHub Account: GitHub.com/AliRezaJoodi
 
-#include "aj_mcp3208_type.h"
-#include "aj_mcp3208_port.h"
-#include "aj_mcp3208.h"
+#include "aj_mcp3204_3208_type.h"
+#include "aj_mcp3204_3208_port.h"
+#include "aj_mcp3204_3208.h"
 
 /********************************************************/
 void AJ_MCP3208_Init(aj_mcp3208_t *mcp){
