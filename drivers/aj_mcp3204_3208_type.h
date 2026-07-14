@@ -5,7 +5,9 @@
 extern "C" {
 #endif
 
+
 #include <stdint.h>
+#include "aj_mcp3204_3208_type_platform.h"
 
 /**
  * @brief Defines MCP3208 Channels.
@@ -30,21 +32,6 @@ typedef enum {
 } aj_mcp3208_channel_t;
 
 /**
- * @brief   GPIO representation for a single MCP3208 pin
- *
- * This struct maps a microcontroller pin for use by the MCP3208 driver.
- * It contains pointers to the DDR and PORT registers, and the bit index
- * of the pin within those registers.
- *
- * @note    All pointers must point to valid registers before use.
- */
-typedef struct {
-    volatile uint8_t *ddr;      /**< Data Direction Register for this pin */
-    volatile uint8_t *port;     /**< PORT register for this pin */
-    const uint8_t     mask;
-} aj_mcp3208_pin_t;
-
-/**
  * @brief   MCP3208 instance structure
  *
  * Contains all pins used by a single MCP3201 device.
@@ -67,6 +54,7 @@ typedef struct {
  *    };
  * @endcode
  */
+
 
 #ifdef __cplusplus
 }

@@ -50,7 +50,6 @@ extern "C" {
 #include "aj_compiler.h"
 #include "aj_bit_reg.h"
 #include "aj_spi.h"
-#include "aj_mcp3204_3208_hw.h"
 #include "aj_mcp3204_3208_type.h"
 
 /**
