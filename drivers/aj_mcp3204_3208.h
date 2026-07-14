@@ -1,7 +1,7 @@
 /**
- * @brief   MCP3208 12-bit ADC driver
+ * @brief   MCP3204_3208 12-bit ADC driver
  *
- * This library provides basic functions to interface with the MCP3208 ADC via SPI.
+ * This library provides basic functions to interface with the MCP3204_3208 ADC via SPI.
  *
  * -----------------------------------------------------------------------------
  * REQUIREMENT 1: SPI Configuration
@@ -36,8 +36,8 @@
  * @see     https://github.com/AliRezaJoodi
  */
 
-#ifndef AJ_MCP3208_INCLUDED
-#define AJ_MCP3208_INCLUDED
+#ifndef AJ_MCP3204_3208_INCLUDED
+#define AJ_MCP3204_3208_INCLUDED
 
 #ifdef __cplusplus
 extern "C" {
@@ -49,26 +49,26 @@ extern "C" {
 #include "aj_mcp3204_3208_type.h"
 
 /**
- * @brief   Initialize the MCP3208 instance
+ * @brief   Initialize the MCP3204_3208 instance
  *
- * This function initializes the MCP3208 by configuring the CS pin
+ * This function initializes the MCP3204_3208 by configuring the CS pin
  * and setting it to idle state.
  *
- * @param   mcp   Pointer to a valid MCP3208_t instance
+ * @param   mcp   Pointer to a valid MCP3204_3208_t instance
  */
-void AJ_MCP3208_Init(aj_mcp3208_t *mcp);
+void AJ_MCP3204_3208_Init(aj_mcp3204_3208_t *mcp);
 
 /**
- * @brief   Read raw ADC counts from MCP3208
+ * @brief   Read raw ADC counts from MCP3204_3208
  *
  * This function performs an SPI transaction to read the 12-bit ADC value
- * from the MCP3208 device.
+ * from the MCP3204_3208 device.
  *
- * @param   mcp   Pointer to a valid and initialized MCP3208_t instance
+ * @param   mcp   Pointer to a valid and initialized MCP3204_3208_t instance
  * @param   ch    Input channel selection (single-ended or differential)
  * @return  12-bit ADC value as uint16_t (0 to 4095)
  */
-uint16_t AJ_MCP3208_ReadRaw(aj_mcp3208_t *mcp, aj_mcp3208_channel_t ch);
+uint16_t AJ_MCP3204_3208_ReadRaw(aj_mcp3204_3208_t *mcp, aj_mcp3204_3208_channel_t ch);
 
 
 #ifdef __cplusplus

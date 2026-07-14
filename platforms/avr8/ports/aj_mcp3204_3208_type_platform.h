@@ -1,5 +1,5 @@
-#ifndef AJ_MCP3208_TYPE_PLATFORM_INCLUDED
-#define AJ_MCP3208_TYPE_PLATFORM_INCLUDED
+#ifndef AJ_MCP3204_3208_TYPE_PLATFORM_INCLUDED
+#define AJ_MCP3204_3208_TYPE_PLATFORM_INCLUDED
 
 #ifdef __cplusplus
 extern "C" {
@@ -9,9 +9,9 @@ extern "C" {
 #include <stdint.h>
 
 /**
- * @brief   GPIO representation for a single MCP3208 pin
+ * @brief   GPIO representation for a single MCP3204_3208 pin
  *
- * This struct maps a microcontroller pin for use by the MCP3208 driver.
+ * This struct maps a microcontroller pin for use by the MCP3204_3208 driver.
  * It contains pointers to the DDR and PORT registers, and the bit index
  * of the pin within those registers.
  *
@@ -21,7 +21,7 @@ typedef struct {
     volatile uint8_t *ddr;      /**< Data Direction Register for this pin */
     volatile uint8_t *port;     /**< PORT register for this pin */
     const uint8_t     mask;
-} aj_mcp3208_pin_t;
+} aj_mcp3204_3208_pin_t;
 
 
 #ifdef __cplusplus
