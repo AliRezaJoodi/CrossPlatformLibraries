@@ -1,3 +1,18 @@
+/**
+ * @brief   MCP3208 model-specific wrapper for `aj_mcp3204_3208.h`.
+ *
+ * @details
+ * For driver requirements, usage notes, and the generic API description,
+ * refer to `aj_mcp3204_3208.h`.
+ *
+ * If `MCP3208` is used from this device family, the configuration macros
+ * from `aj_mcp3204_3208_config.h` should be overridden as follows:
+ * - `AJ_MCP3204_3208_CHANNELS` : `8U`
+ *
+ * @author  AliReza Joodi
+ * @see     https://github.com/AliRezaJoodi
+ */
+
 #ifndef AJ_MCP3208_INCLUDED
 #define AJ_MCP3208_INCLUDED
 
@@ -31,13 +46,16 @@ extern "C" {
 typedef aj_mcp3204_3208_t               aj_mcp3208_t;
 typedef aj_mcp3204_3208_channel_t       aj_mcp3208_channel_t;
 
+/** Initializes the MCP3208 ADC. */
 static inline void AJ_MCP3208_Init(aj_mcp3208_t *mcp){
     AJ_MCP3204_3208_Init(mcp);
 }
 
+/** Reads and returns the raw 12-bit ADC value from the specified MCP3208 channel. */
 static inline uint16_t AJ_MCP3208_ReadRaw(aj_mcp3208_t *mcp, aj_mcp3208_channel_t ch){
     return AJ_MCP3204_3208_ReadRaw(mcp, ch);
 }
+
 
 #ifdef __cplusplus
 }

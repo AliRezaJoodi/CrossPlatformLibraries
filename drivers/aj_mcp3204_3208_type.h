@@ -79,7 +79,7 @@ typedef struct {
 
 /**
  * @example
- * Example: initializing a structure
+ * Example: initializing a structure for AVR8
  *
  * @code
  *    static const aj_mcp3204_3208_t mcp1 = {
