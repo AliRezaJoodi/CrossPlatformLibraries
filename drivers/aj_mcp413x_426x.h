@@ -73,13 +73,13 @@ void AJ_MCP413x_426x_WriteCount_Pot1(const aj_mcp413x_426x_t *mcp, uint8_t count
 #endif
 
 /** Enables the selected terminal connection bits in the TCON register. */
-void AJ_MCP413x_426x_EnableTerminalControl(const aj_mcp413x_426x_t *mcp, aj_mcp413x_426x_tcon_t mask);
+void AJ_MCP413x_426x_EnableTerminalControl(const aj_mcp413x_426x_t *mcp, aj_mcp413x_426x_terminal_t mask);
 
 /** Returns nonzero if the selected terminal connection bits are enabled. */
-uint8_t AJ_MCP413x_426x_IsTerminalControlEnabled(const aj_mcp413x_426x_t *mcp, aj_mcp413x_426x_tcon_t mask);
+uint8_t AJ_MCP413x_426x_IsTerminalControlEnabled(const aj_mcp413x_426x_t *mcp, aj_mcp413x_426x_terminal_t mask);
 
 /** Disables the selected terminal connection bits in the TCON register. */
-void AJ_MCP413x_426x_DisableTerminalControl(const aj_mcp413x_426x_t *mcp, aj_mcp413x_426x_tcon_t mask);
+void AJ_MCP413x_426x_DisableTerminalControl(const aj_mcp413x_426x_t *mcp, aj_mcp413x_426x_terminal_t mask);
 
 #if (AJ_MCP413X_426X_SHDN_USED == 1U)
 /** Forces hardware shutdown through the SHDN pin. */

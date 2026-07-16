@@ -100,21 +100,21 @@ static void WriteTerminalControl(const aj_mcp413x_426x_t *mcp, uint8_t tcon){
 }
 
 //*************************************************************
-void AJ_MCP413x_426x_EnableTerminalControl(const aj_mcp413x_426x_t *mcp, aj_mcp413x_426x_tcon_t mask){
+void AJ_MCP413x_426x_EnableTerminalControl(const aj_mcp413x_426x_t *mcp, aj_mcp413x_426x_terminal_t mask){
     uint8_t tcon = ReadTerminalControl(mcp);
 
     tcon = AJ_BitU8_SetBit_Mask(tcon, (uint8_t)mask);
     WriteTerminalControl(mcp, tcon);
 }
 
-void AJ_MCP413x_426x_DisableTerminalControl(const aj_mcp413x_426x_t *mcp, aj_mcp413x_426x_tcon_t mask){
+void AJ_MCP413x_426x_DisableTerminalControl(const aj_mcp413x_426x_t *mcp, aj_mcp413x_426x_terminal_t mask){
     uint8_t tcon = ReadTerminalControl(mcp);
 
     tcon = AJ_BitU8_ClearBit_Mask(tcon, (uint8_t)mask);
     WriteTerminalControl(mcp, tcon);
 }
 
-uint8_t AJ_MCP413x_426x_IsTerminalControlEnabled(const aj_mcp413x_426x_t *mcp, aj_mcp413x_426x_tcon_t mask){
+uint8_t AJ_MCP413x_426x_IsTerminalControlEnabled(const aj_mcp413x_426x_t *mcp, aj_mcp413x_426x_terminal_t mask){
     uint8_t tcon = ReadTerminalControl(mcp);
 
     return AJ_BitU8_IsBitSet_Mask(tcon, (uint8_t)mask);

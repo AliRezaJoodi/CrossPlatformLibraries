@@ -31,7 +31,7 @@ typedef enum{
     #endif  /**< AJ_MCP413X_426X_P1_SUPPORTED */
 
     AJ_MCP413X_426X_TERMINAL_ALL  = 0xFFU
-} aj_mcp413x_426x_tcon_t;
+} aj_mcp413x_426x_terminal_t;
 
 typedef struct {
     const aj_mcp413x_426x_pin_t cs;       /**< Chip Select pin */
