@@ -30,8 +30,8 @@ extern "C" {
 #include "aj_mcp413x_426x.h"
 #include "aj_mcp4251_config_platform.h"        /**< refer to main.c*/
 
-typedef aj_mcp413x_426x_t       aj_mcp4251_t;
-typedef aj_mcp413x_426x_terminal_t  aj_mcp4251_tcon_t;
+typedef aj_mcp413x_426x_t           aj_mcp4251_t;
+typedef aj_mcp413x_426x_terminal_t  aj_mcp4251_terminal_t;
 
 /* Valid symbolic values for aj_mcp4251_tcon_t. */
 #define AJ_MCP4251_TERMINAL_P0B     AJ_MCP413X_426X_TERMINAL_P0B
@@ -60,17 +60,17 @@ static inline void AJ_MCP4251_WriteCount_Pot1(const aj_mcp4251_t *dev, uint8_t v
 }
 
 /* Enables the selected terminal-control connections. */
-static inline void AJ_MCP4251_EnableTerminalControl(const aj_mcp4251_t *dev, aj_mcp4251_tcon_t mask){
+static inline void AJ_MCP4251_EnableTerminalControl(const aj_mcp4251_t *dev, aj_mcp4251_terminal_t mask){
     AJ_MCP413x_426x_EnableTerminalControl(dev, mask);
 }
 
 /* Returns non-zero if the selected terminal-control connections are enabled. */
-static inline uint8_t AJ_MCP4251_IsTerminalControlEnabled(const aj_mcp4251_t *dev, aj_mcp4251_tcon_t mask){
+static inline uint8_t AJ_MCP4251_IsTerminalControlEnabled(const aj_mcp4251_t *dev, aj_mcp4251_terminal_t mask){
     return AJ_MCP413x_426x_IsTerminalControlEnabled(dev, mask);
 }
 
 /* Disables the selected terminal-control connections. */
-static inline void AJ_MCP4251_DisableTerminalControl(const aj_mcp4251_t *dev, aj_mcp4251_tcon_t mask){
+static inline void AJ_MCP4251_DisableTerminalControl(const aj_mcp4251_t *dev, aj_mcp4251_terminal_t mask){
     AJ_MCP413x_426x_DisableTerminalControl(dev, mask);
 }
 

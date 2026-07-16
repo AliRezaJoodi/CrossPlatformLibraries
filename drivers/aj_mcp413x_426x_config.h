@@ -10,8 +10,8 @@
 #ifndef AJ_MCP413X_426X_CONFIG
 #define AJ_MCP413X_426X_CONFIG
     #define AJ_MCP413X_426X_BITS            8U      /**< 7 or 8 bits resolution. */
-    #define AJ_MCP413X_426X_P1_SUPPORTED    1U      /**< 0: Single channel, 1: Dual channel supported. */
     #define AJ_MCP413X_426X_P0A_SUPPORTED   1U      /**< 0: P0A not present/used, 1: Supported. */
+    #define AJ_MCP413X_426X_P1_SUPPORTED    1U      /**< 0: Single channel, 1: Dual channel supported. */
     #define AJ_MCP413X_426X_P1A_SUPPORTED   1U      /**< 0: P1A not present/used, 1: Supported. */
     #define AJ_MCP413X_426X_SHDN_USED       1U      /**< 0: Not used, 1: Used. */
     #define AJ_MCP413X_426X_WP_USED         1U      /**< 0: Not used, 1: Used. */
