@@ -1,5 +1,5 @@
-#ifndef AJ_MCP42XXX_CONFIG_INCLUDED
-#define AJ_MCP42XXX_CONFIG_INCLUDED
+#ifndef AJ_MCP41XXX_42XXX_CONFIG_INCLUDED
+#define AJ_MCP41XXX_42XXX_CONFIG_INCLUDED
 
 
 #include "hardware.h"   /**< Project-level overrides */
@@ -16,12 +16,13 @@
  * and must not be left floating. Use an external pull-up resistor when the
  * pin is not driven by the MCU.
  */
-#ifndef AJ_MCP42XXX_CONFIG
-#define AJ_MCP42XXX_CONFIG
-    #define AJ_MCP42XXX_SHDN_USED       1U      /**< 0: Not used, 1: Used. */
-    #define AJ_MCP42XXX_RS_USED         1U      /**< 0: Not used, 1: Used. */
+#ifndef AJ_MCP41XXX_42XXX_CONFIG
+#define AJ_MCP41XXX_42XXX_CONFIG
+    #define AJ_MCP41XXX_42XXX_POT1_SUPPORTED  1U      /**< 0: Single channel, 1: Dual channel supported. */
+    #define AJ_MCP41XXX_42XXX_SHDN_USED       1U      /**< 0: Not used, 1: Used. */
+    #define AJ_MCP41XXX_42XXX_RS_USED         1U      /**< 0: Not used, 1: Used. */
 
-    #warning "AJ_MCP42XXX_CONFIG is not defined; default configuration will be used."
+    #warning "AJ_MCP41XXX_42XXX_CONFIG is not defined; default configuration will be used."
 #endif
 
 

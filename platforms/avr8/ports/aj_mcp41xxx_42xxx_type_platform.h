@@ -1,5 +1,5 @@
-#ifndef AJ_MCP42XXX_TYPE_PLATFORM_INCLUDED
-#define AJ_MCP42XXX_TYPE_PLATFORM_INCLUDED
+#ifndef AJ_MCP41XXX_42XXX_TYPE_PLATFORM_INCLUDED
+#define AJ_MCP41XXX_42XXX_TYPE_PLATFORM_INCLUDED
 
 #ifdef __cplusplus
 extern "C" {
@@ -12,7 +12,7 @@ typedef struct {
     volatile uint8_t *ddr;      /**< Data Direction Register for this pin */
     volatile uint8_t *port;     /**< PORT register for this pin */
     const uint8_t     mask;
-} aj_mcp42xxx_pin_t;
+} aj_mcp41xxx_42xxx_pin_t;
 
 
 #ifdef __cplusplus
