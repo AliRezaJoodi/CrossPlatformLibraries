@@ -8,8 +8,8 @@
 #include "aj_mcp413x_426x.h"
 
 /* Address field (AD3:AD0) - Shifted by 4 bits */
-#define AJ_MCP413X_426X_ADDR_WIPER0     (0x00U << 4)
-#define AJ_MCP413X_426X_ADDR_WIPER1     (0x01U << 4)
+//#define AJ_MCP413X_426X_ADDR_WIPER0     (0x00U << 4)
+//#define AJ_MCP413X_426X_ADDR_WIPER1     (0x01U << 4)
 #define AJ_MCP413X_426X_ADDR_TCON       (0x04U << 4)
 #define AJ_MCP413X_426X_ADDR_STATUS     (0x05U << 4)
 
@@ -36,7 +36,7 @@ void AJ_MCP413x_426x_Init(const aj_mcp413x_426x_t *mcp){
 }
 
 //*************************************************************
-void AJ_MCP413x_426x_WriteCount_Pot0(const aj_mcp413x_426x_t *mcp, uint8_t count){
+void AJ_MCP413x_426x_WriteCount(const aj_mcp413x_426x_t *mcp, aj_mcp413x_426x_ch_t ch, uint8_t count){
     #if (AJ_MCP413X_426X_BITS == 7U)
     if(count > 127U){
         count = 127U;
@@ -46,31 +46,12 @@ void AJ_MCP413x_426x_WriteCount_Pot0(const aj_mcp413x_426x_t *mcp, uint8_t count
     AJ_MCP413x_426x_CS_SetActive(mcp);
     AJ_MCP413X_426X_DELAY_US(1);
 
-    AJ_MCP413x_426x_SPI_TxRx(AJ_MCP413X_426X_ADDR_WIPER0 | AJ_MCP413X_426X_CMD_WRITE);
+    AJ_MCP413x_426x_SPI_TxRx( ((uint8_t)ch << 4U) | AJ_MCP413X_426X_CMD_WRITE );
     AJ_MCP413x_426x_SPI_TxRx(count);
 
     AJ_MCP413X_426X_DELAY_US(1);
     AJ_MCP413x_426x_CS_SetIdle(mcp);
 }
-
-#if (AJ_MCP413X_426X_P1_SUPPORTED == 1U)
-void AJ_MCP413x_426x_WriteCount_Pot1(const aj_mcp413x_426x_t *mcp, uint8_t count){
-    #if (AJ_MCP413X_426X_BITS == 7U)
-    if(count > 127U){
-        count = 127U;
-    }
-    #endif
-
-    AJ_MCP413x_426x_CS_SetActive(mcp);
-    AJ_MCP413X_426X_DELAY_US(1);
-
-    AJ_MCP413x_426x_SPI_TxRx(AJ_MCP413X_426X_ADDR_WIPER1 | AJ_MCP413X_426X_CMD_WRITE);
-    AJ_MCP413x_426x_SPI_TxRx(count);
-
-    AJ_MCP413X_426X_DELAY_US(1);
-    AJ_MCP413x_426x_CS_SetIdle(mcp);
-}
-#endif
 
 //*************************************************************
 static uint8_t ReadTerminalControl(const aj_mcp413x_426x_t *mcp){

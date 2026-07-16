@@ -10,6 +10,13 @@ extern "C" {
 #include "aj_mcp413x_426x_type_platform.h"
 
 typedef enum{
+    AJ_MCP413X_426X_POT0 = 0U,
+    #if (AJ_MCP413X_426X_P1_SUPPORTED == 1U)
+        AJ_MCP413X_426X_POT1 = 1U,
+    #endif
+} aj_mcp413x_426x_ch_t;
+
+typedef enum{
     AJ_MCP413X_426X_TERMINAL_P0B  = (1U << 0),
     AJ_MCP413X_426X_TERMINAL_P0W  = (1U << 1),
 

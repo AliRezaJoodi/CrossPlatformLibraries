@@ -31,9 +31,14 @@ extern "C" {
 #include "aj_mcp4251_config_platform.h"        /**< refer to main.c*/
 
 typedef aj_mcp413x_426x_t           aj_mcp4251_t;
+typedef aj_mcp413x_426x_ch_t        aj_mcp4251_ch_t;
 typedef aj_mcp413x_426x_terminal_t  aj_mcp4251_terminal_t;
 
-/* Valid symbolic values for aj_mcp4251_tcon_t. */
+/* Valid symbolic values for aj_mcp413x_426x_ch_t. */
+#define AJ_MCP4251_POT0             AJ_MCP413X_426X_POT0
+#define AJ_MCP4251_POT1             AJ_MCP413X_426X_POT1
+
+/* Valid symbolic values for aj_mcp4251_terminal_t. */
 #define AJ_MCP4251_TERMINAL_P0B     AJ_MCP413X_426X_TERMINAL_P0B
 #define AJ_MCP4251_TERMINAL_P0W     AJ_MCP413X_426X_TERMINAL_P0W
 #define AJ_MCP4251_TERMINAL_P0A     AJ_MCP413X_426X_TERMINAL_P0A
@@ -45,44 +50,49 @@ typedef aj_mcp413x_426x_terminal_t  aj_mcp4251_terminal_t;
 #define AJ_MCP4251_TERMINAL_ALL     AJ_MCP413X_426X_TERMINAL_ALL
 
 /* Initializes the MCP4251 device interface. */
-static inline void AJ_MCP4251_Init(const aj_mcp4251_t *dev){
-    AJ_MCP413x_426x_Init(dev);
+static inline void AJ_MCP4251_Init(const aj_mcp4251_t *mcp){
+    AJ_MCP413x_426x_Init(mcp);
+}
+
+/* Writes a new wiper value to potentiometer. */
+static inline void AJ_MCP4251_WriteCount(const aj_mcp4251_t *mcp, aj_mcp4251_ch_t ch, uint8_t count){
+    AJ_MCP413x_426x_WriteCount(mcp, ch, count);
 }
 
 /* Writes a new wiper value to potentiometer 0. */
-static inline void AJ_MCP4251_WriteCount_Pot0(const aj_mcp4251_t *dev, uint8_t value){
-    AJ_MCP413x_426x_WriteCount_Pot0(dev, value);
+static inline void AJ_MCP4251_WriteCount_Pot0(const aj_mcp4251_t *mcp, uint8_t count){
+    AJ_MCP413x_426x_WriteCount(mcp, AJ_MCP413X_426X_POT0, count);
 }
 
 /* Writes a new wiper value to potentiometer 1. */
-static inline void AJ_MCP4251_WriteCount_Pot1(const aj_mcp4251_t *dev, uint8_t value){
-    AJ_MCP413x_426x_WriteCount_Pot1(dev, value);
+static inline void AJ_MCP4251_WriteCount_Pot1(const aj_mcp4251_t *mcp, uint8_t count){
+    AJ_MCP413x_426x_WriteCount(mcp, AJ_MCP413X_426X_POT1, count);
 }
 
 /* Enables the selected terminal-control connections. */
-static inline void AJ_MCP4251_EnableTerminalControl(const aj_mcp4251_t *dev, aj_mcp4251_terminal_t mask){
-    AJ_MCP413x_426x_EnableTerminalControl(dev, mask);
+static inline void AJ_MCP4251_EnableTerminalControl(const aj_mcp4251_t *mcp, aj_mcp4251_terminal_t mask){
+    AJ_MCP413x_426x_EnableTerminalControl(mcp, mask);
 }
 
 /* Returns non-zero if the selected terminal-control connections are enabled. */
-static inline uint8_t AJ_MCP4251_IsTerminalControlEnabled(const aj_mcp4251_t *dev, aj_mcp4251_terminal_t mask){
-    return AJ_MCP413x_426x_IsTerminalControlEnabled(dev, mask);
+static inline uint8_t AJ_MCP4251_IsTerminalControlEnabled(const aj_mcp4251_t *mcp, aj_mcp4251_terminal_t mask){
+    return AJ_MCP413x_426x_IsTerminalControlEnabled(mcp, mask);
 }
 
 /* Disables the selected terminal-control connections. */
-static inline void AJ_MCP4251_DisableTerminalControl(const aj_mcp4251_t *dev, aj_mcp4251_terminal_t mask){
-    AJ_MCP413x_426x_DisableTerminalControl(dev, mask);
+static inline void AJ_MCP4251_DisableTerminalControl(const aj_mcp4251_t *mcp, aj_mcp4251_terminal_t mask){
+    AJ_MCP413x_426x_DisableTerminalControl(mcp, mask);
 }
 
 #if (AJ_MCP413X_426X_SHDN_USED == 1U)
 /* Forces the device into hardware shutdown mode. */
-static inline void AJ_MCP4251_ForceShutdown(const aj_mcp4251_t *dev){
-    AJ_MCP413x_426x_ForceShutdown(dev);
+static inline void AJ_MCP4251_ForceShutdown(const aj_mcp4251_t *mcp){
+    AJ_MCP413x_426x_ForceShutdown(mcp);
 }
 
 /* Releases the device from hardware shutdown mode. */
-static inline void AJ_MCP4251_ReleaseShutdown(const aj_mcp4251_t *dev){
-    AJ_MCP413x_426x_ReleaseShutdown(dev);
+static inline void AJ_MCP4251_ReleaseShutdown(const aj_mcp4251_t *mcp){
+    AJ_MCP413x_426x_ReleaseShutdown(mcp);
 }
 #endif
 
