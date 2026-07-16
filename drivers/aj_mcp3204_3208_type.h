@@ -7,6 +7,7 @@ extern "C" {
 
 
 #include <stdint.h>
+#include "aj_mcp3204_3208_config.h"
 #include "aj_mcp3204_3208_type_platform.h"
 
 //#define AJ_MCP3204_3208_CH0_          ((1U << 10U) | (1U << 9U) | (0U << 8U) | (0U << 7U) | (0U << 6U))
@@ -24,19 +25,25 @@ typedef enum {
     AJ_MCP3204_3208_CH1     = ((1U << 4U) | (1U << 3U) | (0U << 2U) | (0U << 1U) | (1U << 0U)),   /**< CH1, GND(IN-) */
     AJ_MCP3204_3208_CH2     = ((1U << 4U) | (1U << 3U) | (0U << 2U) | (1U << 1U) | (0U << 0U)),   /**< CH2, GND(IN-) */
     AJ_MCP3204_3208_CH3     = ((1U << 4U) | (1U << 3U) | (0U << 2U) | (1U << 1U) | (1U << 0U)),   /**< CH3, GND(IN-) */
-    AJ_MCP3204_3208_CH4     = ((1U << 4U) | (1U << 3U) | (1U << 2U) | (0U << 1U) | (0U << 0U)),   /**< CH4, GND(IN-) */
-    AJ_MCP3204_3208_CH5     = ((1U << 4U) | (1U << 3U) | (1U << 2U) | (0U << 1U) | (1U << 0U)),   /**< CH5, GND(IN-) */
-    AJ_MCP3204_3208_CH6     = ((1U << 4U) | (1U << 3U) | (1U << 2U) | (1U << 1U) | (0U << 0U)),   /**< CH6, GND(IN-) */
-    AJ_MCP3204_3208_CH7     = ((1U << 4U) | (1U << 3U) | (1U << 2U) | (1U << 1U) | (1U << 0U)),   /**< CH7, GND(IN-) */
+
+    #if (AJ_MCP3204_3208_CHANNELS == 8U)
+        AJ_MCP3204_3208_CH4     = ((1U << 4U) | (1U << 3U) | (1U << 2U) | (0U << 1U) | (0U << 0U)),   /**< CH4, GND(IN-) */
+        AJ_MCP3204_3208_CH5     = ((1U << 4U) | (1U << 3U) | (1U << 2U) | (0U << 1U) | (1U << 0U)),   /**< CH5, GND(IN-) */
+        AJ_MCP3204_3208_CH6     = ((1U << 4U) | (1U << 3U) | (1U << 2U) | (1U << 1U) | (0U << 0U)),   /**< CH6, GND(IN-) */
+        AJ_MCP3204_3208_CH7     = ((1U << 4U) | (1U << 3U) | (1U << 2U) | (1U << 1U) | (1U << 0U)),   /**< CH7, GND(IN-) */
+    #endif
 
     AJ_MCP3204_3208_CH0CH1  = ((1U << 4U) | (0U << 3U) | (0U << 2U) | (0U << 1U) | (0U << 0U)),   /**< CH0(IN+), CH1(IN-) */
     AJ_MCP3204_3208_CH1CH0  = ((1U << 4U) | (0U << 3U) | (0U << 2U) | (0U << 1U) | (1U << 0U)),   /**< CH0(IN-), CH1(IN+) */
     AJ_MCP3204_3208_CH2CH3  = ((1U << 4U) | (0U << 3U) | (0U << 2U) | (1U << 1U) | (0U << 0U)),   /**< CH2(IN+), CH3(IN-) */
     AJ_MCP3204_3208_CH3CH2  = ((1U << 4U) | (0U << 3U) | (0U << 2U) | (1U << 1U) | (1U << 0U)),   /**< CH2(IN-), CH3(IN+) */
-    AJ_MCP3204_3208_CH4CH5  = ((1U << 4U) | (0U << 3U) | (1U << 2U) | (0U << 1U) | (0U << 0U)),   /**< CH4(IN+), CH5(IN-) */
-    AJ_MCP3204_3208_CH5CH4  = ((1U << 4U) | (0U << 3U) | (1U << 2U) | (0U << 1U) | (1U << 0U)),   /**< CH4(IN-), CH5(IN+) */
-    AJ_MCP3204_3208_CH6CH7  = ((1U << 4U) | (0U << 3U) | (1U << 2U) | (1U << 1U) | (0U << 0U)),   /**< CH6(IN+), CH7(IN-) */
-    AJ_MCP3204_3208_CH7CH6  = ((1U << 4U) | (0U << 3U) | (1U << 2U) | (1U << 1U) | (1U << 0U))    /**< CH6(IN-), CH7(IN+) */
+
+    #if (AJ_MCP3204_3208_CHANNELS == 8U)
+        AJ_MCP3204_3208_CH4CH5  = ((1U << 4U) | (0U << 3U) | (1U << 2U) | (0U << 1U) | (0U << 0U)),   /**< CH4(IN+), CH5(IN-) */
+        AJ_MCP3204_3208_CH5CH4  = ((1U << 4U) | (0U << 3U) | (1U << 2U) | (0U << 1U) | (1U << 0U)),   /**< CH4(IN-), CH5(IN+) */
+        AJ_MCP3204_3208_CH6CH7  = ((1U << 4U) | (0U << 3U) | (1U << 2U) | (1U << 1U) | (0U << 0U)),   /**< CH6(IN+), CH7(IN-) */
+        AJ_MCP3204_3208_CH7CH6  = ((1U << 4U) | (0U << 3U) | (1U << 2U) | (1U << 1U) | (1U << 0U))    /**< CH6(IN-), CH7(IN+) */
+    #endif
 } aj_mcp3204_3208_channel_t;
 
 /**

@@ -26,6 +26,7 @@
  * The default driver macros are declared in the following headers:
  * - `aj_target.h`
  * - `aj_spi_config.h`
+ * - `aj_mcp3204_3208_config.h`
  * - `aj_mcp3204_3208_config_platform.h`
  *
  * To customize these configurations, override them inside the central project

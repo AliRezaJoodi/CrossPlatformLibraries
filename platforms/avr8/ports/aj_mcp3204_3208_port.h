@@ -14,6 +14,7 @@ extern "C" {
 #include "aj_spi.h"
 #include "aj_mcp3204_3208_type.h"
 
+#define AJ_MCP3204_3208_DELAY_US(us)    AJ_DELAY_US(us)
 /**
  * @brief Initialize MCP3204_3208 CS pin (output, idle high)
  *

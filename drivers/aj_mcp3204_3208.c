@@ -16,9 +16,11 @@ uint16_t AJ_MCP3204_3208_ReadRaw(aj_mcp3204_3208_t *mcp, aj_mcp3204_3208_channel
     uint8_t lsb = (uint8_t)((ch & 0x0003U) << 6);
 
     AJ_MCP3204_3208_CS_SetActive (mcp);
+    AJ_MCP3204_3208_DELAY_US(1);
     AJ_MCP3204_3208_SPI_TxRx(msb);
     msb = AJ_MCP3204_3208_SPI_TxRx(lsb);        // Get MSB
     lsb = AJ_MCP3204_3208_SPI_TxRx(0xFF);       // Get LSB
+    AJ_MCP3204_3208_DELAY_US(1);
     AJ_MCP3204_3208_CS_SetIdle(mcp);
 
     return ( ((uint16_t)(msb & 0x0FU) << 8U) | lsb );
