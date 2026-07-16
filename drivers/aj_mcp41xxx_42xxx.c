@@ -1,7 +1,7 @@
 // GitHub Account: GitHub.com/AliRezaJoodi
 
 #include <stdint.h>
-#include "aj_mcp41xxx_42xxx_hw.h"
+#include "aj_mcp41xxx_42xxx_config.h"
 #include "aj_mcp41xxx_42xxx_type.h"
 #include "aj_mcp41xxx_42xxx_port.h"
 #include "aj_mcp41xxx_42xxx.h"

@@ -38,8 +38,9 @@ extern "C" {
 #endif
 
 #include <stdint.h>
-#include "aj_mcp41xxx_42xxx_hw.h"
+#include "aj_mcp41xxx_42xxx_config.h"
 #include "aj_mcp41xxx_42xxx_type.h"
+#include "aj_mcp41xxx_42xxx_config_platform.h"      /**< refer to main.c*/
 
 /** Initializes the MCP42xxx driver and related control pins. */
 void AJ_MCP42xxx_Init(aj_mcp42xxx_t *mcp);

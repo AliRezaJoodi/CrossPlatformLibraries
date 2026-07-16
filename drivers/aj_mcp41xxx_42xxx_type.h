@@ -5,14 +5,10 @@
 extern "C" {
 #endif
 
-#include <stdint.h>
-#include "aj_mcp41xxx_42xxx_hw.h"
 
-typedef struct {
-    volatile uint8_t *ddr;      /**< Data Direction Register for this pin */
-    volatile uint8_t *port;     /**< PORT register for this pin */
-    const uint8_t     mask;
-} aj_mcp42xxx_pin_t;
+#include <stdint.h>
+#include "aj_mcp41xxx_42xxx_config.h"
+#include "aj_mcp41xxx_42xxx_type_platform.h"
 
 typedef struct {
     const aj_mcp42xxx_pin_t cs;       /**< Chip Select pin */
@@ -27,7 +23,7 @@ typedef struct {
 } aj_mcp42xxx_t;
 
 /**
- * @example Initializing a structure
+ * @example Initializing a structure for AVR8
  *
  * @code
  *    static const aj_mcp42xxx_t mcp = {
@@ -49,6 +45,7 @@ typedef struct {
  *    };
  * @endcode
  */
+
 
 #ifdef __cplusplus
 }

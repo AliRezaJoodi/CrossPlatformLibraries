@@ -8,7 +8,7 @@ extern "C" {
 #include <stdint.h>
 #include "aj_compiler.h"
 #include "aj_bit_reg.h"
-#include "aj_mcp41xxx_42xxx_hw.h"
+#include "aj_mcp41xxx_42xxx_config.h"
 #include "aj_mcp41xxx_42xxx_type.h"
 #include "aj_spi.h"
 
