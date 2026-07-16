@@ -6,7 +6,7 @@ extern "C" {
 #endif
 
 #include <stdint.h>
-#include "aj_mcp42xxx_hw.h"
+#include "aj_mcp41xxx_42xxx_hw.h"
 
 typedef struct {
     volatile uint8_t *ddr;      /**< Data Direction Register for this pin */

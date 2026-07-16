@@ -1,10 +1,10 @@
 // GitHub Account: GitHub.com/AliRezaJoodi
 
 #include <stdint.h>
-#include "aj_mcp42xxx_hw.h"
-#include "aj_mcp42xxx_type.h"
-#include "aj_mcp42xxx_port.h"
-#include "aj_mcp42xxx.h"
+#include "aj_mcp41xxx_42xxx_hw.h"
+#include "aj_mcp41xxx_42xxx_type.h"
+#include "aj_mcp41xxx_42xxx_port.h"
+#include "aj_mcp41xxx_42xxx.h"
 
 #define AJ_MCP42XXX_CMD_WRITE_POT0      0x11U
 #define AJ_MCP42XXX_CMD_WRITE_POT1      0x12U

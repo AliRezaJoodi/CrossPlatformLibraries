@@ -8,8 +8,8 @@ extern "C" {
 #include <stdint.h>
 #include "aj_compiler.h"
 #include "aj_bit_reg.h"
-#include "aj_mcp42xxx_hw.h"
-#include "aj_mcp42xxx_type.h"
+#include "aj_mcp41xxx_42xxx_hw.h"
+#include "aj_mcp41xxx_42xxx_type.h"
 #include "aj_spi.h"
 
 #define AJ_MCP42XXX_DELAY_US(us)    AJ_DELAY_US(us)
