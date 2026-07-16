@@ -55,9 +55,10 @@
 extern "C" {
 #endif
 
+
 #include <stdint.h>
 #include "aj_mcp413x_426x_config.h"
-#include "aj_mcp413x_426x_config_platform.h"
+#include "aj_mcp413x_426x_config_platform.h"        /**< refer to main.c*/
 #include "aj_mcp413x_426x_type.h"
 
 /** Initializes the device and optional control pins. */
@@ -95,6 +96,7 @@ void AJ_MCP413x_426x_EnableWriteProtect(const aj_mcp413x_426x_t *mcp);
 /** Disables hardware write protection through the WP pin. */
 void AJ_MCP413x_426x_DisableWriteProtect(const aj_mcp413x_426x_t *mcp);
 #endif
+
 
 #ifdef __cplusplus
 }
