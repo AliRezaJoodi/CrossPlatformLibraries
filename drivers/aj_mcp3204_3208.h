@@ -23,7 +23,7 @@
  * -----------------------------------------------------------------------------
  * REQUIREMENT 3: Configuration Override
  * -----------------------------------------------------------------------------
- * The default driver macros are declared in the following headers:
+ * The default driver configuration macros are declared in the following headers:
  * - `aj_target.h`
  * - `aj_spi_config.h`
  * - `aj_mcp3204_3208_config.h`
@@ -32,6 +32,12 @@
  * To customize these configurations, override them inside the central project
  * hardware configuration file:
  * - `hardware.h`
+ *
+ * If the driver is accessed through a device-specific wrapper, use the
+ * corresponding wrapper configuration interface instead of directly
+ * overriding macros from `aj_mcp3204_3208_config_platform.h`:
+ * - `aj_mcp3204_config_platform.h` when using the `aj_mcp3204` wrapper
+ * - `aj_mcp3208_config_platform.h` when using the `aj_mcp3208` wrapper
  *
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi

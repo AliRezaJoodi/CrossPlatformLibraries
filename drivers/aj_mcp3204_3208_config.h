@@ -6,7 +6,7 @@
 
 #ifndef AJ_MCP3204_3208_CONFIG
 #define AJ_MCP3204_3208_CONFIG
-    #define AJ_MCP3204_3208_CHANNELS        8U      /**< 4 or 8 bits resolution. */
+    #define AJ_MCP3204_3208_CHANNELS    8U      /**< 4 or 8 bits resolution. */
 
     #warning "AJ_MCP3204_3208_CHS is not defined; default configuration will be used."
 #endif
