@@ -8,19 +8,6 @@ extern "C" {
 #include <stdint.h>
 #include "aj_mcp3202_type_platform.h"
 
-//#define AJ_MCP3202_SGL_DIFF_POS         7U
-//#define AJ_MCP3202_ODD_SIGN_POS         6U
-
-/**
- * @brief Defines MCP3202 Channels.
- */
-typedef enum {
-    AJ_MCP3202_CH0      = ((1U << 7U) | (0U << 6U)),   /**< CH0(IN+), GND(IN-)*/
-    AJ_MCP3202_CH1      = ((1U << 7U) | (1U << 6U)),   /**< CH1(IN+), GND(IN-)*/
-    AJ_MCP3202_CH0CH1   = ((0U << 7U) | (0U << 6U)),   /**< CH0(IN+), CH1(IN-)*/
-    AJ_MCP3202_CH1CH0   = ((0U << 7U) | (1U << 6U))    /**< CH1(IN+), CH0(IN-)*/
-} aj_mcp3202_channel_t;
-
 /**
  * @brief   MCP3202 instance structure
  *

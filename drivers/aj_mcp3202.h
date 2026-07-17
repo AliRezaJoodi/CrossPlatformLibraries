@@ -45,30 +45,23 @@ extern "C" {
 
 
 #include <stdint.h>
-#include "aj_mcp3202_config_platform.h"     /**< refer to main.c*/
 #include "aj_mcp3202_type.h"
+#include "aj_mcp3202_config_platform.h"     /**< refer to main.c*/
 
-/**
- * @brief   Initialize the MCP3202 instance
- *
- * This function initializes the MCP3202 by configuring the CS pin
- * and setting it to idle state.
- *
- * @param   mcp   Pointer to a valid MCP3202_t instance
- */
+/** Initializes the MCP3202 by configuring the CS pin and setting it to idle state. */
 void AJ_MCP3202_Init(aj_mcp3202_t *mcp);
 
-/**
- * @brief   Read raw ADC counts from MCP3202
- *
- * This function performs an SPI transaction to read the 12-bit ADC value
- * from the MCP3202 device.
- *
- * @param   mcp   Pointer to a valid MCP3202_t instance
- * @param   ch    Input channel selection (single-ended or differential)
- * @return  12-bit ADC value as uint16_t (0 to 4095)
- */
-uint16_t AJ_MCP3202_ReadRaw(aj_mcp3202_t *mcp, aj_mcp3202_channel_t channel);
+/** Reads and returns the raw 12-bit ADC value from channel 0. */
+uint16_t AJ_MCP3202_ReadRaw_Ch0(aj_mcp3202_t *mcp);
+
+/** Reads and returns the raw 12-bit ADC value from channel 1. */
+uint16_t AJ_MCP3202_ReadRaw_Ch1(aj_mcp3202_t *mcp);
+
+/** Reads and returns the raw 12-bit ADC value from differential channel CH0-CH1. */
+uint16_t AJ_MCP3202_ReadRaw_Ch0Ch1(aj_mcp3202_t *mcp);
+
+/** Reads and returns the raw 12-bit ADC value from differential channel CH1-CH0. */
+uint16_t AJ_MCP3202_ReadRaw_Ch1Ch0(aj_mcp3202_t *mcp);
 
 
 #ifdef __cplusplus
