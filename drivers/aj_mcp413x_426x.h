@@ -67,18 +67,6 @@ void AJ_MCP413x_426x_Init(const aj_mcp413x_426x_t *mcp);
 /** Writes a wiper value to potentiometer. */
 void AJ_MCP413x_426x_WriteCount(const aj_mcp413x_426x_t *mcp, aj_mcp413x_426x_ch_t ch, uint8_t count);
 
-/** Writes a wiper value to potentiometer 0. */
-static inline void AJ_MCP413x_426x_WriteCount_Pot0(const aj_mcp413x_426x_t *mcp, uint8_t count){
-    AJ_MCP413x_426x_WriteCount(mcp, AJ_MCP413X_426X_POT0, count);
-}
-
-#if (AJ_MCP413X_426X_P1_SUPPORTED == 1U)
-/** Writes a wiper value to potentiometer 1. */
-static inline void AJ_MCP413x_426x_WriteCount_Pot1(const aj_mcp413x_426x_t *mcp, uint8_t count){
-    AJ_MCP413x_426x_WriteCount(mcp, AJ_MCP413X_426X_POT1, count);
-}
-#endif
-
 /** Enables the selected terminal connection bits in the TCON register. */
 void AJ_MCP413x_426x_EnableTerminalControl(const aj_mcp413x_426x_t *mcp, aj_mcp413x_426x_terminal_t mask);
 
