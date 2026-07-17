@@ -34,10 +34,6 @@ typedef aj_mcp413x_426x_t           aj_mcp4251_t;
 typedef aj_mcp413x_426x_ch_t        aj_mcp4251_ch_t;
 typedef aj_mcp413x_426x_terminal_t  aj_mcp4251_terminal_t;
 
-/* Valid symbolic values for aj_mcp413x_426x_ch_t. */
-#define AJ_MCP4251_POT0             AJ_MCP413X_426X_POT0
-#define AJ_MCP4251_POT1             AJ_MCP413X_426X_POT1
-
 /* Valid symbolic values for aj_mcp4251_terminal_t. */
 #define AJ_MCP4251_TERMINAL_P0B     AJ_MCP413X_426X_TERMINAL_P0B
 #define AJ_MCP4251_TERMINAL_P0W     AJ_MCP413X_426X_TERMINAL_P0W
