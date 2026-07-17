@@ -1,0 +1,93 @@
+/**
+ * @brief   MCP42010 model-specific wrapper for `aj_mcp41xxx_42xxx.h`.
+ *
+ * @details
+ * For driver requirements, usage notes, and the generic API description,
+ * refer to `aj_mcp41xxx_42xxx.h`.
+ *
+ * If `MCP42010` is used from this device family, the configuration macros
+ * from `aj_mcp41xxx_42xxx_config.h` should be overridden as follows:
+ * - `AJ_MCP41XXX_42XXX_POT1_SUPPORTED` : `1U`
+ * - `AJ_MCP41XXX_42XXX_SHDN_USED` : `Optional`
+ * - `AJ_MCP41XXX_42XXX_RS_USED` : `Optional`
+ *
+ * @author  AliReza Joodi
+ * @see     https://github.com/AliRezaJoodi
+ */
+
+#ifndef AJ_MCP42010_INCLUDED
+#define AJ_MCP42010_INCLUDED
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
+#include <stdint.h>
+#include "aj_mcp41xxx_42xxx.h"
+#include "aj_mcp42010_config_platform.h"        /**< refer to main.c*/
+
+typedef aj_mcp41xxx_42xxx_t             aj_mcp42010_t;
+
+static inline void AJ_MCP42010_Init(aj_mcp42010_t *mcp){
+    AJ_MCP41xxx_42xxx_Init(mcp);
+}
+
+/** Writes a wiper value to potentiometer 0. */
+static inline void AJ_MCP42010_WriteCount_Pot0(aj_mcp42010_t *mcp, uint8_t count){
+    AJ_MCP41xxx_42xxx_WriteCount(mcp, AJ_MCP41XXX_42XXX_POT0, count);
+}
+
+/** Writes a wiper value to potentiometer 1. */
+static inline void AJ_MCP42010_WriteCount_Pot1(aj_mcp42010_t *mcp, uint8_t count){
+    AJ_MCP41xxx_42xxx_WriteCount(mcp, AJ_MCP41XXX_42XXX_POT1, count);
+}
+
+/** Writes the same wiper value to both potentiometers. */
+static inline void AJ_MCP42010_WriteCount_All(aj_mcp42010_t *mcp, uint8_t count){
+    AJ_MCP41xxx_42xxx_WriteCount(mcp, AJ_MCP41XXX_42XXX_ALL, count);
+}
+
+/** Executes software shutdown for potentiometer 0. */
+static inline void AJ_MCP42010_Shutdown_Pot0(aj_mcp42010_t *mcp){
+    AJ_MCP41xxx_42xxx_Shutdown(mcp, AJ_MCP41XXX_42XXX_POT0);
+}
+
+/** Executes software shutdown for potentiometer 1. */
+static inline void AJ_MCP42010_Shutdown_Pot1(aj_mcp42010_t *mcp){
+    AJ_MCP41xxx_42xxx_Shutdown(mcp, AJ_MCP41XXX_42XXX_POT1);
+}
+
+/** Executes software shutdown for both potentiometers. */
+static inline void AJ_MCP42010_Shutdown_All(aj_mcp42010_t *mcp){
+    AJ_MCP41xxx_42xxx_Shutdown(mcp, AJ_MCP41XXX_42XXX_ALL);
+}
+
+#if (AJ_MCP41XXX_42XXX_SHDN_USED == 1U)
+/** Forces hardware shutdown using the SHDN pin. */
+static inline void AJ_MCP42010_ForceShutdown(aj_mcp42010_t *mcp){
+    AJ_MCP41xxx_42xxx_SHDN_SetActive(mcp);
+}
+
+/** Releases hardware shutdown using the SHDN pin. */
+static inline void AJ_MCP42010_ReleaseShutdown(aj_mcp42010_t *mcp){
+    AJ_MCP41xxx_42xxx_SHDN_SetIdle(mcp);
+}
+#endif
+
+#if (AJ_MCP41XXX_42XXX_RS_USED == 1U)
+/** Performs a hardware reset using the RS pin. */
+static inline void AJ_MCP42010_HardwareReset(aj_mcp42010_t *mcp){
+    AJ_MCP41xxx_42xxx_RS_SetActive(mcp);
+    AJ_MCP41XXX_42XXX_DELAY_US(1);
+    AJ_MCP41xxx_42xxx_RS_SetIdle(mcp);
+}
+#endif
+
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif
+
