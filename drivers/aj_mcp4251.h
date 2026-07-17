@@ -54,11 +54,6 @@ static inline void AJ_MCP4251_Init(const aj_mcp4251_t *mcp){
     AJ_MCP413x_426x_Init(mcp);
 }
 
-/* Writes a new wiper value to potentiometer. */
-static inline void AJ_MCP4251_WriteCount(const aj_mcp4251_t *mcp, aj_mcp4251_ch_t ch, uint8_t count){
-    AJ_MCP413x_426x_WriteCount(mcp, ch, count);
-}
-
 /* Writes a new wiper value to potentiometer 0. */
 static inline void AJ_MCP4251_WriteCount_Pot0(const aj_mcp4251_t *mcp, uint8_t count){
     AJ_MCP413x_426x_WriteCount(mcp, AJ_MCP413X_426X_POT0, count);
