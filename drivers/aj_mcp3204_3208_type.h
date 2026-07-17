@@ -44,7 +44,7 @@ typedef enum {
         AJ_MCP3204_3208_CH6CH7  = ((1U << 4U) | (0U << 3U) | (1U << 2U) | (1U << 1U) | (0U << 0U)),   /**< CH6(IN+), CH7(IN-) */
         AJ_MCP3204_3208_CH7CH6  = ((1U << 4U) | (0U << 3U) | (1U << 2U) | (1U << 1U) | (1U << 0U))    /**< CH6(IN-), CH7(IN+) */
     #endif
-} aj_mcp3204_3208_channel_t;
+} aj_mcp3204_3208_ch_t;
 
 /**
  * @brief Defines MCP3204_3208 Channels.
@@ -66,7 +66,7 @@ typedef enum {
 //    AJ_MCP3204_3208_CH5CH4      = 13U,  /**< CH5(IN+), CH4(IN-)*/
 //    AJ_MCP3204_3208_CH6CH7      = 14U,  /**< CH6(IN+), CH7(IN-)*/
 //    AJ_MCP3204_3208_CH7CH6      = 15U   /**< CH7(IN+), CH6(IN-)*/
-//} aj_mcp3204_3208_channel_t;
+//} aj_mcp3204_3208_ch_t;
 
 /**
  * @brief   MCP3204_3208 instance structure

@@ -75,7 +75,7 @@ void AJ_MCP3204_3208_Init(aj_mcp3204_3208_t *mcp);
  * @param   ch    Input channel selection (single-ended or differential)
  * @return  12-bit ADC value as uint16_t (0 to 4095)
  */
-uint16_t AJ_MCP3204_3208_ReadRaw(aj_mcp3204_3208_t *mcp, aj_mcp3204_3208_channel_t ch);
+uint16_t AJ_MCP3204_3208_ReadRaw(aj_mcp3204_3208_t *mcp, aj_mcp3204_3208_ch_t ch);
 
 
 #ifdef __cplusplus
