@@ -66,21 +66,19 @@ static inline void AJ_MCP42010_Shutdown_All(aj_mcp42010_t *mcp){
 #if (AJ_MCP41XXX_42XXX_SHDN_USED == 1U)
 /** Forces hardware shutdown using the SHDN pin. */
 static inline void AJ_MCP42010_ForceShutdown(aj_mcp42010_t *mcp){
-    AJ_MCP41xxx_42xxx_SHDN_SetActive(mcp);
+    AJ_MCP41xxx_42xxx_ForceShutdown(mcp);
 }
 
 /** Releases hardware shutdown using the SHDN pin. */
 static inline void AJ_MCP42010_ReleaseShutdown(aj_mcp42010_t *mcp){
-    AJ_MCP41xxx_42xxx_SHDN_SetIdle(mcp);
+    AJ_MCP41xxx_42xxx_ReleaseShutdown(mcp);
 }
 #endif
 
 #if (AJ_MCP41XXX_42XXX_RS_USED == 1U)
 /** Performs a hardware reset using the RS pin. */
 static inline void AJ_MCP42010_HardwareReset(aj_mcp42010_t *mcp){
-    AJ_MCP41xxx_42xxx_RS_SetActive(mcp);
-    AJ_MCP41XXX_42XXX_DELAY_US(1);
-    AJ_MCP41xxx_42xxx_RS_SetIdle(mcp);
+    AJ_MCP41xxx_42xxx_HardwareReset(mcp);
 }
 #endif
 
