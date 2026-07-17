@@ -14,17 +14,35 @@
  * - SHDN pin control for forcing and releasing hardware shutdown.
  * - RS pin control for performing a hardware reset.
  *
- * The low-level SPI transfer and GPIO handling are abstracted in
- * `aj_mcp41XXX_42XXX_hw.h`, allowing the driver to remain portable across different
- * AVR projects and hardware configurations.
- *
- * @note
- * This driver does not configure the SPI peripheral.
- * SPI must be configured by the user application before using this driver.
- * The MCP41XXX_42XXX serial interface supports:
- * - SPI mode 0 (CPOL = 0, CPHA = 0)
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 1: SPI Configuration
+ * -----------------------------------------------------------------------------
+ * This library does not configure the microcontroller's SPI peripheral.
+ * The application must initialize and enable SPI before using this driver.
+ * The SPI interface must meet these parameters:
+ * - SPI mode 0 (CPOL = 0, CPHA = 0) or
  * - SPI mode 3 (CPOL = 1, CPHA = 1)
- * - Data Order: MSB first
+ * - Data order: MSB first
+ *
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 2: Compilation & Linkage
+ * -----------------------------------------------------------------------------
+ * The following source files must be compiled and linked in the project:
+ * - `aj_spi.c`
+ * - `aj_mcp41xxx_42xxx.c`
+ *
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 3: Configuration Override
+ * -----------------------------------------------------------------------------
+ * The default driver macros are declared in the following headers:
+ * - `aj_target.h`
+ * - `aj_spi_config.h`
+ * - `aj_mcp41xxx_42xxx_config.h`
+ * - `aj_mcp41xxx_42xxx_config_platform.h`
+ *
+ * To customize these configurations, override them inside the central project
+ * hardware configuration file:
+ * - `hardware.h`
  *
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
@@ -44,54 +62,48 @@ extern "C" {
 #include "aj_mcp41xxx_42xxx_port.h"
 #include "aj_mcp41xxx_42xxx_config_platform.h"      /**< refer to main.c*/
 
-/** Initializes the MCP41XXX_42XXX driver and related control pins. */
+/** Initializes the control pins. */
 void AJ_MCP41xxx_42xxx_Init(aj_mcp41xxx_42xxx_t *mcp);
 
+/** Writes a wiper value to potentiometer. */
 void AJ_MCP41xxx_42xxx_WriteCount(aj_mcp41xxx_42xxx_t *mcp, aj_mcp41xxx_42xxx_ch_t ch, uint8_t count);
 
+/** Executes software shutdown for potentiometer. */
 void AJ_MCP41xxx_42xxx_Shutdown(aj_mcp41xxx_42xxx_t *mcp, aj_mcp41xxx_42xxx_ch_t ch);
 
+/** Writes a wiper value to potentiometer 0. */
 static inline void AJ_MCP41xxx_42xxx_WriteCount_Pot0(aj_mcp41xxx_42xxx_t *mcp, uint8_t count){
     AJ_MCP41xxx_42xxx_WriteCount(mcp, AJ_MCP41XXX_42XXX_POT0, count);
 }
 
+#if (AJ_MCP41XXX_42XXX_POT1_SUPPORTED == 1U)
+/** Writes a wiper value to potentiometer 1. */
 static inline void AJ_MCP41xxx_42xxx_WriteCount_Pot1(aj_mcp41xxx_42xxx_t *mcp, uint8_t count){
     AJ_MCP41xxx_42xxx_WriteCount(mcp, AJ_MCP41XXX_42XXX_POT1, count);
 }
 
+/** Writes the same wiper value to both potentiometers. */
 static inline void AJ_MCP41xxx_42xxx_WriteCount_All(aj_mcp41xxx_42xxx_t *mcp, uint8_t count){
     AJ_MCP41xxx_42xxx_WriteCount(mcp, AJ_MCP41XXX_42XXX_ALL, count);
 }
+#endif
 
+/** Executes software shutdown for potentiometer 0. */
 static inline void AJ_MCP41xxx_42xxx_Shutdown_Pot0(aj_mcp41xxx_42xxx_t *mcp){
     AJ_MCP41xxx_42xxx_Shutdown(mcp, AJ_MCP41XXX_42XXX_POT0);
 }
 
+#if (AJ_MCP41XXX_42XXX_POT1_SUPPORTED == 1U)
+/** Executes software shutdown for potentiometer 1. */
 static inline void AJ_MCP41xxx_42xxx_Shutdown_Pot1(aj_mcp41xxx_42xxx_t *mcp){
     AJ_MCP41xxx_42xxx_Shutdown(mcp, AJ_MCP41XXX_42XXX_POT1);
 }
 
+/** Executes software shutdown for both potentiometers. */
 static inline void AJ_MCP41xxx_42xxx_Shutdown_All(aj_mcp41xxx_42xxx_t *mcp){
     AJ_MCP41xxx_42xxx_Shutdown(mcp, AJ_MCP41XXX_42XXX_ALL);
 }
-/** Writes a wiper value to potentiometer 0. */
-//void AJ_MCP41xxx_42xxx_WritePot0(aj_mcp41xxx_42xxx_t *mcp, uint8_t count);
-
-/** Writes a wiper value to potentiometer 1. */
-//void AJ_MCP41xxx_42xxx_WritePot1(aj_mcp41xxx_42xxx_t *mcp, uint8_t count);
-
-/** Writes the same wiper value to both potentiometers. */
-//void AJ_MCP41xxx_42xxx_WriteAll(aj_mcp41xxx_42xxx_t *mcp, uint8_t count);
-
-/** Executes software shutdown for potentiometer 0. */
-//void AJ_MCP41xxx_42xxx_ShutdownPot0(aj_mcp41xxx_42xxx_t *mcp);
-
-/** Executes software shutdown for potentiometer 1. */
-//void AJ_MCP41xxx_42xxx_ShutdownPot1(aj_mcp41xxx_42xxx_t *mcp);
-
-/** Executes software shutdown for both potentiometers. */
-//void AJ_MCP41xxx_42xxx_ShutdownAll(aj_mcp41xxx_42xxx_t *mcp);
-
+#endif
 
 #if (AJ_MCP41XXX_42XXX_SHDN_USED == 1U)
 /** Forces hardware shutdown using the SHDN pin. */

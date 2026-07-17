@@ -18,11 +18,36 @@
  */
 #ifndef AJ_MCP41XXX_42XXX_CONFIG
 #define AJ_MCP41XXX_42XXX_CONFIG
-    #define AJ_MCP41XXX_42XXX_POT1_SUPPORTED  1U      /**< 0: Single channel, 1: Dual channel supported. */
-    #define AJ_MCP41XXX_42XXX_SHDN_USED       1U      /**< 0: Not used, 1: Used. */
-    #define AJ_MCP41XXX_42XXX_RS_USED         1U      /**< 0: Not used, 1: Used. */
+    #define AJ_MCP41XXX_42XXX_POT1_SUPPORTED    1U      /**< 0: Single channel, 1: Dual channel supported. */
+    #define AJ_MCP41XXX_42XXX_SHDN_USED         1U      /**< 0: Not used, 1: Used. */
+    #define AJ_MCP41XXX_42XXX_RS_USED           1U      /**< 0: Not used, 1: Used. */
 
     #warning "AJ_MCP41XXX_42XXX_CONFIG is not defined; default configuration will be used."
+#endif
+
+/******************************************************************************/
+/* Compile-time configuration validation and normalization                    */
+/******************************************************************************/
+#if ((AJ_MCP41XXX_42XXX_POT1_SUPPORTED != 0U) && (AJ_MCP41XXX_42XXX_POT1_SUPPORTED != 1U))
+    #error "AJ_MCP41XXX_42XXX_POT1_SUPPORTED must be 0U or 1U."
+#endif
+
+#if ((AJ_MCP41XXX_42XXX_SHDN_USED != 0U) && (AJ_MCP41XXX_42XXX_SHDN_USED != 1U))
+    #error "AJ_MCP41XXX_42XXX_SHDN_USED must be 0U or 1U."
+#endif
+
+#if ((AJ_MCP41XXX_42XXX_RS_USED != 0U) && (AJ_MCP41XXX_42XXX_RS_USED != 1U))
+    #error "AJ_MCP41XXX_42XXX_RS_USED must be 0U or 1U."
+#endif
+
+#if ((AJ_MCP41XXX_42XXX_POT1_SUPPORTED == 0U) && \
+     (AJ_MCP41XXX_42XXX_SHDN_USED != 0U))
+    #error "When AJ_MCP41XXX_42XXX_POT1_SUPPORTED is 0U, AJ_MCP41XXX_42XXX_SHDN_USED must also be 0U."
+#endif
+
+#if ((AJ_MCP41XXX_42XXX_POT1_SUPPORTED == 0U) && \
+     (AJ_MCP41XXX_42XXX_RS_USED != 0U))
+    #error "When AJ_MCP41XXX_42XXX_POT1_SUPPORTED is 0U, AJ_MCP41XXX_42XXX_RS_USED must also be 0U."
 #endif
 
 

@@ -12,19 +12,24 @@ extern "C" {
 
 typedef enum{
     AJ_MCP41XXX_42XXX_POT0 = 0x01U,
-    AJ_MCP41XXX_42XXX_POT1 = 0x02U,
-    AJ_MCP41XXX_42XXX_ALL  = 0x03U
+
+    #if (AJ_MCP41XXX_42XXX_POT1_SUPPORTED == 1U)
+        AJ_MCP41XXX_42XXX_POT1 = 0x02U,
+        AJ_MCP41XXX_42XXX_ALL  = 0x03U,
+    #endif
+
+//    AJ_MCP41XXX_42XXX_NONE  = 0x00U
 } aj_mcp41xxx_42xxx_ch_t;
 
 typedef struct {
     const aj_mcp41xxx_42xxx_pin_t cs;       /**< Chip Select pin */
 
     #if (AJ_MCP41XXX_42XXX_SHDN_USED == 1U)
-    const aj_mcp41xxx_42xxx_pin_t shdn;
+        const aj_mcp41xxx_42xxx_pin_t shdn;
     #endif
 
     #if (AJ_MCP41XXX_42XXX_RS_USED == 1U)
-    const aj_mcp41xxx_42xxx_pin_t rs;
+        const aj_mcp41xxx_42xxx_pin_t rs;
     #endif
 } aj_mcp41xxx_42xxx_t;
 
