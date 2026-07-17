@@ -71,40 +71,6 @@ void AJ_MCP41xxx_42xxx_WriteCount(aj_mcp41xxx_42xxx_t *mcp, aj_mcp41xxx_42xxx_ch
 /** Executes software shutdown for potentiometer. */
 void AJ_MCP41xxx_42xxx_Shutdown(aj_mcp41xxx_42xxx_t *mcp, aj_mcp41xxx_42xxx_ch_t ch);
 
-/** Writes a wiper value to potentiometer 0. */
-static inline void AJ_MCP41xxx_42xxx_WriteCount_Pot0(aj_mcp41xxx_42xxx_t *mcp, uint8_t count){
-    AJ_MCP41xxx_42xxx_WriteCount(mcp, AJ_MCP41XXX_42XXX_POT0, count);
-}
-
-#if (AJ_MCP41XXX_42XXX_POT1_SUPPORTED == 1U)
-/** Writes a wiper value to potentiometer 1. */
-static inline void AJ_MCP41xxx_42xxx_WriteCount_Pot1(aj_mcp41xxx_42xxx_t *mcp, uint8_t count){
-    AJ_MCP41xxx_42xxx_WriteCount(mcp, AJ_MCP41XXX_42XXX_POT1, count);
-}
-
-/** Writes the same wiper value to both potentiometers. */
-static inline void AJ_MCP41xxx_42xxx_WriteCount_All(aj_mcp41xxx_42xxx_t *mcp, uint8_t count){
-    AJ_MCP41xxx_42xxx_WriteCount(mcp, AJ_MCP41XXX_42XXX_ALL, count);
-}
-#endif
-
-/** Executes software shutdown for potentiometer 0. */
-static inline void AJ_MCP41xxx_42xxx_Shutdown_Pot0(aj_mcp41xxx_42xxx_t *mcp){
-    AJ_MCP41xxx_42xxx_Shutdown(mcp, AJ_MCP41XXX_42XXX_POT0);
-}
-
-#if (AJ_MCP41XXX_42XXX_POT1_SUPPORTED == 1U)
-/** Executes software shutdown for potentiometer 1. */
-static inline void AJ_MCP41xxx_42xxx_Shutdown_Pot1(aj_mcp41xxx_42xxx_t *mcp){
-    AJ_MCP41xxx_42xxx_Shutdown(mcp, AJ_MCP41XXX_42XXX_POT1);
-}
-
-/** Executes software shutdown for both potentiometers. */
-static inline void AJ_MCP41xxx_42xxx_Shutdown_All(aj_mcp41xxx_42xxx_t *mcp){
-    AJ_MCP41xxx_42xxx_Shutdown(mcp, AJ_MCP41XXX_42XXX_ALL);
-}
-#endif
-
 #if (AJ_MCP41XXX_42XXX_SHDN_USED == 1U)
 /** Forces hardware shutdown using the SHDN pin. */
 static inline void AJ_MCP41xxx_42xxx_ForceShutdown(aj_mcp41xxx_42xxx_t *mcp){
