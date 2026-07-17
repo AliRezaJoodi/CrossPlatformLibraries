@@ -19,7 +19,7 @@ void AJ_MCP3202_Init(aj_mcp3202_t *mcp){
 }
 
 /********************************************************/
-uint16_t AJ_MCP3202_ReadRaw(aj_mcp3202_t *mcp, uint8_t ch){
+static uint16_t AJ_MCP3202_ReadRaw(aj_mcp3202_t *mcp, uint8_t ch){
     uint8_t msb, lsb;
 
     AJ_MCP3202_CS_SetActive(mcp);

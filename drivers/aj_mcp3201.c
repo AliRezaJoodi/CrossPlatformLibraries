@@ -18,8 +18,10 @@ uint16_t AJ_MCP3201_ReadRaw(aj_mcp3201_t *mcp){
 
     AJ_MCP3201_CS_SetActive(mcp);
     AJ_MCP3201_DELAY_US(1);
+
     msb = AJ_MCP3201_SPI_TxRx(MCP3201_CMD_DUMMY);
     lsb = AJ_MCP3201_SPI_TxRx(MCP3201_CMD_DUMMY);
+
     AJ_MCP3201_DELAY_US(1);
     AJ_MCP3201_CS_SetIdle(mcp);
 
