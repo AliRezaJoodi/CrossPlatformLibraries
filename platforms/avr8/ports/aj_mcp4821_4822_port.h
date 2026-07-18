@@ -1,8 +1,8 @@
 /**
- * @brief   SPI usage and recommended configuration for MCP4822
+ * @brief   SPI usage and recommended configuration for MCP4821_4822
  *
  * @warning
- * Ensure the SPI peripheral is configured before calling any MCP4822 functions.
+ * Ensure the SPI peripheral is configured before calling any MCP4821_4822 functions.
  * Using incorrect SPI settings may result in incorrect DAC.
  *
  * @author  AliReza Joodi
@@ -38,8 +38,8 @@
  * @endcode
  */
 
-#ifndef AJ_MCP4822_PORT_INCLUDED
-#define AJ_MCP4822_PORT_INCLUDED
+#ifndef AJ_MCP4821_4822_PORT_INCLUDED
+#define AJ_MCP4821_4822_PORT_INCLUDED
 
 #ifdef __cplusplus
 extern "C" {
@@ -51,18 +51,17 @@ extern "C" {
 #include "aj_bit_reg.h"
 #include "aj_spi.h"
 #include "aj_mcp4821_4822_config.h"
-#include "aj_mcp4821_4822_config_platform.h"
 #include "aj_mcp4821_4822_type.h"
 
-#define AJ_MCP4822_DELAY_US(us) AJ_DELAY_US(us)
+#define AJ_MCP4821_4822_DELAY_US(us) AJ_DELAY_US(us)
 
 /**
- * @brief   Initialize MCP4822 CS pin
+ * @brief   Initialize MCP4821_4822 CS pin
  * Sets the CS pin as output state.
  *
- * @param[in] mcp   Pointer to MCP4822 device handle
+ * @param[in] mcp   Pointer to MCP4821_4822 device handle
  */
-static inline void AJ_MCP4822_CS_ConfigAsOutput(const aj_mcp4822_t *mcp){
+static inline void AJ_MCP4821_4822_CS_ConfigAsOutput(const aj_mcp4821_4822_t *mcp){
     AJ_BitReg_SetBit_Mask(mcp->cs.ddr, mcp->cs.mask);
 }
 
@@ -70,9 +69,9 @@ static inline void AJ_MCP4822_CS_ConfigAsOutput(const aj_mcp4822_t *mcp){
  * @brief Assert CS (active state).
  * Drives the CS pin to its active level (low).
  *
- * @param[in] mcp  Pointer to MCP4822 device handle
+ * @param[in] mcp  Pointer to MCP4821_4822 device handle
  */
-static inline void AJ_MCP4822_CS_SetActive(const aj_mcp4822_t *mcp){
+static inline void AJ_MCP4821_4822_CS_SetActive(const aj_mcp4821_4822_t *mcp){
     AJ_BitReg_ClearBit_Mask(mcp->cs.port, mcp->cs.mask);
 }
 
@@ -80,19 +79,19 @@ static inline void AJ_MCP4822_CS_SetActive(const aj_mcp4822_t *mcp){
  * @brief Deassert CS (idle state).
  * Drives the CS pin to its idle level (high).
  *
- * @param[in] mcp  Pointer to MCP4822 device handle
+ * @param[in] mcp  Pointer to MCP4821_4822 device handle
  */
-static inline void AJ_MCP4822_CS_SetIdle(const aj_mcp4822_t *mcp){
+static inline void AJ_MCP4821_4822_CS_SetIdle(const aj_mcp4821_4822_t *mcp){
     AJ_BitReg_SetBit_Mask(mcp->cs.port, mcp->cs.mask);
 }
 
 /**
- * @brief   Initialize MCP4822 LDAC pin
+ * @brief   Initialize MCP4821_4822 LDAC pin
  * Sets the LDAC pin as output state.
  *
- * @param[in] mcp   Pointer to MCP4822 device handle
+ * @param[in] mcp   Pointer to MCP4821_4822 device handle
  */
-static inline void AJ_MCP4822_LDAC_ConfigAsOutput(const aj_mcp4822_t *mcp){
+static inline void AJ_MCP4821_4822_LDAC_ConfigAsOutput(const aj_mcp4821_4822_t *mcp){
     AJ_BitReg_SetBit_Mask(mcp->ldac.ddr, mcp->ldac.mask);
 }
 
@@ -101,9 +100,9 @@ static inline void AJ_MCP4822_LDAC_ConfigAsOutput(const aj_mcp4822_t *mcp){
  * Drives the LDAC pin to its active level (low) to latch DAC input data
  * to the output register.
  *
- * @param[in] mcp  Pointer to MCP4822 device handle
+ * @param[in] mcp  Pointer to MCP4821_4822 device handle
  */
-static inline void AJ_MCP4822_LDAC_SetActive(const aj_mcp4822_t *mcp){
+static inline void AJ_MCP4821_4822_LDAC_SetActive(const aj_mcp4821_4822_t *mcp){
     AJ_BitReg_ClearBit_Mask(mcp->ldac.port, mcp->ldac.mask);
 }
 
@@ -111,16 +110,30 @@ static inline void AJ_MCP4822_LDAC_SetActive(const aj_mcp4822_t *mcp){
  * @brief Deassert LDAC (idle state).
  * Drives the LDAC pin to its idle level (high).
  *
- * @param[in] mcp  Pointer to MCP4822 device handle
+ * @param[in] mcp  Pointer to MCP4821_4822 device handle
  */
-static inline void AJ_MCP4822_LDAC_SetIdle(const aj_mcp4822_t *mcp){
+static inline void AJ_MCP4821_4822_LDAC_SetIdle(const aj_mcp4821_4822_t *mcp){
     AJ_BitReg_SetBit_Mask(mcp->ldac.port, mcp->ldac.mask);
 }
+
+#if (AJ_MCP4821_4822_SHDN_USED == 1U)
+static inline void AJ_MCP4821_4822_SHDN_ConfigAsOutput(const aj_mcp4821_4822_t *mcp){
+    AJ_BitReg_SetBit_Mask(mcp->shdn.ddr, mcp->shdn.mask);
+}
+
+static inline void AJ_MCP4821_4822_SHDN_SetActive(const aj_mcp4821_4822_t *mcp){
+    AJ_BitReg_ClearBit_Mask(mcp->shdn.port, mcp->shdn.mask);
+}
+
+static inline void AJ_MCP4821_4822_SHDN_SetIdle(const aj_mcp4821_4822_t *mcp){
+    AJ_BitReg_SetBit_Mask(mcp->shdn.port, mcp->shdn.mask);
+}
+#endif
 
 /**
  * @brief   Send a single byte via SPI
  *
- * Transmits a byte to the MCP4822 over SPI and waits for completion.
+ * Transmits a byte to the MCP4821_4822 over SPI and waits for completion.
  * Returns 0 on success or 1 if timeout occurs.
  *
  * @param[in] data   Byte to transmit
@@ -128,7 +141,7 @@ static inline void AJ_MCP4822_LDAC_SetIdle(const aj_mcp4822_t *mcp){
  * @note    The SPI peripheral must be configured and enabled
  *          before calling this function.
  */
-static inline void AJ_MCP3208_SPI_TxRx(uint8_t data){
+static inline void AJ_MCP4821_4822_SPI_Tx(uint8_t data){
     AJ_SPI_TxRx(data);
 }
 
