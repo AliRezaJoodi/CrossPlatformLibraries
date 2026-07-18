@@ -3,18 +3,35 @@
  *
  * This library provides basic functions to interface with the MCP4821_4822 DAC via SPI.
  *
- * @note
- * The SPI peripheral is NOT configured by this library.
- * The user must initialize and configure the SPI interface
- * according to the MCP4821_4822 device requirements.
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 1: SPI Configuration
+ * -----------------------------------------------------------------------------
+ * This library does not configure the microcontroller's SPI peripheral.
+ * The application must initialize and enable SPI before using this driver.
+ * The SPI interface must meet these parameters:
+ * - SPI mode 0 (CPOL = 0, CPHA = 0) or
+ * - SPI mode 3 (CPOL = 1, CPHA = 1)
+ * - Data order: MSB first
  *
- * Required SPI configuration for MCP4821_4822:
- *   - Mode: 0 (CPOL = 0, CPHA = 0)
- *   - Data Order: MSB first
- *   - Clock Frequency: up to 20 MHz (see datasheet, depends on Vdd)
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 2: Compilation & Linkage
+ * -----------------------------------------------------------------------------
+ * The following source files must be compiled and linked in the project:
+ * - `aj_spi.c`
+ * - `aj_mcp4821_4822.c`
  *
- * @warning
- * Incorrect SPI configuration may lead to invalid DAC output.
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 3: Configuration Override
+ * -----------------------------------------------------------------------------
+ * The default driver macros are declared in the following headers:
+ * - `aj_target.h`
+ * - `aj_spi_config.h`
+ * - `aj_mcp4821_4822_config.h`
+ * - `aj_mcp4821_4822_config_platform.h`
+ *
+ * To customize these configurations, override them inside the central project
+ * hardware configuration file:
+ * - `hardware.h`
  *
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
@@ -92,99 +109,8 @@ void AJ_MCP4821_4822_WriteCount(aj_mcp4821_4822_t *dac, aj_mcp4821_4822_ch_t ch,
  * @warning
  * Invalid channel values may lead to undefined behavior.
  */
-void AJ_MCP4821_4822_ShutdownChannel(aj_mcp4821_4822_t *dac, aj_mcp4821_4822_ch_t ch);
+void AJ_MCP4821_4822_Shutdown(aj_mcp4821_4822_t *dac, aj_mcp4821_4822_ch_t ch);
 
-/**
- * @brief   Set output value for channel A
- * This is a convenience wrapper for AJ_MCP4821_4822_WriteCount() that selects channel A automatically.
- *
- * @param[in] dac    Pointer to MCP4821_4822 device handle
- * @param[in] gain   Output gain selection:
- *                   - AJ_MCP4821_4822_FS_2V048
- *                   - AJ_MCP4821_4822_FS_4V096
- * @param[in] value  12-bit DAC value (0 to 4095)
- */
-//static inline void AJ_MCP4821_4822_WriteCountA(aj_mcp4821_4822_t *dac, aj_mcp4821_4822_scale_t fs, uint16_t count){
-//    AJ_MCP4821_4822_WriteCount(dac, AJ_MCP4821_4822_CH_A, fs, count);
-//}
-
-/**
- * @brief   Set output value for channel A with 1x gain
- * This is a convenience wrapper for AJ_MCP4821_4822_WriteCount() that selects channel A and 1x gain automatically.
- *
- * @param[in] dac    Pointer to MCP4821_4822 device handle
- * @param[in] value  12-bit DAC value (0 to 4095)
- */
-//static inline void AJ_MCP4821_4822_WriteCountA_2V048(aj_mcp4821_4822_t *dac, uint16_t count){
-//    AJ_MCP4821_4822_WriteCount(dac, AJ_MCP4821_4822_CH_A, AJ_MCP4821_4822_FS_2V048, count);
-//}
-
-/**
- * @brief   Set output value for channel A with 2x gain
- * This is a convenience wrapper for AJ_MCP4821_4822_WriteCount() that selects channel A and 2x gain automatically.
- *
- * @param[in] dac    Pointer to MCP4821_4822 device handle
- * @param[in] value  12-bit DAC value (0 to 4095)
- */
-//static inline void AJ_MCP4821_4822_WriteCountA_4V096(aj_mcp4821_4822_t *dac, uint16_t count){
-//    AJ_MCP4821_4822_WriteCount(dac, AJ_MCP4821_4822_CH_A, AJ_MCP4821_4822_FS_4V096, count);
-//}
-
-/**
- * @brief   Set output value for channel B
- * This is a convenience wrapper for AJ_MCP4821_4822_WriteCount() that selects channel B automatically.
- *
- * @param[in] dac    Pointer to MCP4821_4822 device handle
- * @param[in] gain   Output gain selection:
- *                   - AJ_MCP4821_4822_FS_2V048
- *                   - AJ_MCP4821_4822_FS_4V096
- * @param[in] value  12-bit DAC value (0 to 4095)
- */
-//static inline void AJ_MCP4821_4822_WriteCountB(aj_mcp4821_4822_t *dac, aj_mcp4821_4822_scale_t fs, uint16_t count){
-//    AJ_MCP4821_4822_WriteCount(dac, AJ_MCP4821_4822_CH_B, fs, count);
-//}
-
-/**
- * @brief   Set output value for channel B with 1x gain
- * This is a convenience wrapper for AJ_MCP4821_4822_WriteCount() that selects channel B and 1x gain automatically.
- *
- * @param[in] dac    Pointer to MCP4821_4822 device handle
- * @param[in] value  12-bit DAC value (0 to 4095)
- */
-//static inline void AJ_MCP4821_4822_WriteCountB_2V048(aj_mcp4821_4822_t *dac, uint16_t count){
-//    AJ_MCP4821_4822_WriteCount(dac, AJ_MCP4821_4822_CH_B, AJ_MCP4821_4822_FS_2V048, count);
-//}
-
-/**
- * @brief   Set output value for channel B with 2x gain
- * This is a convenience wrapper for AJ_MCP4821_4822_WriteCount() that selects channel B and 2x gain automatically.
- *
- * @param[in] dac    Pointer to MCP4821_4822 device handle
- * @param[in] value  12-bit DAC value (0 to 4095)
- */
-//static inline void AJ_MCP4821_4822_WriteCountB_4V096(aj_mcp4821_4822_t *dac, uint16_t count){
-//    AJ_MCP4821_4822_WriteCount(dac, AJ_MCP4821_4822_CH_B, AJ_MCP4821_4822_FS_4V096, count);
-//}
-
-/**
- * @brief   Disable output for channel A
- * This is a convenience wrapper for AJ_MCP4821_4822_ShutdownChannel() that selects channel A automatically.
- *
- * @param[in] dac   Pointer to MCP4821_4822 device handle
- */
-//static inline void AJ_MCP4821_4822_ShutdownChannelA(aj_mcp4821_4822_t *dac){
-//    AJ_MCP4821_4822_ShutdownChannel(dac, AJ_MCP4821_4822_CH_A);
-//}
-
-/**
- * @brief   Disable output for channel B
- * This is a convenience wrapper for MCP4821_4822_ShutdownChannel() that selects channel B automatically.
- *
- * @param[in] dac   Pointer to MCP4821_4822 device handle
- */
-//static inline void AJ_MCP4821_4822_ShutdownChannelB(aj_mcp4821_4822_t *dac){
-//    AJ_MCP4821_4822_ShutdownChannel(dac, AJ_MCP4821_4822_CH_B);
-//}
 
 #endif
 

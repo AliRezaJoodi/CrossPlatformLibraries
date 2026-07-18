@@ -40,7 +40,7 @@ void AJ_MCP4821_4822_WriteCount(aj_mcp4821_4822_t *dac, aj_mcp4821_4822_ch_t ch,
 }
 
 //********************************************************
-void AJ_MCP4821_4822_ShutdownChannel(aj_mcp4821_4822_t *dac, aj_mcp4821_4822_ch_t ch){
+void AJ_MCP4821_4822_Shutdown(aj_mcp4821_4822_t *dac, aj_mcp4821_4822_ch_t ch){
     uint8_t msb =   ((ch & 0x01U) << 7)     |
                     (MCP4821_4822_DISABLE << 4);
 

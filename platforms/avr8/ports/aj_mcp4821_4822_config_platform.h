@@ -1,6 +1,7 @@
 #ifndef AJ_MCP4821_4822_CONFIG_PLATFORM_INCLUDED
 #define AJ_MCP4821_4822_CONFIG_PLATFORM_INCLUDED
 
+
 #include "hardware.h"       /**< Project-level overrides */
 #include "aj_mcp4821_4822_config.h"
 
@@ -23,5 +24,6 @@
         #define AJ_MCP4821_4822_SHDN_MASK         (1U << AJ_MCP4821_4822_SHDN_POS)
     #endif
 #endif
+
 
 #endif
