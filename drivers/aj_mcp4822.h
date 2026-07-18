@@ -28,7 +28,7 @@ extern "C" {
 
 typedef aj_mcp4821_4822_t           aj_mcp4822_t;
 
-static inline void AJ_MCP4822_Init(aj_mcp4821_4822_t *dac){
+static inline void AJ_MCP4822_Init(aj_mcp4822_t *dac){
     AJ_MCP4821_4822_Init(dac);
 }
 

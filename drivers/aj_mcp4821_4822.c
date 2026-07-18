@@ -13,6 +13,11 @@ void AJ_MCP4821_4822_Init(aj_mcp4821_4822_t *dac){
 
     AJ_MCP4821_4822_LDAC_ConfigAsOutput(dac);
     AJ_MCP4821_4822_LDAC_SetIdle(dac);
+
+    #if (AJ_MCP4821_4822_SHDN_USED == 1U)
+        AJ_MCP4821_4822_SHDN_ConfigAsOutput(dac);
+        AJ_MCP4821_4822_SHDN_SetIdle(dac);
+    #endif
 }
 
 //********************************************************
@@ -58,3 +63,14 @@ void AJ_MCP4821_4822_Shutdown(aj_mcp4821_4822_t *dac, aj_mcp4821_4822_ch_t ch){
     AJ_MCP4821_4822_DELAY_US(1);    /**< Minimum Pulse Width = 100ns */
     AJ_MCP4821_4822_LDAC_SetIdle(dac);
 }
+
+#if (AJ_MCP4821_4822_SHDN_USED == 1U)
+void AJ_MCP4821_4822_ForceShutdown(aj_mcp4821_4822_t *mcp){
+    AJ_MCP4821_4822_SHDN_SetActive(mcp);
+}
+
+void AJ_MCP4821_4822_ReleaseShutdown(aj_mcp4821_4822_t *mcp){
+    AJ_MCP4821_4822_SHDN_SetIdle(mcp);
+}
+#endif
+

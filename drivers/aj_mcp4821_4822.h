@@ -111,6 +111,13 @@ void AJ_MCP4821_4822_WriteCount(aj_mcp4821_4822_t *dac, aj_mcp4821_4822_ch_t ch,
  */
 void AJ_MCP4821_4822_Shutdown(aj_mcp4821_4822_t *dac, aj_mcp4821_4822_ch_t ch);
 
+#if (AJ_MCP4821_4822_SHDN_USED == 1U)
+/** Forces hardware shutdown using the SHDN pin. */
+void AJ_MCP4821_4822_ForceShutdown(aj_mcp4821_4822_t *mcp);
+
+/** Releases hardware shutdown using the SHDN pin. */
+void AJ_MCP4821_4822_ReleaseShutdown(aj_mcp4821_4822_t *mcp);
+#endif
 
 #endif
 
