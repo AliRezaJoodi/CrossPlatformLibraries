@@ -1,6 +1,6 @@
-#include "aj_mcp4822_type.h"
-#include "aj_mcp4822_port.h"
-#include "aj_mcp4822.h"
+#include "aj_mcp4821_4822_type.h"
+#include "aj_mcp4821_4822_port.h"
+#include "aj_mcp4821_4822.h"
 
 #define MCP4822_ENABLE      1U
 #define MCP4822_DISABLE     0U

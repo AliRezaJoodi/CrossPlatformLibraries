@@ -5,6 +5,7 @@
 extern "C" {
 #endif
 
+
 #include <stdint.h>
 
 typedef enum {
@@ -26,7 +27,6 @@ typedef enum {
 typedef struct {
     volatile uint8_t *ddr;
     volatile uint8_t *port;
-    //const uint8_t    index;
     const uint8_t    mask;
 } aj_mcp4822_pin_t;
 
@@ -62,6 +62,7 @@ typedef struct {
  *    };
  * @endcode
  */
+
 
 #ifdef __cplusplus
 }

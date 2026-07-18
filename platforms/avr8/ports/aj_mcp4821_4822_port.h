@@ -45,12 +45,13 @@
 extern "C" {
 #endif
 
+
 #include <stdint.h>
 #include "aj_compiler.h"
 #include "aj_bit_reg.h"
 #include "aj_spi.h"
-#include "aj_mcp4822_hw.h"
-#include "aj_mcp4822_type.h"
+#include "aj_mcp4821_4822_config_platform.h"
+#include "aj_mcp4821_4822_type.h"
 
 #define AJ_MCP4822_DELAY_US(us) AJ_DELAY_US(us)
 
@@ -129,6 +130,7 @@ static inline void AJ_MCP4822_LDAC_SetIdle(const aj_mcp4822_t *mcp){
 static inline void AJ_MCP3208_SPI_TxRx(uint8_t data){
     AJ_SPI_TxRx(data);
 }
+
 
 #ifdef __cplusplus
 }

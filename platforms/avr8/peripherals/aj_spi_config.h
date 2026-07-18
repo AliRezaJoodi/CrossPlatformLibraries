@@ -7,6 +7,7 @@
 extern "C" {
 #endif
 
+
 #include "hardware.h"   /**< Project-level overrides */
 
 #ifndef AJ_SPI_CONFIG
@@ -15,6 +16,7 @@ extern "C" {
 
     #warning "AJ_SPI_CONFIG is not defined; default configuration will be used."
 #endif
+
 
 #ifdef __cplusplus
 }

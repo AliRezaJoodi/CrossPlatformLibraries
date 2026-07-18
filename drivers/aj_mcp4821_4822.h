@@ -24,7 +24,7 @@
 #define AJ_MCP4822_INCLUDED
 
 #include <stdint.h>
-#include "aj_mcp4822_type.h"
+#include "aj_mcp4821_4822_type.h"
 
 /**
  * @brief   Initialize MCP4822 control pins
