@@ -1,3 +1,4 @@
+#include "aj_mcp4821_4822_config.h"
 #include "aj_mcp4821_4822_type.h"
 #include "aj_mcp4821_4822_port.h"
 #include "aj_mcp4821_4822.h"

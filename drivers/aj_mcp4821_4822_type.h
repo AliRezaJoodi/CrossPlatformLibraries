@@ -7,6 +7,8 @@ extern "C" {
 
 
 #include <stdint.h>
+#include "aj_mcp4821_4822_config.h"
+#include "aj_mcp4821_4822_type_platform.h"
 
 typedef enum {
     AJ_MCP4822_CH_A = 0U,
@@ -17,18 +19,6 @@ typedef enum {
     AJ_MCP4822_FS_4V096 = 0U,   /**< Full-Scale: 4.096V */
     AJ_MCP4822_FS_2V048 = 1U    /**< Full-Scale: 2.048V */
 } aj_mcp4822_scale_t;
-
-/**
- * @brief   MCP4822 GPIO pin descriptor
- *
- * Describes a GPIO pin used by the MCP4822 driver.
- * Contains registers and bit index for pin control.
- */
-typedef struct {
-    volatile uint8_t *ddr;
-    volatile uint8_t *port;
-    const uint8_t    mask;
-} aj_mcp4822_pin_t;
 
 /**
  * @brief   MCP4822 device handle

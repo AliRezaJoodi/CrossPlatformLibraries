@@ -25,6 +25,7 @@
 
 #include <stdint.h>
 #include "aj_mcp4821_4822_type.h"
+#include "aj_mcp4821_4822_config.h"
 
 /**
  * @brief   Initialize MCP4822 control pins
