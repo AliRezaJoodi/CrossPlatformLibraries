@@ -44,6 +44,12 @@
  * hardware configuration file:
  * - `hardware.h`
  *
+ * -----------------------------------------------------------------------------
+ * EXAMPLE PROJECT
+ * -----------------------------------------------------------------------------
+ * @see    AVR8 training and MCP413x_426x usage example:
+ *         https://github.com/AliRezaJoodi/AVR_Exercises/tree/main/DigitalPotentiometer_MCP413x_426x_SPI
+ *
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
  */

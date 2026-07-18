@@ -33,6 +33,12 @@
  * hardware configuration file:
  * - `hardware.h`
  *
+ * -----------------------------------------------------------------------------
+ * EXAMPLE PROJECT
+ * -----------------------------------------------------------------------------
+ * @see    AVR8 training and MCP4821/4822 usage example:
+ *         https://github.com/AliRezaJoodi/AVR_Exercises/tree/main/DAC_External_MCP4821_4822_SPI
+ *
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
  */

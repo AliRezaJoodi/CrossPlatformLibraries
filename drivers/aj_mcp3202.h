@@ -32,6 +32,12 @@
  * hardware configuration file:
  * - `hardware.h`
  *
+ * -----------------------------------------------------------------------------
+ * EXAMPLE PROJECT
+ * -----------------------------------------------------------------------------
+ * @see    AVR8 training and MCP3202 usage example:
+ *         https://github.com/AliRezaJoodi/AVR_Exercises/tree/main/ADC_External_MCP3202_SPI
+ *
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
  */

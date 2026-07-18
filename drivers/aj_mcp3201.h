@@ -40,6 +40,12 @@
  * @warning
  * Incorrect SPI configuration may lead to invalid DAC output.
  *
+ * -----------------------------------------------------------------------------
+ * EXAMPLE PROJECT
+ * -----------------------------------------------------------------------------
+ * @see    AVR8 training and MCP3201 usage example:
+ *         https://github.com/AliRezaJoodi/AVR_Exercises/tree/main/ADC_External_MCP3201_SPI
+ *
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
  */

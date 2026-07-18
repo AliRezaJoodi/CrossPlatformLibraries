@@ -39,6 +39,12 @@
  * - `aj_mcp3204_config_platform.h` when using the `aj_mcp3204` wrapper
  * - `aj_mcp3208_config_platform.h` when using the `aj_mcp3208` wrapper
  *
+ * -----------------------------------------------------------------------------
+ * EXAMPLE PROJECT
+ * -----------------------------------------------------------------------------
+ * @see    AVR8 training and MCP3204/3208 usage example:
+ *         https://github.com/AliRezaJoodi/AVR_Exercises/tree/main/ADC_External_MCP3204_3208_SPIPI
+ *
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
  */
