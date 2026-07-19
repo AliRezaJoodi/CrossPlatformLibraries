@@ -31,7 +31,7 @@ extern "C" {
 #include "aj_mcp4251_config_platform.h"        /**< refer to main.c*/
 
 typedef aj_mcp413x_426x_t           aj_mcp4251_t;
-typedef aj_mcp413x_426x_ch_t        aj_mcp4251_ch_t;
+//typedef aj_mcp413x_426x_ch_t        aj_mcp4251_ch_t;
 typedef aj_mcp413x_426x_terminal_t  aj_mcp4251_terminal_t;
 
 /* Valid symbolic values for aj_mcp4251_terminal_t. */
