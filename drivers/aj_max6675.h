@@ -49,6 +49,12 @@
  * hardware configuration file:
  * - `hardware.h`
  *
+ * -----------------------------------------------------------------------------
+ * EXAMPLE PROJECT
+ * -----------------------------------------------------------------------------
+ * @see    AVR8 training example:
+ *         https://github.com/AliRezaJoodi/AVR_Exercises/tree/main/Sensor_Thermocouple_TypeK_MAX6675
+ *
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
  */
@@ -59,6 +65,7 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+
 
 #include <stdint.h>
 #include "aj_max6675_config_platform.h"      /**< refer to main.c*/
@@ -77,6 +84,7 @@ void AJ_MAX6675_Init(aj_max6675_t *max);
  * @return  Raw temperature value, or 0 if the thermocouple is not connected.
  */
 uint16_t AJ_MAX6675_ReadRaw(aj_max6675_t *max);
+
 
 #ifdef __cplusplus
 }

@@ -22,7 +22,7 @@ uint16_t AJ_MAX6675_ReadRaw(aj_max6675_t *max){
     AJ_MAX6675_DELAY_US(1U);
 
     msb = AJ_MAX6675_SPI_Rx();
-    lsb  = AJ_MAX6675_SPI_Rx();
+    lsb = AJ_MAX6675_SPI_Rx();
 
     AJ_MAX6675_DELAY_US(1U);
     AJ_MAX6675_CS_SetIdle(max);

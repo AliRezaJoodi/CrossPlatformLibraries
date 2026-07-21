@@ -5,6 +5,7 @@
 extern "C" {
 #endif
 
+
 #include <stdint.h>
 #include "aj_max6675_type_platform.h"
 
@@ -25,6 +26,7 @@ typedef struct {
  *    };
  * @endcode
  */
+
 
 #ifdef __cplusplus
 }
