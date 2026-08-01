@@ -1,7 +1,9 @@
 // GitHub Account: GitHub.com/AliRezaJoodi
 
-#include "ll_usart_extra.h"
+#include <stdint.h>
 #include <stddef.h>
+#include "stm32f1xx_ll_usart.h"
+#include "ll_usart_transmit_string.h"
 
 static const char *tx_data_p = NULL;
 static volatile uint8_t sending = 0;
@@ -19,12 +21,12 @@ void LL_USART_TransmitString_IT(USART_TypeDef *USARTx, const char *str) {
 }
 
 //********************************
-uint8_t LL_USART_IsTransmitBusy(USART_TypeDef *USARTx) {
+uint8_t LL_USART_IsTransmittingStringBusy(USART_TypeDef *USARTx) {
     return sending;
 }
 
 //********************************
-void LL_USART_Transmit_Handler(USART_TypeDef *USARTx) {
+void LL_USART_TransmitString_IT_Handler(USART_TypeDef *USARTx) {
     if (LL_USART_IsEnabledIT_TXE(USARTx) && LL_USART_IsActiveFlag_TXE(USARTx)) {
         if (*tx_data_p != '\0') {
             LL_USART_TransmitData8(USARTx, *tx_data_p++);
