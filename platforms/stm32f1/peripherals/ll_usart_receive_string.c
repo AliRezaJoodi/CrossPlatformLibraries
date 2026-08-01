@@ -10,8 +10,8 @@ void LL_USART_ReceiveString_IT(LL_USART_ReceiveString_TypeDef *handle, USART_Typ
         return;
     }
 
-    handle->p_rx_buf = str;
-    handle->p_rx_pos = str;
+    handle->rx_buf_p = str;
+    handle->rx_pos_p = str;
     handle->rx_remaining = size - 1;   // reserve space for '\0'
     handle->rx_busy = 1;
     handle->rx_done = 0;
@@ -36,13 +36,13 @@ void LL_USART_ReceiveString_IT_Handler(LL_USART_ReceiveString_TypeDef *handle, U
 
         if ((data >= 32) && (data < 127)) {
             if (handle->rx_remaining > 0) {
-                *handle->p_rx_pos = data;
-                handle->p_rx_pos++;
+                *handle->rx_pos_p = data;
+                handle->rx_pos_p++;
                 handle->rx_remaining--;
             }
         }
         else if (data == '\r') {
-            *handle->p_rx_pos = '\0';
+            *handle->rx_pos_p = '\0';
             handle->rx_busy = 0;
             handle->rx_done = 1;
             LL_USART_DisableIT_RXNE(USARTx);

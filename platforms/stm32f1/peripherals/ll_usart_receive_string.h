@@ -12,8 +12,8 @@ extern "C" {
 #include <stm32f1xx.h>
 
 typedef struct{
-    char *p_rx_buf;
-    char *p_rx_pos;
+    char *rx_buf_p;
+    char *rx_pos_p;
     uint16_t rx_remaining;
     volatile uint8_t rx_busy;
     volatile uint8_t rx_done;
