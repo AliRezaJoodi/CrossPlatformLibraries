@@ -5,11 +5,13 @@
 extern "C" {
 #endif
 
+
 #include <stdint.h>
 #include <stm32f1xx.h>
 #include "aj_bit_reg.h"
 #include "aj_usart_type.h"
 
+void LL_USART_ConfigOperatingMode(USART_TypeDef *USARTx, aj_usart_mode_t mode);
 
 
 #ifdef __cplusplus
