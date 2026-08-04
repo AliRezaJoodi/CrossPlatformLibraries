@@ -11,7 +11,7 @@ extern "C" {
 #include "aj_bit_reg.h"
 #include "aj_usart_type.h"
 
-void LL_USART_ConfigOperatingMode(USART_TypeDef *USARTx, aj_usart_mode_t mode);
+void AJ_USART_ConfigOperatingMode(USART_TypeDef *USARTx, aj_usart_mode_t mode);
 
 
 #ifdef __cplusplus
