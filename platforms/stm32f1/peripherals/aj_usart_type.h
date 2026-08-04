@@ -17,6 +17,13 @@ typedef enum{
 	AJ_USART_MODE_HALF_DUPLEX
 } aj_usart_mode_t;
 
+#if defined(USART_CR1_OVER8_Msk)
+typedef enum{
+	AJ_USART_OVERSAMPLING_16 = 0U,
+	AJ_USART_OVERSAMPLING_8  = USART_CR1_OVER8_Msk
+} aj_usart_oversampling_t;
+#endif
+
 
 #ifdef __cplusplus
 }

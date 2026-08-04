@@ -13,6 +13,11 @@ extern "C" {
 
 void AJ_USART_ConfigOperatingMode(USART_TypeDef *USARTx, aj_usart_mode_t mode);
 
+#if defined(USART_CR1_OVER8_Msk)
+void AJ_USART_ConfigOverSampling(USART_TypeDef *USARTx, aj_usart_oversampling_t oversampling);
+aj_usart_oversampling_t AJ_USART_ReadOverSampling(const USART_TypeDef *USARTx);
+#endif
+
 
 #ifdef __cplusplus
 }

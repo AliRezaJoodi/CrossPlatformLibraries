@@ -33,3 +33,29 @@ void AJ_USART_ConfigOperatingMode(USART_TypeDef *USARTx, aj_usart_mode_t mode){
       break;
   }
 }
+
+//*******************************************************************************
+#if defined(USART_CR1_OVER8_Msk)
+void AJ_USART_ConfigOverSampling(USART_TypeDef *USARTx, aj_usart_oversampling_t oversampling){
+  if (oversampling == AJ_USART_OVERSAMPLING_16){
+    AJ_BitReg_ClearBit_Mask(&(USARTx->CR1), USART_CR1_OVER8_Msk);
+  }
+  else{
+    AJ_BitReg_SetBit_Mask(&(USARTx->CR1), USART_CR1_OVER8_Msk);
+  }
+}
+
+aj_usart_oversampling_t AJ_USART_ReadOverSampling(const USART_TypeDef *USARTx){
+  if (AJ_BitReg_IsBitSet_Mask(&(USARTx->CR1), USART_CR1_OVER8_Msk) == 0U){
+    return AJ_USART_OVERSAMPLING_16;
+  }
+
+  return AJ_USART_OVERSAMPLING_8;
+}
+#endif
+
+void AJ_USART_CalculateDivider_8x(USART_TypeDef *USARTx){
+}
+
+void AJ_USART_CalculateDivider_16x(USART_TypeDef *USARTx){
+}
