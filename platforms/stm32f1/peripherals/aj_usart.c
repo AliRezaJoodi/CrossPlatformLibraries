@@ -54,8 +54,39 @@ aj_usart_oversampling_t AJ_USART_ReadOverSampling(const USART_TypeDef *USARTx){
 }
 #endif
 
-void AJ_USART_CalculateDivider_8x(USART_TypeDef *USARTx){
-}
+//*******************************************************************************
+#if defined(USART_CR1_OVER8_Msk)
+static uint16_t AJ_USART_CalculateDivider_8x(uint32_t periphclk, uint32_t baudrate){
+  uint32_t div_x100;
+  uint32_t mantissa;
+  uint32_t fraction;
 
-void AJ_USART_CalculateDivider_16x(USART_TypeDef *USARTx){
+  div_x100 = (periphclk * 25U) / (2U * baudrate);
+  mantissa = div_x100 / 100U;
+  fraction = (((div_x100 - (mantissa * 100U)) * 8U) + 50U) / 100U;
+
+  if (fraction >= 8U){
+    fraction = 0U;
+    mantissa += 1U;
+  }
+
+  return (uint16_t)((mantissa << 4U) | fraction);
+}
+#endif
+
+static uint16_t AJ_USART_CalculateDivider_16x(uint32_t periphclk, uint32_t baudrate){
+  uint32_t div_x100;
+  uint32_t mantissa;
+  uint32_t fraction;
+
+  div_x100 = (periphclk * 25U) / (4U * baudrate);
+  mantissa = div_x100 / 100U;
+  fraction = (((div_x100 - (mantissa * 100U)) * 16U) + 50U) / 100U;
+
+  if (fraction >= 16U){
+    fraction = 0U;
+    mantissa += 1U;
+  }
+
+  return (uint16_t)((mantissa << 4U) | fraction);
 }
