@@ -191,14 +191,14 @@ static inline void AJ_BitReg_Write8Bit_Position(volatile AJ_BitReg_t *reg, AJ_Bi
  * - mask must be non-zero
  * - mask should describe one contiguous bit-field
  */
-static inline AJ_BitReg_t AJ_BitReg_GetField_Mask(volatile AJ_BitReg_t *reg, AJ_BitReg_t mask){
+static inline AJ_BitReg_t AJ_BitReg_GetField_Mask(const volatile AJ_BitReg_t *reg, AJ_BitReg_t mask){
     uint8_t shift = AJ_BITREG_CTZ(mask);
 
     return (AJ_BitReg_t)((*reg & mask) >> shift);
 }
 
 /* mask must not be 0 */
-static inline uint8_t AJ_BitReg_IsBitSet_Mask(volatile AJ_BitReg_t *reg, AJ_BitReg_t mask){
+static inline uint8_t AJ_BitReg_IsBitSet_Mask(const volatile AJ_BitReg_t *reg, AJ_BitReg_t mask){
     return (uint8_t)(((*reg) & mask) == mask);
 }
 
@@ -222,43 +222,43 @@ static inline uint8_t AJ_BitReg_IsBitSet_Mask(volatile AJ_BitReg_t *reg, AJ_BitR
  *        - width = 1 to 31
  *        - pos + width <= 32
  */
-static inline AJ_BitReg_t AJ_BitReg_GetField_Position(volatile AJ_BitReg_t *reg, AJ_BitReg_t pos, uint8_t width){
+static inline AJ_BitReg_t AJ_BitReg_GetField_Position(const volatile AJ_BitReg_t *reg, AJ_BitReg_t pos, uint8_t width){
     return (AJ_BitReg_t)((*reg >> pos) & ((1U << width) - 1U));
 }
 
-static inline uint8_t AJ_BitReg_IsBitSet_Position(volatile AJ_BitReg_t *reg, AJ_BitReg_t pos){
+static inline uint8_t AJ_BitReg_IsBitSet_Position(const volatile AJ_BitReg_t *reg, AJ_BitReg_t pos){
     return (uint8_t)((((*reg) >> pos) & 0x01U) != 0U);
 }
 
-static inline uint8_t AJ_BitReg_GetBit_Position(volatile AJ_BitReg_t *reg, AJ_BitReg_t pos){
+static inline uint8_t AJ_BitReg_GetBit_Position(const volatile AJ_BitReg_t *reg, AJ_BitReg_t pos){
     return (uint8_t)((*reg >> pos) & 0x01U);
 }
 
-static inline uint8_t AJ_BitReg_Get2Bit_Position(volatile AJ_BitReg_t *reg, AJ_BitReg_t pos){
+static inline uint8_t AJ_BitReg_Get2Bit_Position(const volatile AJ_BitReg_t *reg, AJ_BitReg_t pos){
     return (uint8_t)((*reg >> pos) & 0x03U);
 }
 
-static inline uint8_t AJ_BitReg_Get3Bit_Position(volatile AJ_BitReg_t *reg, AJ_BitReg_t pos){
+static inline uint8_t AJ_BitReg_Get3Bit_Position(const volatile AJ_BitReg_t *reg, AJ_BitReg_t pos){
     return (uint8_t)((*reg >> pos) & 0x07U);
 }
 
-static inline uint8_t AJ_BitReg_Get4Bit_Position(volatile AJ_BitReg_t *reg, AJ_BitReg_t pos){
+static inline uint8_t AJ_BitReg_Get4Bit_Position(const volatile AJ_BitReg_t *reg, AJ_BitReg_t pos){
     return (uint8_t)((*reg >> pos) & 0x0FU);
 }
 
-static inline uint8_t AJ_BitReg_Get5Bit_Position(volatile AJ_BitReg_t *reg, AJ_BitReg_t pos){
+static inline uint8_t AJ_BitReg_Get5Bit_Position(const volatile AJ_BitReg_t *reg, AJ_BitReg_t pos){
     return (uint8_t)((*reg >> pos) & 0x1FU);
 }
 
-static inline uint8_t AJ_BitReg_Get6Bit_Position(volatile AJ_BitReg_t *reg, AJ_BitReg_t pos){
+static inline uint8_t AJ_BitReg_Get6Bit_Position(const volatile AJ_BitReg_t *reg, AJ_BitReg_t pos){
     return (uint8_t)((*reg >> pos) & 0x3FU);
 }
 
-static inline uint8_t AJ_BitReg_Get7Bit_Position(volatile AJ_BitReg_t *reg, AJ_BitReg_t pos){
+static inline uint8_t AJ_BitReg_Get7Bit_Position(const volatile AJ_BitReg_t *reg, AJ_BitReg_t pos){
     return (uint8_t)((*reg >> pos) & 0x7FU);
 }
 
-static inline uint8_t AJ_BitReg_Get8Bit_Position(volatile AJ_BitReg_t *reg, AJ_BitReg_t pos){
+static inline uint8_t AJ_BitReg_Get8Bit_Position(const volatile AJ_BitReg_t *reg, AJ_BitReg_t pos){
     return (uint8_t)((*reg >> pos) & 0xFFU);
 }
 
