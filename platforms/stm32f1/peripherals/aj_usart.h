@@ -43,6 +43,25 @@ void AJ_USART_ConfigBaudRate_8x(USART_TypeDef *USARTx, uint32_t periphclk, uint3
 void AJ_USART_ConfigBaudRate_16x(USART_TypeDef *USARTx, uint32_t periphclk, uint32_t baudrate);
 
 /******************************************************************************/
+/* Data register (USART_DR)                                                   */
+/******************************************************************************/
+static inline uint8_t AJ_USART_Receive8Bit(const USART_TypeDef *USARTx){
+  return (uint8_t)(USARTx->DR & 0x00FFU);
+}
+
+static inline uint16_t AJ_USART_Receive9Bit(const USART_TypeDef *USARTx){
+  return (uint16_t)(USARTx->DR & 0x01FFU);
+}
+
+static inline void AJ_USART_Transmit8Bit(USART_TypeDef *USARTx, uint8_t value){
+  USARTx->DR = (uint32_t)value;
+}
+
+static inline void AJ_USART_Transmit9Bit(USART_TypeDef *USARTx, uint16_t value){
+  USARTx->DR = (uint32_t)(value & 0x1FFU);
+}
+
+/******************************************************************************/
 /* Status register (USART_SR)                                                 */
 /******************************************************************************/
 static inline uint8_t AJ_USART_IsFlagActive_ParityError(const USART_TypeDef *USARTx){
