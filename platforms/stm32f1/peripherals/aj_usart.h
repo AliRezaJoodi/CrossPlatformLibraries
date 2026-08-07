@@ -184,6 +184,14 @@ static inline aj_usart_wordlength_t AJ_USART_ReadWordLength(const USART_TypeDef 
   return (aj_usart_wordlength_t)AJ_BitReg_GetBit_Position(&(USARTx->CR1), USART_CR1_M_Pos);
 }
 
+static inline void AJ_USART_ConfigWakeupMethod(USART_TypeDef *USARTx, aj_usart_wakeup_t wakeup){
+  AJ_BitReg_WriteBit_Position(&(USARTx->CR1), USART_CR1_WAKE_Pos, wakeup);
+}
+
+static inline aj_usart_wakeup_t AJ_USART_ReadWakeupMethod(const USART_TypeDef *USARTx){
+  return (aj_usart_wakeup_t)AJ_BitReg_GetBit_Position(&(USARTx->CR1), USART_CR1_WAKE_Pos);
+}
+
 
 #ifdef __cplusplus
 }

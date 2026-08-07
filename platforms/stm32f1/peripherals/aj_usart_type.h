@@ -22,6 +22,11 @@ typedef enum{
 	AJ_USART_WORDLENGTH_9B = 1U
 } aj_usart_wordlength_t;
 
+typedef enum{
+	AJ_USART_WAKEUP_IDLELINE = 0U,
+	AJ_USART_WAKEUP_ADDRESSMARK = 1U
+} aj_usart_wakeup_t;
+
 #if defined(USART_CR1_OVER8_Msk)
 typedef enum{
 	AJ_USART_OVERSAMPLING_16 = 0U,
