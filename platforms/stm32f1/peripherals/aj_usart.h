@@ -28,11 +28,6 @@ extern "C" {
 
 void AJ_USART_ConfigOperatingMode(USART_TypeDef *USARTx, aj_usart_mode_t mode);
 
-#if defined(USART_CR1_OVER8_Msk)
-void AJ_USART_ConfigOverSampling(USART_TypeDef *USARTx, aj_usart_oversampling_t oversampling);
-aj_usart_oversampling_t AJ_USART_ReadOverSampling(const USART_TypeDef *USARTx);
-#endif
-
 /******************************************************************************/
 /* Baud rate register (USART_BRR)                                             */
 /******************************************************************************/
@@ -158,6 +153,27 @@ static inline uint8_t AJ_USART_IsFlagActive_CTS(const USART_TypeDef *USARTx){
 
 static inline void AJ_USART_ClearFlag_CTS(USART_TypeDef *USARTx){
   USARTx->SR = ~(USART_SR_CTS_Msk);
+}
+
+/******************************************************************************/
+/* Data register (USART_CR1)                                                  */
+/******************************************************************************/
+#if defined(USART_CR1_OVER8_Msk)
+void AJ_USART_ConfigOverSampling(USART_TypeDef *USARTx, aj_usart_oversampling_t oversampling
+
+aj_usart_oversampling_t AJ_USART_ReadOverSampling(const USART_TypeDef *USARTx);
+#endif
+
+static inline void AJ_USART_EnablePeripheral(USART_TypeDef *USARTx){
+  
+}
+
+static inline void AJ_USART_DisablePeripheral(USART_TypeDef *USARTx){
+  
+}
+
+static inline uint8_t AJ_USART_IsPeripheralEnable(const USART_TypeDef *USARTx){
+  return AJ_BitReg_IsBitSet_Mask(&(USARTx->SR), USART_CR1_UE_Msk);
 }
 
 
