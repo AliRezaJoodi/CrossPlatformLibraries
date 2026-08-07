@@ -193,8 +193,7 @@ static inline aj_usart_wakeup_t AJ_USART_ReadWakeupMethod(const USART_TypeDef *U
 }
 
 static inline void AJ_USART_ConfigParity(USART_TypeDef *USARTx, aj_usart_parity_t parity){
-  AJ_BitReg_ClearBit_Mask(&(USARTx->CR1), (USART_CR1_PCE_Msk | USART_CR1_PS_Msk));
-  AJ_BitReg_SetBit_Mask(&(USARTx->CR1), parity);
+  AJ_BitReg_ModifyBit_Mask(&(USARTx->CR1), (USART_CR1_PCE_Msk | USART_CR1_PS_Msk), parity);
 }
 
 static inline aj_usart_parity_t AJ_USART_ReadParity(const USART_TypeDef *USARTx){
