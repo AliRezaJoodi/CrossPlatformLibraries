@@ -86,6 +86,10 @@ static inline void AJ_BitReg_ToggleBit_Position(volatile AJ_BitReg_t *reg, AJ_Bi
 }
 
 //***********************************************************************
+static inline void AJ_BitReg_ModifyBit_Mask(volatile AJ_BitReg_t *reg, AJ_BitReg_t clearmask, AJ_BitReg_t setmask){
+    *reg = (AJ_BitReg_t)(((*reg) & ~clearmask) | setmask);
+}
+
 /* Precondition:
  * - mask must be non-zero
  * - mask should describe one contiguous bit-field
