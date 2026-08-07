@@ -260,6 +260,14 @@ static inline uint8_t AJ_USART_IsInterruptEnable_IdleLine(const USART_TypeDef *U
   return AJ_BitReg_IsBitSet_Mask(&(USARTx->CR1), USART_CR1_IDLEIE_Msk);
 }
 
+static inline void AJ_USART_ConfigDirection(USART_TypeDef *USARTx, aj_usart_direction_t direction){
+  AJ_BitReg_ModifyBit_Mask(&(USARTx->CR1), (USART_CR1_TE_Msk | USART_CR1_RE_Msk), direction);
+}
+
+static inline aj_usart_direction_t AJ_USART_ReadDirection(const USART_TypeDef *USARTx){
+  return (aj_usart_direction_t)AJ_BitReg_GetBit_Mask(&(USARTx->CR1), (USART_CR1_TE_Msk | USART_CR1_RE_Msk));
+}
+
 
 #ifdef __cplusplus
 }
