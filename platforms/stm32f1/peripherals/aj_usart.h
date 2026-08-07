@@ -177,11 +177,11 @@ static inline uint8_t AJ_USART_IsPeripheralEnable(const USART_TypeDef *USARTx){
 }
 
 static inline void AJ_USART_ConfigWordLength(USART_TypeDef *USARTx, aj_usart_wordlength_t length){
-  AJ_BitReg_WriteBit_Position(&(USARTx->CR1), USART_CR1_M_Pos, length);
+  AJ_BitReg_ModifyBit_Mask(&(USARTx->CR1), USART_CR1_M_Msk, length);
 }
 
 static inline aj_usart_wordlength_t AJ_USART_ReadWordLength(const USART_TypeDef *USARTx){
-  return (aj_usart_wordlength_t)AJ_BitReg_GetBit_Position(&(USARTx->CR1), USART_CR1_M_Pos);
+  return (aj_usart_wordlength_t)AJ_BitReg_GetBit_Mask(&(USARTx->CR1), USART_CR1_M_Msk);
 }
 
 static inline void AJ_USART_ConfigWakeupMethod(USART_TypeDef *USARTx, aj_usart_wakeup_t wakeup){

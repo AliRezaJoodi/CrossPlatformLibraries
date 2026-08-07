@@ -21,7 +21,7 @@ typedef enum{
 
 typedef enum{
 	AJ_USART_WORDLENGTH_8B = 0U,
-	AJ_USART_WORDLENGTH_9B = 1U
+	AJ_USART_WORDLENGTH_9B = USART_CR1_M_Msk
 } aj_usart_wordlength_t;
 
 typedef enum{
