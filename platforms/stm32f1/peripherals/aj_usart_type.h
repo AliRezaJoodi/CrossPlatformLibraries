@@ -26,7 +26,7 @@ typedef enum{
 
 typedef enum{
 	AJ_USART_WAKEUP_IDLELINE = 0U,
-	AJ_USART_WAKEUP_ADDRESSMARK = 1U
+	AJ_USART_WAKEUP_ADDRESSMARK = USART_CR1_WAKE_Msk
 } aj_usart_wakeup_t;
 
 typedef enum{
