@@ -202,6 +202,11 @@ static inline uint8_t AJ_BitReg_IsBitSet_Mask(const volatile AJ_BitReg_t *reg, A
     return (uint8_t)(((*reg) & mask) == mask);
 }
 
+/* mask must not be 0 */
+static inline AJ_BitReg_t AJ_BitReg_GetBit_Mask(const volatile AJ_BitReg_t *reg, AJ_BitReg_t mask){
+    return (AJ_BitReg_t)((*reg) & mask);
+}
+
 /**
  * @param pos    Start bit position of the field.
  * @param width  Number of bits in the field.
