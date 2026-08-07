@@ -8,6 +8,8 @@ extern "C" {
 #endif
 
 
+#include <stm32f1xx.h>
+
 typedef enum{
 	AJ_USART_MODE_ASYNC = 0U,
 	AJ_USART_MODE_SYNC,
@@ -26,6 +28,12 @@ typedef enum{
 	AJ_USART_WAKEUP_IDLELINE = 0U,
 	AJ_USART_WAKEUP_ADDRESSMARK = 1U
 } aj_usart_wakeup_t;
+
+typedef enum{
+	AJ_USART_PARITY_NONE = 0U,
+	AJ_USART_PARITY_EVEN = USART_CR1_PCE_Msk,
+	AJ_USART_PARITY_ODD  = (USART_CR1_PCE_Msk | USART_CR1_PS_Msk)
+} aj_usart_parity_t;
 
 #if defined(USART_CR1_OVER8_Msk)
 typedef enum{
