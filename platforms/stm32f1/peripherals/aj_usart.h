@@ -224,6 +224,18 @@ static inline uint8_t AJ_USART_IsInterruptEnable_TxEmpty(const USART_TypeDef *US
   return AJ_BitReg_IsBitSet_Mask(&(USARTx->CR1), USART_CR1_TXEIE_Msk);
 }
 
+static inline void AJ_USART_EnableInterrupt_TransmissionComplete(USART_TypeDef *USARTx){
+  AJ_BitReg_SetBit_Mask(&(USARTx->CR1), USART_CR1_TCIE_Msk);
+}
+
+static inline void AJ_USART_DisableInterrupt_TransmissionComplete(USART_TypeDef *USARTx){
+  AJ_BitReg_ClearBit_Mask(&(USARTx->CR1), USART_CR1_TCIE_Msk);
+}
+
+static inline uint8_t AJ_USART_IsInterruptEnable_TransmissionComplete(const USART_TypeDef *USARTx){
+  return AJ_BitReg_IsBitSet_Mask(&(USARTx->CR1), USART_CR1_TCIE_Msk);
+}
+
 
 #ifdef __cplusplus
 }
