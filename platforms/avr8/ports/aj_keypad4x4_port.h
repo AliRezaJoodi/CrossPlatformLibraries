@@ -5,6 +5,7 @@
 extern "C" {
 #endif
 
+
 #include <stdint.h>
 #include "aj_compiler.h"
 #include "aj_bit_reg.h"
@@ -222,6 +223,7 @@ static inline void AJ_Keypad4x4_C4_Clear(void){
 static inline void AJ_Keypad4x4_C4_Set(void){
     AJ_BitReg_SetBit_Mask(&AJ_KEYPAD4X4_C4_PORT, AJ_KEYPAD4X4_C4_POS);
 }
+
 
 #ifdef __cplusplus
 }

@@ -20,7 +20,7 @@ extern "C" {
  *
  * @param mcp Pointer to the MCP42xxx instance.
  */
-static inline void AJ_MCP41xxx_42xxx_CS_ConfigAsOutput(const aj_mcp41xxx_42xxx_t *mcp){
+static inline void AJ_MCP41xxx_42xxx_CS_ConfigAsOutput(aj_mcp41xxx_42xxx_t *mcp){
     AJ_BitReg_SetBit_Mask(mcp->cs.ddr, mcp->cs.mask);
 }
 
@@ -28,7 +28,7 @@ static inline void AJ_MCP41xxx_42xxx_CS_ConfigAsOutput(const aj_mcp41xxx_42xxx_t
  * @brief Select the MCP42xxx device by driving CS low.
  * @param mcp Pointer to the MCP42xxx instance.
  */
-static inline void AJ_MCP41xxx_42xxx_CS_SetActive(const aj_mcp41xxx_42xxx_t *mcp){
+static inline void AJ_MCP41xxx_42xxx_CS_SetActive(aj_mcp41xxx_42xxx_t *mcp){
     AJ_BitReg_ClearBit_Mask(mcp->cs.port, mcp->cs.mask);
 }
 
@@ -36,7 +36,7 @@ static inline void AJ_MCP41xxx_42xxx_CS_SetActive(const aj_mcp41xxx_42xxx_t *mcp
  * @brief Deselect the MCP42xxx device by driving CS high.
  * @param mcp Pointer to the MCP42xxx instance.
  */
-static inline void AJ_MCP41xxx_42xxx_CS_SetIdle(const aj_mcp41xxx_42xxx_t *mcp){
+static inline void AJ_MCP41xxx_42xxx_CS_SetIdle(aj_mcp41xxx_42xxx_t *mcp){
     AJ_BitReg_SetBit_Mask(mcp->cs.port, mcp->cs.mask);
 }
 
@@ -46,7 +46,7 @@ static inline void AJ_MCP41xxx_42xxx_CS_SetIdle(const aj_mcp41xxx_42xxx_t *mcp){
  *
  * @param mcp Pointer to the MCP42xxx instance.
  */
-static inline void AJ_MCP41xxx_42xxx_SHDN_ConfigAsOutput(const aj_mcp41xxx_42xxx_t *mcp){
+static inline void AJ_MCP41xxx_42xxx_SHDN_ConfigAsOutput(aj_mcp41xxx_42xxx_t *mcp){
     AJ_BitReg_SetBit_Mask(mcp->shdn.ddr, mcp->shdn.mask);
 }
 
@@ -54,7 +54,7 @@ static inline void AJ_MCP41xxx_42xxx_SHDN_ConfigAsOutput(const aj_mcp41xxx_42xxx
  * @brief
  * @param mcp Pointer to the MCP42xxx instance.
  */
-static inline void AJ_MCP41xxx_42xxx_SHDN_SetActive(const aj_mcp41xxx_42xxx_t *mcp){
+static inline void AJ_MCP41xxx_42xxx_SHDN_SetActive(aj_mcp41xxx_42xxx_t *mcp){
     AJ_BitReg_ClearBit_Mask(mcp->shdn.port, mcp->shdn.mask);
 }
 
@@ -62,7 +62,7 @@ static inline void AJ_MCP41xxx_42xxx_SHDN_SetActive(const aj_mcp41xxx_42xxx_t *m
  * @brief
  * @param mcp Pointer to the MCP42xxx instance.
  */
-static inline void AJ_MCP41xxx_42xxx_SHDN_SetIdle(const aj_mcp41xxx_42xxx_t *mcp){
+static inline void AJ_MCP41xxx_42xxx_SHDN_SetIdle(aj_mcp41xxx_42xxx_t *mcp){
     AJ_BitReg_SetBit_Mask(mcp->shdn.port, mcp->shdn.mask);
 }
 #endif
@@ -73,7 +73,7 @@ static inline void AJ_MCP41xxx_42xxx_SHDN_SetIdle(const aj_mcp41xxx_42xxx_t *mcp
  *
  * @param mcp Pointer to the MCP42xxx instance.
  */
-static inline void AJ_MCP41xxx_42xxx_RS_ConfigAsOutput(const aj_mcp41xxx_42xxx_t *mcp){
+static inline void AJ_MCP41xxx_42xxx_RS_ConfigAsOutput(aj_mcp41xxx_42xxx_t *mcp){
     AJ_BitReg_SetBit_Mask(mcp->rs.ddr, mcp->rs.mask);
 }
 
@@ -81,7 +81,7 @@ static inline void AJ_MCP41xxx_42xxx_RS_ConfigAsOutput(const aj_mcp41xxx_42xxx_t
  * @brief
  * @param mcp Pointer to the MCP42xxx instance.
  */
-static inline void AJ_MCP41xxx_42xxx_RS_SetActive(const aj_mcp41xxx_42xxx_t *mcp){
+static inline void AJ_MCP41xxx_42xxx_RS_SetActive(aj_mcp41xxx_42xxx_t *mcp){
     AJ_BitReg_ClearBit_Mask(mcp->rs.port, mcp->rs.mask);
 }
 
@@ -89,7 +89,7 @@ static inline void AJ_MCP41xxx_42xxx_RS_SetActive(const aj_mcp41xxx_42xxx_t *mcp
  * @brief
  * @param mcp Pointer to the MCP42xxx instance.
  */
-static inline void AJ_MCP41xxx_42xxx_RS_SetIdle(const aj_mcp41xxx_42xxx_t *mcp){
+static inline void AJ_MCP41xxx_42xxx_RS_SetIdle(aj_mcp41xxx_42xxx_t *mcp){
     AJ_BitReg_SetBit_Mask(mcp->rs.port, mcp->rs.mask);
 }
 #endif
@@ -102,7 +102,7 @@ static inline void AJ_MCP41xxx_42xxx_RS_SetIdle(const aj_mcp41xxx_42xxx_t *mcp){
  * @note    The SPI peripheral must be configured and enabled
  *          before calling this function.
  */
-static inline void AJ_MCP41xxx_42xxx_SPI_TxRx(const uint8_t data){
+static inline void AJ_MCP41xxx_42xxx_SPI_TxRx(uint8_t data){
     AJ_SPI_TxRx(data);
 }
 

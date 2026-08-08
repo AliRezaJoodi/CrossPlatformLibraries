@@ -20,7 +20,7 @@ extern "C" {
  * @brief Initialize MCP3201 CS pin (output)
  * @param   mcp     Pointer to the MCP3201 instance
  */
-static inline void AJ_MCP3201_CS_ConfigAsOutput(const aj_mcp3201_t *mcp){
+static inline void AJ_MCP3201_CS_ConfigAsOutput(aj_mcp3201_t *mcp){
     AJ_BitReg_SetBit_Mask(mcp->cs.ddr, mcp->cs.mask);
 }
 
@@ -28,7 +28,7 @@ static inline void AJ_MCP3201_CS_ConfigAsOutput(const aj_mcp3201_t *mcp){
  * @brief Select the MCP3201 device by driving CS low.
  * @param mcp Pointer to the MCP3201 instance.
  */
-static inline void AJ_MCP3201_CS_SetActive(const aj_mcp3201_t *mcp){
+static inline void AJ_MCP3201_CS_SetActive(aj_mcp3201_t *mcp){
     AJ_BitReg_ClearBit_Mask(mcp->cs.port, mcp->cs.mask);
 }
 
@@ -36,7 +36,7 @@ static inline void AJ_MCP3201_CS_SetActive(const aj_mcp3201_t *mcp){
  * @brief Deselect the MCP3201 device by driving CS high.
  * @param mcp Pointer to the MCP3201 instance.
  */
-static inline void AJ_MCP3201_CS_SetIdle(const aj_mcp3201_t *mcp){
+static inline void AJ_MCP3201_CS_SetIdle(aj_mcp3201_t *mcp){
     AJ_BitReg_SetBit_Mask(mcp->cs.port, mcp->cs.mask);
 }
 
@@ -48,7 +48,7 @@ static inline void AJ_MCP3201_CS_SetIdle(const aj_mcp3201_t *mcp){
  * @note    The SPI peripheral must be configured and enabled
  *          before calling this function.
  */
-static inline uint8_t AJ_MCP3201_SPI_TxRx(const uint8_t data){
+static inline uint8_t AJ_MCP3201_SPI_TxRx(uint8_t data){
     return AJ_SPI_TxRx(data);     /* Return received data */
 }
 

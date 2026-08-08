@@ -18,7 +18,7 @@ extern "C" {
  * @brief Initialize CS pin (output)
  * @param mcp Pointer to the MAX6675 instance.
  */
-static inline void AJ_MAX6675_CS_ConfigAsOutput(const aj_max6675_t *max){
+static inline void AJ_MAX6675_CS_ConfigAsOutput(aj_max6675_t *max){
     AJ_BitReg_SetBit_Mask(max->cs.ddr, max->cs.mask);
 }
 
@@ -26,7 +26,7 @@ static inline void AJ_MAX6675_CS_ConfigAsOutput(const aj_max6675_t *max){
  * @brief Select the device by driving CS low.
  * @param mcp Pointer to the MAX6675 instance.
  */
-static inline void AJ_MAX6675_CS_SetActive(const aj_max6675_t *max){
+static inline void AJ_MAX6675_CS_SetActive(aj_max6675_t *max){
     AJ_BitReg_ClearBit_Mask(max->cs.port, max->cs.mask);
 }
 
@@ -34,7 +34,7 @@ static inline void AJ_MAX6675_CS_SetActive(const aj_max6675_t *max){
  * @brief Deselect the device by driving CS high.
  * @param mcp Pointer to the MAX6675 instance.
  */
-static inline void AJ_MAX6675_CS_SetIdle(const aj_max6675_t *max){
+static inline void AJ_MAX6675_CS_SetIdle(aj_max6675_t *max){
     AJ_BitReg_SetBit_Mask(max->cs.port, max->cs.mask);
 }
 

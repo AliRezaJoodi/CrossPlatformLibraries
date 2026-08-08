@@ -61,7 +61,7 @@ extern "C" {
  *
  * @param[in] mcp   Pointer to MCP4821_4822 device handle
  */
-static inline void AJ_MCP4821_4822_CS_ConfigAsOutput(const aj_mcp4821_4822_t *mcp){
+static inline void AJ_MCP4821_4822_CS_ConfigAsOutput(aj_mcp4821_4822_t *mcp){
     AJ_BitReg_SetBit_Mask(mcp->cs.ddr, mcp->cs.mask);
 }
 
@@ -71,7 +71,7 @@ static inline void AJ_MCP4821_4822_CS_ConfigAsOutput(const aj_mcp4821_4822_t *mc
  *
  * @param[in] mcp  Pointer to MCP4821_4822 device handle
  */
-static inline void AJ_MCP4821_4822_CS_SetActive(const aj_mcp4821_4822_t *mcp){
+static inline void AJ_MCP4821_4822_CS_SetActive(aj_mcp4821_4822_t *mcp){
     AJ_BitReg_ClearBit_Mask(mcp->cs.port, mcp->cs.mask);
 }
 
@@ -81,7 +81,7 @@ static inline void AJ_MCP4821_4822_CS_SetActive(const aj_mcp4821_4822_t *mcp){
  *
  * @param[in] mcp  Pointer to MCP4821_4822 device handle
  */
-static inline void AJ_MCP4821_4822_CS_SetIdle(const aj_mcp4821_4822_t *mcp){
+static inline void AJ_MCP4821_4822_CS_SetIdle(aj_mcp4821_4822_t *mcp){
     AJ_BitReg_SetBit_Mask(mcp->cs.port, mcp->cs.mask);
 }
 
@@ -91,7 +91,7 @@ static inline void AJ_MCP4821_4822_CS_SetIdle(const aj_mcp4821_4822_t *mcp){
  *
  * @param[in] mcp   Pointer to MCP4821_4822 device handle
  */
-static inline void AJ_MCP4821_4822_LDAC_ConfigAsOutput(const aj_mcp4821_4822_t *mcp){
+static inline void AJ_MCP4821_4822_LDAC_ConfigAsOutput(aj_mcp4821_4822_t *mcp){
     AJ_BitReg_SetBit_Mask(mcp->ldac.ddr, mcp->ldac.mask);
 }
 
@@ -102,7 +102,7 @@ static inline void AJ_MCP4821_4822_LDAC_ConfigAsOutput(const aj_mcp4821_4822_t *
  *
  * @param[in] mcp  Pointer to MCP4821_4822 device handle
  */
-static inline void AJ_MCP4821_4822_LDAC_SetActive(const aj_mcp4821_4822_t *mcp){
+static inline void AJ_MCP4821_4822_LDAC_SetActive(aj_mcp4821_4822_t *mcp){
     AJ_BitReg_ClearBit_Mask(mcp->ldac.port, mcp->ldac.mask);
 }
 
@@ -112,20 +112,20 @@ static inline void AJ_MCP4821_4822_LDAC_SetActive(const aj_mcp4821_4822_t *mcp){
  *
  * @param[in] mcp  Pointer to MCP4821_4822 device handle
  */
-static inline void AJ_MCP4821_4822_LDAC_SetIdle(const aj_mcp4821_4822_t *mcp){
+static inline void AJ_MCP4821_4822_LDAC_SetIdle(aj_mcp4821_4822_t *mcp){
     AJ_BitReg_SetBit_Mask(mcp->ldac.port, mcp->ldac.mask);
 }
 
 #if (AJ_MCP4821_4822_SHDN_USED == 1U)
-static inline void AJ_MCP4821_4822_SHDN_ConfigAsOutput(const aj_mcp4821_4822_t *mcp){
+static inline void AJ_MCP4821_4822_SHDN_ConfigAsOutput(aj_mcp4821_4822_t *mcp){
     AJ_BitReg_SetBit_Mask(mcp->shdn.ddr, mcp->shdn.mask);
 }
 
-static inline void AJ_MCP4821_4822_SHDN_SetActive(const aj_mcp4821_4822_t *mcp){
+static inline void AJ_MCP4821_4822_SHDN_SetActive(aj_mcp4821_4822_t *mcp){
     AJ_BitReg_ClearBit_Mask(mcp->shdn.port, mcp->shdn.mask);
 }
 
-static inline void AJ_MCP4821_4822_SHDN_SetIdle(const aj_mcp4821_4822_t *mcp){
+static inline void AJ_MCP4821_4822_SHDN_SetIdle(aj_mcp4821_4822_t *mcp){
     AJ_BitReg_SetBit_Mask(mcp->shdn.port, mcp->shdn.mask);
 }
 #endif

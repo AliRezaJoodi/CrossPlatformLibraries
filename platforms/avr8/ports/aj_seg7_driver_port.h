@@ -177,7 +177,7 @@ static inline void AJ_Seg7_Digits_ConfigAsOutput(void){
  * @param index  Digit index in the range:
  *               0 to (AJ_SEG7_DIGITS_COUNT - 1).
  */
-static inline void AJ_Seg7_Digit_Clear(const uint8_t index){
+static inline void AJ_Seg7_Digit_Clear(uint8_t index){
     switch(index){
 
     #if AJ_SEG7_DIGITS_COUNT > 0
@@ -239,7 +239,7 @@ static inline void AJ_Seg7_Digit_Clear(const uint8_t index){
  * @param index  Digit index in the range:
  *               0 to (AJ_SEG7_DIGITS_COUNT - 1).
  */
-static inline void AJ_Seg7_Digit_Set(const uint8_t index){
+static inline void AJ_Seg7_Digit_Set(uint8_t index){
     switch(index){
 
     #if AJ_SEG7_DIGITS_COUNT > 0

@@ -15,15 +15,15 @@ extern "C" {
 #define AJ_TM1638_DELAY_US(VALUE)          AJ_DELAY_US(VALUE)
 
 //***************************************
-static inline void AJ_TM1638_STB_ConfigAsOutput(const aj_tm1638_t *tm){
+static inline void AJ_TM1638_STB_ConfigAsOutput(aj_tm1638_t *tm){
     AJ_BitReg_SetBit_Mask(tm->stb.ddr, tm->stb.mask);
 }
 
-static inline void AJ_TM1638_STB_SetActive(const aj_tm1638_t *tm){
+static inline void AJ_TM1638_STB_SetActive(aj_tm1638_t *tm){
     AJ_BitReg_ClearBit_Mask(tm->stb.port, tm->stb.mask);
 }
 
-static inline void AJ_TM1638_STB_SetIdle(const aj_tm1638_t *tm){
+static inline void AJ_TM1638_STB_SetIdle(aj_tm1638_t *tm){
     AJ_BitReg_SetBit_Mask(tm->stb.port, tm->stb.mask);
 }
 
