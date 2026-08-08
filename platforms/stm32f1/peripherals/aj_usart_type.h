@@ -49,6 +49,28 @@ typedef enum{
 } aj_usart_oversampling_t;
 #endif
 
+typedef enum{
+	AJ_USART_STOPBITS_1     = 0U,
+	AJ_USART_STOPBITS_0_5   = USART_CR2_STOP_0,
+	AJ_USART_STOPBITS_2     = USART_CR2_STOP_1,
+	AJ_USART_STOPBITS_1_5   = (USART_CR2_STOP_0 | USART_CR2_STOP_1)
+} aj_usart_stopbits_t;
+
+typedef enum{
+	AJ_USART_CLOCK_POLARITY_LOW  = 0U,
+	AJ_USART_CLOCK_POLARITY_HIGH = USART_CR2_CPOL_Msk
+} aj_usart_clock_polarity_t;
+
+typedef enum{
+	AJ_USART_CLOCK_PHASE_1EDGE = 0U,
+	AJ_USART_CLOCK_PHASE_2EDGE = USART_CR2_CPHA_Msk
+} aj_usart_clock_phase_t;
+
+typedef enum{
+	AJ_USART_LIN_BREAK_DETECT_10B = 0U,
+	AJ_USART_LIN_BREAK_DETECT_11B = USART_CR2_LBDL_Msk
+} aj_usart_lin_break_detection_t;
+
 
 #ifdef __cplusplus
 }

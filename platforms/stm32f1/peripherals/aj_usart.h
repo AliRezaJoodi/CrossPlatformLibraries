@@ -172,7 +172,7 @@ static inline void AJ_USART_DisablePeripheral(USART_TypeDef *USARTx){
   AJ_BitReg_ClearBit_Mask(&(USARTx->CR1), USART_CR1_UE_Msk);
 }
 
-static inline uint8_t AJ_USART_IsPeripheralEnable(const USART_TypeDef *USARTx){
+static inline uint8_t AJ_USART_IsPeripheralEnabled(const USART_TypeDef *USARTx){
   return AJ_BitReg_IsBitSet_Mask(&(USARTx->CR1), USART_CR1_UE_Msk);
 }
 
@@ -208,7 +208,7 @@ static inline void AJ_USART_DisableInterrupt_ParityError(USART_TypeDef *USARTx){
   AJ_BitReg_ClearBit_Mask(&(USARTx->CR1), USART_CR1_PEIE_Msk);
 }
 
-static inline uint8_t AJ_USART_IsInterruptEnable_ParityError(const USART_TypeDef *USARTx){
+static inline uint8_t AJ_USART_IsInterruptEnabled_ParityError(const USART_TypeDef *USARTx){
   return AJ_BitReg_IsBitSet_Mask(&(USARTx->CR1), USART_CR1_PEIE_Msk);
 }
 
@@ -220,7 +220,7 @@ static inline void AJ_USART_DisableInterrupt_TxEmpty(USART_TypeDef *USARTx){
   AJ_BitReg_ClearBit_Mask(&(USARTx->CR1), USART_CR1_TXEIE_Msk);
 }
 
-static inline uint8_t AJ_USART_IsInterruptEnable_TxEmpty(const USART_TypeDef *USARTx){
+static inline uint8_t AJ_USART_IsInterruptEnabled_TxEmpty(const USART_TypeDef *USARTx){
   return AJ_BitReg_IsBitSet_Mask(&(USARTx->CR1), USART_CR1_TXEIE_Msk);
 }
 
@@ -232,7 +232,7 @@ static inline void AJ_USART_DisableInterrupt_TransmissionComplete(USART_TypeDef 
   AJ_BitReg_ClearBit_Mask(&(USARTx->CR1), USART_CR1_TCIE_Msk);
 }
 
-static inline uint8_t AJ_USART_IsInterruptEnable_TransmissionComplete(const USART_TypeDef *USARTx){
+static inline uint8_t AJ_USART_IsInterruptEnabled_TransmissionComplete(const USART_TypeDef *USARTx){
   return AJ_BitReg_IsBitSet_Mask(&(USARTx->CR1), USART_CR1_TCIE_Msk);
 }
 
@@ -244,7 +244,7 @@ static inline void AJ_USART_DisableInterrupt_RxNotEmpty(USART_TypeDef *USARTx){
   AJ_BitReg_ClearBit_Mask(&(USARTx->CR1), USART_CR1_RXNEIE_Msk);
 }
 
-static inline uint8_t AJ_USART_IsInterruptEnable_RxNotEmpty(const USART_TypeDef *USARTx){
+static inline uint8_t AJ_USART_IsInterruptEnabled_RxNotEmpty(const USART_TypeDef *USARTx){
   return AJ_BitReg_IsBitSet_Mask(&(USARTx->CR1), USART_CR1_RXNEIE_Msk);
 }
 
@@ -256,7 +256,7 @@ static inline void AJ_USART_DisableInterrupt_IdleLine(USART_TypeDef *USARTx){
   AJ_BitReg_ClearBit_Mask(&(USARTx->CR1), USART_CR1_IDLEIE_Msk);
 }
 
-static inline uint8_t AJ_USART_IsInterruptEnable_IdleLine(const USART_TypeDef *USARTx){
+static inline uint8_t AJ_USART_IsInterruptEnabled_IdleLine(const USART_TypeDef *USARTx){
   return AJ_BitReg_IsBitSet_Mask(&(USARTx->CR1), USART_CR1_IDLEIE_Msk);
 }
 
@@ -282,6 +282,98 @@ static inline uint8_t AJ_USART_IsMuteModeActive(const USART_TypeDef *USARTx){
 
 static inline void AJ_USART_RequestBreakSending(USART_TypeDef *USARTx){
   AJ_BitReg_SetBit_Mask(&(USARTx->CR1), USART_CR1_SBK_Msk);
+}
+
+/******************************************************************************/
+/* Control register 2 (USART_CR2)                                             */
+/******************************************************************************/
+
+static inline void AJ_USART_EnableLIN(USART_TypeDef *USARTx){
+  AJ_BitReg_SetBit_Mask(&(USARTx->CR2), USART_CR2_LINEN_Msk);
+}
+
+static inline void AJ_USART_DisableLIN(USART_TypeDef *USARTx){
+  AJ_BitReg_ClearBit_Mask(&(USARTx->CR2), USART_CR2_LINEN_Msk);
+}
+
+static inline uint8_t AJ_USART_IsLINEnabled(const USART_TypeDef *USARTx){
+  return AJ_BitReg_IsBitSet_Mask(&(USARTx->CR2), USART_CR2_LINEN_Msk);
+}
+
+static inline void AJ_USART_ConfigStopBitsLength(USART_TypeDef *USARTx, aj_usart_stopbits_t stopbits){
+  AJ_BitReg_ModifyBit_Mask(&(USARTx->CR2), USART_CR2_STOP_Msk, stopbits);
+}
+
+static inline aj_usart_stopbits_t AJ_USART_ReadStopBitsLength(const USART_TypeDef *USARTx){
+  return (aj_usart_stopbits_t)AJ_BitReg_GetBit_Mask(&(USARTx->CR2), USART_CR2_STOP_Msk);
+}
+
+static inline void AJ_USART_EnableClockOutput(USART_TypeDef *USARTx){
+  AJ_BitReg_SetBit_Mask(&(USARTx->CR2), USART_CR2_CLKEN_Msk);
+}
+
+static inline void AJ_USART_DisableClockOutput(USART_TypeDef *USARTx){
+  AJ_BitReg_ClearBit_Mask(&(USARTx->CR2), USART_CR2_CLKEN_Msk);
+}
+
+static inline uint8_t AJ_USART_IsClockOutputEnabled(const USART_TypeDef *USARTx){
+  return AJ_BitReg_IsBitSet_Mask(&(USARTx->CR2), USART_CR2_CLKEN_Msk);
+}
+
+static inline void AJ_USART_ConfigClockSignal(USART_TypeDef *USARTx, aj_usart_clock_phase_t phase, aj_usart_clock_polarity_t polarity, uint8_t lastbitclkpulse){
+  AJ_BitReg_ModifyBit_Mask(&(USARTx->CR2), (USART_CR2_CPHA_Msk | USART_CR2_CPOL_Msk | USART_CR2_LBCL_Msk), (phase | polarity | lastbitclkpulse));
+}
+
+static inline void AJ_USART_ConfigClockPolarity(USART_TypeDef *USARTx, aj_usart_clock_polarity_t polarity){
+  AJ_BitReg_ModifyBit_Mask(&(USARTx->CR2), USART_CR2_CPOL_Msk, polarity);
+}
+
+static inline aj_usart_clock_polarity_t AJ_USART_ReadClockPolarity(const USART_TypeDef *USARTx){
+  return (aj_usart_clock_polarity_t)AJ_BitReg_GetBit_Mask(&(USARTx->CR2), USART_CR2_CPOL_Msk);
+}
+
+static inline void AJ_USART_ConfigClockPhase(USART_TypeDef *USARTx, aj_usart_clock_phase_t phase){
+  AJ_BitReg_ModifyBit_Mask(&(USARTx->CR2), USART_CR2_CPHA_Msk, phase);
+}
+
+static inline aj_usart_clock_phase_t AJ_USART_ReadClockPhase(const USART_TypeDef *USARTx){
+  return (aj_usart_clock_phase_t)AJ_BitReg_GetBit_Mask(&(USARTx->CR2), USART_CR2_CPHA_Msk);
+}
+
+static inline void AJ_USART_EnableLastBitClockPulse(USART_TypeDef *USARTx){
+  AJ_BitReg_SetBit_Mask(&(USARTx->CR2), USART_CR2_LBCL_Msk);
+}
+
+static inline void AJ_USART_DisableLastBitClockPulse(USART_TypeDef *USARTx){
+  AJ_BitReg_ClearBit_Mask(&(USARTx->CR2), USART_CR2_LBCL_Msk);
+}
+
+static inline void AJ_USART_EnableInterrupt_LINBreakDetection(USART_TypeDef *USARTx){
+  AJ_BitReg_SetBit_Mask(&(USARTx->CR2), USART_CR2_LBDIE_Msk);
+}
+
+static inline void AJ_USART_DisableInterrupt_LINBreakDetection(USART_TypeDef *USARTx){
+  AJ_BitReg_ClearBit_Mask(&(USARTx->CR2), USART_CR2_LBDIE_Msk);
+}
+
+static inline uint8_t AJ_USART_IsInterruptEnabled_LINBreakDetection(const USART_TypeDef *USARTx){
+  return AJ_BitReg_IsBitSet_Mask(&(USARTx->CR2), USART_CR2_LBDIE_Msk);
+}
+
+static inline void AJ_USART_ConfigLINBreakDetectLength(USART_TypeDef *USARTx, aj_usart_lin_break_detection_t length){
+  AJ_BitReg_ModifyBit_Mask(&(USARTx->CR2), USART_CR2_LBDL_Msk, length);
+}
+
+static inline aj_usart_lin_break_detection_t AJ_USART_ReadLINBreakDetectLength(const USART_TypeDef *USARTx){
+  return (aj_usart_lin_break_detection_t)AJ_BitReg_GetBit_Mask(&(USARTx->CR2), USART_CR2_LBDL_Msk);
+}
+
+static inline void AJ_USART_ConfigNodeAddress(USART_TypeDef *USARTx, uint32_t address){
+  AJ_BitReg_ModifyBit_Mask(&(USARTx->CR2), USART_CR2_ADD_Msk, (address & USART_CR2_ADD_Msk));
+}
+
+static inline uint32_t AJ_USART_ReadNodeAddress(const USART_TypeDef *USARTx){
+  return (uint32_t)AJ_BitReg_GetBit_Mask(&(USARTx->CR2), USART_CR2_ADD_Msk);
 }
 
 
