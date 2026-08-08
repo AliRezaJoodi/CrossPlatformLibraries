@@ -159,9 +159,13 @@ static inline void AJ_USART_ClearFlag_ParityError(USART_TypeDef *USARTx){
 /* Data register (USART_CR1)                                                  */
 /******************************************************************************/
 #if defined(USART_CR1_OVER8_Msk)
-void AJ_USART_ConfigOverSampling(USART_TypeDef *USARTx, aj_usart_oversampling_t oversampling
+static inline void AJ_USART_ConfigOverSampling(USART_TypeDef *USARTx, aj_usart_oversampling_t oversampling){
+  AJ_BitReg_ModifyBit_Mask(&(USARTx->CR1), USART_CR1_OVER8_Msk, oversampling);
+}
 
-aj_usart_oversampling_t AJ_USART_ReadOverSampling(const USART_TypeDef *USARTx);
+static inline aj_usart_oversampling_t AJ_USART_ReadOverSampling(const USART_TypeDef *USARTx){
+  return (aj_usart_oversampling_t)AJ_BitReg_GetBit_Mask(&(USARTx->CR1), USART_CR1_OVER8_Msk);
+}
 #endif
 
 static inline void AJ_USART_EnablePeripheral(USART_TypeDef *USARTx){
