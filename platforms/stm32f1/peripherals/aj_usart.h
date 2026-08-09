@@ -317,15 +317,15 @@ static inline aj_usart_stopbits_t AJ_USART_ReadStopBitsLength(const USART_TypeDe
   return (aj_usart_stopbits_t)AJ_BitReg_GetBit_Mask(&(USARTx->CR2), USART_CR2_STOP_Msk);
 }
 
-static inline void AJ_USART_EnableClockOutput(USART_TypeDef *USARTx){
+static inline void AJ_USART_EnableClockPin(USART_TypeDef *USARTx){
   AJ_BitReg_SetBit_Mask(&(USARTx->CR2), USART_CR2_CLKEN_Msk);
 }
 
-static inline void AJ_USART_DisableClockOutput(USART_TypeDef *USARTx){
+static inline void AJ_USART_DisableClockPin(USART_TypeDef *USARTx){
   AJ_BitReg_ClearBit_Mask(&(USARTx->CR2), USART_CR2_CLKEN_Msk);
 }
 
-static inline uint8_t AJ_USART_IsClockOutputEnabled(const USART_TypeDef *USARTx){
+static inline uint8_t AJ_USART_IsClockPinEnabled(const USART_TypeDef *USARTx){
   return AJ_BitReg_IsBitSet_Mask(&(USARTx->CR2), USART_CR2_CLKEN_Msk);
 }
 
