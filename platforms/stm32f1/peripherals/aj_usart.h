@@ -64,8 +64,8 @@ static inline void AJ_USART_Transmit9Bit(USART_TypeDef *USARTx, uint16_t value){
 /******************************************************************************/
 /* Status register (USART_SR)                                                 */
 /******************************************************************************/
-static inline aj_usart_sr_flag_t AJ_USART_GetFlag(const USART_TypeDef *USARTx){
-  return (aj_usart_sr_flag_t)(USARTx->SR & 0x03FFU);
+static inline uint8_t AJ_USART_IsFlagActive(const USART_TypeDef *USARTx, aj_usart_sr_flag_t flag){
+  return AJ_BitReg_IsBitSet_Mask(&(USARTx->SR), flag);
 }
 
 static inline uint8_t AJ_USART_IsFlagActive_CTS(const USART_TypeDef *USARTx){
