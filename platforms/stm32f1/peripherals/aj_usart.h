@@ -64,6 +64,10 @@ static inline void AJ_USART_Transmit9Bit(USART_TypeDef *USARTx, uint16_t value){
 /******************************************************************************/
 /* Status register (USART_SR)                                                 */
 /******************************************************************************/
+static inline aj_usart_sr_flag_t AJ_USART_GetFlag(const USART_TypeDef *USARTx){
+  return (aj_usart_sr_flag_t)(USARTx->SR & 0x03FFU);
+}
+
 static inline uint8_t AJ_USART_IsFlagActive_CTS(const USART_TypeDef *USARTx){
   return AJ_BitReg_IsBitSet_Mask(&(USARTx->SR), USART_SR_CTS_Msk);
 }
@@ -327,10 +331,6 @@ static inline void AJ_USART_DisableClockPin(USART_TypeDef *USARTx){
 
 static inline uint8_t AJ_USART_IsClockPinEnabled(const USART_TypeDef *USARTx){
   return AJ_BitReg_IsBitSet_Mask(&(USARTx->CR2), USART_CR2_CLKEN_Msk);
-}
-
-static inline void AJ_USART_ConfigClockSignal(USART_TypeDef *USARTx, aj_usart_clock_phase_t phase, aj_usart_clock_polarity_t polarity, uint8_t lastbitclkpulse){
-  AJ_BitReg_ModifyBit_Mask(&(USARTx->CR2), (USART_CR2_CPHA_Msk | USART_CR2_CPOL_Msk | USART_CR2_LBCL_Msk), (phase | polarity | lastbitclkpulse));
 }
 
 static inline void AJ_USART_ConfigClockPolarity(USART_TypeDef *USARTx, aj_usart_clock_polarity_t polarity){
