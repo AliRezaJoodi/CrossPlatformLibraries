@@ -21,7 +21,7 @@ typedef enum{
 	AJ_USART_FLAG_NE   = USART_SR_NE_Msk,   /*< Noise error flag */
 	AJ_USART_FLAG_FE   = USART_SR_FE_Msk,   /*< Framing error flag */
 	AJ_USART_FLAG_PE   = USART_SR_PE_Msk    /*< Parity error flag */
-} aj_usart_flag_t;
+} aj_usart_sr_t;
 
 /**
  * @brief Flags cleared by software (by writing them to 0).
@@ -31,7 +31,7 @@ typedef enum{
 	AJ_USART_FLAG_W0_LBD  = USART_SR_LBD_Msk,  /*< LIN break detection flag */
 	AJ_USART_FLAG_W0_TC   = USART_SR_TC_Msk,   /*< Transmission complete flag */
 	AJ_USART_FLAG_W0_RXNE = USART_SR_RXNE_Msk  /*< Read data register not empty flag */
-} aj_usart_flag_w0_t;
+} aj_usart_sr_w0_t;
 
 /**
  * @brief Flags cleared by a software sequence (a read to the USART_SR register
@@ -43,7 +43,7 @@ typedef enum{
 	AJ_USART_FLAG_R_NE   = USART_SR_NE_Msk,   /*< Noise error flag */
 	AJ_USART_FLAG_R_FE   = USART_SR_FE_Msk,   /*< Framing error flag */
 	AJ_USART_FLAG_R_PE   = USART_SR_PE_Msk    /*< Parity error flag */
-} aj_usart_flag_r_t;
+} aj_usart_sr_r_t;
 
 typedef enum{
 	AJ_USART_MODE_ASYNC = 0U,
