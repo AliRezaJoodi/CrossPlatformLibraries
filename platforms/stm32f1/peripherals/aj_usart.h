@@ -64,24 +64,28 @@ static inline void AJ_USART_Transmit9Bit(USART_TypeDef *USARTx, uint16_t value){
 /******************************************************************************/
 /* Status register (USART_SR)                                                 */
 /******************************************************************************/
-static inline uint8_t AJ_USART_IsFlagActive(const USART_TypeDef *USARTx, aj_usart_sr_flag_t flag){
+static inline uint8_t AJ_USART_IsFlagActive(const USART_TypeDef *USARTx, aj_usart_flag_t flag){
   return AJ_BitReg_IsBitSet_Mask(&(USARTx->SR), flag);
+}
+
+static inline void AJ_USART_ClearFlagByWriteZero(USART_TypeDef *USARTx, aj_usart_flag_w0_t flag){
+  AJ_BitReg_ClearBit_Mask(&(USARTx->SR), flag);
+}
+
+static inline void AJ_USART_ClearFlagByRead(USART_TypeDef *USARTx, aj_usart_flag_r_t flag){
+  volatile uint32_t tmpreg;
+  tmpreg = USARTx->SR;
+  (void) tmpreg;
+  tmpreg = USARTx->DR;
+  (void) tmpreg;
 }
 
 static inline uint8_t AJ_USART_IsFlagActive_CTS(const USART_TypeDef *USARTx){
   return AJ_BitReg_IsBitSet_Mask(&(USARTx->SR), USART_SR_CTS_Msk);
 }
 
-static inline void AJ_USART_ClearFlag_CTS(USART_TypeDef *USARTx){
-  USARTx->SR = ~(USART_SR_CTS_Msk);
-}
-
 static inline uint8_t AJ_USART_IsFlagActive_LinBreakDetection(const USART_TypeDef *USARTx){
   return AJ_BitReg_IsBitSet_Mask(&(USARTx->SR), USART_SR_LBD_Msk);
-}
-
-static inline void AJ_USART_ClearFlag_LinBreakDetection(USART_TypeDef *USARTx){
-  USARTx->SR = ~(USART_SR_LBD_Msk);
 }
 
 static inline uint8_t AJ_USART_IsFlagActive_TransmitDataEmpty(const USART_TypeDef *USARTx){
@@ -92,77 +96,30 @@ static inline uint8_t AJ_USART_IsFlagActive_TransmissionComplete(const USART_Typ
   return AJ_BitReg_IsBitSet_Mask(&(USARTx->SR), USART_SR_TC_Msk);
 }
 
-static inline void AJ_USART_ClearFlag_TransmissionComplete(USART_TypeDef *USARTx){
-  USARTx->SR = ~(USART_SR_TC_Msk);
-}
-
 static inline uint8_t AJ_USART_IsFlagActive_ReceiveDataNotEmpty(const USART_TypeDef *USARTx){
   return AJ_BitReg_IsBitSet_Mask(&(USARTx->SR), USART_SR_RXNE_Msk);
-}
-
-static inline void AJ_USART_ClearFlag_ReceiveDataNotEmpty(USART_TypeDef *USARTx){
-  USARTx->SR = ~(USART_SR_RXNE_Msk);
 }
 
 static inline uint8_t AJ_USART_IsFlagActive_IdleLine(const USART_TypeDef *USARTx){
   return AJ_BitReg_IsBitSet_Mask(&(USARTx->SR), USART_SR_IDLE_Msk);
 }
 
-static inline void AJ_USART_ClearFlag_IdleLine(USART_TypeDef *USARTx){
-  volatile uint32_t tmpreg;
-  tmpreg = USARTx->SR;
-  (void) tmpreg;
-  tmpreg = USARTx->DR;
-  (void) tmpreg;
-}
-
 static inline uint8_t AJ_USART_IsFlagActive_OverrunError(const USART_TypeDef *USARTx){
   return AJ_BitReg_IsBitSet_Mask(&(USARTx->SR), USART_SR_ORE_Msk);
-}
-
-static inline void AJ_USART_ClearFlag_OverrunError(USART_TypeDef *USARTx){
-  volatile uint32_t tmpreg;
-  tmpreg = USARTx->SR;
-  (void) tmpreg;
-  tmpreg = USARTx->DR;
-  (void) tmpreg;
 }
 
 static inline uint8_t AJ_USART_IsFlagActive_NoiseError(const USART_TypeDef *USARTx){
   return AJ_BitReg_IsBitSet_Mask(&(USARTx->SR), USART_SR_NE_Msk);
 }
 
-static inline void AJ_USART_ClearFlag_NoiseError(USART_TypeDef *USARTx){
-  volatile uint32_t tmpreg;
-  tmpreg = USARTx->SR;
-  (void) tmpreg;
-  tmpreg = USARTx->DR;
-  (void) tmpreg;
-}
-
 static inline uint8_t AJ_USART_IsFlagActive_FramingError(const USART_TypeDef *USARTx){
   return AJ_BitReg_IsBitSet_Mask(&(USARTx->SR), USART_SR_FE_Msk);
-}
-
-static inline void AJ_USART_ClearFlag_FramingError(USART_TypeDef *USARTx){
-  volatile uint32_t tmpreg;
-  tmpreg = USARTx->SR;
-  (void) tmpreg;
-  tmpreg = USARTx->DR;
-  (void) tmpreg;
 }
 
 static inline uint8_t AJ_USART_IsFlagActive_ParityError(const USART_TypeDef *USARTx){
   return AJ_BitReg_IsBitSet_Mask(&(USARTx->SR), USART_SR_PE_Msk);
 }
 
-static inline void AJ_USART_ClearFlag_ParityError(USART_TypeDef *USARTx){
-  volatile uint32_t tmpreg;
-  tmpreg = USARTx->SR;
-  (void) tmpreg;
-  tmpreg = USARTx->DR;
-  (void) tmpreg;
-}
 
 /******************************************************************************/
 /* Data register (USART_CR1)                                                  */
