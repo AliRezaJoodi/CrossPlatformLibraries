@@ -178,8 +178,20 @@ static inline void AJ_USART_ClearFlag_ParityError(USART_TypeDef *USARTx){
 
 
 /******************************************************************************/
-/* Control register 1 (USART_CR1)                                                  */
+/* Control register 1 (USART_CR1)                                             */
 /******************************************************************************/
+static inline void AJ_USART_CR1_EnableBit(USART_TypeDef *USARTx, aj_usart_cr1_t mask){
+  AJ_BitReg_SetBit_Mask(&(USARTx->CR1), mask);
+}
+
+static inline void AJ_USART_CR1_DisableBit(USART_TypeDef *USARTx, aj_usart_cr1_t mask){
+  AJ_BitReg_ClearBit_Mask(&(USARTx->CR1), mask);
+}
+
+static inline uint8_t AJ_USART_CR1_IsBitEnabled(const USART_TypeDef *USARTx, aj_usart_cr1_t mask){
+  return AJ_BitReg_IsBitSet_Mask(&(USARTx->CR1), mask);
+}
+
 #if defined(USART_CR1_OVER8_Msk)
 static inline void AJ_USART_ConfigOverSampling(USART_TypeDef *USARTx, aj_usart_oversampling_t oversampling){
   AJ_BitReg_ModifyBit_Mask(&(USARTx->CR1), USART_CR1_OVER8_Msk, oversampling);
