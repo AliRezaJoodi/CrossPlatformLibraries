@@ -178,7 +178,7 @@ static inline void AJ_USART_ClearFlag_ParityError(USART_TypeDef *USARTx){
 
 
 /******************************************************************************/
-/* Data register (USART_CR1)                                                  */
+/* Control register 1 (USART_CR1)                                                  */
 /******************************************************************************/
 #if defined(USART_CR1_OVER8_Msk)
 static inline void AJ_USART_ConfigOverSampling(USART_TypeDef *USARTx, aj_usart_oversampling_t oversampling){
@@ -313,6 +313,18 @@ static inline void AJ_USART_RequestBreakSending(USART_TypeDef *USARTx){
 /******************************************************************************/
 /* Control register 2 (USART_CR2)                                             */
 /******************************************************************************/
+
+static inline void AJ_USART_CR2_EnableBit(USART_TypeDef *USARTx, aj_usart_cr2_t mask){
+  AJ_BitReg_SetBit_Mask(&(USARTx->CR2), mask);
+}
+
+static inline void AJ_USART_CR2_DisableBit(USART_TypeDef *USARTx, aj_usart_cr2_t mask){
+  AJ_BitReg_ClearBit_Mask(&(USARTx->CR2), mask);
+}
+
+static inline uint8_t AJ_USART_CR2_IsBitEnabled(const USART_TypeDef *USARTx, aj_usart_cr2_t mask){
+  return AJ_BitReg_IsBitSet_Mask(&(USARTx->CR2), mask);
+}
 
 static inline void AJ_USART_EnableLIN(USART_TypeDef *USARTx){
   AJ_BitReg_SetBit_Mask(&(USARTx->CR2), USART_CR2_LINEN_Msk);

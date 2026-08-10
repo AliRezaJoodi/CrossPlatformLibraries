@@ -107,6 +107,13 @@ typedef enum{
 } aj_usart_lin_break_detection_t;
 
 typedef enum{
+	AJ_USART_CR2_LINEN  = USART_CR2_LINEN_Msk,  /*< LIN mode enable */
+	AJ_USART_CR2_CLKEN  = USART_CR2_CLKEN_Msk,  /*< Clock enable (CK pin) */
+	AJ_USART_CR2_LBCL   = USART_CR2_LBCL_Msk,   /*< Last bit clock pulse */
+	AJ_USART_CR2_LBDIE  = USART_CR2_LBDIE_Msk   /*< LIN break detection interrupt enable */
+} aj_usart_cr2_t;
+
+typedef enum{
 	AJ_USART_CR3_EIE   = USART_CR3_EIE_Msk,   /*< Error interrupt enable */
 	AJ_USART_CR3_IREN  = USART_CR3_IREN_Msk,  /*< IrDA mode enable */
 	AJ_USART_CR3_IRLP  = USART_CR3_IRLP_Msk,  /*< IrDA low power */
