@@ -80,101 +80,101 @@ static inline void AJ_USART_ClearFlagByRead(USART_TypeDef *USARTx, aj_usart_sr_r
   (void) tmpreg;
 }
 
-static inline uint8_t AJ_USART_IsFlagActive_CTS(const USART_TypeDef *USARTx){
-  return AJ_BitReg_IsBitSet_Mask(&(USARTx->SR), USART_SR_CTS_Msk);
-}
-
-static inline void AJ_USART_ClearFlag_CTS(USART_TypeDef *USARTx){
-  AJ_BitReg_ClearBit_Mask(&(USARTx->SR), USART_SR_CTS_Msk);
-}
-
-static inline uint8_t AJ_USART_IsFlagActive_LinBreakDetection(const USART_TypeDef *USARTx){
-  return AJ_BitReg_IsBitSet_Mask(&(USARTx->SR), USART_SR_LBD_Msk);
-}
-
-static inline void AJ_USART_ClearFlag_LinBreakDetection(USART_TypeDef *USARTx){
-  AJ_BitReg_ClearBit_Mask(&(USARTx->SR), USART_SR_LBD_Msk);
-}
-
-static inline uint8_t AJ_USART_IsFlagActive_TransmitDataEmpty(const USART_TypeDef *USARTx){
-  return AJ_BitReg_IsBitSet_Mask(&(USARTx->SR), USART_SR_TXE_Msk);
-}
-
-static inline uint8_t AJ_USART_IsFlagActive_TransmissionComplete(const USART_TypeDef *USARTx){
-  return AJ_BitReg_IsBitSet_Mask(&(USARTx->SR), USART_SR_TC_Msk);
-}
-
-static inline void AJ_USART_ClearFlag_TransmissionComplete(USART_TypeDef *USARTx){
-  AJ_BitReg_ClearBit_Mask(&(USARTx->SR), USART_SR_TC_Msk);
-}
-
-static inline uint8_t AJ_USART_IsFlagActive_ReceiveDataNotEmpty(const USART_TypeDef *USARTx){
-  return AJ_BitReg_IsBitSet_Mask(&(USARTx->SR), USART_SR_RXNE_Msk);
-}
-
-static inline void AJ_USART_ClearFlag_ReceiveDataNotEmpty(USART_TypeDef *USARTx){
-  AJ_BitReg_ClearBit_Mask(&(USARTx->SR), USART_SR_RXNE_Msk);
-}
-
-static inline uint8_t AJ_USART_IsFlagActive_IdleLine(const USART_TypeDef *USARTx){
-  return AJ_BitReg_IsBitSet_Mask(&(USARTx->SR), USART_SR_IDLE_Msk);
-}
-
-static inline void AJ_USART_ClearFlag_IdleLine(USART_TypeDef *USARTx){
-  volatile uint32_t tmpreg;
-  tmpreg = USARTx->SR;
-  (void) tmpreg;
-  tmpreg = USARTx->DR;
-  (void) tmpreg;
-}
-
-static inline uint8_t AJ_USART_IsFlagActive_OverrunError(const USART_TypeDef *USARTx){
-  return AJ_BitReg_IsBitSet_Mask(&(USARTx->SR), USART_SR_ORE_Msk);
-}
-
-static inline void AJ_USART_ClearFlag_OverrunError(USART_TypeDef *USARTx){
-  volatile uint32_t tmpreg;
-  tmpreg = USARTx->SR;
-  (void) tmpreg;
-  tmpreg = USARTx->DR;
-  (void) tmpreg;
-}
-
-static inline uint8_t AJ_USART_IsFlagActive_NoiseError(const USART_TypeDef *USARTx){
-  return AJ_BitReg_IsBitSet_Mask(&(USARTx->SR), USART_SR_NE_Msk);
-}
-
-static inline void AJ_USART_ClearFlag_NoiseError(USART_TypeDef *USARTx){
-  volatile uint32_t tmpreg;
-  tmpreg = USARTx->SR;
-  (void) tmpreg;
-  tmpreg = USARTx->DR;
-  (void) tmpreg;
-}
-
-static inline uint8_t AJ_USART_IsFlagActive_FramingError(const USART_TypeDef *USARTx){
-  return AJ_BitReg_IsBitSet_Mask(&(USARTx->SR), USART_SR_FE_Msk);
-}
-
-static inline void AJ_USART_ClearFlag_FramingError(USART_TypeDef *USARTx){
-  volatile uint32_t tmpreg;
-  tmpreg = USARTx->SR;
-  (void) tmpreg;
-  tmpreg = USARTx->DR;
-  (void) tmpreg;
-}
-
-static inline uint8_t AJ_USART_IsFlagActive_ParityError(const USART_TypeDef *USARTx){
-  return AJ_BitReg_IsBitSet_Mask(&(USARTx->SR), USART_SR_PE_Msk);
-}
-
-static inline void AJ_USART_ClearFlag_ParityError(USART_TypeDef *USARTx){
-  volatile uint32_t tmpreg;
-  tmpreg = USARTx->SR;
-  (void) tmpreg;
-  tmpreg = USARTx->DR;
-  (void) tmpreg;
-}
+//static inline uint8_t AJ_USART_IsFlagActive_CTS(const USART_TypeDef *USARTx){
+//  return AJ_BitReg_IsBitSet_Mask(&(USARTx->SR), USART_SR_CTS_Msk);
+//}
+//
+//static inline void AJ_USART_ClearFlag_CTS(USART_TypeDef *USARTx){
+//  AJ_BitReg_ClearBit_Mask(&(USARTx->SR), USART_SR_CTS_Msk);
+//}
+//
+//static inline uint8_t AJ_USART_IsFlagActive_LinBreakDetection(const USART_TypeDef *USARTx){
+//  return AJ_BitReg_IsBitSet_Mask(&(USARTx->SR), USART_SR_LBD_Msk);
+//}
+//
+//static inline void AJ_USART_ClearFlag_LinBreakDetection(USART_TypeDef *USARTx){
+//  AJ_BitReg_ClearBit_Mask(&(USARTx->SR), USART_SR_LBD_Msk);
+//}
+//
+//static inline uint8_t AJ_USART_IsFlagActive_TransmitDataEmpty(const USART_TypeDef *USARTx){
+//  return AJ_BitReg_IsBitSet_Mask(&(USARTx->SR), USART_SR_TXE_Msk);
+//}
+//
+//static inline uint8_t AJ_USART_IsFlagActive_TransmissionComplete(const USART_TypeDef *USARTx){
+//  return AJ_BitReg_IsBitSet_Mask(&(USARTx->SR), USART_SR_TC_Msk);
+//}
+//
+//static inline void AJ_USART_ClearFlag_TransmissionComplete(USART_TypeDef *USARTx){
+//  AJ_BitReg_ClearBit_Mask(&(USARTx->SR), USART_SR_TC_Msk);
+//}
+//
+//static inline uint8_t AJ_USART_IsFlagActive_ReceiveDataNotEmpty(const USART_TypeDef *USARTx){
+//  return AJ_BitReg_IsBitSet_Mask(&(USARTx->SR), USART_SR_RXNE_Msk);
+//}
+//
+//static inline void AJ_USART_ClearFlag_ReceiveDataNotEmpty(USART_TypeDef *USARTx){
+//  AJ_BitReg_ClearBit_Mask(&(USARTx->SR), USART_SR_RXNE_Msk);
+//}
+//
+//static inline uint8_t AJ_USART_IsFlagActive_IdleLine(const USART_TypeDef *USARTx){
+//  return AJ_BitReg_IsBitSet_Mask(&(USARTx->SR), USART_SR_IDLE_Msk);
+//}
+//
+//static inline void AJ_USART_ClearFlag_IdleLine(USART_TypeDef *USARTx){
+//  volatile uint32_t tmpreg;
+//  tmpreg = USARTx->SR;
+//  (void) tmpreg;
+//  tmpreg = USARTx->DR;
+//  (void) tmpreg;
+//}
+//
+//static inline uint8_t AJ_USART_IsFlagActive_OverrunError(const USART_TypeDef *USARTx){
+//  return AJ_BitReg_IsBitSet_Mask(&(USARTx->SR), USART_SR_ORE_Msk);
+//}
+//
+//static inline void AJ_USART_ClearFlag_OverrunError(USART_TypeDef *USARTx){
+//  volatile uint32_t tmpreg;
+//  tmpreg = USARTx->SR;
+//  (void) tmpreg;
+//  tmpreg = USARTx->DR;
+//  (void) tmpreg;
+//}
+//
+//static inline uint8_t AJ_USART_IsFlagActive_NoiseError(const USART_TypeDef *USARTx){
+//  return AJ_BitReg_IsBitSet_Mask(&(USARTx->SR), USART_SR_NE_Msk);
+//}
+//
+//static inline void AJ_USART_ClearFlag_NoiseError(USART_TypeDef *USARTx){
+//  volatile uint32_t tmpreg;
+//  tmpreg = USARTx->SR;
+//  (void) tmpreg;
+//  tmpreg = USARTx->DR;
+//  (void) tmpreg;
+//}
+//
+//static inline uint8_t AJ_USART_IsFlagActive_FramingError(const USART_TypeDef *USARTx){
+//  return AJ_BitReg_IsBitSet_Mask(&(USARTx->SR), USART_SR_FE_Msk);
+//}
+//
+//static inline void AJ_USART_ClearFlag_FramingError(USART_TypeDef *USARTx){
+//  volatile uint32_t tmpreg;
+//  tmpreg = USARTx->SR;
+//  (void) tmpreg;
+//  tmpreg = USARTx->DR;
+//  (void) tmpreg;
+//}
+//
+//static inline uint8_t AJ_USART_IsFlagActive_ParityError(const USART_TypeDef *USARTx){
+//  return AJ_BitReg_IsBitSet_Mask(&(USARTx->SR), USART_SR_PE_Msk);
+//}
+//
+//static inline void AJ_USART_ClearFlag_ParityError(USART_TypeDef *USARTx){
+//  volatile uint32_t tmpreg;
+//  tmpreg = USARTx->SR;
+//  (void) tmpreg;
+//  tmpreg = USARTx->DR;
+//  (void) tmpreg;
+//}
 
 
 /******************************************************************************/
@@ -202,17 +202,17 @@ static inline aj_usart_oversampling_t AJ_USART_ReadOverSampling(const USART_Type
 }
 #endif
 
-static inline void AJ_USART_EnablePeripheral(USART_TypeDef *USARTx){
-  AJ_BitReg_SetBit_Mask(&(USARTx->CR1), USART_CR1_UE_Msk);
-}
-
-static inline void AJ_USART_DisablePeripheral(USART_TypeDef *USARTx){
-  AJ_BitReg_ClearBit_Mask(&(USARTx->CR1), USART_CR1_UE_Msk);
-}
-
-static inline uint8_t AJ_USART_IsPeripheralEnabled(const USART_TypeDef *USARTx){
-  return AJ_BitReg_IsBitSet_Mask(&(USARTx->CR1), USART_CR1_UE_Msk);
-}
+//static inline void AJ_USART_EnablePeripheral(USART_TypeDef *USARTx){
+//  AJ_BitReg_SetBit_Mask(&(USARTx->CR1), USART_CR1_UE_Msk);
+//}
+//
+//static inline void AJ_USART_DisablePeripheral(USART_TypeDef *USARTx){
+//  AJ_BitReg_ClearBit_Mask(&(USARTx->CR1), USART_CR1_UE_Msk);
+//}
+//
+//static inline uint8_t AJ_USART_IsPeripheralEnabled(const USART_TypeDef *USARTx){
+//  return AJ_BitReg_IsBitSet_Mask(&(USARTx->CR1), USART_CR1_UE_Msk);
+//}
 
 static inline void AJ_USART_ConfigWordLength(USART_TypeDef *USARTx, aj_usart_wordlength_t length){
   AJ_BitReg_ModifyBit_Mask(&(USARTx->CR1), USART_CR1_M_Msk, length);
@@ -238,65 +238,65 @@ static inline aj_usart_parity_t AJ_USART_ReadParity(const USART_TypeDef *USARTx)
   return (aj_usart_parity_t)AJ_BitReg_GetBit_Mask(&(USARTx->CR1), (USART_CR1_PCE_Msk | USART_CR1_PS_Msk));
 }
 
-static inline void AJ_USART_EnableInterrupt_ParityError(USART_TypeDef *USARTx){
-  AJ_BitReg_SetBit_Mask(&(USARTx->CR1), USART_CR1_PEIE_Msk);
-}
-
-static inline void AJ_USART_DisableInterrupt_ParityError(USART_TypeDef *USARTx){
-  AJ_BitReg_ClearBit_Mask(&(USARTx->CR1), USART_CR1_PEIE_Msk);
-}
-
-static inline uint8_t AJ_USART_IsInterruptEnabled_ParityError(const USART_TypeDef *USARTx){
-  return AJ_BitReg_IsBitSet_Mask(&(USARTx->CR1), USART_CR1_PEIE_Msk);
-}
-
-static inline void AJ_USART_EnableInterrupt_TxEmpty(USART_TypeDef *USARTx){
-  AJ_BitReg_SetBit_Mask(&(USARTx->CR1), USART_CR1_TXEIE_Msk);
-}
-
-static inline void AJ_USART_DisableInterrupt_TxEmpty(USART_TypeDef *USARTx){
-  AJ_BitReg_ClearBit_Mask(&(USARTx->CR1), USART_CR1_TXEIE_Msk);
-}
-
-static inline uint8_t AJ_USART_IsInterruptEnabled_TxEmpty(const USART_TypeDef *USARTx){
-  return AJ_BitReg_IsBitSet_Mask(&(USARTx->CR1), USART_CR1_TXEIE_Msk);
-}
-
-static inline void AJ_USART_EnableInterrupt_TransmissionComplete(USART_TypeDef *USARTx){
-  AJ_BitReg_SetBit_Mask(&(USARTx->CR1), USART_CR1_TCIE_Msk);
-}
-
-static inline void AJ_USART_DisableInterrupt_TransmissionComplete(USART_TypeDef *USARTx){
-  AJ_BitReg_ClearBit_Mask(&(USARTx->CR1), USART_CR1_TCIE_Msk);
-}
-
-static inline uint8_t AJ_USART_IsInterruptEnabled_TransmissionComplete(const USART_TypeDef *USARTx){
-  return AJ_BitReg_IsBitSet_Mask(&(USARTx->CR1), USART_CR1_TCIE_Msk);
-}
-
-static inline void AJ_USART_EnableInterrupt_RxNotEmpty(USART_TypeDef *USARTx){
-  AJ_BitReg_SetBit_Mask(&(USARTx->CR1), USART_CR1_RXNEIE_Msk);
-}
-
-static inline void AJ_USART_DisableInterrupt_RxNotEmpty(USART_TypeDef *USARTx){
-  AJ_BitReg_ClearBit_Mask(&(USARTx->CR1), USART_CR1_RXNEIE_Msk);
-}
-
-static inline uint8_t AJ_USART_IsInterruptEnabled_RxNotEmpty(const USART_TypeDef *USARTx){
-  return AJ_BitReg_IsBitSet_Mask(&(USARTx->CR1), USART_CR1_RXNEIE_Msk);
-}
-
-static inline void AJ_USART_EnableInterrupt_IdleLine(USART_TypeDef *USARTx){
-  AJ_BitReg_SetBit_Mask(&(USARTx->CR1), USART_CR1_IDLEIE_Msk);
-}
-
-static inline void AJ_USART_DisableInterrupt_IdleLine(USART_TypeDef *USARTx){
-  AJ_BitReg_ClearBit_Mask(&(USARTx->CR1), USART_CR1_IDLEIE_Msk);
-}
-
-static inline uint8_t AJ_USART_IsInterruptEnabled_IdleLine(const USART_TypeDef *USARTx){
-  return AJ_BitReg_IsBitSet_Mask(&(USARTx->CR1), USART_CR1_IDLEIE_Msk);
-}
+//static inline void AJ_USART_EnableInterrupt_ParityError(USART_TypeDef *USARTx){
+//  AJ_BitReg_SetBit_Mask(&(USARTx->CR1), USART_CR1_PEIE_Msk);
+//}
+//
+//static inline void AJ_USART_DisableInterrupt_ParityError(USART_TypeDef *USARTx){
+//  AJ_BitReg_ClearBit_Mask(&(USARTx->CR1), USART_CR1_PEIE_Msk);
+//}
+//
+//static inline uint8_t AJ_USART_IsInterruptEnabled_ParityError(const USART_TypeDef *USARTx){
+//  return AJ_BitReg_IsBitSet_Mask(&(USARTx->CR1), USART_CR1_PEIE_Msk);
+//}
+//
+//static inline void AJ_USART_EnableInterrupt_TxEmpty(USART_TypeDef *USARTx){
+//  AJ_BitReg_SetBit_Mask(&(USARTx->CR1), USART_CR1_TXEIE_Msk);
+//}
+//
+//static inline void AJ_USART_DisableInterrupt_TxEmpty(USART_TypeDef *USARTx){
+//  AJ_BitReg_ClearBit_Mask(&(USARTx->CR1), USART_CR1_TXEIE_Msk);
+//}
+//
+//static inline uint8_t AJ_USART_IsInterruptEnabled_TxEmpty(const USART_TypeDef *USARTx){
+//  return AJ_BitReg_IsBitSet_Mask(&(USARTx->CR1), USART_CR1_TXEIE_Msk);
+//}
+//
+//static inline void AJ_USART_EnableInterrupt_TransmissionComplete(USART_TypeDef *USARTx){
+//  AJ_BitReg_SetBit_Mask(&(USARTx->CR1), USART_CR1_TCIE_Msk);
+//}
+//
+//static inline void AJ_USART_DisableInterrupt_TransmissionComplete(USART_TypeDef *USARTx){
+//  AJ_BitReg_ClearBit_Mask(&(USARTx->CR1), USART_CR1_TCIE_Msk);
+//}
+//
+//static inline uint8_t AJ_USART_IsInterruptEnabled_TransmissionComplete(const USART_TypeDef *USARTx){
+//  return AJ_BitReg_IsBitSet_Mask(&(USARTx->CR1), USART_CR1_TCIE_Msk);
+//}
+//
+//static inline void AJ_USART_EnableInterrupt_RxNotEmpty(USART_TypeDef *USARTx){
+//  AJ_BitReg_SetBit_Mask(&(USARTx->CR1), USART_CR1_RXNEIE_Msk);
+//}
+//
+//static inline void AJ_USART_DisableInterrupt_RxNotEmpty(USART_TypeDef *USARTx){
+//  AJ_BitReg_ClearBit_Mask(&(USARTx->CR1), USART_CR1_RXNEIE_Msk);
+//}
+//
+//static inline uint8_t AJ_USART_IsInterruptEnabled_RxNotEmpty(const USART_TypeDef *USARTx){
+//  return AJ_BitReg_IsBitSet_Mask(&(USARTx->CR1), USART_CR1_RXNEIE_Msk);
+//}
+//
+//static inline void AJ_USART_EnableInterrupt_IdleLine(USART_TypeDef *USARTx){
+//  AJ_BitReg_SetBit_Mask(&(USARTx->CR1), USART_CR1_IDLEIE_Msk);
+//}
+//
+//static inline void AJ_USART_DisableInterrupt_IdleLine(USART_TypeDef *USARTx){
+//  AJ_BitReg_ClearBit_Mask(&(USARTx->CR1), USART_CR1_IDLEIE_Msk);
+//}
+//
+//static inline uint8_t AJ_USART_IsInterruptEnabled_IdleLine(const USART_TypeDef *USARTx){
+//  return AJ_BitReg_IsBitSet_Mask(&(USARTx->CR1), USART_CR1_IDLEIE_Msk);
+//}
 
 static inline void AJ_USART_ConfigDirection(USART_TypeDef *USARTx, aj_usart_direction_t direction){
   AJ_BitReg_ModifyBit_Mask(&(USARTx->CR1), (USART_CR1_TE_Msk | USART_CR1_RE_Msk), direction);
@@ -338,17 +338,17 @@ static inline uint8_t AJ_USART_CR2_IsBitEnabled(const USART_TypeDef *USARTx, aj_
   return AJ_BitReg_IsBitSet_Mask(&(USARTx->CR2), mask);
 }
 
-static inline void AJ_USART_EnableLIN(USART_TypeDef *USARTx){
-  AJ_BitReg_SetBit_Mask(&(USARTx->CR2), USART_CR2_LINEN_Msk);
-}
-
-static inline void AJ_USART_DisableLIN(USART_TypeDef *USARTx){
-  AJ_BitReg_ClearBit_Mask(&(USARTx->CR2), USART_CR2_LINEN_Msk);
-}
-
-static inline uint8_t AJ_USART_IsLINEnabled(const USART_TypeDef *USARTx){
-  return AJ_BitReg_IsBitSet_Mask(&(USARTx->CR2), USART_CR2_LINEN_Msk);
-}
+//static inline void AJ_USART_EnableLIN(USART_TypeDef *USARTx){
+//  AJ_BitReg_SetBit_Mask(&(USARTx->CR2), USART_CR2_LINEN_Msk);
+//}
+//
+//static inline void AJ_USART_DisableLIN(USART_TypeDef *USARTx){
+//  AJ_BitReg_ClearBit_Mask(&(USARTx->CR2), USART_CR2_LINEN_Msk);
+//}
+//
+//static inline uint8_t AJ_USART_IsLINEnabled(const USART_TypeDef *USARTx){
+//  return AJ_BitReg_IsBitSet_Mask(&(USARTx->CR2), USART_CR2_LINEN_Msk);
+//}
 
 static inline void AJ_USART_ConfigStopBitsLength(USART_TypeDef *USARTx, aj_usart_stopbits_t stopbits){
   AJ_BitReg_ModifyBit_Mask(&(USARTx->CR2), USART_CR2_STOP_Msk, stopbits);
@@ -358,17 +358,17 @@ static inline aj_usart_stopbits_t AJ_USART_ReadStopBitsLength(const USART_TypeDe
   return (aj_usart_stopbits_t)AJ_BitReg_GetBit_Mask(&(USARTx->CR2), USART_CR2_STOP_Msk);
 }
 
-static inline void AJ_USART_EnableClockPin(USART_TypeDef *USARTx){
-  AJ_BitReg_SetBit_Mask(&(USARTx->CR2), USART_CR2_CLKEN_Msk);
-}
-
-static inline void AJ_USART_DisableClockPin(USART_TypeDef *USARTx){
-  AJ_BitReg_ClearBit_Mask(&(USARTx->CR2), USART_CR2_CLKEN_Msk);
-}
-
-static inline uint8_t AJ_USART_IsClockPinEnabled(const USART_TypeDef *USARTx){
-  return AJ_BitReg_IsBitSet_Mask(&(USARTx->CR2), USART_CR2_CLKEN_Msk);
-}
+//static inline void AJ_USART_EnableClockPin(USART_TypeDef *USARTx){
+//  AJ_BitReg_SetBit_Mask(&(USARTx->CR2), USART_CR2_CLKEN_Msk);
+//}
+//
+//static inline void AJ_USART_DisableClockPin(USART_TypeDef *USARTx){
+//  AJ_BitReg_ClearBit_Mask(&(USARTx->CR2), USART_CR2_CLKEN_Msk);
+//}
+//
+//static inline uint8_t AJ_USART_IsClockPinEnabled(const USART_TypeDef *USARTx){
+//  return AJ_BitReg_IsBitSet_Mask(&(USARTx->CR2), USART_CR2_CLKEN_Msk);
+//}
 
 static inline void AJ_USART_ConfigClockPolarity(USART_TypeDef *USARTx, aj_usart_clock_polarity_t polarity){
   AJ_BitReg_ModifyBit_Mask(&(USARTx->CR2), USART_CR2_CPOL_Msk, polarity);
@@ -386,25 +386,25 @@ static inline aj_usart_clock_phase_t AJ_USART_ReadClockPhase(const USART_TypeDef
   return (aj_usart_clock_phase_t)AJ_BitReg_GetBit_Mask(&(USARTx->CR2), USART_CR2_CPHA_Msk);
 }
 
-static inline void AJ_USART_EnableLastBitClockPulse(USART_TypeDef *USARTx){
-  AJ_BitReg_SetBit_Mask(&(USARTx->CR2), USART_CR2_LBCL_Msk);
-}
-
-static inline void AJ_USART_DisableLastBitClockPulse(USART_TypeDef *USARTx){
-  AJ_BitReg_ClearBit_Mask(&(USARTx->CR2), USART_CR2_LBCL_Msk);
-}
-
-static inline void AJ_USART_EnableInterrupt_LINBreakDetection(USART_TypeDef *USARTx){
-  AJ_BitReg_SetBit_Mask(&(USARTx->CR2), USART_CR2_LBDIE_Msk);
-}
-
-static inline void AJ_USART_DisableInterrupt_LINBreakDetection(USART_TypeDef *USARTx){
-  AJ_BitReg_ClearBit_Mask(&(USARTx->CR2), USART_CR2_LBDIE_Msk);
-}
-
-static inline uint8_t AJ_USART_IsInterruptEnabled_LINBreakDetection(const USART_TypeDef *USARTx){
-  return AJ_BitReg_IsBitSet_Mask(&(USARTx->CR2), USART_CR2_LBDIE_Msk);
-}
+//static inline void AJ_USART_EnableLastBitClockPulse(USART_TypeDef *USARTx){
+//  AJ_BitReg_SetBit_Mask(&(USARTx->CR2), USART_CR2_LBCL_Msk);
+//}
+//
+//static inline void AJ_USART_DisableLastBitClockPulse(USART_TypeDef *USARTx){
+//  AJ_BitReg_ClearBit_Mask(&(USARTx->CR2), USART_CR2_LBCL_Msk);
+//}
+//
+//static inline void AJ_USART_EnableInterrupt_LINBreakDetection(USART_TypeDef *USARTx){
+//  AJ_BitReg_SetBit_Mask(&(USARTx->CR2), USART_CR2_LBDIE_Msk);
+//}
+//
+//static inline void AJ_USART_DisableInterrupt_LINBreakDetection(USART_TypeDef *USARTx){
+//  AJ_BitReg_ClearBit_Mask(&(USARTx->CR2), USART_CR2_LBDIE_Msk);
+//}
+//
+//static inline uint8_t AJ_USART_IsInterruptEnabled_LINBreakDetection(const USART_TypeDef *USARTx){
+//  return AJ_BitReg_IsBitSet_Mask(&(USARTx->CR2), USART_CR2_LBDIE_Msk);
+//}
 
 static inline void AJ_USART_ConfigLINBreakDetectLength(USART_TypeDef *USARTx, aj_usart_lin_break_detection_t length){
   AJ_BitReg_ModifyBit_Mask(&(USARTx->CR2), USART_CR2_LBDL_Msk, length);
