@@ -118,7 +118,7 @@ typedef enum{
 	AJ_USART_CR3_RTSE  = USART_CR3_RTSE_Msk,  /*< RTS enable */
 	AJ_USART_CR3_CTSE  = USART_CR3_CTSE_Msk,  /*< CTS enable */
 	AJ_USART_CR3_CTSIE = USART_CR3_CTSIE_Msk  /*< CTS interrupt enable */
-} aj_usart_cr3_enable_t;
+} aj_usart_cr3_t;
 
 
 #ifdef __cplusplus
