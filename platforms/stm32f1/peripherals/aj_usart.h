@@ -398,6 +398,21 @@ static inline uint32_t AJ_USART_ReadNodeAddress(const USART_TypeDef *USARTx){
   return (uint32_t)AJ_BitReg_GetBit_Mask(&(USARTx->CR2), USART_CR2_ADD_Msk);
 }
 
+/******************************************************************************/
+/* Control register 3 (USART_CR3)                                             */
+/******************************************************************************/
+static inline void AJ_USART_CR3_EnableBit(USART_TypeDef *USARTx, aj_usart_cr3_enable_t mask){
+  AJ_BitReg_SetBit_Mask(&(USARTx->CR3), mask);
+}
+
+static inline void AJ_USART_CR3_DisableBit(USART_TypeDef *USARTx, aj_usart_cr3_enable_t mask){
+  AJ_BitReg_ClearBit_Mask(&(USARTx->CR3), mask);
+}
+
+static inline uint8_t AJ_USART_CR3_IsBitEnabled(const USART_TypeDef *USARTx, aj_usart_cr3_enable_t mask){
+  return AJ_BitReg_IsBitSet_Mask(&(USARTx->CR3), mask);
+}
+
 
 #ifdef __cplusplus
 }

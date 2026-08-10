@@ -106,6 +106,20 @@ typedef enum{
 	AJ_USART_LIN_BREAK_DETECT_11B = USART_CR2_LBDL_Msk
 } aj_usart_lin_break_detection_t;
 
+typedef enum{
+	AJ_USART_CR3_EIE   = USART_CR3_EIE_Msk,   /*< Error interrupt enable */
+	AJ_USART_CR3_IREN  = USART_CR3_IREN_Msk,  /*< IrDA mode enable */
+	AJ_USART_CR3_IRLP  = USART_CR3_IRLP_Msk,  /*< IrDA low power */
+	AJ_USART_CR3_HDSEL = USART_CR3_HDSEL_Msk, /*< Half-duplex selection */
+	AJ_USART_CR3_NACK  = USART_CR3_NACK_Msk,  /*< Smartcard NACK enable */
+	AJ_USART_CR3_SCEN  = USART_CR3_SCEN_Msk,  /*< Smartcard mode enable */
+	AJ_USART_CR3_DMAR  = USART_CR3_DMAR_Msk,  /*< DMA enable receiver */
+	AJ_USART_CR3_DMAT  = USART_CR3_DMAT_Msk,  /*< DMA enable transmitter */
+	AJ_USART_CR3_RTSE  = USART_CR3_RTSE_Msk,  /*< RTS enable */
+	AJ_USART_CR3_CTSE  = USART_CR3_CTSE_Msk,  /*< CTS enable */
+	AJ_USART_CR3_CTSIE = USART_CR3_CTSIE_Msk  /*< CTS interrupt enable */
+} aj_usart_cr3_enable_t;
+
 
 #ifdef __cplusplus
 }
