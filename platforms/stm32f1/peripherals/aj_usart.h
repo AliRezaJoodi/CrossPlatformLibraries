@@ -8,6 +8,7 @@
  * - USARTx->CR1
  * - USARTx->CR2
  * - USARTx->CR3
+ * - USARTx->GTPR
  *
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
@@ -434,6 +435,25 @@ static inline void AJ_USART_CR3_DisableBit(USART_TypeDef *USARTx, aj_usart_cr3_s
 
 static inline uint8_t AJ_USART_CR3_IsBitEnabled(const USART_TypeDef *USARTx, aj_usart_cr3_state_t mask){
   return AJ_BitReg_IsBitSet_Mask(&(USARTx->CR3), mask);
+}
+
+/******************************************************************************/
+/* Guard time and prescaler register (USART_GTPR)                             */
+/******************************************************************************/
+static inline void AJ_USART_SetSmartcardGuardTime(USART_TypeDef *USARTx, uint32_t guard_time){
+  AJ_BitReg_ModifyBit_Mask(&(USARTx->GTPR), USART_GTPR_GT_Msk, (guard_time << USART_GTPR_GT_Pos));
+}
+
+static inline uint32_t AJ_USART_GetSmartcardGuardTime(const USART_TypeDef *USARTx){
+  return (uint32_t)(AJ_BitReg_GetBit_Mask(&(USARTx->GTPR), USART_GTPR_GT_Msk) >> USART_GTPR_GT_Pos);
+}
+
+static inline void AJ_USART_SetSmartcardPrescaler(USART_TypeDef *USARTx, uint32_t prescaler){
+  AJ_BitReg_ModifyBit_Mask(&(USARTx->GTPR), USART_GTPR_PSC_Msk, prescaler);
+}
+
+static inline uint32_t AJ_USART_GetSmartcardPrescaler(const USART_TypeDef *USARTx){
+  return (uint32_t)AJ_BitReg_GetBit_Mask(&(USARTx->GTPR), USART_GTPR_PSC_Msk);
 }
 
 
