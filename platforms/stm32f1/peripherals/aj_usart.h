@@ -325,7 +325,6 @@ static inline void AJ_USART_RequestBreakSending(USART_TypeDef *USARTx){
 /******************************************************************************/
 /* Control register 2 (USART_CR2)                                             */
 /******************************************************************************/
-
 static inline void AJ_USART_CR2_EnableBit(USART_TypeDef *USARTx, aj_usart_cr2_t mask){
   AJ_BitReg_SetBit_Mask(&(USARTx->CR2), mask);
 }

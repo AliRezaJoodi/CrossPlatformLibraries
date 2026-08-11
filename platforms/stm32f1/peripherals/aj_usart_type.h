@@ -11,26 +11,26 @@ extern "C" {
 #include <stm32f1xx.h>
 
 typedef enum{
-	AJ_USART_FLAG_CTS  = USART_SR_CTS_Msk,  /*< CTS (Clear to send) flag */
-	AJ_USART_FLAG_LBD  = USART_SR_LBD_Msk,  /*< LIN break detection flag */
-	AJ_USART_FLAG_TXE  = USART_SR_TXE_Msk,  /*< Transmit data register empty flag */
-	AJ_USART_FLAG_TC   = USART_SR_TC_Msk,   /*< Transmission complete flag */
-	AJ_USART_FLAG_RXNE = USART_SR_RXNE_Msk, /*< Read data register not empty flag */
-	AJ_USART_FLAG_IDLE = USART_SR_IDLE_Msk, /*< Idle line detected flag */
-	AJ_USART_FLAG_ORE  = USART_SR_ORE_Msk,  /*< Overrun error flag */
-	AJ_USART_FLAG_NE   = USART_SR_NE_Msk,   /*< Noise error flag */
+	AJ_USART_FLAG_PE   = USART_SR_PE_Msk,   /*< Parity error flag */
 	AJ_USART_FLAG_FE   = USART_SR_FE_Msk,   /*< Framing error flag */
-	AJ_USART_FLAG_PE   = USART_SR_PE_Msk    /*< Parity error flag */
+	AJ_USART_FLAG_NE   = USART_SR_NE_Msk,   /*< Noise error flag */
+	AJ_USART_FLAG_ORE  = USART_SR_ORE_Msk,  /*< Overrun error flag */
+	AJ_USART_FLAG_IDLE = USART_SR_IDLE_Msk, /*< Idle line detected flag */
+	AJ_USART_FLAG_RXNE = USART_SR_RXNE_Msk, /*< Read data register not empty flag */
+	AJ_USART_FLAG_TC   = USART_SR_TC_Msk,   /*< Transmission complete flag */
+	AJ_USART_FLAG_TXE  = USART_SR_TXE_Msk,  /*< Transmit data register empty flag */
+	AJ_USART_FLAG_LBD  = USART_SR_LBD_Msk,  /*< LIN break detection flag */
+	AJ_USART_FLAG_CTS  = USART_SR_CTS_Msk   /*< CTS (Clear to send) flag */
 } aj_usart_sr_t;
 
 /**
  * @brief Flags cleared by software (by writing them to 0).
  */
 typedef enum{
-	AJ_USART_FLAG_W0_CTS  = USART_SR_CTS_Msk,  /*< CTS (Clear to send) flag */
-	AJ_USART_FLAG_W0_LBD  = USART_SR_LBD_Msk,  /*< LIN break detection flag */
+	AJ_USART_FLAG_W0_RXNE = USART_SR_RXNE_Msk, /*< Read data register not empty flag */
 	AJ_USART_FLAG_W0_TC   = USART_SR_TC_Msk,   /*< Transmission complete flag */
-	AJ_USART_FLAG_W0_RXNE = USART_SR_RXNE_Msk  /*< Read data register not empty flag */
+	AJ_USART_FLAG_W0_LBD  = USART_SR_LBD_Msk,  /*< LIN break detection flag */
+	AJ_USART_FLAG_W0_CTS  = USART_SR_CTS_Msk   /*< CTS (Clear to send) flag */
 } aj_usart_sr_w0_t;
 
 /**
@@ -38,11 +38,11 @@ typedef enum{
  *        followed by a read to the USART_DR register).
  */
 typedef enum{
-	AJ_USART_FLAG_R_IDLE = USART_SR_IDLE_Msk, /*< Idle line detected flag */
-	AJ_USART_FLAG_R_ORE  = USART_SR_ORE_Msk,  /*< Overrun error flag */
-	AJ_USART_FLAG_R_NE   = USART_SR_NE_Msk,   /*< Noise error flag */
+	AJ_USART_FLAG_R_PE   = USART_SR_PE_Msk,   /*< Parity error flag */
 	AJ_USART_FLAG_R_FE   = USART_SR_FE_Msk,   /*< Framing error flag */
-	AJ_USART_FLAG_R_PE   = USART_SR_PE_Msk    /*< Parity error flag */
+	AJ_USART_FLAG_R_NE   = USART_SR_NE_Msk,   /*< Noise error flag */
+	AJ_USART_FLAG_R_ORE  = USART_SR_ORE_Msk,  /*< Overrun error flag */
+	AJ_USART_FLAG_R_IDLE = USART_SR_IDLE_Msk  /*< Idle line detected flag */
 } aj_usart_sr_r_t;
 
 typedef enum{
@@ -107,22 +107,22 @@ typedef enum{
 } aj_usart_lin_break_detection_t;
 
 typedef enum{
-	AJ_USART_CR1_UE     = USART_CR1_UE_Msk,     /*< USART enable */
-	AJ_USART_CR1_PCE    = USART_CR1_PCE_Msk,    /*< Parity control enable */
-	AJ_USART_CR1_PEIE   = USART_CR1_PEIE_Msk,   /*< PE interrupt enable */
-	AJ_USART_CR1_TXEIE  = USART_CR1_TXEIE_Msk,  /*< TXE interrupt enable */
-	AJ_USART_CR1_TCIE   = USART_CR1_TCIE_Msk,   /*< TC interrupt enable */
-	AJ_USART_CR1_RXNEIE = USART_CR1_RXNEIE_Msk, /*< RXNE interrupt enable */
-	AJ_USART_CR1_IDLEIE = USART_CR1_IDLEIE_Msk, /*< IDLE interrupt enable */
+	AJ_USART_CR1_RE     = USART_CR1_RE_Msk,     /*< Receiver enable */
 	AJ_USART_CR1_TE     = USART_CR1_TE_Msk,     /*< Transmitter enable */
-	AJ_USART_CR1_RE     = USART_CR1_RE_Msk      /*< Receiver enable */
+	AJ_USART_CR1_IDLEIE = USART_CR1_IDLEIE_Msk, /*< IDLE interrupt enable */
+	AJ_USART_CR1_RXNEIE = USART_CR1_RXNEIE_Msk, /*< RXNE interrupt enable */
+	AJ_USART_CR1_TCIE   = USART_CR1_TCIE_Msk,   /*< TC interrupt enable */
+	AJ_USART_CR1_TXEIE  = USART_CR1_TXEIE_Msk,  /*< TXE interrupt enable */
+	AJ_USART_CR1_PEIE   = USART_CR1_PEIE_Msk,   /*< PE interrupt enable */
+	AJ_USART_CR1_PCE    = USART_CR1_PCE_Msk,    /*< Parity control enable */
+	AJ_USART_CR1_UE     = USART_CR1_UE_Msk      /*< USART enable */
 } aj_usart_cr1_t;
 
 typedef enum{
-	AJ_USART_CR2_LINEN  = USART_CR2_LINEN_Msk,  /*< LIN mode enable */
-	AJ_USART_CR2_CLKEN  = USART_CR2_CLKEN_Msk,  /*< Clock enable (CK pin) */
+	AJ_USART_CR2_LBDIE  = USART_CR2_LBDIE_Msk,  /*< LIN break detection interrupt enable */
 	AJ_USART_CR2_LBCL   = USART_CR2_LBCL_Msk,   /*< Last bit clock pulse */
-	AJ_USART_CR2_LBDIE  = USART_CR2_LBDIE_Msk   /*< LIN break detection interrupt enable */
+	AJ_USART_CR2_CLKEN  = USART_CR2_CLKEN_Msk,  /*< Clock enable (CK pin) */
+	AJ_USART_CR2_LINEN  = USART_CR2_LINEN_Msk   /*< LIN mode enable */
 } aj_usart_cr2_t;
 
 typedef enum{
