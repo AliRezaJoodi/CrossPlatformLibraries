@@ -64,15 +64,15 @@ static inline void AJ_USART_Transmit9Bit(USART_TypeDef *USARTx, uint16_t value){
 /******************************************************************************/
 /* Status register (USART_SR)                                                 */
 /******************************************************************************/
-static inline uint8_t AJ_USART_IsFlagActive(const USART_TypeDef *USARTx, aj_usart_sr_t flag){
-  return AJ_BitReg_IsBitSet_Mask(&(USARTx->SR), flag);
+static inline uint8_t AJ_USART_SR_IsFlagActive(const USART_TypeDef *USARTx, aj_usart_sr_t sr_flag){
+  return AJ_BitReg_IsBitSet_Mask(&(USARTx->SR), sr_flag);
 }
 
-static inline void AJ_USART_ClearFlagByWriteZero(USART_TypeDef *USARTx, aj_usart_sr_w0_t flag){
-  AJ_BitReg_ClearBit_Mask(&(USARTx->SR), flag);
+static inline void AJ_USART_SR_ClearFlagByWriteZero(USART_TypeDef *USARTx, aj_usart_sr_w0_t sr_flag){
+  AJ_BitReg_ClearBit_Mask(&(USARTx->SR), sr_flag);
 }
 
-static inline void AJ_USART_ClearFlagByRead(USART_TypeDef *USARTx, aj_usart_sr_r_t flag){
+static inline void AJ_USART_SR_ClearFlagByRead(USART_TypeDef *USARTx, aj_usart_sr_r_t sr_flag){
   volatile uint32_t tmpreg;
   tmpreg = USARTx->SR;
   (void) tmpreg;
