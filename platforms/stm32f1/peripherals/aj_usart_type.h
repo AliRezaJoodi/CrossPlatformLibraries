@@ -10,6 +10,18 @@ extern "C" {
 
 #include <stm32f1xx.h>
 
+//typedef enum{
+//	AJ_USART_MODE_ASYNC = 0U,
+//	AJ_USART_MODE_SYNC,
+//	AJ_USART_MODE_LIN,
+//	AJ_USART_MODE_SMARTCARD,
+//	AJ_USART_MODE_IRDA,
+//	AJ_USART_MODE_HALF_DUPLEX
+//} aj_usart_mode_t;
+
+/******************************************************************************/
+/* Status register (USART_SR)                                                 */
+/******************************************************************************/
 typedef enum{
 	AJ_USART_SR_PE   = USART_SR_PE_Msk,   /*< Parity error flag */
 	AJ_USART_SR_FE   = USART_SR_FE_Msk,   /*< Framing error flag */
@@ -45,14 +57,21 @@ typedef enum{
 	AJ_USART_SR_R_IDLE = USART_SR_IDLE_Msk  /*< Idle line detected flag */
 } aj_usart_sr_r_t;
 
+/******************************************************************************/
+/* Control register 1 (USART_CR1)                                             */
+/******************************************************************************/
 typedef enum{
-	AJ_USART_MODE_ASYNC = 0U,
-	AJ_USART_MODE_SYNC,
-	AJ_USART_MODE_LIN,
-	AJ_USART_MODE_SMARTCARD,
-	AJ_USART_MODE_IRDA,
-	AJ_USART_MODE_HALF_DUPLEX
-} aj_usart_mode_t;
+	AJ_USART_CR1_RWU    = USART_CR1_RWU_Msk, 		/*< Receiver wakeup; Requests entry to or exit from mute mode by software; cleared by hardware upon wakeup */
+	AJ_USART_CR1_RE     = USART_CR1_RE_Msk,     /*< Receiver enable */
+	AJ_USART_CR1_TE     = USART_CR1_TE_Msk,     /*< Transmitter enable */
+	AJ_USART_CR1_IDLEIE = USART_CR1_IDLEIE_Msk, /*< IDLE interrupt enable */
+	AJ_USART_CR1_RXNEIE = USART_CR1_RXNEIE_Msk, /*< RXNE interrupt enable */
+	AJ_USART_CR1_TCIE   = USART_CR1_TCIE_Msk,   /*< TC interrupt enable */
+	AJ_USART_CR1_TXEIE  = USART_CR1_TXEIE_Msk,  /*< TXE interrupt enable */
+	AJ_USART_CR1_PEIE   = USART_CR1_PEIE_Msk,   /*< PE interrupt enable */
+	AJ_USART_CR1_PCE    = USART_CR1_PCE_Msk,    /*< Parity control enable */
+	AJ_USART_CR1_UE     = USART_CR1_UE_Msk      /*< USART enable */
+} aj_usart_cr1_t;
 
 typedef enum{
 	AJ_USART_WORDLENGTH_8B = 0U,
@@ -84,6 +103,16 @@ typedef enum{
 } aj_usart_oversampling_t;
 #endif
 
+/******************************************************************************/
+/* Control register 2 (USART_CR2)                                             */
+/******************************************************************************/
+typedef enum{
+	AJ_USART_CR2_LBDIE  = USART_CR2_LBDIE_Msk,  /*< LIN break detection interrupt enable */
+	AJ_USART_CR2_LBCL   = USART_CR2_LBCL_Msk,   /*< Last bit clock pulse */
+	AJ_USART_CR2_CLKEN  = USART_CR2_CLKEN_Msk,  /*< Clock enable (CK pin) */
+	AJ_USART_CR2_LINEN  = USART_CR2_LINEN_Msk   /*< LIN mode enable */
+} aj_usart_cr2_t;
+
 typedef enum{
 	AJ_USART_STOPBITS_1     = 0U,
 	AJ_USART_STOPBITS_0_5   = USART_CR2_STOP_0,
@@ -106,25 +135,9 @@ typedef enum{
 	AJ_USART_LIN_BREAK_DETECT_11B = USART_CR2_LBDL_Msk
 } aj_usart_lin_break_detection_t;
 
-typedef enum{
-	AJ_USART_CR1_RE     = USART_CR1_RE_Msk,     /*< Receiver enable */
-	AJ_USART_CR1_TE     = USART_CR1_TE_Msk,     /*< Transmitter enable */
-	AJ_USART_CR1_IDLEIE = USART_CR1_IDLEIE_Msk, /*< IDLE interrupt enable */
-	AJ_USART_CR1_RXNEIE = USART_CR1_RXNEIE_Msk, /*< RXNE interrupt enable */
-	AJ_USART_CR1_TCIE   = USART_CR1_TCIE_Msk,   /*< TC interrupt enable */
-	AJ_USART_CR1_TXEIE  = USART_CR1_TXEIE_Msk,  /*< TXE interrupt enable */
-	AJ_USART_CR1_PEIE   = USART_CR1_PEIE_Msk,   /*< PE interrupt enable */
-	AJ_USART_CR1_PCE    = USART_CR1_PCE_Msk,    /*< Parity control enable */
-	AJ_USART_CR1_UE     = USART_CR1_UE_Msk      /*< USART enable */
-} aj_usart_cr1_t;
-
-typedef enum{
-	AJ_USART_CR2_LBDIE  = USART_CR2_LBDIE_Msk,  /*< LIN break detection interrupt enable */
-	AJ_USART_CR2_LBCL   = USART_CR2_LBCL_Msk,   /*< Last bit clock pulse */
-	AJ_USART_CR2_CLKEN  = USART_CR2_CLKEN_Msk,  /*< Clock enable (CK pin) */
-	AJ_USART_CR2_LINEN  = USART_CR2_LINEN_Msk   /*< LIN mode enable */
-} aj_usart_cr2_t;
-
+/******************************************************************************/
+/* Control register 3 (USART_CR3)                                             */
+/******************************************************************************/
 typedef enum{
 	AJ_USART_CR3_EIE   = USART_CR3_EIE_Msk,   /*< Error interrupt enable */
 	AJ_USART_CR3_IREN  = USART_CR3_IREN_Msk,  /*< IrDA mode enable */
