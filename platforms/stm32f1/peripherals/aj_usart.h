@@ -299,13 +299,13 @@ static inline aj_usart_cr1_parity_t AJ_USART_GetParity(const USART_TypeDef *USAR
 //  return AJ_BitReg_IsBitSet_Mask(&(USARTx->CR1), USART_CR1_IDLEIE_Msk);
 //}
 
-static inline void AJ_USART_SetDirection(USART_TypeDef *USARTx, aj_usart_cr1_direction_t direction){
-  AJ_BitReg_ModifyBit_Mask(&(USARTx->CR1), (USART_CR1_TE_Msk | USART_CR1_RE_Msk), direction);
-}
-
-static inline aj_usart_cr1_direction_t AJ_USART_GetDirection(const USART_TypeDef *USARTx){
-  return (aj_usart_cr1_direction_t)AJ_BitReg_GetBit_Mask(&(USARTx->CR1), (USART_CR1_TE_Msk | USART_CR1_RE_Msk));
-}
+//static inline void AJ_USART_SetDirection(USART_TypeDef *USARTx, aj_usart_cr1_direction_t direction){
+//  AJ_BitReg_ModifyBit_Mask(&(USARTx->CR1), (USART_CR1_TE_Msk | USART_CR1_RE_Msk), direction);
+//}
+//
+//static inline aj_usart_cr1_direction_t AJ_USART_GetDirection(const USART_TypeDef *USARTx){
+//  return (aj_usart_cr1_direction_t)AJ_BitReg_GetBit_Mask(&(USARTx->CR1), (USART_CR1_TE_Msk | USART_CR1_RE_Msk));
+//}
 
 //static inline void AJ_USART_RequestEnterMuteMode(USART_TypeDef *USARTx){
 //  AJ_BitReg_SetBit_Mask(&(USARTx->CR1), USART_CR1_RWU_Msk);

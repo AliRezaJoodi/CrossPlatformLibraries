@@ -89,12 +89,12 @@ typedef enum{
 	AJ_USART_CR1_PARITY_ODD  = (USART_CR1_PCE_Msk | USART_CR1_PS_Msk)
 } aj_usart_cr1_parity_t;
 
-typedef enum{
-	AJ_USART_CR1_DIRECTION_NONE = 0U,
-	AJ_USART_CR1_DIRECTION_RX   = USART_CR1_RE_Msk,
-	AJ_USART_CR1_DIRECTION_TX   = USART_CR1_TE_Msk,
-	AJ_USART_CR1_DIRECTION_TX_RX = (USART_CR1_TE_Msk | USART_CR1_RE_Msk)
-} aj_usart_cr1_direction_t;
+//typedef enum{
+//	AJ_USART_CR1_DIRECTION_NONE = 0U,
+//	AJ_USART_CR1_DIRECTION_RX   = USART_CR1_RE_Msk,
+//	AJ_USART_CR1_DIRECTION_TX   = USART_CR1_TE_Msk,
+//	AJ_USART_CR1_DIRECTION_TX_RX = (USART_CR1_TE_Msk | USART_CR1_RE_Msk)
+//} aj_usart_cr1_direction_t;
 
 #if defined(USART_CR1_OVER8_Msk)
 typedef enum{
