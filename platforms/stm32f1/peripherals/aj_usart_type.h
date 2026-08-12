@@ -64,11 +64,11 @@ typedef enum{
 	AJ_USART_CR1_RWU    = USART_CR1_RWU_Msk, 		/*< Receiver wakeup; Requests entry to or exit from mute mode by software; cleared by hardware upon wakeup */
 	AJ_USART_CR1_RE     = USART_CR1_RE_Msk,     /*< Receiver enable */
 	AJ_USART_CR1_TE     = USART_CR1_TE_Msk,     /*< Transmitter enable */
-	AJ_USART_CR1_IDLEIE = USART_CR1_IDLEIE_Msk, /*< IDLE interrupt enable */
-	AJ_USART_CR1_RXNEIE = USART_CR1_RXNEIE_Msk, /*< RXNE interrupt enable */
-	AJ_USART_CR1_TCIE   = USART_CR1_TCIE_Msk,   /*< TC interrupt enable */
-	AJ_USART_CR1_TXEIE  = USART_CR1_TXEIE_Msk,  /*< TXE interrupt enable */
-	AJ_USART_CR1_PEIE   = USART_CR1_PEIE_Msk,   /*< PE interrupt enable */
+	AJ_USART_CR1_IDLEIE = USART_CR1_IDLEIE_Msk, /*< Idle line detected interrupt enable */
+	AJ_USART_CR1_RXNEIE = USART_CR1_RXNEIE_Msk, /*< Read data register not empty interrupt enable */
+	AJ_USART_CR1_TCIE   = USART_CR1_TCIE_Msk,   /*< Transmission complete interrupt enable */
+	AJ_USART_CR1_TXEIE  = USART_CR1_TXEIE_Msk,  /*< Transmit data register empty interrupt enable */
+	AJ_USART_CR1_PEIE   = USART_CR1_PEIE_Msk,   /*< Parity error interrupt enable */
 	AJ_USART_CR1_PCE    = USART_CR1_PCE_Msk,    /*< Parity control enable */
 	AJ_USART_CR1_UE     = USART_CR1_UE_Msk      /*< USART enable */
 } aj_usart_cr1_state_t;
@@ -109,7 +109,7 @@ typedef enum{
 typedef enum{
 	AJ_USART_CR2_LBDIE  = USART_CR2_LBDIE_Msk,  /*< LIN break detection interrupt enable */
 	AJ_USART_CR2_LBCL   = USART_CR2_LBCL_Msk,   /*< Last bit clock pulse */
-	AJ_USART_CR2_CLKEN  = USART_CR2_CLKEN_Msk,  /*< Clock enable (CK pin) */
+	AJ_USART_CR2_CLKEN  = USART_CR2_CLKEN_Msk,  /*< Clock pin enable */
 	AJ_USART_CR2_LINEN  = USART_CR2_LINEN_Msk   /*< LIN mode enable */
 } aj_usart_cr2_state_t;
 
