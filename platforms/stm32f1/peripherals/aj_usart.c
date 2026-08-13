@@ -82,11 +82,11 @@ static uint16_t AJ_USART_CalculateDivider_16x(uint32_t periphclk, uint32_t baudr
 
 //*******************************************************************************
 #if defined(USART_CR1_OVER8_Msk)
-void AJ_USART_SetBaudRate_8x(USART_TypeDef *USARTx, uint32_t periphclk, uint32_t baudrate){
+void AJ_USART_ConfigBaudRate_8x(USART_TypeDef *USARTx, uint32_t periphclk, uint32_t baudrate){
   USARTx->BRR = AJ_USART_CalculateDivider_8x(periphclk, baudrate);
 }
 #endif
 
-void AJ_USART_SetBaudRate_16x(USART_TypeDef *USARTx, uint32_t periphclk, uint32_t baudrate){
+void AJ_USART_ConfigBaudRate_16x(USART_TypeDef *USARTx, uint32_t periphclk, uint32_t baudrate){
   USARTx->BRR = AJ_USART_CalculateDivider_16x(periphclk, baudrate);
 }

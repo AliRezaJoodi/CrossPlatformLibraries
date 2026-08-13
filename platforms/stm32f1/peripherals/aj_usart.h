@@ -57,10 +57,10 @@ static inline void AJ_USART_TransmitData_9Bit(USART_TypeDef *USARTx, uint16_t va
 /* Baud rate register (USART_BRR)                                             */
 /******************************************************************************/
 #if defined(USART_CR1_OVER8_Msk)
-void AJ_USART_SetBaudRate_8x(USART_TypeDef *USARTx, uint32_t periphclk, uint32_t baudrate);
+void AJ_USART_ConfigBaudRate_8x(USART_TypeDef *USARTx, uint32_t periphclk, uint32_t baudrate);
 #endif
 
-void AJ_USART_SetBaudRate_16x(USART_TypeDef *USARTx, uint32_t periphclk, uint32_t baudrate);
+void AJ_USART_ConfigBaudRate_16x(USART_TypeDef *USARTx, uint32_t periphclk, uint32_t baudrate);
 
 /******************************************************************************/
 /* Status register (USART_SR)                                                 */
@@ -194,7 +194,7 @@ static inline uint8_t AJ_USART_CR1_IsBitEnabled(const USART_TypeDef *USARTx, aj_
 }
 
 #if defined(USART_CR1_OVER8_Msk)
-static inline void AJ_USART_SetOverSampling(USART_TypeDef *USARTx, aj_usart_cr1_oversampling_t oversampling){
+static inline void AJ_USART_ConfigOverSampling(USART_TypeDef *USARTx, aj_usart_cr1_oversampling_t oversampling){
   AJ_BitReg_ModifyBit_Mask(&(USARTx->CR1), USART_CR1_OVER8_Msk, oversampling);
 }
 
@@ -215,7 +215,7 @@ static inline aj_usart_cr1_oversampling_t AJ_USART_GetOverSampling(const USART_T
 //  return AJ_BitReg_IsBitSet_Mask(&(USARTx->CR1), USART_CR1_UE_Msk);
 //}
 
-static inline void AJ_USART_SetWordLength(USART_TypeDef *USARTx, aj_usart_cr1_wordlength_t length){
+static inline void AJ_USART_ConfigWordLength(USART_TypeDef *USARTx, aj_usart_cr1_wordlength_t length){
   AJ_BitReg_ModifyBit_Mask(&(USARTx->CR1), USART_CR1_M_Msk, length);
 }
 
@@ -223,7 +223,7 @@ static inline aj_usart_cr1_wordlength_t AJ_USART_GetWordLength(const USART_TypeD
   return (aj_usart_cr1_wordlength_t)AJ_BitReg_GetBit_Mask(&(USARTx->CR1), USART_CR1_M_Msk);
 }
 
-static inline void AJ_USART_SetWakeupMethod(USART_TypeDef *USARTx, aj_usart_cr1_wakeup_t wakeup){
+static inline void AJ_USART_ConfigWakeupMethod(USART_TypeDef *USARTx, aj_usart_cr1_wakeup_t wakeup){
   AJ_BitReg_ModifyBit_Mask(&(USARTx->CR1), USART_CR1_WAKE_Msk, wakeup);
 }
 
@@ -231,7 +231,7 @@ static inline aj_usart_cr1_wakeup_t AJ_USART_GetWakeupMethod(const USART_TypeDef
   return (aj_usart_cr1_wakeup_t)AJ_BitReg_GetBit_Mask(&(USARTx->CR1), USART_CR1_WAKE_Msk);
 }
 
-static inline void AJ_USART_SetParity(USART_TypeDef *USARTx, aj_usart_cr1_parity_t parity){
+static inline void AJ_USART_ConfigParity(USART_TypeDef *USARTx, aj_usart_cr1_parity_t parity){
   AJ_BitReg_ModifyBit_Mask(&(USARTx->CR1), (USART_CR1_PCE_Msk | USART_CR1_PS_Msk), parity);
 }
 
@@ -299,7 +299,7 @@ static inline aj_usart_cr1_parity_t AJ_USART_GetParity(const USART_TypeDef *USAR
 //  return AJ_BitReg_IsBitSet_Mask(&(USARTx->CR1), USART_CR1_IDLEIE_Msk);
 //}
 
-//static inline void AJ_USART_SetDirection(USART_TypeDef *USARTx, aj_usart_cr1_direction_t direction){
+//static inline void AJ_USART_ConfigDirection(USART_TypeDef *USARTx, aj_usart_cr1_direction_t direction){
 //  AJ_BitReg_ModifyBit_Mask(&(USARTx->CR1), (USART_CR1_TE_Msk | USART_CR1_RE_Msk), direction);
 //}
 //
@@ -350,7 +350,7 @@ static inline uint8_t AJ_USART_CR2_IsBitEnabled(const USART_TypeDef *USARTx, aj_
 //  return AJ_BitReg_IsBitSet_Mask(&(USARTx->CR2), USART_CR2_LINEN_Msk);
 //}
 
-static inline void AJ_USART_SetStopBitsLength(USART_TypeDef *USARTx, aj_usart_cr2_stopbits_t stopbits){
+static inline void AJ_USART_ConfigStopBitsLength(USART_TypeDef *USARTx, aj_usart_cr2_stopbits_t stopbits){
   AJ_BitReg_ModifyBit_Mask(&(USARTx->CR2), USART_CR2_STOP_Msk, stopbits);
 }
 
@@ -370,7 +370,7 @@ static inline aj_usart_cr2_stopbits_t AJ_USART_GetStopBitsLength(const USART_Typ
 //  return AJ_BitReg_IsBitSet_Mask(&(USARTx->CR2), USART_CR2_CLKEN_Msk);
 //}
 
-static inline void AJ_USART_SetClockPolarity(USART_TypeDef *USARTx, aj_usart_cr2_clock_polarity_t polarity){
+static inline void AJ_USART_ConfigClockPolarity(USART_TypeDef *USARTx, aj_usart_cr2_clock_polarity_t polarity){
   AJ_BitReg_ModifyBit_Mask(&(USARTx->CR2), USART_CR2_CPOL_Msk, polarity);
 }
 
@@ -378,7 +378,7 @@ static inline aj_usart_cr2_clock_polarity_t AJ_USART_GetClockPolarity(const USAR
   return (aj_usart_cr2_clock_polarity_t)AJ_BitReg_GetBit_Mask(&(USARTx->CR2), USART_CR2_CPOL_Msk);
 }
 
-static inline void AJ_USART_SetClockPhase(USART_TypeDef *USARTx, aj_usart_cr2_clock_phase_t phase){
+static inline void AJ_USART_ConfigClockPhase(USART_TypeDef *USARTx, aj_usart_cr2_clock_phase_t phase){
   AJ_BitReg_ModifyBit_Mask(&(USARTx->CR2), USART_CR2_CPHA_Msk, phase);
 }
 
@@ -406,7 +406,7 @@ static inline aj_usart_cr2_clock_phase_t AJ_USART_GetClockPhase(const USART_Type
 //  return AJ_BitReg_IsBitSet_Mask(&(USARTx->CR2), USART_CR2_LBDIE_Msk);
 //}
 
-static inline void AJ_USART_SetLINBreakDetectLength(USART_TypeDef *USARTx, aj_usart_cr2_lin_break_detection_t length){
+static inline void AJ_USART_ConfigLINBreakDetectLength(USART_TypeDef *USARTx, aj_usart_cr2_lin_break_detection_t length){
   AJ_BitReg_ModifyBit_Mask(&(USARTx->CR2), USART_CR2_LBDL_Msk, length);
 }
 
@@ -414,7 +414,7 @@ static inline aj_usart_cr2_lin_break_detection_t AJ_USART_GetLINBreakDetectLengt
   return (aj_usart_cr2_lin_break_detection_t)AJ_BitReg_GetBit_Mask(&(USARTx->CR2), USART_CR2_LBDL_Msk);
 }
 
-static inline void AJ_USART_SetNodeAddress(USART_TypeDef *USARTx, uint32_t address){
+static inline void AJ_USART_ConfigNodeAddress(USART_TypeDef *USARTx, uint32_t address){
   AJ_BitReg_ModifyBit_Mask(&(USARTx->CR2), USART_CR2_ADD_Msk, (address & USART_CR2_ADD_Msk));
 }
 
@@ -440,7 +440,7 @@ static inline uint8_t AJ_USART_CR3_IsBitEnabled(const USART_TypeDef *USARTx, aj_
 /******************************************************************************/
 /* Guard time and prescaler register (USART_GTPR)                             */
 /******************************************************************************/
-static inline void AJ_USART_SetSmartcardGuardTime(USART_TypeDef *USARTx, uint32_t guard_time){
+static inline void AJ_USART_ConfigSmartcardGuardTime(USART_TypeDef *USARTx, uint32_t guard_time){
   AJ_BitReg_ModifyBit_Mask(&(USARTx->GTPR), USART_GTPR_GT_Msk, (guard_time << USART_GTPR_GT_Pos));
 }
 
@@ -448,7 +448,7 @@ static inline uint32_t AJ_USART_GetSmartcardGuardTime(const USART_TypeDef *USART
   return (uint32_t)(AJ_BitReg_GetBit_Mask(&(USARTx->GTPR), USART_GTPR_GT_Msk) >> USART_GTPR_GT_Pos);
 }
 
-static inline void AJ_USART_SetSmartcardPrescaler(USART_TypeDef *USARTx, uint32_t prescaler){
+static inline void AJ_USART_ConfigSmartcardPrescaler(USART_TypeDef *USARTx, uint32_t prescaler){
   AJ_BitReg_ModifyBit_Mask(&(USARTx->GTPR), USART_GTPR_PSC_Msk, prescaler);
 }
 
