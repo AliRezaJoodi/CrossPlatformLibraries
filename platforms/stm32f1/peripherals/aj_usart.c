@@ -7,40 +7,46 @@
 #include "aj_usart.h"
 
 //*******************************************************************************
-void AJ_USART_ConfigOperatingMode_Async(USART_TypeDef *USARTx){
-  AJ_BitReg_ClearBit_Mask(&(USARTx->CR2), (USART_CR2_LINEN_Msk | USART_CR2_CLKEN_Msk));
-  AJ_BitReg_ClearBit_Mask(&(USARTx->CR3), (USART_CR3_SCEN_Msk | USART_CR3_IREN_Msk | USART_CR3_HDSEL_Msk));
-}
+void AJ_USART_ConfigOperatingMode(USART_TypeDef *USARTx, aj_usart_mode_t mode){
+  switch(mode){
+		case AJ_USART_MODE_ASYNC:
+			AJ_BitReg_ClearBit_Mask(&(USARTx->CR2), (USART_CR2_LINEN_Msk | USART_CR2_CLKEN_Msk));
+			AJ_BitReg_ClearBit_Mask(&(USARTx->CR3), (USART_CR3_SCEN_Msk | USART_CR3_IREN_Msk | USART_CR3_HDSEL_Msk));
+			break;
 
-void AJ_USART_ConfigOperatingMode_Sync(USART_TypeDef *USARTx){
-  AJ_BitReg_ClearBit_Mask(&(USARTx->CR2), USART_CR2_LINEN_Msk);
-  AJ_BitReg_ClearBit_Mask(&(USARTx->CR3), (USART_CR3_SCEN_Msk | USART_CR3_IREN_Msk | USART_CR3_HDSEL_Msk));
-  AJ_BitReg_SetBit_Mask(&(USARTx->CR2), USART_CR2_CLKEN_Msk);
-}
+		case AJ_USART_MODE_SYNC:
+			AJ_BitReg_ClearBit_Mask(&(USARTx->CR2), USART_CR2_LINEN_Msk);
+			AJ_BitReg_ClearBit_Mask(&(USARTx->CR3), (USART_CR3_SCEN_Msk | USART_CR3_IREN_Msk | USART_CR3_HDSEL_Msk));
+			AJ_BitReg_SetBit_Mask(&(USARTx->CR2), USART_CR2_CLKEN_Msk);
+			break;
 
-void AJ_USART_ConfigOperatingMode_LIN(USART_TypeDef *USARTx){
-  AJ_BitReg_ClearBit_Mask(&(USARTx->CR2), (USART_CR2_CLKEN_Msk | USART_CR2_STOP_Msk));
-  AJ_BitReg_ClearBit_Mask(&(USARTx->CR3), (USART_CR3_IREN_Msk | USART_CR3_SCEN_Msk | USART_CR3_HDSEL_Msk));
-  AJ_BitReg_SetBit_Mask(&(USARTx->CR2), USART_CR2_LINEN_Msk);
-}
+		case AJ_USART_MODE_LIN:
+			AJ_BitReg_ClearBit_Mask(&(USARTx->CR2), (USART_CR2_CLKEN_Msk | USART_CR2_STOP_Msk));
+			AJ_BitReg_ClearBit_Mask(&(USARTx->CR3), (USART_CR3_IREN_Msk | USART_CR3_SCEN_Msk | USART_CR3_HDSEL_Msk));
+			AJ_BitReg_SetBit_Mask(&(USARTx->CR2), USART_CR2_LINEN_Msk);
+			break;
 
-void AJ_USART_ConfigOperatingMode_Smartcard(USART_TypeDef *USARTx){
-  AJ_BitReg_ClearBit_Mask(&(USARTx->CR2), USART_CR2_LINEN_Msk);
-  AJ_BitReg_ClearBit_Mask(&(USARTx->CR3), (USART_CR3_IREN_Msk | USART_CR3_HDSEL_Msk));
-  AJ_BitReg_SetBit_Mask(&(USARTx->CR2), (USART_CR2_STOP_Msk | USART_CR2_CLKEN_Msk));
-  AJ_BitReg_SetBit_Mask(&(USARTx->CR3), USART_CR3_SCEN_Msk);
-}
+		case AJ_USART_MODE_SMARTCARD:
+			AJ_BitReg_ClearBit_Mask(&(USARTx->CR2), USART_CR2_LINEN_Msk);
+			AJ_BitReg_ClearBit_Mask(&(USARTx->CR3), (USART_CR3_IREN_Msk | USART_CR3_HDSEL_Msk));
+			AJ_BitReg_SetBit_Mask(&(USARTx->CR2), (USART_CR2_STOP_Msk | USART_CR2_CLKEN_Msk));
+			AJ_BitReg_SetBit_Mask(&(USARTx->CR3), USART_CR3_SCEN_Msk);
+			break;
 
-void AJ_USART_ConfigOperatingMode_Irda(USART_TypeDef *USARTx){
-  AJ_BitReg_ClearBit_Mask(&(USARTx->CR2), (USART_CR2_LINEN_Msk | USART_CR2_CLKEN_Msk | USART_CR2_STOP_Msk));
-  AJ_BitReg_ClearBit_Mask(&(USARTx->CR3), (USART_CR3_SCEN_Msk | USART_CR3_HDSEL_Msk));
-  AJ_BitReg_SetBit_Mask(&(USARTx->CR3), USART_CR3_IREN_Msk);
-}
+		case AJ_USART_MODE_IRDA:
+			AJ_BitReg_ClearBit_Mask(&(USARTx->CR2), (USART_CR2_LINEN_Msk | USART_CR2_CLKEN_Msk | USART_CR2_STOP_Msk));
+			AJ_BitReg_ClearBit_Mask(&(USARTx->CR3), (USART_CR3_SCEN_Msk | USART_CR3_HDSEL_Msk));
+			AJ_BitReg_SetBit_Mask(&(USARTx->CR3), USART_CR3_IREN_Msk);
+			break;
 
-void AJ_USART_ConfigOperatingMode_HalfDuplex(USART_TypeDef *USARTx){
-  AJ_BitReg_ClearBit_Mask(&(USARTx->CR2), (USART_CR2_LINEN_Msk | USART_CR2_CLKEN_Msk));
-  AJ_BitReg_ClearBit_Mask(&(USARTx->CR3), (USART_CR3_SCEN_Msk | USART_CR3_IREN_Msk));
-  AJ_BitReg_SetBit_Mask(&(USARTx->CR3), USART_CR3_HDSEL_Msk);
+		case AJ_USART_MODE_HALF_DUPLEX:
+			AJ_BitReg_ClearBit_Mask(&(USARTx->CR2), (USART_CR2_LINEN_Msk | USART_CR2_CLKEN_Msk));
+			AJ_BitReg_ClearBit_Mask(&(USARTx->CR3), (USART_CR3_SCEN_Msk | USART_CR3_IREN_Msk));
+			AJ_BitReg_SetBit_Mask(&(USARTx->CR3), USART_CR3_HDSEL_Msk);
+			break;
+		default:
+			break;
+  }
 }
 
 //*******************************************************************************

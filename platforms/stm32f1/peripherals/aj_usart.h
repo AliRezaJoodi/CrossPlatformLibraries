@@ -27,12 +27,7 @@ extern "C" {
 #include "aj_bit_reg.h"
 #include "aj_usart_type.h"
 
-void AJ_USART_ConfigOperatingMode_Async(USART_TypeDef *USARTx);
-void AJ_USART_ConfigOperatingMode_Sync(USART_TypeDef *USARTx);
-void AJ_USART_ConfigOperatingMode_LIN(USART_TypeDef *USARTx);
-void AJ_USART_ConfigOperatingMode_Smartcard(USART_TypeDef *USARTx);
-void AJ_USART_ConfigOperatingMode_Irda(USART_TypeDef *USARTx);
-void AJ_USART_ConfigOperatingMode_HalfDuplex(USART_TypeDef *USARTx);
+void AJ_USART_ConfigOperatingMode(USART_TypeDef *USARTx, aj_usart_mode_t mode);
 
 /******************************************************************************/
 /* Data register (USART_DR)                                                   */

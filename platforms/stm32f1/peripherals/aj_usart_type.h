@@ -10,14 +10,14 @@ extern "C" {
 
 #include <stm32f1xx.h>
 
-//typedef enum{
-//	AJ_USART_MODE_ASYNC = 0U,
-//	AJ_USART_MODE_SYNC,
-//	AJ_USART_MODE_LIN,
-//	AJ_USART_MODE_SMARTCARD,
-//	AJ_USART_MODE_IRDA,
-//	AJ_USART_MODE_HALF_DUPLEX
-//} aj_usart_mode_t;
+typedef enum{
+	AJ_USART_MODE_ASYNC = 0U,
+	AJ_USART_MODE_SYNC,
+	AJ_USART_MODE_LIN,
+	AJ_USART_MODE_SMARTCARD,
+	AJ_USART_MODE_IRDA,
+	AJ_USART_MODE_HALF_DUPLEX
+} aj_usart_mode_t;
 
 /******************************************************************************/
 /* Status register (USART_SR)                                                 */
