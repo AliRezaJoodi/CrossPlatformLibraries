@@ -47,9 +47,15 @@ extern "C" {
 #include <stdint.h>
 #include "aj_buzzer_config.h"
 #include "aj_buzzer_type.h"
+#include "aj_buzzer_port.h"
 
-void AJ_Buzzer_TurnOff(void);
-void AJ_Buzzer_TurnOn(void);
+static inline void AJ_Buzzer_TurnOff(void){
+	AJ_Buzzer_WritePin(!AJ_BUZZER_ACTIVE);
+}
+
+static inline void AJ_Buzzer_TurnOn(void){
+	AJ_Buzzer_WritePin(AJ_BUZZER_ACTIVE);
+}
 
 /**
  * @brief   Initialize the buzzer

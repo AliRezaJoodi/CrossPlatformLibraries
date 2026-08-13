@@ -5,7 +5,7 @@
 
 #ifndef AJ_BUZZER_CONFIG
 #define AJ_BUZZER_CONFIG
-    #define AJ_BUZZER_ACTIVE       1U
+    #define AJ_BUZZER_ACTIVE       1U		/* 0U or 1U */
     #define AJ_BUZZER_COUNT1       75U
     #define AJ_BUZZER_COUNT2       200U
 
