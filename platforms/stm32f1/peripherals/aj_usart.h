@@ -10,6 +10,41 @@
  * - USARTx->CR3
  * - USARTx->GTPR
  *
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 1: Compilation & Linkage
+ * -----------------------------------------------------------------------------
+ * The following source files must be compiled and linked in the project:
+ * - `aj_usart.c`
+ *
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 2: BUS Configuration
+ * -----------------------------------------------------------------------------
+ * This library does not enable any peripheral clock.
+ * The application must enable the required clock buses before using this driver.
+ * The following clock buses must be enabled:
+ * - The clock bus of the USART peripheral (e.g., USART1 on APB2)
+ * - The clock bus of the GPIO port used by the serial TX and RX pins
+ *   (e.g., GPIOA on APB2)
+ *
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 3: GPIO Configuration
+ * -----------------------------------------------------------------------------
+ * This library does not configure any GPIO pin.
+ * The application must initialize the pins used for serial communication before using this driver.
+ * The serial pins must meet these parameters:
+ * - TX pin: alternate function output push-pull, high speed
+ * - RX pin: floating input
+ *
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 4: Configuration Override
+ * -----------------------------------------------------------------------------
+ * The default driver macros are declared in the following headers:
+ * - `aj_target.h`
+ *
+ * To customize these configurations, override them inside the central project
+ * hardware configuration file:
+ * - `hardware.h`
+ *
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
  */
