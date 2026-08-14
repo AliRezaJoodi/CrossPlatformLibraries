@@ -1,3 +1,19 @@
+/**
+ * @brief   Transmit string management for STM32 USART using interrupts and the LL APIs.
+ *
+ * This library provides blocking and interrupt-driven helper APIs to transmit
+ * a single character or a whole string over an STM32 USART peripheral.
+ *
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 1: Compilation & Linkage
+ * -----------------------------------------------------------------------------
+ * The following source files must be compiled and linked in the project:
+ * - `ll_usart_transmit_string.c`
+ *
+ * @author  AliRezaJoodi
+ * @see     https://github.com/AliRezaJoodi
+ */
+
 // GitHub Account: GitHub.com/AliRezaJoodi
 
 #ifndef LL_USART_TRANSMIT_STRING_INCLUDED
@@ -20,8 +36,8 @@ typedef struct{
 void LL_USART_TransmitChar(USART_TypeDef *USARTx, char data);
 void LL_USART_TransmitString(USART_TypeDef *USARTx, const char *str);
 
-void LL_USART_TransmitString_IT(LL_USART_TransmitString_TypeDef *handle, USART_TypeDef *USARTx, const char *str);
-void LL_USART_TransmitString_IT_Handler(LL_USART_TransmitString_TypeDef *handle, USART_TypeDef *USARTx);
+void LL_USART_TransmitString_IT(USART_TypeDef *USARTx, LL_USART_TransmitString_TypeDef *handle, const char *str);
+void LL_USART_TransmitString_IT_Handler(USART_TypeDef *USARTx, LL_USART_TransmitString_TypeDef *handle);
 uint8_t LL_USART_IsTransmittingStringBusy(LL_USART_TransmitString_TypeDef *handle);
 
 

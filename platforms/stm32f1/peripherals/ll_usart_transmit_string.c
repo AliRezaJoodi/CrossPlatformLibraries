@@ -23,7 +23,7 @@ void LL_USART_TransmitString(USART_TypeDef *USARTx, const char *str){
 }
 
 //********************************
-void LL_USART_TransmitString_IT(LL_USART_TransmitString_TypeDef *handle, USART_TypeDef *USARTx, const char *str) {
+void LL_USART_TransmitString_IT(USART_TypeDef *USARTx, LL_USART_TransmitString_TypeDef *handle, const char *str) {
     if (handle == 0 || handle->tx_busy == 1 || str == NULL || *str == '\0'){
         return;
     }
@@ -35,7 +35,7 @@ void LL_USART_TransmitString_IT(LL_USART_TransmitString_TypeDef *handle, USART_T
 }
 
 //********************************
-void LL_USART_TransmitString_IT_Handler(LL_USART_TransmitString_TypeDef *handle, USART_TypeDef *USARTx) {
+void LL_USART_TransmitString_IT_Handler(USART_TypeDef *USARTx, LL_USART_TransmitString_TypeDef *handle) {
     if (handle == 0) {
         return;
     }
