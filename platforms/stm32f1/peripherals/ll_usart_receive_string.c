@@ -5,7 +5,7 @@
 #include "stm32f1xx_ll_usart.h"
 #include "ll_usart_receive_string.h"
 
-void LL_USART_ReceiveString_IT(LL_USART_ReceiveString_TypeDef *handle, USART_TypeDef *USARTx, char *str, uint16_t size){
+void LL_USART_ReceiveString_IT(USART_TypeDef *USARTx, LL_USART_ReceiveString_TypeDef *handle, char *str, uint16_t size){
     if ((handle == 0) || (str == 0) || (size == 0) || handle->rx_busy) {
         return;
     }
@@ -19,7 +19,7 @@ void LL_USART_ReceiveString_IT(LL_USART_ReceiveString_TypeDef *handle, USART_Typ
     LL_USART_EnableIT_RXNE(USARTx);
 }
 
-void LL_USART_ReceiveString_IT_Handler(LL_USART_ReceiveString_TypeDef *handle, USART_TypeDef *USARTx){
+void LL_USART_ReceiveString_IT_Handler(USART_TypeDef *USARTx, LL_USART_ReceiveString_TypeDef *handle){
     if (handle == 0) {
         return;
     }
@@ -50,7 +50,7 @@ void LL_USART_ReceiveString_IT_Handler(LL_USART_ReceiveString_TypeDef *handle, U
     }
 }
 
-void LL_USART_StopReceivingString_IT(LL_USART_ReceiveString_TypeDef *handle, USART_TypeDef *USARTx){
+void LL_USART_StopReceivingString_IT(USART_TypeDef *USARTx, LL_USART_ReceiveString_TypeDef *handle){
     LL_USART_DisableIT_RXNE(USARTx);
     handle->rx_busy = 0;
     handle->rx_done = 0;

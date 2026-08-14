@@ -1,3 +1,19 @@
+/**
+ * @brief   Receive string management for STM32 USART using interrupts and the LL APIs.
+ *
+ * This library provides interrupt-driven helper APIs to receive a whole string
+ * over an STM32 USART peripheral until the receive buffer is full.
+ *
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 1: Compilation & Linkage
+ * -----------------------------------------------------------------------------
+ * The following source files must be compiled and linked in the project:
+ * - `ll_usart_receive_string.c`
+ *
+ * @author  AliRezaJoodi
+ * @see     https://github.com/AliRezaJoodi
+ */
+
 // GitHub Account: GitHub.com/AliRezaJoodi
 
 #ifndef LL_USART_RECEIVER_STRING_INCLUDED
@@ -19,9 +35,9 @@ typedef struct{
     volatile uint8_t rx_done;
 } LL_USART_ReceiveString_TypeDef;
 
-void LL_USART_ReceiveString_IT(LL_USART_ReceiveString_TypeDef *handle, USART_TypeDef *USARTx, char *str, uint16_t size);
-void LL_USART_ReceiveString_IT_Handler(LL_USART_ReceiveString_TypeDef *handle, USART_TypeDef *USARTx);
-void LL_USART_StopReceivingString_IT(LL_USART_ReceiveString_TypeDef *handle, USART_TypeDef *USARTx);
+void LL_USART_ReceiveString_IT(USART_TypeDef *USARTx, LL_USART_ReceiveString_TypeDef *handle, char *str, uint16_t size);
+void LL_USART_ReceiveString_IT_Handler(USART_TypeDef *USARTx, LL_USART_ReceiveString_TypeDef *handle);
+void LL_USART_StopReceivingString_IT(USART_TypeDef *USARTx, LL_USART_ReceiveString_TypeDef *handle);
 uint8_t LL_USART_IsReceivingStringBusy(LL_USART_ReceiveString_TypeDef *handle);
 uint8_t LL_USART_IsReceivingStringDone(LL_USART_ReceiveString_TypeDef *handle);
 
