@@ -29,18 +29,28 @@ extern "C" {
 
 typedef enum {
   AJ_CLEAR = 0U, 
-  AJ_SET = !AJ_CLEAR
+  AJ_SET = 1U
 } aj_state_flag_t;
 
 typedef enum {
   AJ_DISABLE = 0U, 
-  AJ_ENABLE = !AJ_DISABLE
+  AJ_ENABLE = 1U
 } aj_state_operational_t;
 
 typedef enum{
   AJ_SUCCESS = 0U,
-  AJ_ERROR = !AJ_SUCCESS
+  AJ_ERROR = 1U
 } aj_result_t;
+
+typedef enum {
+  AJ_ACTIVE = 0U,
+  AJ_IDLE = 1U
+} aj_state_line_t;
+
+typedef enum {
+  AJ_SELECT = 0U,
+  AJ_DESELECT = 1U
+} aj_state_chip_t;
 
 
 #ifdef __cplusplus
