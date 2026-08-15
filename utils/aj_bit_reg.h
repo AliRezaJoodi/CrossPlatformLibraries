@@ -45,16 +45,16 @@ extern "C" {
 
 #include <stdint.h>
 #include "aj_target.h"
-#include "aj_ctz.h"
 #include "aj_typedef.h"
+//#include "aj_ctz.h"
 
-#if AJ_TARGET_MCU_BITS == 32U
-    #define AJ_BITREG_CTZ(mask)    AJ_CTZ_u32((mask))
-#elif AJ_TARGET_MCU_BITS == 16U
-    #define AJ_BITREG_CTZ(mask)    AJ_CTZ_u16((mask))
-#elif AJ_TARGET_MCU_BITS == 8U
-    #define AJ_BITREG_CTZ(mask)    AJ_CTZ_u8((mask))
-#endif
+//#if AJ_TARGET_MCU_BITS == 32U
+//    #define AJ_BITREG_CTZ(mask)    AJ_CTZ_u32((mask))
+//#elif AJ_TARGET_MCU_BITS == 16U
+//    #define AJ_BITREG_CTZ(mask)    AJ_CTZ_u16((mask))
+//#elif AJ_TARGET_MCU_BITS == 8U
+//    #define AJ_BITREG_CTZ(mask)    AJ_CTZ_u8((mask))
+//#endif
 
 //***********************************************************************
 static inline void AJ_BitReg_SetBit_Mask(aj_volatile_uint_t *reg, aj_uint_t mask){
@@ -92,14 +92,14 @@ static inline void AJ_BitReg_ModifyBit_Mask(aj_volatile_uint_t *reg, aj_uint_t c
  * - mask must be non-zero
  * - mask should describe one contiguous bit-field
  */
- static inline void AJ_BitReg_WriteField_Mask(aj_volatile_uint_t *reg, aj_uint_t mask, aj_uint_t value){
-    uint8_t shift = AJ_BITREG_CTZ(mask);
-
-    *reg =  (aj_uint_t)(
-            (*reg & ~mask) |
-            ((value << shift) & mask)
-            );
-}
+// static inline void AJ_BitReg_WriteField_Mask(aj_volatile_uint_t *reg, aj_uint_t mask, aj_uint_t value){
+//    uint8_t shift = AJ_BITREG_CTZ(mask);
+//
+//    *reg =  (aj_uint_t)(
+//            (*reg & ~mask) |
+//            ((value << shift) & mask)
+//            );
+//}
 
 /**
  * @param pos    Start bit position of the field.
@@ -123,14 +123,14 @@ static inline void AJ_BitReg_ModifyBit_Mask(aj_volatile_uint_t *reg, aj_uint_t c
  *        - width = 1 to 31
  *        - pos + width <= 32
  */
-static inline void AJ_BitReg_WriteField_Position(aj_volatile_uint_t *reg, aj_uint_t pos, uint8_t width, aj_uint_t value){
-    aj_uint_t mask = (aj_uint_t)(((1U << width) - 1U) << pos);
-
-    *reg = (aj_uint_t)(
-            (*reg & ~mask) |
-            ((value << pos) & mask)
-           );
-}
+//static inline void AJ_BitReg_WriteField_Position(aj_volatile_uint_t *reg, aj_uint_t pos, uint8_t width, aj_uint_t value){
+//    aj_uint_t mask = (aj_uint_t)(((1U << width) - 1U) << pos);
+//
+//    *reg = (aj_uint_t)(
+//            (*reg & ~mask) |
+//            ((value << pos) & mask)
+//           );
+//}
 
 static inline void AJ_BitReg_WriteBit_Position(aj_volatile_uint_t *reg, aj_uint_t pos, aj_uint_t state){
     *reg = (aj_uint_t)(
@@ -193,11 +193,11 @@ static inline void AJ_BitReg_Write8Bit_Position(aj_volatile_uint_t *reg, aj_uint
  * - mask must be non-zero
  * - mask should describe one contiguous bit-field
  */
-static inline aj_uint_t AJ_BitReg_GetField_Mask(aj_const_volatile_uint_t *reg, aj_uint_t mask){
-    uint8_t shift = AJ_BITREG_CTZ(mask);
-
-    return (aj_uint_t)((*reg & mask) >> shift);
-}
+//static inline aj_uint_t AJ_BitReg_GetField_Mask(aj_const_volatile_uint_t *reg, aj_uint_t mask){
+//    uint8_t shift = AJ_BITREG_CTZ(mask);
+//
+//    return (aj_uint_t)((*reg & mask) >> shift);
+//}
 
 static inline uint8_t AJ_BitReg_IsBitSet_Mask(aj_const_volatile_uint_t *reg, aj_uint_t mask){
     return (uint8_t)(((*reg) & mask) == mask);
@@ -227,9 +227,9 @@ static inline aj_uint_t AJ_BitReg_GetBit_Mask(aj_const_volatile_uint_t *reg, aj_
  *        - width = 1 to 31
  *        - pos + width <= 32
  */
-static inline aj_uint_t AJ_BitReg_GetField_Position(aj_const_volatile_uint_t *reg, aj_uint_t pos, uint8_t width){
-    return (aj_uint_t)((*reg >> pos) & ((1U << width) - 1U));
-}
+//static inline aj_uint_t AJ_BitReg_GetField_Position(aj_const_volatile_uint_t *reg, aj_uint_t pos, uint8_t width){
+//    return (aj_uint_t)((*reg >> pos) & ((1U << width) - 1U));
+//}
 
 static inline uint8_t AJ_BitReg_IsBitSet_Position(aj_const_volatile_uint_t *reg, aj_uint_t pos){
     return (uint8_t)((((*reg) >> pos) & 0x01U) != 0U);
