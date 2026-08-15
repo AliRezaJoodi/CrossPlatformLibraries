@@ -117,6 +117,10 @@ static inline uint8_t AJ_GPIO_IsPinSet_Mask(GPIO_TypeDef *GPIOx, uint32_t mask){
 	return AJ_BitReg_IsBitSet_Mask(&(GPIOx->IDR), mask);
 }
 
+static inline uint16_t AJ_GPIO_ReadPin_Mask(GPIO_TypeDef *GPIOx, uint32_t mask){
+	return (uint16_t)AJ_BitReg_GetBit_Mask(&(GPIOx->IDR), mask);
+}
+
 static inline uint8_t AJ_GPIO_IsPinSet_Position(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_t pos){
 	return AJ_BitReg_IsBitSet_Position(&(GPIOx->IDR), pos);
 }

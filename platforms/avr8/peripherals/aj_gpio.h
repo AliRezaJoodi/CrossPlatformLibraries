@@ -164,6 +164,10 @@ static inline uint8_t AJ_GPIO_IsPinSet_Mask(const aj_gpio_reg_t *gpio, uint8_t m
     return AJ_BitReg_IsBitSet_Mask(gpio->pin, mask);
 }
 
+static inline uint8_t AJ_GPIO_ReadPin_Mask(const aj_gpio_reg_t *gpio, uint8_t mask){
+    return (uint8_t)AJ_BitReg_GetBit_Mask(gpio->pin, mask);
+}
+
 static inline uint8_t AJ_GPIO_IsPinSet_Position(const aj_gpio_reg_t *gpio, aj_gpio_pin_pos_t pos){
     return AJ_BitReg_IsBitSet_Position(gpio->pin, pos);
 }
