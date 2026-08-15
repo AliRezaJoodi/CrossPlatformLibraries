@@ -56,7 +56,9 @@ extern "C" {
 //    #define AJ_BITREG_CTZ(mask)    AJ_CTZ_u8((mask))
 //#endif
 
-//***********************************************************************
+/******************************************************************************/
+/* Set Bits                                                                   */
+/******************************************************************************/
 static inline void AJ_BitReg_SetBit_Mask(aj_volatile_uint_t *reg, aj_uint_t mask){
     *reg = (aj_uint_t)(*reg | mask);
 }
@@ -65,7 +67,9 @@ static inline void AJ_BitReg_SetBit_Position(aj_volatile_uint_t *reg, aj_uint_t 
     *reg = (aj_uint_t)(*reg | (0x01U << pos));
 }
 
-//***********************************************************************
+/******************************************************************************/
+/* Clear Bits                                                                 */
+/******************************************************************************/
 static inline void AJ_BitReg_ClearBit_Mask(aj_volatile_uint_t *reg, aj_uint_t mask){
     *reg = (aj_uint_t)(*reg & (~mask));
 }
@@ -74,7 +78,9 @@ static inline void AJ_BitReg_ClearBit_Position(aj_volatile_uint_t *reg, aj_uint_
     *reg = (aj_uint_t)(*reg & ~(0x01U << pos));
 }
 
-//***********************************************************************
+/******************************************************************************/
+/* Toggle Bits                                                                */
+/******************************************************************************/
 static inline void AJ_BitReg_ToggleBit_Mask(aj_volatile_uint_t *reg, aj_uint_t mask){
     *reg = (aj_uint_t)(*reg ^ mask);
 }
@@ -83,7 +89,9 @@ static inline void AJ_BitReg_ToggleBit_Position(aj_volatile_uint_t *reg, aj_uint
     *reg = (aj_uint_t)(*reg ^ (0x01U << pos));
 }
 
-//***********************************************************************
+/******************************************************************************/
+/* Write Bits                                                                 */
+/******************************************************************************/
 static inline void AJ_BitReg_ModifyBit_Mask(aj_volatile_uint_t *reg, aj_uint_t clearmask, aj_uint_t setmask){
     *reg = (aj_uint_t)(((*reg) & ~clearmask) | setmask);
 }
@@ -188,7 +196,9 @@ static inline void AJ_BitReg_Write8Bit_Position(aj_volatile_uint_t *reg, aj_uint
            );
 }
 
-//***********************************************************************
+/******************************************************************************/
+/* Get Bits                                                                   */
+/******************************************************************************/
 /* Precondition:
  * - mask must be non-zero
  * - mask should describe one contiguous bit-field
