@@ -132,59 +132,59 @@ static inline void AJ_BitReg_WriteField_Position(aj_volatile_uint_t *reg, aj_uin
            );
 }
 
-static inline void AJ_BitReg_WriteBit_Position(aj_volatile_uint_t *reg, aj_uint_t pos, aj_uint_t status){
+static inline void AJ_BitReg_WriteBit_Position(aj_volatile_uint_t *reg, aj_uint_t pos, aj_uint_t state){
     *reg = (aj_uint_t)(
             (*reg & ~(0x01U << pos)) |
-            ((status & 0x01U) << pos)
+            ((state & 0x01U) << pos)
            );
 }
 
-static inline void AJ_BitReg_Write2Bit_Position(aj_volatile_uint_t *reg, aj_uint_t pos, aj_uint_t field){
+static inline void AJ_BitReg_Write2Bit_Position(aj_volatile_uint_t *reg, aj_uint_t pos, aj_uint_t value){
     *reg = (aj_uint_t)(
             (*reg & ~(0x03U << pos)) |
-            ((field & 0x03U) << pos)
+            ((value & 0x03U) << pos)
            );
 }
 
-static inline void AJ_BitReg_Write3Bit_Position(aj_volatile_uint_t *reg, aj_uint_t pos, aj_uint_t field){
+static inline void AJ_BitReg_Write3Bit_Position(aj_volatile_uint_t *reg, aj_uint_t pos, aj_uint_t value){
     *reg = (aj_uint_t)(
             (*reg & ~(0x07U << pos)) |
-            ((field & 0x07U) << pos)
+            ((value & 0x07U) << pos)
            );
 }
 
-static inline void AJ_BitReg_Write4Bit_Position(aj_volatile_uint_t *reg, aj_uint_t pos, aj_uint_t field){
+static inline void AJ_BitReg_Write4Bit_Position(aj_volatile_uint_t *reg, aj_uint_t pos, aj_uint_t value){
     *reg = (aj_uint_t)(
             (*reg & ~(0x0FU << pos)) |
-            ((field & 0x0FU) << pos)
+            ((value & 0x0FU) << pos)
            );
 }
 
-static inline void AJ_BitReg_Write5Bit_Position(aj_volatile_uint_t *reg, aj_uint_t pos, aj_uint_t field){
+static inline void AJ_BitReg_Write5Bit_Position(aj_volatile_uint_t *reg, aj_uint_t pos, aj_uint_t value){
     *reg = (aj_uint_t)(
             (*reg & ~(0x1FU << pos)) |
-            ((field & 0x1FU) << pos)
+            ((value & 0x1FU) << pos)
            );
 }
 
-static inline void AJ_BitReg_Write6Bit_Position(aj_volatile_uint_t *reg, aj_uint_t pos, aj_uint_t field){
+static inline void AJ_BitReg_Write6Bit_Position(aj_volatile_uint_t *reg, aj_uint_t pos, aj_uint_t value){
     *reg = (aj_uint_t)(
             (*reg & ~(0x3FU << pos)) |
-            ((field & 0x3FU) << pos)
+            ((value & 0x3FU) << pos)
            );
 }
 
-static inline void AJ_BitReg_Write7Bit_Position(aj_volatile_uint_t *reg, aj_uint_t pos, aj_uint_t field){
+static inline void AJ_BitReg_Write7Bit_Position(aj_volatile_uint_t *reg, aj_uint_t pos, aj_uint_t value){
     *reg = (aj_uint_t)(
             (*reg & ~(0x7FU << pos)) |
-            ((field & 0x7FU) << pos)
+            ((value & 0x7FU) << pos)
            );
 }
 
-static inline void AJ_BitReg_Write8Bit_Position(aj_volatile_uint_t *reg, aj_uint_t pos, aj_uint_t field){
+static inline void AJ_BitReg_Write8Bit_Position(aj_volatile_uint_t *reg, aj_uint_t pos, aj_uint_t value){
     *reg = (aj_uint_t)(
             (*reg & ~(0xFFU << pos)) |
-            ((field & 0xFFU) << pos)
+            ((value & 0xFFU) << pos)
            );
 }
 
