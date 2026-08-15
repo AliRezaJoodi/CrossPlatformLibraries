@@ -131,9 +131,9 @@ static inline void AJ_GPIO_TogglePort(const aj_gpio_reg_t *gpio){
 }
 
 //*****************************************************************
-static inline void AJ_GPIO_WriteField_Mask(const aj_gpio_reg_t *gpio, uint8_t mask, uint8_t value){
-    AJ_BitReg_WriteField_Mask(gpio->port, mask, value);
-}
+//static inline void AJ_GPIO_WriteField_Mask(const aj_gpio_reg_t *gpio, uint8_t mask, uint8_t value){
+//    AJ_BitReg_WriteField_Mask(gpio->port, mask, value);
+//}
 
 static inline void AJ_GPIO_WritePin_Position(const aj_gpio_reg_t *gpio, aj_gpio_pin_pos_t pos, uint8_t status){
     AJ_BitReg_WriteBit_Position(gpio->port, pos, status);
@@ -156,9 +156,9 @@ static inline void AJ_GPIO_WritePort(const aj_gpio_reg_t *gpio, uint8_t value){
 }
 
 //*****************************************************************
-static inline uint8_t AJ_GPIO_ReadField_Mask(const aj_gpio_reg_t *gpio, uint8_t mask){
-    return AJ_BitReg_GetField_Mask(gpio->pin, mask);
-}
+//static inline uint8_t AJ_GPIO_ReadField_Mask(const aj_gpio_reg_t *gpio, uint8_t mask){
+//    return AJ_BitReg_GetField_Mask(gpio->pin, mask);
+//}
 
 static inline uint8_t AJ_GPIO_IsPinSet_Mask(const aj_gpio_reg_t *gpio, uint8_t mask){
     return AJ_BitReg_IsBitSet_Mask(gpio->pin, mask);

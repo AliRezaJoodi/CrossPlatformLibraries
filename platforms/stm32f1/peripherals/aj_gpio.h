@@ -98,9 +98,9 @@ static inline void AJ_GPIO_TogglePin_Position(GPIO_TypeDef *GPIOx, aj_gpio_pin_p
 }
 
 //**************************************************************************************
-static inline void AJ_GPIO_WriteField_Mask(GPIO_TypeDef *GPIOx, uint32_t mask, uint32_t field){
-  AJ_BitReg_WriteField_Mask(&(GPIOx->ODR), mask, field);
-}
+//static inline void AJ_GPIO_WriteField_Mask(GPIO_TypeDef *GPIOx, uint32_t mask, uint32_t field){
+//  AJ_BitReg_WriteField_Mask(&(GPIOx->ODR), mask, field);
+//}
 
 static inline void AJ_GPIO_WritePin_Position(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_t pos, uint32_t state){
 	AJ_BitReg_WriteBit_Position(&(GPIOx->ODR), pos, state);
@@ -123,9 +123,9 @@ static inline void GPIO_WritePort(GPIO_TypeDef *GPIOx, uint32_t value){
 }
 
 //**************************************************************************************
-static inline uint32_t AJ_GPIO_ReadField_Mask(GPIO_TypeDef *GPIOx, uint32_t mask){
-	return AJ_BitReg_GetField_Mask(&(GPIOx->IDR), mask);
-}
+//static inline uint32_t AJ_GPIO_ReadField_Mask(GPIO_TypeDef *GPIOx, uint32_t mask){
+//	return AJ_BitReg_GetField_Mask(&(GPIOx->IDR), mask);
+//}
 
 static inline uint32_t AJ_GPIO_IsPinSet_Mask(GPIO_TypeDef *GPIOx, uint32_t mask){
 	return AJ_BitReg_IsBitSet_Mask(&(GPIOx->IDR), mask);
