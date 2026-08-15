@@ -39,6 +39,9 @@ extern "C" {
 #include "aj_bit_reg.h"
 #include "aj_gpio_type.h"	
 
+/******************************************************************************/
+/* Config                                                                     */
+/******************************************************************************/
 static inline void AJ_GPIO_ConfigDirection(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_t pos, aj_gpio_direction_t mode){
 	if(pos <= 7){
 		AJ_BitReg_Write2Bit_Position(&(GPIOx->CRL), pos * 4, mode);
@@ -70,7 +73,9 @@ static inline void AJ_GPIO_ConfigPull(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_t pos
 	AJ_BitReg_WriteBit_Position(&(GPIOx->ODR), pos, mode);
 }
 
-//**************************************************************************************
+/******************************************************************************/
+/* Set Pins                                                                   */
+/******************************************************************************/
 static inline void AJ_GPIO_SetPin_Mask(GPIO_TypeDef *GPIOx, uint32_t mask){
 	GPIOx->BSRR = mask & 0xFFFFUL;
 }
@@ -79,7 +84,9 @@ static inline void AJ_GPIO_SetPin_Position(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_
 	GPIOx->BSRR = (1UL << pos);
 }
 
-//**************************************************************************************
+/******************************************************************************/
+/* Clear Pins                                                                 */
+/******************************************************************************/
 static inline void AJ_GPIO_ClearPin_Mask(GPIO_TypeDef *GPIOx, uint32_t mask){
 	GPIOx->BRR = mask;
 }
@@ -88,7 +95,9 @@ static inline void AJ_GPIO_ClearPin_Position(GPIO_TypeDef *GPIOx, aj_gpio_pin_po
 	GPIOx->BRR = (1UL << pos);
 }
 
-//**************************************************************************************
+/******************************************************************************/
+/* Toggle Pins                                                                */
+/******************************************************************************/
 static inline void AJ_GPIO_TogglePin_Mask(GPIO_TypeDef *GPIOx, uint32_t mask){
 	AJ_BitReg_ToggleBit_Mask(&(GPIOx->ODR), mask);
 }
@@ -97,7 +106,13 @@ static inline void AJ_GPIO_TogglePin_Position(GPIO_TypeDef *GPIOx, aj_gpio_pin_p
 	AJ_BitReg_ToggleBit_Position(&(GPIOx->ODR), pos);
 }
 
-//**************************************************************************************
+/******************************************************************************/
+/* Write Pins                                                                 */
+/******************************************************************************/
+static inline void AJ_GPIO_ModifyPin_Mask(GPIO_TypeDef *GPIOx, uint32_t clearmask, uint32_t setmask){
+	AJ_BitReg_ModifyBit_Mask(&(GPIOx->ODR), clearmask, setmask);
+}
+
 //static inline void AJ_GPIO_WriteField_Mask(GPIO_TypeDef *GPIOx, uint32_t mask, uint32_t field){
 //  AJ_BitReg_WriteField_Mask(&(GPIOx->ODR), mask, field);
 //}
@@ -122,7 +137,9 @@ static inline void GPIO_WritePort(GPIO_TypeDef *GPIOx, uint32_t value){
 	GPIOx->ODR = (value & 0xFFFFU);
 }
 
-//**************************************************************************************
+/******************************************************************************/
+/* Read Pins                                                                  */
+/******************************************************************************/
 //static inline uint32_t AJ_GPIO_ReadField_Mask(GPIO_TypeDef *GPIOx, uint32_t mask){
 //	return AJ_BitReg_GetField_Mask(&(GPIOx->IDR), mask);
 //}
@@ -159,6 +176,9 @@ static inline uint16_t GPIO_ReadPort(GPIO_TypeDef *GPIOx){
 	return (uint16_t)((GPIOx->IDR) & 0xFFFFU);
 }
 
+/******************************************************************************/
+/* Lock Pins                                                                  */
+/******************************************************************************/
 /*
  * GPIOx_LCKR, Bit 16
  * LCKK[16]: Lock key
