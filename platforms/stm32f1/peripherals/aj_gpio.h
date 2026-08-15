@@ -102,20 +102,20 @@ static inline void AJ_GPIO_WriteField_Mask(GPIO_TypeDef *GPIOx, uint32_t mask, u
   AJ_BitReg_WriteField_Mask(&(GPIOx->ODR), mask, field);
 }
 
-static inline void AJ_GPIO_WritePin_Position(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_t pos, uint32_t status){
-	AJ_BitReg_WriteBit_Position(&(GPIOx->ODR), pos, status);
+static inline void AJ_GPIO_WritePin_Position(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_t pos, uint32_t state){
+	AJ_BitReg_WriteBit_Position(&(GPIOx->ODR), pos, state);
 }
 
-static inline void AJ_GPIO_Write2Pin_Position(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_t pos, uint32_t field){
-	AJ_BitReg_Write2Bit_Position(&(GPIOx->ODR), pos, field);
+static inline void AJ_GPIO_Write2Pin_Position(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_t pos, uint32_t value){
+	AJ_BitReg_Write2Bit_Position(&(GPIOx->ODR), pos, value);
 }
 
-static inline void AJ_GPIO_Write3Pin_Position(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_t pos, uint32_t field){
-	AJ_BitReg_Write3Bit_Position(&(GPIOx->ODR), pos, field);
+static inline void AJ_GPIO_Write3Pin_Position(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_t pos, uint32_t value){
+	AJ_BitReg_Write3Bit_Position(&(GPIOx->ODR), pos, value);
 }
 
-static inline void AJ_GPIO_Write4Pin_Position(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_t pos, uint32_t field){
-	AJ_BitReg_Write4Bit_Position(&(GPIOx->ODR), pos, field);
+static inline void AJ_GPIO_Write4Pin_Position(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_t pos, uint32_t value){
+	AJ_BitReg_Write4Bit_Position(&(GPIOx->ODR), pos, value);
 }
 
 static inline void GPIO_WritePort(GPIO_TypeDef *GPIOx, uint32_t value){
