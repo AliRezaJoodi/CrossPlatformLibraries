@@ -31,7 +31,7 @@ extern "C" {
 #endif
 
 //********************************************************
-static inline void AJ_Bus_AHB_EnableClock(aj_bus_ahb_clock_mask_t periphs){
+static inline void AJ_Bus_EnableClock_AHB(aj_bus_clock_ahb_mask_t periphs){
 	AJ_BitReg_SetBit_Mask(&(RCC->AHBENR), periphs);
 
 	// Synchronize RCC write: read back to ensure clock is enabled.
@@ -39,29 +39,29 @@ static inline void AJ_Bus_AHB_EnableClock(aj_bus_ahb_clock_mask_t periphs){
 	(void)dummy;
 }
 
-static inline aj_bus_clock_state_t AJ_Bus_AHB_IsClockEnabled(aj_bus_ahb_clock_mask_t periphs){
+static inline aj_bus_clock_state_t AJ_Bus_IsClockEnabled_AHB(aj_bus_clock_ahb_mask_t periphs){
 	return AJ_BitReg_IsBitSet_Mask(&(RCC->AHBENR), periphs);
 }
 
-static inline void AJ_Bus_AHB_DisableClock(aj_bus_ahb_clock_mask_t periphs){
+static inline void AJ_Bus_DisableClock_AHB(aj_bus_clock_ahb_mask_t periphs){
 	AJ_BitReg_ClearBit_Mask(&(RCC->AHBENR), periphs);
 }
 
 
 #if defined(AJ_BUS_AHBRSTR_SUPPORT)
 //********************************************************
-static inline void AJ_Bus_AHB_ForceReset(aj_bus_ahb_reset_mask_t periphs){
+static inline void AJ_Bus_ForceReset_AHB(aj_bus_reset_ahb_mask_t periphs){
 	AJ_BitReg_SetBit_Mask(&(RCC->AHBRSTR), periphs);
 }
 
-static inline void AJ_Bus_AHB_ReleaseReset(aj_bus_ahb_reset_mask_t periphs){
+static inline void AJ_Bus_ReleaseReset_AHB(aj_bus_reset_ahb_mask_t periphs){
 	AJ_BitReg_ClearBit_Mask(&(RCC->AHBRSTR), periphs);
 }
 #endif /* AJ_BUS_AHBRSTR_SUPPORT */
 
 
 //********************************************************
-static inline void AJ_Bus_APB1_EnableClock(aj_bus_apb1_clock_mask_t periphs){
+static inline void AJ_Bus_EnableClock_APB1(aj_bus_clock_apb1_mask_t periphs){
 	AJ_BitReg_SetBit_Mask(&(RCC->APB1ENR), periphs);
 
 	// Synchronize RCC write: read back to ensure clock is enabled.
@@ -69,25 +69,25 @@ static inline void AJ_Bus_APB1_EnableClock(aj_bus_apb1_clock_mask_t periphs){
 	(void)dummy;
 }
 
-static inline aj_bus_clock_state_t AJ_Bus_APB1_IsClockEnabled(aj_bus_apb1_clock_mask_t periphs){
+static inline aj_bus_clock_state_t AJ_Bus_IsClockEnabled_APB1(aj_bus_clock_apb1_mask_t periphs){
 	return AJ_BitReg_IsBitSet_Mask(&(RCC->APB1ENR), periphs);
 }
 
-static inline void AJ_Bus_APB1_DisableClock(aj_bus_apb1_clock_mask_t periphs){
+static inline void AJ_Bus_DisableClock_APB1(aj_bus_clock_apb1_mask_t periphs){
 	AJ_BitReg_ClearBit_Mask(&(RCC->APB1ENR), periphs);
 }
 
-static inline void AJ_Bus_APB1_ForceReset(aj_bus_apb1_reset_mask_t periphs){
+static inline void AJ_Bus_ForceReset_APB1(aj_bus_reset_apb1_mask_t periphs){
 	AJ_BitReg_SetBit_Mask(&(RCC->APB1RSTR), periphs);
 }
 
-static inline void AJ_Bus_APB1_ReleaseReset(aj_bus_apb1_reset_mask_t periphs){
+static inline void AJ_Bus_ReleaseReset_APB1(aj_bus_reset_apb1_mask_t periphs){
 	AJ_BitReg_ClearBit_Mask(&(RCC->APB1RSTR), periphs);
 }
 
 
 //********************************************************
-static inline void AJ_Bus_APB2_EnableClock(aj_bus_apb2_clock_mask_t periphs){
+static inline void AJ_Bus_EnableClock_APB2(aj_bus_clock_apb2_mask_t periphs){
 	AJ_BitReg_SetBit_Mask(&(RCC->APB2ENR), periphs);
 
 	// Synchronize RCC write: read back to ensure clock is enabled.
@@ -95,19 +95,19 @@ static inline void AJ_Bus_APB2_EnableClock(aj_bus_apb2_clock_mask_t periphs){
 	(void)dummy;
 }
 
-static inline aj_bus_clock_state_t  AJ_Bus_APB2_IsClockEnabled(aj_bus_apb2_clock_mask_t periphs){
+static inline aj_bus_clock_state_t  AJ_Bus_IsClockEnabled_APB2(aj_bus_clock_apb2_mask_t periphs){
 	return AJ_BitReg_IsBitSet_Mask(&(RCC->APB2ENR), periphs);
 }
 
-static inline void AJ_Bus_APB2_DisableClock(aj_bus_apb2_clock_mask_t periphs){
+static inline void AJ_Bus_DisableClock_APB2(aj_bus_clock_apb2_mask_t periphs){
 	AJ_BitReg_ClearBit_Mask(&(RCC->APB2ENR), periphs);
 }
 
-static inline void AJ_Bus_APB2_ForceReset(aj_bus_apb2_reset_mask_t periphs){
+static inline void AJ_Bus_ForceReset_APB2(aj_bus_reset_apb2_mask_t periphs){
 	AJ_BitReg_SetBit_Mask(&(RCC->APB2RSTR), periphs);
 }
 
-static inline void AJ_Bus_APB2_ReleaseReset(aj_bus_apb2_reset_mask_t periphs){
+static inline void AJ_Bus_ReleaseReset_APB2(aj_bus_reset_apb2_mask_t periphs){
 	AJ_BitReg_ClearBit_Mask(&(RCC->APB2RSTR), periphs);
 }
 
