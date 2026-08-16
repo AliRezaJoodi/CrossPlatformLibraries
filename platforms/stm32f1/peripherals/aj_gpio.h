@@ -202,7 +202,7 @@ static inline uint16_t GPIO_ReadPort(GPIO_TypeDef *GPIOx){
  * 				0: Port configuration not locked.
  * 				1: Port configuration locked.
  */
-static inline uint8_t GPIO_LockPins_Mask(GPIO_TypeDef *GPIOx, uint32_t mask){
+static inline uint8_t GPIO_LockPin_Mask(GPIO_TypeDef *GPIOx, uint32_t mask){
 	uint32_t lock_value = (1UL << GPIO_LCKR_LCKK_Pos) | (mask & 0xFFFFUL);
 
 	GPIOx->LCKR = lock_value;	/**< Write 1 */
@@ -224,7 +224,7 @@ static inline uint8_t GPIO_LockPins_Mask(GPIO_TypeDef *GPIOx, uint32_t mask){
  * @param  mask   16-bit mask specifying the pins to check.
  * @return 1 if all selected pins are locked, 0 otherwise.
  */
-static inline uint8_t AJ_GPIO_ArePinsLocked_Mask(GPIO_TypeDef *GPIOx, uint32_t mask){
+static inline uint8_t AJ_GPIO_IsPinLocked_Mask(GPIO_TypeDef *GPIOx, uint32_t mask){
 	uint32_t lckr = GPIOx->LCKR;
 	mask &= 0xFFFFUL;
 
