@@ -45,7 +45,7 @@ extern "C" {
 
 #include <stdint.h>
 #include "aj_target.h"
-#include "aj_typedef.h"
+#include "aj_type.h"
 //#include "aj_ctz.h"
 
 //#if AJ_TARGET_MCU_BITS == 32U
