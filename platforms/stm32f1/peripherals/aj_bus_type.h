@@ -9,11 +9,6 @@ extern "C" {
 #include <stm32f1xx.h>
 
 typedef enum {
-	AJ_BUS_CLOCK_DISABLE = 0U,
-	AJ_BUS_CLOCK_ENABLE  = 1U
-} aj_bus_clock_state_t;
-
-typedef enum {
 	#if defined(RCC_AHBENR_DMA1EN_Msk)
 		AJ_BUS_CLOCK_AHB_DMA1 = RCC_AHBENR_DMA1EN_Msk,
 	#endif

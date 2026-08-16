@@ -39,7 +39,7 @@ static inline void AJ_Bus_EnableClock_AHB(aj_bus_clock_ahb_mask_t periphs){
 	(void)dummy;
 }
 
-static inline aj_bus_clock_state_t AJ_Bus_IsClockEnabled_AHB(aj_bus_clock_ahb_mask_t periphs){
+static inline uint8_t AJ_Bus_IsClockEnabled_AHB(aj_bus_clock_ahb_mask_t periphs){
 	return AJ_BitReg_IsBitSet_Mask(&(RCC->AHBENR), periphs);
 }
 
@@ -69,7 +69,7 @@ static inline void AJ_Bus_EnableClock_APB1(aj_bus_clock_apb1_mask_t periphs){
 	(void)dummy;
 }
 
-static inline aj_bus_clock_state_t AJ_Bus_IsClockEnabled_APB1(aj_bus_clock_apb1_mask_t periphs){
+static inline uint8_t AJ_Bus_IsClockEnabled_APB1(aj_bus_clock_apb1_mask_t periphs){
 	return AJ_BitReg_IsBitSet_Mask(&(RCC->APB1ENR), periphs);
 }
 
@@ -95,7 +95,7 @@ static inline void AJ_Bus_EnableClock_APB2(aj_bus_clock_apb2_mask_t periphs){
 	(void)dummy;
 }
 
-static inline aj_bus_clock_state_t  AJ_Bus_IsClockEnabled_APB2(aj_bus_clock_apb2_mask_t periphs){
+static inline uint8_t  AJ_Bus_IsClockEnabled_APB2(aj_bus_clock_apb2_mask_t periphs){
 	return AJ_BitReg_IsBitSet_Mask(&(RCC->APB2ENR), periphs);
 }
 
