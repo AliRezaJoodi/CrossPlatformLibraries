@@ -34,6 +34,7 @@
 extern "C" {
 #endif
 
+
 #include <stdint.h>
 #include <stm32f1xx.h>
 #include "aj_bit_reg.h"
@@ -256,6 +257,7 @@ static inline uint8_t AJ_GPIO_IsPinLocked_Position(GPIO_TypeDef *GPIOx, aj_gpio_
 //static inline uint8_t GPIO_ReadLockPin(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_t pin){
 //    return (uint8_t)((GPIOx->LCKR >> pin) & 0x01UL);
 //}
+
 
 #ifdef __cplusplus
 }

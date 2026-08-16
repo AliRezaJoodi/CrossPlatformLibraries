@@ -5,6 +5,7 @@
 extern "C" {
 #endif
 
+
 #include <stdint.h>
 #include <stm32f1xx.h>
 #include "aj_bit_reg.h"
@@ -19,6 +20,7 @@ typedef enum{
 static inline void AJ_AFIO_ConfigSWJ(aj_afio_swj_t mode){
 	AJ_BitReg_Write3Bit_Position(&AFIO->MAPR, AFIO_MAPR_SWJ_CFG_Pos, mode);
 }
+
 
 #ifdef __cplusplus
 }
