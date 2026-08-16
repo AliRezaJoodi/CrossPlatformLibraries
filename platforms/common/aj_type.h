@@ -1,5 +1,5 @@
-#ifndef AJ_TYPEDEF_INCLUDED
-#define AJ_TYPEDEF_INCLUDED
+#ifndef AJ_TYPE_INCLUDED
+#define AJ_TYPE_INCLUDED
 
 #ifdef __cplusplus
 extern "C" {
@@ -35,12 +35,12 @@ typedef enum {
 typedef enum {
   AJ_DISABLE = 0U, 
   AJ_ENABLE = 1U
-} aj_state_operational_t;
+} aj_state_enable_t, aj_state_operational_t;
 
-typedef enum{
-  AJ_SUCCESS = 0U,
-  AJ_ERROR = 1U
-} aj_result_t;
+typedef enum {
+  AJ_OFF = 0U, 
+  AJ_ON = 1U
+} aj_state_onoff_t;
 
 typedef enum {
   AJ_ACTIVE = 0U,
@@ -52,9 +52,14 @@ typedef enum {
   AJ_DESELECT = 1U
 } aj_state_chip_t;
 
+typedef enum{
+  AJ_SUCCESS = 0U,
+  AJ_ERROR = 1U
+} aj_result_t;
+
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif  /* AJ_TYPEDEF_INCLUDED */
+#endif  /* AJ_TYPE_INCLUDED */
