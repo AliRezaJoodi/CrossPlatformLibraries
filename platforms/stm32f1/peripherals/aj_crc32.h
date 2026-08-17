@@ -31,18 +31,18 @@ extern "C" {
 /******************************************************************************/
 /* Control register (CRC_CR)                                                  */
 /******************************************************************************/
-static inline void AJ_CRC32_Reset(void){
+static inline void AJ_CRC32_ResetUnit(void){
   CRC->CR |= CRC_CR_RESET_Msk;
 }
 
 /******************************************************************************/
 /* Data register (CRC_DR)                                                     */
 /******************************************************************************/
-static inline void AJ_CRC32_Feed(uint32_t data){
+static inline void AJ_CRC32_FeedData(uint32_t data){
   CRC->DR = data;
 }
 
-static inline uint32_t AJ_CRC32_Read(void){
+static inline uint32_t AJ_CRC32_ReadData(void){
   return CRC->DR;
 }
 
