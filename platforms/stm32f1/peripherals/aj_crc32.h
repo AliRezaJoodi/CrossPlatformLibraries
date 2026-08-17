@@ -2,6 +2,7 @@
  * @brief   CRC-32 calculation interface for STM32F1 peripherals.
  *
  * This file provides helper APIs for using the CRC peripheral of STM32F1, including:
+ * - CRC->CR
  * - CRC->DR
  *
  * -----------------------------------------------------------------------------
@@ -26,6 +27,13 @@ extern "C" {
 
 #include <stdint.h>
 #include <stm32f1xx.h>
+
+/******************************************************************************/
+/* Control register (CRC_CR)                                                  */
+/******************************************************************************/
+static inline void AJ_CRC32_Reset(void){
+  CRC->CR |= CRC_CR_RESET_Msk;
+}
 
 /******************************************************************************/
 /* Data register (CRC_DR)                                                     */
