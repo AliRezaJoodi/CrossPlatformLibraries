@@ -16,7 +16,15 @@ extern "C" {
 #include <stdint.h>
 #include <stm32f1xx.h>
 #include "aj_bit_reg.h"
+#include "aj_type.h"
 #include "aj_systick_type.h"
+
+/******************************************************************************/
+/* Enable State                                                               */
+/******************************************************************************/
+static inline void AJ_SysTick_ConfigEnableState(aj_state_enable_t state){
+	AJ_BitReg_WriteBit_Position(&(SysTick->CTRL), SysTick_CTRL_ENABLE_Pos, state);
+}
 
 /******************************************************************************/
 /* Count Flag                                                                 */
