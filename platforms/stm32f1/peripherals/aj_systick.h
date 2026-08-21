@@ -30,6 +30,10 @@ static inline uint8_t AJ_SysTick_IsEnabled(void){
 	return AJ_BitReg_IsBitSet_Mask(&(SysTick->CTRL), SysTick_CTRL_ENABLE_Msk);
 }
 
+static inline void AJ_SysTick_ConfigInterruptState(aj_state_enable_t state){
+	AJ_BitReg_WriteBit_Position(&(SysTick->CTRL), SysTick_CTRL_TICKINT_Pos, state);
+}
+
 static inline uint8_t AJ_SysTick_IsInterruptEnabled(void){
 	return AJ_BitReg_IsBitSet_Mask(&(SysTick->CTRL), SysTick_CTRL_TICKINT_Msk);
 }
