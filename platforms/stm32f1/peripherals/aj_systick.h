@@ -56,6 +56,14 @@ static inline uint32_t AJ_SysTick_ReadLoad(void){
 	return SysTick->LOAD & SysTick_LOAD_RELOAD_Msk;
 }
 
+static inline void AJ_SysTick_ClearValue(void){
+	SysTick->VAL = 0U;
+}
+
+static inline uint32_t AJ_SysTick_ReadValue(void){
+	return SysTick->VAL & SysTick_VAL_CURRENT_Msk;
+}
+
 static inline uint8_t AJ_SysTick_IsInterruptEnabled(void){
 	return AJ_BitReg_IsBitSet_Mask(&(SysTick->CTRL), SysTick_CTRL_TICKINT_Msk);
 }
