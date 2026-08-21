@@ -34,6 +34,17 @@ static inline void AJ_SysTick_ConfigInterruptState(aj_state_enable_t state){
 	AJ_BitReg_WriteBit_Position(&(SysTick->CTRL), SysTick_CTRL_TICKINT_Pos, state);
 }
 
+/******************************************************************************/
+/* Clock Source                                                               */
+/******************************************************************************/
+static inline void AJ_SysTick_ConfigClockSource(aj_systick_clksource_t source){
+	AJ_BitReg_WriteBit_Position(&(SysTick->CTRL), SysTick_CTRL_CLKSOURCE_Pos, source);
+}
+
+static inline aj_systick_clksource_t AJ_SysTick_GetClockSource(void){
+	return (aj_systick_clksource_t)AJ_BitReg_GetBit_Position(&(SysTick->CTRL), SysTick_CTRL_CLKSOURCE_Pos);
+}
+
 static inline uint8_t AJ_SysTick_IsInterruptEnabled(void){
 	return AJ_BitReg_IsBitSet_Mask(&(SysTick->CTRL), SysTick_CTRL_TICKINT_Msk);
 }
