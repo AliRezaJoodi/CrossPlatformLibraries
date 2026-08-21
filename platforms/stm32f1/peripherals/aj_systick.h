@@ -45,6 +45,17 @@ static inline aj_systick_clksource_t AJ_SysTick_GetClockSource(void){
 	return (aj_systick_clksource_t)AJ_BitReg_GetBit_Position(&(SysTick->CTRL), SysTick_CTRL_CLKSOURCE_Pos);
 }
 
+/******************************************************************************/
+/* Load                                                                       */
+/******************************************************************************/
+static inline void AJ_SysTick_WriteLoad(uint32_t load){
+	SysTick->LOAD = load & SysTick_LOAD_RELOAD_Msk;
+}
+
+static inline uint32_t AJ_SysTick_ReadLoad(void){
+	return SysTick->LOAD & SysTick_LOAD_RELOAD_Msk;
+}
+
 static inline uint8_t AJ_SysTick_IsInterruptEnabled(void){
 	return AJ_BitReg_IsBitSet_Mask(&(SysTick->CTRL), SysTick_CTRL_TICKINT_Msk);
 }
