@@ -77,6 +77,11 @@ static inline void AJ_SysTick_ClearValue(void){
 	SysTick->VAL = 0U;
 }
 
+/******************************************************************************/
+/* Init                                                                       */
+/******************************************************************************/
+void AJ_SysTick_Init_1ms(uint32_t clk_hz);
+
 
 #ifdef __cplusplus
 }
