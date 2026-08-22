@@ -20,7 +20,7 @@ extern "C" {
 #include "aj_systick_type.h"
 
 /******************************************************************************/
-/* Enable State                                                               */
+/* SysTick->CTRL                                                              */
 /******************************************************************************/
 static inline void AJ_SysTick_ConfigEnableState(aj_state_enable_t state){
 	AJ_BitReg_WriteBit_Position(&(SysTick->CTRL), SysTick_CTRL_ENABLE_Pos, state);
@@ -34,9 +34,10 @@ static inline void AJ_SysTick_ConfigInterruptState(aj_state_enable_t state){
 	AJ_BitReg_WriteBit_Position(&(SysTick->CTRL), SysTick_CTRL_TICKINT_Pos, state);
 }
 
-/******************************************************************************/
-/* Clock Source                                                               */
-/******************************************************************************/
+static inline uint8_t AJ_SysTick_IsInterruptEnabled(void){
+	return AJ_BitReg_IsBitSet_Mask(&(SysTick->CTRL), SysTick_CTRL_TICKINT_Msk);
+}
+
 static inline void AJ_SysTick_ConfigClockSource(aj_systick_clksource_t source){
 	AJ_BitReg_WriteBit_Position(&(SysTick->CTRL), SysTick_CTRL_CLKSOURCE_Pos, source);
 }
@@ -45,8 +46,17 @@ static inline aj_systick_clksource_t AJ_SysTick_GetClockSource(void){
 	return (aj_systick_clksource_t)AJ_BitReg_GetBit_Position(&(SysTick->CTRL), SysTick_CTRL_CLKSOURCE_Pos);
 }
 
+static inline uint8_t AJ_SysTick_IsFlagActive(void){
+	return AJ_BitReg_IsBitSet_Mask(&(SysTick->CTRL), SysTick_CTRL_COUNTFLAG_Msk);
+}
+
+static inline void AJ_SysTick_ClearFlag(void){
+	volatile uint32_t tmp = SysTick->CTRL;
+	((void)tmp);
+}
+
 /******************************************************************************/
-/* Load                                                                       */
+/* SysTick->LOAD                                                              */
 /******************************************************************************/
 static inline void AJ_SysTick_WriteLoad(uint32_t load){
 	SysTick->LOAD = load & SysTick_LOAD_RELOAD_Msk;
@@ -56,28 +66,15 @@ static inline uint32_t AJ_SysTick_ReadLoad(void){
 	return SysTick->LOAD & SysTick_LOAD_RELOAD_Msk;
 }
 
-static inline void AJ_SysTick_ClearValue(void){
-	SysTick->VAL = 0U;
-}
-
+/******************************************************************************/
+/* SysTick->VAL                                                               */
+/******************************************************************************/
 static inline uint32_t AJ_SysTick_ReadValue(void){
 	return SysTick->VAL & SysTick_VAL_CURRENT_Msk;
 }
 
-static inline uint8_t AJ_SysTick_IsInterruptEnabled(void){
-	return AJ_BitReg_IsBitSet_Mask(&(SysTick->CTRL), SysTick_CTRL_TICKINT_Msk);
-}
-
-/******************************************************************************/
-/* Count Flag                                                                 */
-/******************************************************************************/
-static inline uint8_t AJ_SysTick_IsFlagActive(void){
-	return AJ_BitReg_IsBitSet_Mask(&(SysTick->CTRL), SysTick_CTRL_COUNTFLAG_Msk);
-}
-
-static inline void AJ_SysTick_ClearFlag(void){
-	volatile uint32_t tmp = SysTick->CTRL;
-	((void)tmp);
+static inline void AJ_SysTick_ClearValue(void){
+	SysTick->VAL = 0U;
 }
 
 
