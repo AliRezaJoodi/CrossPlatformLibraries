@@ -1,6 +1,28 @@
 /**
  * @brief SysTick utility library for STM32F1xx microcontrollers.
  *
+ * This file provides helper APIs for managing SysTick control and status
+ * registers, including:
+ * - SysTick->CTRL
+ * - SysTick->LOAD
+ * - SysTick->VAL
+ *
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 1: Compilation & Linkage
+ * -----------------------------------------------------------------------------
+ * The following source files must be compiled and linked in the project:
+ * - `aj_systick.c`
+ *
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 2: Configuration Override
+ * -----------------------------------------------------------------------------
+ * The default driver macros are declared in the following headers:
+ * - `aj_target.h`
+ *
+ * To customize these configurations, override them inside the central project
+ * hardware configuration file:
+ * - `hardware.h`
+ *
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
  */
@@ -80,6 +102,21 @@ static inline void AJ_SysTick_ClearValue(void){
 /******************************************************************************/
 /* Init                                                                       */
 /******************************************************************************/
+/**
+ * @brief  Initializes the SysTick timer to generate a 1 ms time base.
+ *
+ * Performs the following steps in order:
+ * - Stops the SysTick counter if it is already running.
+ * - Disables the SysTick interrupt.
+ * - Selects the processor clock (HCLK) as the clock source.
+ * - Writes the reload value calculated from `clk_hz` to produce a 1 ms period.
+ * - Clears the current counter value so the new period starts immediately.
+ * - Starts the SysTick counter.
+ *
+ * @note   The interrupt is left disabled by design; enable it explicitly with
+ *         AJ_SysTick_ConfigInterruptState() if required.
+ * @param  clk_hz  Core clock frequency in Hz (e.g. 8000000U for 8 MHz).
+ */
 void AJ_SysTick_Init_1ms(uint32_t clk_hz);
 
 
