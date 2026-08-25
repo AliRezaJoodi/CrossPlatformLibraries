@@ -11,7 +11,7 @@
 ///static volatile aj_timebase_t ticks = 0;
 volatile aj_timebase_t timebase_tick = 0;
 
-//void AJ_TimeBase_CountTick(void) {
+//void AJ_TimeBase_Handler(void) {
 //    timebase_tick++;
 //}
 
