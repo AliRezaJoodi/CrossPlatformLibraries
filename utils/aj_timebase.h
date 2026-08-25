@@ -1,7 +1,7 @@
 /**
  * @brief   System Tick Management Library for Microcontrollers.
  * @details This library provides a non-blocking timing mechanism using a system tick.
- *          The core function @ref AJ_TimeBase_CountTicks must be called periodically
+ *          The core function @ref AJ_TimeBase_CountTick must be called periodically
  *          inside a Timer Interrupt Service Routine (ISR).
  *          It is highly recommended to set the timer period to 1 millisecond.
  *
@@ -27,10 +27,10 @@ extern volatile aj_timebase_t timebase_tick;
  * @details This function should be called periodically inside a Timer Interrupt
  *          Service Routine (ISR). It handles the time-keeping mechanism of the library.
  */
-static inline void AJ_TimeBase_CountTicks(void) {
+static inline void AJ_TimeBase_CountTick(void) {
     timebase_tick++;
 }
-///void AJ_TimeBase_CountTicks(void);
+///void AJ_TimeBase_CountTick(void);
 
 /**
  * @brief  Returns the current system tick count.
@@ -40,7 +40,7 @@ static inline void AJ_TimeBase_CountTicks(void) {
  *         (8, 16, or 32-bit).
  * @return The current tick value since the system started.
  */
-aj_timebase_t AJ_TimeBase_GetTicks(void);
+aj_timebase_t AJ_TimeBase_GetTick(void);
 
 /**
  * @brief Checks whether a specified duration has elapsed since last_tick.
