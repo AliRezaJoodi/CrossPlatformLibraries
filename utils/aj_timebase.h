@@ -45,32 +45,26 @@ aj_timebase_t AJ_TimeBase_GetTick(void);
 /**
  * @brief Checks whether a specified duration has elapsed since last_tick.
  *
- * @param now_tick   Current tick value.
- * @param last_tick  Reference tick value.
+ * @param tick_last  Reference tick value.
  * @param duration   Duration to check, in ticks.
- *
  * @return 1 if the specified duration has elapsed, otherwise 0.
- *
  * @note This function is safe across unsigned integer overflow.
  */
-static inline uint8_t AJ_TimeBase_HasElapsed(aj_timebase_t tick_now, aj_timebase_t tick_last, aj_timebase_t duration) {
-    return (uint8_t)((aj_timebase_t)(tick_now - tick_last) >= duration);
+static inline uint8_t AJ_TimeBase_IsElapsed(aj_timebase_t tick_last, aj_timebase_t duration) {
+    return (uint8_t)((aj_timebase_t)(AJ_TimeBase_GetTick() - tick_last) >= duration);
 }
 
 /**
- * @brief Gets the elapsed ticks between two timebase values.
+ * @brief Gets the elapsed ticks since last_tick.
  *
- * @param now_tick   Current tick value.
- * @param last_tick  Previous/reference tick value.
- *
- * @return Elapsed ticks from last_tick to now_tick.
- *
+ * @param tick_last  Previous/reference tick value.
+ * @return Elapsed ticks from last_tick to now.
  * @note This function is safe across unsigned integer overflow,
  *       as long as the elapsed time does not exceed the maximum
  *       representable range of AJ_timebase_t.
  */
-static inline aj_timebase_t AJ_TimeBase_GetElapsed(aj_timebase_t tick_now, aj_timebase_t tick_last) {
-    return (aj_timebase_t)(tick_now - tick_last);
+static inline aj_timebase_t AJ_TimeBase_GetElapsed(aj_timebase_t tick_last) {
+    return (aj_timebase_t)(AJ_TimeBase_GetTick() - tick_last);
 }
 
 
