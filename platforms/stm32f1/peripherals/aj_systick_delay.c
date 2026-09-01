@@ -18,12 +18,10 @@ void AJ_SysTick_Delay_ms(uint32_t ms){
 }
 
 //****************************************
-// SysTick-based blocking delay; does not modify any register (reads only).
-// Accumulates wrap-arounds, so it works for delays longer than one period too.
 void AJ_SysTick_Delay_us(uint32_t clk_hz, uint32_t us){
 	uint32_t tick_delay = (clk_hz / 1000000U) * us;    // ticks to wait
-	uint32_t period     = SysTick->LOAD + 1U;             // ticks per full period
-	uint32_t last       = SysTick->VAL;                   // last sampled count
+	uint32_t period     = SysTick->LOAD + 1U;          // ticks per full period
+	uint32_t last       = SysTick->VAL;                // last sampled count
 	uint32_t elapsed 		= 0U;
 	
 	while (elapsed < tick_delay){

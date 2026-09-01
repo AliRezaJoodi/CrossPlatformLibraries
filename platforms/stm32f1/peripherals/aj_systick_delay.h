@@ -37,7 +37,20 @@ extern "C" {
 
 #include <stdint.h>
 
+/**
+ * @brief  Blocks for the given time in milliseconds using the SysTick timer.
+ * @note   Counts down on the SysTick COUNTFLAG.
+ * @param  ms  Delay in milliseconds.
+ */
 void AJ_SysTick_Delay_ms(uint32_t ms);
+
+/**
+ * @brief  Blocks for the given time in microseconds using the SysTick timer.
+ * @note   Does not modify any SysTick register (reads only). Accumulates
+ *         wrap-arounds, so it works for delays longer than one period too.
+ * @param  clk_hz  Core clock frequency in Hz (e.g. 8000000U for 8 MHz).
+ * @param  us      Delay in microseconds.
+ */
 void AJ_SysTick_Delay_us(uint32_t clk_hz, uint32_t us);
 
 
