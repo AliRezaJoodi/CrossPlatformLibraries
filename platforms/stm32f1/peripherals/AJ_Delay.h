@@ -5,9 +5,15 @@
  * it provides blocking delay APIs built on the SysTick COUNTFLAG,
  * re-implemented here rather than calling the LL functions directly.
  *
- * @note    The clock count (reset) of the SysTick counter is intentionally not
- *          performed here; the interface keeps the SysTick configuration fully
- *          in the hands of the user.
+ * @note    (1) The clock count (reset) of the SysTick counter is intentionally
+ *              not performed here; the interface keeps the SysTick configuration
+ *              fully in the hands of the user.
+ *          (2) AJ_Delay_us() is implemented on the Cortex-M3 DWT cycle counter
+ *              and does not modify the SysTick timer at all, so the 1 ms time
+ *              base and any other SysTick-based timing keep working undisturbed.
+ *              It assumes the DWT cycle counter is already enabled (the caller
+ *              enables it once at startup) and only samples the current value,
+ *              so it never resets the shared counter.
  *
  * -----------------------------------------------------------------------------
  * REQUIREMENT 1: Compilation & Linkage
@@ -35,6 +41,7 @@ extern "C" {
 #include <stdint.h>
 
 void AJ_Delay_ms(uint32_t delay);
+void AJ_Delay_us(uint32_t clk_hz, uint32_t delay);	// Doesn't work
 
 
 #ifdef __cplusplus
