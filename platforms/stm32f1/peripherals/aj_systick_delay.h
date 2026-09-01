@@ -1,5 +1,5 @@
 /**
- * @brief Delay utility library for STM32F1xx microcontrollers.
+ * @brief SysTick-based delay utility library for STM32F1xx microcontrollers.
  *
  * This file is effectively a refactor of the STM32 Low-Layer (LL) library:
  * it provides blocking delay APIs built on the SysTick COUNTFLAG,
@@ -16,7 +16,7 @@
  * REQUIREMENT 1: Compilation & Linkage
  * -----------------------------------------------------------------------------
  * The following source files must be compiled and linked in the project:
- * - `aj_delay.c`
+ * - `aj_systick_delay.c`
  *
  * -----------------------------------------------------------------------------
  * REQUIREMENT 2: SysTick 1ms Time Base
@@ -27,8 +27,8 @@
  * @see     https://github.com/AliRezaJoodi
  */
 
-#ifndef AJ_DELAY_INCLUDED
-#define AJ_DELAY_INCLUDED
+#ifndef AJ_SYSTICK_DELAY_INCLUDED
+#define AJ_SYSTICK_DELAY_INCLUDED
 
 #ifdef __cplusplus
 extern "C" {
@@ -40,10 +40,9 @@ extern "C" {
 void AJ_Delay_ms(uint32_t ms);
 void AJ_Delay_us(uint32_t clk_hz, uint32_t us);
 
-void AJ_DelayWithDWT_us(uint32_t clk_hz, uint32_t us); 	// Doesn't work
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif	/* AJ_DELAY_INCLUDED */
+#endif	/* AJ_SYSTICK_DELAY_INCLUDED */
