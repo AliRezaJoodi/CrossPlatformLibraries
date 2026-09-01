@@ -40,9 +40,10 @@ extern "C" {
 
 #include <stdint.h>
 
-void AJ_Delay_ms(uint32_t delay);
-void AJ_Delay_us(uint32_t clk_hz, uint32_t delay);	// Doesn't work
+void AJ_Delay_ms(uint32_t ms);
+void AJ_Delay_us(uint32_t clk_hz, uint32_t us);
 
+void AJ_DelayWithDWT_us(uint32_t clk_hz, uint32_t us); 	// Doesn't work
 
 #ifdef __cplusplus
 }
