@@ -4,7 +4,7 @@
 #include "aj_dwt_delay.h"
 
 //****************************************
-void AJ_DelayWithDWT_us(uint32_t clk_hz, uint32_t us){
+void AJ_DWT_Delay_us(uint32_t clk_hz, uint32_t us){
 	uint32_t cycle_delay = (clk_hz / 1000000U) * us;
 	if (cycle_delay == 0U){cycle_delay = 1U;}
 

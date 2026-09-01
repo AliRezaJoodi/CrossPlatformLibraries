@@ -40,7 +40,7 @@ extern "C" {
 
 #include <stdint.h>
 
-void AJ_DelayWithDWT_us(uint32_t clk_hz, uint32_t us);
+void AJ_DWT_Delay_us(uint32_t clk_hz, uint32_t us);
 
 
 #ifdef __cplusplus
