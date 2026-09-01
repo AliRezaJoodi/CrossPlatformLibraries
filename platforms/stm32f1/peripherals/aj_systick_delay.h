@@ -37,8 +37,8 @@ extern "C" {
 
 #include <stdint.h>
 
-void AJ_Delay_ms(uint32_t ms);
-void AJ_Delay_us(uint32_t clk_hz, uint32_t us);
+void AJ_SysTick_Delay_ms(uint32_t ms);
+void AJ_SysTick_Delay_us(uint32_t clk_hz, uint32_t us);
 
 
 #ifdef __cplusplus
