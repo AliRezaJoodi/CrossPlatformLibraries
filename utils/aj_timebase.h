@@ -6,10 +6,11 @@
  *          It is highly recommended to set the timer period to 1 millisecond.
  *
  * -----------------------------------------------------------------------------
- * REQUIREMENT 1: Compilation & Linkage
+ * REQUIREMENT 1: Manual Variable Definition
  * -----------------------------------------------------------------------------
- * The following source files must be compiled and linked in the project:
- * - `aj_timebase.c`
+ * The variable `aj_timebase_tick` must be defined exactly once (globally) in one
+ * of your source files (e.g. `main.c`). This header only declares it (`extern`):
+ *     volatile aj_timebase_t aj_timebase_tick = 0;
  *
  * -----------------------------------------------------------------------------
  * REQUIREMENT 2: Configuration Override
@@ -36,7 +37,7 @@ extern "C" {
 #include <stdint.h>
 #include "aj_timebase_type.h"
 
-extern volatile aj_timebase_t timebase_tick;
+extern volatile aj_timebase_t aj_timebase_tick;
 
 /**
  * @brief  Increments the system tick counter.
@@ -45,8 +46,8 @@ extern volatile aj_timebase_t timebase_tick;
  */
 static inline void AJ_TimeBase_Handler(void) {
     timebase_tick++;
+    aj_timebase_tick++;
 }
-///void AJ_TimeBase_Handler(void);
 
 /**
  * @brief  Returns the current system tick count.
@@ -56,7 +57,18 @@ static inline void AJ_TimeBase_Handler(void) {
  *         (8, 16, or 32-bit).
  * @return The current tick value since the system started.
  */
-aj_timebase_t AJ_TimeBase_GetTick(void);
+static inline aj_timebase_t AJ_TimeBase_GetTick(void) {
+    #if (AJ_TARGET_MCU_BITS == 8U) && (AJ_TARGET_TICK_BITS > 8U)
+        aj_timebase_t t1, t2;
+        do {
+            t1 = aj_timebase_tick;
+            t2 = aj_timebase_tick;
+        } while (t1 != t2);
+        return t2;
+    #else
+        return aj_timebase_tick;
+    #endif
+}
 
 /**
  * @brief Checks whether a specified duration has elapsed since last_tick.
