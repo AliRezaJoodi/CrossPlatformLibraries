@@ -36,9 +36,6 @@ extern "C" {
     //#warning "AJ_TARGET_CONFIG is not defined; default configuration will be used."
 #endif
 
-/******************************************************************************/
-/* Compile-time configuration validation                                      */
-/******************************************************************************/
 
 #ifdef __cplusplus
 }
