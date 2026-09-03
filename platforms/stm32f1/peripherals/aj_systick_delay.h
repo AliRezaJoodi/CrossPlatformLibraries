@@ -23,6 +23,14 @@
  * -----------------------------------------------------------------------------
  * The delay functions assume the SysTick timer has been configured to generate a 1 ms time base.
  *
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 3: Core Clock Frequency
+ * -----------------------------------------------------------------------------
+ * The `AJ_SysTick_Delay_us()` calculation depends on the core clock frequency.
+ * This value is configured via `AJ_TARGET_CORE_CLOCK_HZ` inside `aj_target.h`,
+ * which can be overridden in the central project hardware configuration file:
+ * - `hardware.h`
+ *
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
  */
@@ -40,7 +48,7 @@ extern "C" {
 /**
  * @brief  Blocks for the given time in milliseconds using the SysTick timer.
  * @note   Counts down on the SysTick COUNTFLAG.
- * @param  ms  Delay in milliseconds.
+ * @param  ms: Delay in milliseconds.
  */
 void AJ_SysTick_Delay_ms(uint32_t ms);
 
@@ -48,10 +56,9 @@ void AJ_SysTick_Delay_ms(uint32_t ms);
  * @brief  Blocks for the given time in microseconds using the SysTick timer.
  * @note   Does not modify any SysTick register (reads only). Accumulates
  *         wrap-arounds, so it works for delays longer than one period too.
- * @param  clk_hz  Core clock frequency in Hz (e.g. 8000000U for 8 MHz).
- * @param  us      Delay in microseconds.
+ * @param  us: Delay in microseconds.
  */
-void AJ_SysTick_Delay_us(uint32_t clk_hz, uint32_t us);
+void AJ_SysTick_Delay_us(uint32_t us);
 
 
 #ifdef __cplusplus
