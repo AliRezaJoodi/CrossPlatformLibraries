@@ -32,7 +32,7 @@
  * - `aj_mcp41xxx_42xxx.c`
  *
  * -----------------------------------------------------------------------------
- * REQUIREMENT 3: Configuration Override
+ * REQUIREMENT 3: Default Configuration
  * -----------------------------------------------------------------------------
  * The default driver macros are declared in the following headers:
  * - `aj_target.h`
@@ -40,8 +40,12 @@
  * - `aj_mcp41xxx_42xxx_config.h`
  * - `aj_mcp41xxx_42xxx_config_platform.h`
  *
- * To customize these configurations, override them inside the central project
- * hardware configuration file:
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 4: User Configuration Override
+ * -----------------------------------------------------------------------------
+ * This library's default configuration can be customized via the central
+ * project hardware configuration file, which MUST be present alongside your
+ * project source files. Override the macros inside it:
  * - `hardware.h`
  *
  * -----------------------------------------------------------------------------

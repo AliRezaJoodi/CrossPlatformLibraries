@@ -12,12 +12,12 @@
  *
  * The returned value from the driver is the raw temperature code.
  * This value represents temperature with a resolution of:
- *      12-bit, 0.25°C per LSB
+ *      12-bit, 0.25ï¿½C per LSB
  * Temperature can be calculated as:
- *      Temperature (°C) = Raw_Value × 0.25
+ *      Temperature (ï¿½C) = Raw_Value ï¿½ 0.25
  *
  * Example:
- *      If the thermocouple temperature is 100°C,
+ *      If the thermocouple temperature is 100ï¿½C,
  *      the raw value returned by the driver will be:
  *          Raw = 100 / 0.25 = 400
  *
@@ -38,15 +38,19 @@
  * - `aj_max6675.c`
  *
  * -----------------------------------------------------------------------------
- * REQUIREMENT 3: Configuration Override
+ * REQUIREMENT 3: Default Configuration
  * -----------------------------------------------------------------------------
  * The default driver macros are declared in the following headers:
  * - `aj_target.h`
  * - `aj_spi_config.h`
  * - `aj_max6675_config_platform.h`
  *
- * To customize these configurations, override them inside the central project
- * hardware configuration file:
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 4: User Configuration Override
+ * -----------------------------------------------------------------------------
+ * This library's default configuration can be customized via the central
+ * project hardware configuration file, which MUST be present alongside your
+ * project source files. Override the macros inside it:
  * - `hardware.h`
  *
  * -----------------------------------------------------------------------------
@@ -78,7 +82,7 @@ void AJ_MAX6675_Init(aj_max6675_t *max);
  * @brief   Reads the 12-bit raw temperature value from the MAX6675.
  *
  * @details
- * Returns the raw temperature code with a resolution of 0.25°C per LSB.
+ * Returns the raw temperature code with a resolution of 0.25ï¿½C per LSB.
  *
  * @param   max Pointer to the MAX6675 driver instance.
  * @return  Raw temperature value, or 0 if the thermocouple is not connected.

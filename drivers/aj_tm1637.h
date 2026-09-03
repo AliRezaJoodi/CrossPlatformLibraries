@@ -15,14 +15,18 @@
  * - `aj_tm1637.c`
  *
  * -----------------------------------------------------------------------------
- * REQUIREMENT 2: Configuration Override
+ * REQUIREMENT 2: Default Configuration
  * -----------------------------------------------------------------------------
  * The default driver macros are declared in the following headers:
  * - `aj_target.h`
  * - `aj_tm1637_config_platform.h`
  *
- * To customize these configurations, override them inside the central project
- * hardware configuration file:
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 3: User Configuration Override
+ * -----------------------------------------------------------------------------
+ * This library's default configuration can be customized via the central
+ * project hardware configuration file, which MUST be present alongside your
+ * project source files. Override the macros inside it:
  * - `hardware.h`
  *
  * @author AliReza Joodi
@@ -147,7 +151,7 @@ uint8_t AJ_TM1637_WriteDisplayRegister_AutoIncr(aj_tm1637_t *tm, uint8_t segment
 uint8_t AJ_TM1637_WriteDisplayRegister_Fixed(aj_tm1637_t *tm, uint8_t data, uint8_t address);
 
 /**
- * @brief Write 2 digits (GRID1–GRID2)
+ * @brief Write 2 digits (GRID1ï¿½GRID2)
  *
  * @param tm TM1637 handle
  * @param segments Array of 2 segment bytes

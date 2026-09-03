@@ -5,7 +5,7 @@
  *
  * This module provides a simple interface to read keys from a 4x4 matrix keypad.
  *
- * The returned value represents the key index (0–15). If no key is pressed,
+ * The returned value represents the key index (0ï¿½15). If no key is pressed,
  * a default value (255) is returned.
  *
  * @warning
@@ -19,14 +19,18 @@
  * - `aj_keypad4x4.c`
  *
  * -----------------------------------------------------------------------------
- * REQUIREMENT 2: Configuration Override
+ * REQUIREMENT 2: Default Configuration
  * -----------------------------------------------------------------------------
  * The default driver macros are declared in the following headers:
  * - `aj_target.h`
  * - `aj_keypad4x4_config_platform.h`
  *
- * To customize these configurations, override them inside the central project
- * hardware configuration file:
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 3: User Configuration Override
+ * -----------------------------------------------------------------------------
+ * This library's default configuration can be customized via the central
+ * project hardware configuration file, which MUST be present alongside your
+ * project source files. Override the macros inside it:
  * - `hardware.h`
  *
  * @author  AliReza Joodi
