@@ -6,11 +6,10 @@
  *          It is highly recommended to set the timer period to 1 millisecond.
  *
  * -----------------------------------------------------------------------------
- * REQUIREMENT 1: Manual Variable Definition
+ * REQUIREMENT 1: Compilation & Linkage
  * -----------------------------------------------------------------------------
- * The variable `aj_timebase_tick` must be defined exactly once (globally) in one
- * of your source files (e.g. `main.c`). This header only declares it (`extern`):
- *     volatile aj_timebase_t aj_timebase_tick = 0;
+ * The following source files must be compiled and linked in the project:
+ * - `aj_timebase.c`
  *
  * -----------------------------------------------------------------------------
  * REQUIREMENT 2: Default Configuration
