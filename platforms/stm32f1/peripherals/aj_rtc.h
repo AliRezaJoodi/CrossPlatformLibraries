@@ -50,9 +50,14 @@ void AJ_RTC_WriteCounter(uint32_t value);
 /******************************************************************************/
 /* Alarm registers (RTC_ALRL + RTC_ALRH)                                      */
 /******************************************************************************/
-uint32_t AJ_RTC_ReadAlarmValue(void);
+uint32_t AJ_RTC_ReadAlarm(void);
 
-void AJ_RTC_WriteAlarmValue(uint32_t value);
+void AJ_RTC_WriteAlarm(uint32_t value);
+
+/******************************************************************************/
+/* Prescaler load registers (RTC_PRLL + RTC_PRLH)                             */
+/******************************************************************************/
+void AJ_RTC_WritePrescaler(uint32_t value);
 
 
 #ifdef __cplusplus
