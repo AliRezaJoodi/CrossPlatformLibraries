@@ -85,6 +85,8 @@ void AJ_RTC_WriteAlarm(uint32_t value);
 /******************************************************************************/
 /* Prescaler load registers (RTC_PRLL + RTC_PRLH)                             */
 /******************************************************************************/
+uint32_t AJ_RTC_ReadPrescaler(void);
+
 void AJ_RTC_WritePrescaler(uint32_t value);
 
 
