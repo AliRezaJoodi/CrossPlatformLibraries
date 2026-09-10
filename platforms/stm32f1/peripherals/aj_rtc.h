@@ -38,7 +38,35 @@ extern "C" {
 #include <stdint.h>
 #include <stm32f1xx.h>
 #include "aj_bit_reg.h"
+#include "aj_type.h"
 #include "aj_rtc_type.h"
+
+/******************************************************************************/
+/* Control register high (RTC_CRH): interrupt enables                         */
+/******************************************************************************/
+static inline void AJ_RTC_ConfigOverflowInterrupt(aj_state_enable_t state){
+	AJ_BitReg_WriteBit_Position(&(RTC->CRH), RTC_CRH_OWIE_Pos, state);
+}
+
+static inline uint8_t AJ_RTC_IsOverflowInterruptEnabled(void){
+	return AJ_BitReg_IsBitSet_Mask(&(RTC->CRH), RTC_CRH_OWIE_Msk);
+}
+
+static inline void AJ_RTC_ConfigAlarmInterrupt(aj_state_enable_t state){
+	AJ_BitReg_WriteBit_Position(&(RTC->CRH), RTC_CRH_ALRIE_Pos, state);
+}
+
+static inline uint8_t AJ_RTC_IsAlarmInterruptEnabled(void){
+	return AJ_BitReg_IsBitSet_Mask(&(RTC->CRH), RTC_CRH_ALRIE_Msk);
+}
+
+static inline void AJ_RTC_ConfigSecondInterrupt(aj_state_enable_t state){
+	AJ_BitReg_WriteBit_Position(&(RTC->CRH), RTC_CRH_SECIE_Pos, state);
+}
+
+static inline uint8_t AJ_RTC_IsSecondInterruptEnabled(void){
+	return AJ_BitReg_IsBitSet_Mask(&(RTC->CRH), RTC_CRH_SECIE_Msk);
+}
 
 /******************************************************************************/
 /* Time counter registers (RTC_CNTL + RTC_CNTH)                               */
