@@ -37,7 +37,22 @@ extern "C" {
 
 #include <stdint.h>
 #include <stm32f1xx.h>
+#include "aj_bit_reg.h"
 #include "aj_rtc_type.h"
+
+/******************************************************************************/
+/* Time counter registers (RTC_CNTL + RTC_CNTH)                               */
+/******************************************************************************/
+uint32_t AJ_RTC_ReadCounter(void);
+
+void AJ_RTC_WriteCounter(uint32_t value);
+
+/******************************************************************************/
+/* Alarm registers (RTC_ALRL + RTC_ALRH)                                      */
+/******************************************************************************/
+uint32_t AJ_RTC_ReadAlarmValue(void);
+
+void AJ_RTC_WriteAlarmValue(uint32_t value);
 
 
 #ifdef __cplusplus
