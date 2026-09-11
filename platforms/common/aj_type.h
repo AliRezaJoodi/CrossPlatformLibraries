@@ -52,10 +52,15 @@ typedef enum {
   AJ_DESELECT = 1U
 } aj_state_chip_t;
 
+typedef enum {
+  AJ_INVALID = 0U,
+  AJ_VALID = 1U
+} aj_state_valid_t;
+
 typedef enum{
   AJ_SUCCESS = 0U,
   AJ_ERROR = 1U
-} aj_result_t;
+} aj_state_error_t;
 
 
 #ifdef __cplusplus
