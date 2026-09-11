@@ -42,6 +42,45 @@ extern "C" {
 #include "aj_rtc_type.h"
 
 /******************************************************************************/
+/* Status register (RTC_CRL): flags                                           */
+/******************************************************************************/
+static inline uint8_t AJ_RTC_IsFlagActive(aj_rtc_flag_r_t flag){
+	return AJ_BitReg_IsBitSet_Mask(&(RTC->CRL), flag);
+}
+
+static inline void AJ_RTC_ClearFlag(aj_rtc_flag_w0_t flag){
+	AJ_BitReg_ClearBit_Mask(&(RTC->CRL), flag);
+}
+
+/******************************************************************************/
+/* Config mode (RTC_CRL_CNF)                                                  */
+/******************************************************************************/
+/**
+ * @brief  Enters the RTC configuration mode.
+ *         Waits until the last write operation is finished (RTOFF=1) using a
+ *         simple free-running counter timeout, then sets the CNF bit to freeze
+ *         the RTC registers for a new write sequence.
+ * @retval aj_state_error_t: AJ_SUCCESS if RTC is in update mode, AJ_ERROR on timeout.
+ */
+aj_state_error_t AJ_RTC_EnterConfigMode(void);
+
+/**
+ * @brief  Exits the RTC configuration mode.
+ *         Clears the CNF bit so the pending writes are applied,
+ *          then waits until the update sequence has terminated (RTOFF=1).
+ * @retval aj_state_error_t: AJ_SUCCESS if RTC exited config mode, AJ_ERROR on timeout.
+ */
+aj_state_error_t AJ_RTC_ExitConfigMode(void);
+
+/**
+ * @brief  Synchronizes the RTC registers with the PCLK1 bus.
+ *         Clears the RSF flag and waits until it is set again, which ensures
+ *         that RTC_CNT, RTC_ALR and RTC_PRL are synchronized before reading.
+ * @retval aj_state_error_t: AJ_SUCCESS if registers are synchronized, AJ_ERROR on timeout.
+ */
+aj_state_error_t AJ_RTC_Synchronize(void);
+
+/******************************************************************************/
 /* Control register high (RTC_CRH): interrupt enables                         */
 /******************************************************************************/
 static inline void AJ_RTC_ConfigOverflowInterrupt(aj_state_enable_t state){
