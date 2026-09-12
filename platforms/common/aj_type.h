@@ -28,43 +28,43 @@ extern "C" {
 #endif
 
 typedef enum {
-	AJ_BIT_CLEAR = 0U,
-	AJ_BIT_SET   = 1U
+	AJ_CLEAR = 0U,
+	AJ_SET   = 1U
 } aj_bit_state_t;
 
 typedef enum {
-	AJ_OPERATION_DISABLE = 0U,
-	AJ_OPERATION_ENABLE  = 1U
+	AJ_DISABLE = 0U,
+	AJ_ENABLE  = 1U
 } aj_operation_state_t;
 
 typedef enum {
-	AJ_POWER_OFF = 0U,
-	AJ_POWER_ON  = 1U
+	AJ_OFF = 0U,
+	AJ_ON  = 1U
 } aj_power_state_t;
 
 typedef enum {
-	AJ_LINE_ASSERTED = 0U,
-	AJ_LINE_IDLE     = 1U
+	AJ_ASSERTED = 0U,
+	AJ_IDLE     = 1U
 } aj_line_state_t;
 
 typedef enum {
-	AJ_SPI_CS_SELECT   = 0U,
-	AJ_SPI_CS_DESELECT = 1U
+	AJ_SELECT   = 0U,
+	AJ_DESELECT = 1U
 } aj_spi_cs_state_t;
 
 typedef enum {
-	AJ_VALIDITY_INVALID = 0U,
-	AJ_VALIDITY_VALID   = 1U
+	AJ_INVALID = 0U,
+	AJ_VALID   = 1U
 } aj_validity_state_t;
 
 typedef enum {
-    AJ_RESULT_SUCCESS = 0U,
-    AJ_RESULT_FAILURE = 1U
+	AJ_SUCCESS = 0U,
+	AJ_FAILURE = 1U
 } aj_result_state_t;
 
 typedef enum {
-	AJ_TEST_PASS = 0U,
-	AJ_TEST_FAIL = 1U
+	AJ_PASS = 0U,
+	AJ_FAIL = 1U
 } aj_test_state_t;
 
 
