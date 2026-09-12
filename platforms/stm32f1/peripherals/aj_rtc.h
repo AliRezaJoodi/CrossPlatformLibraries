@@ -60,30 +60,30 @@ static inline void AJ_RTC_ClearFlag(aj_rtc_flag_w0_t flag){
  *         Waits until the last write operation is finished (RTOFF=1) using a
  *         simple free-running counter timeout, then sets the CNF bit to freeze
  *         the RTC registers for a new write sequence.
- * @retval aj_state_error_t: AJ_SUCCESS if RTC is in update mode, AJ_ERROR on timeout.
+ * @retval aj_config_state_t: AJ_CONFIG_SUCCESS if RTC is in update mode, AJ_CONFIG_FAILURE on timeout.
  */
-aj_state_error_t AJ_RTC_EnterConfigMode(void);
+aj_config_state_t AJ_RTC_EnterConfigMode(void);
 
 /**
  * @brief  Exits the RTC configuration mode.
  *         Clears the CNF bit so the pending writes are applied,
  *          then waits until the update sequence has terminated (RTOFF=1).
- * @retval aj_state_error_t: AJ_SUCCESS if RTC exited config mode, AJ_ERROR on timeout.
+ * @retval aj_config_state_t: AJ_CONFIG_SUCCESS if RTC exited config mode, AJ_CONFIG_FAILURE on timeout.
  */
-aj_state_error_t AJ_RTC_ExitConfigMode(void);
+aj_config_state_t AJ_RTC_ExitConfigMode(void);
 
 /**
  * @brief  Synchronizes the RTC registers with the PCLK1 bus.
  *         Clears the RSF flag and waits until it is set again, which ensures
  *         that RTC_CNT, RTC_ALR and RTC_PRL are synchronized before reading.
- * @retval aj_state_error_t: AJ_SUCCESS if registers are synchronized, AJ_ERROR on timeout.
+ * @retval aj_result_state_t: AJ_RESULT_SUCCESS if registers are synchronized, AJ_RESULT_FAILURE on timeout.
  */
-aj_state_error_t AJ_RTC_Synchronize(void);
+aj_result_state_t AJ_RTC_Synchronize(void);
 
 /******************************************************************************/
 /* Control register high (RTC_CRH): interrupt enables                         */
 /******************************************************************************/
-static inline void AJ_RTC_ConfigOverflowInterrupt(aj_state_enable_t state){
+static inline void AJ_RTC_ConfigOverflowInterrupt(aj_operation_state_t state){
 	AJ_BitReg_WriteBit_Position(&(RTC->CRH), RTC_CRH_OWIE_Pos, state);
 }
 
@@ -91,7 +91,7 @@ static inline uint8_t AJ_RTC_IsOverflowInterruptEnabled(void){
 	return AJ_BitReg_IsBitSet_Mask(&(RTC->CRH), RTC_CRH_OWIE_Msk);
 }
 
-static inline void AJ_RTC_ConfigAlarmInterrupt(aj_state_enable_t state){
+static inline void AJ_RTC_ConfigAlarmInterrupt(aj_operation_state_t state){
 	AJ_BitReg_WriteBit_Position(&(RTC->CRH), RTC_CRH_ALRIE_Pos, state);
 }
 
@@ -99,7 +99,7 @@ static inline uint8_t AJ_RTC_IsAlarmInterruptEnabled(void){
 	return AJ_BitReg_IsBitSet_Mask(&(RTC->CRH), RTC_CRH_ALRIE_Msk);
 }
 
-static inline void AJ_RTC_ConfigSecondInterrupt(aj_state_enable_t state){
+static inline void AJ_RTC_ConfigSecondInterrupt(aj_operation_state_t state){
 	AJ_BitReg_WriteBit_Position(&(RTC->CRH), RTC_CRH_SECIE_Pos, state);
 }
 
