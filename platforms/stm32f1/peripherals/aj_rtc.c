@@ -71,7 +71,7 @@ void AJ_RTC_WritePrescaler(uint32_t value){
 /******************************************************************************/
 /* Config mode (RTC_CRL_CNF)                                                  */
 /******************************************************************************/
-aj_config_state_t AJ_RTC_EnterConfigMode(void){
+aj_result_state_t AJ_RTC_EnterConfigMode(void){
   uint32_t timeout = AJ_RTC_TIMEOUT;
 
   /* Wait until the last write operation has terminated (RTOFF=1). */
@@ -79,15 +79,15 @@ aj_config_state_t AJ_RTC_EnterConfigMode(void){
     timeout--;
   }
 
-  if(timeout == 0U){return AJ_CONFIG_FAILURE;}
+  if(timeout == 0U){return AJ_RESULT_FAILURE;}
 
   /* Enter config mode: freeze the RTC registers for the next write. */
   AJ_BitReg_SetBit_Mask(&(RTC->CRL), RTC_CRL_CNF_Msk);
 
-  return AJ_CONFIG_SUCCESS;
+  return AJ_RESULT_SUCCESS;
 }
 
-aj_config_state_t AJ_RTC_ExitConfigMode(void){
+aj_result_state_t AJ_RTC_ExitConfigMode(void){
   uint32_t timeout = AJ_RTC_TIMEOUT;
 
   /* Exit config mode: apply the pending writes. */
@@ -99,10 +99,10 @@ aj_config_state_t AJ_RTC_ExitConfigMode(void){
   }
 
   if(timeout == 0U){
-    return AJ_CONFIG_FAILURE;
+    return AJ_RESULT_FAILURE;
   }
 
-  return AJ_CONFIG_SUCCESS;
+  return AJ_RESULT_SUCCESS;
 }
 
 aj_result_state_t AJ_RTC_Synchronize(void){
