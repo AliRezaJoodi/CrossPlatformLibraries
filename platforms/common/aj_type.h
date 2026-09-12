@@ -58,13 +58,8 @@ typedef enum {
 } aj_validity_state_t;
 
 typedef enum {
-	AJ_CONFIG_SUCCESS = 0U,
-	AJ_CONFIG_FAILURE = 1U
-} aj_config_state_t;
-
-typedef enum {
-	AJ_RESULT_SUCCESS = 0U,
-	AJ_RESULT_FAILURE = 1U
+    AJ_RESULT_SUCCESS = 0U,
+    AJ_RESULT_FAILURE = 1U
 } aj_result_state_t;
 
 typedef enum {
