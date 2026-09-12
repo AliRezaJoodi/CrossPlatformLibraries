@@ -79,12 +79,12 @@ aj_result_state_t AJ_RTC_EnterConfigMode(void){
     timeout--;
   }
 
-  if(timeout == 0U){return AJ_RESULT_FAILURE;}
+  if(timeout == 0U){return AJ_FAILURE;}
 
   /* Enter config mode: freeze the RTC registers for the next write. */
   AJ_BitReg_SetBit_Mask(&(RTC->CRL), RTC_CRL_CNF_Msk);
 
-  return AJ_RESULT_SUCCESS;
+  return AJ_SUCCESS;
 }
 
 aj_result_state_t AJ_RTC_ExitConfigMode(void){
@@ -99,10 +99,10 @@ aj_result_state_t AJ_RTC_ExitConfigMode(void){
   }
 
   if(timeout == 0U){
-    return AJ_RESULT_FAILURE;
+    return AJ_FAILURE;
   }
 
-  return AJ_RESULT_SUCCESS;
+  return AJ_SUCCESS;
 }
 
 aj_result_state_t AJ_RTC_Synchronize(void){
@@ -115,7 +115,7 @@ aj_result_state_t AJ_RTC_Synchronize(void){
     timeout--;
   }
 
-  if(timeout == 0U){return AJ_RESULT_FAILURE;}
+  if(timeout == 0U){return AJ_FAILURE;}
 
-  return AJ_RESULT_SUCCESS;
+  return AJ_SUCCESS;
 }
