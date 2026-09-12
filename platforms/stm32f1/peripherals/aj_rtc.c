@@ -69,6 +69,21 @@ void AJ_RTC_WritePrescaler(uint32_t value){
 }
 
 /******************************************************************************/
+/* Divider register (RTC_DIVL + RTC_DIVH)                                     */
+/******************************************************************************/
+uint32_t AJ_RTC_ReadDivider(void){
+  uint16_t high1 = 0U, high2 = 0U, low = 0U;
+
+  do{
+    high1 = RTC->DIVH & RTC_DIVH_RTC_DIV;
+    low   = RTC->DIVL & RTC_DIVL_RTC_DIV;
+    high2 = RTC->DIVH & RTC_DIVH_RTC_DIV;
+  }while(high1 != high2);
+
+  return (((uint32_t) high2 << 16U) | low);
+}
+
+/******************************************************************************/
 /* Config mode (RTC_CRL_CNF)                                                  */
 /******************************************************************************/
 aj_result_state_t AJ_RTC_EnterConfigMode(void){

@@ -80,26 +80,32 @@ static inline void AJ_RTC_ClearFlag(aj_rtc_flag_w0_t flag){
 /******************************************************************************/
 /**
  * @brief  Enters the RTC configuration mode.
- *         Waits until the last write operation is finished (RTOFF=1) using a
- *         simple free-running counter timeout, then sets the CNF bit to freeze
- *         the RTC registers for a new write sequence.
- * @retval aj_result_state_t: AJ_SUCCESS if RTC is in update mode, AJ_FAILURE on timeout.
+ *         This function must be called before any write operation on
+ *         the RTC data registers.
+ * @retval aj_result_state_t:
+ *         - AJ_SUCCESS: RTC is in configuration mode.
+ *         - AJ_FAILURE: Timeout while waiting for the current write operation.
  */
 aj_result_state_t AJ_RTC_EnterConfigMode(void);
 
 /**
  * @brief  Exits the RTC configuration mode.
- *         Clears the CNF bit so the pending writes are applied,
- *          then waits until the update sequence has terminated (RTOFF=1).
- * @retval aj_result_state_t: AJ_SUCCESS if RTC exited config mode, AJ_FAILURE on timeout.
+ *         This function must be called after finishing the write operations
+ *         on the RTC data registers.
+ * @retval aj_result_state_t:
+ *         - AJ_SUCCESS: RTC is out of configuration mode.
+ *         - AJ_FAILURE: Timeout while waiting for the write sequence to finish.
  */
 aj_result_state_t AJ_RTC_ExitConfigMode(void);
 
 /**
- * @brief  Synchronizes the RTC registers with the PCLK1 bus.
- *         Clears the RSF flag and waits until it is set again, which ensures
- *         that RTC_CNT, RTC_ALR and RTC_PRL are synchronized before reading.
- * @retval aj_result_state_t: AJ_SUCCESS if registers are synchronized, AJ_FAILURE on timeout.
+ * @brief  Synchronizes the RTC registers with the APB1 bus.
+ *         This function must be called once after waking up from a
+ *         low-power mode (STOP/STANDBY) or after any change to the
+ *         APB1 clock configuration.
+ * @retval aj_result_state_t:
+ *         - AJ_SUCCESS: Registers are synchronized.
+ *         - AJ_FAILURE: Timeout while waiting for synchronization.
  */
 aj_result_state_t AJ_RTC_Synchronize(void);
 
@@ -150,6 +156,11 @@ void AJ_RTC_WriteAlarm(uint32_t value);
 uint32_t AJ_RTC_ReadPrescaler(void);
 
 void AJ_RTC_WritePrescaler(uint32_t value);
+
+/******************************************************************************/
+/* Divider register (RTC_DIVL + RTC_DIVH)                                     */
+/******************************************************************************/
+uint32_t AJ_RTC_ReadDivider(void);
 
 
 #ifdef __cplusplus
