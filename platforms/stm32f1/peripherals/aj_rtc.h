@@ -40,7 +40,7 @@
  * -----------------------------------------------------------------------------
  * EXAMPLE PROJECT
  * -----------------------------------------------------------------------------
- * @see    STM32 training and RTC usage example:
+ * @see    STM32F103 training exercise link:
  *         https://github.com/AliRezaJoodi/STM32_Exercises/tree/main/RTC_F103/BareMetal
  *
  * -----------------------------------------------------------------------------
