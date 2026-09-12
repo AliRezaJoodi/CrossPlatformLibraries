@@ -1,4 +1,4 @@
-﻿#ifndef AJ_AFIO_INCLUDED
+#ifndef AJ_AFIO_INCLUDED
 #define AJ_AFIO_INCLUDED
 
 #ifdef __cplusplus
@@ -11,15 +11,7 @@ extern "C" {
 #include "aj_bit_reg.h"
 
 typedef enum{
-	AJ_SWJ_SWD_JTAG_NJTRST 	= 0x0U,			/**< SW-DP enabled, 	JTAG-DP enabled with NJTRST
- *
- * -----------------------------------------------------------------------------
- * EXAMPLE PROJECT
- * -----------------------------------------------------------------------------
- * @see    STM32F103 training exercise link:
- *     
-
- */
+	AJ_SWJ_SWD_JTAG_NJTRST 	= 0x0U,			/**< SW-DP enabled, 	JTAG-DP enabled with NJTRST */
 	AJ_SWJ_SWD_JTAG 				= 0x1U, 		/**< SW-DP enabled, 	JTAG-DP enabled without NJTRST */
 	AJ_SWJ_SWD           		= 0x2U, 		/**< SW-DP enabled, 	JTAG-DP disabled */
 	AJ_SWJ_DISABLED    			= 0x4U   		/**< SW-DP disabled, 	JTAG-DP disabled */
