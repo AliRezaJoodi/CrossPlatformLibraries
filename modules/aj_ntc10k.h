@@ -1,14 +1,14 @@
-/*
+ï»¿/*
  * NTC10K Thermistor Conversion Library
  * ------------------------------------
- * Converts thermistor resistance (Ohm) to temperature (°C)
+ * Converts thermistor resistance (Ohm) to temperature (ï¿½C)
  * using a lookup table for a 10K NTC thermistor (B=3950).
  *
  * Temperature range:
- *   -25°C to +125°C
+ *   -25ï¿½C to +125ï¿½C
  *
  * Resolution:
- *   1°C
+ *   1ï¿½C
  *
  * Two conversion algorithms are provided:
  *
@@ -26,6 +26,14 @@
  * Output:
  *   Temperature in degrees Celsius.
  *
+ * -----------------------------------------------------------------------------
+ * EXAMPLE PROJECT
+ * -----------------------------------------------------------------------------
+ * @see    
+ *     
+ * -----------------------------------------------------------------------------
+ * Source
+ * -----------------------------------------------------------------------------
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
  */
@@ -54,7 +62,7 @@
  *   ohm  -> Thermistor resistance in Ohms
  *
  * Return:
- *   Temperature in degrees Celsius (-25°C to +125°C)
+ *   Temperature in degrees Celsius (-25ï¿½C to +125ï¿½C)
  */
 int16_t AJ_NTC10K_ConvertOhmToTemp(uint32_t ohm);
 
@@ -74,7 +82,7 @@ int16_t AJ_NTC10K_ConvertOhmToTemp(uint32_t ohm);
  *   ohm  -> Thermistor resistance in Ohms
  *
  * Return:
- *   Temperature in degrees Celsius (-25°C to +125°C)
+ *   Temperature in degrees Celsius (-25ï¿½C to +125ï¿½C)
  */
 int16_t AJ_NTC10K_ConvertOhmToTemp_LastIndex(uint32_t ohm);
 

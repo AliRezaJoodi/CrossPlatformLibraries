@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @brief Non-blocking buzzer driver.
  *
  * The buzzer module is independent from any specific timebase implementation.
@@ -15,7 +15,7 @@
  *       AJ_Buzzer_Start() and AJ_Buzzer_Refresh().
  *
  * -----------------------------------------------------------------------------
- * REQUIREMENT 1: Compilation & Linkage
+ * REQUIREMENT 1: Source Files to Build
  * -----------------------------------------------------------------------------
  * The following source files must be compiled and linked in the project:
  * - `aj_buzzer.c`
@@ -36,6 +36,14 @@
  * project source files. Override the macros inside it:
  * - `hardware.h`
  *
+ * -----------------------------------------------------------------------------
+ * EXAMPLE PROJECT
+ * -----------------------------------------------------------------------------
+ * @see    
+ *     
+ * -----------------------------------------------------------------------------
+ * Source
+ * -----------------------------------------------------------------------------
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
  */

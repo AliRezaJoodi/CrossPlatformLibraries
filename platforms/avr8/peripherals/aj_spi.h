@@ -1,7 +1,7 @@
-/**
+﻿/**
  *
  * -----------------------------------------------------------------------------
- * REQUIREMENT 1: Compilation & Linkage
+ * REQUIREMENT 1: Source Files to Build
  * -----------------------------------------------------------------------------
  * The following source files must be compiled and linked in the project:
  * - `aj_spi.c`
@@ -20,6 +20,14 @@
  * project source files. Override the macros inside it:
  * - `hardware.h`
  *
+ * -----------------------------------------------------------------------------
+ * EXAMPLE PROJECT
+ * -----------------------------------------------------------------------------
+ * @see    
+ *     
+ * -----------------------------------------------------------------------------
+ * Source
+ * -----------------------------------------------------------------------------
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
  */

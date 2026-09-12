@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @brief   Universal synchronous/asynchronous receiver transmitter (USART) interface for STM32 peripherals.
  *
  * This file provides helper APIs for managing USART control, status and data registers, including:
@@ -11,13 +11,13 @@
  * - USARTx->GTPR
  *
  * -----------------------------------------------------------------------------
- * REQUIREMENT 1: Compilation & Linkage
+ * REQUIREMENT 1: Source Files to Build
  * -----------------------------------------------------------------------------
  * The following source files must be compiled and linked in the project:
  * - `aj_usart.c`
  *
  * -----------------------------------------------------------------------------
- * REQUIREMENT 2: BUS Configuration
+ * REQUIREMENT 2: Application Setup (BUS Configuration)
  * -----------------------------------------------------------------------------
  * This library does not enable any peripheral clock.
  * The application must enable the required clock buses before using this driver.
@@ -27,7 +27,7 @@
  *   (e.g., GPIOA on APB2)
  *
  * -----------------------------------------------------------------------------
- * REQUIREMENT 3: GPIO Configuration
+ * REQUIREMENT 3: Application Setup (GPIO Configuration)
  * -----------------------------------------------------------------------------
  * This library does not configure any GPIO pin.
  * The application must initialize the pins used for serial communication before using this driver.
@@ -49,6 +49,14 @@
  * project source files. Override the macros inside it:
  * - `hardware.h`
  *
+ * -----------------------------------------------------------------------------
+ * EXAMPLE PROJECT
+ * -----------------------------------------------------------------------------
+ * @see    
+ *     
+ * -----------------------------------------------------------------------------
+ * Source
+ * -----------------------------------------------------------------------------
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
  */

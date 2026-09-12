@@ -1,17 +1,17 @@
-/**
+﻿/**
  * @brief DWT-based delay utility library for STM32F1xx microcontrollers.
  *
  * This file provides a blocking delay API built on the Cortex-M3 DWT cycle
  * counter (DWT->CYCCNT).
  *
  * -----------------------------------------------------------------------------
- * REQUIREMENT 1: Compilation & Linkage
+ * REQUIREMENT 1: Source Files to Build
  * -----------------------------------------------------------------------------
  * The following source files must be compiled and linked in the project:
  * - `aj_dwt_delay.c`
  *
  * -----------------------------------------------------------------------------
- * REQUIREMENT 2: DWT Cycle Counter Enable (user responsibility)
+ * REQUIREMENT 2: Application Setup (DWT Cycle Counter Enable)
  * -----------------------------------------------------------------------------
  * This library reads the DWT cycle counter but does NOT enable it. The caller
  * must enable the DWT cycle counter once at startup, for example:
@@ -26,6 +26,14 @@
  *          (e.g. some STM32F103 clones). Prefer the SysTick-based delay
  *          library (`aj_systick_delay`) where portability matters.
  *
+ * -----------------------------------------------------------------------------
+ * EXAMPLE PROJECT
+ * -----------------------------------------------------------------------------
+ * @see    
+ *     
+ * -----------------------------------------------------------------------------
+ * Source
+ * -----------------------------------------------------------------------------
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
  */

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @file    seg7_driver.h
  * @brief   Multiplexed 7-Segment Display Driver
  *
@@ -25,7 +25,7 @@
  * - Refresh rate directly affects brightness and flicker.
  *
  * -----------------------------------------------------------------------------
- * REQUIREMENT 1: Compilation & Linkage
+ * REQUIREMENT 1: Source Files to Build
  * -----------------------------------------------------------------------------
  * The following source files must be compiled and linked in the project:
  * - `aj_seg7_driver.c`
@@ -46,6 +46,14 @@
  * project source files. Override the macros inside it:
  * - `hardware.h`
  *
+ * -----------------------------------------------------------------------------
+ * EXAMPLE PROJECT
+ * -----------------------------------------------------------------------------
+ * @see    
+ *     
+ * -----------------------------------------------------------------------------
+ * Source
+ * -----------------------------------------------------------------------------
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
  */

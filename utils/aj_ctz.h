@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @brief   Count Trailing Zeros (CTZ) helpers for fixed-width unsigned integers.
  *
  * This header provides small, header-only CTZ routines with:
@@ -11,6 +11,14 @@
  *          - AJ_CTZ_U16_ERROR (= 16)
  *          - AJ_CTZ_U32_ERROR (= 32)
  *
+ * -----------------------------------------------------------------------------
+ * EXAMPLE PROJECT
+ * -----------------------------------------------------------------------------
+ * @see    
+ *     
+ * -----------------------------------------------------------------------------
+ * Source
+ * -----------------------------------------------------------------------------
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
  */

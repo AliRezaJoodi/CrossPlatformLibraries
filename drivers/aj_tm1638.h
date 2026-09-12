@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @brief TM1638 LED driver.
  *
  * TM1638 uses a proprietary 2-wire protocol and is not I2C compatible.
@@ -13,7 +13,7 @@
  * - Buttons 17 to 24 are connected to K1, K2, and K3.
  *
  * -----------------------------------------------------------------------------
- * REQUIREMENT 1: Compilation & Linkage
+ * REQUIREMENT 1: Source Files to Build
  * -----------------------------------------------------------------------------
  * The following source files must be compiled and linked in the project:
  * - `aj_tm1638.c`
@@ -33,8 +33,16 @@
  * project source files. Override the macros inside it:
  * - `hardware.h`
  *
- * @author AliReza Joodi
- * @see https://github.com/AliRezaJoodi
+ * -----------------------------------------------------------------------------
+ * EXAMPLE PROJECT
+ * -----------------------------------------------------------------------------
+ * @see    
+ *     
+ * -----------------------------------------------------------------------------
+ * Source
+ * -----------------------------------------------------------------------------
+ * @author  AliReza Joodi
+ * @see     https://github.com/AliRezaJoodi
  */
 
 #ifndef AJ_TM1638_INCLUDED

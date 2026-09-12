@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @brief   Driver interface for Microchip MCP41XXX_42XXX dual digital potentiometers.
  *
  * @details
@@ -15,7 +15,7 @@
  * - RS pin control for performing a hardware reset.
  *
  * -----------------------------------------------------------------------------
- * REQUIREMENT 1: SPI Configuration
+ * REQUIREMENT 1: Application Setup (SPI Configuration)
  * -----------------------------------------------------------------------------
  * This library does not configure the microcontroller's SPI peripheral.
  * The application must initialize and enable SPI before using this driver.
@@ -25,7 +25,7 @@
  * - Data order: MSB first
  *
  * -----------------------------------------------------------------------------
- * REQUIREMENT 2: Compilation & Linkage
+ * REQUIREMENT 2: Source Files to Build
  * -----------------------------------------------------------------------------
  * The following source files must be compiled and linked in the project:
  * - `aj_spi.c`
@@ -54,6 +54,9 @@
  * @see    AVR8 training and MCP41xxx/42xxx usage example:
  *         https://github.com/AliRezaJoodi/AVR_Exercises/tree/main/DigitalPotentiometer_MCP41xxx_42xxx_SPI
  *
+ * -----------------------------------------------------------------------------
+ * Source
+ * -----------------------------------------------------------------------------
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
  */

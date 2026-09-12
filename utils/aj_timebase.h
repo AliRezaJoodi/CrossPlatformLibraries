@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @brief   System Tick Management Library for Microcontrollers.
  * @details This library provides a non-blocking timing mechanism using a system tick.
  *          The core function @ref AJ_TimeBase_Handler must be called periodically
@@ -6,7 +6,7 @@
  *          It is highly recommended to set the timer period to 1 millisecond.
  *
  * -----------------------------------------------------------------------------
- * REQUIREMENT 1: Compilation & Linkage
+ * REQUIREMENT 1: Source Files to Build
  * -----------------------------------------------------------------------------
  * The following source files must be compiled and linked in the project:
  * - `aj_timebase.c`
@@ -25,6 +25,14 @@
  * project source files. Override the macros inside it:
  * - `hardware.h`
  *
+ * -----------------------------------------------------------------------------
+ * EXAMPLE PROJECT
+ * -----------------------------------------------------------------------------
+ * @see    
+ *     
+ * -----------------------------------------------------------------------------
+ * Source
+ * -----------------------------------------------------------------------------
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
  */

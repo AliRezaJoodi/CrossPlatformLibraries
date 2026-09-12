@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @brief  Temperature unit conversion utilities.
  *         Provides helper functions to convert between Celsius,
  *         Fahrenheit, and Kelvin temperature units.
@@ -8,6 +8,14 @@
  * May consume significant CPU cycles on MCUs without FPU.
  * Use sparingly, preferably only for occasional display updates.
  *
+ * -----------------------------------------------------------------------------
+ * EXAMPLE PROJECT
+ * -----------------------------------------------------------------------------
+ * @see    
+ *     
+ * -----------------------------------------------------------------------------
+ * Source
+ * -----------------------------------------------------------------------------
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
  */

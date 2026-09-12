@@ -1,8 +1,8 @@
-/*
+﻿/*
  * @brief       Quadrature Encoder Interface (QEI) driver
  *
  * -----------------------------------------------------------------------------
- * REQUIREMENT 1: Interrupts Configuration
+ * REQUIREMENT 1: Application Setup (Interrupts Configuration)
  * -----------------------------------------------------------------------------
  * Usage:
  * - Configure encoder channels A, B and Z as input pins.
@@ -13,7 +13,7 @@
  * - Call AJ_QEI_SetIndexFlag() inside channel Z interrupt handler.
  *
  * -----------------------------------------------------------------------------
- * REQUIREMENT 2: Compilation & Linkage
+ * REQUIREMENT 2: Source Files to Build
  * -----------------------------------------------------------------------------
  * The following source files must be compiled and linked in the project:
  * - `aj_qei.c`
@@ -34,6 +34,14 @@
  * project source files. Override the macros inside it:
  * - `hardware.h`
  *
+ * -----------------------------------------------------------------------------
+ * EXAMPLE PROJECT
+ * -----------------------------------------------------------------------------
+ * @see    
+ *     
+ * -----------------------------------------------------------------------------
+ * Source
+ * -----------------------------------------------------------------------------
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
  */

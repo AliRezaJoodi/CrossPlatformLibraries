@@ -1,13 +1,21 @@
-/**
+ï»¿/**
  * @brief   LM35 temperature sensor conversion utilities
  *
  * @details
  * LM35 outputs a voltage linearly proportional to temperature
- * in degrees Celsius (10 mV per 1 °C).
+ * in degrees Celsius (10 mV per 1 ï¿½C).
  *
  * Formula:
- *  - Temperature (°C) = Voltage (mV) × 0.1
+ *  - Temperature (ï¿½C) = Voltage (mV) ï¿½ 0.1
  *
+ * -----------------------------------------------------------------------------
+ * EXAMPLE PROJECT
+ * -----------------------------------------------------------------------------
+ * @see    
+ *     
+ * -----------------------------------------------------------------------------
+ * Source
+ * -----------------------------------------------------------------------------
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
  */

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @brief   Simple ON/OFF controller with hysteresis.
  *
  * This module provides a basic ON/OFF control algorithm with hysteresis.
@@ -10,6 +10,14 @@
  * This module is platform-independent and can be used for heating,
  * cooling, or any threshold-based control system.
  *
+ * -----------------------------------------------------------------------------
+ * EXAMPLE PROJECT
+ * -----------------------------------------------------------------------------
+ * @see    
+ *     
+ * -----------------------------------------------------------------------------
+ * Source
+ * -----------------------------------------------------------------------------
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
  */

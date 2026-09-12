@@ -1,10 +1,10 @@
-/**
+﻿/**
  * @brief   MCP4821_4822 12-bit DAC driver
  *
  * This library provides basic functions to interface with the MCP4821_4822 DAC via SPI.
  *
  * -----------------------------------------------------------------------------
- * REQUIREMENT 1: SPI Configuration
+ * REQUIREMENT 1: Application Setup (SPI Configuration)
  * -----------------------------------------------------------------------------
  * This library does not configure the microcontroller's SPI peripheral.
  * The application must initialize and enable SPI before using this driver.
@@ -14,7 +14,7 @@
  * - Data order: MSB first
  *
  * -----------------------------------------------------------------------------
- * REQUIREMENT 2: Compilation & Linkage
+ * REQUIREMENT 2: Source Files to Build
  * -----------------------------------------------------------------------------
  * The following source files must be compiled and linked in the project:
  * - `aj_spi.c`
@@ -43,6 +43,9 @@
  * @see    AVR8 training and MCP4821/4822 usage example:
  *         https://github.com/AliRezaJoodi/AVR_Exercises/tree/main/DAC_External_MCP4821_4822_SPI
  *
+ * -----------------------------------------------------------------------------
+ * Source
+ * -----------------------------------------------------------------------------
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
  */

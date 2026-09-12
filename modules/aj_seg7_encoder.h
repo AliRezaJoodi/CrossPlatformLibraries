@@ -1,4 +1,4 @@
-/**
+ï»¿/**
  * @file    seg7_encoder.h
  * @brief   7-segment display encoding utilities.
  *
@@ -15,6 +15,14 @@
  * The digit ordering convention used in this library places the
  * least significant digit (units) at index 0 of the output array.
  *
+ * -----------------------------------------------------------------------------
+ * EXAMPLE PROJECT
+ * -----------------------------------------------------------------------------
+ * @see    
+ *     
+ * -----------------------------------------------------------------------------
+ * Source
+ * -----------------------------------------------------------------------------
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
  */
@@ -38,7 +46,7 @@ extern "C" {
 /**
  * @brief Encode an 8-bit number into two 7-segment digits.
  *
- * Encodes values in the range 0–99 into two 7-segment display
+ * Encodes values in the range 0ï¿½99 into two 7-segment display
  * patterns and stores the result in the array pointed to by `seg`.
  *
  * Digit ordering:
@@ -85,7 +93,7 @@ void AJ_Seg7_Reverse2Bytes(uint8_t *seg);
 /**
  * @brief Encode a 16-bit number into three 7-segment digits.
  *
- * Encodes values in the range 0–999 into three 7-segment display
+ * Encodes values in the range 0ï¿½999 into three 7-segment display
  * patterns and stores the result in the array pointed to by `seg`.
  *
  * Digit ordering:
@@ -134,7 +142,7 @@ void AJ_Seg7_Reverse3Bytes(uint8_t *seg);
 /**
  * @brief Encode a 16-bit number into four 7-segment digits.
  *
- * Encodes values in the range 0–9999 into four 7-segment display
+ * Encodes values in the range 0ï¿½9999 into four 7-segment display
  * patterns and stores the result in the array pointed to by `seg`.
  *
  * Digit ordering:

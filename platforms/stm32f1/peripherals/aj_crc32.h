@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @brief   CRC-32 calculation interface for STM32F1 peripherals.
  *
  * This file provides helper APIs for using the CRC peripheral of STM32F1, including:
@@ -6,13 +6,21 @@
  * - CRC->DR
  *
  * -----------------------------------------------------------------------------
- * REQUIREMENT 1: BUS Configuration
+ * REQUIREMENT 1: Application Setup (BUS Configuration)
  * -----------------------------------------------------------------------------
  * This library does not enable any peripheral clock.
  * The application must enable the required clock buses before using this driver.
  * The following clock bus must be enabled:
  * - The AHB clock of the CRC peripheral
  *
+ * -----------------------------------------------------------------------------
+ * EXAMPLE PROJECT
+ * -----------------------------------------------------------------------------
+ * @see    
+ *     
+ * -----------------------------------------------------------------------------
+ * Source
+ * -----------------------------------------------------------------------------
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
  */

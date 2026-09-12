@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @brief GPIO utility library for STM32F1xx microcontrollers.
  *
  * Provides inline functions for GPIO configuration, read/write operations,
@@ -27,6 +27,14 @@
  * project source files. Override the macros inside it:
  * - `hardware.h`
  *
+ * -----------------------------------------------------------------------------
+ * EXAMPLE PROJECT
+ * -----------------------------------------------------------------------------
+ * @see    
+ *     
+ * -----------------------------------------------------------------------------
+ * Source
+ * -----------------------------------------------------------------------------
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
  */

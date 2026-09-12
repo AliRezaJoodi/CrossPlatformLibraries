@@ -1,11 +1,11 @@
-/******************************************************************************
+ï»¿/******************************************************************************
  * @brief     Type-K Thermocouple Conversion Library
  *
  * @details
- * This module provides conversion functions between temperature (°C)
- * and thermocouple voltage (µV) for Type-K thermocouples.
+ * This module provides conversion functions between temperature (ï¿½C)
+ * and thermocouple voltage (ï¿½V) for Type-K thermocouples.
  *
- * The implementation uses a lookup table with 10°C resolution derived
+ * The implementation uses a lookup table with 10ï¿½C resolution derived
  * from NIST ITS-90 thermocouple reference data.
  *
  * To achieve high performance on embedded systems, the conversion uses:
@@ -14,9 +14,9 @@
  *  - Linear interpolation between table entries
  *
  * Supported temperature range:
- *      -270°C  to  +1370°C
+ *      -270ï¿½C  to  +1370ï¿½C
  *
- * Voltage values in the table are expressed in microvolts (µV).
+ * Voltage values in the table are expressed in microvolts (ï¿½V).
  *
  * This implementation is designed for resource-constrained embedded
  * systems where floating-point operations may be slow or unavailable.
@@ -31,10 +31,18 @@
  *
  * Notes:
  *  - All calculations use integer math.
- *  - Lookup table step size is 10°C.
+ *  - Lookup table step size is 10ï¿½C.
  *  - Values outside the supported range are clamped to the nearest
  *    valid table value.
  *
+ * -----------------------------------------------------------------------------
+ * EXAMPLE PROJECT
+ * -----------------------------------------------------------------------------
+ * @see    
+ *     
+ * -----------------------------------------------------------------------------
+ * Source
+ * -----------------------------------------------------------------------------
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
  ******************************************************************************/
@@ -52,7 +60,7 @@
  * @brief Convert Type-K thermocouple voltage to temperature.
  *
  * @param uv
- * Thermocouple voltage in microvolts (µV).
+ * Thermocouple voltage in microvolts (ï¿½V).
  *
  * @return
  * Temperature in degrees Celsius.
@@ -66,7 +74,7 @@ int16_t AJ_TC_K_ConvertMicroVoltToTemp(int32_t uv);
  * Temperature in degrees Celsius.
  *
  * @return
- * Thermocouple voltage in microvolts (µV).
+ * Thermocouple voltage in microvolts (ï¿½V).
  */
 int32_t AJ_TC_K_ConvertTempToMicroVolt(int16_t temp);
 

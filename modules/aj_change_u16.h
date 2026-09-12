@@ -1,10 +1,18 @@
-/**
+﻿/**
  * @brief   Lightweight change-detection utilities for uint16_t values.
  *
  * This header provides small and efficient inline functions for detecting
  * exact or threshold-based changes in 16-bit values. Designed for
  * resource-constrained embedded systems.
  *
+ * -----------------------------------------------------------------------------
+ * EXAMPLE PROJECT
+ * -----------------------------------------------------------------------------
+ * @see    
+ *     
+ * -----------------------------------------------------------------------------
+ * Source
+ * -----------------------------------------------------------------------------
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
  */

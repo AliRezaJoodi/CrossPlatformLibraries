@@ -1,4 +1,4 @@
-/*
+﻿/*
  * @brief Linear scale conversion utilities for analog values.
  *
  * @warning
@@ -9,6 +9,14 @@
  *  - Increase flash memory usage
  *  - Increase temporary stack usage
  *
+ * -----------------------------------------------------------------------------
+ * EXAMPLE PROJECT
+ * -----------------------------------------------------------------------------
+ * @see    
+ *     
+ * -----------------------------------------------------------------------------
+ * Source
+ * -----------------------------------------------------------------------------
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
  */

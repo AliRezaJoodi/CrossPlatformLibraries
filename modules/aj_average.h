@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @file    average.h
  * @brief   Lightweight averaging library for embedded systems.
  *          Provides block and moving averages specifically for uint16_t values,
@@ -7,6 +7,14 @@
  *
  * @note    Uses AJ_AVERAGE_COUNT macro from average_config.h
  *
+ * -----------------------------------------------------------------------------
+ * EXAMPLE PROJECT
+ * -----------------------------------------------------------------------------
+ * @see    
+ *     
+ * -----------------------------------------------------------------------------
+ * Source
+ * -----------------------------------------------------------------------------
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
  */

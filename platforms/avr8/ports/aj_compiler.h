@@ -1,4 +1,4 @@
-// GitHub Account:  GitHub.com/AliRezaJoodi
+﻿// GitHub Account:  GitHub.com/AliRezaJoodi
 
 #ifndef AJ_COMPILER_INCLUDED
 #define AJ_COMPILER_INCLUDED
@@ -51,4 +51,12 @@
 
 #endif
 
-#endif  /* AJ_COMPILER_INCLUDED */
+#endif  /* AJ_COMPILER_INCLUDED
+ *
+ * -----------------------------------------------------------------------------
+ * EXAMPLE PROJECT
+ * -----------------------------------------------------------------------------
+ * @see    
+ *     
+
+ */

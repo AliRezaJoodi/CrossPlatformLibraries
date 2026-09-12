@@ -17,7 +17,7 @@
  * - `aj_rtc.c`
  *
  * -----------------------------------------------------------------------------
- * REQUIREMENT 2: BUS Configuration
+ * REQUIREMENT 2: Application Setup (BUS Configuration)
  * -----------------------------------------------------------------------------
  * This library does not enable any peripheral clock.
  * The application must enable the required clock buses before using this driver.

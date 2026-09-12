@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @brief   Fixed-point PID controller library header.
  *
  * This library provides a platform-independent PID controller
@@ -6,6 +6,14 @@
  * Includes proportional, integral, derivative terms with anti-windup
  * and configurable sampling intervals.
  *
+ * -----------------------------------------------------------------------------
+ * EXAMPLE PROJECT
+ * -----------------------------------------------------------------------------
+ * @see    
+ *     
+ * -----------------------------------------------------------------------------
+ * Source
+ * -----------------------------------------------------------------------------
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
  */

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @brief SysTick utility library for STM32F1xx microcontrollers.
  *
  * This file provides helper APIs for managing SysTick control and status
@@ -8,7 +8,7 @@
  * - SysTick->VAL
  *
  * -----------------------------------------------------------------------------
- * REQUIREMENT 1: Compilation & Linkage
+ * REQUIREMENT 1: Source Files to Build
  * -----------------------------------------------------------------------------
  * The following source files must be compiled and linked in the project:
  * - `aj_systick.c`
@@ -27,6 +27,14 @@
  * project source files. Override the macros inside it:
  * - `hardware.h`
  *
+ * -----------------------------------------------------------------------------
+ * EXAMPLE PROJECT
+ * -----------------------------------------------------------------------------
+ * @see    
+ *     
+ * -----------------------------------------------------------------------------
+ * Source
+ * -----------------------------------------------------------------------------
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
  */

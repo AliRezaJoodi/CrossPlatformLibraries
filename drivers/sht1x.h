@@ -1,6 +1,14 @@
-/*
+﻿/*
  * NOTE: This module is a work in progress.
  * The implementation is not complete yet.
+
+ *
+ * -----------------------------------------------------------------------------
+ * EXAMPLE PROJECT
+ * -----------------------------------------------------------------------------
+ * @see    
+ *     
+
  */
 
 #ifndef SHT1X_INCLUDED

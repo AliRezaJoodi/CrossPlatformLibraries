@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @brief   4x4 matrix keypad driver.
  *
  * Scanning Method: Full Pattern Scanning
@@ -13,7 +13,7 @@
  * (software or hardware) is recommended for stable operation.
  *
  * -----------------------------------------------------------------------------
- * REQUIREMENT 1: Compilation & Linkage
+ * REQUIREMENT 1: Source Files to Build
  * -----------------------------------------------------------------------------
  * The following source files must be compiled and linked in the project:
  * - `aj_keypad4x4.c`
@@ -33,6 +33,14 @@
  * project source files. Override the macros inside it:
  * - `hardware.h`
  *
+ * -----------------------------------------------------------------------------
+ * EXAMPLE PROJECT
+ * -----------------------------------------------------------------------------
+ * @see    
+ *     
+ * -----------------------------------------------------------------------------
+ * Source
+ * -----------------------------------------------------------------------------
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
  */

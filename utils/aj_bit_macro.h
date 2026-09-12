@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @brief Bit manipulation helper macros.
  *
  * This header provides a collection of lightweight macros for common bit
@@ -31,6 +31,14 @@
  *   (e.g., `x++`, function calls).
  * - The first parameter must be a modifiable lvalue (e.g., a variable or register).
  *
+ * -----------------------------------------------------------------------------
+ * EXAMPLE PROJECT
+ * -----------------------------------------------------------------------------
+ * @see    
+ *     
+ * -----------------------------------------------------------------------------
+ * Source
+ * -----------------------------------------------------------------------------
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
  */

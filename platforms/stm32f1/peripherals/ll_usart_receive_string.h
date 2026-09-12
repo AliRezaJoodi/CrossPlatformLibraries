@@ -1,15 +1,23 @@
-/**
+﻿/**
  * @brief   Receive string management for STM32 USART using interrupts and the LL APIs.
  *
  * This library provides interrupt-driven helper APIs to receive a whole string
  * over an STM32 USART peripheral until the receive buffer is full.
  *
  * -----------------------------------------------------------------------------
- * REQUIREMENT 1: Compilation & Linkage
+ * REQUIREMENT 1: Source Files to Build
  * -----------------------------------------------------------------------------
  * The following source files must be compiled and linked in the project:
  * - `ll_usart_receive_string.c`
  *
+ * -----------------------------------------------------------------------------
+ * EXAMPLE PROJECT
+ * -----------------------------------------------------------------------------
+ * @see    
+ *     
+ * -----------------------------------------------------------------------------
+ * Source
+ * -----------------------------------------------------------------------------
  * @author  AliRezaJoodi
  * @see     https://github.com/AliRezaJoodi
  */

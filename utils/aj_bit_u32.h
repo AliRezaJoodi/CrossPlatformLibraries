@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @brief Bit manipulation utilities for 32-bit values.
  *
  * This header provides a set of static inline utility functions for common
@@ -26,6 +26,14 @@
  *   field width are used.
  * - Any higher bits in the input field value are ignored.
  *
+ * -----------------------------------------------------------------------------
+ * EXAMPLE PROJECT
+ * -----------------------------------------------------------------------------
+ * @see    
+ *     
+ * -----------------------------------------------------------------------------
+ * Source
+ * -----------------------------------------------------------------------------
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
  */

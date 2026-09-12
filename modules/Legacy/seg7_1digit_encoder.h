@@ -1,4 +1,4 @@
-/******************************************************************************
+﻿/******************************************************************************
  * @file    seg7_1digit_encoder.h
  * @brief   7-Segment 1-Digit Encoder Library
  *          Encode digits, letters, and symbols into 7-segment display patterns.
@@ -20,6 +20,14 @@ extern "C" {
  * @brief Encode a single digit (0-9) to its 7-segment pattern.
  * @param digit  Digit value (0-9)
  * @return 7-segment encoded value; returns 0x00 if digit > 9
+
+ *
+ * -----------------------------------------------------------------------------
+ * EXAMPLE PROJECT
+ * -----------------------------------------------------------------------------
+ * @see    
+ *     
+
  */
 uint8_t Seg7_1Digit_EncodeDigit(uint8_t digit);
 

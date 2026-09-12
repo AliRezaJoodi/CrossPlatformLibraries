@@ -1,4 +1,4 @@
-/**
+ï»¿/**
  * @file    calendar_converter.h
  * @brief   Gregorian ? Jalaali (Persian) date conversion library
  *
@@ -6,13 +6,21 @@
  * Gregorian and Jalaali (Persian) calendars.
  *
  * @note
- * - Year is stored as a 2-digit value (00–99).
+ * - Year is stored as a 2-digit value (00ï¿½99).
  * - The valid range depends on the application and is not strictly enforced.
  * - Leap year handling is internally approximated using precomputed tables.
  *
  * @warning
  * - This library does NOT validate input dates.
  * - User must ensure that the input date is valid.
+
+ *
+ * -----------------------------------------------------------------------------
+ * EXAMPLE PROJECT
+ * -----------------------------------------------------------------------------
+ * @see    
+ *     
+
  */
 
 #ifndef AJ_CALENDAR_CONVERTER_INCLUDED
@@ -25,9 +33,9 @@ extern "C" {
 #include <stdint.h>
 
 typedef struct {
-    uint8_t year;       /**< Year (00–99) */
-    uint8_t month;      /**< Month (1–12) */
-    uint8_t day;        /**< Day (1–31) */
+    uint8_t year;       /**< Year (00ï¿½99) */
+    uint8_t month;      /**< Month (1ï¿½12) */
+    uint8_t day;        /**< Day (1ï¿½31) */
 } aj_date_t;
 
 /**

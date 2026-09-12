@@ -1,4 +1,4 @@
-/**
+ï»¿/**
  * @brief   LM335 temperature sensor conversion utilities
  *
  * @details
@@ -6,8 +6,16 @@
  * in Kelvin (10 mV per 1 K).
  *
  * Formula:
- *  - Temperature (K) = Voltage (mV) × 0.1
+ *  - Temperature (K) = Voltage (mV) ï¿½ 0.1
  *
+ * -----------------------------------------------------------------------------
+ * EXAMPLE PROJECT
+ * -----------------------------------------------------------------------------
+ * @see    
+ *     
+ * -----------------------------------------------------------------------------
+ * Source
+ * -----------------------------------------------------------------------------
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
  */

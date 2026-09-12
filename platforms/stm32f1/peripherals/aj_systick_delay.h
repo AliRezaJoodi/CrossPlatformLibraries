@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @brief SysTick-based delay utility library for STM32F1xx microcontrollers.
  *
  * This file is effectively a refactor of the STM32 Low-Layer (LL) library:
@@ -13,13 +13,13 @@
  *              SysTick-based timing keep working undisturbed.
  *
  * -----------------------------------------------------------------------------
- * REQUIREMENT 1: Compilation & Linkage
+ * REQUIREMENT 1: Source Files to Build
  * -----------------------------------------------------------------------------
  * The following source files must be compiled and linked in the project:
  * - `aj_systick_delay.c`
  *
  * -----------------------------------------------------------------------------
- * REQUIREMENT 2: SysTick 1ms Time Base
+ * REQUIREMENT 2: Application Setup (SysTick 1ms Time Base)
  * -----------------------------------------------------------------------------
  * The delay functions assume the SysTick timer has been configured to generate a 1 ms time base.
  *
@@ -31,6 +31,14 @@
  * which can be overridden in the central project hardware configuration file:
  * - `hardware.h`
  *
+ * -----------------------------------------------------------------------------
+ * EXAMPLE PROJECT
+ * -----------------------------------------------------------------------------
+ * @see    
+ *     
+ * -----------------------------------------------------------------------------
+ * Source
+ * -----------------------------------------------------------------------------
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
  */

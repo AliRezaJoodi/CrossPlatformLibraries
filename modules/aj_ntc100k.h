@@ -1,12 +1,12 @@
-/**
+ï»¿/**
  * @file ntc100k.h
  * @brief NTC 100K Thermistor Temperature Conversion Library
  *
  * @details
- * Converts thermistor resistance (Ohm) to temperature (°C)
+ * Converts thermistor resistance (Ohm) to temperature (ï¿½C)
  *
  * Temperature Range:
- * -55°C to +300°C
+ * -55ï¿½C to +300ï¿½C
  *
  * Input:
  * Thermistor resistance in Ohms
@@ -21,6 +21,14 @@
  *
  * Author: AliReza Joodi
  * GitHub: https://github.com/AliRezaJoodi
+
+ *
+ * -----------------------------------------------------------------------------
+ * EXAMPLE PROJECT
+ * -----------------------------------------------------------------------------
+ * @see    
+ *     
+
  */
 
 #ifndef AJ_NTC100K_INCLUDED

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @brief Bit manipulation utilities for memory-mapped registers.
  *
  * This header provides a set of inline utility functions for performing bitwise
@@ -35,6 +35,14 @@
  * project source files. Override the macros inside it:
  * - `hardware.h`
  *
+ * -----------------------------------------------------------------------------
+ * EXAMPLE PROJECT
+ * -----------------------------------------------------------------------------
+ * @see    
+ *     
+ * -----------------------------------------------------------------------------
+ * Source
+ * -----------------------------------------------------------------------------
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
  */

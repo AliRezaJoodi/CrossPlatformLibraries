@@ -1,15 +1,23 @@
-/**
+﻿/**
  * @brief   Transmit string management for STM32 USART using interrupts and raw registers.
  *
  * This library provides blocking and interrupt-driven helper APIs to transmit
  * a single character or a whole string over an STM32 USART peripheral.
  *
  * -----------------------------------------------------------------------------
- * REQUIREMENT 1: Compilation & Linkage
+ * REQUIREMENT 1: Source Files to Build
  * -----------------------------------------------------------------------------
  * The following source files must be compiled and linked in the project:
  * - `aj_usart_transmit_string.c`
  *
+ * -----------------------------------------------------------------------------
+ * EXAMPLE PROJECT
+ * -----------------------------------------------------------------------------
+ * @see    
+ *     
+ * -----------------------------------------------------------------------------
+ * Source
+ * -----------------------------------------------------------------------------
  * @author  AliRezaJoodi
  * @see     https://github.com/AliRezaJoodi
  */

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @brief GPIO utility library for AVR8 microcontrollers.
  *
  * Provides inline functions for GPIO configuration and digital I/O control
@@ -17,6 +17,14 @@
  * @note Read-modify-write operations on PORTx are not atomic and may be
  *       affected by interrupts if shared between contexts.
  *
+ * -----------------------------------------------------------------------------
+ * EXAMPLE PROJECT
+ * -----------------------------------------------------------------------------
+ * @see    
+ *     
+ * -----------------------------------------------------------------------------
+ * Source
+ * -----------------------------------------------------------------------------
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
  */
