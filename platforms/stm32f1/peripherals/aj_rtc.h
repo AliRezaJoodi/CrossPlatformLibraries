@@ -11,7 +11,7 @@
  * - RTC->DIVH + RTC->DIVL
  *
  * -----------------------------------------------------------------------------
- * REQUIREMENT 1: Compilation & Linkage
+ * REQUIREMENT 1: Source Files to Build
  * -----------------------------------------------------------------------------
  * The following source files must be compiled and linked in the project:
  * - `aj_rtc.c`
@@ -23,6 +23,29 @@
  * The application must enable the required clock buses before using this driver.
  * - The clock bus of the RTC peripheral (backup domain, etc.)
  *
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 3: Default Configuration
+ * -----------------------------------------------------------------------------
+ * The default driver macros are declared in the following headers:
+ * - `aj_target.h`
+ *
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 4: User Configuration Override
+ * -----------------------------------------------------------------------------
+ * This library's default configuration can be customized via the central
+ * project hardware configuration file, which MUST be present alongside your
+ * project source files. Override the macros inside it:
+ * - `hardware.h`
+ *
+ * -----------------------------------------------------------------------------
+ * EXAMPLE PROJECT
+ * -----------------------------------------------------------------------------
+ * @see    STM32 training and RTC usage example:
+ *         https://github.com/AliRezaJoodi/STM32_Exercises/tree/main/RTC_F103/BareMetal
+ *
+ * -----------------------------------------------------------------------------
+ * Source
+ * -----------------------------------------------------------------------------
  * @author  AliReza Joodi
  * @see     https://github.com/AliRezaJoodi
  */
