@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @brief   Universal synchronous/asynchronous receiver transmitter (USART) interface for STM32 peripherals.
  *
  * This file provides helper APIs for managing USART control, status and data registers, including:
@@ -53,6 +53,7 @@
  * EXAMPLE PROJECT
  * -----------------------------------------------------------------------------
  * @see    STM32F103 training exercise link:
+ *         https://github.com/AliRezaJoodi/STM32_Exercises/tree/main/USART_TX_RX_INTERRUPT_F103/BareMetal
  *     
  * -----------------------------------------------------------------------------
  * Source

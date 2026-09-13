@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @brief   Transmit string management for STM32 USART using interrupts and the LL APIs.
  *
  * This library provides blocking and interrupt-driven helper APIs to transmit
@@ -14,6 +14,7 @@
  * EXAMPLE PROJECT
  * -----------------------------------------------------------------------------
  * @see    STM32F103 training exercise link:
+ *         https://github.com/AliRezaJoodi/STM32_Exercises/tree/main/USART_TX_RX_INTERRUPT_F103/LL
  *     
  * -----------------------------------------------------------------------------
  * Source
