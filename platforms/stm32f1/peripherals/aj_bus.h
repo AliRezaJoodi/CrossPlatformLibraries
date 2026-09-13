@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @brief   Bus clock and reset control interface for STM32 peripherals.
  *
  * This file provides helper APIs for managing peripheral bus control registers, including:
@@ -10,9 +10,24 @@
  * - RCC->APB2RSTR
  *
  * -----------------------------------------------------------------------------
+ * REQUIREMENT 1: Default Configuration
+ * -----------------------------------------------------------------------------
+ * The default macros are declared in the following headers:
+ * - `aj_target.h`
+ *
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 2: User Configuration Override
+ * -----------------------------------------------------------------------------
+ * This library's default configuration can be customized via the central
+ * project hardware configuration file, which MUST be present alongside your
+ * project source files. Override the macros inside it:
+ * - `hardware.h`
+ *
+ * -----------------------------------------------------------------------------
  * EXAMPLE PROJECT
  * -----------------------------------------------------------------------------
  * @see    STM32F103 training exercise link:
+ *         https://github.com/AliRezaJoodi/STM32_Exercises/tree/main/Bus_F103/BareMetal
  *     
  * -----------------------------------------------------------------------------
  * Source
