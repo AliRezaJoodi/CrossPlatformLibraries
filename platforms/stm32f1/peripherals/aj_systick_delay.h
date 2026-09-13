@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @brief SysTick-based delay utility library for STM32F1xx microcontrollers.
  *
  * This file is effectively a refactor of the STM32 Low-Layer (LL) library:
@@ -24,7 +24,13 @@
  * The delay functions assume the SysTick timer has been configured to generate a 1 ms time base.
  *
  * -----------------------------------------------------------------------------
- * REQUIREMENT 3: Core Clock Frequency
+ * REQUIREMENT 3: Default Configuration
+ * -----------------------------------------------------------------------------
+ * The default macros are declared in the following headers:
+ * - `aj_target.h`
+ *
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 4: Core Clock Frequency
  * -----------------------------------------------------------------------------
  * The `AJ_SysTick_Delay_us()` calculation depends on the core clock frequency.
  * This value is configured via `AJ_TARGET_CORE_CLOCK_HZ` inside `aj_target.h`,
@@ -35,6 +41,7 @@
  * EXAMPLE PROJECT
  * -----------------------------------------------------------------------------
  * @see    STM32F103 training exercise link:
+ *         https://github.com/AliRezaJoodi/STM32_Exercises/tree/main/SysTick_Delay_F103/BareMetal
  *     
  * -----------------------------------------------------------------------------
  * Source

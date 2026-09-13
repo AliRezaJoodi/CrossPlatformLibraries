@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @brief   CRC-32 calculation interface for STM32F1 peripherals.
  *
  * This file provides helper APIs for using the CRC peripheral of STM32F1, including:
@@ -17,6 +17,7 @@
  * EXAMPLE PROJECT
  * -----------------------------------------------------------------------------
  * @see    STM32F103 training exercise link:
+ *         https://github.com/AliRezaJoodi/STM32_Exercises/tree/main/CRC32_F103/BareMetal
  *     
  * -----------------------------------------------------------------------------
  * Source

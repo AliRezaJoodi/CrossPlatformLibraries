@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @brief SysTick utility library for STM32F1xx microcontrollers.
  *
  * This file provides helper APIs for managing SysTick control and status
@@ -31,6 +31,7 @@
  * EXAMPLE PROJECT
  * -----------------------------------------------------------------------------
  * @see    STM32F103 training exercise link:
+ *         https://github.com/AliRezaJoodi/STM32_Exercises/tree/main/SysTick_F103/BareMetal
  *     
  * -----------------------------------------------------------------------------
  * Source

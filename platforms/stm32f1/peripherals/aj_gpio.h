@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @brief GPIO utility library for STM32F1xx microcontrollers.
  *
  * Provides inline functions for GPIO configuration, read/write operations,
@@ -14,13 +14,21 @@
  * - GPIO peripheral clock must be enabled before use.
  *
  * -----------------------------------------------------------------------------
- * REQUIREMENT 1: Default Configuration
+ * REQUIREMENT 1: Application Setup (BUS Configuration)
+ * -----------------------------------------------------------------------------
+ * This library does not enable any peripheral clock.
+ * The application must enable the required clock buses before using this driver.
+ * The following clock bus must be enabled:
+ * - The APB2 clock of the GPIO port (e.g., GPIOA on APB2)
+ *
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 2: Default Configuration
  * -----------------------------------------------------------------------------
  * The default macros are declared in the following headers:
  * - `aj_target.h`
  *
  * -----------------------------------------------------------------------------
- * REQUIREMENT 2: User Configuration Override
+ * REQUIREMENT 3: User Configuration Override
  * -----------------------------------------------------------------------------
  * This library's default configuration can be customized via the central
  * project hardware configuration file, which MUST be present alongside your
@@ -31,6 +39,7 @@
  * EXAMPLE PROJECT
  * -----------------------------------------------------------------------------
  * @see    STM32F103 training exercise link:
+ *         https://github.com/AliRezaJoodi/STM32_Exercises/tree/main/GPIO_F103/BareMetal
  *     
  * -----------------------------------------------------------------------------
  * Source
