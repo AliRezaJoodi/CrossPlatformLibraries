@@ -65,6 +65,36 @@ extern "C" {
 #include "aj_type.h"
 #include "aj_exti_type.h"
 
+/******************************************************************************/
+/* Interrupt mask register (EXTI_IMR): interrupt lines                        */
+/******************************************************************************/
+/**
+ * @brief  Enables the interrupt request on the selected line(s).
+ * @param  line Mask of the line(s) to enable. Must not be `AJ_EXTI_LINE_NONE`.
+ */
+static inline void AJ_EXTI_EnableInterrupt(aj_exti_line_mask_t line){
+	AJ_BitReg_SetBit_Mask(&(EXTI->IMR), line);
+}
+
+/**
+ * @brief  Disables the interrupt request on the selected line(s).
+ * @param  line Mask of the line(s) to disable. Must not be `AJ_EXTI_LINE_NONE`.
+ */
+static inline void AJ_EXTI_DisableInterrupt(aj_exti_line_mask_t line){
+	AJ_BitReg_ClearBit_Mask(&(EXTI->IMR), line);
+}
+
+/**
+ * @brief  Checks whether every line of the mask is enabled in EXTI_IMR.
+ * @param  line Mask of the line(s) to test. Must not be `AJ_EXTI_LINE_NONE`.
+ * @retval uint8_t:
+ *         - 1: All the selected lines are enabled.
+ *         - 0: At least one of the selected lines is disabled.
+ */
+static inline uint8_t AJ_EXTI_IsInterruptEnabled(aj_exti_line_mask_t line){
+	return AJ_BitReg_IsBitSet_Mask(&(EXTI->IMR), line);
+}
+
 
 #ifdef __cplusplus
 }
