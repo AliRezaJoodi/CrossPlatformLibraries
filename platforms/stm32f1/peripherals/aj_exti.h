@@ -95,6 +95,36 @@ static inline uint8_t AJ_EXTI_IsInterruptEnabled(aj_exti_line_mask_t line){
 	return AJ_BitReg_IsBitSet_Mask(&(EXTI->IMR), line);
 }
 
+/******************************************************************************/
+/* Event mask register (EXTI_EMR): event lines                                */
+/******************************************************************************/
+/**
+ * @brief  Enables the event on the selected line(s).
+ * @param  line Mask of the line(s) to enable. Must not be `AJ_EXTI_LINE_NONE`.
+ */
+static inline void AJ_EXTI_EnableEvent(aj_exti_line_mask_t line){
+	AJ_BitReg_SetBit_Mask(&(EXTI->EMR), line);
+}
+
+/**
+ * @brief  Disables the event on the selected line(s).
+ * @param  line Mask of the line(s) to disable. Must not be `AJ_EXTI_LINE_NONE`.
+ */
+static inline void AJ_EXTI_DisableEvent(aj_exti_line_mask_t line){
+	AJ_BitReg_ClearBit_Mask(&(EXTI->EMR), line);
+}
+
+/**
+ * @brief  Checks whether every line of the mask is enabled in EXTI_EMR.
+ * @param  line Mask of the line(s) to test. Must not be `AJ_EXTI_LINE_NONE`.
+ * @retval uint8_t:
+ *         - 1: All the selected lines are enabled.
+ *         - 0: At least one of the selected lines is disabled.
+ */
+static inline uint8_t AJ_EXTI_IsEventEnabled(aj_exti_line_mask_t line){
+	return AJ_BitReg_IsBitSet_Mask(&(EXTI->EMR), line);
+}
+
 
 #ifdef __cplusplus
 }
