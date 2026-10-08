@@ -221,6 +221,31 @@ static inline void AJ_EXTI_GenerateSoftwareInterrupt(aj_exti_line_mask_t line){
 	AJ_BitReg_SetBit_Mask(&(EXTI->SWIER), line);
 }
 
+/******************************************************************************/
+/* Pending register (EXTI_PR): pending flags                                  */
+/******************************************************************************/
+/**
+ * @brief  Checks whether every line of the mask has its pending flag set
+ *         in EXTI_PR.
+ * @param  line Mask of the line(s) to test.
+ * @retval uint8_t:
+ *         - 1: All the selected lines have the pending flag set.
+ *         - 0: At least one of the selected lines has no pending flag.
+ */
+static inline uint8_t AJ_EXTI_IsFlagActive(aj_exti_line_mask_t line){
+	return AJ_BitReg_IsBitSet_Mask(&(EXTI->PR), line);
+}
+
+/**
+ * @brief  Clears the pending flag of the selected line(s).
+ * @param  line Mask of the line(s) to clear.
+ * @note   This bit is set when the selected edge event arrives on the interrupt line.
+ *         This bit is cleared by writing a 1 to the bit.
+ */
+static inline void AJ_EXTI_ClearFlag(aj_exti_line_mask_t line){
+	EXTI->PR = (uint32_t)line;
+}
+
 
 #ifdef __cplusplus
 }
