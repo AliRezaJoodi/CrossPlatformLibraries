@@ -203,6 +203,24 @@ static inline uint8_t AJ_EXTI_IsFallingTriggerEnabled(aj_exti_line_mask_t line){
 	return AJ_BitReg_IsBitSet_Mask(&(EXTI->FTSR), line);
 }
 
+/******************************************************************************/
+/* Software interrupt event register (EXTI_SWIER): software interrupts        */
+/******************************************************************************/
+/* Note:
+ * If the interrupt is enabled on this line in the EXTI_IMR, writing a 1 to
+ * this bit when it is at '0' sets the corresponding pending bit in EXTI_PR
+ * resulting in an interrupt request generation.
+ * This bit is cleared by clearing the corresponding bit in the EXTI_PR
+ * register (by writing a 1 into the bit)
+ */
+/**
+ * @brief  Generates a software interrupt event on the selected line(s).
+ * @param  line Mask of the line(s) to trigger.
+ */
+static inline void AJ_EXTI_GenerateSoftwareInterrupt(aj_exti_line_mask_t line){
+	AJ_BitReg_SetBit_Mask(&(EXTI->SWIER), line);
+}
+
 
 #ifdef __cplusplus
 }
