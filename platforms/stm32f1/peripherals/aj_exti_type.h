@@ -19,8 +19,6 @@ extern "C" {
  *        Lines 16-31 are declared only when the selected device defines them.
  */
 typedef enum{
-	AJ_EXTI_LINE_NONE = 0x00000000U,  /*< No extended line */
-
 	AJ_EXTI_LINE_0  = EXTI_IMR_IM0,   /*< Extended line 0 */
 	AJ_EXTI_LINE_1  = EXTI_IMR_IM1,   /*< Extended line 1 */
 	AJ_EXTI_LINE_2  = EXTI_IMR_IM2,   /*< Extended line 2 */
