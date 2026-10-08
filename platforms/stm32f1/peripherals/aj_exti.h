@@ -246,6 +246,15 @@ static inline void AJ_EXTI_ClearFlag(aj_exti_line_mask_t line){
 	EXTI->PR = (uint32_t)line;
 }
 
+/******************************************************************************/
+/* De-initialization                                                          */
+/******************************************************************************/
+/**
+ * @brief  Resets all the EXTI registers to their default values and clears
+ *         the pending flags.
+ */
+void AJ_EXTI_DeInit(void);
+
 
 #ifdef __cplusplus
 }
