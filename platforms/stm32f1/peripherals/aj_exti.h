@@ -164,6 +164,45 @@ static inline uint8_t AJ_EXTI_IsRisingTriggerEnabled(aj_exti_line_mask_t line){
 	return AJ_BitReg_IsBitSet_Mask(&(EXTI->RTSR), line);
 }
 
+/******************************************************************************/
+/* Falling trigger selection register (EXTI_FTSR): falling edge triggers      */
+/******************************************************************************/
+/* Note:
+ * The configurable wakeup lines are edge-triggered. No glitch must be
+ * generated on these lines. If a falling edge on a configurable interrupt
+ * line occurs during a write operation in the EXTI_FTSR register, the
+ * pending bit is not set.
+ * Rising and falling edge triggers can be set for the same interrupt line;
+ * in this case, both generate a trigger condition.
+ */
+/**
+ * @brief  Enables the falling edge trigger on the selected line(s).
+ * @param  line Mask of the line(s) to enable.
+ */
+static inline void AJ_EXTI_EnableFallingTrigger(aj_exti_line_mask_t line){
+	AJ_BitReg_SetBit_Mask(&(EXTI->FTSR), line);
+}
+
+/**
+ * @brief  Disables the falling edge trigger on the selected line(s).
+ * @param  line Mask of the line(s) to disable.
+ */
+static inline void AJ_EXTI_DisableFallingTrigger(aj_exti_line_mask_t line){
+	AJ_BitReg_ClearBit_Mask(&(EXTI->FTSR), line);
+}
+
+/**
+ * @brief  Checks whether every line of the mask has the falling edge trigger
+ *         enabled in EXTI_FTSR.
+ * @param  line Mask of the line(s) to test.
+ * @retval uint8_t:
+ *         - 1: All the selected lines have the falling edge trigger enabled.
+ *         - 0: At least one of the selected lines has it disabled.
+ */
+static inline uint8_t AJ_EXTI_IsFallingTriggerEnabled(aj_exti_line_mask_t line){
+	return AJ_BitReg_IsBitSet_Mask(&(EXTI->FTSR), line);
+}
+
 
 #ifdef __cplusplus
 }
