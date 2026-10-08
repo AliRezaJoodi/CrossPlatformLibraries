@@ -70,7 +70,7 @@ extern "C" {
 /******************************************************************************/
 /**
  * @brief  Enables the interrupt request on the selected line(s).
- * @param  line Mask of the line(s) to enable. Must not be `AJ_EXTI_LINE_NONE`.
+ * @param  line Mask of the line(s) to enable.
  */
 static inline void AJ_EXTI_EnableInterrupt(aj_exti_line_mask_t line){
 	AJ_BitReg_SetBit_Mask(&(EXTI->IMR), line);
@@ -78,7 +78,7 @@ static inline void AJ_EXTI_EnableInterrupt(aj_exti_line_mask_t line){
 
 /**
  * @brief  Disables the interrupt request on the selected line(s).
- * @param  line Mask of the line(s) to disable. Must not be `AJ_EXTI_LINE_NONE`.
+ * @param  line Mask of the line(s) to disable.
  */
 static inline void AJ_EXTI_DisableInterrupt(aj_exti_line_mask_t line){
 	AJ_BitReg_ClearBit_Mask(&(EXTI->IMR), line);
@@ -86,7 +86,7 @@ static inline void AJ_EXTI_DisableInterrupt(aj_exti_line_mask_t line){
 
 /**
  * @brief  Checks whether every line of the mask is enabled in EXTI_IMR.
- * @param  line Mask of the line(s) to test. Must not be `AJ_EXTI_LINE_NONE`.
+ * @param  line Mask of the line(s) to test.
  * @retval uint8_t:
  *         - 1: All the selected lines are enabled.
  *         - 0: At least one of the selected lines is disabled.
@@ -100,7 +100,7 @@ static inline uint8_t AJ_EXTI_IsInterruptEnabled(aj_exti_line_mask_t line){
 /******************************************************************************/
 /**
  * @brief  Enables the event on the selected line(s).
- * @param  line Mask of the line(s) to enable. Must not be `AJ_EXTI_LINE_NONE`.
+ * @param  line Mask of the line(s) to enable.
  */
 static inline void AJ_EXTI_EnableEvent(aj_exti_line_mask_t line){
 	AJ_BitReg_SetBit_Mask(&(EXTI->EMR), line);
@@ -108,7 +108,7 @@ static inline void AJ_EXTI_EnableEvent(aj_exti_line_mask_t line){
 
 /**
  * @brief  Disables the event on the selected line(s).
- * @param  line Mask of the line(s) to disable. Must not be `AJ_EXTI_LINE_NONE`.
+ * @param  line Mask of the line(s) to disable.
  */
 static inline void AJ_EXTI_DisableEvent(aj_exti_line_mask_t line){
 	AJ_BitReg_ClearBit_Mask(&(EXTI->EMR), line);
@@ -116,13 +116,52 @@ static inline void AJ_EXTI_DisableEvent(aj_exti_line_mask_t line){
 
 /**
  * @brief  Checks whether every line of the mask is enabled in EXTI_EMR.
- * @param  line Mask of the line(s) to test. Must not be `AJ_EXTI_LINE_NONE`.
+ * @param  line Mask of the line(s) to test.
  * @retval uint8_t:
  *         - 1: All the selected lines are enabled.
  *         - 0: At least one of the selected lines is disabled.
  */
 static inline uint8_t AJ_EXTI_IsEventEnabled(aj_exti_line_mask_t line){
 	return AJ_BitReg_IsBitSet_Mask(&(EXTI->EMR), line);
+}
+
+/******************************************************************************/
+/* Rising trigger selection register (EXTI_RTSR): rising edge triggers        */
+/******************************************************************************/
+/* Note:
+ * The configurable wakeup lines are edge-triggered. No glitch must be
+ * generated on these lines. If a rising edge on a configurable interrupt
+ * line occurs during a write operation in the EXTI_RTSR register, the
+ * pending bit is not set.
+ * Rising and falling edge triggers can be set for the same interrupt line;
+ * in this case, both generate a trigger condition.
+ */
+/**
+ * @brief  Enables the rising edge trigger on the selected line(s).
+ * @param  line Mask of the line(s) to enable.
+ */
+static inline void AJ_EXTI_EnableRisingTrigger(aj_exti_line_mask_t line){
+	AJ_BitReg_SetBit_Mask(&(EXTI->RTSR), line);
+}
+
+/**
+ * @brief  Disables the rising edge trigger on the selected line(s).
+ * @param  line Mask of the line(s) to disable.
+ */
+static inline void AJ_EXTI_DisableRisingTrigger(aj_exti_line_mask_t line){
+	AJ_BitReg_ClearBit_Mask(&(EXTI->RTSR), line);
+}
+
+/**
+ * @brief  Checks whether every line of the mask has the rising edge trigger
+ *         enabled in EXTI_RTSR.
+ * @param  line Mask of the line(s) to test.
+ * @retval uint8_t:
+ *         - 1: All the selected lines have the rising edge trigger enabled.
+ *         - 0: At least one of the selected lines has it disabled.
+ */
+static inline uint8_t AJ_EXTI_IsRisingTriggerEnabled(aj_exti_line_mask_t line){
+	return AJ_BitReg_IsBitSet_Mask(&(EXTI->RTSR), line);
 }
 
 
