@@ -20,18 +20,41 @@
  * REQUIREMENT 2: Application Setup (BUS Configuration)
  * -----------------------------------------------------------------------------
  * This library does not enable any peripheral clock.
- * The application must enable the required clock buses before using this driver.
- * The following clock bus must be enabled:
+ * The application must enable the required clock buses before using this driver:
  * - The APB2 clock of the AFIO peripheral (required to select the EXTI source port)
+ * - The APB2 clock of the GPIO port(s) used for the EXTI lines
  *
  * -----------------------------------------------------------------------------
- * REQUIREMENT 3: Default Configuration
+ * REQUIREMENT 3: Application Setup (GPIO)
+ * -----------------------------------------------------------------------------
+ * This driver does not configure the GPIO used by the EXTI lines.
+ * The application must prepare the pin before enabling a line:
+ * - Configure the pin as an input.
+ * - Set the pull-up/pull-down so that its idle level is opposite to the
+ *   selected trigger edge.
+ *
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 4: Application Setup (AFIO)
+ * -----------------------------------------------------------------------------
+ * This driver does not select the EXTI source port.
+ * The application must route the line to the desired port via the AFIO
+ * external interrupt configuration register (e.g. `LL_GPIO_AF_SetEXTISource`).
+ *
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 5: Application Setup (Interrupt Vector)
+ * -----------------------------------------------------------------------------
+ * When a line is used in interrupt mode, the application must also:
+ * - Enable the matching NVIC IRQ and set its priority (e.g. `NVIC_EnableIRQ`).
+ * - Clear the pending flag inside the ISR (e.g. `AJ_EXTI_ClearFlag`).
+ *
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 6: Default Configuration
  * -----------------------------------------------------------------------------
  * The default driver macros are declared in the following headers:
  * - `aj_target.h`
  *
  * -----------------------------------------------------------------------------
- * REQUIREMENT 4: User Configuration Override
+ * REQUIREMENT 7: User Configuration Override
  * -----------------------------------------------------------------------------
  * This library's default configuration can be customized via the central
  * project hardware configuration file, which MUST be present alongside your
