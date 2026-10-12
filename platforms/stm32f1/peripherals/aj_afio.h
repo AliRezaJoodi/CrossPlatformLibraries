@@ -53,8 +53,8 @@ extern "C" {
 #include "aj_bit_reg.h"
 #include "aj_afio_type.h"
 
-static inline void AJ_AFIO_ConfigSWJ(aj_afio_swj_t mode){
-	AJ_BitReg_Write3Bit_Position(&AFIO->MAPR, AFIO_MAPR_SWJ_CFG_Pos, mode);
+static inline void AJ_AFIO_ConfigureSWJ(aj_afio_swj_t mode){
+	AJ_BitReg_Write3Bit_Position(&(AFIO->MAPR), AFIO_MAPR_SWJ_CFG_Pos, mode);
 }
 
 
