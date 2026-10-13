@@ -4,9 +4,21 @@
  * This file provides helper APIs for managing AFIO control registers,
  * including:
  * - AFIO->MAPR
+ * - AFIO->EXTICR1
+ * - AFIO->EXTICR2
+ * - AFIO->EXTICR3
+ * - AFIO->EXTICR4
+ *
+ * @note    This header is under editing and will be completed gradually.
  *
  * -----------------------------------------------------------------------------
- * REQUIREMENT 1: Application Setup (BUS Configuration)
+ * REQUIREMENT 1: Source Files to Build
+ * -----------------------------------------------------------------------------
+ * The following source files must be compiled and linked in the project:
+ * - `aj_afio.c`
+ *
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 2: Application Setup (BUS Configuration)
  * -----------------------------------------------------------------------------
  * This library does not enable any peripheral clock.
  * The application must enable the required clock buses before using this driver.
@@ -14,13 +26,13 @@
  * - The APB2 clock of the AFIO peripheral
  *
  * -----------------------------------------------------------------------------
- * REQUIREMENT 2: Default Configuration
+ * REQUIREMENT 3: Default Configuration
  * -----------------------------------------------------------------------------
  * The default driver macros are declared in the following headers:
  * - `aj_target.h`
  *
  * -----------------------------------------------------------------------------
- * REQUIREMENT 3: User Configuration Override
+ * REQUIREMENT 4: User Configuration Override
  * -----------------------------------------------------------------------------
  * This library's default configuration can be customized via the central
  * project hardware configuration file, which MUST be present alongside your
@@ -32,6 +44,7 @@
  * -----------------------------------------------------------------------------
  * @see    STM32F103 training exercise link:
  *         https://github.com/AliRezaJoodi/STM32_Exercises/tree/main/AFIO_F103/BareMetal
+ *         https://github.com/AliRezaJoodi/STM32_Exercises/tree/main/EXTI_F103/BareMetal
  *     
  * -----------------------------------------------------------------------------
  * Source
@@ -53,7 +66,7 @@ extern "C" {
 #include "aj_bit_reg.h"
 #include "aj_afio_type.h"
 
-static inline void AJ_AFIO_ConfigureSWJ(aj_afio_swj_t mode){
+static inline void AJ_AFIO_SWJ_ConfigureMode(aj_afio_swj_t mode){
 	AJ_BitReg_Write3Bit_Position(&(AFIO->MAPR), AFIO_MAPR_SWJ_CFG_Pos, mode);
 }
 
@@ -61,10 +74,10 @@ static inline void AJ_AFIO_ConfigureSWJ(aj_afio_swj_t mode){
  * @brief  Selects the port that feeds an EXTI line.
  * @param  line  Line index (0 to 15).
  * @param  port  Port connected to the line.
- * @note   Each EXTI line accepts exactly one source port.
- *         A later call for the same line overwrites the previous port selection.
+ * @note   Each EXTI line accepts exactly one source port. A later call for the
+ *         same line overwrites the previous port selection.
  */
-static inline void AJ_AFIO_ConfigureEXTISource(aj_afio_exti_line_t line, aj_afio_exti_port_t port){
+static inline void AJ_AFIO_EXTI_ConfigureSource(aj_afio_exti_line_t line, aj_afio_exti_port_t port){
 	uint32_t idx = (uint32_t)(line) / 4U;
 	uint32_t pos = (uint32_t)(((uint32_t)(line) % 4U) * 4U);
 
@@ -76,7 +89,7 @@ static inline void AJ_AFIO_ConfigureEXTISource(aj_afio_exti_line_t line, aj_afio
  * @param  line  Line index (0 to 15).
  * @return Port connected to the line.
  */
-static inline aj_afio_exti_port_t AJ_AFIO_GetEXTISource(aj_afio_exti_line_t line){
+static inline aj_afio_exti_port_t AJ_AFIO_EXTI_GetSource(aj_afio_exti_line_t line){
 	uint32_t idx = (uint32_t)(line) / 4U;
 	uint32_t pos = (uint32_t)(((uint32_t)(line) % 4U) * 4U);
 
