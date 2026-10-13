@@ -83,6 +83,16 @@ static inline aj_afio_exti_port_t AJ_AFIO_GetEXTISource(aj_afio_exti_line_t line
 	return (aj_afio_exti_port_t)AJ_BitReg_Get4Bit_Position(&(AFIO->EXTICR[idx]), pos);
 }
 
+/******************************************************************************/
+/* De-initialization                                                          */
+/******************************************************************************/
+/**
+ * @brief  Resets all the AFIO_EXTICR registers to their default values.
+ * @note   After this call, every EXTI line is routed to PORTA, which is the
+ *         reset default. EXTI line enabling (EXTI_IMR) is not affected.
+ */
+void AJ_AFIO_EXTI_DeInit(void);
+
 
 #ifdef __cplusplus
 }
