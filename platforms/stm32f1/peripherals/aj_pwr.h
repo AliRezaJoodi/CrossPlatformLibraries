@@ -56,6 +56,23 @@ static inline uint8_t AJ_PWR_IsBackupDomainWriteAccessEnabled(void){
 	return AJ_BitReg_IsBitSet_Mask(&(PWR->CR), PWR_CR_DBP_Msk);
 }
 
+/**
+ * @brief  Selects the PVD voltage threshold by driving the PLS[2:0] bits.
+ * @param  level PVD voltage threshold to select.
+ * @note   The PVD must be enabled separately via the PVDE bit to be active.
+ */
+static inline void AJ_PWR_ConfigurePvdLevel(aj_pwr_pvd_level_t level){
+	AJ_BitReg_Write3Bit_Position(&(PWR->CR), PWR_CR_PLS_Pos, level);
+}
+
+/**
+ * @brief  Reads the selected PVD voltage threshold.
+ * @return PVD voltage threshold.
+ */
+static inline aj_pwr_pvd_level_t AJ_PWR_GetPvdLevel(void){
+	return (aj_pwr_pvd_level_t)AJ_BitReg_Get3Bit_Position(&(PWR->CR), PWR_CR_PLS_Pos);
+}
+
 
 #ifdef __cplusplus
 }
