@@ -61,7 +61,7 @@ static inline uint8_t AJ_PWR_IsBackupDomainWriteAccessEnabled(void){
  * @param  level PVD voltage threshold to select.
  * @note   The PVD must be enabled separately via the PVDE bit to be active.
  */
-static inline void AJ_PWR_ConfigurePvdLevel(aj_pwr_pvd_level_t level){
+static inline void AJ_PWR_ConfigurePVDLevel(aj_pwr_pvd_level_t level){
 	AJ_BitReg_Write3Bit_Position(&(PWR->CR), PWR_CR_PLS_Pos, level);
 }
 
