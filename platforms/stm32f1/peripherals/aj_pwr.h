@@ -45,6 +45,17 @@ static inline void AJ_PWR_ConfigureBackupDomainWriteAccess(aj_operation_state_t 
 	AJ_BitReg_WriteBit_Position(&(PWR->CR), PWR_CR_DBP_Pos, state);
 }
 
+/**
+ * @brief  Reports whether write access to the backup domain
+ *         (RTC and backup registers) is enabled.
+ * @return DBP bit state:
+ *         - 1: writes to the backup domain are allowed
+ *         - 0: writes to the backup domain are protected
+ */
+static inline uint8_t AJ_PWR_IsBackupDomainWriteAccessEnabled(void){
+	return AJ_BitReg_IsBitSet_Mask(&(PWR->CR), PWR_CR_DBP_Msk);
+}
+
 
 #ifdef __cplusplus
 }
