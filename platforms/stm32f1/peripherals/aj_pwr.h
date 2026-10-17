@@ -69,8 +69,28 @@ static inline void AJ_PWR_ConfigurePVDLevel(aj_pwr_pvd_level_t level){
  * @brief  Reads the selected PVD voltage threshold.
  * @return PVD voltage threshold.
  */
-static inline aj_pwr_pvd_level_t AJ_PWR_GetPvdLevel(void){
+static inline aj_pwr_pvd_level_t AJ_PWR_GetPVDLevel(void){
 	return (aj_pwr_pvd_level_t)AJ_BitReg_Get3Bit_Position(&(PWR->CR), PWR_CR_PLS_Pos);
+}
+
+/**
+ * @brief  Enables or disables the programmable voltage detector (PVD).
+ * @param  state  PVD configuration:
+ *                - AJ_ENABLE: enable the PVD
+ *                - AJ_DISABLE: disable the PVD
+ */
+static inline void AJ_PWR_ConfigurePVDEnable(aj_operation_state_t state){
+	AJ_BitReg_WriteBit_Position(&(PWR->CR), PWR_CR_PVDE_Pos, state);
+}
+
+/**
+ * @brief  Reports whether the programmable voltage detector (PVD) is enabled.
+ * @return PVD state:
+ *         - 1: PVD enabled
+ *         - 0: PVD disabled
+ */
+static inline uint8_t AJ_PWR_IsPVDEnabled(void){
+	return AJ_BitReg_IsBitSet_Mask(&(PWR->CR), PWR_CR_PVDE_Msk);
 }
 
 
