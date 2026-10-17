@@ -8,6 +8,8 @@ extern "C" {
 #endif
 
 
+#include <stm32f1xx.h>
+
 /******************************************************************************/
 /* PVD level selection                                                        */
 /******************************************************************************/
@@ -25,6 +27,18 @@ typedef enum{
 	AJ_PWR_PVD_2V8 = 6U,	/**< PVD threshold 2.8 V */
 	AJ_PWR_PVD_2V9 = 7U	/**< PVD threshold 2.9 V */
 } aj_pwr_pvd_level_t;
+
+/******************************************************************************/
+/* Flag clear selection                                                       */
+/******************************************************************************/
+/**
+ * @brief Flag(s) to clear in PWR_CR. Values are the clear bits of PWR_CR and
+ *        can be combined with the bitwise OR operator.
+ */
+typedef enum{
+	AJ_PWR_FLAG_CLEAR_STANDBY = PWR_CR_CSBF_Msk,	/**< Standby flag (SBF) */
+	AJ_PWR_FLAG_CLEAR_WAKEUP  = PWR_CR_CWUF_Msk	/**< Wakeup flag (WUF) */
+} aj_pwr_flag_clear_t;
 
 
 #ifdef __cplusplus

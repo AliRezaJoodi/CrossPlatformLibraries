@@ -93,6 +93,14 @@ static inline uint8_t AJ_PWR_IsPVDEnabled(void){
 	return AJ_BitReg_IsBitSet_Mask(&(PWR->CR), PWR_CR_PVDE_Msk);
 }
 
+/**
+ * @brief  Clears one or more PWR flags.
+ * @param  flag Flag(s) to clear; combine with the bitwise OR operator.
+ */
+static inline void AJ_PWR_ClearFlag(aj_pwr_flag_clear_t flag){
+	AJ_BitReg_SetBit_Mask(&(PWR->CR), flag);
+}
+
 
 #ifdef __cplusplus
 }
