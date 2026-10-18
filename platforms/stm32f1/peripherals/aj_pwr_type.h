@@ -40,6 +40,19 @@ typedef enum{
 	AJ_PWR_FLAG_CLEAR_WAKEUP  = PWR_CR_CWUF_Msk	/**< Wakeup flag (WUF) */
 } aj_pwr_flag_clear_t;
 
+/******************************************************************************/
+/* Deepsleep power mode                                                       */
+/******************************************************************************/
+/**
+ * @brief Low-power mode entered when the CPU enters deepsleep, set by the
+ *        PDDS and LPDS bits in PWR_CR. Values are the combined field value.
+ */
+typedef enum{
+	AJ_PWR_DEEPSLEEP_STOP_MODE           = 0U,	/**< PDDS=0, LPDS=0: Stop mode, regulator on */
+	AJ_PWR_DEEPSLEEP_STOP_LOW_POWER_MODE = 1U,	/**< PDDS=0, LPDS=1: Stop mode, regulator low-power */
+	AJ_PWR_DEEPSLEEP_STANDBY_MODE        = 2U	/**< PDDS=1: Standby mode (LPDS is don't care) */
+} aj_pwr_deepsleep_t;
+
 
 #ifdef __cplusplus
 }

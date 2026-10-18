@@ -35,9 +35,7 @@ extern "C" {
 /**
  * @brief  Enables or disables write access to the backup domain
  *         (RTC and backup registers) by driving the DBP bit.
- * @param  state  DBP configuration:
- *                - AJ_ENABLE: allow writes to the backup domain
- *                - AJ_DISABLE: protect the backup domain
+ * @param  Enable/Disable State
  * @note   If the HSE divided by 128 is used as the RTC clock, this bit must
  *         remain set to 1.
  */
@@ -75,9 +73,7 @@ static inline aj_pwr_pvd_level_t AJ_PWR_GetPVDLevel(void){
 
 /**
  * @brief  Enables or disables the programmable voltage detector (PVD).
- * @param  state  PVD configuration:
- *                - AJ_ENABLE: enable the PVD
- *                - AJ_DISABLE: disable the PVD
+ * @param  Enable/Disable State
  */
 static inline void AJ_PWR_ConfigurePVDEnable(aj_operation_state_t state){
 	AJ_BitReg_WriteBit_Position(&(PWR->CR), PWR_CR_PVDE_Pos, state);
@@ -99,6 +95,22 @@ static inline uint8_t AJ_PWR_IsPVDEnabled(void){
  */
 static inline void AJ_PWR_ClearFlag(aj_pwr_flag_clear_t flag){
 	AJ_BitReg_SetBit_Mask(&(PWR->CR), flag);
+}
+
+/**
+ * @brief  Selects the power mode entered when the CPU enters deepsleep.
+ * @param  mode Power mode entered on deepsleep.
+ */
+static inline void AJ_PWR_ConfigureDeepSleepMode(aj_pwr_deepsleep_t mode){
+	AJ_BitReg_Write2Bit_Position(&(PWR->CR), PWR_CR_LPDS_Pos, mode);
+}
+
+/**
+ * @brief  Reads the power mode entered when the CPU enters deepsleep.
+ * @return Power mode entered on deepsleep.
+ */
+static inline aj_pwr_deepsleep_t AJ_PWR_GetDeepSleepMode(void){
+	return (aj_pwr_deepsleep_t)AJ_BitReg_Get2Bit_Position(&(PWR->CR), PWR_CR_LPDS_Pos);
 }
 
 
