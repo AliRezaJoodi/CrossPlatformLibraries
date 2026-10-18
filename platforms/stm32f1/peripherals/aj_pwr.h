@@ -39,24 +39,24 @@ extern "C" {
 /* PWR->CR                                                                    */
 /******************************************************************************/
 /**
- * @brief  Enables or disables write access to the backup domain
+ * @brief  Enables or disables access to the backup domain
  *         (RTC and backup registers) by driving the DBP bit.
  * @param  Enable/Disable State
  * @note   If the HSE divided by 128 is used as the RTC clock, this bit must
  *         remain set to 1.
  */
-static inline void AJ_PWR_ConfigureBackupDomainWriteAccess(aj_operation_state_t state){
+static inline void AJ_PWR_ConfigureBackupDomainAccess(aj_operation_state_t state){
 	AJ_BitReg_WriteBit_Position(&(PWR->CR), PWR_CR_DBP_Pos, state);
 }
 
 /**
- * @brief  Reports whether write access to the backup domain
+ * @brief  Reports whether access to the backup domain
  *         (RTC and backup registers) is enabled.
  * @return DBP bit state:
- *         - 1: writes to the backup domain are allowed
- *         - 0: writes to the backup domain are protected
+ *         - 1: access to the backup domain is allowed
+ *         - 0: access to the backup domain is protected
  */
-static inline uint8_t AJ_PWR_IsBackupDomainWriteAccessEnabled(void){
+static inline uint8_t AJ_PWR_IsBackupDomainAccessEnabled(void){
 	return AJ_BitReg_IsBitSet_Mask(&(PWR->CR), PWR_CR_DBP_Msk);
 }
 
