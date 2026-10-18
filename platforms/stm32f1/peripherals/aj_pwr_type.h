@@ -10,9 +10,6 @@ extern "C" {
 
 #include <stm32f1xx.h>
 
-/******************************************************************************/
-/* PVD level selection                                                        */
-/******************************************************************************/
 /**
  * @brief PVD voltage threshold selected by the PLS[2:0] bits in PWR_CR.
  *        Values match the hardware field values.
@@ -28,9 +25,6 @@ typedef enum{
 	AJ_PWR_PVD_2V9 = 7U	/**< PVD threshold 2.9 V */
 } aj_pwr_pvd_level_t;
 
-/******************************************************************************/
-/* Flag clear selection                                                       */
-/******************************************************************************/
 /**
  * @brief Flag(s) to clear in PWR_CR. Values are the clear bits of PWR_CR and
  *        can be combined with the bitwise OR operator.
@@ -40,9 +34,6 @@ typedef enum{
 	AJ_PWR_FLAG_CLEAR_WAKEUP  = PWR_CR_CWUF_Msk	/**< Wakeup flag (WUF) */
 } aj_pwr_flag_clear_t;
 
-/******************************************************************************/
-/* Deepsleep power mode                                                       */
-/******************************************************************************/
 /**
  * @brief Low-power mode entered when the CPU enters deepsleep, set by the
  *        PDDS and LPDS bits in PWR_CR. Values are the combined field value.

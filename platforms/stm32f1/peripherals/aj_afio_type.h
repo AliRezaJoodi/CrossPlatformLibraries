@@ -8,9 +8,6 @@ extern "C" {
 #endif
 
 
-/******************************************************************************/
-/* SWJ configuration                                                          */
-/******************************************************************************/
 /**
  * @brief SWJ (Serial Wire JTAG) mode selection in the AFIO_MAPR register.
  */
@@ -21,9 +18,6 @@ typedef enum{
 	AJ_AFIO_SWJ_DISABLED        = 0x4U		/**< SW-DP disabled, JTAG-DP disabled */
 } aj_afio_swj_t;
 
-/******************************************************************************/
-/* EXTI source line                                                           */
-/******************************************************************************/
 /**
  * @brief EXTI line index (0 to 15) whose source port is selected
  *        in the AFIO_EXTICR1..4 registers.
@@ -47,9 +41,6 @@ typedef enum{
 	AJ_AFIO_EXTI_LINE15 = 15U
 } aj_afio_exti_line_t;
 
-/******************************************************************************/
-/* EXTI source port                                                           */
-/******************************************************************************/
 /**
  * @brief Port selected as the source of an EXTI line in the AFIO_EXTICR1..4
  *        registers. Port codes match the hardware field values.

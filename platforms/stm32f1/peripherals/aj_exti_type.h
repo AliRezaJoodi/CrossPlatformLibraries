@@ -10,9 +10,6 @@ extern "C" {
 
 #include <stm32f1xx.h>
 
-/******************************************************************************/
-/* Line mask                                                                  */
-/******************************************************************************/
 /**
  * @brief EXTI line mask (one bit per line) usable with every EXTI register
  *        (IMR, EMR, RTSR, FTSR, SWIER, PR).

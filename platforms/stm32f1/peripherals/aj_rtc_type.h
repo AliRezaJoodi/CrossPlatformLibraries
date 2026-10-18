@@ -10,9 +10,6 @@ extern "C" {
 
 #include <stm32f1xx.h>
 
-/******************************************************************************/
-/* Status register (RTC_CRL)                                                  */
-/******************************************************************************/
 /**
  * @brief RTC read-only flags (RTOFF) and flags readable by software.
  */
