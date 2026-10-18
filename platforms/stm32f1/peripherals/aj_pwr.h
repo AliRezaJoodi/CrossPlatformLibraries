@@ -6,13 +6,33 @@
  * - PWR->CR
  * - PWR->CSR
  *
- * @note    This header is under editing and will be completed gradually.
- *
  * -----------------------------------------------------------------------------
  * REQUIREMENT 1: Source Files to Build
  * -----------------------------------------------------------------------------
  * The following source files must be compiled and linked in the project:
  * - `aj_pwr.c`
+ *
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 2: Application Setup (BUS Configuration)
+ * -----------------------------------------------------------------------------
+ * This library does not enable any peripheral clock.
+ * The application must enable the required clock buses before using this driver.
+ * The following clock bus must be enabled:
+ * - The APB1 clock of the PWR peripheral
+ *
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 3: Default Configuration
+ * -----------------------------------------------------------------------------
+ * The default driver macros are declared in the following headers:
+ * - `aj_target.h`
+ *
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 4: User Configuration Override
+ * -----------------------------------------------------------------------------
+ * This library's default configuration can be customized via the central
+ * project hardware configuration file, which MUST be present alongside your
+ * project source files. Override the macros inside it:
+ * - `hardware.h`
  *
  * -----------------------------------------------------------------------------
  * Source
@@ -65,7 +85,7 @@ static inline uint8_t AJ_PWR_IsBackupDomainAccessEnabled(void){
  * @param  level PVD voltage threshold to select.
  * @note   The PVD must be enabled separately via the PVDE bit to be active.
  */
-static inline void AJ_PWR_ConfigurePVDLevel(aj_pwr_pvd_level_t level){
+static inline void AJ_PWR_ConfigurePVDLevel(aj_pwr_pvd_t level){
 	AJ_BitReg_Write3Bit_Position(&(PWR->CR), PWR_CR_PLS_Pos, level);
 }
 
@@ -73,8 +93,8 @@ static inline void AJ_PWR_ConfigurePVDLevel(aj_pwr_pvd_level_t level){
  * @brief  Reads the selected PVD voltage threshold.
  * @return PVD voltage threshold.
  */
-static inline aj_pwr_pvd_level_t AJ_PWR_GetPVDLevel(void){
-	return (aj_pwr_pvd_level_t)AJ_BitReg_Get3Bit_Position(&(PWR->CR), PWR_CR_PLS_Pos);
+static inline aj_pwr_pvd_t AJ_PWR_GetPVDLevel(void){
+	return (aj_pwr_pvd_t)AJ_BitReg_Get3Bit_Position(&(PWR->CR), PWR_CR_PLS_Pos);
 }
 
 /**

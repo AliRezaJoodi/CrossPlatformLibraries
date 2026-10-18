@@ -23,7 +23,7 @@ typedef enum{
 	AJ_PWR_PVD_2V7 = 5U,	/**< PVD threshold 2.7 V */
 	AJ_PWR_PVD_2V8 = 6U,	/**< PVD threshold 2.8 V */
 	AJ_PWR_PVD_2V9 = 7U	/**< PVD threshold 2.9 V */
-} aj_pwr_pvd_level_t;
+} aj_pwr_pvd_t;
 
 /**
  * @brief Flag(s) to clear in PWR_CR. Values are the clear bits of PWR_CR and
