@@ -9,6 +9,12 @@
  * @note    This header is under editing and will be completed gradually.
  *
  * -----------------------------------------------------------------------------
+ * REQUIREMENT 1: Source Files to Build
+ * -----------------------------------------------------------------------------
+ * The following source files must be compiled and linked in the project:
+ * - `aj_pwr.c`
+ *
+ * -----------------------------------------------------------------------------
  * Source
  * -----------------------------------------------------------------------------
  * @author  AliReza Joodi
@@ -146,6 +152,16 @@ static inline uint8_t AJ_PWR_IsWakeUpPinEnabled(void){
 static inline uint8_t AJ_PWR_IsFlagActive(aj_pwr_flag_status_t flag){
 	return AJ_BitReg_IsBitSet_Mask(&(PWR->CSR), flag);
 }
+
+/******************************************************************************/
+/* De-initialization                                                          */
+/******************************************************************************/
+/**
+ * @brief  Resets the PWR control and status registers to their default values.
+ * @note   The PWR_CSR flags (WUF, SBF, PVDO) are read-only and are not cleared
+ *         by this function; use AJ_PWR_ClearFlag() to clear WUF/SBF.
+ */
+void AJ_PWR_DeInit(void);
 
 
 #ifdef __cplusplus
