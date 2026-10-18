@@ -45,7 +45,7 @@ extern "C" {
  * @note   If the HSE divided by 128 is used as the RTC clock, this bit must
  *         remain set to 1.
  */
-static inline void AJ_PWR_ConfigureBackupDomainAccess(aj_operation_state_t state){
+static inline void AJ_PWR_ConfigureBackupDomainAccess(aj_enable_state_t state){
 	AJ_BitReg_WriteBit_Position(&(PWR->CR), PWR_CR_DBP_Pos, state);
 }
 
@@ -81,7 +81,7 @@ static inline aj_pwr_pvd_level_t AJ_PWR_GetPVDLevel(void){
  * @brief  Enables or disables the programmable voltage detector (PVD).
  * @param  Enable/Disable State
  */
-static inline void AJ_PWR_ConfigurePVDEnable(aj_operation_state_t state){
+static inline void AJ_PWR_ConfigurePVDEnable(aj_enable_state_t state){
 	AJ_BitReg_WriteBit_Position(&(PWR->CR), PWR_CR_PVDE_Pos, state);
 }
 
@@ -129,7 +129,7 @@ static inline aj_pwr_deepsleep_t AJ_PWR_GetDeepSleepMode(void){
  *                - AJ_DISABLE: pin used as general purpose I/O
  * @note   Reset by a system reset.
  */
-static inline void AJ_PWR_ConfigureWakeUpPin(aj_operation_state_t state){
+static inline void AJ_PWR_ConfigureWakeUpPin(aj_enable_state_t state){
 	AJ_BitReg_WriteBit_Position(&(PWR->CSR), PWR_CSR_EWUP_Pos, state);
 }
 

@@ -112,7 +112,7 @@ aj_result_state_t AJ_RTC_Synchronize(void);
 /******************************************************************************/
 /* Control register high (RTC_CRH): interrupt enables                         */
 /******************************************************************************/
-static inline void AJ_RTC_ConfigOverflowInterrupt(aj_operation_state_t state){
+static inline void AJ_RTC_ConfigOverflowInterrupt(aj_enable_state_t state){
 	AJ_BitReg_WriteBit_Position(&(RTC->CRH), RTC_CRH_OWIE_Pos, state);
 }
 
@@ -120,7 +120,7 @@ static inline uint8_t AJ_RTC_IsOverflowInterruptEnabled(void){
 	return AJ_BitReg_IsBitSet_Mask(&(RTC->CRH), RTC_CRH_OWIE_Msk);
 }
 
-static inline void AJ_RTC_ConfigAlarmInterrupt(aj_operation_state_t state){
+static inline void AJ_RTC_ConfigAlarmInterrupt(aj_enable_state_t state){
 	AJ_BitReg_WriteBit_Position(&(RTC->CRH), RTC_CRH_ALRIE_Pos, state);
 }
 
@@ -128,7 +128,7 @@ static inline uint8_t AJ_RTC_IsAlarmInterruptEnabled(void){
 	return AJ_BitReg_IsBitSet_Mask(&(RTC->CRH), RTC_CRH_ALRIE_Msk);
 }
 
-static inline void AJ_RTC_ConfigSecondInterrupt(aj_operation_state_t state){
+static inline void AJ_RTC_ConfigSecondInterrupt(aj_enable_state_t state){
 	AJ_BitReg_WriteBit_Position(&(RTC->CRH), RTC_CRH_SECIE_Pos, state);
 }
 

@@ -35,7 +35,7 @@ typedef enum {
 typedef enum {
 	AJ_DISABLE = 0U,
 	AJ_ENABLE  = 1U
-} aj_operation_state_t;
+} aj_enable_state_t;
 
 typedef enum {
 	AJ_OFF = 0U,
