@@ -44,6 +44,16 @@ typedef enum{
 	AJ_PWR_DEEPSLEEP_STANDBY_MODE        = 2U	/**< PDDS=1: Standby mode (LPDS is don't care) */
 } aj_pwr_deepsleep_t;
 
+/**
+ * @brief Readable status flags in PWR_CSR. Values are the flag bits of
+ *        PWR_CSR and can be combined with the bitwise OR operator.
+ */
+typedef enum{
+	AJ_PWR_FLAG_PVDO    = PWR_CSR_PVDO_Msk,	/**< PVD output (valid only if PVD enabled) */
+	AJ_PWR_FLAG_STANDBY = PWR_CSR_SBF_Msk,	/**< Standby flag (SBF) */
+	AJ_PWR_FLAG_WAKEUP  = PWR_CSR_WUF_Msk	/**< Wakeup flag (WUF) */
+} aj_pwr_flag_status_t;
+
 
 #ifdef __cplusplus
 }

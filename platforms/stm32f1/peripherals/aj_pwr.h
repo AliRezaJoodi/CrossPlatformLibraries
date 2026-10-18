@@ -113,6 +113,40 @@ static inline aj_pwr_deepsleep_t AJ_PWR_GetDeepSleepMode(void){
 	return (aj_pwr_deepsleep_t)AJ_BitReg_Get2Bit_Position(&(PWR->CR), PWR_CR_LPDS_Pos);
 }
 
+/******************************************************************************/
+/* PWR->CSR                                                                   */
+/******************************************************************************/
+/**
+ * @brief  Enables or disables the wakeup (WKUP) pin function.
+ * @param  state  WKUP pin configuration:
+ *                - AJ_ENABLE: pin wakes up the device from Standby mode
+ *                - AJ_DISABLE: pin used as general purpose I/O
+ * @note   Reset by a system reset.
+ */
+static inline void AJ_PWR_ConfigureWakeUpPin(aj_operation_state_t state){
+	AJ_BitReg_WriteBit_Position(&(PWR->CSR), PWR_CSR_EWUP_Pos, state);
+}
+
+/**
+ * @brief  Reports whether the wakeup (WKUP) pin function is enabled.
+ * @return WKUP pin state:
+ *         - 1: pin wakes up the device from Standby mode
+ *         - 0: pin used as general purpose I/O
+ */
+static inline uint8_t AJ_PWR_IsWakeUpPinEnabled(void){
+	return AJ_BitReg_IsBitSet_Mask(&(PWR->CSR), PWR_CSR_EWUP_Msk);
+}
+
+/**
+ * @brief  Checks whether one or more PWR status flags are active.
+ * @param  flag Flag(s) to check; combine with the bitwise OR operator.
+ * @return - 1: at least one selected flag is active
+ *         - 0: no selected flag is active
+ */
+static inline uint8_t AJ_PWR_IsFlagActive(aj_pwr_flag_status_t flag){
+	return AJ_BitReg_IsBitSet_Mask(&(PWR->CSR), flag);
+}
+
 
 #ifdef __cplusplus
 }
