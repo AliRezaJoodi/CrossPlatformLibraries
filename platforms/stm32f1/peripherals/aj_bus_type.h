@@ -54,7 +54,7 @@ typedef enum {
 	#endif
 	
 	AJ_BUS_CLOCK_AHB_ALL = 0xFFFFFFFFU	
-} aj_bus_clock_ahb_mask_t;
+} aj_bus_ahb_clock_mask_t;
 
 typedef enum {
 	#if defined(RCC_AHBRSTR_OTGFSRST_Msk)
@@ -66,7 +66,7 @@ typedef enum {
 	#endif
 	
 	AJ_BUS_RESET_AHB_ALL = 0xFFFFFFFFU	
-} aj_bus_reset_ahb_mask_t;
+} aj_bus_ahb_reset_mask_t;
 
 
 typedef enum {
@@ -171,7 +171,7 @@ typedef enum {
 	#endif
 
 	AJ_BUS_CLOCK_APB1_ALL = 0xFFFFFFFFU
-} aj_bus_clock_apb1_mask_t;
+} aj_bus_apb1_clock_mask_t;
 
 typedef enum {
 	#if defined(RCC_APB1RSTR_TIM2RST_Msk)
@@ -275,7 +275,7 @@ typedef enum {
 	#endif
 
 	AJ_BUS_RESET_APB1_ALL = 0xFFFFFFFFU
-} aj_bus_reset_apb1_mask_t;
+} aj_bus_apb1_reset_mask_t;
 
 
 typedef enum {
@@ -364,7 +364,7 @@ typedef enum {
 	#endif
 
 	AJ_BUS_CLOCK_APB2_ALL = 0xFFFFFFFFU
-} aj_bus_clock_apb2_mask_t;
+} aj_bus_apb2_clock_mask_t;
 
 typedef enum {
 	#if defined(RCC_APB2RSTR_AFIORST_Msk)
@@ -452,7 +452,7 @@ typedef enum {
 	#endif
 
 	AJ_BUS_RESET_APB2_ALL = 0xFFFFFFFFU
-} aj_bus_reset_apb2_mask_t;
+} aj_bus_apb2_reset_mask_t;
 
 
 
