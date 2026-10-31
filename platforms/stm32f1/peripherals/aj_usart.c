@@ -7,7 +7,7 @@
 #include "aj_usart.h"
 
 //*******************************************************************************
-void AJ_USART_ConfigOperatingMode(USART_TypeDef *USARTx, aj_usart_mode_t mode){
+void AJ_USART_ConfigureOperatingMode(USART_TypeDef *USARTx, aj_usart_mode_t mode){
   switch(mode){
 		case AJ_USART_MODE_ASYNC:
 			AJ_BitReg_ClearBit_Mask(&(USARTx->CR2), (USART_CR2_LINEN_Msk | USART_CR2_CLKEN_Msk));
@@ -88,11 +88,11 @@ static uint16_t AJ_USART_CalculateDivider_16x(uint32_t periphclk, uint32_t baudr
 
 //*******************************************************************************
 #if defined(USART_CR1_OVER8_Msk)
-void AJ_USART_ConfigBaudRate_8x(USART_TypeDef *USARTx, uint32_t periphclk, uint32_t baudrate){
+void AJ_USART_ConfigureBaudRate_8x(USART_TypeDef *USARTx, uint32_t periphclk, uint32_t baudrate){
   USARTx->BRR = AJ_USART_CalculateDivider_8x(periphclk, baudrate);
 }
 #endif
 
-void AJ_USART_ConfigBaudRate_16x(USART_TypeDef *USARTx, uint32_t periphclk, uint32_t baudrate){
+void AJ_USART_ConfigureBaudRate_16x(USART_TypeDef *USARTx, uint32_t periphclk, uint32_t baudrate){
   USARTx->BRR = AJ_USART_CalculateDivider_16x(periphclk, baudrate);
 }

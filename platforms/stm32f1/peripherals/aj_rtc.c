@@ -86,7 +86,7 @@ uint32_t AJ_RTC_ReadDivider(void){
 /******************************************************************************/
 /* Config mode (RTC_CRL_CNF)                                                  */
 /******************************************************************************/
-aj_result_state_t AJ_RTC_EnterConfigMode(void){
+aj_result_state_t AJ_RTC_EnterConfigureMode(void){
   uint32_t timeout = AJ_RTC_TIMEOUT;
 
   /* Wait until the last write operation has terminated (RTOFF=1). */
@@ -102,7 +102,7 @@ aj_result_state_t AJ_RTC_EnterConfigMode(void){
   return AJ_SUCCESS;
 }
 
-aj_result_state_t AJ_RTC_ExitConfigMode(void){
+aj_result_state_t AJ_RTC_ExitConfigureMode(void){
   uint32_t timeout = AJ_RTC_TIMEOUT;
 
   /* Exit config mode: apply the pending writes. */

@@ -64,7 +64,7 @@ extern "C" {
 /******************************************************************************/
 /* Config                                                                     */
 /******************************************************************************/
-static inline void AJ_GPIO_ConfigDirection(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_t pos, aj_gpio_direction_t mode){
+static inline void AJ_GPIO_ConfigureDirection(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_t pos, aj_gpio_direction_t mode){
 	if(pos <= 7){
 		AJ_BitReg_Write2Bit_Position(&(GPIOx->CRL), pos * 4, mode);
 	}
@@ -73,7 +73,7 @@ static inline void AJ_GPIO_ConfigDirection(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_
 	}	
 }
 
-static inline void AJ_GPIO_ConfigInputType(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_t pos, aj_gpio_input_t mode){
+static inline void AJ_GPIO_ConfigureInputType(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_t pos, aj_gpio_input_t mode){
 	if(pos <= 7){
 		AJ_BitReg_Write2Bit_Position(&(GPIOx->CRL), (pos * 4) + 2, mode);
 	}
@@ -82,7 +82,7 @@ static inline void AJ_GPIO_ConfigInputType(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_
 	}
 }
 
-static inline void AJ_GPIO_ConfigOutputType(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_t pos, aj_gpio_output_t mode){
+static inline void AJ_GPIO_ConfigureOutputType(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_t pos, aj_gpio_output_t mode){
 	if(pos <= 7){
 		AJ_BitReg_Write2Bit_Position(&(GPIOx->CRL), (pos*4)+2, mode);
 	}
@@ -91,7 +91,7 @@ static inline void AJ_GPIO_ConfigOutputType(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos
 	}
 }
 
-static inline void AJ_GPIO_ConfigPull(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_t pos, aj_gpio_pull_t mode){
+static inline void AJ_GPIO_ConfigurePull(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_t pos, aj_gpio_pull_t mode){
 	AJ_BitReg_WriteBit_Position(&(GPIOx->ODR), pos, mode);
 }
 

@@ -57,7 +57,7 @@ extern "C" {
 /******************************************************************************/
 /* SysTick->CTRL                                                              */
 /******************************************************************************/
-static inline void AJ_SysTick_ConfigEnableState(aj_enable_state_t state){
+static inline void AJ_SysTick_ConfigureEnableState(aj_enable_state_t state){
 	AJ_BitReg_WriteBit_Position(&(SysTick->CTRL), SysTick_CTRL_ENABLE_Pos, state);
 }
 
@@ -65,7 +65,7 @@ static inline uint8_t AJ_SysTick_IsEnabled(void){
 	return AJ_BitReg_IsBitSet_Mask(&(SysTick->CTRL), SysTick_CTRL_ENABLE_Msk);
 }
 
-static inline void AJ_SysTick_ConfigInterruptState(aj_enable_state_t state){
+static inline void AJ_SysTick_ConfigureInterruptState(aj_enable_state_t state){
 	AJ_BitReg_WriteBit_Position(&(SysTick->CTRL), SysTick_CTRL_TICKINT_Pos, state);
 }
 
@@ -73,7 +73,7 @@ static inline uint8_t AJ_SysTick_IsInterruptEnabled(void){
 	return AJ_BitReg_IsBitSet_Mask(&(SysTick->CTRL), SysTick_CTRL_TICKINT_Msk);
 }
 
-static inline void AJ_SysTick_ConfigClockSource(aj_systick_clksource_t source){
+static inline void AJ_SysTick_ConfigureClockSource(aj_systick_clksource_t source){
 	AJ_BitReg_WriteBit_Position(&(SysTick->CTRL), SysTick_CTRL_CLKSOURCE_Pos, source);
 }
 
@@ -127,7 +127,7 @@ static inline void AJ_SysTick_ClearValue(void){
  * - Starts the SysTick counter.
  *
  * @note   The interrupt is left disabled by design; enable it explicitly with
- *         AJ_SysTick_ConfigInterruptState() if required.
+ *         AJ_SysTick_ConfigureInterruptState() if required.
  * @param  clk_hz  Core clock frequency in Hz (e.g. 8000000U for 8 MHz).
  */
 void AJ_SysTick_Init_1ms(uint32_t clk_hz);

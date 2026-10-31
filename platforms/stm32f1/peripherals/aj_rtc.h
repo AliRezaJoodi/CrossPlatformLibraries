@@ -86,7 +86,7 @@ static inline void AJ_RTC_ClearFlag(aj_rtc_flag_w0_t flag){
  *         - AJ_SUCCESS: RTC is in configuration mode.
  *         - AJ_FAILURE: Timeout while waiting for the current write operation.
  */
-aj_result_state_t AJ_RTC_EnterConfigMode(void);
+aj_result_state_t AJ_RTC_EnterConfigureMode(void);
 
 /**
  * @brief  Exits the RTC configuration mode.
@@ -96,7 +96,7 @@ aj_result_state_t AJ_RTC_EnterConfigMode(void);
  *         - AJ_SUCCESS: RTC is out of configuration mode.
  *         - AJ_FAILURE: Timeout while waiting for the write sequence to finish.
  */
-aj_result_state_t AJ_RTC_ExitConfigMode(void);
+aj_result_state_t AJ_RTC_ExitConfigureMode(void);
 
 /**
  * @brief  Synchronizes the RTC registers with the APB1 bus.
@@ -112,7 +112,7 @@ aj_result_state_t AJ_RTC_Synchronize(void);
 /******************************************************************************/
 /* Control register high (RTC_CRH): interrupt enables                         */
 /******************************************************************************/
-static inline void AJ_RTC_ConfigOverflowInterrupt(aj_enable_state_t state){
+static inline void AJ_RTC_ConfigureOverflowInterrupt(aj_enable_state_t state){
 	AJ_BitReg_WriteBit_Position(&(RTC->CRH), RTC_CRH_OWIE_Pos, state);
 }
 
@@ -120,7 +120,7 @@ static inline uint8_t AJ_RTC_IsOverflowInterruptEnabled(void){
 	return AJ_BitReg_IsBitSet_Mask(&(RTC->CRH), RTC_CRH_OWIE_Msk);
 }
 
-static inline void AJ_RTC_ConfigAlarmInterrupt(aj_enable_state_t state){
+static inline void AJ_RTC_ConfigureAlarmInterrupt(aj_enable_state_t state){
 	AJ_BitReg_WriteBit_Position(&(RTC->CRH), RTC_CRH_ALRIE_Pos, state);
 }
 
@@ -128,7 +128,7 @@ static inline uint8_t AJ_RTC_IsAlarmInterruptEnabled(void){
 	return AJ_BitReg_IsBitSet_Mask(&(RTC->CRH), RTC_CRH_ALRIE_Msk);
 }
 
-static inline void AJ_RTC_ConfigSecondInterrupt(aj_enable_state_t state){
+static inline void AJ_RTC_ConfigureSecondInterrupt(aj_enable_state_t state){
 	AJ_BitReg_WriteBit_Position(&(RTC->CRH), RTC_CRH_SECIE_Pos, state);
 }
 
