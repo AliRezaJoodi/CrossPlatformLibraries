@@ -52,21 +52,21 @@ extern "C" {
 #include "aj_gpio_type.h"
 
 /******************************************************************************/
-/* Config                                                                     */
+/* Configure                                                                     */
 /******************************************************************************/
-static inline void AJ_GPIO_ConfigDirection(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_t pin, aj_gpio_direction_t mode){
+static inline void AJ_GPIO_ConfigureDirection(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_t pin, aj_gpio_direction_t mode){
 	AJ_BitReg_Write2Bit_Position(&(GPIOx->MODER), pin * 2U, mode);
 }
 
-static inline void AJ_GPIO_ConfigOutputType(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_t pin, aj_gpio_output_t mode){
+static inline void AJ_GPIO_ConfigureOutputType(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_t pin, aj_gpio_output_t mode){
 	AJ_BitReg_WriteBit_Position(&(GPIOx->OTYPER), pin, mode);
 }
 
-static inline void AJ_GPIO_ConfigOutputSpeed(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_t pin, aj_gpio_speed_t mode){
+static inline void AJ_GPIO_ConfigureOutputSpeed(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_t pin, aj_gpio_speed_t mode){
 	AJ_BitReg_Write2Bit_Position(&(GPIOx->OSPEEDR), pin * 2U, mode);
 }
 
-static inline void AJ_GPIO_ConfigPull(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_t pin, aj_gpio_pull_t mode){
+static inline void AJ_GPIO_ConfigurePull(GPIO_TypeDef *GPIOx, aj_gpio_pin_pos_t pin, aj_gpio_pull_t mode){
 	AJ_BitReg_Write2Bit_Position(&(GPIOx->PUPDR), pin * 2U, mode);
 }
 
