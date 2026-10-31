@@ -11,8 +11,8 @@ extern "C" {
 #include "aj_buzzer_config_platform.h"
 
 static inline void AJ_Buzzer_ConfigPinAsOutput(void){
-	AJ_GPIO_ConfigDirection(AJ_BUZZER_GPIO, AJ_BUZZER_POS, AJ_GPIO_MODE_OUTPUT_2MHz);
-	AJ_GPIO_ConfigOutputType(AJ_BUZZER_GPIO, AJ_BUZZER_POS, AJ_GPIO_OUTPUT_GP_PUSHPULL);
+	AJ_GPIO_ConfigureDirection(AJ_BUZZER_GPIO, AJ_BUZZER_POS, AJ_GPIO_MODE_OUTPUT_2MHz);
+	AJ_GPIO_ConfigureOutputType(AJ_BUZZER_GPIO, AJ_BUZZER_POS, AJ_GPIO_OUTPUT_GP_PUSHPULL);
 }
 
 //static inline void AJ_Buzzer_SetPin(void){
