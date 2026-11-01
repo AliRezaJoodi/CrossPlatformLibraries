@@ -51,6 +51,7 @@ extern "C" {
 #include <stm32f1xx.h>
 #include "aj_bit_reg.h"
 #include "aj_flash_type.h"
+#include "aj_type.h"
 
 /******************************************************************************/
 /* Flash access control register (FLASH_ACR)                                  */
@@ -61,6 +62,22 @@ static inline void AJ_Flash_ConfigureLatency(aj_flash_latency_t latency){
 
 static inline aj_flash_latency_t AJ_Flash_GetLatency(void){
 	return (aj_flash_latency_t)AJ_BitReg_Get3Bit_Position(&(FLASH->ACR), FLASH_ACR_LATENCY_Pos);
+}
+
+static inline void AJ_Flash_ConfigureHalfCycleAccess(aj_enable_state_t state){
+	AJ_BitReg_WriteBit_Position(&(FLASH->ACR), FLASH_ACR_HLFCYA_Pos, state);
+}
+
+static inline uint32_t AJ_Flash_IsHalfCycleAccessEnabled(void){
+	return AJ_BitReg_IsBitSet_Position(&(FLASH->ACR), FLASH_ACR_HLFCYA_Pos);
+}
+
+static inline void AJ_Flash_ConfigurePrefetchBuffer(aj_enable_state_t state){
+	AJ_BitReg_WriteBit_Position(&(FLASH->ACR), FLASH_ACR_PRFTBE_Pos, state);
+}
+
+static inline uint32_t AJ_Flash_IsPrefetchBufferEnabled(void){
+	return AJ_BitReg_IsBitSet_Position(&(FLASH->ACR), FLASH_ACR_PRFTBE_Pos);
 }
 
 
