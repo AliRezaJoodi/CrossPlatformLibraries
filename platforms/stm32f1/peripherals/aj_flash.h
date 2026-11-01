@@ -55,10 +55,13 @@ extern "C" {
 /******************************************************************************/
 /* Flash access control register (FLASH_ACR)                                  */
 /******************************************************************************/
+static inline void AJ_Flash_ConfigureLatency(aj_flash_latency_t latency){
+	AJ_BitReg_Write3Bit_Position(&(FLASH->ACR), FLASH_ACR_LATENCY_Pos, (uint32_t)latency);
+}
 
-/* 
- * TODO: Implement FLASH_ACR functions 
- */
+static inline aj_flash_latency_t AJ_Flash_GetLatency(void){
+	return (aj_flash_latency_t)AJ_BitReg_Get3Bit_Position(&(FLASH->ACR), FLASH_ACR_LATENCY_Pos);
+}
 
 
 #ifdef __cplusplus
