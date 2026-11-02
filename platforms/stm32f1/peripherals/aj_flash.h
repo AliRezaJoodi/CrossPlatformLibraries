@@ -7,19 +7,25 @@
  * @note    This header is under editing and will be completed gradually.
  *
  * -----------------------------------------------------------------------------
- * REQUIREMENT 1: Application Setup (BUS Configuration)
+ * REQUIREMENT 1: Source Files to Build
+ * -----------------------------------------------------------------------------
+ * The following source files must be compiled and linked in the project:
+ * - `aj_flash.c`
+ *
+ * -----------------------------------------------------------------------------
+ * REQUIREMENT 2: Application Setup (BUS Configuration)
  * -----------------------------------------------------------------------------
  * This library does not enable the Flash peripheral clock.
  * The application must enable the required clock buses before using this driver.
  *
  * -----------------------------------------------------------------------------
- * REQUIREMENT 2: Default Configuration
+ * REQUIREMENT 3: Default Configuration
  * -----------------------------------------------------------------------------
  * The default macros are declared in the following headers:
  * - `aj_target.h`
  *
  * -----------------------------------------------------------------------------
- * REQUIREMENT 3: User Configuration Override
+ * REQUIREMENT 4: User Configuration Override
  * -----------------------------------------------------------------------------
  * This library's default configuration can be customized via the central
  * project hardware configuration file, which MUST be present alongside your
@@ -31,7 +37,6 @@
  * -----------------------------------------------------------------------------
  * @see    STM32F103 training exercise link:
  *         
- * 
  * -----------------------------------------------------------------------------
  * Source
  * -----------------------------------------------------------------------------
@@ -68,6 +73,8 @@ static inline void AJ_Flash_ConfigureLatency(aj_flash_latency_t latency){
 static inline aj_flash_latency_t AJ_Flash_GetLatency(void){
 	return (aj_flash_latency_t)AJ_BitReg_Get3Bit_Position(&(FLASH->ACR), FLASH_ACR_LATENCY_Pos);
 }
+
+aj_result_state_t AJ_Flash_InitLatency(uint32_t core_clock_hz);
 
 static inline void AJ_Flash_ConfigureHalfCycleAccess(aj_enable_state_t state){
 	AJ_BitReg_WriteBit_Position(&(FLASH->ACR), FLASH_ACR_HLFCYA_Pos, state);
