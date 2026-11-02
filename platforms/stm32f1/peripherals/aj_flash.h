@@ -50,12 +50,17 @@ extern "C" {
 #include <stdint.h>
 #include <stm32f1xx.h>
 #include "aj_bit_reg.h"
-#include "aj_flash_type.h"
 #include "aj_type.h"
+#include "aj_flash_type.h"
 
 /******************************************************************************/
 /* Flash access control register (FLASH_ACR)                                  */
 /******************************************************************************/
+/**
+ * @brief  Configures the Flash memory access latency.
+ * @param  latency The desired latency state (0 to 2 wait states).
+ * @note   This function MUST be called BEFORE changing the system clock frequency (SYSCLK).
+ */
 static inline void AJ_Flash_ConfigureLatency(aj_flash_latency_t latency){
 	AJ_BitReg_Write3Bit_Position(&(FLASH->ACR), FLASH_ACR_LATENCY_Pos, (uint32_t)latency);
 }
