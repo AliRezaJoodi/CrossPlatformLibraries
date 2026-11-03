@@ -74,8 +74,6 @@ static inline aj_flash_latency_t AJ_Flash_GetLatency(void){
 	return (aj_flash_latency_t)AJ_BitReg_Get3Bit_Position(&(FLASH->ACR), FLASH_ACR_LATENCY_Pos);
 }
 
-aj_result_state_t AJ_Flash_InitLatency(uint32_t core_clock_hz);
-
 static inline void AJ_Flash_ConfigureHalfCycleAccess(aj_enable_state_t state){
 	AJ_BitReg_WriteBit_Position(&(FLASH->ACR), FLASH_ACR_HLFCYA_Pos, state);
 }
@@ -91,6 +89,17 @@ static inline void AJ_Flash_ConfigurePrefetchBuffer(aj_enable_state_t state){
 static inline uint32_t AJ_Flash_IsPrefetchBufferEnabled(void){
 	return AJ_BitReg_IsBitSet_Position(&(FLASH->ACR), FLASH_ACR_PRFTBE_Pos);
 }
+
+/******************************************************************************/
+/* Init (implementation in aj_flash.c)                                        */
+/******************************************************************************/
+/**
+ * @brief  Initializes the Flash memory access latency based on the SYSCLK frequency.
+ * @param  sysclk_hz The SYSCLK frequency in Hertz.
+ * @retval AJ_SUCCESS on successful configuration, AJ_FAILURE on invalid input or timeout.
+ * @note   This function MUST be called BEFORE changing the system clock frequency (SYSCLK).
+ */
+aj_result_state_t AJ_Flash_InitLatency(uint32_t sysclk_hz);
 
 
 #ifdef __cplusplus
