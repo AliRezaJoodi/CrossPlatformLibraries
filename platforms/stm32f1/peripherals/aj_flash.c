@@ -1,6 +1,10 @@
+
+#include <stdint.h>
+#include <stm32f1xx.h>
+#include "aj_type.h"
 #include "aj_flash.h"
 
-void AJ_Flash_InitLatency(uint32_t core_clock_hz){
+aj_result_state_t AJ_Flash_InitLatency(uint32_t core_clock_hz){
 	if ((core_clock_hz == 0U) || (core_clock_hz > 72000000U)){
 		return AJ_FAILURE;
 	}
