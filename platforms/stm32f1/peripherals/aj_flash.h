@@ -36,6 +36,7 @@
  * EXAMPLE PROJECT
  * -----------------------------------------------------------------------------
  * @see    STM32F103 training exercise link:
+ *         https://github.com/AliRezaJoodi/STM32_Exercises/tree/main/Flash_F103/BareMetal
  *         
  * -----------------------------------------------------------------------------
  * Source
