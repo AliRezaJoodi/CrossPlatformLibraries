@@ -1,13 +1,7 @@
-﻿/**
+/**
  *
  * -----------------------------------------------------------------------------
- * REQUIREMENT 1: Default Configuration
- * -----------------------------------------------------------------------------
- * The default driver macros are declared in the following headers:
- * - `aj_target.h`
- *
- * -----------------------------------------------------------------------------
- * REQUIREMENT 2: User Configuration Override
+ * REQUIREMENT 1: User Configuration Override
  * -----------------------------------------------------------------------------
  * This library's default configuration can be customized via the central
  * project hardware configuration file, which MUST be present alongside your
@@ -15,14 +9,9 @@
  * - `hardware.h`
  *
  * -----------------------------------------------------------------------------
- * EXAMPLE PROJECT
- * -----------------------------------------------------------------------------
- * @see    
- *     
- * -----------------------------------------------------------------------------
  * Source
  * -----------------------------------------------------------------------------
- * @author  AliReza Joodi
+ * @author  AliRezaJoodi
  * @see     https://github.com/AliRezaJoodi
  */
 
@@ -36,11 +25,11 @@ extern "C" {
 
 #include "hardware.h"
 
-#define AJ_TARGET_MCU_BITS              8U
-
 #ifndef AJ_TARGET_CONFIG
 #define AJ_TARGET_CONFIG
-    #define AJ_TARGET_TICK_BITS             16U     /*!< Supported: 8, 16, 32 */
+    #define AJ_TARGET_CORE_BITS              32U         /*!< Supported: 8, 16, 32 */
+    #define AJ_TARGET_CORE_CLOCK_HZ          8000000U    /*!< Core clock (HCLK) in Hz */
+    #define AJ_TARGET_TICK_BITS              32U         /*!< Supported: 8, 16, 32 */
 
     #warning "AJ_TARGET_CONFIG is not defined; default configuration will be used."
 #endif
@@ -48,6 +37,18 @@ extern "C" {
 /******************************************************************************/
 /* Compile-time configuration validation                                      */
 /******************************************************************************/
+#if (AJ_TARGET_CORE_BITS != 8U)  && \
+    (AJ_TARGET_CORE_BITS != 16U) && \
+    (AJ_TARGET_CORE_BITS != 32U)
+
+    #error "AJ_TARGET_CORE_BITS must be 8U, 16U, or 32U."
+#endif
+
+#if (AJ_TARGET_CORE_CLOCK_HZ == 0U)
+
+    #error "AJ_TARGET_CORE_CLOCK_HZ must not be zero."
+#endif
+
 #if (AJ_TARGET_TICK_BITS != 8U)  && \
     (AJ_TARGET_TICK_BITS != 16U) && \
     (AJ_TARGET_TICK_BITS != 32U)
