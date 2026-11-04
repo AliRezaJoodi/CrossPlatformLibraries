@@ -68,7 +68,7 @@ static inline void AJ_TimeBase_Handler(void) {
  * @return The current tick value since the system started.
  */
 static inline aj_timebase_t AJ_TimeBase_GetTick(void) {
-    #if (AJ_TARGET_MCU_BITS == 8U) && (AJ_TARGET_TICK_BITS > 8U)
+    #if (AJ_TARGET_CORE_BITS == 8U) && (AJ_TARGET_TICK_BITS > 8U)
         aj_timebase_t t1, t2;
         do {
             t1 = aj_timebase_tick;

@@ -60,11 +60,11 @@ extern "C" {
 #include "aj_type.h"
 //#include "aj_ctz.h"
 
-//#if AJ_TARGET_MCU_BITS == 32U
+//#if AJ_TARGET_CORE_BITS == 32U
 //    #define AJ_BITREG_CTZ(mask)    AJ_CTZ_u32((mask))
-//#elif AJ_TARGET_MCU_BITS == 16U
+//#elif AJ_TARGET_CORE_BITS == 16U
 //    #define AJ_BITREG_CTZ(mask)    AJ_CTZ_u16((mask))
-//#elif AJ_TARGET_MCU_BITS == 8U
+//#elif AJ_TARGET_CORE_BITS == 8U
 //    #define AJ_BITREG_CTZ(mask)    AJ_CTZ_u8((mask))
 //#endif
 
