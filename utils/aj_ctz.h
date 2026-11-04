@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @brief   Count Trailing Zeros (CTZ) helpers for fixed-width unsigned integers.
  *
  * This header provides small, header-only CTZ routines with:

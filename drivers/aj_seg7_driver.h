@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @file    seg7_driver.h
  * @brief   Multiplexed 7-Segment Display Driver
  *

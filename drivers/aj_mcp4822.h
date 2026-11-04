@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @brief   MCP4822 model-specific wrapper for `aj_mcp4821_4822.h`.
  *
  * @details

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @brief Bit manipUation utilities for 8-bit values.
  *
  * This header provides a set of static inline utility functions for common

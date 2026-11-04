@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @brief   4x4 matrix keypad driver.
  *
  * Scanning Method: Full Pattern Scanning

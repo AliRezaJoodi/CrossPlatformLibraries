@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @brief DWT-based delay utility library for STM32F1xx microcontrollers.
  *
  * This file provides a blocking delay API built on the Cortex-M3 DWT cycle

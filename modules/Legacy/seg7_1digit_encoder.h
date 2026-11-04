@@ -1,4 +1,4 @@
-﻿/******************************************************************************
+/******************************************************************************
  * @file    seg7_1digit_encoder.h
  * @brief   7-Segment 1-Digit Encoder Library
  *          Encode digits, letters, and symbols into 7-segment display patterns.

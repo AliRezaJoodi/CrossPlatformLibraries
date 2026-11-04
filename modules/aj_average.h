@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @file    average.h
  * @brief   Lightweight averaging library for embedded systems.
  *          Provides block and moving averages specifically for uint16_t values,

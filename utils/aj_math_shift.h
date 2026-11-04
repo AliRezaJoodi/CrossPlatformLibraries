@@ -1,4 +1,4 @@
-﻿/*
+/*
  * @brief   Fast multiply/divide/mod operations using bit shifting
  *
  * -----------------------------------------------------------------------------

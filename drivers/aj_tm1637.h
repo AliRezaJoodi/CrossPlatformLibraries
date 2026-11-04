@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @file tm1637.h
  * @brief TM1637 6-digit 7-segment display driver.
  *

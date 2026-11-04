@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @brief   MCP3204 model-specific wrapper for `aj_mcp3204_3208.h`.
  *
  * @details

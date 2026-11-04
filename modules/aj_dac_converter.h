@@ -1,4 +1,4 @@
-﻿/*
+/*
  * @brief   linear scaling utilities for analog signal conversions.
  *
  * -----------------------------------------------------------------------------

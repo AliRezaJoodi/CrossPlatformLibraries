@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @brief   Fixed-point PID controller library header.
  *
  * This library provides a platform-independent PID controller

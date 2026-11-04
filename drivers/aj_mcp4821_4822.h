@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @brief   MCP4821_4822 12-bit DAC driver
  *
  * This library provides basic functions to interface with the MCP4821_4822 DAC via SPI.

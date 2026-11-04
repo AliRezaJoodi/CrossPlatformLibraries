@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @brief GPIO utility library for STM32F4xx microcontrollers.
  *
  * Provides inline functions for GPIO configuration, read/write operations,

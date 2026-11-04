@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @brief Bit manipulation helper macros.
  *
  * This header provides a collection of lightweight macros for common bit

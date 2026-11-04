@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @brief Non-blocking buzzer driver.
  *
  * The buzzer module is independent from any specific timebase implementation.

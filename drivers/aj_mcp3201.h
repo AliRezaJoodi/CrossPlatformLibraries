@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @brief   MCP3201 12-bit ADC driver
  *
  * This library provides basic functions to interface with the MCP3201 ADC via SPI.

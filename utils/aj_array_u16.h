@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @brief Utility functions for uint16 array operations
  *
  * Lightweight array utilities for embedded systems.

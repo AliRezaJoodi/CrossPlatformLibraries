@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @brief   Lightweight change-detection utilities for uint16_t values.
  *
  * This header provides small and efficient inline functions for detecting

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @brief   Driver interface for Microchip MCP41XXX_42XXX dual digital potentiometers.
  *
  * @details

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @brief Bit manipulation utilities for 32-bit values.
  *
  * This header provides a set of static inline utility functions for common

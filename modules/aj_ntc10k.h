@@ -1,4 +1,4 @@
-﻿/*
+/*
  * NTC10K Thermistor Conversion Library
  * ------------------------------------
  * Converts thermistor resistance (Ohm) to temperature (�C)

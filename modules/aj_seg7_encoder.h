@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @file    seg7_encoder.h
  * @brief   7-segment display encoding utilities.
  *

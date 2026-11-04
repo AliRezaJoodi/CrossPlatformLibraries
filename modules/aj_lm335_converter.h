@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @brief   LM335 temperature sensor conversion utilities
  *
  * @details

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * @brief Linear scale conversion utilities for analog values.
  *
  * @warning

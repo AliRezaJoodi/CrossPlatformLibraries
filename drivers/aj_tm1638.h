@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @brief TM1638 LED driver.
  *
  * TM1638 uses a proprietary 2-wire protocol and is not I2C compatible.

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @file    calendar_converter.h
  * @brief   Gregorian ? Jalaali (Persian) date conversion library
  *

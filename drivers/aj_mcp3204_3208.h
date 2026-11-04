@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @brief   MCP3204_3208 12-bit ADC driver
  *
  * This library provides basic functions to interface with the MCP3204_3208 ADC via SPI.

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @brief   Bit reversal utilities.
  *
  * Static inline functions for bit-order manipulation of unsigned integers.

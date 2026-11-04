@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @brief   Simple ON/OFF controller with hysteresis.
  *
  * This module provides a basic ON/OFF control algorithm with hysteresis.

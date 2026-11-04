@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @brief GPIO utility library for AVR8 microcontrollers.
  *
  * Provides inline functions for GPIO configuration and digital I/O control

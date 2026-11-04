@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @brief  Temperature unit conversion utilities.
  *         Provides helper functions to convert between Celsius,
  *         Fahrenheit, and Kelvin temperature units.

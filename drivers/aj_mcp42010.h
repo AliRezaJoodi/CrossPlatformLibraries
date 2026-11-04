@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @brief   MCP42010 model-specific wrapper for `aj_mcp41xxx_42xxx.h`.
  *
  * @details

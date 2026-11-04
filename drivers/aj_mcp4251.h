@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @brief   MCP4251 model-specific wrapper for `aj_mcp413x_426x.h`.
  *
  * @details

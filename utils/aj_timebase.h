@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @brief   System Tick Management Library for Microcontrollers.
  * @details This library provides a non-blocking timing mechanism using a system tick.
  *          The core function @ref AJ_TimeBase_Handler must be called periodically
@@ -28,8 +28,8 @@
  * -----------------------------------------------------------------------------
  * EXAMPLE PROJECT
  * -----------------------------------------------------------------------------
- * @see    
- *     
+ * @see
+ *
  * -----------------------------------------------------------------------------
  * Source
  * -----------------------------------------------------------------------------
@@ -111,4 +111,3 @@ static inline aj_timebase_t AJ_TimeBase_GetElapsed(aj_timebase_t tick_last) {
 #endif
 
 #endif  /* AJ_TIMEBASE_INCLUDED */
-

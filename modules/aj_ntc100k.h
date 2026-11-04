@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @file ntc100k.h
  * @brief NTC 100K Thermistor Temperature Conversion Library
  *

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @brief Bit manipulation utilities for memory-mapped registers.
  *
  * This header provides a set of inline utility functions for performing bitwise

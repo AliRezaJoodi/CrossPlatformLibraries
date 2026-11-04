@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @brief   Public interface for Microchip digital potentiometers.
  * * Supported Devices in the Family:
  * - `MCP4131 / MCP4132`

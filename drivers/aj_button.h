@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @file    aj_button.h
  * @brief   Public API for non-blocking button handling.
  *

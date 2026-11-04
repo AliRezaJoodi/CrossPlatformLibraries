@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @brief   Driver interface for the MAX6675 thermocouple-to-digital converter.
  *
  * @details

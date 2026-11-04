@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @brief   Bus clock, reset, and low-power clock control interface for STM32F4 peripherals.
  *
  * This file provides helper APIs for managing peripheral bus control registers, including:
