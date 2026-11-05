@@ -11,7 +11,7 @@ extern "C" {
 #include "aj_bit_reg.h"
 #include "aj_buzzer_config_platform.h"
 
-static inline void AJ_Buzzer_ConfigPinAsOutput(void){
+static inline void AJ_Buzzer_InitPin(void){
     AJ_BitReg_SetBit_Mask(&AJ_BUZZER_DDR, AJ_BUZZER_MASK);
 }
 

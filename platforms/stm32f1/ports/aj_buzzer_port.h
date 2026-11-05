@@ -6,11 +6,11 @@ extern "C" {
 #endif
 
 
-//#include <stdint.h>
+#include <stdint.h>
 #include "aj_gpio.h"
 #include "aj_buzzer_config_platform.h"
 
-static inline void AJ_Buzzer_ConfigPinAsOutput(void){
+static inline void AJ_Buzzer_InitPin(void){
 	AJ_GPIO_ConfigureDirection(AJ_BUZZER_GPIO, AJ_BUZZER_POS, AJ_GPIO_MODE_OUTPUT_2MHz);
 	AJ_GPIO_ConfigureOutputType(AJ_BUZZER_GPIO, AJ_BUZZER_POS, AJ_GPIO_OUTPUT_GP_PUSHPULL);
 }

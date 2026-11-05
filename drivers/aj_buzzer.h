@@ -1,5 +1,5 @@
 /**
- * @brief Non-blocking buzzer driver.
+ * @brief Non-blocking active buzzer driver.
  *
  * The buzzer module owns and maintains its own internal down-counter. Timing
  * is driven by a periodic 1 ms timer interrupt that calls AJ_Buzzer_Handler().
@@ -40,8 +40,13 @@
  * -----------------------------------------------------------------------------
  * EXAMPLE PROJECT
  * -----------------------------------------------------------------------------
- * @see    
- *     
+ * @see    STM32F103 training exercise link:
+ *         https://github.com/AliRezaJoodi/STM32_Exercises/tree/main/Buzzer_F103
+ * @see    STM32F401 training exercise link:
+ *         https://github.com/AliRezaJoodi/STM32_Exercises/tree/main/Buzzer_F401
+ * @see    AVR training exercise link:
+ *         https://github.com/AliRezaJoodi/AVR_Exercises/tree/main/Buzzer/Code_CodeVisionAVR
+ *
  * -----------------------------------------------------------------------------
  * Source
  * -----------------------------------------------------------------------------

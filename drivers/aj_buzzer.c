@@ -13,7 +13,7 @@ void AJ_Buzzer_Init(void){
     buzzer_tick = 0U;
     buzzer_active = 0U;
 
-    AJ_Buzzer_ConfigPinAsOutput();
+    AJ_Buzzer_InitPin();
     AJ_Buzzer_TurnOff();
 }
 
