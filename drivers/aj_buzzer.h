@@ -1,18 +1,19 @@
 /**
  * @brief Non-blocking buzzer driver.
  *
- * The buzzer module is independent from any specific timebase implementation.
- * It only requires a monotonically increasing tick value to be provided by
- * the application.
+ * The buzzer module owns and maintains its own internal down-counter. Timing
+ * is driven by a periodic 1 ms timer interrupt that calls AJ_Buzzer_Handler().
  *
- * The recommended usage is to generate that tick from a hardware timer
- * interrupt with a period of 1 ms, but any consistent tick source may be used.
+ * Each call to AJ_Buzzer_Handler() decrements the internal counter. When the
+ * counter reaches zero, the buzzer is automatically turned off. This keeps the
+ * driver self-contained and independent of the main-loop execution rate.
  *
- * The buzzer is non-blocking and must be refreshed periodically from the main
- * loop using AJ_Buzzer_Refresh().
+ * The buzzer is turned on with AJ_Buzzer_Start(duration); afterwards the
+ * application only needs to call AJ_Buzzer_Handler() from the 1 ms timer
+ * interrupt.
  *
- * @note The application must provide the current tick value to
- *       AJ_Buzzer_Start() and AJ_Buzzer_Refresh().
+ * @note The internal counter is managed by the library; the application must
+ *       only call AJ_Buzzer_Start() and AJ_Buzzer_Handler().
  *
  * -----------------------------------------------------------------------------
  * REQUIREMENT 1: Source Files to Build
@@ -84,35 +85,30 @@ void AJ_Buzzer_Init(void);
 /**
  * @brief   Activate the buzzer for a specified duration.
  *
- * This function turns the buzzer on and records the start time using the
- * provided tick value. The buzzer remains active until the specified
- * duration has elapsed.
+ * This function turns the buzzer on and loads the internal down-counter with
+ * the provided duration. The buzzer remains active until the counter reaches
+ * zero.
  *
- * @param[in] tick_now   Current tick value provided by the application.
- * @param[in] duration   Active time of the buzzer in ticks.
+ * @param[in] duration   Active time of the buzzer in ticks (ms).
  *
  * @note
- * AJ_Buzzer_Refresh() must be called regularly (e.g., in the main loop)
- * to monitor the elapsed time and automatically turn the buzzer off
+ * AJ_Buzzer_Handler() must be called periodically from a 1 ms timer interrupt
+ * to decrement the internal counter and automatically turn the buzzer off
  * when the specified duration expires.
  */
-void AJ_Buzzer_Start(aj_buzzer_t tick_now, aj_buzzer_t duration);
+void AJ_Buzzer_Start(aj_buzzer_t duration);
 
 /**
- * @brief   Refresh the buzzer state.
+ * @brief   Periodic handler, call from a 1 ms timer interrupt.
  *
- * This function manages the buzzer's non-blocking operation. It checks whether
- * the buzzer's active duration has elapsed by comparing the current tick with
- * the stored start tick. If the specified duration has passed, the buzzer is
- * automatically turned off.
+ * This function manages the buzzer's non-blocking operation. Each call
+ * decrements the internal counter by one. Once the counter reaches zero,
+ * the buzzer is automatically turned off.
  *
- * @param[in] tick_now  Current tick value provided by the application.
- *
- * @note    This function must be called regularly in the main loop to ensure
- *          timely buzzer deactivation. If it is not called periodically,
- *          the buzzer may remain active longer than expected.
+ * @note    This function must be called every 1 ms (e.g., inside a timer
+ *          interrupt). This library owns and maintains its own counter.
  */
-void AJ_Buzzer_Refresh(aj_buzzer_t tick_now);
+void AJ_Buzzer_Handler(void);
 
 
 #ifdef __cplusplus
