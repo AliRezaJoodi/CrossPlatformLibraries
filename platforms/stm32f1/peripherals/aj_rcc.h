@@ -107,6 +107,29 @@ static inline aj_hse_clksource_t AJ_RCC_HSE_GetClockSource(void){
 	return (aj_hse_clksource_t)AJ_BitReg_GetBit_Position(&(RCC->CR), RCC_CR_HSEBYP_Pos);
 }
 
+/**
+ * @brief  Enables or disables the HSE crystal oscillator.
+ * @param  state  HSE oscillator state:
+ *                - AJ_ENABLE:  HSE oscillator ON
+ *                - AJ_DISABLE: HSE oscillator OFF
+ * @note   Cleared by hardware to stop the HSE oscillator when entering Stop or
+ *         Standby mode. This bit cannot be reset if the HSE oscillator is used
+ *         directly or indirectly as the system clock.
+ */
+static inline void AJ_RCC_HSE_ConfigureEnable(aj_enable_state_t state){
+	AJ_BitReg_WriteBit_Position(&(RCC->CR), RCC_CR_HSEON_Pos, state);
+}
+
+/**
+ * @brief  Reports whether the HSE crystal oscillator is enabled.
+ * @return HSE oscillator state:
+ *         - 1: HSE oscillator ON
+ *         - 0: HSE oscillator OFF
+ */
+static inline uint8_t AJ_RCC_HSE_IsEnabled(void){
+	return AJ_BitReg_IsBitSet_Mask(&(RCC->CR), RCC_CR_HSEON_Msk);
+}
+
 
 #ifdef __cplusplus
 }
