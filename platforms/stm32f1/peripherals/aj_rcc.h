@@ -108,6 +108,19 @@ static inline aj_hse_clksource_t AJ_RCC_HSE_GetClockSource(void){
 }
 
 /**
+ * @brief  Reports whether the HSE oscillator is ready.
+ * @return HSE oscillator ready state:
+ *         - 1: HSE oscillator ready
+ *         - 0: HSE oscillator not ready
+ * @note   Set by hardware to indicate that the HSE oscillator is stable.
+ *         This bit needs 6 cycles of the HSE oscillator clock to fall down
+ *         after HSEON reset.
+ */
+static inline uint8_t AJ_RCC_HSE_IsReady(void){
+	return AJ_BitReg_IsBitSet_Mask(&(RCC->CR), RCC_CR_HSERDY_Msk);
+}
+
+/**
  * @brief  Enables or disables the HSE crystal oscillator.
  * @param  state  HSE oscillator state:
  *                - AJ_ENABLE:  HSE oscillator ON
