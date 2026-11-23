@@ -177,6 +177,15 @@ static inline uint8_t AJ_RCC_HSE_IsEnabled(void){
 	return AJ_BitReg_IsBitSet_Mask(&(RCC->CR), RCC_CR_HSEON_Msk);
 }
 
+/**
+ * @brief  Reads the internal high-speed clock calibration value.
+ * @return HSI calibration value (HSICAL[7:0]).
+ * @note   These bits are initialized automatically at startup.
+ */
+static inline uint8_t AJ_RCC_HSI_GetCalibration(void){
+	return AJ_BitReg_Get8Bit_Position(&(RCC->CR), RCC_CR_HSICAL_Pos);
+}
+
 
 #ifdef __cplusplus
 }
