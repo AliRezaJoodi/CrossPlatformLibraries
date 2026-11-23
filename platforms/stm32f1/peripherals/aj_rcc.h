@@ -186,6 +186,25 @@ static inline uint8_t AJ_RCC_HSI_GetCalibration(void){
 	return AJ_BitReg_Get8Bit_Position(&(RCC->CR), RCC_CR_HSICAL_Pos);
 }
 
+/**
+ * @brief  Sets the internal high-speed clock trimming value.
+ * @param  trim  HSI trimming value (HSITRIM[4:0]).
+ * @note   This value is added to HSICAL to adjust the HSI frequency. The default
+ *         value is 16, which should trim the HSI to 8 MHz +- 1%. The trimming
+ *         step is around 40 kHz between two consecutive HSITRIM steps.
+ */
+static inline void AJ_RCC_HSI_ConfigureTrimming(uint8_t trim){
+	AJ_BitReg_Write5Bit_Position(&(RCC->CR), RCC_CR_HSITRIM_Pos, trim);
+}
+
+/**
+ * @brief  Reads the internal high-speed clock trimming value.
+ * @return HSI trimming value (HSITRIM[4:0]).
+ */
+static inline uint8_t AJ_RCC_HSI_GetTrimming(void){
+	return AJ_BitReg_Get5Bit_Position(&(RCC->CR), RCC_CR_HSITRIM_Pos);
+}
+
 
 #ifdef __cplusplus
 }
