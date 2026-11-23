@@ -74,6 +74,29 @@ static inline uint8_t AJ_RCC_PLL_IsLocked(void){
 }
 
 /**
+ * @brief  Enables or disables the PLL.
+ * @param  state  PLL state:
+ *                - AJ_ENABLE:  PLL ON
+ *                - AJ_DISABLE: PLL OFF
+ * @note   Cleared by hardware when entering Stop or Standby mode. This bit cannot
+ *         be reset if the PLL clock is used as system clock or is selected to
+ *         become the system clock.
+ */
+static inline void AJ_RCC_PLL_ConfigureEnable(aj_enable_state_t state){
+	AJ_BitReg_WriteBit_Position(&(RCC->CR), RCC_CR_PLLON_Pos, state);
+}
+
+/**
+ * @brief  Reports whether the PLL is enabled.
+ * @return PLL state:
+ *         - 1: PLL ON
+ *         - 0: PLL OFF
+ */
+static inline uint8_t AJ_RCC_PLL_IsEnabled(void){
+	return AJ_BitReg_IsBitSet_Mask(&(RCC->CR), RCC_CR_PLLON_Msk);
+}
+
+/**
  * @brief  Enables or disables the clock security system (CSS).
  * @param  state  Clock security system (CSS) configuration:
  *                - AJ_ENABLE: Clock detector ON (if HSE oscillator is ready)
