@@ -63,6 +63,17 @@ extern "C" {
 /* RCC->CR                                                                    */
 /******************************************************************************/
 /**
+ * @brief  Reports whether the PLL is locked.
+ * @return PLL lock state:
+ *         - 1: PLL locked
+ *         - 0: PLL unlocked
+ * @note   Set by hardware to indicate that the PLL is locked.
+ */
+static inline uint8_t AJ_RCC_PLL_IsLocked(void){
+	return AJ_BitReg_IsBitSet_Mask(&(RCC->CR), RCC_CR_PLLRDY_Msk);
+}
+
+/**
  * @brief  Enables or disables the clock security system (CSS).
  * @param  state  Clock security system (CSS) configuration:
  *                - AJ_ENABLE: Clock detector ON (if HSE oscillator is ready)
