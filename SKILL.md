@@ -77,6 +77,26 @@ CrossPlatformLibraries/
   descriptive components.
 - Example: `AJ_BUS_AHB_CLOCK_DMA1`, `AJ_FLASH_LATENCY_0`, `AJ_BUZZER_ACTIVE`.
 
+### Peripheral API verb patterns
+Standardise the action verbs used across peripheral drivers:
+
+| Purpose                | Function name pattern              | Example                                    |
+|------------------------|------------------------------------|--------------------------------------------|
+| Configure a bit/field  | `..._Configure<Feature>(...)`      | `AJ_RCC_HSE_ConfigureClockSecuritySystem()` |
+| Configure enable/disable| `..._ConfigureEnable(state)`      | `AJ_RCC_HSE_ConfigureEnable()`            |
+| Read a field value     | `..._Get<Field>(...)`              | `AJ_RCC_HSI_GetCalibration()`             |
+| Check a flag/state     | `..._Is<State>(...)`               | `AJ_RCC_HSE_IsReady()`, `AJ_RCC_PLL_IsLocked()` |
+
+- `Is...` functions return `uint8_t` and return `1`/`0`.
+- Read-only fields (initialised by hardware) get only a `Get` function, no
+  write/configure counterpart (e.g. `HSICAL` → `GetCalibration()`).
+- A `Get` returns the matching enum type (or `uint8_t` for a raw field) — it
+  does **not** return a bare `uint8_t` when a descriptive enum exists.
+- Enable-type bits use `aj_enable_state_t` (`AJ_ENABLE` / `AJ_DISABLE`) from
+  `platforms/common/aj_type.h`.
+- Use full words for clarity (e.g. `Trimming`, not `Trim`) — consistent with
+  full-word `Calibration`.
+
 ### Variables / struct fields
 - Start with a lowercase letter; use camelCase for multi-word names.
 - Examples: `buzzer_tick`, `system_tick`, `periphs`, `duration`.
@@ -164,6 +184,25 @@ Use the following structure at the top of the main module header:
   completed gradually.`
 - Avoid magic numbers: prefer named constants/enum fields.
 - Do **not** add comments to code unless they clarify non-obvious behaviour.
+- Full datasheet prose (for flags/notes like "Set by hardware to ...") is quoted
+  verbatim inside a `@note` block on the relevant function.
+
+### Function ordering inside a register section
+- Order the functions for a register's bits **from most-significant bit (MSB) to
+  least-significant bit (LSB)**.
+- Group each bit's `Configure` + read functions together.
+- Start a new section comment for the next register when moving on:
+  `/******************************************************************************/`
+  `/* RCC->CR                                                                     */`
+  `/******************************************************************************/`
+
+### Use of utility primitives
+- Bridge to registers through `aj_bit_reg.h`, e.g.:
+  - Write a bit: `AJ_BitReg_WriteBit_Position(&(RCC->CR), RCC_CR_HSEON_Pos, state)`
+  - Write an N-bit field: `AJ_BitReg_WriteNPBit_Position(...)` (e.g. `Write5Bit_Position`)
+  - Read a bit returned as flag: `AJ_BitReg_IsBitSet_Mask(&(RCC->CR), RCC_CR_X_Msk)`
+  - Read an N-bit field: `AJ_BitReg_GetNPBit_Position(...)` (e.g. `Get8Bit_Position`)
+- Field width must match the helper (5-bit field → `Get/Write5Bit_Position`).
 
 ---
 
@@ -174,3 +213,29 @@ Use the following structure at the top of the main module header:
   (e.g. `AJ_Buzzer_InitPin()`, `AJ_Buzzer_WritePin()`).
 - Keep the public names identical across platforms so the main driver can be
   shared unchanged; only the bodies differ.
+
+---
+
+## 9. Working Rhythm (Collaboration Style)
+
+Follow this rhythm so changes are agreed before being applied:
+
+- When the user asks a question or for an opinion (**"just comment"** /
+  opinion request), **do not modify any file** — only discuss and propose.
+- Add code **only after** the user explicitly asks to write/apply it (e.g.
+  "write it", "do it", "apply the change").
+- When proposing a function name or an approach, present it as a recommendation
+  and let the user confirm before editing.
+- Keep answers concise; use a short summary table or short list where it helps
+  a decision.
+
+---
+
+## 10. New Chat / Fresh Session
+
+To continue this work in a **new chat**, the user points to this file. Follow
+everything in this `SKILL.md` — the conventions above are the source of truth;
+no need to re-explain them. If a peripheral driver (e.g. `aj_rcc.h`) is
+mid-development, continue adding bits/registers in the established MSB→LSB
+order within each register section, and move to the next register when the
+current one's bits are complete.
